@@ -1,4 +1,7 @@
 Partreach::Application.routes.draw do
+  resources :addresses
+
+
   resources :suppliers
 
   # The priority is based upon order of creation:
