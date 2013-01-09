@@ -1,4 +1,4 @@
-<h1>Listing suppliers</h1>
+<h1>Additive manufacturers in the US</h1>
 
 <table>
   <tr>
@@ -13,7 +13,7 @@
 <% @suppliers.each do |supplier| %>
   <tr>
     <td><%= supplier.name %></td>
-    <td><%= supplier.url %></td>
+    <td><%= link_to supplier.url, url_with_protocol(supplier.url), :target => '_blank' %></td>
     <td><%= supplier.zipcode %></td>
     <td><%= link_to 'Show', supplier %></td>
     <td><%= link_to 'Edit', edit_supplier_path(supplier) %></td>
