@@ -4,8 +4,9 @@
   <tr>
     <th>Name</th>
     <th>Url</th>
-    <th>Zipcode</th>
     <th>Blurb</th>
+    <th>Email</th>
+    <th>Phone</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,6 +17,8 @@
     <td><%= supplier.name %></td>
     <td><%= link_to supplier.url, url_with_protocol(supplier.url), :target => '_blank' %></td>
     <td><%= supplier.blurb %></td>
+    <td><%= supplier.email %></td>
+    <td><%= supplier.phone %></td>        
     <td><%= link_to 'Show', supplier %></td>
     <td><%= link_to 'Edit', edit_supplier_path(supplier) %></td>
     <td><%= link_to 'Destroy', supplier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
