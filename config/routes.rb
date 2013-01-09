@@ -1,4 +1,13 @@
 Partreach::Application.routes.draw do
+  resources :users
+
+
+  resources :orders
+
+
+  resources :dialogues
+
+
   resources :addresses
 
 

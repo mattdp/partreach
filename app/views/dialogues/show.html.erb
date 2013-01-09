@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Initial select:</b>
+  <%= @dialogue.initial_select %>
+</p>
+
+<p>
+  <b>Opener sent:</b>
+  <%= @dialogue.opener_sent %>
+</p>
+
+<p>
+  <b>Response received:</b>
+  <%= @dialogue.response_received %>
+</p>
+
+
+<%= link_to 'Edit', edit_dialogue_path(@dialogue) %> |
+<%= link_to 'Back', dialogues_path %>
