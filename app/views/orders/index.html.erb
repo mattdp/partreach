@@ -2,7 +2,6 @@
 
 <table>
   <tr>
-    <th>Winning dialogue</th>
     <th></th>
     <th></th>
     <th></th>
@@ -10,7 +9,6 @@
 
 <% @orders.each do |order| %>
   <tr>
-    <td><%= order.winning_dialogue %></td>
     <td><%= link_to 'Show', order %></td>
     <td><%= link_to 'Edit', edit_order_path(order) %></td>
     <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
