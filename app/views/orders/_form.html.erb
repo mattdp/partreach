@@ -11,6 +11,14 @@
     </div>
   <% end %>
 
+  <table>
+    <% @suppliers.each do |supplier| %>
+      <tr>
+        <td><%= supplier.name %></td>
+      </tr>
+    <% end %>
+  </table>
+
   <div class="field">
     <%= f.label :quantity %><br />
     <%= f.number_field :quantity %>
