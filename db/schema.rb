@@ -31,11 +31,6 @@ ActiveRecord::Schema.define(:version => 20130109055906) do
     t.datetime "updated_at",        :null => false
   end
 
-  create_table "orders", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "suppliers", :force => true do |t|
     t.string   "name"
     t.string   "url"

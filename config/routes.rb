@@ -3,9 +3,6 @@ Partreach::Application.routes.draw do
   root :to => 'suppliers#index'
 
   resources :users
-
-  resources :orders
-
   resources :dialogues
 
   resources :addresses
