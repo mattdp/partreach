@@ -11,18 +11,20 @@
     </div>
   <% end %>
 
-  <table>
-    <% @suppliers.each do |supplier| %>
-      <tr>
-        <td><%= supplier.name %></td>
-      </tr>
-    <% end %>
-  </table>
-
   <div class="field">
     <%= f.label :quantity %><br />
     <%= f.number_field :quantity %>
   </div>
+
+  <%# fields_for :supplier do |s| %> 
+    <div>
+      <% @suppliers.each do |supplier| %>
+        <%#= NEED A CHECK BOX PER SUPPLIER  %>
+        <%= supplier.name %>
+      <% end %>
+    </div>
+  <%# end %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
