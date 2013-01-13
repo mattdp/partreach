@@ -1,15 +1,11 @@
 Partreach::Application.routes.draw do
 
+  root :to => 'orders#index'
+
   resources :orders
-
-
-  root :to => 'suppliers#index'
-
   resources :users
   resources :dialogues
-
   resources :addresses
-
   resources :suppliers
 
   # The priority is based upon order of creation:
