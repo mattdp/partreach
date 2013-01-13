@@ -1,5 +1,8 @@
 Partreach::Application.routes.draw do
 
+  resources :orders
+
+
   root :to => 'suppliers#index'
 
   resources :users
