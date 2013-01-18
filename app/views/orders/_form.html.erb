@@ -1,32 +1,19 @@
-<%= form_for(@order) do |f| %>
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :quantity %><br />
-    <%= f.number_field :quantity %>
+<%= form_tag :action => 'create', :controller => 'orders' do %>
+  
+  <div>
+    <%= text_field_tag 'quantity', nil, :placeholder => 'Enter quantity here' %>
+    <%= label_tag 'quantity', 'How many do you want?' %>
   </div>
 
   <div>
     <% for supplier in @suppliers %>
-      <%# fields_for "...", supplier do |supplier_form| %> 
-        <%#= NEED A CHECK BOX PER SUPPLIER  %>
-        <%#= supplier_form.text_field :name %>
-        <%= supplier.name %>
-      <%# end %>
+      <div>
+        <%= check_box_tag supplier.name %>
+        <%= label_tag supplier.name %>
+      </div>
     <% end %>
   </div>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+  <%= button_tag "Create order", :disable_with => "Creating." %>
+
 <% end %>
