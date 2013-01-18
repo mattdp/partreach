@@ -1,0 +1,13 @@
+NOTES
+
+where add supplier code to order stuff? in view, or controller?
+
+form help
+	http://guides.rubyonrails.org/form_helpers.html
+	http://railscasts.com/episodes/73-complex-forms-part-1?autoplay=true
+		episode 16 for virtual params
+		superseded by http://railscasts.com/episodes/196-nested-model-form-part-1 ???
+			USE TO LIST SUPPLIERS AND CREATE DIALOGUES
+		
+
+	can display the names without fields_for, no html output after that

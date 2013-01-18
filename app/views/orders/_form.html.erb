@@ -16,14 +16,15 @@
     <%= f.number_field :quantity %>
   </div>
 
-  <%# fields_for :supplier do |s| %> 
-    <div>
-      <% @suppliers.each do |supplier| %>
+  <div>
+    <% for supplier in @suppliers %>
+      <%# fields_for "...", supplier do |supplier_form| %> 
         <%#= NEED A CHECK BOX PER SUPPLIER  %>
+        <%#= supplier_form.text_field :name %>
         <%= supplier.name %>
-      <% end %>
-    </div>
-  <%# end %>
+      <%# end %>
+    <% end %>
+  </div>
   
   <div class="actions">
     <%= f.submit %>
