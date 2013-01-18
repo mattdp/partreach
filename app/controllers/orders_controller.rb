@@ -41,7 +41,10 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
+
+  puts(params[:order])
     @order = Order.new(params[:order])
+    @order.quantity = params[:quantity]
 
     respond_to do |format|
       if @order.save
