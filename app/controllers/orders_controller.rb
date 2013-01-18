@@ -42,9 +42,15 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
 
-  puts(params[:order])
     @order = Order.new(params[:order])
-    @order.quantity = params[:quantity]
+    @order.quantity = params[:quantity_field]
+
+    params["supplier_list"].each do |s|
+      d = Dialogue.new
+      d.order = @order 
+      d.supplier = Supplier.find(s)
+      d.save
+    end
 
     respond_to do |format|
       if @order.save

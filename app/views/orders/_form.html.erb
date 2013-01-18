@@ -1,15 +1,15 @@
 <%= form_tag :action => 'create', :controller => 'orders' do %>
   
   <div>
-    <%= text_field_tag 'quantity', nil, :placeholder => 'Enter quantity here' %>
-    <%= label_tag 'quantity', 'How many do you want?' %>
+    <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
+    <%= label_tag 'quantity_field', 'How many do you want?' %>
   </div>
 
   <div>
     <% for supplier in @suppliers %>
       <div>
-        <%= check_box_tag supplier.name %>
-        <%= label_tag supplier.name %>
+        <%= check_box_tag "supplier_list[]", supplier.id %>
+        <%= label_tag "supplier_list[]", supplier.name %>
       </div>
     <% end %>
   </div>
