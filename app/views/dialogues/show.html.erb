@@ -15,6 +15,15 @@
   <%= @dialogue.response_received %>
 </p>
 
+<p>
+  <b>Order ID:</b>
+  <%= @dialogue.order_id %>
+</p>
+
+<p>
+  <b>Supplier ID:</b>
+  <%= @dialogue.supplier_id %>
+</p>
 
 <%= link_to 'Edit', edit_dialogue_path(@dialogue) %> |
 <%= link_to 'Back', dialogues_path %>
