@@ -45,16 +45,17 @@ class OrdersController < ApplicationController
 
     @order = Order.new(params[:order])
     @order.quantity = params[:quantity_field]
+    did_order_save = @order.save
 
     params["supplier_list"].each do |s|
       d = Dialogue.new
-      d.order = @order 
-      d.supplier = Supplier.find(s)
+      d.order_id = @order.id 
+      d.supplier_id = s.to_i
       d.save
     end
 
     respond_to do |format|
-      if @order.save
+      if did_order_save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
