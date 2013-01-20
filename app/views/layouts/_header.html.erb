@@ -1,13 +1,13 @@
 		<header class="navbar navbar-fixed-top navbar-inverse">
       <div class="navbar-inner">
         <div class="container">
-          <%= link_to "partreach", '#', id: "logo" %>
+          <%= link_to "partreach", root_path, id: "logo" %>
           <nav>
             <ul class="nav pull-right">
-              <li><%= link_to "New Order", 	'#' %></li>
-              <li><%= link_to "Orders",    	'#' %></li>
+              <li><%= link_to "New Order", 	'/orders/new' %></li>
+              <li><%= link_to "Orders",    	'/orders' %></li>
               <li><%= link_to "Sign in", 		'#' %></li>
-              <li><%= link_to "Sign up", 		'#' %></li>
+              <li><%= link_to "Sign up", 		'/users/new' %></li>
             </ul>
           </nav>
         </div>
