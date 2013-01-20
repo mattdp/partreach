@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(:version => 20130120040750) do
     t.string   "url"
     t.datetime "created_at",                :null => false
     t.datetime "updated_at",                :null => false
-    t.text     "blurb",      :limit => 255
+    t.text     "blurb"      
     t.string   "email"
     t.string   "phone"
     t.integer  "address_id"
