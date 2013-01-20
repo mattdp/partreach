@@ -1,4 +1,3 @@
 NOTES
 
-pickup at 6.3, adding secure password
-http://ruby.railstutorial.org/chapters/modeling-users?version=3.2#top
+pickup ch 8, on enforcing user notifications
