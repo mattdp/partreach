@@ -1,2 +1,4 @@
 NOTES
 
+pickup at 6.3, adding secure password
+http://ruby.railstutorial.org/chapters/modeling-users?version=3.2#top
