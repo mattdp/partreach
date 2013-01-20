@@ -1,3 +1,7 @@
 NOTES
 
-pickup ch 8, on enforcing user notifications
+currently, signing up creates the user correctly, but raises error messages and leaves one on user page
+	next, look at rails s while running this operation
+	then check out how saves validate
+
+pickup ch 9, enforcing user status page-by-page
