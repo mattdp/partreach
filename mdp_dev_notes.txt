@@ -1,3 +1,2 @@
 NOTES
 
-go through each model, add NAME_id to each in order to index other fields
