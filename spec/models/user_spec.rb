@@ -14,7 +14,7 @@
 
 require 'spec_helper'
 
-describe User do
+describe "User" do
 
   before do
     @user = User.new(name: "Example User", email: "user@example.com", 
@@ -109,7 +109,5 @@ describe User do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
   end
-
-
 
 end
