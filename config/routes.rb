@@ -8,6 +8,8 @@ Partreach::Application.routes.draw do
   resources :addresses
   resources :suppliers
 
+  match '/signup', to: 'users#new'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
