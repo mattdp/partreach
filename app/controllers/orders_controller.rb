@@ -45,6 +45,7 @@ class OrdersController < ApplicationController
 
     @order = Order.new(params[:order])
     @order.quantity = params[:quantity_field]
+    @order.user_id = current_user.id
     did_order_save = @order.save
 
     params["supplier_list"].each do |s|
