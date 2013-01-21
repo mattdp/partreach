@@ -1,4 +1,7 @@
 NOTES
 
-Halt to get tests working, then pickup 9.2.2
-	Doesn't appear that auth working, may be since other models than user are relevant
+Pickup 9.2.3
+
+At end of chapter
+	Get working for other models
+	Set so can't even see other users, unless admin; right now, it's only modify
