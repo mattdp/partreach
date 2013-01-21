@@ -29,13 +29,19 @@ describe "User pages" do
       end
 
       describe "after saving the user" do
+        before { click_button submit }
+        let(:user) { User.find_by_email('user@example.com') }
+
+        it { should have_selector('div.alert.alert-success', text: 'Welcome') }
         it { should have_link ('Sign out') }
+
+        describe "followed by signout" do
+          before { click_link "Sign out" }
+          it { should have_link('Sign in') }
+        end
+
       end
 
-      describe "followed by signout" do
-        before { click_link "Sign out" }
-        it { should have_link('Sign in') }
-      end
     end
   end
 

@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_filter :signed_in_user
+
   # GET /orders
   # GET /orders.json
   def index

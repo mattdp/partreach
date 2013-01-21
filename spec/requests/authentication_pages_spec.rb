@@ -41,7 +41,7 @@ describe "Authentication" do
       describe "in the Users controller" do
 
         describe "visiting the edit page" do
-          before { visit edit_user_path(user) }
+          before { visit "/orders/new" }
           it { should have_selector('title', text: 'Sign in') }
         end
 

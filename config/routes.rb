@@ -1,6 +1,6 @@
 Partreach::Application.routes.draw do
 
-  root :to => 'orders#index'
+  root :to => 'users#new'
 
   resources :orders
   resources :users

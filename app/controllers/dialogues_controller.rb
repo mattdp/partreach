@@ -1,4 +1,6 @@
 class DialoguesController < ApplicationController
+  before_filter :signed_in_user
+
   # GET /dialogues
   # GET /dialogues.json
   def index
