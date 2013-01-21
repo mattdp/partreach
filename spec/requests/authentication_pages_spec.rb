@@ -42,7 +42,7 @@ describe "Authentication" do
 
         describe "visiting the edit page" do
           before { visit "/orders/new" }
-          it { should have_selector('title', text: 'Sign in') }
+          it { should have_selector('h1', text: 'Sign in') }
         end
 
         describe "submitting to the update action" do
