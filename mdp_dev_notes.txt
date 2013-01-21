@@ -1,7 +1,3 @@
 NOTES
 
-currently, signing up creates the user correctly, but raises error messages and leaves one on user page
-	next, look at rails s while running this operation
-	then check out how saves validate
-
-pickup ch 9, enforcing user status page-by-page
+pickup ch 9.2.1, enforcing user status page-by-page
