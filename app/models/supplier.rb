@@ -20,3 +20,5 @@ class Supplier < ActiveRecord::Base
   has_one :address, :as => :place
 
 end
+
+#may need to add material and method

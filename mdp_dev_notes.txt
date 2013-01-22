@@ -2,6 +2,8 @@ NOTES
 
 Pickup 9.2.3
 
+Should before_filter be in the app controller?
+
 At end of chapter
 	Get working for other models
 	Set so can't even see other users, unless admin; right now, it's only modify
