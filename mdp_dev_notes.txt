@@ -1,8 +1,23 @@
 NOTES
 
-Pickup 9.2.3
 
-Should before_filter be in the app controller?
+
+
+
+Do < 10.1.4 for all models
+	models
+		user 			X
+		order			need to make the tests/factories
+		dialogue
+		supplier
+		address
+	for each
+		is there any validation to steal from the user model?
+			what presences are required?
+			what max lengths?
+		are all the _id fields not publicly exposed?
+		are all the _id fields directly protected from user manipulation by a test?
+		are they dependant on the right thing for destroys? 
 
 At end of chapter
 	Get working for other models

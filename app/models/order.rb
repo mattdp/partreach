@@ -11,9 +11,9 @@
 
 class Order < ActiveRecord::Base
   attr_accessible :quantity
-  attr_readonly :id
   
   belongs_to :user
-  has_many :dialogues, :dependent => :destroy
+  has_many :dialogues, dependent: :destroy
 
+  validates :quantity, presence: true, numericality: {greater_than: 0}
 end
