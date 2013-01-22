@@ -18,6 +18,7 @@ Do < 10.1.4 for all models
 		are all the _id fields not publicly exposed?
 		are all the _id fields directly protected from user manipulation by a test?
 		are they dependant on the right thing for destroys? 
+		can you only see your own, unless you're an admin?
 
 At end of chapter
 	Get working for other models
