@@ -10,6 +10,7 @@
 #  updated_at      :datetime         not null
 #  address_id      :integer
 #  password_digest :string(255)
+#  remember_token  :string(255)
 #
 
 class User < ActiveRecord::Base

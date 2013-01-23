@@ -9,4 +9,10 @@ FactoryGirl.define do
       admin true
     end
   end
+
+  factory :order do
+  	sequence(:quantity) { |n| n + 50 }
+  	sequence(:user_id) { |n| n % 2 }
+  end
+
 end
