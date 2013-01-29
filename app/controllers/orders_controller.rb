@@ -1,10 +1,11 @@
 class OrdersController < ApplicationController
   before_filter :signed_in_user
+  before_filter :correct_user, only: [:edit, :update, :destroy]
 
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = current_user.orders
 
     respond_to do |format|
       format.html # index.html.erb
@@ -95,4 +96,14 @@ class OrdersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  private
+
+    def correct_user
+      @orders = current_user.orders.find_by_id(params[:id])
+      redirect_to(root_path) if @orders.nil?
+    end
+
 end
+
+

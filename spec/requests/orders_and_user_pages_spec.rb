@@ -31,4 +31,16 @@ describe "Order and users" do
 
 	end
 
+	describe "lack of orders" do
+		let(:user) { FactoryGirl.create(:user) }
+		subject { page }
+
+		before do 
+			sign_in user
+			visit "/orders"
+		end
+
+		it { should have_selector('p', text: 'No orders') }
+	end
+
 end

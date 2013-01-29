@@ -1,23 +1,27 @@
 <h1>Listing orders</h1>
 
-<table>
-  <tr>
-    <th>Quantity</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<% if @orders.size > 0 %>
+  <table>
+    <tr>
+      <th>Quantity</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @orders.each do |order| %>
-  <tr>
-    <td><%= order.quantity %></td>
-    <td><%= link_to 'Show', order %></td>
-    <td><%= link_to 'Edit', edit_order_path(order) %></td>
-    <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+
+  <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.quantity %></td>
+      <td><%= link_to 'Show', order %></td>
+      <td><%= link_to 'Edit', edit_order_path(order) %></td>
+      <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+  </table>
+
+  <br />
+
+<% else %>
+  <p> No orders yet! Make a <%= link_to 'new order', new_order_path %> now! </p>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Order', new_order_path %>
