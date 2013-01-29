@@ -1,18 +1,15 @@
 FactoryGirl.define do
   factory :user do
-    sequence(:name)  { |n| "Person #{n}" }
+    sequence(:name)  { |n| "Person#{n}" }
     sequence(:email) { |n| "person_#{n}@example.com"}   
-    password "foobar"
+    password              "foobar"
     password_confirmation "foobar"
-
-    factory :admin do
-      admin true
-    end
+    admin false
   end
 
-  factory :order do
+  factory :order do |o|
+    association :user
   	sequence(:quantity) { |n| n + 50 }
-  	sequence(:user_id) { |n| n % 2 }
   end
 
 end

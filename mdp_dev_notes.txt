@@ -1,9 +1,5 @@
 NOTES
 
-
-
-
-
 Do < 10.1.4 for all models
 	models
 		user 			X
@@ -23,3 +19,10 @@ Do < 10.1.4 for all models
 At end of chapter
 	Get working for other models
 	Set so can't even see other users, unless admin; right now, it's only modify
+
+# X every order has a user
+# X quantity is above 0
+# X can't hit id via mass assignment
+#destroying user destroys order (request)
+#can only see one's own orders (request)
+#admin can see all orders (request)
