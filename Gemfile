@@ -9,6 +9,7 @@ gem 'paperclip', '3.4' #https://github.com/thoughtbot/paperclip
 group :development, :test do
  gem 'sqlite3', '1.3.5'
  gem 'rspec-rails', '2.12.2'
+ gem 'shoulda-matchers', '1.4.2'
 end
 
 group :development do

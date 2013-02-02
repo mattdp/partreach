@@ -1,7 +1,14 @@
 NOTES
 
-next: update a file
+
 order needs a name, ability to take attachment, date to submit by, and message to suppliers
+	next: update a file
+		steps
+			TESTS
+			turn on validations, currently means can't save orders
+		sites
+			https://github.com/thoughtbot/paperclip
+			http://rubydoc.info/gems/paperclip/Paperclip/Shoulda/Matchers
 
 
 

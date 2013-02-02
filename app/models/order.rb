@@ -17,5 +17,6 @@ class Order < ActiveRecord::Base
   has_many :dialogues, dependent: :destroy
 
   validates :quantity, presence: true, numericality: {greater_than: 0}
+  #validates :drawing, attachment_presence: true, attachment_size: {less_than: 50.megabytes}
   validates :user_id, presence: true
 end
