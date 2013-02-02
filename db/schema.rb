@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120201237) do
+ActiveRecord::Schema.define(:version => 20130202224559) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -35,9 +35,13 @@ ActiveRecord::Schema.define(:version => 20130120201237) do
 
   create_table "orders", :force => true do |t|
     t.integer  "quantity"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.integer  "user_id"
+    t.string   "drawing_file_name"
+    t.string   "drawing_content_type"
+    t.integer  "drawing_file_size"
+    t.datetime "drawing_updated_at"
   end
 
   create_table "suppliers", :force => true do |t|
