@@ -4,9 +4,7 @@ gem 'rails', '3.2.11'
 gem 'webrick', '= 1.3.1' #https://github.com/JumpstartLab/curriculum/issues/373
 gem 'bootstrap-sass', '2.1'
 gem 'faker', '1.0.1'
-
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+gem 'paperclip', '3.4' #https://github.com/thoughtbot/paperclip
 
 group :development, :test do
  gem 'sqlite3', '1.3.5'

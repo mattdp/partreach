@@ -1,6 +1,7 @@
 NOTES
 
-
+next: update a file
+order needs a name, ability to take attachment, date to submit by, and message to suppliers
 
 
 
@@ -33,6 +34,5 @@ At end of chapter
 # X every order has a user
 # X quantity is above 0
 # X can't hit id via mass assignment
-#destroying user destroys order (request)
 #can only see one's own orders (request)
 #admin can see all orders (request)
