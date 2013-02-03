@@ -51,12 +51,15 @@ class OrdersController < ApplicationController
     @order.user_id = current_user.id
     did_order_save = @order.save
 
+    #binding.pry
+
     params["supplier_list"].each do |s|
       d = Dialogue.new
       d.order_id = @order.id 
       d.supplier_id = s.to_i
       d.save
     end
+
 
     respond_to do |format|
       if did_order_save
