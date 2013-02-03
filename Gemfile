@@ -13,6 +13,8 @@ group :development, :test do
 end
 
 group :development do
+	gem 'pry', '0.9.11.4'
+	gem 'pry-rails', '0.2.2'
 	gem 'annotate', '2.5.0'
 end
 

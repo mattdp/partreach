@@ -1,8 +1,13 @@
-<%= form_tag :action => 'create', :controller => 'orders' do %>
+<%= form_tag :action => 'create', :controller => 'orders', :multipart => true do %>
   
   <div>
     <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
     <%= label_tag 'quantity_field', 'How many do you want?' %>
+  </div>
+
+  <div>
+    <%= file_field_tag 'drawing_field' %>
+    <%= label_tag 'drawing_field', 'Attach drawing here' %>
   </div>
 
   <div>
