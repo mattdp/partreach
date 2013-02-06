@@ -1,9 +1,12 @@
-<h1>Listing orders</h1>
+<h3><%= link_to 'Create a new request for quotes', new_order_path %></h3>
 
 <% if @orders.size > 0 %>
   <table>
     <tr>
-      <th>Quantity</th>
+      <th>Quote description</th>
+      <th>Quantity needed</th>
+      <th>Due date</th>
+      <th>Bids</th>
       <th></th>
       <th></th>
       <th></th>
@@ -12,10 +15,17 @@
 
   <% @orders.each do |order| %>
     <tr>
+      <td><%= order.name %></td>
       <td><%= order.quantity %></td>
-      <td><%= link_to 'Show', order %></td>
-      <td><%= link_to 'Edit', edit_order_path(order) %></td>
-      <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td>
+        <% if not(order.deadline.nil?) %>
+          <%= "Due by #{order.deadline.to_s}" %>
+        <% end %>
+      </td>
+      <td>
+        <%= "#{pluralize(bids_received(order),'bid')} received" %>
+        <%= "#{pluralize(order.dialogues.count, 'supplier')} contacted" %>
+      <td><%= link_to 'View order and bids', order %></td>
     </tr>
   <% end %>
   </table>
@@ -23,5 +33,5 @@
   <br />
 
 <% else %>
-  <p> No orders yet! Make a <%= link_to 'new order', new_order_path %> now! </p>
+  <p> No orders yet! Make a <%= link_to 'new request for quotes', new_order_path %> now! </p>
 <% end %>
