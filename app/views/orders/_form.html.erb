@@ -1,6 +1,11 @@
 <%= form_tag :action => 'create', :controller => 'orders', :multipart => true do %>
   
   <div>
+    <%= text_field_tag 'name_field' %>
+    <%= label_tag 'name_field', 'What\'s your internal name for this order (optional)?' %>
+  </div>
+
+  <div>
     <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
     <%= label_tag 'quantity_field', 'How many do you want?' %>
   </div>
@@ -11,12 +16,22 @@
   </div>
 
   <div>
+    <%= select_date Date.today, :prefix => :deadline %>
+    <%= label_tag :deadline, 'What\'s the last day you\'ll accept new quotes? (optional)' %>
+  </div>
+
+  <div>
     <% for supplier in @suppliers %>
       <div>
         <%= check_box_tag "supplier_list[]", supplier.id %>
         <%= label_tag "supplier_list[]", supplier.name %>
       </div>
     <% end %>
+  </div>
+
+  <div>
+    <%= text_area_tag 'supplier_message_field', nil, :rows => 4 %>
+    <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers? (optional)' %>
   </div>
 
   <%= submit_tag "Create order", :disable_with => "Creating..." %>

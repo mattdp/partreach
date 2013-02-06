@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202224559) do
+ActiveRecord::Schema.define(:version => 20130206044212) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -42,6 +42,9 @@ ActiveRecord::Schema.define(:version => 20130202224559) do
     t.string   "drawing_content_type"
     t.integer  "drawing_file_size"
     t.datetime "drawing_updated_at"
+    t.string   "name"
+    t.date     "deadline"
+    t.text     "supplier_message"
   end
 
   create_table "suppliers", :force => true do |t|

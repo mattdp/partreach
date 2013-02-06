@@ -10,7 +10,7 @@
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :quantity, :drawing
+  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message
   has_attached_file :drawing,
   									:url => "/:attachment/:id/:style/:basename.:extension",
   									:path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"

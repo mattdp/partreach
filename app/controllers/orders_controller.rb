@@ -52,6 +52,11 @@ class OrdersController < ApplicationController
     @order.quantity = params[:quantity_field]
     @order.user_id = current_user.id
     #@order.drawing = params[:order][:drawing]
+    @order.name = params[:name_field]
+    if !params[:deadline].nil?
+      @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
+    end
+    @order.supplier_message = params[:supplier_message_field]
     did_order_save = @order.save
 
     params["supplier_list"].each do |s|

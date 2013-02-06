@@ -17,11 +17,9 @@ order needs a name, ability to take attachment, date to submit by, and message t
 			https://github.com/thoughtbot/paperclip
 			http://rubydoc.info/gems/paperclip/Paperclip/Shoulda/Matchers
 
-
-
-
-
-
+	optional date - deadline
+	optional name - order_name	
+	message
 
 TESTING
 
