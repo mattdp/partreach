@@ -1,16 +1,13 @@
 NOTES
 
-  <div>
-    <%= file_field_tag 'drawing_field' %>
-    <%= label_tag 'drawing_field', 'Attach drawing here' %>
-  </div>
-
-
 order needs a name, ability to take attachment, date to submit by, and message to suppliers
 	next: update a file
+		NOT WORKING, TOGGLED OFF
 		remaining steps
-			name file_field_tag correctly
 			process the image in the controller
+				not saving
+					have checked that appropriate columns are in db
+					seems to have a path with saving as drawing_name
 			verify it saves, go get it
 			update the show method to reflect it
 			TESTS
@@ -53,3 +50,4 @@ At end of chapter
 # X can't hit id via mass assignment
 #can only see one's own orders (request)
 #admin can see all orders (request)
+http://natashatherobot.com/stub-paperclip-has_attached_file-rspec/

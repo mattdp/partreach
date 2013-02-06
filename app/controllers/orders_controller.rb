@@ -46,12 +46,13 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
 
-    @order = Order.new(params[:order])
+    #binding.pry
+    
+    @order = Order.new#(params[:order])
     @order.quantity = params[:quantity_field]
     @order.user_id = current_user.id
+    #@order.drawing = params[:order][:drawing]
     did_order_save = @order.save
-
-    #binding.pry
 
     params["supplier_list"].each do |s|
       d = Dialogue.new
@@ -59,7 +60,6 @@ class OrdersController < ApplicationController
       d.supplier_id = s.to_i
       d.save
     end
-
 
     respond_to do |format|
       if did_order_save

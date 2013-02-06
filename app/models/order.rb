@@ -11,7 +11,9 @@
 
 class Order < ActiveRecord::Base
   attr_accessible :quantity, :drawing
-  has_attached_file :drawing
+  has_attached_file :drawing,
+  									:url => "/:attachment/:id/:style/:basename.:extension",
+  									:path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
   
   belongs_to :user
   has_many :dialogues, dependent: :destroy
