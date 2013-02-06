@@ -10,6 +10,7 @@
 #  updated_at        :datetime         not null
 #  order_id          :integer
 #  supplier_id       :integer
+#  bid               :integer
 #
 
 class Dialogue < ActiveRecord::Base

@@ -1,10 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Quantity:</b>
-  <%= @order.quantity %>
-</p>
+<p><%= "Request name: #{@order.name}" %></p>
+<p><%= "Quantity needed: #{@order.quantity}" %></p>
+<p><%= "Due date: #{@order.deadline.to_s}" %></p>
 
+<table>
+  <tr>
+    <th>Supplier name</th>
+    <th>Bid status</th>
+    <th>Bid amount</th>
+    <th></th>
+  </tr>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
+	<% @order.dialogues.each do |d| %>
+		<tr>
+			<td><%= Supplier.find(d.supplier_id).name %></td>
+			<td><%= bid_status(d) %></td>
+			<td><%= "#{bid_amount(d)}" %></td>
+		</tr>
+	<% end %>
+</table>
+
 <%= link_to 'Back', orders_path %>
