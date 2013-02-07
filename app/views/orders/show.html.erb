@@ -9,6 +9,8 @@
     <th>Supplier name</th>
     <th>Bid status</th>
     <th>Bid amount</th>
+    <th>Selected for further negotiation?</th>
+    <th>Won the deal?</th>
     <th></th>
   </tr>
 
@@ -19,6 +21,13 @@
 			<td><%= "#{bid_amount(d)}" %></td>
 		</tr>
 	<% end %>
+	<tr>
+		<% 4.times do |t| %>
+			<td></td>
+		<% end %>
+		<td>NO WINNER CHECKBOX</td>
+	</tr>
+
 </table>
 
 <%= link_to 'Back', orders_path %>
