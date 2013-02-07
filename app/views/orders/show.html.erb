@@ -32,7 +32,7 @@
 				<td></td>
 			<% end %>
 			<td>No deal, no winner:</td>
-			<td><%= radio_button_tag "won", 0 %></td>
+			<td><%= radio_button_tag "won", 0, @order.is_over_without_winner %></td>
 		</tr>
 
 	</table>

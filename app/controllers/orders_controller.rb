@@ -83,6 +83,17 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
     if params[:submitting_page] and params[:submitting_page] == "orders_show"
+
+      if @order.is_over_without_winner and params[:won] and params[:won] != "0"
+        @order.is_over_without_winner = false
+        @order.save
+      end
+
+      if !@order.is_over_without_winner and params[:won] and params[:won] == "0"
+        @order.is_over_without_winner = true
+        @order.save
+      end
+
       @order.dialogues.each do |d|
         [:further_negotiation, :won].each do |attribute|
           if params[attribute] and params[attribute].include? d.id.to_s
