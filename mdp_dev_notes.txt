@@ -3,7 +3,10 @@ NOTES
 show modifications
 	have controller use update correctly
 		probably "if have param x, then y"
+	if box begins as 1 and is 0'd, will it get submitted/save unchecked?
 	have checkboxes reflect previous status of that dialogue
+	have checkboxes persist no winner, have model of order that allows it
+	should be radio buttons, not checkboxes
 
 order
 	next: update a file

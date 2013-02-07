@@ -14,7 +14,7 @@
 #
 
 class Dialogue < ActiveRecord::Base
-  attr_accessible :initial_select, :opener_sent, :response_received, :bid, :order_id, :supplier_id
+  attr_accessible :initial_select, :opener_sent, :response_received, :further_negotiation, :won, :bid, :order_id, :supplier_id
 
   belongs_to :order
   has_one :supplier

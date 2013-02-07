@@ -21,8 +21,8 @@
 				<td><%= Supplier.find(d.supplier_id).name %></td>
 				<td><%= bid_status(d) %></td>
 				<td><%= bid_amount(d) %></td>
-				<td><%= check_box_tag "futher_negotiation[]", d.id %></td>
-				<td><%= check_box_tag "won_deal[]", d.id %></td>
+				<td><%= check_box_tag "further_negotiation[]", d.id, d.further_negotiation %></td>
+				<td><%= check_box_tag "won[]", d.id, d.won %></td>
 			</tr>
 		<% end %>
 		<tr>
