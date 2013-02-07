@@ -82,18 +82,19 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
 
-    @order.dialogues.each do |d|
-      [:further_negotiation, :won].each do |attribute|
-        if params[attribute] and params[attribute].include? d.id.to_s
-          d[attribute] = true
-        elsif params[attribute] and not params[attribute].include? d.id.to_s
-          d[attribute] = false
-        else #params[attribute].nil?
-          d[attribute] = false
-        end  
-        #binding.pry
+    if params[:submitting_page] and params[:submitting_page] == "orders_show"
+      @order.dialogues.each do |d|
+        [:further_negotiation, :won].each do |attribute|
+          if params[attribute] and params[attribute].include? d.id.to_s
+            d[attribute] = true
+          elsif params[attribute] and not params[attribute].include? d.id.to_s
+            d[attribute] = false
+          else #params[attribute].nil?
+            d[attribute] = false
+          end  
+        end
+        d.save
       end
-      d.save
     end
 
     respond_to do |format|

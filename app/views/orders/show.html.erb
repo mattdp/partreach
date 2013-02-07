@@ -2,6 +2,8 @@
 
 <%= form_tag :action => 'update', :controller => 'orders' do %>
 
+	<%= hidden_field_tag "submitting_page", "orders_show" %>
+
 	<p><%= "Request name: #{@order.name}" %></p>
 	<p><%= "Quantity needed: #{@order.quantity}" %></p>
 	<p><%= "Due date: #{@order.deadline.to_s}" %></p>
@@ -22,7 +24,7 @@
 				<td><%= bid_status(d) %></td>
 				<td><%= bid_amount(d) %></td>
 				<td><%= check_box_tag "further_negotiation[]", d.id, d.further_negotiation %></td>
-				<td><%= check_box_tag "won[]", d.id, d.won %></td>
+				<td><%= radio_button_tag "won", d.id, d.won %></td>
 			</tr>
 		<% end %>
 		<tr>
@@ -30,7 +32,7 @@
 				<td></td>
 			<% end %>
 			<td>No deal, no winner:</td>
-			<td><%= check_box_tag "won_deal[]", 0 %></td>
+			<td><%= radio_button_tag "won", 0 %></td>
 		</tr>
 
 	</table>
