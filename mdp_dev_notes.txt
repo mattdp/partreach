@@ -1,6 +1,11 @@
 NOTES
 
-order needs a name, ability to take attachment, date to submit by, and message to suppliers
+show modifications
+	have controller use update correctly
+		probably "if have param x, then y"
+	have checkboxes reflect previous status of that dialogue
+
+order
 	next: update a file
 		NOT WORKING, TOGGLED OFF
 		remaining steps

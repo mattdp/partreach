@@ -14,6 +14,9 @@ Partreach::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
 
+  #goal: allow show page to post a form. seems hacky - check with someone.
+  match '/orders/:id', to: 'orders#update', via: :post
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

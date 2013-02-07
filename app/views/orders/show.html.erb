@@ -1,33 +1,42 @@
 <p id="notice"><%= notice %></p>
 
-<p><%= "Request name: #{@order.name}" %></p>
-<p><%= "Quantity needed: #{@order.quantity}" %></p>
-<p><%= "Due date: #{@order.deadline.to_s}" %></p>
+<%= form_tag :action => 'update', :controller => 'orders' do %>
 
-<table>
-  <tr>
-    <th>Supplier name</th>
-    <th>Bid status</th>
-    <th>Bid amount</th>
-    <th>Selected for further negotiation?</th>
-    <th>Won the deal?</th>
-    <th></th>
-  </tr>
+	<p><%= "Request name: #{@order.name}" %></p>
+	<p><%= "Quantity needed: #{@order.quantity}" %></p>
+	<p><%= "Due date: #{@order.deadline.to_s}" %></p>
 
-	<% @order.dialogues.each do |d| %>
-		<tr>
-			<td><%= Supplier.find(d.supplier_id).name %></td>
-			<td><%= bid_status(d) %></td>
-			<td><%= "#{bid_amount(d)}" %></td>
-		</tr>
-	<% end %>
-	<tr>
-		<% 4.times do |t| %>
-			<td></td>
+	<table>
+	  <tr>
+	    <th>Supplier name</th>
+	    <th>Bid status</th>
+	    <th>Bid amount</th>
+	    <th>Selected for further negotiation?</th>
+	    <th>Won the deal?</th>
+	    <th></th>
+	  </tr>
+
+		<% @order.dialogues.each do |d| %>
+			<tr>
+				<td><%= Supplier.find(d.supplier_id).name %></td>
+				<td><%= bid_status(d) %></td>
+				<td><%= bid_amount(d) %></td>
+				<td><%= check_box_tag "futher_negotiation[]", d.id %></td>
+				<td><%= check_box_tag "won_deal[]", d.id %></td>
+			</tr>
 		<% end %>
-		<td>NO WINNER CHECKBOX</td>
-	</tr>
+		<tr>
+			<% 3.times do |t| %>
+				<td></td>
+			<% end %>
+			<td>No deal, no winner:</td>
+			<td><%= check_box_tag "won_deal[]", 0 %></td>
+		</tr>
 
-</table>
+	</table>
 
-<%= link_to 'Back', orders_path %>
+	<%= submit_tag "Save changes", :disable_with => "Saving..." %>
+
+	<%= link_to 'Back', orders_path %>
+
+<% end %>
