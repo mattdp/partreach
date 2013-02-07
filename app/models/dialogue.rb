@@ -2,15 +2,17 @@
 #
 # Table name: dialogues
 #
-#  id                :integer          not null, primary key
-#  initial_select    :boolean
-#  opener_sent       :boolean
-#  response_received :boolean
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  order_id          :integer
-#  supplier_id       :integer
-#  bid               :integer
+#  id                  :integer          not null, primary key
+#  initial_select      :boolean
+#  opener_sent         :boolean
+#  response_received   :boolean
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  order_id            :integer
+#  supplier_id         :integer
+#  bid                 :integer
+#  further_negotiation :boolean
+#  won                 :boolean
 #
 
 class Dialogue < ActiveRecord::Base

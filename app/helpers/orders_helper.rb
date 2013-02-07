@@ -37,4 +37,11 @@ module OrdersHelper
 
 	end
 
+	def winner(order)
+		order.dialogues.each do |d|
+			return d if d.won 
+		end
+		return nil
+	end
+	
 end
