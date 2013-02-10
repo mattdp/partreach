@@ -1,4 +1,6 @@
 order
+	email hiding:
+		http://stackoverflow.com/questions/4141017/should-mailto-be-used-in-html5
 	next: update a file
 		NOT WORKING, TOGGLED OFF
 		remaining steps
