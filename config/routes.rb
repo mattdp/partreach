@@ -1,6 +1,6 @@
 Partreach::Application.routes.draw do
 
-  root :to => 'users#new'
+  root :to => 'static_pages#home', via: :get
 
   resources :orders
   resources :users
