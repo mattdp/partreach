@@ -1,6 +1,5 @@
 order
-	email hiding:
-		http://stackoverflow.com/questions/4141017/should-mailto-be-used-in-html5
+
 	next: update a file
 		NOT WORKING, TOGGLED OFF
 		remaining steps
@@ -16,10 +15,6 @@ order
 		sites
 			https://github.com/thoughtbot/paperclip
 			http://rubydoc.info/gems/paperclip/Paperclip/Shoulda/Matchers
-
-	optional date - deadline
-	optional name - order_name	
-	message
 
 TESTING
 
