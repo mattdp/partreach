@@ -27,6 +27,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
+
     @order = Order.new
     @suppliers = Supplier.all
 
@@ -45,8 +46,6 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-
-    #binding.pry
     
     @order = Order.new#(params[:order])
     @order.quantity = params[:quantity_field]
@@ -59,11 +58,13 @@ class OrdersController < ApplicationController
     @order.supplier_message = params[:supplier_message_field]
     did_order_save = @order.save
 
-    params["supplier_list"].each do |s|
-      d = Dialogue.new
-      d.order_id = @order.id 
-      d.supplier_id = s.to_i
-      d.save
+    if not(params["supplier_list"].nil?)
+      params["supplier_list"].each do |s|
+        d = Dialogue.new
+        d.order_id = @order.id 
+        d.supplier_id = s.to_i
+        d.save
+      end
     end
 
     respond_to do |format|
@@ -71,6 +72,8 @@ class OrdersController < ApplicationController
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
+        #binding.pry
+        @suppliers = Supplier.all
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
