@@ -27,6 +27,7 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
+
     @order = Order.new
     @suppliers = Supplier.all
 
@@ -45,8 +46,6 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-
-    #binding.pry
     
     @order = Order.new#(params[:order])
     @order.quantity = params[:quantity_field]
@@ -59,18 +58,27 @@ class OrdersController < ApplicationController
     @order.supplier_message = params[:supplier_message_field]
     did_order_save = @order.save
 
-    params["supplier_list"].each do |s|
-      d = Dialogue.new
-      d.order_id = @order.id 
-      d.supplier_id = s.to_i
-      d.save
+    did_dialogues_save = false
+    if not(params["supplier_list"].nil?)
+      did_dialogues_save = true #default yes, if have a supplier
+      params["supplier_list"].each do |s|
+        d = Dialogue.new
+        d.order_id = @order.id 
+        d.supplier_id = s.to_i
+        d.save and did_dialogues_save ? did_dialogues_save = true : did_dialogues_save = false #if fail once, should fail the rest of the times
+      end
     end
 
     respond_to do |format|
-      if did_order_save
+      if did_order_save and did_dialogues_save
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
+        @suppliers = Supplier.all
+        if not(did_dialogues_save)
+          @order.errors.messages[:supplier] = ["must have at least one checked company"]
+          #@order.errors.full_messages << "Supplier must have one or more checks"
+        end
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
