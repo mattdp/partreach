@@ -3,7 +3,8 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Url</th>
+    <th>Url_main</th>
+    <th>Url_materials</th>
     <th>Blurb</th>
     <th>Email</th>
     <th>Phone</th>
@@ -16,7 +17,8 @@
 <% @suppliers.each do |supplier| %>
   <tr>
     <td><%= supplier.name %></td>
-    <td><%= link_to supplier.url, url_with_protocol(supplier.url), :target => '_blank' %></td>
+    <td><%= link_to supplier.url_main, url_with_protocol(supplier.url_main), :target => '_blank' %></td>
+    <td><%= link_to supplier.url_materials, url_with_protocol(supplier.url_materials), :target => '_blank' %></td>
     <td><%= supplier.blurb %></td>
     <td><%= supplier.email %></td>
     <td><%= supplier.phone %></td>

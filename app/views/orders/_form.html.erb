@@ -36,6 +36,9 @@
       <div>
         <%= check_box_tag "supplier_list[]", supplier.id %>
         <%= label_tag "supplier_list[]", supplier.name %>
+        <p><%= "#{supplier.blurb}" %></p>
+        <%= link_to "Supplier website", supplier.url_main %>
+        <%= link_to "Supplier materials", supplier.url_materials %>
       </div>
     <% end %>
   </div>
