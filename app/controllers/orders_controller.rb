@@ -77,7 +77,6 @@ class OrdersController < ApplicationController
         @suppliers = Supplier.all
         if not(did_dialogues_save)
           @order.errors.messages[:supplier] = ["must have at least one checked company"]
-          #@order.errors.full_messages << "Supplier must have one or more checks"
         end
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
