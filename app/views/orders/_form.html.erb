@@ -1,4 +1,4 @@
-<%= form_tag :action => 'create', :controller => 'orders', :multipart => true do %>
+<%= form_tag :name => "order_new", :action => 'create', :controller => 'orders', :multipart => true do %>
   
   <% if @order.errors.any? %>
     <div id="error_explanation">

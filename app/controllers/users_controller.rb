@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       flash[:success] = "Welcome to PartReach!"
-      redirect_to '/orders/new'
+      redirect_to new_order_path
     else
       render 'new'
     end
