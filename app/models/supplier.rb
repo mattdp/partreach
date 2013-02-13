@@ -2,15 +2,16 @@
 #
 # Table name: suppliers
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  url        :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  blurb      :text(255)
-#  email      :string(255)
-#  phone      :string(255)
-#  address_id :integer
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  url_main      :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  blurb         :text(255)
+#  email         :string(255)
+#  phone         :string(255)
+#  address_id    :integer
+#  url_materials :string(255)
 #
 
 class Supplier < ActiveRecord::Base
@@ -19,6 +20,7 @@ class Supplier < ActiveRecord::Base
   has_many :dialogues
   has_one :address, :as => :place
 
+  validates :name, presence: true, uniqueness: {case_sensitive: false}
 end
 
 #may need to add material and method
