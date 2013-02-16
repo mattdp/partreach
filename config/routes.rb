@@ -4,9 +4,9 @@ Partreach::Application.routes.draw do
 
   resources :orders
   resources :users
-  resources :dialogues
-  resources :addresses
-  resources :suppliers
+  #resources :dialogues
+  #resources :addresses
+  #resources :suppliers
 
   resources :sessions, only: [:new, :create, :destroy]
 
