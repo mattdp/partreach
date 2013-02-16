@@ -1,6 +1,32 @@
-<h3>Faster, cheaper parts by comparison shopping among 3D printers</h3>
-<div>Fill out quote request</div>
-<div>Reach out to suppliers</div>
-<div>Get great prices, fast</div>
-<%= link_to "It's free to use - start today!", signup_path %>
-<%= mail_to "partreach@gmail.com", "Suppliers: join for free!", encode: "javascript", target: "_blank", subject: "Tell me more about being a PartReach supplier!", body: "I'm interested in more information about what PartReach is like for suppliers."%>
+<h1>Comparison shopping for 3D printing</h1>
+<h2>Know your options. Get faster, cheaper parts.</h2>
+<table class="table-center">
+	<tr>
+		<td>
+			<div class="thumbnail">
+				<%= image_tag "http://dummyimage.com/250x200/000/fff" %>
+				<p class="thumbnail-header-text">Fill out quote request</p>
+			</div>
+		</td>
+		<td>
+			<div class="thumbnail">
+				<%= image_tag "http://dummyimage.com/250x200/000/fff" %>
+				<p class="thumbnail-header-text">Reach out to suppliers</p>
+			</div>
+		</td>
+		<td>
+			<div class="thumbnail">
+				<%= image_tag "http://dummyimage.com/250x200/000/fff" %>
+				<p class="thumbnail-header-text">Get great prices, fast</p>
+			</div>
+		</td>
+	</tr>
+</table>
+<div>
+	<%= link_to "It's free to use - start today!", signup_path, class: "btn btn-primary", id: "button-start-today"  %>
+	</div>
+<div>
+	<div id="div-supplier-join">
+		<%= mail_to "partreach@gmail.com", "Are you a supplier? Join for free!", encode: "javascript", target: "_blank", subject: "Tell me more about being a PartReach supplier!", body: "I'm interested in more information about what PartReach is like for suppliers." %>
+	</div>
+</div>
