@@ -99,9 +99,16 @@ input {
 
 #error_explanation {
   color: #f00;
+  border: 1px solid #f00;
+  margin-bottom: 5px;
   ul {
     list-style: none;
     margin: 0 0 18px 0;
+  }
+  h2 {
+    font-size: 16px;
+    text-align: left;
+    margin-bottom: 5px;  
   }
 }
 
