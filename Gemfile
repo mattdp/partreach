@@ -5,6 +5,7 @@ gem 'webrick', '= 1.3.1' #https://github.com/JumpstartLab/curriculum/issues/373
 gem 'bootstrap-sass', '2.1'
 gem 'faker', '1.0.1'
 gem 'paperclip', '3.4' #https://github.com/thoughtbot/paperclip
+gem 'pg', '0.14.1' #http://blog.willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/
 
 group :development, :test do
  gem 'sqlite3', '1.3.5'
@@ -38,7 +39,6 @@ end
 gem 'jquery-rails', '2.0.2'
 
 group :production do
-  gem 'pg', '0.12.2'
 end
 
 # To use ActiveModel has_secure_password
