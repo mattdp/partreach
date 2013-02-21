@@ -5,7 +5,7 @@ class AddExplicitModelRefs < ActiveRecord::Migration
   	add_column :dialogues, :supplier_id, :integer
   	add_column :users, :address_id, :integer
   	add_column :suppliers, :address_id, :integer
-  	remove_column :suppliers, :zipcode
+  	#remove_column :suppliers, :zipcode COMMENTED OUT FOR PG MIGRATION, SINCE IT WAS NEVER IN THERE
   end
 
   def down
@@ -14,6 +14,6 @@ class AddExplicitModelRefs < ActiveRecord::Migration
   	remove_column :dialogues, :supplier_id
   	remove_column :users, :address_id
   	remove_column :suppliers, :address_id
-  	add_column :suppliers, :zipcode, :integer
+  	#add_column :suppliers, :zipcode, :integer SEE ABOVE
   end
 end
