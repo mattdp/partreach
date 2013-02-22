@@ -44,6 +44,10 @@
   </div>
 
   <div>
+    Are we missing a supplier that you want added? <%= mail_to "partreach@gmail.com", "Let us know!", encode: "javascript", target: "_blank", subject: "Suggestion to add a PartReach supplier" %>
+  </div>
+
+  <div>
     <%= text_area_tag 'supplier_message_field', nil, :rows => 4 %>
     <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers? (optional)' %>
   </div>
