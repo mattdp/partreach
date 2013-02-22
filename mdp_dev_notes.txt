@@ -1,5 +1,13 @@
 order
-	knocked out of form_tag -> :name => 'order_new', :controller => 'orders',
+
+[6] pry(#<OrdersController>)> params["drawing"]
+=> #<ActionDispatch::Http::UploadedFile:0x007fd12bcfe870
+ @content_type="text/plain",
+ @headers=
+  "Content-Disposition: form-data; name=\"drawing\"; filename=\"setup_todo.txt\"\r\nContent-Type: text/plain\r\n",
+ @original_filename="setup_todo.txt",
+ @tempfile=
+  #<File:/var/folders/ll/jvmtzdys3fv00c4p3hg0grmr0000gn/T/RackMultipart20130222-3099-ltv1p5>>
 
 	next: update a file
 		NOT WORKING, TOGGLED OFF
