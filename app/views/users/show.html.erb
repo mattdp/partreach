@@ -11,11 +11,6 @@
   <%= @user.email %>
 </p>
 
-<p>
-  <b>Admin:</b>
-  <%= @user.admin %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit or change password', edit_user_path(@user) %> |
+<%= mail_to "partreach@gmail.com", "Remove my account", encode: "javascript", target: "_blank", subject: "Please remove my account within 48 hours", body: "Please remove my account. I signed up using the email address: _______"	%> | 
+<%= link_to 'Back to my orders', orders_path %>

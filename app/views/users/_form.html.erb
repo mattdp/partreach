@@ -24,9 +24,13 @@
       <%= f.label :password_confirmation, "Password confirmation" %>
       <%= f.password_field :password_confirmation %>
 
+    <% if signed_in? %>
+      <%= f.submit "Edit my account", class: "btn btn-large btn-primary" %>
+      <p id="signin-backlink"><%= link_to 'Back to my profile', root_path %></p>
+    <% else %>
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-
-      <p id="signin-backlink"><%= link_to 'Back', root_path %></p>
+      <p id="signin-backlink"><%= link_to 'Back to home page', root_path %></p>
+    <% end %>
 
     </div>
   </div>

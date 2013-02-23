@@ -3,7 +3,7 @@ Partreach::Application.routes.draw do
   root :to => 'static_pages#home', via: :get
 
   resources :orders
-  resources :users
+  resources :users, only: [:new, :create, :edit, :update, :show] # no index, no destroy 
   #resources :dialogues
   #resources :addresses
   #resources :suppliers
