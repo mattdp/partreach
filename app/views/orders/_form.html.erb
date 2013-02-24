@@ -14,14 +14,18 @@
   <div class="row">
     <div class="span6 offset3">
 
-      <%= label_tag :drawing, 'Attach drawing (<64 MB) here' %>
+      <%= label_tag :drawing, 'Attach drawing (<64 MB) here:' %>
       <%= file_field_tag :drawing %>
 
-      <%= label_tag 'quantity_field', 'How many do you want?' %>
+      <%= label_tag 'quantity_field', 'How many of that do you want produced?' %>
       <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
 
       <%= label_tag :deadline, 'What\'s the last day you\'ll accept new quotes? (optional)' %>
-      <%= select_date Date.today + 14, :prefix => :deadline %>
+      <div class "date_select_fields">
+        <%= select_month Date.today.month, prefix: :deadline %>
+        <%= select_day Date.today.day, prefix: :deadline %>
+        <%= select_year Date.today.year, prefix: :deadline, start_year: Date.today.year, end_year: Date.today.year + 3 %>
+      </div>
 
       <% for supplier in @suppliers %>
         <div class="new_supplier_listing">
