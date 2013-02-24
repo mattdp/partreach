@@ -4,6 +4,7 @@ potential v1 issues
 	if no name, default of filename+date
 	standardize if have suggestion text or not (could use for mandatory)
 	no drawing shown on orders
+	should "order" always be "rfq" in print?
 
 order
 

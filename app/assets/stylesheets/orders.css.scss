@@ -74,3 +74,28 @@ label {
 	line-height: 1.3em;
 	clear: both;
 }
+
+/* tables 
+need border working all the way to the right
+attractive colors
+alternating colors
+word wrap in title
+*/
+
+.order_table {
+	background-color: #EEE;
+	
+	tr {
+		border-top: 2px solid	#FFF;
+	}
+	th {
+		padding: 0px 5px;
+	}
+	td {
+		padding: 0px 5px;
+	}
+}
+
+.order_table_header_row {
+	background-color: #DDD;
+}
