@@ -1,3 +1,14 @@
+potential v1 issues
+	need the user address, so know where the part should go to
+	need to be clear that material details etc go in the supplier ask box
+	supplier will return more than a price - days, questions, material information
+	may need a date when result is expected, but in that case do we just not send it to suppliers that can't meet it?
+	if no name, default of filename+date
+	standardize if have suggestion text or not (could use for mandatory)
+
+	[] make orders css good
+	[] integrate with main css file
+
 order
 
 [6] pry(#<OrdersController>)> params["drawing"]
