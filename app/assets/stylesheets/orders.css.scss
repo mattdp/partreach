@@ -2,6 +2,33 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+p {
+	font-size: 1.1em;
+}
+
+label {
+	font-size: 1.1em;
+}
+
+.order_top_header {
+	line-height: 1em;
+	margin-bottom: 10px;
+}
+
+#create_button {
+	margin-top: 5px;
+}
+
+#quantity_field {
+	width: 3	0%
+}
+
+#missing_supplier {
+	text-align: center;
+}
+
+/* deadlines */
+
 #deadline_month {
 	width: 20%;
 }
@@ -12,4 +39,38 @@
 
 #deadline_year {
 	width: 20%;
+}
+
+/* suppliers */
+
+.new_supplier_listing {
+	border: 2px solid #bbb;
+	border-radius: 5px;
+	margin: 3px 0px;
+	padding: 0px 3px;
+}
+
+.new_supplier_checkbox {
+	float: left;
+	font-size: 30px;
+}
+
+.new_supplier_label {
+	float: left;
+	margin-left: 5px;
+	font-size: 1.3em;
+	vertical-align: center;
+}
+
+.new_supplier_website {
+	vertical-align: center;
+	margin-left: 10px;
+	float: right;
+	line-height: 1.3em;
+}
+
+.new_supplier_blurb {
+	font-size: 1.1em;
+	line-height: 1.3em;
+	clear: both;
 }

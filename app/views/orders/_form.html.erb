@@ -1,18 +1,20 @@
 <%= form_tag '/orders', method: :post, multipart: true do %>
-  
-  <% if @order.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this user from being saved:</h2>
-      <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
   <div class="row">
     <div class="span6 offset3">
+
+      <% if @order.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@order.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+            <% @order.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <h3>The basics</h3>
 
       <%= label_tag :drawing, 'Attach drawing (<64 MB) here:' %>
       <%= file_field_tag :drawing %>
@@ -27,25 +29,29 @@
         <%= select_year Date.today.year, prefix: :deadline, start_year: Date.today.year, end_year: Date.today.year + 3 %>
       </div>
 
+      <h3>Supplier selection</h3>
+
       <% for supplier in @suppliers %>
         <div class="new_supplier_listing">
-          <%= check_box_tag "supplier_list[]", supplier.id, true %>
-          <%= label_tag "supplier_list[]", supplier.name %>
-          <p><%= "#{supplier.blurb}" %></p>
-          <%= link_to "Supplier website", supplier.url_main %>
-          <%= link_to "Supplier materials", supplier.url_materials %>
+          <%= check_box_tag "supplier_list[]", supplier.id, true, class: "new_supplier_checkbox" %>
+          <%= label_tag "supplier_list[]", supplier.name, class: "new_supplier_label" %>
+          <%= link_to "Supplier website", supplier.url_main, class: "new_supplier_website" %> 
+          <%= link_to "Supplier materials", supplier.url_materials, class: "new_supplier_website" %>
+          <p class="new_supplier_blurb"><%= "#{supplier.blurb}" %></p>
         </div>
       <% end %>
 
-      <p>Are we missing a supplier that you want added? <%= mail_to "partreach@gmail.com", "Let us know!", encode: "javascript", target: "_blank", subject: "Suggestion to add a PartReach supplier" %></p>
+      <p id="missing_supplier">Are we missing a supplier that you want added? <%= mail_to "partreach@gmail.com", "Let us know!", encode: "javascript", target: "_blank", subject: "Suggestion to add a PartReach supplier", body: "Hi! My username is '#{current_user.name}'. I have a suggestion to add a supplier:" %></p>
       
-      <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers? (optional)' %>
-      <%= text_area_tag 'supplier_message_field', nil, :rows => 4 %>
+      <h3>Final notes</h3>  
 
-      <%= label_tag 'name_field', 'What do you want to call this order (optional)?' %>
-      <%= text_field_tag 'name_field' %>
+      <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers?' %>
+      <%= text_area_tag 'supplier_message_field', nil, :rows => 4, :placeholder => "If you have materials in mind or time constraints, let suppliers know (optional)" %>
 
-      <%= submit_tag "Create order", :disable_with => "Creating..." %>
+      <%= label_tag 'name_field', 'What do you want to call this order?' %>
+      <%= text_field_tag 'name_field', nil, :placeholder => "(Naming optional)" %>
+
+      <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
 
       <p><%= link_to 'Back to orders', orders_path %></p>
 
