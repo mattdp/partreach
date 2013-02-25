@@ -1,0 +1,20 @@
+development:
+  bucket: 'partreach_initial_bucket'
+  access_key_id: 'AKIAIPDMFQSARFMTN4XA'
+  secret_access_key: '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'
+  max_file_size: 67108864
+  acl: private
+
+test:
+  bucket: 'partreach_initial_bucket'
+  access_key_id: 'AKIAIPDMFQSARFMTN4XA'
+  secret_access_key: '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'
+  max_file_size: 67108864
+  acl: private
+
+production:
+  bucket: 'partreach_initial_bucket'
+  access_key_id: 'AKIAIPDMFQSARFMTN4XA'
+  secret_access_key: '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'
+  max_file_size: 67108864
+  acl: private

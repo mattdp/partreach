@@ -1,5 +1,7 @@
 Partreach::Application.routes.draw do
 
+  resources :s3_uploads
+
   root :to => 'static_pages#home', via: :get
 
   resources :orders
