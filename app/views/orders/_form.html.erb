@@ -1,3 +1,6 @@
+<%= raw s3_swf_upload_tag %>
+<input type="submit" value="Start Uploading" onclick="s3_swf_1_object.startUploading();" />
+
 <%= form_tag '/orders', method: :post, multipart: true do %>
 
   <div class="row">
@@ -18,7 +21,7 @@
 
       <%= label_tag :drawing, 'Attach drawing (<64 MB) here:' %>
       <%#= file_field_tag :drawing %>
-      <%= raw s3_swf_upload_tag %>
+      <%#= raw s3_swf_upload_tag %>
 
       <%= label_tag 'quantity_field', 'How many of that do you want produced?' %>
       <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
@@ -52,7 +55,7 @@
       <%= label_tag 'name_field', 'What do you want to call this order?' %>
       <%= text_field_tag 'name_field', nil, :placeholder => "(Naming optional)" %>
 
-      <%= submit_tag "Create order", :onclick => "s3_swf_1_object.startUploading();", :disable_with => "Creating...", :id => "create_button" %>
+      <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
 
       <p><%= link_to 'Back to orders', orders_path %></p>
 
