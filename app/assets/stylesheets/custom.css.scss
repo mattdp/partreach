@@ -22,10 +22,32 @@ textarea {
 
 .center {
   text-align: center;
+  vertical-align: middle;
+}
+
+.right {
+  text-align: right;
+  vertical-align: middle;
 }
 
 .center h1 {
   margin-bottom: 10px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+.no_top_margin input{
+  margin-top: 0px;
 }
 
 /* mixins, variables, etc. */

@@ -78,24 +78,34 @@ label {
 /* tables 
 need border working all the way to the right
 attractive colors
-alternating colors
 word wrap in title
+vertical center on checkboxes and radio buttons - looks like top-of-row padding hitting it
 */
 
+tr:nth-child(even) {
+    background-color: #EEE;
+}
+
 .order_table {
-	background-color: #EEE;
+
+	margin-bottom: 5px;
 	
 	tr {
 		border-top: 2px solid	#FFF;
 	}
 	th {
-		padding: 0px 5px;
+		padding: 0px 0px 0px 10px;
 	}
 	td {
-		padding: 0px 5px;
+		padding: 0px 0px 0px 10px;
 	}
 }
 
 .order_table_header_row {
 	background-color: #DDD;
+}
+
+#index_quantity {
+	float: left;
+	margin-right: 20px;
 }
