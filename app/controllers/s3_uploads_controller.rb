@@ -2,6 +2,8 @@ require 'base64'
 
 class S3UploadsController < ApplicationController
 
+  # MDP: this is a generated file, based on https://github.com/nathancolgate/s3-swf-upload-plugin
+
   # You might want to look at https and expiration_date below.
   #        Possibly these should also be configurable from S3Config...
 
