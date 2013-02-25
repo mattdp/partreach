@@ -77,13 +77,13 @@ label {
 
 /* tables */
 
-tr:nth-child(odd) {
-    background-color: #EEE;
-}
-
 .order_table {
 
 	margin-bottom: 5px;
+	
+	tr:nth-child(odd) {
+    background-color: #EEE;
+  }
 	
 	tr {
 		border-top: 2px solid	#FFF;
