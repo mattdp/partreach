@@ -1,46 +1,61 @@
 <% provide(:title, "Order details") %>
 
-<h1>Order details</h1>
+<div class="row">
+  <div class="span6 offset3">
+		<h1>Order details</h1>
 
-<%= form_tag :action => 'update', :controller => 'orders' do %>
-
-	<%= hidden_field_tag "submitting_page", "orders_show" %>
-
-	<p><%= "Order name: #{@order.name}" %></p>
-	<p id="index_quantity"><%= "Quantity: #{@order.quantity}" %></p>
-	<p><%= "Due date: #{@order.deadline.to_s}" %></p>
-
-	<table class="order_table">
-	  <tr class="order_table_header_row">
-	    <th>Supplier name</th>
-	    <th>Bid status</th>
-	    <th>Bid amount</th>
-	    <th>Selected for further negotiation?</th>
-	    <th>Won the deal?</th>
-	    <th></th>
-	  </tr>
-
-		<% @order.dialogues.each do |d| %>
-			<tr>
-				<td><%= Supplier.find(d.supplier_id).name %></td>
-				<td><%= bid_status(d) %></td>
-				<td class="right"><%= bid_amount(d) %></td>
-				<td class="center"><%= check_box_tag "further_negotiation[]", d.id, d.further_negotiation, :class => "center no_top_margin" %></td>
-				<td class="center"><%= radio_button_tag "won", d.id, d.won, :class => "center" %></td>
-			</tr>
+		<% if @order.errors.any? %>
+		  <div id="error_explanation">
+		    <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+		    <ul>
+		      <% @order.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		    </ul>
+		  </div>
 		<% end %>
-		<tr>
-			<% 3.times do |t| %>
-				<td></td>
-			<% end %>
-			<td class="center">No deal, no winner:</td>
-			<td class="center"><%= radio_button_tag "won", 0, @order.is_over_without_winner, :class => "center" %></td>
-		</tr>
 
-	</table>
+		<%= form_tag :action => 'update', :controller => 'orders' do %>
 
-	<%= submit_tag "Save changes", :disable_with => "Saving..." %>
+			<%= hidden_field_tag "submitting_page", "orders_show" %>
 
-	<p><%= link_to 'Back', orders_path %></p>
+			<p><%= "Order name: #{@order.name}" %></p>
+			<p id="index_quantity"><%= "Quantity: #{@order.quantity}" %></p>
+			<p><%= "Due date: #{@order.deadline.to_s}" %></p>
 
-<% end %>
+			<table class="order_table">
+			  <tr class="order_table_header_row">
+			    <th>Supplier name</th>
+			    <th>Bid status</th>
+			    <th>Bid amount</th>
+			    <th>Selected for<br />further negotiation?</th>
+			    <th>Won<br>the deal?</th>
+			    <th></th>
+			  </tr>
+
+				<% @order.dialogues.each do |d| %>
+					<tr>
+						<td><%= Supplier.find(d.supplier_id).name %></td>
+						<td class="center"><%= bid_status(d) %></td>
+						<td class="right"><%= bid_amount(d) %></td>
+						<td class="center"><%= check_box_tag "further_negotiation[]", d.id, d.further_negotiation, :class => "center order_no_top_margin" %></td>
+						<td class="center"><%= radio_button_tag "won", d.id, d.won, :class => "center order_no_top_margin" %></td>
+					</tr>
+				<% end %>
+				<tr>
+					<% 3.times do |t| %>
+						<td></td>
+					<% end %>
+					<td class="center">No deal, no winner:</td>
+					<td class="center"><%= radio_button_tag "won", 0, @order.is_over_without_winner, :class => "center order_no_top_margin" %></td>
+				</tr>
+
+			</table>
+
+			<%= submit_tag "Save changes", :disable_with => "Saving..." %>
+
+			<p><%= link_to 'Back', orders_path %></p>
+
+		<% end %>
+	</div>
+</div>

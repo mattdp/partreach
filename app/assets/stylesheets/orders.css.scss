@@ -75,14 +75,9 @@ label {
 	clear: both;
 }
 
-/* tables 
-need border working all the way to the right
-attractive colors
-word wrap in title
-vertical center on checkboxes and radio buttons - looks like top-of-row padding hitting it
-*/
+/* tables */
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
     background-color: #EEE;
 }
 
@@ -95,14 +90,16 @@ tr:nth-child(even) {
 	}
 	th {
 		padding: 0px 0px 0px 10px;
+		text-decoration: underline;
+		background-color: #FFF;
 	}
 	td {
-		padding: 0px 0px 0px 10px;
+		padding: 0px 15px;
 	}
 }
 
-.order_table_header_row {
-	background-color: #DDD;
+input.order_no_top_margin{
+ 	margin-top: 0px;
 }
 
 #index_quantity {
