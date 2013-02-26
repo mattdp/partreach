@@ -1,6 +1,0 @@
-HIGH
-MEDIUM
-import chrome passwords					
-music
-LOW
-setup backup system
