@@ -50,11 +50,6 @@ describe "Authentication" do
           specify { response.should redirect_to(signin_path) }
         end
 
-        describe "visiting the user index" do
-          before { visit users_path }
-          it { should have_selector('h1', text: 'Sign in') }
-        end
-
       end
 
       describe "when attempting to visit a protected page" do
@@ -97,7 +92,8 @@ describe "Authentication" do
 
       before { sign_in non_admin }
 
-      describe "submitting a DELETE request to the Users#destroy action" do
+      #no delete action any more, though will have one in future
+      describe "submitting a DELETE request to the Users#destroy action", :broken => true do
         before { delete user_path(user) }
         specify { response.should redirect_to(root_path) }        
       end
