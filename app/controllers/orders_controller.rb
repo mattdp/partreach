@@ -71,6 +71,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if did_order_save and did_dialogues_save
+        text_notification("PartReach: New order created by #{current_user.email}. Go get some quotes!") if Rails.env.production?
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
@@ -144,6 +145,21 @@ class OrdersController < ApplicationController
       @orders = current_user.orders.find_by_id(params[:id])
       redirect_to(root_path) if @orders.nil?
     end
+
+    def text_notification(message_text)
+      phone_numbers = ["+14152382438","+16033205765"] #matt, rob
+    
+      account_sid = 'AC019c83da8ef75c162b430e909464f5a4'
+      auth_token = '21b3ac20f26865a84b05b9c8d7f54283'
+      @client = Twilio::REST::Client.new account_sid, auth_token
+
+      phone_numbers.each do |p|
+        message = @client.account.sms.messages.create(:body => message_text,
+        :to => p,
+        :from => "+14154198194")
+    end 
+
+  end
 
 end
 
