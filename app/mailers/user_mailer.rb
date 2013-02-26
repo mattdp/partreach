@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
   	@user = user
-  	@url = Rails.env.production? ? "http://partreach.com" : "localhost:3000"
+  	@url = Rails.env.production? ? "http://partreach.com" : "http://localhost:3000"
   	mail(to: @user.email, subject: "Welcome to PartReach")
   end
 
