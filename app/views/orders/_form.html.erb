@@ -1,10 +1,13 @@
-<%= raw s3_swf_upload_tag %>
-<input type="submit" value="Start Uploading" onclick="s3_swf_1_object.startUploading();" />
-
-<%= form_tag '/orders', method: :post, multipart: true do %>
-
   <div class="row">
     <div class="span6 offset3">
+
+      <h3>The basics</h3>
+
+      <p>Attach drawing (<64 MB) here:</p>
+      <%= raw s3_swf_upload_tag( :onUploadingFinish => "alert('File upload complete.');", :onQueueEmpty => "alert('Please select a file first.');") %>
+      <input type="submit" value="Upload file" onclick="s3_swf_1_object.startUploading();" />
+
+      <%= form_tag '/orders', method: :post, multipart: true do %>
 
       <% if @order.errors.any? %>
         <div id="error_explanation">
@@ -16,12 +19,6 @@
           </ul>
         </div>
       <% end %>
-
-      <h3>The basics</h3>
-
-      <%= label_tag :drawing, 'Attach drawing (<64 MB) here:' %>
-      <%#= file_field_tag :drawing %>
-      <%#= raw s3_swf_upload_tag %>
 
       <%= label_tag 'quantity_field', 'How many of that do you want produced?' %>
       <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
