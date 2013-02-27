@@ -1,0 +1,6 @@
+Your quotes have arrived!
+===============================================
+
+Hi, <%= @user.name %>. You've now received <%= pluralize(bids_received(@order), "bid") %> for <%= @order.name %>.
+
+You should come pick a supplier for your work: <%= @url %>
