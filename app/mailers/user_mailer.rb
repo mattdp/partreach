@@ -12,4 +12,6 @@ class UserMailer < ActionMailer::Base
   	@order = order
   	@url = orders_path(order)
   	mail(to: @user.email, subject: "Your PartReach quotes have arrived")
+  end
+  
 end
