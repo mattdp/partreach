@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       UserMailer.welcome_email(@user).deliver
-      flash[:success] = "Welcome to PartReach!"
+      flash[:success] = "Welcome to #{brand_name}!"
       redirect_to new_order_path
     else
       render 'new'

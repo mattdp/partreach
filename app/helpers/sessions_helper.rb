@@ -44,4 +44,8 @@ module SessionsHelper
     redirect_to(root_path) unless current_user.admin?
   end
 
+  def brand_name
+    return "SupplyBetter"
+  end
+  
 end
