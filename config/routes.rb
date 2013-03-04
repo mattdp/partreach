@@ -1,7 +1,5 @@
 Partreach::Application.routes.draw do
 
-  
-
   root :to => 'static_pages#home', via: :get
 
   resources :s3_uploads #, only: [:create, :update]
@@ -17,6 +15,7 @@ Partreach::Application.routes.draw do
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/getting_started', to: 'static_pages#getting_started'
+  match '/alpha', to: 'static_pages#alpha'
 
   #goal: allow show page to post a form. seems hacky - check with someone.
   match '/orders/:id', to: 'orders#update', via: :post
