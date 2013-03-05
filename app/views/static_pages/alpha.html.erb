@@ -9,14 +9,20 @@
 <ul>
 	<li>what it is (send a drawing or product name)</li>
 	<li>how many you need</li>
-	<li>by what date</li>
+	<li>by what date, if you're on deadline</li>
 	<li>any other details (material, tolerances, etc.)</li>
 </ul>
 
-<p>We'll get a quality product for you, by your deadline, and bill you 1% of the cost.</p>
+<p>We'll get a quality product for you, by your deadline, and bill you 1% of the cost. If we're requoting something you already make, we'll of course get your OK before ordering from a new supplier.</p>
 
 <p>We'll do this well by getting bids from a lot of suppliers. We'll show you all the quotes we got, and if you don't think we saved you money overall, just say so, and we bill nothing. No questions asked.</p>
 
+<p>Any information you give us remains yours; aside from quoting out what you approve to suppliers, we don't share it with third parties.</p>
+
 <h3>Why we're doing this</h3>
 
-<p>In the future, we're going to build great software to automate this process; right now, we want to do this manually to make sure we build the right stuff.</p>
+<p>We're building great software to help automate the process of finding suppliers. Right now, we're dogfooding it internally, so helping you out makes our product better.</p>
+
+<h3>Interested?</h3>
+
+<%= mail_to "matt@supplybetter.com", "Get in touch!", encode: "javascript", target: "_blank", subject: "Tell me more about the #{brand_name} alpha!", body: "I'm interested in more information about how you can help cut supplier costs." %>
