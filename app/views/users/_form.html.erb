@@ -1,8 +1,7 @@
     <div class="row">
       <div class="span6 offset3">
         <p>We've disabled signup until our software is ready to launch.</p> 
-
-        <p>If you're interested in <%= "#{brand_name}" %>, check out our <%= link_to "alpha!", alpha_path %>
+        <p>If you're interested in <%= "#{brand_name}" %>, check out our <%= link_to "alpha", alpha_path %>, or <%= mail_to "matt@supplybetter.com", "email us for more information", encode: "javascript", target: "_blank", subject: "Tell me more about #{brand_name}!", body: "I'm interested in more information, and notification when you launch." %>.
       </div>
     </div>
 
