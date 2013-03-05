@@ -42,7 +42,7 @@
         </div>
       <% end %>
 
-      <p id="missing_supplier">Are we missing a supplier that you want added? <%= mail_to "partreach@gmail.com", "Let us know!", encode: "javascript", target: "_blank", subject: "Suggestion to add a PartReach supplier", body: "Hi! My username is '#{current_user.name}'. I have a suggestion to add a supplier:" %></p>
+      <p id="missing_supplier">Are we missing a supplier that you want added? <%= mail_to "info@supplybetter.com", "Let us know!", encode: "javascript", target: "_blank", subject: "Suggestion to add a #{brand_name} supplier", body: "Hi! My username is '#{current_user.name}'. I have a suggestion to add a supplier:" %></p>
       
       <h3>Final notes</h3>  
 

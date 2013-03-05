@@ -5,9 +5,9 @@ require File.expand_path('../application', __FILE__)
 Partreach::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
-  :user_name => "partreach",
+  :user_name => "supplybetter",
   :password => "pedalraven",
-  :domain => "partreach.com",
+  :domain => "supplybetter.com",
   :address => "smtp.sendgrid.net",
   :port => 587,
   :authentication => :plain,

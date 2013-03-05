@@ -2,6 +2,6 @@
 <h1 class="order_top_header">Editing order</h1>
 
 <p>Your order has already been sent to suppliers, so direct editing isn't permitted.</p>
-<p>If you want to make changes, <%= mail_to "partreach@gmail.com", "please email us", encode: "javascript", target: "_blank", subject: "I'd like changes made to my order", body: "I'd like some changes to my order. My username is '#{current_user.name}'. My changes are:" %>, and we'll get things straightened out for you!</p>
+<p>If you want to make changes, <%= mail_to "info@supplybetter.com", "please email us", encode: "javascript", target: "_blank", subject: "I'd like changes made to my order", body: "I'd like some changes to my order. My username is '#{current_user.name}'. My changes are:" %>, and we'll get things straightened out for you!</p>
 
 <p><%= link_to 'Back to orders', orders_path %></p>
