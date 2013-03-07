@@ -30,7 +30,9 @@
 
 		<h3>Interested?</h3>
 
-		<%= mail_to "matt@supplybetter.com", "Let us know! Email us here, and we'll be in touch within a day.", encode: "javascript", target: "_blank", subject: "Tell me more about the #{brand_name} alpha!", body: "I'm interested in more information about how you can help cut supplier costs." %>
+		<p><%= mail_to "matt@supplybetter.com", "Let us know! Email us here, and we'll be in touch within a day.", encode: "javascript", target: "_blank", subject: "Tell me more about the #{brand_name} alpha!", body: "I'm interested in more information about how you can help cut supplier costs." %></p>
+
+		<p class="back_to_home"><%= link_to "Back to home", root_path %></p>
 
 	</div>
 </div>
