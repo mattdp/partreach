@@ -1,30 +1,36 @@
-<% provide(:title,"Our Alpha Program") %>
+<% provide(:title,"Procurement as a Service") %>
 
-<h1>We don't only do 3D printing.</h1>
+<div class="row">
+  <div class="span6 offset3">
 
-<h3>Our mission</h3>
+		<h1>We don't only do 3D printing.</h1>
 
-<p><strong>We want to help you procure faster, cheaper, and with less effort</strong>, so you can spend your time designing, coding, selling, and running your business.<p>
+		<h3>Our mission</h3>
 
-<h3>What we're offering</h3>
+		<p><strong>We want to help you procure faster, cheaper, and with less effort</strong>, so you can spend your time designing, coding, selling, and running your business.<p>
 
-<p>If you need something, we'll get it for you - whether that's a part made from a CAD drawing, or a catalog order that might be cheaper elsewhere, let us know:</p>
-<ul>
-	<li>what it is (send a drawing or product name)</li>
-	<li>how many you need</li>
-	<li>by what date, if you're on deadline</li>
-	<li>where it's going</li>
-	<li>any other details (material, tolerances, etc.)</li>
-</ul>
+		<h3>What we're offering</h3>
 
-<p>We'll get a range of quotes for you by your deadline. You pick which one is best, place the order, and compensate SupplyBetter with 1% of the cost. If you don't think our quotes saved you money overall, just say so, and we bill nothing - <strong>if you're not happy, we don't make money</strong>.</p>
+		<p>If you need something, we'll get it for you - whether that's a part made from a CAD drawing, or a catalog order that might be cheaper elsewhere, let us know:</p>
+		<ul>
+			<li>what it is (send a drawing or product name)</li>
+			<li>how many you need</li>
+			<li>by what date, if you're on deadline</li>
+			<li>where it's going</li>
+			<li>any other details (material, tolerances, etc.)</li>
+		</ul>
 
-<p>Any information you give us remains yours; aside from quoting out necessary information to suppliers, we don't share it with third parties.</p>
+		<p>We'll get a range of quotes for you by your deadline. You pick which one is best, place the order, and compensate SupplyBetter with 1% of the cost. If you don't think our quotes saved you money overall, just say so, and we bill nothing - <strong>if you're not happy, we don't make money</strong>.</p>
 
-<h3>Why we're doing this</h3>
+		<p>Any information you give us remains yours; aside from quoting out necessary information to suppliers, we don't share it with third parties.</p>
 
-<p>A future version of SupplyBetter will help automate the process of finding great suppliers. Right now, we're testing it internally, so helping you out teaches us how to make our product better, and helps you save money.</p>
+		<h3>Why we're doing this</h3>
 
-<h3>Interested?</h3>
+		<p>A future version of SupplyBetter will help automate the process of finding great suppliers. Right now, we're testing it internally, so helping you out teaches us how to make our product better, and helps you save money.</p>
 
-<%= mail_to "matt@supplybetter.com", "Let us know! Email us here, and we'll be in touch within a day.", encode: "javascript", target: "_blank", subject: "Tell me more about the #{brand_name} alpha!", body: "I'm interested in more information about how you can help cut supplier costs." %>
+		<h3>Interested?</h3>
+
+		<%= mail_to "matt@supplybetter.com", "Let us know! Email us here, and we'll be in touch within a day.", encode: "javascript", target: "_blank", subject: "Tell me more about the #{brand_name} alpha!", body: "I'm interested in more information about how you can help cut supplier costs." %>
+
+	</div>
+</div>

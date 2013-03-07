@@ -56,21 +56,21 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
-/* typography */
+/* typography
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
-}
+} */
 
 h1 {
-  font-size: 3em;
+  font-size: 42px;
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
-  font-size: 1.7em;
+  font-size: 34px;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
@@ -78,10 +78,15 @@ h2 {
   color: #999;
 }
 
-p, ul, a {
-  font-size: 1.1em;
+h3 {
+  font-size: 24px;
+  margin: 0px 0px 0px 0px;
+}
+
+p, ul, li, a, label {
+  font-size: 16px;
   font-family: 'Lato', sans-serif;
-  line-height: 1.3em;
+  line-height: 20px;
 }
 
 /* header */
