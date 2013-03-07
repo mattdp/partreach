@@ -30,10 +30,6 @@ textarea {
   vertical-align: middle;
 }
 
-.center h1 {
-  margin-bottom: 10px;
-}
-
 .left {
   float: left;
 }
@@ -56,23 +52,19 @@ $grayMediumLight: #eaeaea;
   box-sizing: border-box;
 }
 
-/* typography
-
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1;
-} */
+/* typography */
 
 h1 {
   font-size: 42px;
   letter-spacing: -2px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
 h2 {
   font-size: 34px;
   letter-spacing: -1px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: center;
   font-weight: normal;
   color: #999;
