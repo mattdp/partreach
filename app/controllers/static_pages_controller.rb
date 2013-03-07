@@ -5,7 +5,7 @@ class StaticPagesController < ApplicationController
   def getting_started
   end
 
-	def alpha
+	def procurement
 	end
 	  
 end

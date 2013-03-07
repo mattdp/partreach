@@ -3,10 +3,16 @@
         <div class="container">
           <%= link_to "#{brand_name}", root_path, id: "logo" %>
           <nav>
+            <ul class="nav pull-left">
+              <li><%= link_to "Business user? Talk to us about cutting manufacturing costs", procurement_path %></li>                 
+              <li class="divider-vertical"></li>
+              <li><%#= link_to "3D printing introduction", getting_started_path %></li>
+            </ul>
             <ul class="nav pull-right">
               <% if signed_in? %>
-                <li><%= link_to "New order",      '/orders/new' %></li>
-                <li><%= link_to "My orders", '/orders' %></li>
+                <li class="divider-vertical"></li>
+                <li><%= link_to "New order", new_order_path %></li>
+                <li><%= link_to "My orders", orders_path %></li>
                 <li id="fat-menu" class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <b class="caret"></b>
                   <ul class="dropdown-menu">
