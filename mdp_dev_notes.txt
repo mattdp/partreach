@@ -1,3 +1,17 @@
+certification notes
+	on site, heroku cert getting presented instead of mine
+		ssl:add vs certs:add ????
+	can't be in badger for issue, not enough fields to get wrong
+	all different, currently
+		key
+		crt
+		_chain.crt
+	pem is correct order of
+		crt
+		_chain.crt
+	though unclear site-to-site on whether the private key needs to also be in there. heroku doesn't have it, i think
+	possible that i didn't have the right BEGIN and END in the generation of the csr?
+
 potential v1 issues
 	need the user address, so know where the part should go to
 	supplier will return more than a price - days, questions, material information
