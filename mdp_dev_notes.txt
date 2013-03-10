@@ -1,43 +1,9 @@
 certification notes
-	on site, heroku cert getting presented instead of mine
-		ssl:add vs certs:add ????
-	can't be in badger for issue, not enough fields to get wrong
-	all different, currently
-		key
-		crt
-		_chain.crt
-	pem is correct order of
-		crt
-		_chain.crt
-	though unclear site-to-site on whether the private key needs to also be in there. heroku doesn't have it, i think
-	possible that i didn't have the right BEGIN and END in the generation of the csr?
-
-potential v1 issues
-	need the user address, so know where the part should go to
-	supplier will return more than a price - days, questions, material information
-	if no name, default of filename+date
-	standardize if have suggestion text or not (could use for mandatory)
-	no drawing shown on orders
-	should "order" always be "rfq" in print?
+	naked domain redirect
 
 order
 
-[6] pry(#<OrdersController>)> params["drawing"]
-=> #<ActionDispatch::Http::UploadedFile:0x007fd12bcfe870
- @content_type="text/plain",
- @headers=
-  "Content-Disposition: form-data; name=\"drawing\"; filename=\"setup_todo.txt\"\r\nContent-Type: text/plain\r\n",
- @original_filename="setup_todo.txt",
- @tempfile=
-  #<File:/var/folders/ll/jvmtzdys3fv00c4p3hg0grmr0000gn/T/RackMultipart20130222-3099-ltv1p5>>
-
 	next: update a file
-		NOT WORKING, TOGGLED OFF
-		remaining steps
-			process the image in the controller
-				not saving
-					have checked that appropriate columns are in db
-					seems to have a path with saving as drawing_name
 			verify it saves, go get it
 			update the show method to reflect it
 			TESTS
@@ -46,6 +12,14 @@ order
 		sites
 			https://github.com/thoughtbot/paperclip
 			http://rubydoc.info/gems/paperclip/Paperclip/Shoulda/Matchers
+
+potential v1 issues
+	need the user address, so know where the part should go to
+	supplier will return more than a price - days, questions, material information
+	if no name, default of filename+date
+	standardize if have suggestion text or not (could use for mandatory)
+	no drawing shown on orders
+	should "order" always be "rfq" in print?
 
 TESTING
 
@@ -75,3 +49,6 @@ At end of chapter
 #can only see one's own orders (request)
 #admin can see all orders (request)
 http://natashatherobot.com/stub-paperclip-has_attached_file-rspec/
+
+VISUALS
+	safari/my mac: rightmost edge of boxes doesn't show border, until user clicks into it

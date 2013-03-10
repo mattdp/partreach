@@ -4,7 +4,11 @@
       <h3>The basics</h3>
 
       <p>Attach drawing (<64 MB) here:</p>
-      <%= raw s3_swf_upload_tag( :onUploadingFinish => "alert('File upload complete.');", :onQueueEmpty => "alert('Please select a file first.');") %>
+      <%= raw s3_swf_upload_tag( 
+        :onUploadingFinish => "alert('File upload complete.');", 
+        :onQueueEmpty => "alert('Please select a file first.');",
+        :keyPrefix => "#{current_user.name}_#{DateTime.now.strftime('%Y-%m-%d-%H-%M-%S')}_" #this is not a viable long-term solution, needs to programmatically link to order eventually, but since order not yet created at this step that seems kinda hard. 
+      )%>
       <input type="submit" value="Upload file" onclick="s3_swf_1_object.startUploading();" />
 
       <%= form_tag '/orders', method: :post, multipart: true do %>
