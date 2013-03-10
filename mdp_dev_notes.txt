@@ -52,3 +52,8 @@ http://natashatherobot.com/stub-paperclip-has_attached_file-rspec/
 
 VISUALS
 	safari/my mac: rightmost edge of boxes doesn't show border, until user clicks into it
+	safari/my mac: "please update your flash player to flash v9.0.0 or higher"
+	firefox/my mac: h1's/h3's look like crap
+	firefox/my mac: "please update your flash player to flash v9.0.0 or higher"
+	firefox/my mac: dropdowns are a disaster (https://github.com/silviomoreto/bootstrap-select ? )
+	ie ????
