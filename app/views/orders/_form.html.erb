@@ -4,7 +4,7 @@
       <h3>The basics</h3>
 
       <p>Attach drawing (<64 MB) here:</p>
-      <form class='direct-upload' action="https://partreach_initial_bucket.s3.amazonaws.com" method="post" enctype="multipart/form-data">
+      <form id='direct-upload' action="https://partreach_initial_bucket.s3.amazonaws.com" method="post" enctype="multipart/form-data">
         <input type='hidden' name='key' />
         <input type='hidden' name='AWSAccessKeyId' value='AKIAIPDMFQSARFMTN4XA' />
         <input type='hidden' name='acl' value='public-read' />
@@ -15,9 +15,17 @@
         <div class='progress progress-striped active'>
           <div class='bar'></div>
         </div>
+        <div id="direct-upload-success">
+          Upload succeeded.
+        </div>
+        <div id="direct-upload-failure">
+          Upload failed.
+        </div>
       </form>
 
       <%= form_tag '/orders', method: :post, multipart: true do %>
+      
+        <input type="hidden" name="file" value="" id="direct-upload-file">
 
         <% if @order.errors.any? %>
           <div id="error_explanation">
