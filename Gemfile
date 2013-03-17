@@ -7,7 +7,6 @@ gem 'faker', '1.0.1'
 gem 'newrelic_rpm', '3.5.8.72'
 gem 'paperclip', '3.4' #https://github.com/thoughtbot/paperclip
 gem 'pg', '0.14.1' #http://blog.willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/
-gem 's3_swf_upload', '0.3.2' #https://github.com/nathancolgate/s3-swf-upload-plugin
 gem 'twilio-ruby', '3.9.0'
 
 group :development, :test do
