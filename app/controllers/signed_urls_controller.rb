@@ -22,7 +22,8 @@ class SignedUrlsController < ApplicationController
           { bucket: S3_BUCKET },
           { acl: 'public-read' },
           ["starts-with", "$key", "uploads/"],
-          { success_action_status: '201' }
+          { success_action_status: '201' },
+          ["content-length-range", 0, 67108864]
         ]
       }.to_json
     ).gsub(/\n|\r/, '')

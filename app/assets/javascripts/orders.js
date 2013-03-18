@@ -54,7 +54,7 @@ $(function() {
     if ($('#direct-upload-file').val().length === 0) {
       $('#new-order-errors').show()
                             .find('i').text(1).end()
-                            .find('ul').html('<li>Need to upload file</li>');
+                            .find('ul').html('<li>Please upload a file</li>');
       $('body').scrollTop(0);
       console.log('file not uploaded');
       return false;
