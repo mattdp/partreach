@@ -150,7 +150,7 @@ class OrdersController < ApplicationController
       phone_numbers = ["+14152382438","+16033205765"] #matt, rob
     
       account_sid = 'AC019c83da8ef75c162b430e909464f5a4'
-      auth_token = '21b3ac20f26865a84b05b9c8d7f54283'
+      auth_token = ENV['SB_TWILIO_AUTH_TOKEN']
       @client = Twilio::REST::Client.new account_sid, auth_token
 
       phone_numbers.each do |p|

@@ -6,7 +6,7 @@ Partreach::Application.initialize!
 
 ActionMailer::Base.smtp_settings = {
   :user_name => "supplybetter",
-  :password => "pedalraven",
+  :password => ENV['SB_MAILER_PASSWORD'],
   :domain => "supplybetter.com",
   :address => "smtp.sendgrid.net",
   :port => 587,
