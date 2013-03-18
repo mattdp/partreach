@@ -4,6 +4,7 @@ class UserMailer < ActionMailer::Base
 
   def welcome_email(user)
   	@user = user
+    @brand_name = brand_name
   	@url = Rails.env.production? ? "http://www.supplybetter.com" : "http://localhost:3000"
   	mail(to: @user.email, subject: "Welcome to #{brand_name}")
   end
