@@ -80,7 +80,7 @@ class OrdersController < ApplicationController
           @order.errors.messages[:supplier] = ["must have at least one checked company"]
         end
         format.html { render action: "new" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        format.json { render json: @order.errors.full_messages, status: 400 }
       end
     end
   end

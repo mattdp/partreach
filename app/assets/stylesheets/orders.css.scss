@@ -19,6 +19,14 @@
 	text-align: center;
 }
 
+#direct-upload-success, #direct-upload-failure {
+  display: none;
+}
+
+#new-order-errors {
+  display:none;
+}
+
 /* deadlines */
 
 #deadline_month {

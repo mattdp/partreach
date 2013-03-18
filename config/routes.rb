@@ -2,7 +2,7 @@ Partreach::Application.routes.draw do
 
   root :to => 'static_pages#home', via: :get
 
-  resources :s3_uploads #, only: [:create, :update]
+  resources :signed_urls, only: :index
   resources :orders
   resources :users, only: [:new, :create, :edit, :update, :show] # no index, no destroy 
   #resources :dialogues
