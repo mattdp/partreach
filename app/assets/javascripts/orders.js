@@ -1,5 +1,4 @@
 $(function() {
-
   var $directUpload = $('#direct-upload');
   $directUpload.fileupload({
     url: $directUpload.attr('action'),
@@ -48,5 +47,30 @@ $(function() {
         $('.bar').css('width', 0);
       });
     },
+  });
+  
+  $('#new-order').on('ajax:before', function() {
+    // direct-upload-file
+    if ($('#direct-upload-file').val().length === 0) {
+      $('#new-order-errors').show()
+                            .find('i').text(1).end()
+                            .find('ul').html('<li>Need to upload file</li>');
+      $('body').scrollTop(0);
+      console.log('file not uploaded');
+      return false;
+    }
+
+  });
+  $('#new-order').on('ajax:success', function(event, xhr, status) {
+    window.location = '/orders';
+    console.log('success', xhr.responseText, status);
+  });
+  $('#new-order').on('ajax:error', function(event, xhr, status) {
+    var errors = $.parseJSON(xhr.responseText);
+    $('#new-order-errors').show()
+                          .find('i').text(errors.length).end()
+                          .find('ul').html('<li>' + errors.join('</li><li>') + '</li>');
+    $('body').scrollTop(0);
+    console.log('error', xhr.responseText, status);
   });
 });

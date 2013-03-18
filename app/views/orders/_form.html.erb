@@ -4,6 +4,7 @@
       <h3>The basics</h3>
 
       <p>Attach drawing (<64 MB) here:</p>
+        
       <form id='direct-upload' action="https://partreach_initial_bucket.s3.amazonaws.com" method="post" enctype="multipart/form-data">
         <input type='hidden' name='key' />
         <input type='hidden' name='AWSAccessKeyId' value='AKIAIPDMFQSARFMTN4XA' />
@@ -23,20 +24,14 @@
         </div>
       </form>
 
-      <%= form_tag '/orders', method: :post, multipart: true do %>
+      <%= form_tag '/orders.json', id: 'new-order', method: :post, 'data-remote' => true do %>
       
         <input type="hidden" name="file" value="" id="direct-upload-file">
-
-        <% if @order.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-            <ul>
-              <% @order.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
+        
+        <div id="new-order-errors">
+          <h2><i></i> error(s) prohibited this order from being saved:</h2>
+          <ul></ul>
+        </div>
 
         <%= label_tag 'quantity_field', 'How many of that do you want produced?' %>
         <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
