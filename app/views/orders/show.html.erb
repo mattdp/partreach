@@ -5,7 +5,7 @@
 		<h1>Order details</h1>
 
 		<% if @order.errors.any? %>
-		  <div id="error_explanation">
+		  <div class="error_explanation">
 		    <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
 		    <ul>
 		      <% @order.errors.full_messages.each do |msg| %>

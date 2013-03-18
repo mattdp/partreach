@@ -5,9 +5,6 @@ Partreach::Application.routes.draw do
   resources :signed_urls, only: :index
   resources :orders
   resources :users, only: [:new, :create, :edit, :update, :show] # no index, no destroy 
-  #resources :dialogues
-  #resources :addresses
-  #resources :suppliers
 
   resources :sessions, only: [:new, :create, :destroy]
 

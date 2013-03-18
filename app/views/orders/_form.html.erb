@@ -1,6 +1,11 @@
   <div class="row">
     <div class="span6 offset3">
 
+      <div id="new-order-errors" class="error_explanation">
+        <h2><i></i> error(s) prohibited this order from being saved:</h2>
+        <ul></ul>
+      </div>
+
       <h3>The basics</h3>
 
       <p>Attach drawing (<64 MB) here:</p>
@@ -27,11 +32,6 @@
       <%= form_tag '/orders.json', id: 'new-order', method: :post, 'data-remote' => true do %>
       
         <input type="hidden" name="file" value="" id="direct-upload-file">
-        
-        <div id="new-order-errors">
-          <h2><i></i> error(s) prohibited this order from being saved:</h2>
-          <ul></ul>
-        </div>
 
         <%= label_tag 'quantity_field', 'How many of that do you want produced?' %>
         <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
