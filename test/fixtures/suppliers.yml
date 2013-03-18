@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: suppliers
+#
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  url_main      :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  blurb         :text
+#  email         :string(255)
+#  phone         :string(255)
+#  address_id    :integer
+#  url_materials :string(255)
+#
+
 1:
   name: "Shapeways"
   url_main: "http://www.shapeways.com"

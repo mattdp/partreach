@@ -7,7 +7,7 @@
 #  url_main      :string(255)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  blurb         :text(255)
+#  blurb         :text
 #  email         :string(255)
 #  phone         :string(255)
 #  address_id    :integer
