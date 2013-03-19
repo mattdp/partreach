@@ -1,7 +1,7 @@
 <% provide(:title, "Order details") %>
 
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span8 offset2">
 		<h1>Order details</h1>
 
 		<% if @order.errors.any? %>
@@ -27,9 +27,15 @@
 			  <tr class="order_table_header_row">
 			    <th>Supplier name</th>
 			    <th>Bid status</th>
-			    <th>Bid amount</th>
-			    <th>Selected for<br />further negotiation?</th>
-			    <th>Won<br>the deal?</th>
+			    <th>Total bid</th>
+			    <th>Time (days)</th>
+			    <th>Material</th>
+			    <th>Process</th>
+			    <th>Process cost</th>
+			    <th>Shipping cost</th>
+			    <th>Notes</th>
+			    <th>Selected to negotiate?</th>
+			    <th>Won deal?</th>
 			    <th></th>
 			  </tr>
 
@@ -37,13 +43,19 @@
 					<tr>
 						<td><%= Supplier.find(d.supplier_id).name %></td>
 						<td class="center"><%= bid_status(d) %></td>
-						<td class="right"><%= bid_amount(d) %></td>
+						<td class="right"><%= dollarize(d.total_cost) %></td>
+						<td class="center"><%= d.process_time %></td>
+						<td class="center"><%= d.material %></td>
+						<td class="center"><%= d.process_name %></td>
+						<td class="right"><%= dollarize(d.process_cost) %></td>
+						<td class="right"><%= dollarize(d.shipping_cost) %></td>
+						<td class="center"><%= notarize(d.shipping_name,d.notes) %></td>
 						<td class="center"><%= check_box_tag "further_negotiation[]", d.id, d.further_negotiation, :class => "center order_no_top_margin" %></td>
 						<td class="center"><%= radio_button_tag "won", d.id, d.won, :class => "center order_no_top_margin" %></td>
 					</tr>
 				<% end %>
 				<tr>
-					<% 3.times do |t| %>
+					<% 9.times do |t| %>
 						<td></td>
 					<% end %>
 					<td class="center">No deal, no winner:</td>

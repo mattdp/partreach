@@ -4,7 +4,7 @@ module OrdersHelper
 
 		received = 0
 		order.dialogues.each do |d|
-			if d.response_received and d.bid > 0 
+			if d.response_received and d.total_cost > 0 
 				received += 1
 			end
 		end
@@ -16,9 +16,9 @@ module OrdersHelper
 	def bid_status(dl)
 
 		if dl.response_received
-			if dl.bid > 0
+			if dl.total_cost > 0
 				"Completed"
-			elsif dl.bid == 0
+			elsif dl.total_cost== 0
 				"Declined to bid"
 			else
 				"Error: contact support"
@@ -29,12 +29,22 @@ module OrdersHelper
 
 	end
 
-	def bid_amount(dl)
+	def dollarize(amount)
 
-		op = dl.bid
-		op = "-" if op.nil?
-		return op
+		if amount.nil?
+			return "-"
+		else
+			return "$#{amount}"
+		end
 
+	end
+
+	def notarize(shipping,notes)
+		if !shipping.nil? and !notes.nil?
+			"#{shipping}; #{notes}"
+		else
+			"#{shipping}#{notes}"
+		end
 	end
 
 	def winner(order)

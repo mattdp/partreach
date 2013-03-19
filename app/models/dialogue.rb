@@ -10,7 +10,6 @@
 #  updated_at          :datetime         not null
 #  order_id            :integer
 #  supplier_id         :integer
-#  bid                 :integer
 #  further_negotiation :boolean
 #  won                 :boolean
 #  material            :string(255)
