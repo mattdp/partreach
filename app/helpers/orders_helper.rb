@@ -34,7 +34,7 @@ module OrdersHelper
 		if amount.nil?
 			return "-"
 		else
-			return "$#{amount}"
+			return sprintf("$%.02f",amount)
 		end
 
 	end
