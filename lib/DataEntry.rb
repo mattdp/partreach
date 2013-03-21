@@ -34,4 +34,12 @@ module DataEntry
 		return answer
 	end
 
+	def hashes_to_saved_changes(hashes)
+		hashes.each do |h|
+			#use ID to find dialogue
+			#remove ID from hash
+			#update attributes (may be wrong method) and if necessary save
+		end
+	end
+
 end
