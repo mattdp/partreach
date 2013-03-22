@@ -1,62 +1,78 @@
 <% provide(:title,"Getting started with 3D printing") %>
 
-<h1>Getting started with 3D printing</h1>
+<div class="container">
+	<h1>What is "3D printing"?</h2>
 
-<h3>What is "additive manufacturing" and "3D printing"?</h3>
+	<div class="span10 offset1">
+		<p>3D printing is the process of taking a 3D digital model and creating it in the physical world by fabricating it as a series of 2D slices. Thanks to some innovation, passion, and a few patents expiring, 3D printing has recently become much more affordable.</p>
+		<p>3D printing is a type of "additive manufacturing", which constrasts to more traditional "subtractive manufacturing."</p>
 
-<p>Additive manufacturing is the process of taking a 3D digital model and creating it in the physical world by fabricating it as a series of 2D slices. There are many ways to go about doing this and the technology has actually be around for decades. However, with some innovation, passion, and a few patents expiring, 3D printing has been made accessible to the masses.</p>
+		<table class="table-center">
+			<tr>
+				<td>
+					<div class="thumbnail">
+						<p class="thumbnail-header-text">Additive Manufacturing: adding layers of material</p>
+						<iframe class="video-iframe" width="480" height="270" src="http://www.youtube.com/embed/XMil8GVmNYo?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</td>					
+				<td>
+					<div class="thumbnail">
+						<p class="thumbnail-header-text">Subtractive Manufacturing: cutting away material</p>
+						<iframe class="video-iframe" width="480" height="270" src="http://www.youtube.com/embed/RnIvhlKT7SY?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</td>
+			
+			</tr>
+		</table>	
 
-<p>As an example of just what the process is like, let’s say you want to make a lego brick. You can either:</p>
+		<ul>
+			<li><%= link_to "TED talk: 'A primer on 3D printing'", "http://www.youtube.com/embed/OhYvDS7q_V8?feature=player_detailpage", target: "_blank" %></li>
+			<li>More <%= link_to "TED talks on 3D printing", "http://blog.ted.com/2013/02/07/7-talks-on-the-wonder-of-3d-printing/", target: "_blank" %></li>
+			<li><%= link_to "Wired Magazine gallery of amazing additive manufacturing accomplishments", "http://www.wired.com/design/2012/11/coolest-3d-prints-movies-art-environment/?pid=1263&amp;viewall=true", target: "_blank" %></li>
+		</ul>
 
-<ul>
-	<li>Take a block of plastic at least as large as the total size of the lego brick. Machine away all the volume that you don’t want. Your result is a lego brick and all the scrap material you machine away. This is what is known as subtractive manufacturing.</li>
-	<li>Take a spool of plastic filament and mount it on a Makerbot or other fused-deposition modeling machine. Import the design of the lego brick onto the machine. Now just watch as the ABS filament is fed through a heated extruder that places the material onto a surface one layer at a time until the brick has been completed. This is known as additive manufacturing.</li>
-</ul>
+		<h1 class="h1-midpage">Awesome. Where do I start?</h1>
 
-<h3>Amazing 3D printing achievements</h3>
+		<h3>Learn to Create 3D Models</h3>
 
-<%#= video_tag( "http://www.youtube.com/watch?feature=player_embedded&v=OhYvDS7q_V8" ) %>
+		<strong>Modeling with OpenSCAD</strong>
+		<ul>
+			<li>Makerbot's <%= link_to "free series of tutorials for OpenSCAD", "http://curriculum.makerbot.com/daily_lessons/february/index.html", target: "_blank" %>, a popular (and free) modeling tool</li>
+		</ul>	
 
-<ul>
-	<li>More <%= link_to "TED talks on 3D printing", "http://blog.ted.com/2013/02/07/7-talks-on-the-wonder-of-3d-printing/", target: "_blank" %></li>
-	<li><%= link_to "Wired Magazine gallery of amazing additive manufacturing accomplishments", "http://www.wired.com/design/2012/11/coolest-3d-prints-movies-art-environment/?pid=1263&amp;viewall=true", target: "_blank" %></li>
-</ul>
+		<strong>Modeling with Google Sketchup</strong>
+		<ul>
+			<li>Another solid 3D modeling tool used by many for 3D printing. <%= link_to "Google tutorials are here", "http://www.sketchup.com/training/videos/new_to_gsu.html", target: "_blank" %>.</li>
+		</ul>
+		<strong>Useful Puplished Papers</strong>
+		<ul>
+			<li>An in-depth <%= link_to "review of additive manufacturing", "http://www.hindawi.com/isrn/me/2012/208760/cta/", target: "_blank" %></li>
+		</ul>
 
-<h3>Making your own 3D designs to print</h3>
+		<strong>Design Considerations</strong>
+		<ul>
+			<li>Shapeways list of <%= link_to "3D modeling design considerations", "http://www.shapeways.com/tutorials/things-to-keep-in-mind", target: "_blank" %> (true for practically all models)</li>
+			<li>Design considerations <%= link_to "for Selective Laser Sintering (SLS) models", "http://www.shapeways.com/tutorials/design_rules_for_3d_printing", target: "_blank" %></li>
+			<!--
+			<li>Design considerations <%= link_to "just for Fused Deposition Modeling (FDM) models", "http://3dreambox.com/reference.html", target: "_blank" %></li>
+			-->
+		</ul>
 
-<strong>Modeling with OpenSCAD</strong>
-<ul>
-	<li>Makerbot's <%= link_to "free series of tutorials for OpenSCAD", "http://curriculum.makerbot.com/daily_lessons/february/index.html", target: "_blank" %>, a popular (and free) modeling tool</li>
-</ul>	
+		<h3>Great blogs to learn more about 3D printing</h3>
+		<ul>
+			<li>boingboing blog <%= link_to "on 3D printing", "http://boingboing.net/tag/3d-printing", target: "_blank" %></li>
+			<li><%= link_to "3ders", "http://www.3ders.org/", target: "_blank" %> is typically the early bird in reporting additive manufacturing news</li>
+			<li><%= link_to "Shapeways Blog", "http://www.shapeways.com/blog/", target: "_blank" %> is full of both news and developments of their operation</li>
+			<li><%= link_to "Objet Blog", "http://blog.objet.com/", target: "_blank" %> has some of the most impressive entries we've seen from a producer of 3D machines</li>
+			<li><%= link_to "Fabbaloo", "http://fabbaloo.com/", target: "_blank" %> is mostly geared towards personal 3D printing</li>
+			<li><%= link_to "Solidsmack", "http://solidsmack.com/", target: "_blank" %> covers 3D scanning and printing, both personal and commercial</li>
+		</ul>
+	
+		<h1 class="h1-midpage">Terrific. I have a 3D model. Now what?</h1>
 
-<strong>Modeling with Google Sketchup</strong>
-<ul>
-	<li>Another solid 3D modeling tool used by many for 3D printing. <%= link_to "Google tutorials are here", "http://www.sketchup.com/training/videos/new_to_gsu.html", target: "_blank" %>.</li>
-</ul>
-<strong>Useful Puplished Papers</strong>
-<ul>
-	<li>An in-depth <%= link_to "review of additive manufacturing", "http://www.hindawi.com/isrn/me/2012/208760/cta/", target: "_blank" %></li>
-</ul>
+		<h3 class="center">Use <%= link_to "#{brand_name}", root_path, :class => "h3link"%> to help you find the best place to print it! </h3>
+		<h3 class="center">We get you lots of quotes, so you can save money and get your parts faster.</h3>
 
-<strong>Design Considerations</strong>
-<ul>
-	<li>Shapeways list of <%= link_to "3D modeling design considerations", "http://www.shapeways.com/tutorials/things-to-keep-in-mind", target: "_blank" %> (true for practically all models)</li>
-	<li>Design considerations <%= link_to "just for Selective Laser Sintering (SLS) models", "http://www.shapeways.com/tutorials/design_rules_for_3d_printing", target: "_blank" %></li>
-	<!--
-	<li>Design considerations <%= link_to "just for Fused Deposition Modeling (FDM) models", "http://3dreambox.com/reference.html", target: "_blank" %></li>
-	-->
-</ul>
-
-<h3>Great blogs to learn more about 3D printing</h3>
-<ul>
-	<li>boingboing blog <%= link_to "on 3D printing", "http://boingboing.net/tag/3d-printing", target: "_blank" %></li>
-	<li><%= link_to "3ders", "http://www.3ders.org/", target: "_blank" %> is typically the early bird in reporting additive manufacturing news</li>
-	<li><%= link_to "Shapeways Blog", "http://www.shapeways.com/blog/", target: "_blank" %> is full of both news and developments of their operation</li>
-	<li><%= link_to "Objet Blog", "http://blog.objet.com/", target: "_blank" %> has some of the most impressive entries we've seen from a producer of 3D machines</li>
-	<li><%= link_to "Fabbaloo", "http://fabbaloo.com/", target: "_blank" %> is mostly geared towards personal 3D printing</li>
-	<li><%= link_to "Solidsmack", "http://solidsmack.com/", target: "_blank" %> covers 3D scanning and printing, both personal and commercial</li>
-</ul>
-
-<h3>Printing your parts</h3>
-<p>When you're ready to print, we at <%= link_to "#{brand_name}", root_path, target: "_blank"%> will help you find the fastest, cheapest way to make what you want. 
-<p class="back_to_home"><%= link_to "Back to home", root_path %></p>
+		<p class="back_to_home"><%= link_to "Back to home", root_path %></p>
+	
+</div>
