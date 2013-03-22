@@ -37,8 +37,11 @@ module DataEntry
 	def hashes_to_saved_changes(hashes)
 		hashes.each do |h|
 			#use ID to find dialogue
+			d = Dialogue.find(h[:id])
 			#remove ID from hash
-			#update attributes (may be wrong method) and if necessary save
+			h.delete(:id)
+			#update attributes (check in testing if mass assignment works)
+			d.update_attributes(h)
 		end
 	end
 
