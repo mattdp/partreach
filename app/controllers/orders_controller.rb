@@ -143,7 +143,7 @@ class OrdersController < ApplicationController
 
     def correct_user
       @orders = current_user.orders.find_by_id(params[:id])
-      redirect_to(root_path) if @orders.nil?
+      redirect_to(root_path) if (@orders.nil? && current_user.admin = false)
     end
 
     def text_notification(message_text)
