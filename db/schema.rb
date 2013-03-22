@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130319000209) do
+ActiveRecord::Schema.define(:version => 20130322172855) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20130319000209) do
     t.string   "zip"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "place_id"
+    t.string   "place_type"
   end
 
   create_table "dialogues", :force => true do |t|
@@ -56,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20130319000209) do
     t.date     "deadline"
     t.text     "supplier_message"
     t.boolean  "is_over_without_winner"
+    t.string   "recommendation"
   end
 
   create_table "suppliers", :force => true do |t|

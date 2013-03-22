@@ -36,11 +36,14 @@
         <%= label_tag 'quantity_field', 'How many of that do you want produced?' %>
         <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
 
-        <%= label_tag :deadline, 'What\'s the last day you\'ll accept new quotes? (optional)' %>
+        <%= label_tag 'zip_field', 'What\'s your zip code, for shipping estimates?' %>
+        <%= text_field_tag 'zip_field', nil, :placeholder => 'Enter zip code here' %>
+
+        <%#= label_tag :deadline, 'What\'s the last day you\'ll accept new quotes? (optional)' %>
         <div class "date_select_fields">
-          <%= select_month Date.today.month, prefix: :deadline %>
-          <%= select_day Date.today.day, prefix: :deadline %>
-          <%= select_year Date.today.year, prefix: :deadline, start_year: Date.today.year, end_year: Date.today.year + 3 %>
+          <%#= select_month Date.today.month, prefix: :deadline %>
+          <%#= select_day Date.today.day, prefix: :deadline %>
+          <%#= select_year Date.today.year, prefix: :deadline, start_year: Date.today.year, end_year: Date.today.year + 3 %>
         </div>
 
         <h3>Supplier selection</h3>

@@ -10,10 +10,14 @@
 #  zip        :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  place_id   :integer
+#  place_type :string(255)
 #
 
 class Address < ActiveRecord::Base
   attr_accessible :city, :name, :state, :street, :zip
 
   belongs_to :place, :polymorphic => true
+
+  validates :user_id, presence: true
 end
