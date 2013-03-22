@@ -2,6 +2,9 @@ module DataEntry
 
 	require 'csv'
 
+	# CURRENT USE - csv_to_hashes(filepath) on local machine, result = <output> on heroku,
+	# call hashes_to_saved_changes(result) on heroku
+
 	def list_dialogues(order_id)
 		answer = "Ord_id\tDia_id\tSupplier\n"
 		Dialogue.all.each do |d|
