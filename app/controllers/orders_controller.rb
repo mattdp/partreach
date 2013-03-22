@@ -82,7 +82,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if did_order_save and did_dialogues_save
-        text_notification("#{brand_name}: New order created by #{current_user.email}. Go get them some quotes!") if Rails.env.production?
+        text_notification("#{brand_name}: Order created by #{current_user.email}, order number #{@order.id}. Go get quotes!") if Rails.env.production?
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
