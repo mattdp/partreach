@@ -36,5 +36,4 @@ class User < ActiveRecord::Base
       self.remember_token = SecureRandom.urlsafe_base64
     end
 
-
 end

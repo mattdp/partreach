@@ -19,5 +19,6 @@ class Address < ActiveRecord::Base
 
   belongs_to :place, :polymorphic => true
 
-  validates :user_id, presence: true
+  validates :place_id, presence: true
+  validates :place_type, presence: true
 end

@@ -47,7 +47,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
 
-    @order = Order.new#(params[:order])
+    @order = Order.new
     @order.quantity = params[:quantity_field]
     @order.user_id = current_user.id
     @order.drawing = params[:drawing]
@@ -58,11 +58,12 @@ class OrdersController < ApplicationController
     if !params[:zip_field].nil?
       if current_user.address.nil?
         a = Address.new()
-        a.user_id = current_user.id
+        a.place_id = current_user.id
+        a.place_type = "User"
         a.zip = params[:zip_field]
         a.save
       elsif current_user.address.zip != params[:zip_field]
-        current_user.address.update_attributes({:zip => :zip_field}) 
+        current_user.address.update_attributes({:zip => params[:zip_field]}) 
       end
     end
     @order.supplier_message = params[:supplier_message_field]
