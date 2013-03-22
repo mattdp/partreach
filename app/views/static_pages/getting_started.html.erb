@@ -1,27 +1,34 @@
 <% provide(:title,"Getting started with 3D printing") %>
 
-<%#<h1>Getting started with 3D printing</h1>
-<h2>What is "additive manufacturing" and "3D printing"?</h2>%>
 <div class="container">
-	<h1>3D Printing: A Definition</h1>
+	<h1>What is "3D printing"?</h2>
 
-	<div class="span11 offset1">
-		<p>Additive manufacturing is the process of taking a 3D digital model and creating it in the physical world by fabricating it as a series of 2D slices. There are many ways to go about doing this and the technology has actually be around for decades. However, with some innovation, passion, and a few patents expiring, 3D printing has been made accessible to the masses.</p>
+	<div class="span10 offset1">
+		<p>3D printing is the process of taking a 3D digital model and creating it in the physical world by fabricating it as a series of 2D slices. There are many ways to do this, and the technology has been around for decades. However, thanks to some innovation, passion, and a few patents expiring, 3D printing has recently been made accessible to the masses.</p>
 	</div>
 
-	<h2>Cutting away material is known as Subractive Manufacturing
-	<iframe width="640" height="360" src="http://www.youtube.com/embed/RnIvhlKT7SY?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
-	</h2>
+	<div>
+		<table class="table-center">
+			<tr>
+				<td>
+					<div class="thumbnail">
+						<p class="thumbnail-header-text">"Subtractive Manufacturing": cutting away material</p>
+						<iframe class="video-iframe" width="480" height="270" src="http://www.youtube.com/embed/RnIvhlKT7SY?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</td>
+				<td>
+					<div class="thumbnail">
+						<p class="thumbnail-header-text">"Additive Manufacturing": adding material</p>
+						<iframe class="video-iframe" width="480" height="270" src="http://www.youtube.com/embed/XMil8GVmNYo?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
+					</div>
+				</td>	
+			</tr>
+		</table>	
+	</div>
 
-	<h2>Adding material is known as Additive Manufacturing
-	<iframe width="640" height="360" src="http://www.youtube.com/embed/XMil8GVmNYo?feature=player_detailpage" frameborder="0" allowfullscreen></iframe>
-	</h2>
-
-	<h2>This is what is possible with additive manufacturing processes
-
-	<iframe width="640" height="360" src="http://www.youtube.com/embed/OhYvDS7q_V8?feature=player_detailpage" frameborder="0" allowfullscreen></iframe></h2>
-	<div class="span10 offset2">
+	<div class="span10 offset1">
 		<ul>
+			<li><%= link_to "TED talk: 'A primer on 3D printing'", "http://www.youtube.com/embed/OhYvDS7q_V8?feature=player_detailpage", target: "_blank" %></li>
 			<li>More <%= link_to "TED talks on 3D printing", "http://blog.ted.com/2013/02/07/7-talks-on-the-wonder-of-3d-printing/", target: "_blank" %></li>
 			<li><%= link_to "Wired Magazine gallery of amazing additive manufacturing accomplishments", "http://www.wired.com/design/2012/11/coolest-3d-prints-movies-art-environment/?pid=1263&amp;viewall=true", target: "_blank" %></li>
 		</ul>
