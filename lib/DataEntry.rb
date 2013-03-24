@@ -43,6 +43,16 @@ module DataEntry
 			d = Dialogue.find(h[:id])
 			#remove ID from hash
 			h.delete(:id)
+
+			#if it's an all-string hash, set the data types correctly
+			h.keys.each do |k|
+				if [:process_cost, :shipping_cost, :total_cost].include? k
+					h[k] = BigDecimal.new(h[k])
+				elsif [:id].include? k
+					h[k] = h[k].to_i
+				end
+			end
+
 			#update attributes (check in testing if mass assignment works)
 			d.update_attributes(h)
 		end
