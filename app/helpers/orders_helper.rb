@@ -16,10 +16,10 @@ module OrdersHelper
 	def bid_status(dl)
 
 		if dl.response_received
-			if dl.total_cost > 0
-				"Completed"
-			elsif dl.total_cost== 0
+			if dl.total_cost.nil? or dl.total_cost == 0
 				"Declined to bid"
+			elsif  dl.total_cost > 0
+				"Completed"
 			else
 				"Error: contact support"
 			end
