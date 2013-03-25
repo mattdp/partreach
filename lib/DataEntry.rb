@@ -46,6 +46,9 @@ module DataEntry
 
 			#if it's an all-string hash, set the data types correctly
 			h.keys.each do |k|
+
+				k = "" if k.nil?
+
 				if [:process_cost, :shipping_cost, :total_cost].include? k
 					h[k] = BigDecimal.new(h[k])
 				elsif [:id].include? k
