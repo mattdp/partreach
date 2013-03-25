@@ -19,7 +19,6 @@
 
 			<%= hidden_field_tag "submitting_page", "orders_show" %>
 
-			
 			<% if @order.name != "" %>
 				<p><%= "Order name: #{@order.name}" %></p>
 			<% end %>
@@ -49,12 +48,12 @@
 					<tr>
 						<td><%= Supplier.find(d.supplier_id).name %></td>
 						<td class="center"><%= bid_status(d) %></td>
-						<td class="right"><%= dollarize(d.total_cost) %></td>
+						<td class="right"><%= currencyize(d.total_cost, d.currency) %></td>
 						<td class="center"><%= d.process_time %></td>
 						<td class="center"><%= d.material %></td>
 						<td class="center"><%= d.process_name %></td>
-						<td class="right"><%= dollarize(d.process_cost) %></td>
-						<td class="right"><%= dollarize(d.shipping_cost) %></td>
+						<td class="right"><%= currencyize(d.process_cost, d.currency) %></td>
+						<td class="right"><%= currencyize(d.shipping_cost, d.currency) %></td>
 						<td class="center"><%= notarize(d.shipping_name,d.notes) %></td>
 						<td class="center"><%= check_box_tag "further_negotiation[]", d.id, d.further_negotiation, :class => "center order_no_top_margin" %></td>
 						<td class="center"><%= radio_button_tag "won", d.id, d.won, :class => "center order_no_top_margin" %></td>

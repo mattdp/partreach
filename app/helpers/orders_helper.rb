@@ -1,3 +1,6 @@
+#!/bin/env ruby
+# encoding: utf-8
+
 module OrdersHelper
 
 	def bids_received(order)
@@ -18,7 +21,7 @@ module OrdersHelper
 		if dl.response_received
 			if dl.total_cost.nil? or dl.total_cost == 0
 				"Declined to bid"
-			elsif  dl.total_cost > 0
+			elsif dl.total_cost > 0
 				"Completed"
 			else
 				"Error: contact support"
@@ -29,14 +32,20 @@ module OrdersHelper
 
 	end
 
-	def dollarize(amount)
+	def currencyize(amount, currency)
 
 		if amount.nil?
 			return "-"
 		else
-			return sprintf("$%.02f",amount)
+			if currency == "dollars"
+				currency_symbol = "$"
+			elsif currency == "euros"
+				currency_symbol = "€"
+			else
+				currency_symbol = ""
+			end
+			return sprintf("#{currency_symbol}%.02f",amount)
 		end
-
 	end
 
 	def notarize(shipping,notes)
