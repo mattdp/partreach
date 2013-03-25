@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
   def new
 
     @order = Order.new
-    @suppliers = Supplier.all
+    @suppliers = Supplier.return_category("default")
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,8 +39,6 @@ class OrdersController < ApplicationController
 
   # GET /orders/1/edit
   def edit
-    @order = Order.find(params[:id])
-    @suppliers = Supplier.all
   end
 
   # POST /orders
@@ -86,7 +84,7 @@ class OrdersController < ApplicationController
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
-        @suppliers = Supplier.all
+        @suppliers = Supplier.return_category("default")
         if not(did_dialogues_save)
           @order.errors.messages[:supplier] = ["must have at least one checked company"]
         end

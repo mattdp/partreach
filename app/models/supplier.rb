@@ -15,12 +15,21 @@
 #
 
 class Supplier < ActiveRecord::Base
-  attr_accessible :name, :url_main, :url_materials, :blurb, :email, :phone, :address_id
+  attr_accessible :name, :url_main, :url_materials, :blurb, :email, :phone, :address_id, :category
 
   has_many :dialogues
   has_one :address, :as => :place
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
+
+  def self.return_category(category)
+  	answer = []
+  	Supplier.all.each do |s|
+  		answer << s if s.category == category
+  	end
+  	return answer
+  end
+
 end
 
 #may need to add material and method
