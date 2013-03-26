@@ -1,0 +1,107 @@
+<% provide(:title,"How to choose the right material") %>
+
+<div class="container">
+	<h1>How to choose the right material?</h1>
+
+	<div class="span10 offset1">
+		<p>Different machines offer different materials that can be printed. The same material printed two different ways may also yield different results. Here's our guide to help choose the correct material for your application.</p>
+
+		<table id="materials-table" class="table-center">
+			<tr>
+				<td>Process</td>
+				<td>Applications</td>
+				<td>Materials</td>
+			</tr>
+			<tr>
+				<td>
+					SLS
+				</td>
+				<td>
+					<ul>
+						<li>Good for mechanical performance</li> 
+						<li>worse than FDM for accuracy</li> 
+						<li>good for mass production</li>
+					</ul>
+				</td>
+				<td>
+					<p><%= link_to "Nylon 12", "", target: "_blank" %></p>
+				</td>
+			</tr>					
+			<tr>
+				<td>
+					SLA
+				</td>
+				<td>
+					<ul>
+						<li>Application flexible</li>
+						<li>Good for mass production</li>
+						<li>great resolution</li>
+						<li>poor for mechanical performance</li>
+					<ul>
+				</td>
+				<td>
+					<p>UV Curable Resin</p>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					FDM
+				</td>
+				<td>
+					<ul>
+						<li>Poor for mass production</li>
+						<li>great for accuracy</li>
+						<li>great for mechanical performance</li>
+				</td>
+				<td>
+					<p>ABS, PLA</p>
+				</td>
+			</tr>	
+			<tr>
+				<td>
+					Polyjet
+				</td>
+				<td>
+					<li>Great for accuracy</li>
+					<li>great for prototyping</li>
+					<li>poor for production</li>
+					<li>poor for mechanical performance</li>
+				</td>
+				<td>
+					<p>ABS-like</p>
+				</td>
+			</tr>		
+
+		</table>	
+
+		<h1 class="h1-midpage">I need to know more</h1>
+
+		<h3>Datasheets!</h3>
+
+		<strong>Materials</strong>
+		<ul>
+			<li>Nylon 12</li>
+			<li>ABS</li>
+			<li>PLA</li>
+			<li>Polycarbonate</li>
+			<li>UV Curable Resin</li>
+			<li>ABS-Like</li>
+		</ul>
+
+		<strong>Design Considerations</strong>
+		<ul>
+			<li>Shapeways' list of <%= link_to "3D modeling design considerations", "http://www.shapeways.com/tutorials/things-to-keep-in-mind", target: "_blank" %> (true for practically all models)</li>
+			<li>Design considerations <%= link_to "for Selective Laser Sintering (SLS) models", "http://www.shapeways.com/tutorials/design_rules_for_3d_printing", target: "_blank" %></li>
+			<!--
+			<li>Design considerations <%= link_to "just for Fused Deposition Modeling (FDM) models", "http://3dreambox.com/reference.html", target: "_blank" %></li>
+			-->
+		</ul>
+
+		<h1 class="h1-midpage">Terrific. I have a 3D model. Now what?</h1>
+
+		<h3 class="center">Use <%= link_to "#{brand_name}", root_path, :class => "h3link"%> to help you find the best place to print it! <%= link_to "(Sign up here)", new_user_path, :class => "h3link" %></h3>
+		<h3 class="center">We get you a variety of quotes, so you can save money and get your parts faster.</h3>
+
+		<p class="back_to_home"><%= link_to "Back to home", root_path %></p>
+	
+</div>
