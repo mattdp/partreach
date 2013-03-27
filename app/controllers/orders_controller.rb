@@ -61,7 +61,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.quantity = params[:quantity_field]
     @order.user_id = current_user.id
-    @order.drawing = params[:drawing]
+    @order.drawing_file_name = params[:file]
     @order.name = params[:name_field]
     if !params[:deadline].nil?
       @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
