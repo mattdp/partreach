@@ -33,20 +33,10 @@
       
         <input type="hidden" name="file" value="" id="direct-upload-file">
 
-        <% if current_user.nil? %>
-          <h3>New user - to move down, once works</h3>
-          <%= label_tag 'user_name_field', 'What\'s your name?' %>
-          <%= text_field_tag 'user_name_field', nil %>
-          <%= label_tag 'user_email_field', 'What\'s your email?' %>
-          <%= text_field_tag 'user_email_field', nil %>
-          <%= label_tag 'user_password_field', 'What\'s your password?' %>
-          <%= password_field_tag 'user_password_field', nil %>
-        <% end %>
-
         <%= label_tag 'quantity_field', 'How many of that do you want produced?' %>
         <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
 
-        <%= label_tag 'zip_field', 'What\'s your zip code, for shipping estimates?' %>
+        <%= label_tag 'zip_field', 'What\'s your zip code (for shipping estimates)?' %>
         <%= text_field_tag 'zip_field', nil, :placeholder => 'Enter zip code here' %>
 
         <%#= label_tag :deadline, 'What\'s the last day you\'ll accept new quotes? (optional)' %>
@@ -70,6 +60,16 @@
 
         <p id="missing_supplier">Are we missing a supplier that you want added? <%= mail_to "info@supplybetter.com", "Let us know!", encode: "javascript", target: "_blank", subject: "Suggestion to add a #{brand_name} supplier", body: "Hi! I have a suggestion to add a supplier:" %></p>
       
+        <% if current_user.nil? %>
+          <h3>Create your account</h3>
+          <%= label_tag 'user_name_field', 'What\'s your name?' %>
+          <%= text_field_tag 'user_name_field', nil, placeholder: 'Enter name here' %>
+          <%= label_tag 'user_email_field', 'What\'s your email address?' %>
+          <%= text_field_tag 'user_email_field', nil, placeholder: 'Enter email address here' %>
+          <%= label_tag 'user_password_field', 'Choose a password:' %>
+          <%= password_field_tag 'user_password_field', nil, placeholder: 'Enter password here' %>
+        <% end %>
+
         <h3>Final notes (optional)</h3>  
 
         <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers?' %>
