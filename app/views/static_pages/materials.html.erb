@@ -19,12 +19,12 @@
 				<td>
 					<ul>
 						<li>Good for mechanical performance</li> 
-						<li>worse than FDM for accuracy</li> 
-						<li>good for mass production</li>
+						<li>Worse than FDM for accuracy</li> 
+						<li>Good for mass production</li>
 					</ul>
 				</td>
 				<td>
-					<p><%= link_to "Nylon 12", "", target: "_blank" %></p>
+					<p>Nylon</p>
 				</td>
 			</tr>					
 			<tr>
@@ -35,8 +35,8 @@
 					<ul>
 						<li>Application flexible</li>
 						<li>Good for mass production</li>
-						<li>great resolution</li>
-						<li>poor for mechanical performance</li>
+						<li>Great resolution</li>
+						<li>Poor for mechanical performance</li>
 					<ul>
 				</td>
 				<td>
@@ -50,8 +50,8 @@
 				<td>
 					<ul>
 						<li>Poor for mass production</li>
-						<li>great for accuracy</li>
-						<li>great for mechanical performance</li>
+						<li>Great for accuracy</li>
+						<li>Great for mechanical performance</li>
 				</td>
 				<td>
 					<p>ABS, PLA</p>
@@ -63,9 +63,9 @@
 				</td>
 				<td>
 					<li>Great for accuracy</li>
-					<li>great for prototyping</li>
-					<li>poor for production</li>
-					<li>poor for mechanical performance</li>
+					<li>Great for prototyping</li>
+					<li>Poor for production</li>
+					<li>Poor for mechanical performance</li>
 				</td>
 				<td>
 					<p>ABS-like</p>
@@ -74,30 +74,23 @@
 
 		</table>	
 
-		<h1 class="h1-midpage">I need to know more</h1>
+		<h1 class="h1-midpage">List of materials</h1>
 
-		<h3>Datasheets!</h3>
+		<h3>Suppliers</h3>
 
-		<strong>Materials</strong>
+		<strong>An in depth explanation of possible materials from a selection of suppliers</strong>
 		<ul>
-			<li>Nylon 12</li>
-			<li>ABS</li>
-			<li>PLA</li>
-			<li>Polycarbonate</li>
-			<li>UV Curable Resin</li>
-			<li>ABS-Like</li>
+			<li><%= link_to "Shapeways", "http://www.shapeways.com/materials", target: "_blank"%></li>
+			<li><%= link_to "Ponoko", "http://www.ponoko.com/make-and-sell/materials", target: "_blank"%></li>
+			<li><%= link_to "Sculpteo", "http://www.sculpteo.com/en/materials/", target: "_blank"%></li>
+			<li><%= link_to "i.materialise", "http://i.materialise.com/materials/compare?materialID=035F4772-DA8A-400B-8BE4-2DD344B28DDB", target: "_blank" %></li>
+			<li><%= link_to "RedEye OnDemand", "https://www.redeyeondemand.com/Materials_FDM_Thermoplastics.aspx", target: "_blank"%></li>
+			<li><%= link_to "3DProParts", "http://www.3dproparts.com/technologies/3d-printing", target: "_blank"%></li>
+			<li><%= link_to "ZoomRP", "https://www.zoomrp.com/products.aspx", target: "_blank"%></li>
+			<li><%= link_to "PartSnap", "https://www.partsnap.com/3d-printing/", target: "_blank"%></li>
 		</ul>
 
-		<strong>Design Considerations</strong>
-		<ul>
-			<li>Shapeways' list of <%= link_to "3D modeling design considerations", "http://www.shapeways.com/tutorials/things-to-keep-in-mind", target: "_blank" %> (true for practically all models)</li>
-			<li>Design considerations <%= link_to "for Selective Laser Sintering (SLS) models", "http://www.shapeways.com/tutorials/design_rules_for_3d_printing", target: "_blank" %></li>
-			<!--
-			<li>Design considerations <%= link_to "just for Fused Deposition Modeling (FDM) models", "http://3dreambox.com/reference.html", target: "_blank" %></li>
-			-->
-		</ul>
-
-		<h1 class="h1-midpage">Terrific. I have a 3D model. Now what?</h1>
+		<h1 class="h1-midpage">Great! What now?</h1>
 
 		<h3 class="center">Use <%= link_to "#{brand_name}", root_path, :class => "h3link"%> to help you find the best place to print it! <%= link_to "(Sign up here)", new_user_path, :class => "h3link" %></h3>
 		<h3 class="center">We get you a variety of quotes, so you can save money and get your parts faster.</h3>
