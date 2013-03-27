@@ -8,7 +8,7 @@ Partreach::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  match '/signup', to: 'users#new'
+  match '/signup', to: 'orders#new'
   match '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
   match '/getting_started', to: 'static_pages#getting_started'

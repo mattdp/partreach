@@ -6,7 +6,7 @@ class SignedUrlsController < ApplicationController
     render json: {
       policy: s3_upload_policy_document,
       signature: s3_upload_signature,
-      key: "uploads/#{current_user.name}_#{DateTime.now.strftime('%Y-%m-%d-%H-%M-%S')}_#{params[:doc][:title]}",
+      key: "uploads/#{DateTime.now.strftime('%Y-%m-%d-%H-%M-%S')}_#{params[:doc][:title]}",
       success_action_redirect: "/"
     }
   end

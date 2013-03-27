@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :signed_in_user
+  before_filter :signed_in_user, only: [:index, :edit, :update, :show, :destroy]
   before_filter :correct_user, only: [:edit, :update, :show, :destroy]
 
   # GET /orders
@@ -45,25 +45,36 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
 
+#    @user = User.new
+#    @user.name = params[:user_name_field]
+#    @user.email = params[:user_email_field]
+#    @user.password = params[:user_password_field]
+#    @user.password_confirmation = params[:user_password_confirmation_field]
+
+    @user = User.create(name: params[:user_name_field], 
+      email: params[:user_email_field], 
+      password: params[:user_password_field], 
+      password_confirmation: params[:user_password_confirmation_field] )
+
     @order = Order.new
     @order.quantity = params[:quantity_field]
-    @order.user_id = current_user.id
+    #@order.user_id = current_user.id
     @order.drawing = params[:drawing]
     @order.name = params[:name_field]
     if !params[:deadline].nil?
       @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
     end
-    if !params[:zip_field].nil?
-      if current_user.address.nil?
-        a = Address.new()
-        a.place_id = current_user.id
-        a.place_type = "User"
-        a.zip = params[:zip_field]
-        a.save
-      elsif current_user.address.zip != params[:zip_field]
-        current_user.address.update_attributes({:zip => params[:zip_field]}) 
-      end
-    end
+#    if !params[:zip_field].nil?
+#      if current_user.address.nil?
+#        a = Address.new()
+#        a.place_id = current_user.id
+#        a.place_type = "User"
+#        a.zip = params[:zip_field]
+#        a.save
+#      elsif current_user.address.zip != params[:zip_field]
+#        current_user.address.update_attributes({:zip => params[:zip_field]}) 
+#      end
+#    end
     @order.supplier_message = params[:supplier_message_field]
     did_order_save = @order.save
 
