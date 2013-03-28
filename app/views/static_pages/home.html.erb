@@ -30,5 +30,7 @@
 <div>
 	<div id="div-supplier-join">
 		<%= mail_to "info@supplybetter.com", "Are you a supplier?", encode: "javascript", target: "_blank", subject: "Tell me more about being a #{brand_name} supplier!", body: "I'm interested in more information about what #{brand_name} is like for suppliers." %>
+		<%= link_to "Business user?", procurement_path %> 
 	</div>
+
 </div>
