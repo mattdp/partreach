@@ -36,6 +36,9 @@
         <%= label_tag 'quantity_field', 'How many of that do you want produced?' %>
         <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
 
+        <%= label_tag 'material_message_field', 'What material should that be made from?' %>
+        <%= text_area_tag 'material_message_field', nil, :rows => 3, :placeholder => 'Enter material here. If you\'re not sure, just say so, we can help you decide.' %>
+
         <%= label_tag 'zip_field', 'What\'s your zip code (for shipping estimates)?' %>
         <%= text_field_tag 'zip_field', nil, :placeholder => 'Enter zip code here' %>
 
@@ -73,7 +76,7 @@
         <h3>Final notes (optional)</h3>  
 
         <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers?' %>
-        <%= text_area_tag 'supplier_message_field', nil, :rows => 4, :placeholder => "If you have materials in mind or time constraints, let suppliers know (optional)" %>
+        <%= text_area_tag 'supplier_message_field', nil, :rows => 3, :placeholder => "If you have time constraints or special instructions, let suppliers know (optional)" %>
 
         <%= label_tag 'name_field', 'What do you want to call this order?' %>
         <%= text_field_tag 'name_field', nil, :placeholder => "(Naming optional)" %>

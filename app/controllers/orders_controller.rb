@@ -63,6 +63,7 @@ class OrdersController < ApplicationController
     @order.user_id = current_user.id
     @order.drawing_file_name = params[:file]
     @order.name = params[:name_field]
+    @order.material_message = params[:material_message_field]
     if !params[:deadline].nil?
       @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
     end

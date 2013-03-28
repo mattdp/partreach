@@ -29,4 +29,5 @@ class Order < ActiveRecord::Base
 
   validates :quantity, presence: true, numericality: {greater_than: 0}
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
+  validates :material_message, presence: true, length: {minimum: 2}
 end

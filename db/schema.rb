@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130325225453) do
+ActiveRecord::Schema.define(:version => 20130328150841) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20130325225453) do
     t.text     "supplier_message"
     t.boolean  "is_over_without_winner"
     t.string   "recommendation"
+    t.text     "material_message"
   end
 
   create_table "suppliers", :force => true do |t|
