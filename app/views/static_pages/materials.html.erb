@@ -1,78 +1,39 @@
 <% provide(:title,"How to choose the right material") %>
 
 <div class="container">
-	<h1>How to choose the right material?</h1>
+	<h1>How do I choose the right material?</h1>
 
 	<div class="span10 offset1">
-		<p>Different machines offer different materials that can be printed. The same material printed two different ways may also yield different results. Here's our guide to help choose the correct material for your application.</p>
+		<p>It's hard to pick the right material to use as a beginner. This table can help you make initial choices, though there are more options and some exceptions. Use this as a starting point, but if you need help, we can recommend material for you when you <%= link_to "request a quote", new_order_path %>.</p>
 
 		<table id="materials-table" class="table-center">
 			<tr>
-				<td>Process</td>
-				<td>Applications</td>
-				<td>Materials</td>
+				<th>I'm looking for...</th>
+				<th>Process</th>
+				<th>Materials</th>
+				<th>Downside(s)</th>				
 			</tr>
-			<tr>
-				<td>
-					SLS
-				</td>
-				<td>
-					<ul>
-						<li>Good for mechanical performance</li> 
-						<li>Worse than FDM for accuracy</li> 
-						<li>Good for mass production</li>
-					</ul>
-				</td>
-				<td>
-					<p>Nylon</p>
-				</td>
-			</tr>					
-			<tr>
-				<td>
-					SLA
-				</td>
-				<td>
-					<ul>
-						<li>Application flexible</li>
-						<li>Good for mass production</li>
-						<li>Great resolution</li>
-						<li>Poor for mechanical performance</li>
-					<ul>
-				</td>
-				<td>
-					<p>UV Curable Resin</p>
-				</td>
-			</tr>	
-			<tr>
-				<td>
-					FDM
-				</td>
-				<td>
-					<ul>
-						<li>Poor for mass production</li>
-						<li>Great for accuracy</li>
-						<li>Great for mechanical performance</li>
-				</td>
-				<td>
-					<p>ABS, PLA</p>
-				</td>
-			</tr>	
-			<tr>
-				<td>
-					Polyjet
-				</td>
-				<td>
-					<li>Great for accuracy</li>
-					<li>Great for prototyping</li>
-					<li>Poor for production</li>
-					<li>Poor for mechanical performance</li>
-				</td>
-				<td>
-					<p>ABS-like</p>
-				</td>
-			</tr>		
-
-		</table>	
+			<% @data_by_process.each do |h| %>
+				<tr>
+					<td>
+						<ul>
+							<% h[:looking_for].each do |bullet| %>
+								<li><%= "#{bullet}" %></li>
+							<% end %>
+						</ul>
+					</td>
+					<td><p><%= "#{h[:process]}" %></p></td>
+					<td><p><%= "#{h[:material]}" %></p></td>
+					<td>
+						<ul>
+							<% h[:downsides].each do |bullet| %>
+								<li><%= "#{bullet}" %></li>
+							<% end %>
+						</ul>
+					</td>
+				</tr>
+			<% end %> 
+		</table>
 
 		<h1 class="h1-midpage">Supplier Materials Reference</h1>
 
