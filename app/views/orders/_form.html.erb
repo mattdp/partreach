@@ -8,7 +8,7 @@
 
       <h3>The basics</h3>
 
-      <p>Attach drawing (<64 MB) here:</p>
+      <p>Upload drawing (max size: 64 MB)</p>
         
       <form id='direct-upload' action="https://partreach_initial_bucket.s3.amazonaws.com" method="post" enctype="multipart/form-data">
         <input type='hidden' name='key' />
@@ -33,14 +33,14 @@
       
         <input type="hidden" name="file" value="" id="direct-upload-file">
 
-        <%= label_tag 'quantity_field', 'How many of that do you want produced?' %>
+        <%= label_tag 'quantity_field', 'Quantity' %>
         <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
 
-        <%= label_tag 'material_message_field', 'What material should that be made from?' %>
-        <%= text_area_tag 'material_message_field', nil, :rows => 3, :placeholder => 'Enter material here. If you\'re not sure, just say so, we can help you decide.' %>
+        <%= label_tag 'material_message_field', 'Material' %>
+        <%= text_area_tag 'material_message_field', nil, :rows => 3, :placeholder => '(ex: ABS, stainless steel, white durable nylon, UV curable resin, etc. If you\'re not sure, we can help you decide.)' %>
 
-        <%= label_tag 'zip_field', 'What\'s your zip code (for shipping estimates)?' %>
-        <%= text_field_tag 'zip_field', nil, :placeholder => 'Enter zip code here' %>
+        <%= label_tag 'zip_field', 'Zip Code' %>
+        <%= text_field_tag 'zip_field', nil, :placeholder => '(Required, for shipping estimates)' %>
 
         <%#= label_tag :deadline, 'What\'s the last day you\'ll accept new quotes? (optional)' %>
         <div class "date_select_fields">
@@ -73,13 +73,13 @@
           <%= password_field_tag 'user_password_field', nil, placeholder: 'Enter password here' %>
         <% end %>
 
-        <h3>Final notes (optional)</h3>  
+        <h3>Final notes</h3>  
 
         <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers?' %>
-        <%= text_area_tag 'supplier_message_field', nil, :rows => 3, :placeholder => "If you have time constraints or special instructions, let suppliers know (optional)" %>
+        <%= text_area_tag 'supplier_message_field', nil, :rows => 3, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)" %>
 
         <%= label_tag 'name_field', 'What do you want to call this order?' %>
-        <%= text_field_tag 'name_field', nil, :placeholder => "(Naming optional)" %>
+        <%= text_field_tag 'name_field', nil, :placeholder => "(optional)" %>
 
         <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
 
