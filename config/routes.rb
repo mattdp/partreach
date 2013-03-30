@@ -15,7 +15,7 @@ Partreach::Application.routes.draw do
   match '/procurement', to: 'static_pages#procurement'
   match '/alpha', to: 'static_pages#procurement'
   match '/business', to: 'static_pages#procurement'
-  match '/materials', to: 'static_pages#materials'
+  #match '/materials', to: 'static_pages#materials'
 
   #goal: allow show page to post a form. seems hacky - check with someone.
   match '/orders/:id', to: 'orders#update', via: :post
