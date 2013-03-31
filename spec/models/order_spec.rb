@@ -24,7 +24,7 @@ require 'spec_helper'
 describe "Order" do
 	
 	before do
-		@order = Order.new(quantity: 151)
+		@order = Order.new(quantity: 151, material_message: "made of grapes")
 	end
 
 	subject { @order }
