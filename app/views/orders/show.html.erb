@@ -50,7 +50,7 @@
 			    <th></th>
 			  </tr>
 
-				<% @order.dialogues.each do |d| %>
+				<% @sorted_dialogues.each do |d| %>
 					<tr>
 						<td><%= Supplier.find(d.supplier_id).name %></td>
 						<td class="center"><%= bid_status(d) %></td>

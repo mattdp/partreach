@@ -20,11 +20,13 @@
 #  shipping_cost       :decimal(10, 2)
 #  total_cost          :decimal(10, 2)
 #  notes               :string(255)
+#  currency            :string(255)      default("dollars")
+#  recommended         :boolean
 #
 
 class Dialogue < ActiveRecord::Base
   attr_accessible :initial_select, :opener_sent, :response_received, :further_negotiation, :won, :bid, :order_id, :supplier_id, \
-  :material, :process_name, :process_cost, :process_time, :shipping_name, :shipping_cost, :total_cost, :notes
+  :material, :process_name, :process_cost, :process_time, :shipping_name, :shipping_cost, :total_cost, :notes, :recommended
 
   belongs_to :order
   has_one :supplier

@@ -16,6 +16,7 @@
 #  supplier_message       :text
 #  is_over_without_winner :boolean
 #  recommendation         :string(255)
+#  material_message       :text
 #
 
 class Order < ActiveRecord::Base
