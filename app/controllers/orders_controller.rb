@@ -73,29 +73,42 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
 
-#    @user = User.new
-#    @user.name = params[:user_name_field]
-#    @user.email = params[:user_email_field]
-#    @user.password = params[:user_password_field]
-#    @user.password_confirmation = params[:user_password_confirmation_field]
+    did_user_work = false
     if current_user.nil?
-      @user = User.create(name: params[:user_name_field], 
-        email: params[:user_email_field], 
-        password: params[:user_password_field], 
-        password_confirmation: params[:user_password_field] )
-      sign_in @user
+      if params[:signin_email_field] != "" and params[:signin_password_field] != ""
+        #how pass in email and password, get signed in user?
+        @user = User.find_by_email(params[:signin_email_field])
+        if @user && @user.authenticate(params[:signin_password_field])
+          sign_in @user
+          did_user_work = true
+        else
+          @user = nil
+          did_user_work = false
+        end
+      else
+        @user = User.create(name: params[:user_name_field], 
+          email: params[:user_email_field], 
+          password: params[:user_password_field], 
+          password_confirmation: params[:user_password_field] )
+        sign_in @user
+        did_user_work = true
+      end
     end
 
     @order = Order.new
+    if did_user_work
+      @order.user_id = current_user.id
+    else
+      @order.errors.messages[:Sign_back_in] = ["with a valid email and password"]
+    end
     @order.quantity = params[:quantity_field]
-    @order.user_id = current_user.id
     @order.drawing_file_name = params[:file]
     @order.name = params[:name_field]
     @order.material_message = params[:material_message_field]
     if !params[:deadline].nil?
       @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
     end
-    if !params[:zip_field].nil?
+    if !params[:zip_field].nil? and did_user_work
       if current_user.address.nil?
         a = Address.new()
         a.place_id = current_user.id
@@ -107,10 +120,10 @@ class OrdersController < ApplicationController
       end
     end
     @order.supplier_message = params[:supplier_message_field]
-    did_order_save = @order.save
+    did_user_work ? did_order_save = @order.save : did_order_save = false
 
     did_dialogues_save = false
-    if not(params["supplier_list"].nil?)
+    if not(params["supplier_list"].nil?) and did_order_save
       did_dialogues_save = true #default yes, if have a supplier
       params["supplier_list"].each do |s|
         d = Dialogue.new
@@ -118,18 +131,17 @@ class OrdersController < ApplicationController
         d.supplier_id = s.to_i
         d.save and did_dialogues_save ? did_dialogues_save = true : did_dialogues_save = false #if fail once, should fail the rest of the times
       end
+    elsif params["supplier_list"].nil?
+      @order.errors.messages[:supplier] = ["must have at least one checked company"]
     end
 
     respond_to do |format|
-      if did_order_save and did_dialogues_save
+      if did_user_work and did_order_save and did_dialogues_save
         text_notification("#{brand_name}: Order created by #{current_user.email}, order number #{@order.id}. Go get quotes!") if Rails.env.production?
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }
       else
         @suppliers = Supplier.return_category("default")
-        if not(did_dialogues_save)
-          @order.errors.messages[:supplier] = ["must have at least one checked company"]
-        end
         format.html { render action: "new" }
         format.json { render json: @order.errors.full_messages, status: 400 }
       end
