@@ -21,7 +21,7 @@
 #  total_cost          :decimal(10, 2)
 #  notes               :string(255)
 #  currency            :string(255)      default("dollars")
-#  recommended         :boolean
+#  recommended         :boolean          default(FALSE)
 #
 
 class Dialogue < ActiveRecord::Base
