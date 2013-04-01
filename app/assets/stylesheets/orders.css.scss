@@ -2,6 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.half-signin {
+	width: 40%;
+}
+
+.margin-right {
+	margin-right: 5%;
+	padding-right: 5%; 
+	border-right: 5px solid #ccc;
+}
+
 .order_top_header {
 	line-height: 1em;
 	margin-bottom: 10px;
