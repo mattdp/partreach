@@ -33,6 +33,9 @@
 			<% if !@order.recommendation.nil? %>
 				<p><%= "Our recommendation: #{@order.recommendation}" %></p>
 			<% end %>
+			<% if !@order.next_steps.nil? %>
+				<p><%= "Suggested next steps: #{@order.next_steps}" %></p>
+			<% end %>
 
 			<table class="order_table">
 			  <tr class="order_table_header_row">
