@@ -81,7 +81,11 @@
 	margin-bottom: 5px;
 	
 	tr:nth-child(odd) {
-    background-color: #EEE;
+    background-color: #DDD;
+  }
+
+  tr.recommended {
+  	background-color: #4AA02C;
   }
 	
 	tr {
