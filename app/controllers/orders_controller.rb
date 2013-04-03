@@ -75,6 +75,7 @@ class OrdersController < ApplicationController
 
     did_user_work = false
     if current_user.nil?
+      #they've filled out the signin form
       if params[:signin_email_field] != "" and params[:signin_password_field] != ""
         #how pass in email and password, get signed in user?
         @user = User.find_by_email(params[:signin_email_field])
@@ -85,6 +86,7 @@ class OrdersController < ApplicationController
           @user = nil
           did_user_work = false
         end
+      #signin form not filled out, assuming a new user
       else
         @user = User.create(name: params[:user_name_field], 
           email: params[:user_email_field], 
@@ -93,6 +95,9 @@ class OrdersController < ApplicationController
         sign_in @user
         did_user_work = true
       end
+    else # there is a current user, already signed in
+      @user = current_user
+      did_user_work = true
     end
 
     @order = Order.new
