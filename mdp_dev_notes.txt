@@ -1,25 +1,16 @@
-certification notes
-	naked domain redirect
+See if goes to order page - that'd be why no header with "my rfq"
 
-order
+BROKEN ON PROD - can't validate that signin happens when user already signed in, that's silly
 
-	next: update a file
-			verify it saves, go get it
-			update the show method to reflect it
-			TESTS
-			turn on validations, currently means can't save orders
-			make files not visible to the public
-		sites
-			https://github.com/thoughtbot/paperclip
-			http://rubydoc.info/gems/paperclip/Paperclip/Shoulda/Matchers
+For test suite issues, pick exactly one test, so can follow what it's doing well. Potentially print state information. Unclear why dialogue saving fails once issued, since order and user are fine.
 
-potential v1 issues
-	need the user address, so know where the part should go to
-	supplier will return more than a price - days, questions, material information
-	if no name, default of filename+date
-	standardize if have suggestion text or not (could use for mandatory)
-	no drawing shown on orders
-	should "order" always be "rfq" in print?
+Seems to pass in isolation now, maybe issue is lack of test DB clearance between run sets?
+	Maybe something weird with using build instead of create, if they all got built initially then they'd try to save over the same names?
+	I think factories only create different users when given a sequence, so the user will have to be totally new or somehow time-based
+
+Need at least one test showing that the new user not only gets created, but makes it to the next page	
+
+Look up how to get FactoryGirl creating a new user every time
 
 TESTING
 
@@ -43,12 +34,6 @@ At end of chapter
 	Get working for other models
 	Set so can't even see other users, unless admin; right now, it's only modify
 
-# X every order has a user
-# X quantity is above 0
-# X can't hit id via mass assignment
-#can only see one's own orders (request)
-#admin can see all orders (request)
-http://natashatherobot.com/stub-paperclip-has_attached_file-rspec/
 
 VISUALS
 	safari/my mac: rightmost edge of boxes doesn't show border, until user clicks into it

@@ -10,14 +10,14 @@ gem 'pg', '0.14.1' #http://blog.willj.net/2011/05/31/setting-up-postgresql-for-r
 gem 'twilio-ruby', '3.9.0'
 
 group :development, :test do
- gem 'sqlite3', '1.3.5'
- gem 'rspec-rails', '2.12.2'
- gem 'shoulda-matchers', '1.4.2'
+ 	gem 'sqlite3', '1.3.5'
+ 	gem 'rspec-rails', '2.12.2'
+ 	gem 'shoulda-matchers', '1.4.2'
+ 	gem 'pry', '0.9.11.4'
+	gem 'pry-rails', '0.2.2'
 end
 
 group :development do
-	gem 'pry', '0.9.11.4'
-	gem 'pry-rails', '0.2.2'
 	gem 'annotate', '2.5.0'
 end
 

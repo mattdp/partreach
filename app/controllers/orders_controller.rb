@@ -121,6 +121,7 @@ class OrdersController < ApplicationController
     end
     @order.supplier_message = params[:supplier_message_field]
     did_user_work ? did_order_save = @order.save : did_order_save = false
+    logger.debug "Order saving: #{did_order_save}"
 
     did_dialogues_save = false
     if not(params["supplier_list"].nil?) and did_order_save
@@ -130,6 +131,7 @@ class OrdersController < ApplicationController
         d.order_id = @order.id 
         d.supplier_id = s.to_i
         d.save and did_dialogues_save ? did_dialogues_save = true : did_dialogues_save = false #if fail once, should fail the rest of the times
+        logger.debug "Dialogue saving: #{did_dialogues_save}"
       end
     elsif params["supplier_list"].nil?
       @order.errors.messages[:supplier] = ["must have at least one checked company"]
@@ -142,6 +144,7 @@ class OrdersController < ApplicationController
         format.json { render json: @order, status: :created, location: @order }
       else
         @suppliers = Supplier.return_category("default")
+        logger.debug "ERRORS: #{@order.errors.full_messages}" 
         format.html { render action: "new" }
         format.json { render json: @order.errors.full_messages, status: 400 }
       end

@@ -42,13 +42,6 @@
         <%= label_tag 'zip_field', 'Zip Code' %>
         <%= text_field_tag 'zip_field', nil, :placeholder => '(Required, for shipping estimates)' %>
 
-        <%#= label_tag :deadline, 'What\'s the last day you\'ll accept new quotes? (optional)' %>
-        <div class "date_select_fields">
-          <%#= select_month Date.today.month, prefix: :deadline %>
-          <%#= select_day Date.today.day, prefix: :deadline %>
-          <%#= select_year Date.today.year, prefix: :deadline, start_year: Date.today.year, end_year: Date.today.year + 3 %>
-        </div>
-
         <h3>Supplier selection</h3>
 
         <% for supplier in @suppliers %>
@@ -66,7 +59,7 @@
         <% if current_user.nil? %>
           <div class="two-signins">
             <div class="half-signin fleft margin-right">
-              <h3>Create your account</h3>
+              <h3>Create account</h3>
               <%= label_tag 'user_name_field', 'Name' %>
               <%= text_field_tag 'user_name_field', nil, placeholder: 'Enter name here' %>
               <%= label_tag 'user_email_field', 'Email' %>
