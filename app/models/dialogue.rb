@@ -26,7 +26,7 @@
 
 class Dialogue < ActiveRecord::Base
   attr_accessible :initial_select, :opener_sent, :response_received, :further_negotiation, :won, :bid, :order_id, :supplier_id, \
-  :material, :process_name, :process_cost, :process_time, :shipping_name, :shipping_cost, :total_cost, :notes, :recommended
+  :material, :process_name, :process_cost, :process_time, :shipping_name, :shipping_cost, :total_cost, :notes, :currency, :recommended
 
   belongs_to :order
   has_one :supplier

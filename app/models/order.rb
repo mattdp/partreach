@@ -17,10 +17,11 @@
 #  is_over_without_winner :boolean
 #  recommendation         :string(255)
 #  material_message       :text
+#  next_steps             :text
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message, :is_over_without_winner, :material_message
+  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message, :is_over_without_winner, :material_message, :next_steps
   has_attached_file :drawing,
   									:url => "/:attachment/:id/:style/:basename.:extension",
   									:path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"

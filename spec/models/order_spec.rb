@@ -17,6 +17,7 @@
 #  is_over_without_winner :boolean
 #  recommendation         :string(255)
 #  material_message       :text
+#  next_steps             :text
 #
 
 require 'spec_helper'
