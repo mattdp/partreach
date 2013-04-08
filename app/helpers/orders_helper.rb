@@ -19,7 +19,7 @@ module OrdersHelper
 	def bid_status(dl)
 
 		if dl.recommended
-				"Recommended"
+			"Recommended"
 		elsif dl.response_received
 			if dl.total_cost.nil? or dl.total_cost == 0
 				"Declined to bid"

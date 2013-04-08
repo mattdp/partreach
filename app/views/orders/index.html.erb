@@ -31,7 +31,8 @@
             <% if order.is_over_without_winner %>
               <%= "Bidding concluded, no deal." %>
             <% elsif winner(order) %>
-              <%= "'#{Supplier.find(winner(order).supplier_id).name}' selected as winner." %>     
+              <%#= "'#{Supplier.find(winner(order).supplier_id).name}' selected as winner." %>
+              <% 'Winner selected.' %>
             <% else %> 
               <%= "#{pluralize(bids_received(order),'bid')} received, " %>
               <%= "#{pluralize(order.dialogues.count, 'supplier')} contacted" %>
