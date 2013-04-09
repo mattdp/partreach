@@ -7,8 +7,10 @@
 <h1><%= "Changes to Order \##{@order.id} (User #{User.find(@order.user_id).name})"  %></h1>	
 
 <table>
-	<% checkboxes.each do |c| %>
-		<th><%= "#{c.to_s}" %></th>
+	<% [checkboxes,textfields,numberfields].each do |set| %>
+		<% set.each do |h| %>
+			<th><%= "#{h.to_s}" %></th>
+		<% end %>
 	<% end %>
 	<% @dialogues.each do |d| %>
 		<tr>
@@ -17,5 +19,16 @@
 					<%= check_box_tag "#{c.to_s}[]", d.id, "d.#{c.to_s}" %>
 				</td>
 			<% end %>
+			<% textfields.each do |t| %>
+				<td>
+					<%= text_field_tag "#{t.to_s}_field", d.attributes[t.to_s] %>
+				</td>
+			<% end %>
+			<% numberfields.each do |n| %>
+				<td>
+					<%= text_field_tag "#{n.to_s}_field", d.attributes[n.to_s] %>
+				</td>
+			<% end %>
 		</tr>
 	<% end %>
+</table>
