@@ -7,7 +7,7 @@ module OrdersHelper
 
 		received = 0
 		order.dialogues.each do |d|
-			if d.response_received and d.total_cost > 0 
+			if d.response_received and !d.total_cost.nil? and d.total_cost > 0
 				received += 1
 			end
 		end
