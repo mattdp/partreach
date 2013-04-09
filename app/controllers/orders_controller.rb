@@ -187,7 +187,7 @@ class OrdersController < ApplicationController
 
   def manipulate_dialogues
     @order = Order.find(params[:id])
-    @dialogues = @order.dialogues
+    @dialogues = sort_dialogues(@order.dialogues)
 
     respond_to do |format|
       format.html # manipulate_dialogues.html.erb

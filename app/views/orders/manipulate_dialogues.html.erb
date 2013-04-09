@@ -1,1 +1,21 @@
-<p>Oh hey</p>
+<% provide(:title, "Manipulate dialogues") %>
+
+<% checkboxes = [:intial_select, :opener_sent, :response_received, :further_negotiation, :won, :recommended] %>
+<% textfields = [:material, :process_name, :process_time, :shipping_name, :notes, :currency] %>
+<% numberfields = [:order_id, :supplier_id, :process_cost, :shipping_cost, :total_cost] %>
+
+<h1><%= "Changes to Order \##{@order.id} (User #{User.find(@order.user_id).name})"  %></h1>	
+
+<table>
+	<% checkboxes.each do |c| %>
+		<th><%= "#{c.to_s}" %></th>
+	<% end %>
+	<% @dialogues.each do |d| %>
+		<tr>
+			<% checkboxes.each do |c| %>
+				<td class="center">
+					<%= check_box_tag "#{c.to_s}[]", d.id, "d.#{c.to_s}" %>
+				</td>
+			<% end %>
+		</tr>
+	<% end %>
