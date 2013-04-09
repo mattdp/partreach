@@ -58,6 +58,36 @@ module OrdersHelper
 		end
 	end
 
+	def sorted_dialogues(all_dialogues)
+		# should be: 
+    # recommended, in nonzero low to high
+    # completed, in nonzero low to high
+    # declined, alphabetical
+    # pending, alphabetical
+    sorted_dialogues = []
+
+    recommended = []
+    completed = []
+    declined = []
+    pending = []
+
+    all_dialogues.each do |d|
+      if d.recommended
+        recommended << d 
+      elsif d.response_received and (!d.total_cost.nil? and d.total_cost > 0)
+        completed << d
+      elsif d.response_received
+        declined << d
+      else
+        pending << d
+      end
+    end
+
+    [recommended, completed, declined, pending].each do |piece|
+      @sorted_dialogues.concat piece.sort_by! { |m| Supplier.find(m.supplier_id).name.downcase }
+    end
+  end
+
 	def winner(order)
 		order.dialogues.each do |d|
 			return d if d.won 
