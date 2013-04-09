@@ -17,8 +17,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
-
-    @sorted_dialogues = sorted_dialogues(@order.dialogues)
+    @sorted_dialogues = sort_dialogues(@order.dialogues)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -134,7 +133,7 @@ class OrdersController < ApplicationController
   # PUT /orders/1.json
   def update
     @order = Order.find(params[:id])
-    @sorted_dialogues = sorted_dialogues(@order.dialogues)
+    @sorted_dialogues = sort_dialogues(@order.dialogues)
 
     if params[:submitting_page] and params[:submitting_page] == "orders_show"
 
@@ -203,9 +202,42 @@ class OrdersController < ApplicationController
         message = @client.account.sms.messages.create(:body => message_text,
         :to => p,
         :from => "+14154198194")
+      end
     end 
 
-  end
+    def sort_dialogues(all_dialogues)
+      # should be: 
+      # recommended, in nonzero low to high
+      # completed, in nonzero low to high
+      # declined, alphabetical
+      # pending, alphabetical
+      answer = []
+
+      recommended = []
+      completed = []
+      declined = []
+      pending = []
+
+      all_dialogues.each do |d|
+        if d.recommended
+          recommended << d 
+        elsif d.response_received and (!d.total_cost.nil? and d.total_cost > 0)
+          completed << d
+        elsif d.response_received
+          declined << d
+        else
+          pending << d
+        end
+      end
+
+      [recommended, completed, declined, pending].each do |piece|
+        answer.concat piece.sort_by! { |m| Supplier.find(m.supplier_id).name.downcase }
+      end
+
+      return answer
+    end
+
+  #private doesn't 'end'
 
 end
 
