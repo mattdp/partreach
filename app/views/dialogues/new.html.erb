@@ -1,3 +1,31 @@
 <% provide(:title, "New dialogue") %>
 
-stubbb
+<%= form_tag :action => 'create', :controller => 'dialogues' do %>
+
+	<%= text_field_tag 'order_id_field', nil, placeholder: "Order #" %>
+
+	<% first_time = true %>
+	<% counter = 0 %>
+	<% columns = 3 %>
+
+	<table id="supplier_matrix"> 
+		<tr><td>
+		<% @suppliers.each do |s| %>
+
+			<%= radio_button_tag "supplier_selection", s.id, false, class: "fleft" %>
+			<%= label_tag "#{s.name} (#{s.category})" %>
+
+			<% if counter >= columns %>
+				</td></tr><tr><td>
+				<% counter = 0 %>
+			<% else %>
+				</td><td>
+				<% counter += 1 %>
+			<% end %>
+		<% end %>
+
+	</td></tr></table>
+
+	<%= submit_tag "Create dialogue", :disable_with => "Saving..." %>
+
+<% end %>
