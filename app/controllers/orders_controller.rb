@@ -241,7 +241,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if true
-        format.html { redirect_to "@order", notice: 'Order manipulated.' }
+        format.html { redirect_to @order, notice: 'Order manipulated.' }
         format.json { head :no_content}
       else
         format.html { render action: "manipulate_dialogues" }
