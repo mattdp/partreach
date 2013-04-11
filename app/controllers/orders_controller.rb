@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :edit, :update, :show, :destroy, :manipulate_dialogues]
   before_filter :correct_user, only: [:edit, :update, :show, :destroy]
-  before_filter :admin_user, only: [:manipulate_dialogues]
+  before_filter :admin_user, only: [:manipulate_dialogues, :update_dialogues]
 
   # GET /orders
   # GET /orders.json
@@ -194,6 +194,21 @@ class OrdersController < ApplicationController
       format.json { render json: @order }
     end
   end 
+
+  def update_dialogues
+    @order = Order.find(params[:id])
+    @dialogues = sort_dialogues(@order.dialogues)
+
+    respond_to do |format|
+      if true
+        format.html { redirect_to @order, notice: 'Order manipulated.' }
+        format.json { head :no_content}
+      else
+        format.html { render action: "manipulate_dialogues" }
+        format.json { render json: @order.errors.full_messages, status: 400 }
+      end
+    end
+  end
 
   private
 

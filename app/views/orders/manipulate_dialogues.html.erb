@@ -6,29 +6,48 @@
 
 <h1><%= "Changes to Order \##{@order.id} (User #{User.find(@order.user_id).name})"  %></h1>	
 
-<table>
-	<% [checkboxes,textfields,numberfields].each do |set| %>
-		<% set.each do |h| %>
-			<th><%= "#{h.to_s}" %></th>
+<%= form_tag :action => 'update_dialogues', :controller => 'orders' do %>
+
+	<%= hidden_field_tag "id", @order.id %>
+
+	<table>
+		<% [checkboxes,textfields,numberfields].each do |set| %>
+			<% set.each do |h| %>
+				<th>
+					<% if set == checkboxes %>
+						<%= "" %>
+					<% else %>
+						<%= "#{h.to_s}" %>
+					<% end %>
+				</th>
+			<% end %>
 		<% end %>
+		<% @dialogues.each do |d| %>
+			<tr>
+				<% checkboxes.each do |c| %>
+					<td class="center">
+						<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s] %>
+					</td>
+				<% end %>
+				<% textfields.each do |t| %>
+					<td>
+						<%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
+					</td>
+				<% end %>
+				<% numberfields.each do |n| %>
+					<td>
+						<%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
+					</td>
+				<% end %>
+			</tr>
+		<% end %>
+	</table>
+
+	<p>Ordering of checkboxes:</p>
+	<% checkboxes.each do |c| %>
+		<%= "| #{c.to_s}" %>
 	<% end %>
-	<% @dialogues.each do |d| %>
-		<tr>
-			<% checkboxes.each do |c| %>
-				<td class="center">
-					<%= check_box_tag "#{c.to_s}[]", d.id, "d.#{c.to_s}" %>
-				</td>
-			<% end %>
-			<% textfields.each do |t| %>
-				<td>
-					<%= text_field_tag "#{t.to_s}_field", d.attributes[t.to_s] %>
-				</td>
-			<% end %>
-			<% numberfields.each do |n| %>
-				<td>
-					<%= text_field_tag "#{n.to_s}_field", d.attributes[n.to_s] %>
-				</td>
-			<% end %>
-		</tr>
-	<% end %>
-</table>
+
+	<%= submit_tag "Save changes", :disable_with => "Saving..." %>
+
+<% end %>	
