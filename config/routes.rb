@@ -4,8 +4,8 @@ Partreach::Application.routes.draw do
 
   resources :signed_urls, only: :index
   resources :orders
+  resources :dialogues, only: [:new, :create]
   resources :users, only: [:new, :create, :edit, :update, :show] # no index, no destroy 
-
   resources :sessions, only: [:new, :create, :destroy]
 
   match '/signup', to: 'orders#new'
