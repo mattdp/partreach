@@ -215,14 +215,19 @@ class OrdersController < ApplicationController
               d_params[field.to_s].nil? ? d[field.to_s] = false : d[field.to_s] = true
             else
 
-              if !d_params[field.to_s].nil?
+              field_value = d_params["#{field.to_s}_field"]
+              if !field_value.nil?
                 case field
                 when :order_id, :supplier_id
-                  d[field.to_s] = d_params[field.to_s].to_i
+                  if field_value != ""
+                    d[field.to_s] = field_value.to_i
+                  end
                 when :process_cost, :shipping_cost, :total_cost
-                  d[field.to_s] = BigDecimal.new(d[field.to_s])
+                  if field_value != ""
+                    d[field.to_s] = BigDecimal.new(field_value)
+                  end
                 else
-                  d_params[field.to_s] == "" ? d[field.to_s] = nil : d[field.to_s] = d_params[field.to_s]
+                  field_value == "" ? d[field.to_s] = nil : d[field.to_s] = field_value
                 end
               end
 
@@ -236,7 +241,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if true
-        format.html { redirect_to @order, notice: 'Order manipulated.' }
+        format.html { redirect_to "@order", notice: 'Order manipulated.' }
         format.json { head :no_content}
       else
         format.html { render action: "manipulate_dialogues" }
