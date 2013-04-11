@@ -188,6 +188,9 @@ class OrdersController < ApplicationController
   def manipulate_dialogues
     @order = Order.find(params[:id])
     @dialogues = sort_dialogues(@order.dialogues)
+    @checkboxes = setup_checkboxes
+    @textfields = setup_textfields
+    @numberfields = setup_numberfields
 
     respond_to do |format|
       format.html # manipulate_dialogues.html.erb
@@ -198,6 +201,16 @@ class OrdersController < ApplicationController
   def update_dialogues
     @order = Order.find(params[:id])
     @dialogues = sort_dialogues(@order.dialogues)
+    @checkboxes = setup_checkboxes
+    @textfields = setup_textfields
+    @numberfields = setup_numberfields
+
+    @dialogues.each do |d_each|
+      if !params[d_each.id].nil?
+        d = params[d_each.id]
+
+      end
+    end
 
     respond_to do |format|
       if true
@@ -230,6 +243,18 @@ class OrdersController < ApplicationController
         :from => "+14154198194")
       end
     end 
+
+    def setup_checkboxes
+      checkboxes = [:intial_select, :opener_sent, :response_received, :further_negotiation, :won, :recommended]
+    end
+    
+    def setup_textfields
+      textfields = [:material, :process_name, :process_time, :shipping_name, :notes, :currency]
+    end
+
+    def setup_numberfields
+      numberfields = [:order_id, :supplier_id, :process_cost, :shipping_cost, :total_cost]
+    end
 
     def sort_dialogues(all_dialogues)
       # should be: 
