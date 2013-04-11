@@ -205,11 +205,33 @@ class OrdersController < ApplicationController
     @textfields = setup_textfields
     @numberfields = setup_numberfields
 
-    @dialogues.each do |d_each|
-      if !params[d_each.id].nil?
-        d = params[d_each.id]
+    @dialogues.each do |d|
+      if !params[d.id.to_s].nil?
+        d_params = params[d.id.to_s]
+        
+        [@checkboxes, @textfields, @numberfields].each do |set|
+          set.each do |field|
+            if set == @checkboxes
+              d_params[field.to_s].nil? ? d[field.to_s] = false : d[field.to_s] = true
+            else
+
+              if !d_params[field.to_s].nil?
+                case field
+                when :order_id, :supplier_id
+                  d[field.to_s] = d_params[field.to_s].to_i
+                when :process_cost, :shipping_cost, :total_cost
+                  d[field.to_s] = BigDecimal.new(d[field.to_s])
+                else
+                  d_params[field.to_s] == "" ? d[field.to_s] = nil : d[field.to_s] = d_params[field.to_s]
+                end
+              end
+
+            end
+          end
+        end
 
       end
+      d.save
     end
 
     respond_to do |format|
@@ -245,7 +267,7 @@ class OrdersController < ApplicationController
     end 
 
     def setup_checkboxes
-      checkboxes = [:intial_select, :opener_sent, :response_received, :further_negotiation, :won, :recommended]
+      checkboxes = [:initial_select, :opener_sent, :response_received, :further_negotiation, :won, :recommended]
     end
     
     def setup_textfields
