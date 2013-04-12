@@ -47,7 +47,7 @@
 			    <th>Process</th>
 			    <th>Process cost</th>
 			    <th>Shipping cost</th>
-			    <th>Notes</th>
+			    <th class="notes-row">Notes</th>
 			    <th>Selected to negotiate?</th>
 			    <th>Won deal?</th>
 			    <th></th>
@@ -74,7 +74,7 @@
 					<td class="center"><%= d.process_name %></td>
 					<td class="right"><%= currencyize(d.process_cost, d.currency) %></td>
 					<td class="right"><%= currencyize(d.shipping_cost, d.currency) %></td>
-					<td class="center"><%= notarize(d.shipping_name,d.notes) %></td>
+					<td class="notes-row center"><%= notarize(d.shipping_name,d.notes) %></td>
 					<td class="center"><%= check_box_tag "further_negotiation[]", d.id, d.further_negotiation, :class => "center order_no_top_margin" %></td>
 					<td class="center"><%= radio_button_tag "won", d.id, d.won, :class => "center order_no_top_margin" %></td>
 					</tr>
