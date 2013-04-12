@@ -84,6 +84,7 @@ class OrdersController < ApplicationController
     @order.drawing_file_name = params[:file]
     @order.name = params[:name_field]
     @order.material_message = params[:material_message_field]
+    @order.suggested_suppliers = params[:suggested_suppliers_field]
     if !params[:deadline].nil?
       @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
     end
@@ -102,22 +103,8 @@ class OrdersController < ApplicationController
     did_user_work ? did_order_save = @order.save : did_order_save = false
     logger.debug "Order saving: #{did_order_save}"
 
-    did_dialogues_save = false
-    if not(params["supplier_list"].nil?) and did_order_save
-      did_dialogues_save = true #default yes, if have a supplier
-      params["supplier_list"].each do |s|
-        d = Dialogue.new
-        d.order_id = @order.id 
-        d.supplier_id = s.to_i
-        d.save and did_dialogues_save ? did_dialogues_save = true : did_dialogues_save = false #if fail once, should fail the rest of the times
-        logger.debug "Dialogue saving: #{did_dialogues_save}"
-      end
-    elsif params["supplier_list"].nil?
-      @order.errors.messages[:supplier] = ["must have at least one checked company"]
-    end
-
     respond_to do |format|
-      if did_user_work and did_order_save and did_dialogues_save
+      if did_user_work and did_order_save
         text_notification("#{brand_name}: Order created by #{current_user.email}, order number #{@order.id}. Go get quotes!") if Rails.env.production?
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }

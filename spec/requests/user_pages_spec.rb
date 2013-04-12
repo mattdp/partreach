@@ -42,10 +42,6 @@ describe "User pages" do
           should have_link("Back to orders")
         end
 
-        it "should have a visible supplier on the page" do
-          should have_link("Supplier materials")
-        end  
-
         it "should have a visible file confirmation, or other tests will fail" do
           should have_selector('#direct-upload-file', visible: true)
         end
