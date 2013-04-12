@@ -39,11 +39,11 @@
 
 			<table class="order_table">
 			  <tr class="order_table_header_row">
-			    <th>Supplier name</th>
+			    <th>Name</th>
 			    <th>Bid status</th>
 			    <th>Total bid</th>
 			    <th>Time (days)</th>
-			    <th>Material</th>
+			    <th>Mat'l</th>
 			    <th>Process</th>
 			    <th>Process cost</th>
 			    <th>Shipping cost</th>
@@ -59,7 +59,14 @@
 					<% else %>
 						<tr>
 					<% end %>
-					<td><%= Supplier.find(d.supplier_id).name %></td>
+					
+					<% s = Supplier.find(d.supplier_id) %>
+					<% if !s.url_main.nil? and s.url_main != "" %>
+						<td><%= link_to "#{s.name}", s.url_main %></td>
+					<% else %>
+						<td><%= s.name %></td>
+					<% end %>
+					
 					<td class="center"><%= bid_status(d) %></td>
 					<td class="right"><%= currencyize(d.total_cost, d.currency) %></td>
 					<td class="center"><%= d.process_time %></td>
