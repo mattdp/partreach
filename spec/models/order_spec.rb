@@ -18,6 +18,7 @@
 #  recommendation         :string(255)
 #  material_message       :text
 #  next_steps             :text
+#  suggested_suppliers    :string(255)
 #
 
 require 'spec_helper'
