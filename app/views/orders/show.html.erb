@@ -20,21 +20,21 @@
 			<%= hidden_field_tag "submitting_page", "orders_show" %>
 
 			<% if @order.name != "" %>
-				<p><%= "Order name: #{@order.name}" %></p>
+				<p><strong>Order name: </strong> <%= "#{@order.name}" %></p>
 			<% end %>
-			<p id="index_quantity"><%= "Quantity: #{@order.quantity}" %></p>
-			<p><%= "Due date: #{@order.deadline.to_s}" %></p>
+			<p id="index_quantity"><strong>Quantity: </strong><%= "#{@order.quantity}" %></p>
+			<p><strong>Due date: </strong><%= "#{@order.deadline.to_s}" %></p>
 			<% if !@order.material_message.nil? %>
-				<p><%= "Material requested: #{@order.material_message}" %></p>
+				<p><strong>Material requested: </strong><%= "#{@order.material_message}" %></p>
 			<% end %>
 			<% if !(@order.supplier_message.nil? or @order.supplier_message == "") %>
-				<p><%= "Message to suppliers: #{@order.supplier_message}" %></p>
+				<p><strong>Message to suppliers: </strong><%= "#{@order.supplier_message}" %></p>
 			<% end %>
 			<% if !@order.recommendation.nil? %>
-				<p><%= "Our recommendation: #{@order.recommendation}" %></p>
+				<p><strong>Our recommendation: </strong><%= "#{@order.recommendation}" %></p>
 			<% end %>
 			<% if !@order.next_steps.nil? %>
-				<p><%= "Suggested next steps: #{@order.next_steps}" %></p>
+				<p><strong>Suggested next steps: </strong><%= "#{@order.next_steps}" %></p>
 			<% end %>
 
 			<table class="order_table">
