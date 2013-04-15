@@ -19,10 +19,11 @@
 #  material_message       :text
 #  next_steps             :text
 #  suggested_suppliers    :string(255)
+#  drawing_units          :string(255)
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message, :is_over_without_winner, :material_message, :next_steps, :suggested_suppliers
+  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message, :is_over_without_winner, :material_message, :next_steps, :suggested_suppliers, :drawing_units
   has_attached_file :drawing,
   									:url => "/:attachment/:id/:style/:basename.:extension",
   									:path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
@@ -33,4 +34,5 @@ class Order < ActiveRecord::Base
   validates :quantity, presence: true, numericality: {greater_than: 0}
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
   validates :material_message, presence: true, length: {minimum: 2}
+  validates :drawing_units, presence: true, length: {minimum: 1}
 end

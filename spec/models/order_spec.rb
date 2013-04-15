@@ -19,6 +19,7 @@
 #  material_message       :text
 #  next_steps             :text
 #  suggested_suppliers    :string(255)
+#  drawing_units          :string(255)
 #
 
 require 'spec_helper'

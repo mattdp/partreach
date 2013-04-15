@@ -33,11 +33,21 @@
       
         <input type="hidden" name="file" value="" id="direct-upload-file">
 
-        <%= label_tag 'quantity_field', 'Quantity' %>
-        <%= text_field_tag 'quantity_field', nil, :placeholder => 'Enter quantity here' %>
+        <div> 
+          <div class="fleft half">
+            <%= label_tag 'quantity_field', 'Quantity' %>
+            <%= text_field_tag 'quantity_field', nil, :class => 'left-half' %>
+          </div>
+          <div class="fleft half">
+            <%= label_tag 'drawing_units_field', 'Drawing units' %>
+            <%= text_field_tag 'drawing_units_field', nil, :placeholder => '(mm./in.)', :class => 'right-half' %>
+          </div>
+        </div>
 
-        <%= label_tag 'material_message_field', 'Material' %>
-        <%= text_area_tag 'material_message_field', nil, :rows => 3, :placeholder => '(ex: ABS, stainless steel, white durable nylon, UV curable resin, etc. If you\'re not sure, we can help you decide.)' %>
+        <div class="clear">
+          <%= label_tag 'material_message_field', 'Material' %>
+          <%= text_area_tag 'material_message_field', nil, :rows => 3, :placeholder => '(ex: ABS, stainless steel, white durable nylon, UV curable resin, etc. If you\'re not sure, we can help you decide.)' %>
+        </div>
 
         <%= label_tag 'zip_field', 'Zip Code' %>
         <%= text_field_tag 'zip_field', nil, :placeholder => '(Required, for shipping estimates)' %>

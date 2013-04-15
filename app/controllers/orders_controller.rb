@@ -82,6 +82,7 @@ class OrdersController < ApplicationController
     end
     @order.quantity = params[:quantity_field]
     @order.drawing_file_name = params[:file]
+    @order.drawing_units = params[:drawing_units_field]
     @order.name = params[:name_field]
     @order.material_message = params[:material_message_field]
     @order.suggested_suppliers = params[:suggested_suppliers_field]
