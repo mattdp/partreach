@@ -6,7 +6,7 @@
         <ul></ul>
       </div>
 
-      <% if Rails.env.development? %>
+      <% if current_user.nil? %>
         <%= form_tag :action => 'create', :controller => 'leads' do %>
           <div class="email-sharer">
             <div id="email-solicitation">
@@ -33,7 +33,7 @@
         <input type='hidden' name='policy' />
         <input type='hidden' name='signature' />
         <input type='hidden' name='success_action_status' value='201' />
-        <input type='file' name='file' />
+        <input type='file' name='file' id='uploader' />
         <div class='progress progress-striped active'>
           <div class='bar'></div>
         </div>

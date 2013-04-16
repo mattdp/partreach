@@ -58,6 +58,13 @@
 
 #direct-upload-success, #direct-upload-failure {
   display: none;
+  font-weight: bold;
+  font-size: 24px;
+  padding-top: 5px;
+}
+
+#uploader {
+	height: 40px;
 }
 
 #new-order-errors {
