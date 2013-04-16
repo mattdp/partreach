@@ -8,6 +8,9 @@
 
       <% if current_user.nil? %>
         <%= form_tag :action => 'create', :controller => 'leads' do %>
+
+          <input type="hidden" name="next_step_field" value="/orders/new">
+
           <div class="email-sharer">
             <div id="email-solicitation">
               <p>Not ready to quote right now, but want updates on SupplyBetter?</p>
