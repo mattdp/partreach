@@ -7,6 +7,7 @@ Partreach::Application.routes.draw do
   resources :dialogues, only: [:new, :create]
   resources :users, only: [:new, :create, :edit, :update, :show] # no index, no destroy 
   resources :sessions, only: [:new, :create, :destroy]
+  resources :leads, only: [:create]
 
   match '/signup', to: 'orders#new'
   match '/signin', to: 'sessions#new'

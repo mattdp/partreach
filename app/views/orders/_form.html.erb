@@ -6,7 +6,23 @@
         <ul></ul>
       </div>
 
-      <h3>The basics</h3>
+      <% if Rails.env.development? %>
+        <%= form_tag :action => 'create', :controller => 'leads' do %>
+          <div class="email-sharer">
+            <div id="email-solicitation">
+              <p>Not ready to quote right now, but want updates on SupplyBetter?</p>
+            </div>
+            <div class="center">
+              <%= text_field_tag 'email_field', nil, :placeholder => "Enter email here", :id => "email-submit-field" %>
+              <%= submit_tag "Update me!", :disable_with => "Submitting...", :id => "email-submit-button" %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
+      <div class="clear">
+        <h3>The basics</h3>
+      </div>
 
       <p>Upload drawing (max size: 64 MB)</p>
         
@@ -34,7 +50,7 @@
         <input type="hidden" name="file" value="" id="direct-upload-file">
 
         <div> 
-          <div class="fleft half">
+          <div class="fleft half margin-right">
             <%= label_tag 'quantity_field', 'Quantity' %>
             <%= text_field_tag 'quantity_field', nil, :class => 'left-half' %>
           </div>
@@ -63,7 +79,7 @@
       
         <% if current_user.nil? %>
           <div class="two-signins">
-            <div class="signin-width fleft margin-right">
+            <div class="signin-width fleft margin-right border-right">
               <h3>Create account</h3>
               <%= label_tag 'user_name_field', 'Name' %>
               <%= text_field_tag 'user_name_field', nil, placeholder: 'Enter name here' %>

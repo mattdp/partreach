@@ -2,6 +2,30 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.email-sharer {
+	background-color: #9cf;
+	padding-top: 5px;
+
+	#email-solicitation {
+		padding-left: 10px;
+	}
+
+	#email-submit-button {
+		width: 25%;
+		float: right;
+		margin-right: 10px;
+		height: 40px;
+		vertical-align: center;
+		border: none;
+	}
+
+	#email-submit-field {
+		width: 70%;
+		clear: both;
+		height: 40px;
+	}
+}
+
 .supplier-text {
 	width: 50%;
 }
@@ -9,6 +33,9 @@
 .margin-right {
 	margin-right: 5%;
 	padding-right: 5%; 
+}
+
+.border-right {
 	border-right: 5px solid #ccc;
 }
 
