@@ -5,6 +5,28 @@ module DataEntry
 	# CURRENT USE - csv_to_hashes(filepath) on local machine, result = <output> on heroku,
 	# call hashes_to_saved_changes(result) on heroku
 
+	def usage_counter
+		answer = "Num_Ord\tNum_Bid\tUsr_id\tUsr_email\n"
+		total_order_counter = total_bid_counter = 0
+		User.all.each do |u|
+			order_counter = 0
+			bid_counter = 0 # not all users have orders
+			u.orders.each do |o|
+				order_counter += 1
+				bid_counter = 0
+				o.dialogues.each do |d|
+					bid_counter += 1 if (d.response_received and !d.total_cost.nil? and d.total_cost > 0)
+				end
+			end
+			answer += "#{order_counter}\t#{bid_counter}\t"
+			answer += "#{u.id}\t#{u.email}\n"
+			total_bid_counter += bid_counter
+			total_order_counter += order_counter
+		end
+		answer += "------\n#{total_order_counter}\t#{total_bid_counter}\t#{User.all.count}\tTotals\n"
+		return answer
+	end
+
 	def list_dialogues(order_id)
 		answer = "Ord_id\tDia_id\tSupplier\n"
 		Dialogue.all.each do |d|
