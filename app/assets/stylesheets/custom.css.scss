@@ -20,6 +20,8 @@ html {
 body {
   font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
+  min-width: 980px;
+  padding: 0;
 }
 
 section {
@@ -143,7 +145,15 @@ strong {
     background: #3c3e44;
   }
 }
-
+// .container {
+//   padding: 0 20px;
+// }
+// @media (min-width: 768px) {
+//   .container {
+//     padding-left: 0;
+//     padding-right: 0;
+//   }
+// }
 .hero {
   padding: 0 0 70px;
   hgroup {
