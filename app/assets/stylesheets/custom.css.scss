@@ -11,6 +11,8 @@
 
 /* universal */
 
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
 html {
   overflow-y: scroll;
 }
@@ -100,7 +102,7 @@ strong {
 }
 
 /* header */
-.header {
+.header, .footer {
   padding: 22px 0 0;
 }
 
@@ -133,8 +135,11 @@ strong {
   }
 }
 .content {
-  background: #dadde2;
-  &.header, &.hero {
+  background: #f6f6f6;
+  &.features {
+    background: #dadde2;
+  }
+  &.header, &.hero, &.footer {
     background: #3c3e44;
   }
 }
@@ -203,6 +208,110 @@ strong {
     text-decoration: none;
   }
 }
+
+.features {
+  border-bottom: 1px solid #cbced3;
+  padding: 96px 0 130px;
+  text-align: center;
+  ol {
+    width: 970px;
+    margin-left: -485px;
+    position: relative;
+    left: 50%;
+    li {
+      border-left: 1px solid #cbced3;
+      float: left;
+      list-style: none;
+      margin-left: 20px;
+      padding: 0 20px;
+      width: 310px;
+      &:first-child {
+        border-left: 0;
+        margin-left: 0;
+      }
+    }
+    img {
+      margin-top: 20px;
+    }
+    p {
+      font-size: 15px;
+      line-height: 24px;
+      margin-top: 20px;
+    }
+  }
+  h3 {
+    color: #1f252d;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+
+.cta {
+  padding: 70px 0;
+  .time {
+    border-bottom: 1px solid #e1e1e1;
+    padding: 0 0 72px;
+  }
+  .time-heading {
+    @extend .hide-text;
+    background: image-url('time-heading.png') no-repeat;
+    height: 205px;
+    margin: 0 0 0 80px;
+    width: 308px;
+  }
+  p {
+    font-size: 19px;
+    line-height: 27px;
+    padding: 13px 60px 0 0;
+  }
+  a {
+    border-bottom: 1px solid #00b7e2;
+    color: #00b7e2;
+    display: inline-block;
+    font-size: 19px;
+    line-height: 27px;
+    text-decoration: none;
+  }
+  .updates {
+    .sign-up {
+      color: #6c6f78;
+      font-size: 26px;
+      font-weight: 300;
+      padding: 30px 0;
+      text-align: center;
+      em {
+        color: #151517;
+        font-style: normal;
+      }
+    }
+  }
+  #email-submit-button, #email-submit-field {
+    border: 0;
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    height: 68px;
+    -webkit-border-radius: 6px;
+            border-radius: 6px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+  }
+  #email-submit-field {
+    color: #151517;
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 38px;
+    padding-left: 24px;
+  }
+  #email-submit-button {
+    background: #fb5022;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    float: right;
+  }
+}
+
+.footer { color: #9499a7; }
+
 /* forms */
 
 input, textarea, select, .uneditable-input {

@@ -10,7 +10,7 @@
 	</div>
 </div>
 <div class="content features">
-	<div class="container">
+	<div class="container row">
 		<ol>
 			<li>
 				<h3>Fill out a quote request.</h3>
@@ -32,12 +32,24 @@
 </div>
 <div class="content cta">
 	<div class="container time">
-		<h3 class="time-heading">Spend your time designing, coding, and selling.</h3>
-		<p>Let us do the hard work of quoting and supplier selection for you, so you can get back to improving your business.</p>
+		<h3 class="time-heading pull-left">Spend your time designing, coding, and selling.</h3>
+		<p class="span6 pull-right">
+			Let us do the hard work of quoting and supplier selection for you, so you can get back to improving your business.
+		</p>
+		<p class="span6 pull-right">
+			<%= link_to "Get started now – for free!", signup_path %>
+		</p>
 	</div>
 	<div class="container updates">
 		<h3 class="sign-up">Not ready for a quote? <em>Sign up for updates.</em></h3>
-    <%= text_field_tag 'email_field', nil, :placeholder => "example@domain.com", :id => "email-submit-field" %>
-    <%= submit_tag "Stay Updated", :disable_with => "Submitting", :id => "email-submit-button" %>
+    <%= text_field_tag 'email_field', nil, :placeholder => "example@domain.com", :class => "span9", :id => "email-submit-field" %>
+    <%= submit_tag "Stay Updated", :disable_with => "Submitting", :class => "span3", :id => "email-submit-button" %>
 	</div>
 </div>
+<footer class="footer content">
+  <div class="container">
+  	<p class="pull-right">
+  		&copy; 2013 SupplyBetter
+  	</p>
+  </div>
+</footer>
