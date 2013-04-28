@@ -42,18 +42,6 @@ textarea {
   vertical-align: middle;
 }
 
-.half {
-  width: 40%;
-}
-
-.fleft {
-  float: left;
-}
-
-.fright {
-  float: right;
-}
-
 .clear {
   clear: both;
 }
@@ -105,7 +93,7 @@ strong {
 
 /* header */
 .header, .footer {
-  padding: 22px 0 0;
+  padding: 22px 0;
 }
 
 .logo {
@@ -138,7 +126,7 @@ strong {
 }
 .content {
   background: #f6f6f6;
-  &.features {
+  &.features, &.forms {
     background: #dadde2;
   }
   &.header, &.hero, &.footer {
@@ -322,8 +310,116 @@ strong {
 
 .footer { color: #9499a7; }
 
-/* forms */
+/* orders/new */
 
+.order_top_header {
+  color: #1f252d;
+  font-size: 46px;
+  font-weight: 300;
+  margin: 0 0 16px;
+  padding: 22px 0;
+}
+
+/* forms */
+.forms {
+  .updates {
+    border-top: 1px solid #cbced3;
+  }
+}
+
+form {
+  margin: 0;
+}
+
+.form {
+  background: #f6f6f6;
+  padding: 30px;
+  .row {
+    margin-left: 0;
+  }
+  input, textarea {
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 20px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+  }
+}
+#direct-upload {
+  border: 1px solid #bbb;
+  padding: 10px;
+  margin-bottom: 40px;
+  .file-upload {
+    border: 0;
+    padding: 10px 0;
+    height: 58px;
+    line-height: 16px;
+  }
+  .progress {
+    background: #fff;
+    border: 1px solid #ccc;
+  }
+}
+#new-order {
+  input[type="text"], input[type="password"] {
+    height: 44px;
+  }
+  .half {
+    width: 45%;
+  }
+  h3 {
+    font-size: 20px;
+    margin-top: 32px;
+  }
+  p {
+    font-size: 14px;
+  }
+  .two-signins {
+    .pull-left {
+      padding-right: 5%;
+      width: 50%;
+    }
+  }
+}
+#create_button {
+  background: #00aede image-url('btn-arrow.png') no-repeat 194px 50%;
+  border: 0;
+  color: #fff;
+  display: inline-block;
+  font-size: 22px;
+  font-weight: bold;
+  height: 60px;
+  line-height: 60px;
+  margin: 38px 0 0;
+  padding: 0;
+  text-align: center;
+  text-indent: -20px;
+  text-shadow: none;
+  vertical-align: middle;
+  width: 240px;
+  -webkit-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-clip: padding-box;
+  &:hover {
+    background: #01c8ff image-url('btn-arrow.png') no-repeat 194px 50%;
+    color: #fff;
+  }
+  &:active {
+    background: #0093bc image-url('btn-arrow.png') no-repeat 194px 50%;
+    color: #fff;
+  }
+}
+.back {
+  padding: 30px 0;
+  float: right;
+  a {
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+  }
+}
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
@@ -331,15 +427,6 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
-input {
-  height: auto;
-}
-
-/*
-input {
-  height: auto !important;
-}
-*/
 
 .error_explanation {
   color: #f00;

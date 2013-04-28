@@ -32,7 +32,7 @@
 
 .margin-right {
 	margin-right: 5%;
-	padding-right: 5%; 
+	padding-right: 5%;
 }
 
 .border-right {
@@ -61,10 +61,6 @@
   font-weight: bold;
   font-size: 24px;
   padding-top: 5px;
-}
-
-#uploader {
-	height: 40px;
 }
 
 #new-order-errors {
@@ -123,7 +119,7 @@
 .order_table {
 
 	margin-bottom: 5px;
-	
+
 	tr:nth-child(odd) {
     background-color: #DDD;
   }
@@ -131,7 +127,7 @@
   tr.recommended {
   	background-color: #98fb98;
   }
-	
+
 	tr {
 		border-top: 2px solid	#FFF;
 	}
