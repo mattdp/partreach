@@ -1,5 +1,4 @@
 @import "bootstrap";
-@import "bootstrap-responsive";
 
 /* Image Replacement -  */
 
@@ -14,12 +13,14 @@
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 html {
+  height: 100%;
   overflow-y: scroll;
 }
 
 body {
   font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
+  height: 100%;
   min-width: 980px;
   padding: 0;
 }
@@ -92,6 +93,10 @@ strong {
 }
 
 /* header */
+.container {
+  width: 940px;
+}
+
 .header, .footer {
   padding: 22px 0;
 }
@@ -126,12 +131,24 @@ strong {
 }
 .content {
   background: #f6f6f6;
-  &.features, &.forms {
+  &.features, &.forms, &.sign-in {
     background: #dadde2;
   }
   &.header, &.hero, &.footer {
     background: #3c3e44;
   }
+}
+.sign-in {
+  min-height: 93%;
+  .hero {
+    padding: 30px 0;
+    h1 {
+      color: #1f252d;
+    }
+  }
+}
+.alert {
+  margin-bottom: 0;
 }
 // .container {
 //   padding: 0 20px;
@@ -146,20 +163,20 @@ strong {
   padding: 0 0 70px;
   hgroup {
     padding: 91px 0 0;
-    h1 {
-      color: #fff;
-      font-size: 46px;
-      font-weight: 300;
-      margin-bottom: 16px;
-    }
-    h2 {
-      color: #fff;
-      font-size: 26px;
-      font-weight: 300;
-      em {
-        color: #c3c8d9;
-        font-style: normal;
-      }
+  }
+  h1 {
+    color: #fff;
+    font-size: 46px;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  h2 {
+    color: #fff;
+    font-size: 26px;
+    font-weight: 300;
+    em {
+      color: #c3c8d9;
+      font-style: normal;
     }
   }
 }
@@ -361,7 +378,7 @@ form {
     border: 1px solid #ccc;
   }
 }
-#new-order {
+#new-order, .form-email {
   input[type="text"], input[type="password"] {
     height: 44px;
   }
@@ -382,7 +399,7 @@ form {
     }
   }
 }
-#create_button {
+#create_button, .form-email form .sign-in-button {
   background: #00aede image-url('btn-arrow.png') no-repeat 194px 50%;
   border: 0;
   color: #fff;
@@ -397,7 +414,7 @@ form {
   text-indent: -20px;
   text-shadow: none;
   vertical-align: middle;
-  width: 240px;
+  width: 240px !important;
   -webkit-border-radius: 6px;
           border-radius: 6px;
   -webkit-box-shadow: none;
@@ -411,6 +428,12 @@ form {
     background: #0093bc image-url('btn-arrow.png') no-repeat 194px 50%;
     color: #fff;
   }
+}
+.form-email form .sign-in-button {
+  margin-top: 10px;
+}
+.sign-up {
+  margin: 15px 0 0 30px;
 }
 .back {
   padding: 30px 0;
