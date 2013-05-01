@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url> 
+    <loc>http://www.supplybetter.com</loc>
+    <loc>http://www.supplybetter.com/procurement</loc>
+    <loc>http://www.supplybetter.com/getting_started</loc>
+    <loc>http://www.supplybetter.com/orders/new</loc>
+    <loc>http://www.supplybetter.com/signin</loc>
+  </url>
+</urlset>
