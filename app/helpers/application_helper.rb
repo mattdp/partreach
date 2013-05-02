@@ -4,4 +4,12 @@ module ApplicationHelper
     /^http/.match(url) ? url : "http://#{url}"
   end
 
+  def meta_description(desc = nil) #from http://nycdevshop.com/blog/creating-titles-and-seo-meta-tags-in-rails
+    if desc.present?
+      content_for :meta_description, desc
+    else
+      content_for?(:meta_description) ? content_for(:meta_description) : "SupplyBetter helps you find suppliers that are right for you. We're intially focused on 3D printing."
+    end
+  end
+
 end
