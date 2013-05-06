@@ -19,7 +19,7 @@
 #  shipping_name       :string(255)
 #  shipping_cost       :decimal(10, 2)
 #  total_cost          :decimal(10, 2)
-#  notes               :string(255)
+#  notes               :text
 #  currency            :string(255)      default("dollars")
 #  recommended         :boolean          default(FALSE)
 #

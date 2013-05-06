@@ -15,10 +15,10 @@
 #  deadline               :date
 #  supplier_message       :text
 #  is_over_without_winner :boolean
-#  recommendation         :string(255)
+#  recommendation         :text
 #  material_message       :text
 #  next_steps             :text
-#  suggested_suppliers    :string(255)
+#  suggested_suppliers    :text
 #  drawing_units          :string(255)
 #
 
