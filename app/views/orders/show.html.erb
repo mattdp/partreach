@@ -36,6 +36,7 @@
 			<% if !@order.next_steps.nil? %>
 				<p><strong>Suggested next steps: </strong><%= "#{@order.next_steps}" %></p>
 			<% end %>
+			<%= link_to "Leave a supplier review", new_review_path %>
 
 			<table class="order_table">
 			  <tr class="order_table_header_row">
