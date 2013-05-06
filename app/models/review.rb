@@ -22,15 +22,15 @@ class Review < ActiveRecord::Base
 
   belongs_to :user
 
-  validates :company, presence: true
-  validates :process, presence: true
-  validates :part_type, presence: true
-  validates :would_recommend, presence: true
+  #validates :company, presence: true, length: {minimum: 1}
+  #validates :process, presence: true, length: {minimum: 1}
+  #validates :part_type, presence: true, length: {minimum: 1}
+  #validates :would_recommend, presence: true
 
-  validates :quality, presence: true, numericality: {greater_than: 0, less_than: 6}
-  validates :adaptability, presence: true, numericality: {greater_than: 0, less_than: 6}
-  validates :delivery, presence: true, numericality: {greater_than: 0, less_than: 6}
+  #validates :quality, presence: true, numericality: {greater_than: 0, less_than: 6}
+  #validates :adaptability, presence: true, numericality: {greater_than: 0, less_than: 6}
+  #validates :delivery, presence: true, numericality: {greater_than: 0, less_than: 6}
 
-  validates :did_well, presence: true, length: {minimum: 50}
-  validates :did_badly, presence: true, length: {minimum: 50}
+  #validates :did_well, presence: true, length: {minimum: 50}
+  #validates :did_badly, presence: true, length: {minimum: 50}
 end

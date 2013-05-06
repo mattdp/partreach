@@ -1,2 +1,71 @@
-doo itt.
-review itt.
+<% provide(:title, "New supplier review") %>
+
+	<div class="row">
+    <div class="span6 offset3">
+
+			<%= form_tag :action => 'create', :controller => 'reviews' do %>
+
+				<% if @review.errors.any? %>
+			    <div class="error_explanation">
+			      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+			      <ul>
+			        <% @review.errors.full_messages.each do |msg| %>
+			          <li><%= msg %></li>
+			        <% end %>
+			      </ul>
+			    </div>
+			  <% end %>
+
+			  <h1 class="center">Supplier review</h1>
+
+				<%= label_tag 'company', 'Which supplier are you reviewing?' %>
+				<%= text_field_tag 'company', nil %>
+
+				<%= label_tag 'process', 'What manufacturing process did they use?' %>
+				<%= text_field_tag 'process', nil %>
+
+				<%= label_tag 'part_type', 'What sort of part did you have made?' %>
+				<%= text_field_tag 'part_type', nil %>
+
+				<div>
+					<%= label_tag 'would_recommend', 'Would you work with this supplier again?' %>
+
+					<div class="one-fourth fleft">
+						<%= radio_button_tag 'would_recommend', true, false, class: "fleft center" %>
+						<%= label_tag 'would_recommend', 'Yes', class: "fleft padding-left" %>
+					</div>
+
+					<div class="one-fourth fleft">
+						<%= radio_button_tag 'would_recommend', true, false, class: "fleft center padding-left" %>
+						<%= label_tag 'would_recommend', 'No', class: "fleft padding-left" %>
+					</div>
+
+				</div>
+
+				<div class="clear">
+					<%= label_tag "Please rate the following from 1 to 5 (5 highest)" %>
+					<div class="one-fourth fleft">
+						<%= label_tag 'quality', 'Quality' %>
+						<%= text_field_tag 'quality', nil, class: "single-number" %>
+					</div>
+					<div class="one-fourth fleft">
+						<%= label_tag 'adaptability', 'Adaptability' %>
+						<%= text_field_tag 'adaptability', nil, class: "single-number"%>
+					</div>		
+					<div class="one-fourth fleft">
+						<%= label_tag 'delivery', 'Delivery' %>
+						<%= text_field_tag 'delivery', nil, class: "single-number" %>
+					</div>
+				</div>
+
+				<div class="clear">
+					<%= label_tag 'did_well', 'What did the supplier do well?' %>
+					<%= text_area_tag 'did_well', nil %>
+
+					<%= label_tag 'did_well', 'What could the supplier have done better?' %>
+					<%= text_area_tag 'did_badly', nil %>
+				</div>
+
+				<%= submit_tag "Submit review", :disable_with => "Saving..." %>
+
+<% end %>
