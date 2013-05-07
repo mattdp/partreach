@@ -1,10 +1,4 @@
-
-
-
-
-
-
-
+need next iteration of css before do much with the blog
 
 need to 'jekyll build' from partreach/config/jekyll
 
