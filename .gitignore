@@ -14,5 +14,8 @@
 /log/*.log
 /tmp
 
+# Ignore the blog's public files
+/public/blog
+
 .DS_Store
 *~
