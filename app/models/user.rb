@@ -31,7 +31,20 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
+  def send_password_reset #http://railscasts.com/episodes/274-remember-me-reset-password
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!(:validate => false)
+    UserMailer.password_reset(self).deliver
+  end
+
   private
+
+    def generate_token(column) #http://railscasts.com/episodes/274-remember-me-reset-password
+      begin
+        self[column] = SecureRandom.urlsafe_base64
+      end while User.exists?(column => self[column])
+    end
 
     def create_remember_token
       self.remember_token = SecureRandom.urlsafe_base64

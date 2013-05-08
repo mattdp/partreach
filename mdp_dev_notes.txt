@@ -1,3 +1,5 @@
+when submit request, not saving user, since wants password. 8:41 of railscast http://railscasts.com/episodes/274-remember-me-reset-password. Note: look for a non-validation save here?
+
 See if goes to order page - that'd be why no header with "my rfq"
 
 BROKEN ON PROD - can't validate that signin happens when user already signed in, that's silly
