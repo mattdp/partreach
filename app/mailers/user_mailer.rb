@@ -15,5 +15,10 @@ class UserMailer < ActionMailer::Base
   	@url = orders_path(order)
   	mail(to: @user.email, subject: "Your #{brand_name} quotes have arrived")
   end
+
+  def password_reset(user)
+    @user = user
+    mail(to: @user.email, subject: "Password reset requested")
+  end
   
 end
