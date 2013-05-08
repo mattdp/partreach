@@ -18,6 +18,7 @@ class UserMailer < ActionMailer::Base
 
   def password_reset(user)
     @user = user
+    @brand_name = brand_name
     mail(to: @user.email, subject: "Password reset requested")
   end
   
