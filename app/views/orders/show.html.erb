@@ -1,7 +1,7 @@
 <% provide(:title, "Details of quote request") %>
 
-<div class="row">
-  <div class="span8 offset2">
+<div class="content order">
+	<div class="container row">
 		<h1>Details of quote request</h1>
 
 		<% if @order.errors.any? %>
@@ -38,7 +38,7 @@
 			<% end %>
 			<%= link_to "Leave a supplier review", new_review_path %>
 
-			<table class="order_table">
+			<table class="order_table" cellspacing="0">
 			  <tr class="order_table_header_row">
 			    <th>Name</th>
 			    <th>Bid status</th>
@@ -48,10 +48,9 @@
 			    <th>Process</th>
 			    <th>Process cost</th>
 			    <th>Shipping cost</th>
-			    <th class="notes-row">Notes</th>
+			    <th class="notes-row-th">Notes</th>
 			    <th>Selected to negotiate?</th>
 			    <th>Won deal?</th>
-			    <th></th>
 			  </tr>
 
 				<% @sorted_dialogues.each do |d| %>
@@ -60,14 +59,14 @@
 					<% else %>
 						<tr>
 					<% end %>
-					
+
 					<% s = Supplier.find(d.supplier_id) %>
 					<% if !s.url_main.nil? and s.url_main != "" %>
 						<td><%= link_to "#{s.name}", s.url_main %></td>
 					<% else %>
 						<td><%= s.name %></td>
 					<% end %>
-					
+
 					<td class="center"><%= bid_status(d) %></td>
 					<td class="right"><%= currencyize(d.total_cost, d.currency) %></td>
 					<td class="center"><%= d.process_time %></td>
@@ -75,7 +74,7 @@
 					<td class="center"><%= d.process_name %></td>
 					<td class="right"><%= currencyize(d.process_cost, d.currency) %></td>
 					<td class="right"><%= currencyize(d.shipping_cost, d.currency) %></td>
-					<td class="notes-row center"><%= notarize(d.shipping_name,d.notes) %></td>
+					<td class="notes-row center" title="<%= notarize(d.shipping_name,d.notes) %>"><%= notarize(d.shipping_name,d.notes) %></td>
 					<td class="center"><%= check_box_tag "further_negotiation[]", d.id, d.further_negotiation, :class => "center order_no_top_margin" %></td>
 					<td class="center"><%= radio_button_tag "won", d.id, d.won, :class => "center order_no_top_margin" %></td>
 					</tr>
@@ -90,9 +89,9 @@
 
 			</table>
 
-			<%= submit_tag "Save changes", :disable_with => "Saving..." %>
+			<%= submit_tag "Save changes", :class => "btn btn-hero", :disable_with => "Saving...", :disable_with => "Saving..."  %>
 
-			<p><%= link_to 'Back', orders_path %></p>
+			<p class="block"><%= link_to 'Back', orders_path %></p>
 
 		<% end %>
 	</div>

@@ -1,36 +1,55 @@
-<% provide(:title, "Welcome to #{brand_name}!") %>
-<h1>Comparison shopping for 3D printing</h1>
-<h2>Know your options. Get cheaper parts.</h2>
-<p class="center"><%= link_to "(How do I get started with 3D printing?)", getting_started_path %></p>
-<table class="table-center">
-	<tr>
-		<td>
-			<div class="thumbnail">
-				<%= image_tag "intro_panel_L_v1-2.png" %>
-				<p class="thumbnail-header-text">You fill out a quote request</p>
-			</div>
-		</td>
-		<td>
-			<div class="thumbnail">
-				<%= image_tag "intro_panel_M_v1-4.png" %>
-				<p class="thumbnail-header-text">We reach out to suppliers</p>
-			</div>
-		</td>
-		<td>
-			<div class="thumbnail">
-				<%= image_tag "intro_panel_R_v1-5.png" %>
-				<p class="thumbnail-header-text">You pick the best quote</p>
-			</div>
-		</td>
-	</tr>
-</table>
-<div>
-	<%= link_to "It's free - start today!", signup_path, class: "btn btn-primary", id: "button-start-today"  %>
+<div class="content hero">
+	<div class="container">
+		<% provide(:title, "Comparison shopping for 3D printing") %>
+		<hgroup>
+			<h1>Comparison shopping for 3D printing.</h1>
+			<h2><em>Know your options.</em> Get cheaper parts.</h2>
+		</hgroup>
+		<%= link_to "Get Started", signup_path, class: "btn btn-hero", id: "button-start-today"  %>
+		<%= mail_to "info@supplybetter.com", "Are you a supplier?", encode: "javascript", class: "sec-hero", target: "_blank", subject: "Tell me more about being a #{brand_name} supplier!", body: "I'm interested in more information about what #{brand_name} is like for suppliers." %>
 	</div>
-<div>
-	<div id="div-supplier-join">
-		<%= mail_to "info@supplybetter.com", "Are you a supplier?", encode: "javascript", target: "_blank", subject: "Tell me more about being a #{brand_name} supplier!", body: "I'm interested in more information about what #{brand_name} is like for suppliers." %>
-		<%= link_to "A business user?", procurement_path %> 
-	</div>
-
 </div>
+<div class="content features">
+	<div class="container row">
+		<ol>
+			<li>
+				<h3>Fill out a quote request.</h3>
+				<%= image_tag "features-request.png" %>
+				<p>Give us quantity, a drawing, and the application, and we're ready to start.</p>
+			</li>
+			<li>
+				<h3>We reach out to suppliers.</h3>
+				<%= image_tag "features-suppliers.png" %>
+				<p>We select the best suppliers based on what you care about, whether that be cost, quality, process, or geography.</p>
+			</li>
+			<li>
+				<h3>You pick the best quote.</h3>
+				<%= image_tag "features-quote.png" %>
+				<p>Pick the quote that fits your needs best. No obligation to buy.</p>
+			</li>
+		</ol>
+	</div>
+</div>
+<div class="content cta">
+	<div class="container time">
+		<h3 class="time-heading pull-left">Spend your time designing, coding, and selling.</h3>
+		<p class="span6 pull-right">
+			Let us do the hard work of quoting and supplier selection for you, so you can get back to improving your business.
+		</p>
+		<p class="span6 pull-right">
+			<%= link_to "Get started now – for free!", signup_path %>
+		</p>
+	</div>
+	<div class="container updates">
+		<h3 class="sign-up">Not ready for a quote? <em>Sign up for updates.</em></h3>
+    <%= text_field_tag 'email_field', nil, :placeholder => "example@domain.com", :class => "span9", :id => "email-submit-field" %>
+    <%= submit_tag "Stay Updated", :disable_with => "Submitting", :class => "span3", :id => "email-submit-button" %>
+	</div>
+</div>
+<footer class="footer content">
+  <div class="container">
+  	<p class="pull-right">
+  		&copy; 2013 SupplyBetter
+  	</p>
+  </div>
+</footer>
