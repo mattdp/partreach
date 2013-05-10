@@ -1,7 +1,7 @@
 <% provide(:title, "My requests for quotes") %>
 
-<div class="row">
-  <div class="span6 offset3">
+<div class="content order">
+  <div class="container row">
     <% if @orders.size > 0 %>
 
       <h1 class="order_top_header">My requests for quotes</h1>
@@ -13,8 +13,6 @@
           <th>Bid due date</th>
           <th>Status</th>
           <th>Actions</th>
-          <th></th>
-          <th></th>
         </tr>
 
       <% @orders.each do |order| %>
@@ -32,7 +30,7 @@
               <%= "Bidding concluded, no deal." %>
             <% elsif winner(order) %>
               <%= "'#{Supplier.find(winner(order).supplier_id).name}' selected as winner." %>
-            <% else %> 
+            <% else %>
               <%= "#{pluralize(bids_received(order),'bid')} received, " %>
               <%= "#{pluralize(order.dialogues.count, 'supplier')} contacted" %>
             <% end %>
@@ -42,7 +40,7 @@
       <% end %>
       </table>
 
-      <div class="center"><%= link_to 'Or create a new RFQ', new_order_path %></div>
+      <p><%= link_to 'Or create a new RFQ', new_order_path %></p>
 
     <% else %>
       <p> No orders yet! Make a <%= link_to 'new request for quotes', new_order_path %> now! </p>
