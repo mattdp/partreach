@@ -1,4 +1,12 @@
-when submit request, not saving user, since wants password. 8:41 of railscast http://railscasts.com/episodes/274-remember-me-reset-password. Note: look for a non-validation save here?
+need next iteration of css before do much with the blog
+
+need to 'jekyll build' from partreach/config/jekyll
+
+      create  lib/tasks/new_post.rake
+      create  lib/tasks/gen.rake
+Configuration file: config/jekyll/_config.yml
+       Deprecation: Auto-regeneration can no longer be set from your configuration file(s). Use the --watch/-w command-line option instead.
+Successfully generated site: config/jekyll -> public/blog
 
 See if goes to order page - that'd be why no header with "my rfq"
 

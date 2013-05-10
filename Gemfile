@@ -8,6 +8,8 @@ gem 'newrelic_rpm', '3.5.8.72'
 gem 'paperclip', '3.4' #https://github.com/thoughtbot/paperclip
 gem 'pg', '0.14.1' #http://blog.willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/
 gem 'twilio-ruby', '3.9.0'
+gem 'jekyll', '1.0.0'
+gem 'bloggy', '0.2.1'
 
 group :development, :test do
  	gem 'sqlite3', '1.3.5'
