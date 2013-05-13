@@ -114,43 +114,6 @@
 	clear: both;
 }
 
-/* tables */
-
-.order_table {
-
-	margin-bottom: 5px;
-
-	tr:nth-child(odd) {
-    background-color: #DDD;
-  }
-
-  tr.recommended {
-  	background-color: #98fb98;
-  }
-
-	tr {
-		border-top: 2px solid	#FFF;
-	}
-	th {
-		padding: 0px 0px 0px 10px;
-		text-decoration: underline;
-		background-color: #FFF;
-	}
-	td {
-		padding: 0px 15px;
-	}
-
-/* doesn't work
-	th.notes-row {
-		width: 150px;
-	}
-	td.notes-row {
-		width: 150px;
-	}
-*/
-
-}
-
 input.order_no_top_margin{
  	margin-top: 0px;
 }
