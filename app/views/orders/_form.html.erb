@@ -94,6 +94,8 @@
 
         <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
 
+        <p id="order-disclaimer">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
+
         <p class="back"><%= link_to 'Back to orders', orders_path %></p>
 
       <% end %>
