@@ -21,6 +21,8 @@ class Supplier < ActiveRecord::Base
 
   has_many :dialogues
   has_one :address, :as => :place
+  has_many :combos
+  has_many :tags, :through => :combos
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 

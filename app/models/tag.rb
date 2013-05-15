@@ -12,4 +12,8 @@
 
 class Tag < ActiveRecord::Base
   attr_accessible :family, :name, :note
+
+  has_many :combos
+  has_many :suppliers, :through => :combos
+ 
 end
