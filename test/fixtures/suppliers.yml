@@ -13,6 +13,7 @@
 #  address_id    :integer
 #  url_materials :string(255)
 #  category      :string(255)      default("none")
+#  source        :string(255)
 #
 
 1:
