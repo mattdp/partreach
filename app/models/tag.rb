@@ -16,4 +16,14 @@ class Tag < ActiveRecord::Base
   has_many :combos
   has_many :suppliers, :through => :combos
  
+  validates :name, presence: true, uniqueness: {case_sensitive: false}
+
+  def self.return_category(category)
+  	answer = []
+  	Tag.all.each do |t|
+  		answer << t if t.category == category
+  	end
+  	return answer
+  end
+
 end

@@ -77,6 +77,28 @@ module DataEntry
 
 	end
 
+	TAG_NAME = 0
+	TAG_FAMILY = 1
+	TAG_NOTES = 2
+
+	def csv_to_tags(url)
+		CSV.new(open(url)).each do |row|
+			n = row[TAG_NAME]
+			if !n.nil? and n.length > 0
+				t = Tag.new
+				t.name = n
+				t.family = row[TAG_FAMILY]
+				t.notes = row[TAG_NOTES]
+				if t.save
+					puts "#{t.name} saved as new tag."
+				else
+					puts "Error saving #{t.name} as new tag."
+				end
+			end
+		end
+	end
+
+
 	def csv_to_hashes(absolute_filepath)
 		headers = []
 		row_size = 0
