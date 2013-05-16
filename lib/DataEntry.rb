@@ -45,10 +45,8 @@ module DataEntry
 	ADDRESS = 4
 	COUNTRY_CODE = 5	
 
-	def csv_to_suppliers(absolute_filepath)
+	def csv_to_suppliers(filepath)
 		
-		absolute_filepath = "/Users/matt/Desktop/crawler_output.csv" #remove later for flexibility
-
 		CSV.foreach(absolute_filepath) do |row|
 			if row[USE_ROW] == "TRUE" and Supplier.find_by_name(row[COMPANY].downcase).nil?
 				
