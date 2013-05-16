@@ -37,6 +37,36 @@ module DataEntry
 		return answer
 	end
 
+	#highly inflexible, based on "printabase-crawled-data"
+	USE_ROW = 0
+	COMPANY = 1
+	IS_SERVICE_BUREAU = 2
+	CLEANED_LINK = 3
+	ADDRESS = 4
+	COUNTRY_CODE = 5	
+
+	def csv_to_suppliers(absolute_filepath)
+		
+		absolute_filepath = "/Users/matt/Desktop/crawler_output.csv" #remove later for flexibility
+
+		CSV.foreach(absolute_filepath) do |row|
+			if row[USE_ROW] == "TRUE" and Supplier.find_by_name(row[COMPANY]).nil?
+				s = Supplier.new
+				s.name = row[COMPANY]
+				s.url_main = row[CLEANED_LINK]
+				a = Address.new
+				a.country = row[COUNTRY_CODE]
+				a.notes = row[ADDRESS]
+
+				puts s
+				puts a
+				puts "----\n"
+				
+			end
+		end
+
+	end
+
 	def csv_to_hashes(absolute_filepath)
 		headers = []
 		row_size = 0

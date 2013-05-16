@@ -12,10 +12,12 @@
 #  updated_at :datetime         not null
 #  place_id   :integer
 #  place_type :string(255)
+#  country    :string(255)
+#  notes      :text
 #
 
 class Address < ActiveRecord::Base
-  attr_accessible :city, :name, :state, :street, :zip
+  attr_accessible :city, :name, :state, :street, :zip, :country, :notes
 
   belongs_to :place, :polymorphic => true
 
