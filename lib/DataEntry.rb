@@ -50,17 +50,29 @@ module DataEntry
 		absolute_filepath = "/Users/matt/Desktop/crawler_output.csv" #remove later for flexibility
 
 		CSV.foreach(absolute_filepath) do |row|
-			if row[USE_ROW] == "TRUE" and Supplier.find_by_name(row[COMPANY]).nil?
+			if row[USE_ROW] == "TRUE" and Supplier.find_by_name(row[COMPANY].downcase).nil?
+				
 				s = Supplier.new
 				s.name = row[COMPANY]
 				s.url_main = row[CLEANED_LINK]
-				a = Address.new
-				a.country = row[COUNTRY_CODE]
-				a.notes = row[ADDRESS]
-
-				puts s
-				puts a
-				puts "----\n"
+				if s.save
+					puts "#{s.name} saved successfully."
+				else
+					puts "Error saving #{s.name}"
+				end
+				
+				if !row[ADDRESS].nil? and row[ADDRESS].length > 0
+					a = Address.new
+					a.country = row[COUNTRY_CODE]
+					a.notes = row[ADDRESS]
+					a.place_id = s.id
+					a.place_type = "Supplier"
+					if a.save
+						puts "#{s.name}'s address saved successfully."
+					else
+						puts "Error saving #{s.name}'s address"
+					end
+				end
 				
 			end
 		end
