@@ -79,7 +79,7 @@ module DataEntry
 
 	TAG_NAME = 0
 	TAG_FAMILY = 1
-	TAG_NOTES = 2
+	TAG_NOTE = 2
 
 	def csv_to_tags(url)
 		CSV.new(open(url)).each do |row|
@@ -88,7 +88,7 @@ module DataEntry
 				t = Tag.new
 				t.name = n
 				t.family = row[TAG_FAMILY]
-				t.notes = row[TAG_NOTES]
+				t.note = row[TAG_NOTE]
 				if t.save
 					puts "#{t.name} saved as new tag."
 				else
@@ -97,7 +97,6 @@ module DataEntry
 			end
 		end
 	end
-
 
 	def csv_to_hashes(absolute_filepath)
 		headers = []
