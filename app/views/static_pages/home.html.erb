@@ -41,11 +41,20 @@
 			<%= link_to "Get started now – for free!", signup_path %>
 		</p>
 	</div>
-	<div class="container updates">
-		<h3 class="sign-up">Not ready for a quote? <em>Sign up for updates.</em></h3>
-    <%= text_field_tag 'email_field', nil, :placeholder => "example@domain.com", :class => "span9", :id => "email-submit-field" %>
-    <%= submit_tag "Stay Updated", :disable_with => "Submitting", :class => "span3", :id => "email-submit-button" %>
-	</div>
+	<% if current_user.nil? %>
+    <%= form_tag :action => 'create', :controller => 'leads' do %>
+
+      <input type="hidden" name="next_step_field" value="/">
+      <div class="clear cta">
+        <div class="container updates">
+          <h3 class="sign-up">Not ready for a quote? <em>Sign up for updates.</em></h3>
+          <%= text_field_tag 'email_field', nil, :placeholder => "example@domain.com", :class => "span9", :id => "email-submit-field" %>
+          <%= submit_tag "Stay Updated", :disable_with => "Submitting", :class => "span3", :id => "email-submit-button" %>
+        </div>
+      </div>
+
+    <% end %>
+  <% end %>
 </div>
 <footer class="footer content">
   <div class="container">
