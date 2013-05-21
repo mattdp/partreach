@@ -1,14 +1,14 @@
 <% provide(:title,"How to choose the right material") %>
 
 <div class="container">
-	<h1>How do I choose the right material?</h1>
+	<h1 id="materials-header">How do I choose the right material?</h1>
 
 	<div class="span10 offset1">
 		<p>It's hard to pick the right material to use as a beginner. This table can help you make initial choices, though there are more options and some exceptions. Use this as a starting point, but if you need help, we can recommend material for you when you <%= link_to "request a quote", new_order_path %>.</p>
 
 		<table id="materials-table" class="table-center">
 			<tr>
-				<th>I'm looking for...</th>
+				<th>I want...</th>
 				<th>Process</th>
 				<th>Materials</th>
 				<th>Downside(s)</th>				
@@ -35,11 +35,10 @@
 			<% end %> 
 		</table>
 
-		<h1 class="h1-midpage">Supplier Materials Reference</h1>
+		<h1 class="h1-midpage">Materials Reference</h1>
 
-		<h3>Suppliers</h3>
+		<p><strong>Supplier explanations of potential materials</strong></p>
 
-		<strong>An in depth explanation of possible materials from a selection of suppliers</strong>
 		<ul>
 			<li><%= link_to "Shapeways", "http://www.shapeways.com/materials", target: "_blank"%></li>
 			<li><%= link_to "Ponoko", "http://www.ponoko.com/make-and-sell/materials", target: "_blank"%></li>
@@ -53,8 +52,8 @@
 
 		<h1 class="h1-midpage">Great! What now?</h1>
 
-		<h3 class="center">Use <%= link_to "#{brand_name}", root_path, :class => "h3link"%> to help you find the best place to print it! <%= link_to "(Sign up here)", new_user_path, :class => "h3link" %></h3>
-		<h3 class="center">We get you a variety of quotes, so you can save money and get your parts faster.</h3>
+		<h3 class="center">Use <%= link_to "#{brand_name}", root_path, :class => "h3link"%> to find the best place to print it! <%= link_to "(Sign up here)", new_user_path, :class => "h3link" %></h3>
+		<h3 class="center">Get a variety of quotes to save money and get your parts faster.</h3>
 
 		<p class="back_to_home"><%= link_to "Back to home", root_path %></p>
 	

@@ -6,19 +6,18 @@
 	margin: auto;
 }
 
-#materials-table td:first-child{
-	margin: auto;
-	text-align: left;
-	font-size: 35px;
-	font-weight: bold;
+#materials-header {
+	margin-top: 15px;
 }
 
-#materials-table tr:first-child {
-	margin: auto;
-	text-align: left;
-	font-size: 35px;
-	font-weight: bold;
-	padding-bottom:30px;
+#materials-table {
+	font-size: 1.3em;
+	td {
+		padding: 0px 5px;
+	}
+	tr {
+		border: 1px solid #000;
+	}
 }
 
 .thumbnail-header-text {

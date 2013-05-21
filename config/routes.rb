@@ -18,7 +18,7 @@ Partreach::Application.routes.draw do
   match '/procurement', to: 'static_pages#procurement'
   match '/alpha', to: 'static_pages#procurement'
   match '/business', to: 'static_pages#procurement'
-  #match '/materials', to: 'static_pages#materials'
+  match '/materials', to: 'static_pages#materials'
   match 'orders/manipulate_dialogues/:id', to: 'orders#manipulate_dialogues'
   match 'orders/update_dialogues', to: 'orders#update_dialogues'
   match '/cto', to: 'static_pages#cto'
