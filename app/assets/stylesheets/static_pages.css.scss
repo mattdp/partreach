@@ -12,6 +12,11 @@
 
 #materials-table {
 	font-size: 1.3em;
+	background-color: #FFF;
+	th {
+		background: #000;
+		color: #FFF;
+	}
 	td {
 		padding: 0px 5px;
 	}
