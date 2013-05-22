@@ -241,10 +241,10 @@ class OrdersController < ApplicationController
   def purchase
     @order = Order.find(params[:order])
     @dialogue = Dialogue.find(params[:dialogue])
-    @supplier = Supplier.find(@dialogue.id)
+    @supplier = Supplier.find(@dialogue.supplier_id)
 
     @dialogue.won = true
-    note = "Purchase attempted. Order #{@order.id}, Supplier #{Supplier.find(@dialogue.id).name}"
+    note = "Purchase attempted. Order #{@order.id}, Supplier #{@supplier.name}"
     text_notification(note)
     UserMailer.purchase_attempted(note).deliver
 

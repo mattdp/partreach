@@ -4,7 +4,6 @@
 	<div class="container row">
 		<h1>Awesome!</h1> 
 		<p><%= "We'll be in touch very soon about how make your purchase from #{@supplier.name}. Thanks for using SupplyBetter!" %></p>
-		<br>
-		<%= link_to "Back to order", order_path(@order) %>
+		<p><%= link_to "Back to order", order_path(@order) %></p>
 	</div>
 </div>
