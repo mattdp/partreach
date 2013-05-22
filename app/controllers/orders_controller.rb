@@ -238,6 +238,22 @@ class OrdersController < ApplicationController
     end
   end
 
+  def purchase
+    @order = Order.find(params[:order])
+    @dialogue = Dialogue.find(params[:dialogue])
+    @supplier = Supplier.find(@dialogue.id)
+
+    @dialogue.won = true
+    note = "Purchase attempted. Order #{@order.id}, Supplier #{Supplier.find(@dialogue.id).name}"
+    text_notification(note)
+    UserMailer.purchase_attempted(note).deliver
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @order }
+    end
+  end
+
   private
 
     def correct_user

@@ -21,6 +21,7 @@ Partreach::Application.routes.draw do
   match '/materials', to: 'static_pages#materials'
   match 'orders/manipulate_dialogues/:id', to: 'orders#manipulate_dialogues'
   match 'orders/update_dialogues', to: 'orders#update_dialogues'
+  match '/orders/purchase/:order/:dialogue', to: 'orders#purchase'
   match '/cto', to: 'static_pages#cto'
 
   #goal: allow show page to post a form. seems hacky - check with someone.

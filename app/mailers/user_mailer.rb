@@ -2,6 +2,10 @@ class UserMailer < ActionMailer::Base
   default from: "noreply@supplybetter.com"
   include SessionsHelper
 
+  MATT = "matt@supplybetter.com"
+  ROB = "rob@supplybetter.com"
+  EMPLOYEES = [MATT,ROB]
+
   def welcome_email(user)
   	@user = user
     @brand_name = brand_name
@@ -22,4 +26,13 @@ class UserMailer < ActionMailer::Base
     mail(to: @user.email, subject: "Password reset requested")
   end
   
+  #-----
+
+  def purchase_attempted(note)
+    @note = note
+    EMPLOYEES.each do |e|
+      mail(to: e, subject: "Purchase attempted")
+    end
+  end
+
 end
