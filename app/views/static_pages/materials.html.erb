@@ -4,14 +4,19 @@
 	<h1 id="materials-header">How do I choose the right material?</h1>
 
 	<div class="span10 offset1">
-		<p>It's hard to pick the right material to use as a beginner. This table can help you make initial choices, though there are more options and some exceptions. Use this as a starting point, but if you need help, we can recommend material for you when you <%= link_to "request a quote", new_order_path %>.</p>
+	
+		<p><strong>How to Use This Table:</strong> Depending on your use case, one process (with its given range of materials) may suit your application more than another. In our experience, this table of the four most common 3D printing methods has at least helped us with our initial choices, so treat this as a starting point.</p>
+
+		<p><strong>[Disclaimer]</strong> This table is by no means an exhaustive comparison of materials and processes for 3D printing, but hopefully it provides some useful insight to those looking for guidance. </p>
 
 		<table id="materials-table" class="table-center">
 			<tr>
 				<th>I want...</th>
 				<th>Process</th>
 				<th>Materials</th>
-				<th>Downside(s)</th>				
+				<th>Downside(s)</th>	
+				<th>Example</th>
+			
 			</tr>
 			<% @data_by_process.each do |h| %>
 				<tr>
@@ -31,13 +36,22 @@
 							<% end %>
 						</ul>
 					</td>
+					<td>
+						<ul>
+							<% h[:example].each do |bullet| %>
+								<li><%= "#{bullet}" %></li>
+							<% end %>
+						</ul>
+					</td>
 				</tr>
 			<% end %> 
 		</table>
 
+		<p><strong>Still Feeling Lost?</strong> We can recommend material for you when you chat with us or <strong><%= link_to "request a quote", new_order_path %></strong>.</p>
+
 		<h1 class="h1-midpage">Materials Reference</h1>
 
-		<p><strong>Supplier explanations of potential materials</strong></p>
+		<p><strong>In-depth material explanations from various suppliers</strong></p>
 
 		<ul>
 			<li><%= link_to "Shapeways", "http://www.shapeways.com/materials", target: "_blank"%></li>
@@ -52,7 +66,7 @@
 
 		<h1 class="h1-midpage">Great! What now?</h1>
 
-		<h3 class="center">Use <%= link_to "#{brand_name}", root_path, :class => "h3link"%> to find the best place to print it! <%= link_to "(Sign up here)", new_user_path, :class => "h3link" %></h3>
+		<h3 class="center">Use <%= link_to "#{brand_name}", new_order_path, :class => "h3link"%> to find the best place to print it! <%= link_to "(Sign up here)", new_user_path, :class => "h3link" %></h3>
 		<h3 class="center">Get a variety of quotes to save money and get your parts faster.</h3>
 
 		<p class="back_to_home"><%= link_to "Back to home", root_path %></p>
