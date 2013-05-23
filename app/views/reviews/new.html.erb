@@ -18,6 +18,8 @@
 
 			  <h1 class="center">Supplier review</h1>
 
+			  <p><strong>These reviews will be anonymized.</strong> Your company name and drawing will not be shared.</p>
+
 				<%= label_tag 'company', 'Which supplier are you reviewing?' %>
 				<%= text_field_tag 'company', nil %>
 
@@ -43,7 +45,7 @@
 				</div>
 
 				<div class="clear">
-					<%= label_tag "Please rate the following from 1 to 5 (5 highest)" %>
+					<%= label_tag "Please rate the following from 1 to 5 (5 highest):" %>
 					<div class="one-fourth fleft">
 						<%= label_tag 'quality', 'Quality' %>
 						<%= text_field_tag 'quality', nil, class: "single-number" %>
