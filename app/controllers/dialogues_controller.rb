@@ -7,15 +7,23 @@ class DialoguesController < ApplicationController
 
 	def create
 
-		@order = Order.find(params[:order_id_field])
-		@supplier = Supplier.find(params[:supplier_selection])
+		saved_ok = true
 
-		@dialogue = Dialogue.new
-		@dialogue.order_id = @order.id
-		@dialogue.supplier_id = @supplier.id
+		@order = Order.find(params[:order_id_field])
+		@supplier_ids = params[:supplier_selection]
+
+		@supplier_ids.each do |s|
+
+			@dialogue = Dialogue.new
+			@dialogue.order_id = @order.id
+			@dialogue.supplier_id = s.to_i
+			if !@dialogue.save
+				saved_ok = false
+			end
+		end
 
 		respond_to do |format|
-			if @dialogue.save
+			if saved_ok
 				format.html { redirect_to "/orders/manipulate_dialogues/#{@dialogue.order_id}", notice: 'Dialogue added to order.' }
 	      format.json { render json: @order, status: :created, location: @order }
 			else 

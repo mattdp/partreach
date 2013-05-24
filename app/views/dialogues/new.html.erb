@@ -12,7 +12,7 @@
 		<tr><td>
 		<% @suppliers.each do |s| %>
 
-			<%= radio_button_tag "supplier_selection", s.id, false, class: "fleft" %>
+			<%= check_box_tag "supplier_selection[]", s.id, false, class: "fleft" %>
 			<%= label_tag "#{s.name} (#{s.category})" %>
 
 			<% if counter >= columns %>
