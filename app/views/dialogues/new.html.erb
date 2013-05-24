@@ -2,7 +2,7 @@
 
 <%= form_tag :action => 'create', :controller => 'dialogues' do %>
 
-	<%= text_field_tag 'order_id_field', nil, placeholder: "Order #" %>
+	<%= text_field_tag 'order_id_field', params[:id], placeholder: "Order #" %>
 
 	<% first_time = true %>
 	<% counter = 0 %>

@@ -4,7 +4,7 @@ Partreach::Application.routes.draw do
 
   resources :signed_urls, only: :index
   resources :orders
-  resources :dialogues, only: [:new, :create]
+  resources :dialogues, only: [:create]
   resources :users, only: [:new, :create, :edit, :update, :show] # no index, no destroy 
   resources :sessions, only: [:new, :create, :destroy]
   resources :leads, only: [:create]
@@ -23,6 +23,7 @@ Partreach::Application.routes.draw do
   match 'orders/update_dialogues', to: 'orders#update_dialogues'
   match 'orders/purchase/:order/:dialogue', to: 'orders#purchase'
   match '/cto', to: 'static_pages#cto'
+  match '/dialogues/new/:id', to: 'dialogues#new'
 
   #goal: allow show page to post a form. seems hacky - check with someone.
   match '/orders/:id', to: 'orders#update', via: :post
