@@ -15,7 +15,6 @@ FactoryGirl.define do
 
   factory :supplier do |s|
     sequence(:name)   { |n| "Supplier#{n}"}
-    category          "default"
   end
 
 end
