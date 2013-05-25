@@ -10,10 +10,11 @@ class StaticPagesController < ApplicationController
 
 	def materials
 		@data_by_process = [
-				{process: "SLS", material: "Nylon", looking_for: ["Decent mechanical performance","Low-volume production"], downsides: ["Lower dimensional stability than FDM", "Poor for closed hollow geometries"], example: ["A run of 20 custom cable brackets"]},
-				{process: "SLA", material: "UV Curable Resin", looking_for: ["Flexible applications", "Great resolution"], downsides: ["Poor mechanical performance"], example: ["A master print for Rapid Casting"]},
-				{process: "FDM", material: "ABS, PLA", looking_for: ["Great mechanical performance"], downsides: ["Poor for mass production"], example: ["A pair of large hollow wheels"]},
-				{process: "Polyjet", material: "ABS-like", looking_for: ["Great accuracy", "Can mix materials"], downsides: ["Poor mechanical performance over time"], example: ["A 'looks-like' prototype of a new toothbrush design"]}
+				{process: "SLS", material: "Nylon (with various blends), ceramics, metals", looking_for: ["Decent mechanical performance","Low-volume production", "Thinner wall thickness than FDM", "Surface detail"], downsides: ["Dimensional stability lower than FDM", "Trapped powder with hollow object", "Porous"], example: ["A run of 20 custom cable brackets"]},
+				{process: "SLA", material: "UV Curable Resin", looking_for: ["Flexible applications", "Great resolution"], downsides: ["Increased brittleness", "Degrades over time due with UV exposure"], example: ["A master print for Rapid Casting"]},
+				{process: "Industrial FFF (aka FDM)", material: "ABS (with various blends), Polycarbonate, Nylon, Ultem", looking_for: ["Great mechanical performance", "Low-volume production"], downsides: ["Striations from print visible", "Surface detail worse than SLS (unless post-processed)"], example: ["Functional prototype"]},
+				{process: "Hobbyist FFF (desktop 3D printers)", material: "ABS, PLA, Nylon", looking_for: ["Cheap to make", "Quickest method (at low resolution)"], downsides: ["Low accuracy", "Striations from print visible", "Low surface detail (unless post-processed)", "Poor as an end-use part"], example: ["A pair of large hollow wheels"]},
+				{process: "Polyjet", material: "Proprietary materials that range from soft rubber to brittle acrylic", looking_for: ["Great accuracy", "Can mix materials"], downsides: ["Poor for end-use parts"], example: ["A 'looks-like' prototype of a new toothbrush design"]}
 				]
 	end
 	  
