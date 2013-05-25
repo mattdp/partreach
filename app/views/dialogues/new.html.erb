@@ -13,7 +13,11 @@
 		<% @suppliers.each do |s| %>
 
 			<%= check_box_tag "supplier_selection[]", s.id, false, class: "fleft" %>
-			<%= label_tag "#{s.name}" %>
+			<% tag_names = [] %>
+			<% s.tags.each do |t| %>
+				<% tag_names << t.name %>
+			<% end %>
+			<%= label_tag "#{s.name} [#{tag_names.join(",")}]" %>
 
 			<% if counter >= columns %>
 				</td></tr><tr><td>
