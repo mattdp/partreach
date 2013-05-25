@@ -3,6 +3,7 @@ class DialoguesController < ApplicationController
 
 	def new
 		@suppliers = Supplier.all
+		@tags = Tag.all
 	end
 
 	def create

@@ -8,6 +8,21 @@
 	<% counter = 0 %>
 	<% columns = 3 %>
 
+	<table id="tag_matrix">
+		<tr><td>
+		<% @tags.each do |t| %>
+			<p><%= "#{t.name}" %></p>
+
+			<% if counter >= columns %>
+				</td></tr><tr><td>
+				<% counter = 0 %>
+			<% else %>
+				</td><td>
+				<% counter += 1 %>
+			<% end %>
+		<% end %>
+	</td></tr></table>
+
 	<table id="supplier_matrix"> 
 		<tr><td>
 		<% @suppliers.each do |s| %>
