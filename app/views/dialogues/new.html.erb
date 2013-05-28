@@ -4,15 +4,16 @@
 
 	<%= text_field_tag 'order_id_field', params[:id], placeholder: "Order #" %>
 
-	<%= radio_button_tag "form_use", "add_dialogues", 0 %>
+	<%= radio_button_tag "form_use", "add_dialogues", true %>
 	<%= label_tag "form_use", "Add dialogues" %>
 	<br>
-	<%= radio_button_tag "form_use", "add_tags", 1 %>	
+	<%= radio_button_tag "form_use", "add_tags", false` %>	
 	<%= label_tag "form_use", "Add tags" %>
 
 	<% first_time = true %>
 	<% counter = 0 %>
-	<% columns = 3 %>
+	<% supplier_columns = 3 %>
+	<% tag_columns = 6 %>
 
 	<table id="tag_matrix">
 		<tr><td>
@@ -20,7 +21,7 @@
 			<%= check_box_tag "tag_selection[]", t.id, false, class: "fleft" %>
 			<p><%= "#{t.name}" %></p>
 
-			<% if counter >= columns %>
+			<% if counter >= tag_columns %>
 				</td></tr><tr><td>
 				<% counter = 0 %>
 			<% else %>
@@ -30,6 +31,7 @@
 		<% end %>
 	</td></tr></table>
 
+	<% counter = 0 %>
 	<table id="supplier_matrix"> 
 		<tr><td>
 		<% @suppliers.each do |s| %>
@@ -41,7 +43,7 @@
 			<% end %>
 			<%= label_tag "#{s.name} [#{tag_names.join(",")}]" %>
 
-			<% if counter >= columns %>
+			<% if counter >= supplier_columns %>
 				</td></tr><tr><td>
 				<% counter = 0 %>
 			<% else %>

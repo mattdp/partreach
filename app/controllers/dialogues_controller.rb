@@ -11,7 +11,6 @@ class DialoguesController < ApplicationController
 		saved_ok = true
 		@order = Order.find(params[:order_id_field])
 		@supplier_ids = params[:supplier_selection]
-		@tag_ids = params[:tag_selection]
 
 		if params[:form_use] == "add_dialogues"
 
@@ -29,6 +28,8 @@ class DialoguesController < ApplicationController
 
 		elsif params[:form_use] == "add_tags"
 			
+			@tag_ids = params[:tag_selection]
+
 			@supplier_ids.each do |s|
 				@tag_ids.each do |t|
 
