@@ -10,18 +10,24 @@ class DialoguesController < ApplicationController
 
 		saved_ok = true
 
-		@order = Order.find(params[:order_id_field])
-		@supplier_ids = params[:supplier_selection]
+		if params[:form_use] == "add_dialogues"
+			@order = Order.find(params[:order_id_field])
+			@supplier_ids = params[:supplier_selection]
 
-		@supplier_ids.each do |s|
+			@supplier_ids.each do |s|
 
-			@dialogue = Dialogue.new
-			@dialogue.order_id = @order.id
-			@dialogue.supplier_id = s.to_i
-			if !@dialogue.save
-				saved_ok = false
+				@dialogue = Dialogue.new
+				@dialogue.order_id = @order.id
+				@dialogue.supplier_id = s.to_i
+				if !@dialogue.save
+					saved_ok = false
+				end
 			end
-		end
+		elsif params[:form_use] == "add_tags"
+			#tag logic
+		else #should never happen
+			saved_ok = false 
+		end	
 
 		respond_to do |format|
 			if saved_ok

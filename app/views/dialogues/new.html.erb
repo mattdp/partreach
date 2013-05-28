@@ -4,6 +4,12 @@
 
 	<%= text_field_tag 'order_id_field', params[:id], placeholder: "Order #" %>
 
+	<%= radio_button_tag "form_use", "add_dialogues", 0 %>
+	<%= label_tag "form_use", "Add dialogues" %>
+	<br>
+	<%= radio_button_tag "form_use", "add_tags", 1 %>	
+	<%= label_tag "form_use", "Add tags" %>
+
 	<% first_time = true %>
 	<% counter = 0 %>
 	<% columns = 3 %>
