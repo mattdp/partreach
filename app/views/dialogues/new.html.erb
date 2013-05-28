@@ -17,6 +17,7 @@
 	<table id="tag_matrix">
 		<tr><td>
 		<% @tags.each do |t| %>
+			<%= check_box_tag "tag_selection[]", t.id, false, class: "fleft" %>
 			<p><%= "#{t.name}" %></p>
 
 			<% if counter >= columns %>
