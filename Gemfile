@@ -10,6 +10,7 @@ gem 'paperclip', '3.4' #https://github.com/thoughtbot/paperclip
 gem 'pg', '0.14.1' #http://blog.willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/
 gem 'twilio-ruby', '3.9.0'
 gem 'jekyll', '1.0.0'
+gem 'jekyll-sass', '1.8.25' #https://github.com/noct/jekyll-sass
 gem 'bloggy', '0.2.1'
 
 group :development, :test do
