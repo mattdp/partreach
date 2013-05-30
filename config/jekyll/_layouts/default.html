@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
-<head>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>{{ page.title }}</title>
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+      <meta name="google-site-verification" content="xsEb-S9JoWbJsphstmoBu_x0vxGQLUr3FT6oNTyPcww" />
+     <title>{{ page.title }}</title>
 
-   <!-- Homepage CSS -->
-   <link rel="stylesheet" href="/blog/css/custom.css" type="text/css" />
-   <link rel="stylesheet" href="/blog/css/bootstrap-responsive.min.css" type="text/css" />
-   <link rel="stylesheet" href="/blog/css/bootstrap.min.css" type="text/css" />
-</head>
-<body>
+     <!-- Homepage CSS -->
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="/blog/css/custom.css" type="text/css" />
+     <link rel="stylesheet" href="/blog/css/bootstrap-responsive.css" type="text/css" />
+     <link rel="stylesheet" href="/blog/css/bootstrap.css" type="text/css" />
+  </head>
+  <body>
 
-<div class="site">
-  <div class="title">
-    <a href="/blog">SupplyBetter Blog</a>
-  </div>
-  
-  {{ content }}
-  
-  <div class="footer">
-    <div class="contact">
-      <p>Created by <a href="http://www.supplybetter.com">SupplyBetter</a> - Helping match buyers with the best factories for their needs</p>
+    <header class="header content">
+      <div class="container">
+        <h1>
+          <a href="/blog" id="logo" class="logo pull-left">SupplyBetter Blog</a>
+        </h1>
+        <ul class="nav pull-right">
+          <li><a href="/">Looking for the main SupplyBetter page?</a></li>
+        </ul>
+      </div>
+    </header>
+      
+    {{ content }}
+    
+    <div class="footer">
+      <div class="contact">
+        <p>Created by <a href="http://www.supplybetter.com">SupplyBetter</a> - Helping match buyers with the best factories for their needs</p>
+      </div>
     </div>
   </div>
-</div>
 
-</body>
+  </body>
 </html>
