@@ -41,7 +41,8 @@
 			<% s.tags.each do |t| %>
 				<% tag_names << t.name %>
 			<% end %>
-			<%= label_tag "#{s.name} [#{tag_names.join(",")}]" %>
+			<% s.address.nil? ? country = "N/A" : country = s.address.country %>
+			<%= label_tag "#{s.name} [#{tag_names.join(",")}] <#{country}>" %>
 
 			<% if counter >= supplier_columns %>
 				</td></tr><tr><td>
