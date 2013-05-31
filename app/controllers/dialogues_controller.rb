@@ -34,8 +34,8 @@ class DialoguesController < ApplicationController
 				@tag_ids.each do |t|
 
 					@combo = Combo.new
-					@combo.supplier_id = s
-					@combo.tag_id = t
+					@combo.supplier_id = s.to_i
+					@combo.tag_id = t.to_i
 					if !@combo.save
 						saved_ok = false
 					end
@@ -43,6 +43,19 @@ class DialoguesController < ApplicationController
 			end
 			redir_to = "/orders"
 			redir_notice = 'Tags added to suppliers.'
+
+		elsif params[:form_use] == "remove_tags"
+
+			@tag_ids = params[:tag_selection]
+
+			@supplier_ids.each do |s|
+				@tag_ids.each do |t|
+					c = Combo.where("supplier_id = ? AND tag_id = ?", s.to_i, t.to_i)
+					Combo.destroy_all(supplier_id: s.to_i, tag_id: t.to_i) unless c.nil?
+				end
+			end
+			redir_to = "/orders"
+			redir_notice = 'Tags removed from suppliers.'
 
 		else #should never happen
 			saved_ok = false 
