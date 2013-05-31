@@ -58,6 +58,7 @@ textarea {
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
+$recommendedColor: #b6d7a8;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -327,6 +328,9 @@ strong {
     }
     tr:nth-child(even) {
       background: #eee;
+      &.recommended {
+        background-color: $recommendedColor;
+      }
     }
     .notes-row {
       display: block;
@@ -337,6 +341,9 @@ strong {
       &:hover {
         cursor: pointer;
       }
+    }
+   .recommended {
+      background-color: $recommendedColor;
     }
   }
   .btn {
