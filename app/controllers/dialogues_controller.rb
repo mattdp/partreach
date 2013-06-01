@@ -15,14 +15,12 @@ class DialoguesController < ApplicationController
 		if params[:form_use] == "add_dialogues"
 
 			@supplier_ids.each do |s|
-
 				@dialogue = Dialogue.new
 				@dialogue.order_id = @order.id
 				@dialogue.supplier_id = s.to_i
-				if !@dialogue.save #replace with unless
-					saved_ok = false
-				end
+				saved_ok = false unless @dialogue.save
 			end
+
 			redir_to = "/orders/manipulate_dialogues/#{@dialogue.order_id}"
 			redir_notice = 'Dialogue added to order.'
 
@@ -32,15 +30,13 @@ class DialoguesController < ApplicationController
 
 			@supplier_ids.each do |s|
 				@tag_ids.each do |t|
-
 					@combo = Combo.new
 					@combo.supplier_id = s.to_i
 					@combo.tag_id = t.to_i
-					if !@combo.save
-						saved_ok = false
-					end
+					saved_ok = false unless @combo.save
 				end
 			end
+
 			redir_to = "/orders"
 			redir_notice = 'Tags added to suppliers.'
 
@@ -54,6 +50,7 @@ class DialoguesController < ApplicationController
 					Combo.destroy_all(supplier_id: s.to_i, tag_id: t.to_i) unless c.nil?
 				end
 			end
+			
 			redir_to = "/orders"
 			redir_notice = 'Tags removed from suppliers.'
 
