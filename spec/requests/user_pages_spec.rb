@@ -29,7 +29,7 @@ describe "User pages" do
         fill_in "material_message_field", with: "Ossium"
         fill_in "quantity_field",       with: "100"
         fill_in "drawing_units_field",        with: "mm"
-        find("#direct-upload-file").set "doesnt-test-upload.txt"
+        find("#direct-upload-file").set "fake-the-upload.txt"
       end
 
       describe "for a new user" do
@@ -50,6 +50,12 @@ describe "User pages" do
         it "should create a user" do
           expect { click_button submit }.to change(User, :count).by(1)
         end
+
+        describe "should arrive at orders page" do
+          before { click_button submit }
+          it { should have_selector('h1', text: 'My requests for quotes') }
+        end
+
       end
 
       describe "for an existing user" do
