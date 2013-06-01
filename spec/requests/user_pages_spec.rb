@@ -28,6 +28,7 @@ describe "User pages" do
       before do
         fill_in "material_message_field", with: "Ossium"
         fill_in "quantity_field",       with: "100"
+        fill_in "drawing_units_field",        with: "mm"
         find("#direct-upload-file").set "doesnt-test-upload.txt"
       end
 
