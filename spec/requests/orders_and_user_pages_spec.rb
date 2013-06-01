@@ -1,21 +1,25 @@
 require 'spec_helper'
 
+#AS DONE CURRENTLY, THIS FILE POLLUTES THE TEST DB
+#before or before each, in commented out section, fails tests since created_orders doesn't seem to exist
+
 describe "Order and users" do
 
 	#paralell processes to build these; somewhat brittle, but learned a bunch about factories doing it
-	created_orders = FactoryGirl.create_list(:order, 2)
-	created_users =  FactoryGirl.create_list(:user, 2)
 
-	describe "basic factory sanity" do # PICK UP HERE
+	# created_orders = FactoryGirl.create_list(:order, 2)
+	# created_users =  FactoryGirl.create_list(:user, 2)
 
-		it "should have the order attached to the correct user" do
-			created_orders[0].user.id == created_users[0].id
-		end
+	# describe "basic factory sanity" do # PICK UP HERE
 
-		it "shouldn't have the order attached to the wrong user" do
-			created_orders[1].user.id != created_users[0].id
-		end
-	end
+	# 	it "should have the order attached to the correct user" do
+	# 		created_orders[0].user.id == created_users[0].id
+	# 	end
+
+	# 	it "shouldn't have the order attached to the wrong user" do
+	# 		created_orders[1].user.id != created_users[0].id
+	# 	end
+	# end
 
 	describe "lack of orders" do
 		let(:user) { FactoryGirl.create(:user) }
