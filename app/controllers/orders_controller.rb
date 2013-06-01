@@ -105,6 +105,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if did_user_work and did_order_save
+        logger.debug "Temp: w/i respond_to block"
         text_notification("#{brand_name}: Order created by #{current_user.email}, order number #{@order.id}. Go get quotes!") if Rails.env.production?
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render json: @order, status: :created, location: @order }

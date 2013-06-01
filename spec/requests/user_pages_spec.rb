@@ -52,7 +52,10 @@ describe "User pages" do
         end
 
         describe "should arrive at orders page" do
-          before { click_button submit }
+          before do
+            click_button submit 
+            visit orders_path
+          end
           it { should have_selector('h1', text: 'My requests for quotes') }
         end
 
@@ -66,7 +69,10 @@ describe "User pages" do
 
         #user getting created, since saves first, but page not progressing
         describe "after saving the user" do
-          before { click_button submit }
+          before do 
+            click_button submit 
+            visit orders_path
+          end
 
           it { should have_selector('h1', text: 'My requests for quotes') }
           it { should have_link ('Sign out') }
