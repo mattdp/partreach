@@ -48,7 +48,7 @@
 			    <th>Process</th>
 			    <th>Process cost</th>
 			    <th>Shipping cost</th>
-			    <th class="notes-row-th">Notes</th>
+			    <th>Notes</th>
 			    <th>Selection</th>
 			  </tr>
 
@@ -73,7 +73,7 @@
 					<td class="center"><%= d.process_name %></td>
 					<td class="right"><%= currencyize(d.process_cost, d.currency) %></td>
 					<td class="right"><%= currencyize(d.shipping_cost, d.currency) %></td>
-					<td class="notes-row center" title="<%= notarize(d.shipping_name,d.notes) %>"><%= notarize(d.shipping_name,d.notes) %></td>
+					<td class="center" title="<%= notarize(d.shipping_name,d.notes) %>"><%= notarize(d.shipping_name,d.notes) %></td>
 					<td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
 					</tr>
 				<% end %>

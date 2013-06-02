@@ -291,7 +291,6 @@ strong {
     }
   }
   .container {
-    min-width: 2000px;
     width: 90%;
     padding: 0 5%;
   }
@@ -321,8 +320,11 @@ strong {
       color: #444;
       font-family: arial, sans-serif;
       font-size: 12px;
+      a {
+        font-size: 12px;
+      }
     }
-      tr:last-child th,
+    tr:last-child th,
     tr:last-child td {
       border-bottom: none;
     }
@@ -330,16 +332,6 @@ strong {
       background: #eee;
       &.recommended {
         background-color: $recommendedColor;
-      }
-    }
-    .notes-row {
-      display: block;
-      font-size: 11px;
-      max-width: 200px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      &:hover {
-        cursor: pointer;
       }
     }
    .recommended {
