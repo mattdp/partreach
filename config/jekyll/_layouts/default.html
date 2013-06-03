@@ -7,9 +7,9 @@
 
      <!-- Homepage CSS -->
      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
+     <link rel="stylesheet" href="/blog/css/bootstrap/css/bootstrap-responsive.css" type="text/css" />
+     <link rel="stylesheet" href="/blog/css/bootstrap/css/bootstrap.css" type="text/css" />
      <link rel="stylesheet" href="/blog/css/custom.css" type="text/css" />
-     <link rel="stylesheet" href="/blog/css/bootstrap-responsive.css" type="text/css" />
-     <link rel="stylesheet" href="/blog/css/bootstrap.css" type="text/css" />
   </head>
   <body>
 
@@ -23,9 +23,13 @@
         </ul>
       </div>
     </header>
-      
-    {{ content }}
     
+    <div class="content">
+      <div class="container">
+        {{ content }}
+      </div>
+    </div>  
+        
     <div class="footer">
       <div class="contact">
         <p>Created by <a href="http://www.supplybetter.com">SupplyBetter</a> - Helping match buyers with the best factories for their needs</p>
