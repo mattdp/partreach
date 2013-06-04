@@ -2,7 +2,7 @@ class DialoguesController < ApplicationController
 	before_filter :admin_user, only: [:new, :create]
 
 	def new
-		@suppliers = Supplier.all
+		@suppliers = sort_suppliers(Supplier.all)
 		@tags = Tag.all
 	end
 
@@ -68,5 +68,11 @@ class DialoguesController < ApplicationController
 	    end
 	  end
   end
+
+  private
+
+  	def sort_suppliers(all_suppliers)
+  		all_suppliers.sort_by! { |s| s.name.downcase }
+  	end
 
 end
