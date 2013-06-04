@@ -1,0 +1,6 @@
+#supplier_matrix td {
+  border: 2px solid black;
+}
+#supplier_matrix label {
+  padding: 5px;
+}

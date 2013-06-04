@@ -1,0 +1,48 @@
+.table-center {
+  margin: auto;
+}
+
+#materials-header {
+  margin-top: 15px;
+}
+
+#materials-table {
+  font-size: 1.3em;
+  background-color: #FFF;
+}
+#materials-table th {
+  background: #000;
+  color: #FFF;
+}
+#materials-table td {
+  padding: 0px 5px;
+}
+#materials-table tr {
+  border: 1px solid black;
+}
+
+.thumbnail-header-text {
+  font-size: 1.3em;
+  margin-top: 3px;
+  text-align: center;
+  font-weight: normal;
+  color: #000;
+  text-decoration: underline;
+}
+
+#div-supplier-join {
+  width: 20em;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.h1-midpage {
+  margin-bottom: 10px;
+}
+
+/*
+.video-iframe {
+	width: "640";
+	height: "360";
+	border: none;
+} */
