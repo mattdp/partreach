@@ -2,62 +2,66 @@
 
 <%= form_tag :action => 'create', :controller => 'dialogues' do %>
 
-	<%= text_field_tag 'order_id_field', params[:id], placeholder: "Order #" %>
+	<div>
+		<%= text_field_tag 'order_id_field', params[:id], placeholder: "Order #" %>
+	</div>
 
-	<%= radio_button_tag "form_use", "add_dialogues", true %>
-	<%= label_tag "form_use", "Add dialogues" %>
-	<br>
-	<%= radio_button_tag "form_use", "add_tags", false %>	
-	<%= label_tag "form_use", "Add tags" %>
-	<br>
-	<%= radio_button_tag "form_use", "remove_tags", false %>	
-	<%= label_tag "form_use", "Remove tags" %>
+	<div>
+		<%= radio_button_tag "form_use", "add_dialogues", true, :class => "fleft" %>
+		<%= label_tag "form_use", "Add dialogues", :class => "fleft" %>
+		<%= radio_button_tag "form_use", "add_tags", false, :class => "fleft" %>	
+		<%= label_tag "form_use", "Add tags", :class => "fleft" %>
+		<%= radio_button_tag "form_use", "remove_tags", false, :class => "fleft" %>	
+		<%= label_tag "form_use", "Remove tags", :class => "fleft" %>
+	</div>
 
-	<% first_time = true %>
-	<% counter = 0 %>
-	<% supplier_columns = 3 %>
-	<% tag_columns = 6 %>
+	<div class="clear">
+			<% first_time = true %>
+		<% counter = 0 %>
+		<% supplier_columns = 3 %>
+		<% tag_columns = 6 %>
 
-	<table id="tag_matrix">
-		<tr><td>
-		<% @tags.each do |t| %>
-			<%= check_box_tag "tag_selection[]", t.id, false, class: "fleft" %>
-			<p><%= "#{t.name}" %></p>
+		<table id="tag_matrix">
+			<tr><td>
+			<% @tags.each do |t| %>
+				<%= check_box_tag "tag_selection[]", t.id, false, class: "fleft" %>
+				<p><%= "#{t.name}" %></p>
 
-			<% if counter >= tag_columns %>
-				</td></tr><tr><td>
-				<% counter = 0 %>
-			<% else %>
-				</td><td>
-				<% counter += 1 %>
+				<% if counter >= tag_columns %>
+					</td></tr><tr><td>
+					<% counter = 0 %>
+				<% else %>
+					</td><td>
+					<% counter += 1 %>
+				<% end %>
 			<% end %>
-		<% end %>
-	</td></tr></table>
+		</td></tr></table>
 
-	<% counter = 0 %>
-	<table id="supplier_matrix"> 
-		<tr><td>
-		<% @suppliers.each do |s| %>
+		<% counter = 0 %>
+		<table id="supplier_matrix"> 
+			<tr><td>
+			<% @suppliers.each do |s| %>
 
-			<%= check_box_tag "supplier_selection[]", s.id, false, class: "fleft" %>
-			<% tag_names = [] %>
-			<% s.tags.each do |t| %>
-				<% tag_names << t.name %>
+				<%= check_box_tag "supplier_selection[]", s.id, false, class: "fleft" %>
+				<% tag_names = [] %>
+				<% s.tags.each do |t| %>
+					<% tag_names << t.name %>
+				<% end %>
+				<% s.address.nil? ? country = "N/A" : country = s.address.country %>
+				<%= label_tag "#{s.name} [#{tag_names.join(",")}] <#{country}>" %>
+
+				<% if counter >= supplier_columns %>
+					</td></tr><tr><td>
+					<% counter = 0 %>
+				<% else %>
+					</td><td>
+					<% counter += 1 %>
+				<% end %>
 			<% end %>
-			<% s.address.nil? ? country = "N/A" : country = s.address.country %>
-			<%= label_tag "#{s.name} [#{tag_names.join(",")}] <#{country}>" %>
 
-			<% if counter >= supplier_columns %>
-				</td></tr><tr><td>
-				<% counter = 0 %>
-			<% else %>
-				</td><td>
-				<% counter += 1 %>
-			<% end %>
-		<% end %>
+		</td></tr></table>
 
-	</td></tr></table>
-
-	<%= submit_tag "Create dialogue", :disable_with => "Saving..." %>
+		<%= submit_tag "Create dialogue", :disable_with => "Saving..." %>
+	</div>
 
 <% end %>
