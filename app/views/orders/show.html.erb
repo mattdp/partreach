@@ -22,7 +22,10 @@
 			<% if @order.name != "" %>
 				<p><strong>Order name: </strong> <%= "#{@order.name}" %></p>
 			<% end %>
-			<p id="index_quantity"><strong>Quantity: </strong><%= "#{@order.quantity}" %></p>
+			<p class="index_quantity"><strong>Quantity: </strong><%= "#{@order.quantity}" %></p>
+			<% if !@user.address.nil? and @user.address.zip.length > 0 %>
+				<p class="index_quantity"><strong>Zip Code: </strong><%= "#{@user.address.zip}" %></p>
+			<% end %>
 			<p><strong>Due date: </strong><%= "#{@order.deadline.to_s}" %></p>
 			<% if !@order.material_message.nil? %>
 				<p><strong>Material requested: </strong><%= "#{@order.material_message}" %></p>
