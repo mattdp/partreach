@@ -174,6 +174,7 @@ class OrdersController < ApplicationController
 
   def manipulate_dialogues
     @order = Order.find(params[:id])
+    @user = User.find(@order.user_id)
     @dialogues = sort_dialogues(@order.dialogues)
     @checkboxes = setup_checkboxes
     @textfields = setup_textfields

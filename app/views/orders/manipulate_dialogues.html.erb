@@ -2,6 +2,8 @@
 
 <h1><%= "Changes to Order \##{@order.id} (User #{User.find(@order.user_id).name})"  %></h1>	
 
+<%= render "layouts/order_basics" %>
+
 <p> <%= link_to "Add a dialogue", "/dialogues/new/#{@order.id}" %> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
 
 <%= form_tag :action => 'update_dialogues', :controller => 'orders' do %>
