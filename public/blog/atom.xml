@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-06-03T19:37:28-07:00</updated>
+ <updated>2013-06-05T16:01:29-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -14,7 +14,7 @@
  <entry>
    <title>The Blog</title>
    <link href="YOUR_URL/the-blog.html"/>
-   <updated>2012-06-03T00:00:00-07:00</updated>
+   <updated>2013-06-03T00:00:00-07:00</updated>
    <id>BLOG_URL/the-blog</id>
    <content type="html">&lt;p&gt;Here at SupplyBetter, we aim to give buyers the best way to decide among suppliers, and to help suppliers by offering them the opportunity to quote the type of work that fits them best. We're starting off in 3D printing, and expanding to other manufacturing processes once we're ready.&lt;/p&gt;
 
