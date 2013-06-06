@@ -9,6 +9,7 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  exclusive  :boolean          default(FALSE)
+#  visible    :boolean          default(TRUE)
 #
 
 require 'spec_helper'

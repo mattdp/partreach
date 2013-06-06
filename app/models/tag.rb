@@ -9,10 +9,11 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  exclusive  :boolean          default(FALSE)
+#  visible    :boolean          default(TRUE)
 #
 
 class Tag < ActiveRecord::Base
-  attr_accessible :family, :name, :note, :exclusive
+  attr_accessible :family, :name, :note, :exclusive, :visible
 
   has_many :combos
   has_many :suppliers, :through => :combos
