@@ -29,8 +29,13 @@ describe "Tag" do
 	end
 
 	describe "exclusive tags" do
-		it "should delete other tags in its family when added"
-		it "should retain other tags not in its family when added"
+		before { @supplier.add_tag(@adding_exclusive_tag.id) }
+		it "should delete other tags in its family when added" do
+			@supplier.has_tag?(@same_family_tag.id).should be_false
+		end
+		it "should retain other tags not in its family when added" do
+			@supplier.has_tag?(@other_family_tag.id).should be_true
+		end
 	end
 	
 end
