@@ -4,6 +4,10 @@
 
 <%= render "layouts/order_basics" %>
 
+<% if @order.drawing_file_name != "" %>
+	<p><strong>Order name: </strong> <%= "#{@order.drawing_file_name}" %></p>
+<% end %>
+
 <p> <%= link_to "Add a dialogue", "/dialogues/new/#{@order.id}" %> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
 
 <%= form_tag :action => 'update_dialogues', :controller => 'orders' do %>
