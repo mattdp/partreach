@@ -8,10 +8,11 @@
 #  note       :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  exclusive  :boolean          default(FALSE)
 #
 
 class Tag < ActiveRecord::Base
-  attr_accessible :family, :name, :note
+  attr_accessible :family, :name, :note, :exclusive
 
   has_many :combos
   has_many :suppliers, :through => :combos

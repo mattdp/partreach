@@ -20,6 +20,7 @@ FactoryGirl.define do
   factory :tag do |t|
     sequence(:name)   { |n| "Supplier#{n}"}
     family            "generic"
+    exclusive         false
   end
 
 end

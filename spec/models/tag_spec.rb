@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: tags
+#
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  family     :string(255)
+#  note       :text
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  exclusive  :boolean          default(FALSE)
+#
+
 require 'spec_helper'
 
 describe "Tag" do
@@ -6,7 +19,7 @@ describe "Tag" do
 		@supplier = FactoryGirl.create(:supplier)
 		@same_family_tag = FactoryGirl.create(:tag)
 		@other_family_tag = FactoryGirl.create(:tag, family: "other")
-		@adding_tag = FactoryGirl.build(:tag)
+		@adding_exclusive_tag = FactoryGirl.build(:tag, exclusive: true)
 		@supplier.add_tag(@same_family_tag.id)
 		@supplier.add_tag(@other_family_tag.id)
 	end
