@@ -25,12 +25,8 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
-  def self.return_category(category)
-  	answer = []
-  	Supplier.all.each do |s|
-  		answer << s if s.category == category
-  	end
-  	return answer
+  def has_tag?(tag_id)
+    self.tags.include?(Tag.find(tag_id))
   end
 
 end
