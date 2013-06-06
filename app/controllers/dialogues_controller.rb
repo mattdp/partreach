@@ -4,6 +4,7 @@ class DialoguesController < ApplicationController
 	def new
 		@suppliers = sort_suppliers(Supplier.all)
 		@tags = Tag.all
+		@family_names_and_tags = Tag.family_names_and_tags
 	end
 
 	def create

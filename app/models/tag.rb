@@ -28,4 +28,18 @@ class Tag < ActiveRecord::Base
   	return answer
   end
 
+  #return hash of {family1:[tag1,tag2],family2:[tag3:tag4]}
+  def self.family_names_and_tags
+    answers = {}
+    Tag.all.each do |t|
+      t.family.nil? ? tkey = "No family" : tkey = t.family
+      if answers.has_key?(tkey)
+        answers[tkey] << t
+      else
+        answers[tkey] = [t]
+      end
+    end
+    return answers
+  end
+
 end

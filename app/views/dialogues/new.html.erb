@@ -25,20 +25,16 @@
 		<% tag_columns = 6 %>
 
 		<table id="tag_matrix">
-			<tr><td>
-			<% @tags.each do |t| %>
-				<%= check_box_tag "tag_selection[]", t.id, false, class: "fleft" %>
-				<p><%= "#{t.name}" %></p>
-
-				<% if counter >= tag_columns %>
-					</td></tr><tr><td>
-					<% counter = 0 %>
-				<% else %>
-					</td><td>
-					<% counter += 1 %>
-				<% end %>
+			<% @family_names_and_tags.keys.each do |k| %>
+				<tr>
+					<td><strong><%= "#{k}" %><strong></td>
+					<% @family_names_and_tags[k].each do |t| %>
+						<td><%= check_box_tag "tag_selection[]", t.id, false, class: "fleft" %>
+						<p><%= "#{t.name}" %></p></td>
+					<% end %>
+				</tr>
 			<% end %>
-		</td></tr></table>
+		</table>
 
 		<% counter = 0 %>
 		<table id="supplier_matrix"> 
