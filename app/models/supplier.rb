@@ -25,6 +25,11 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
+  def add_tag(tag_id)
+    c = Combo.new(supplier_id: self.id, tag_id: tag_id)
+    return c.save
+  end
+
   def has_tag?(tag_id)
     self.tags.include?(Tag.find(tag_id))
   end

@@ -17,4 +17,9 @@ FactoryGirl.define do
     sequence(:name)   { |n| "Supplier#{n}"}
   end
 
+  factory :tag do |t|
+    sequence(:name)   { |n| "Supplier#{n}"}
+    family            "generic"
+  end
+
 end
