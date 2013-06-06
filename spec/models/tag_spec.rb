@@ -19,7 +19,7 @@ describe "Tag" do
 		@supplier = FactoryGirl.create(:supplier)
 		@same_family_tag = FactoryGirl.create(:tag)
 		@other_family_tag = FactoryGirl.create(:tag, family: "other")
-		@adding_exclusive_tag = FactoryGirl.build(:tag, exclusive: true)
+		@adding_exclusive_tag = FactoryGirl.create(:tag, exclusive: true)
 		@supplier.add_tag(@same_family_tag.id)
 		@supplier.add_tag(@other_family_tag.id)
 	end

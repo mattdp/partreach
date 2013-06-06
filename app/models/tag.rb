@@ -19,10 +19,10 @@ class Tag < ActiveRecord::Base
  
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
-  def self.return_category(category)
+  def self.return_family_ids(family)
   	answer = []
   	Tag.all.each do |t|
-  		answer << t if t.category == category
+  		answer << t.id if t.family == family
   	end
   	return answer
   end
