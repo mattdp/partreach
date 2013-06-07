@@ -99,8 +99,8 @@ module DataEntry
 				t.family = row[TAG_FAMILY]
 				t.readable = row[TAG_READABLE]
 				t.note = row[TAG_NOTE]
-				t.exclusive = row[TAG_EXCLUSIVE] if row[TAG_EXCLUSIVE].length > 0
-				t.visible = row[TAG_VISIBLE] if row[TAG_VISIBLE].length > 0
+				t.exclusive = row[TAG_EXCLUSIVE] unless row[TAG_EXCLUSIVE].nil?
+				t.visible = row[TAG_VISIBLE] unless row[TAG_VISIBLE].nil?
 				if t.save
 					puts "#{t.name} saved as new tag."
 				else
