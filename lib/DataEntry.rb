@@ -79,7 +79,15 @@ module DataEntry
 
 	TAG_NAME = 0
 	TAG_FAMILY = 1
+	TAG_HUMAN_READABLE = 2
 	TAG_NOTE = 2
+	TAG_EXCLUSIVE = 3
+	TAG_VISIBLE = 4
+
+	#https://docs.google.com/spreadsheet/ccc?key=0AlHCAOwihqqwdC1FYlF0d2NHZkZRbWFZQTAtOVowbFE#gid=0
+	#migrate so has description
+	#update to take exclusive and visible
+	#test on local
 
 	def csv_to_tags(url)
 		CSV.new(open(url)).each do |row|
