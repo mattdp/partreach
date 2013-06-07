@@ -84,10 +84,7 @@ module DataEntry
 	TAG_EXCLUSIVE = 3
 	TAG_VISIBLE = 4
 
-	#https://docs.google.com/spreadsheet/ccc?key=0AlHCAOwihqqwdC1FYlF0d2NHZkZRbWFZQTAtOVowbFE#gid=0
-	#migrate so has description
-	#update to take exclusive and visible
-	#test on local
+	#add a csv or url toggle, so can test on local
 
 	def csv_to_tags(url)
 		counter = 0
@@ -99,8 +96,8 @@ module DataEntry
 				t.family = row[TAG_FAMILY]
 				t.readable = row[TAG_READABLE]
 				t.note = row[TAG_NOTE]
-				t.exclusive = row[TAG_EXCLUSIVE] unless row[TAG_EXCLUSIVE].nil?
-				t.visible = row[TAG_VISIBLE] unless row[TAG_VISIBLE].nil?
+				t.exclusive = row[TAG_EXCLUSIVE] unless row[TAG_EXCLUSIVE].nil? and row[TAG_EXCLUSIVE].length > 0
+				t.visible = row[TAG_VISIBLE] unless row[TAG_VISIBLE].nil? and row[TAG_EXCLUSIVE].length > 0
 				if t.save
 					puts "#{t.name} saved as new tag."
 				else

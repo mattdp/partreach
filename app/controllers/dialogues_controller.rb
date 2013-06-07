@@ -10,10 +10,11 @@ class DialoguesController < ApplicationController
 	def create
 
 		saved_ok = true
-		@order = Order.find(params[:order_id_field])
 		@supplier_ids = params[:supplier_selection]
 
 		if params[:form_use] == "add_dialogues"
+
+			@order = Order.find(params[:order_id_field])
 
 			@supplier_ids.each do |s|
 				@dialogue = Dialogue.new
@@ -31,10 +32,7 @@ class DialoguesController < ApplicationController
 
 			@supplier_ids.each do |s|
 				@tag_ids.each do |t|
-					@combo = Combo.new
-					@combo.supplier_id = s.to_i
-					@combo.tag_id = t.to_i
-					saved_ok = false unless @combo.save
+					saved_ok = false unless s.add_tag(t)
 				end
 			end
 
@@ -62,7 +60,6 @@ class DialoguesController < ApplicationController
 		respond_to do |format|
 			if saved_ok
 				format.html { redirect_to redir_to, notice: redir_notice }
-	      format.json { render json: @order, status: :created, location: @order }
 			else 
 				format.html { render action: "new" }
 	      format.json { render json: @dialogue.errors.full_messages, status: 400 }
