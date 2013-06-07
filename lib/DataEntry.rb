@@ -79,7 +79,7 @@ module DataEntry
 
 	TAG_NAME = 0
 	TAG_FAMILY = 1
-	TAG_HUMAN_READABLE = 2
+	TAG_READABLE = 2
 	TAG_NOTE = 2
 	TAG_EXCLUSIVE = 3
 	TAG_VISIBLE = 4
@@ -90,19 +90,24 @@ module DataEntry
 	#test on local
 
 	def csv_to_tags(url)
+		counter = 0
 		CSV.new(open(url)).each do |row|
 			n = row[TAG_NAME]
-			if !n.nil? and n.length > 0
+			if !n.nil? and n.length > 0 and counter > 0
 				t = Tag.new
 				t.name = n
 				t.family = row[TAG_FAMILY]
+				t.readable = row[TAG_READABLE]
 				t.note = row[TAG_NOTE]
+				t.exclusive = row[TAG_EXCLUSIVE] if row[TAG_EXCLUSIVE].length > 0
+				t.visible = row[TAG_VISIBLE] if row[TAG_VISIBLE].length > 0
 				if t.save
 					puts "#{t.name} saved as new tag."
 				else
 					puts "Error saving #{t.name} as new tag."
 				end
 			end
+			counter += 1
 		end
 	end
 
