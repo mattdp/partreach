@@ -32,7 +32,7 @@ class DialoguesController < ApplicationController
 
 			@supplier_ids.each do |s|
 				@tag_ids.each do |t|
-					saved_ok = false unless s.add_tag(t)
+					saved_ok = false unless Supplier.find(s).add_tag(t)
 				end
 			end
 

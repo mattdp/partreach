@@ -84,27 +84,41 @@ module DataEntry
 	TAG_EXCLUSIVE = 3
 	TAG_VISIBLE = 4
 
-	#add a csv or url toggle, so can test on local
-
-	def csv_to_tags(url)
-		counter = 0
-		CSV.new(open(url)).each do |row|
-			n = row[TAG_NAME]
-			if !n.nil? and n.length > 0 and counter > 0
-				t = Tag.new
-				t.name = n
-				t.family = row[TAG_FAMILY]
-				t.readable = row[TAG_READABLE]
-				t.note = row[TAG_NOTE]
-				t.exclusive = row[TAG_EXCLUSIVE] unless row[TAG_EXCLUSIVE].nil? and row[TAG_EXCLUSIVE].length > 0
-				t.visible = row[TAG_VISIBLE] unless row[TAG_VISIBLE].nil? and row[TAG_EXCLUSIVE].length > 0
-				if t.save
-					puts "#{t.name} saved as new tag."
-				else
-					puts "Error saving #{t.name} as new tag."
-				end
+	def csv_to_tags_row_helper(row, counter)				
+		puts "first" if counter == 0
+		n = row[TAG_NAME]
+		if !n.nil? and n.length > 0 and counter > 0
+			t = Tag.new
+			t.name = n
+			t.family = row[TAG_FAMILY]
+			t.readable = row[TAG_READABLE]
+			t.note = row[TAG_NOTE]
+			t.exclusive = row[TAG_EXCLUSIVE] if !row[TAG_EXCLUSIVE].nil? and row[TAG_EXCLUSIVE].length > 0
+			t.visible = row[TAG_VISIBLE] if !row[TAG_VISIBLE].nil? and row[TAG_VISIBLE].length > 0
+			if t.save
+				puts "#{t.name} saved as new tag."
+			else
+				puts "Error saving #{t.name} as new tag."
 			end
-			counter += 1
+		end
+	end
+
+	def csv_to_tags(location, url_or_csv = "url")
+		counter = 0
+		if url_or_csv == "url"
+			CSV.new(open(location)).each do |row|
+				csv_to_tags_row_helper(row, counter)
+				counter += 1
+			end
+			return "URL attempted"
+		elsif url_or_csv == "csv"
+			CSV.foreach(location) do |row|
+				csv_to_tags_row_helper(row, counter)
+				counter += 1
+			end
+			return "CSV attempted"
+		else 
+			return '"url" or "csv"'
 		end
 	end
 
