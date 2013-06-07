@@ -15,11 +15,11 @@ class Combo < ActiveRecord::Base
   belongs_to :supplier
   belongs_to :tag
 
-  def self.destroy_family_tags(supplier, tag_id)
+  def self.destroy_family_tags(supplier_id, tag_id)
   	family = Tag.find(tag_id).family
   	removees = Tag.return_family_ids(family)
   	Combo.all.each do |c|
-  		c.destroy if c.supplier_id = supplier.id and removees.include?(c.tag_id)
+  		c.destroy if c.supplier_id == supplier_id and removees.include?(c.tag_id)
   	end
   end
 

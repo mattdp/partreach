@@ -28,7 +28,7 @@ class Supplier < ActiveRecord::Base
   def add_tag(tag_id)
     c = Combo.new(supplier_id: self.id, tag_id: tag_id)
     t = Tag.find(tag_id)
-    Combo.destroy_family_tags(self,tag_id) if t.exclusive and !t.family.nil?
+    Combo.destroy_family_tags(self.id,tag_id) if t.exclusive and !t.family.nil?
     return c.save
   end
 
