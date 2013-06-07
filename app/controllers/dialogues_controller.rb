@@ -45,8 +45,7 @@ class DialoguesController < ApplicationController
 
 			@supplier_ids.each do |s|
 				@tag_ids.each do |t|
-					c = Combo.where("supplier_id = ? AND tag_id = ?", s.to_i, t.to_i)
-					Combo.destroy_all(supplier_id: s.to_i, tag_id: t.to_i) unless c.nil?
+					Supplier.find(s).remove_tag(t)
 				end
 			end
 			

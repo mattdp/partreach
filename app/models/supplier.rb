@@ -32,6 +32,11 @@ class Supplier < ActiveRecord::Base
     return c.save
   end
 
+  def remove_tag(tag_id)
+    c = Combo.where("supplier_id = ? AND tag_id = ?", self.id, tag_id)
+    Combo.destroy_all(supplier_id: self.id, tag_id: tag_id) unless c.nil?
+  end
+
   def has_tag?(tag_id)
     self.tags.include?(Tag.find(tag_id))
   end
