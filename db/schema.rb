@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606233018) do
+ActiveRecord::Schema.define(:version => 20130607151441) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(:version => 20130606233018) do
     t.datetime "updated_at",                    :null => false
     t.boolean  "exclusive",  :default => false
     t.boolean  "visible",    :default => true
+    t.string   "readable"
   end
 
   create_table "users", :force => true do |t|
