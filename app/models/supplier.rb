@@ -2,21 +2,22 @@
 #
 # Table name: suppliers
 #
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  url_main      :string(255)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  blurb         :text
-#  email         :string(255)
-#  phone         :string(255)
-#  address_id    :integer
-#  url_materials :string(255)
-#  source        :string(255)
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  url_main        :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  blurb           :text
+#  email           :string(255)
+#  phone           :string(255)
+#  address_id      :integer
+#  url_materials   :string(255)
+#  source          :string(255)
+#  profile_visible :boolean          default(FALSE)
 #
 
 class Supplier < ActiveRecord::Base
-  attr_accessible :name, :url_main, :url_materials, :blurb, :email, :phone, :address_id, :source
+  attr_accessible :name, :url_main, :url_materials, :blurb, :email, :phone, :address_id, :source, :profile_visible
 
   has_many :dialogues
   has_one :address, :as => :place

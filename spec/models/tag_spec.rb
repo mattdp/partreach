@@ -10,6 +10,7 @@
 #  updated_at :datetime         not null
 #  exclusive  :boolean          default(FALSE)
 #  visible    :boolean          default(TRUE)
+#  readable   :string(255)
 #
 
 require 'spec_helper'
