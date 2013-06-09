@@ -1,4 +1,4 @@
-<% if @supplier.nil? %>
+<% if @supplier.nil? or !@supplier.profile_visible %>
 	<% provide(:title, "Profile not found") %>
 	<p>Profile not found.</p>
 <% else %>
