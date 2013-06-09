@@ -1,7 +1,14 @@
-<% if @supplier.nil? or !@supplier.profile_visible %>
+<% if @supplier.nil? or (!@supplier.profile_visible and (current_user.nil? or !current_user.admin)) %>
 	<% provide(:title, "Profile not found") %>
 	<p>Profile not found.</p>
 <% else %>
 	<% provide(:title, "#{@supplier.name} Profile") %>
-	<h1><%= "#{@supplier.name} Profile" %></h1>
+	<div>
+		<h1><%= "#{@supplier.name}" %></h1>
+		<p><%= "#{@supplier.tags.map { |m| m.name }.join(', ')}" %></p>
+		<p><%= link_to "Webpage", @supplier.url_main %></p>
+	</div>
+	<div>
+		<p>PUT BUTTON HERE</p>
+		<p><%= mail_to "claim_profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
 <% end %>
