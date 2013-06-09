@@ -1,0 +1,7 @@
+<% if @supplier.nil? %>
+	<% provide(:title, "Profile not found") %>
+	<p>Profile not found.</p>
+<% else %>
+	<% provide(:title, "#{@supplier.name} Profile") %>
+	<h1><%= "#{@supplier.name} Profile" %></h1>
+<% end %>

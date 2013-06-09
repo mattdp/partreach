@@ -24,6 +24,7 @@ Partreach::Application.routes.draw do
   match 'orders/purchase/:order/:dialogue', to: 'orders#purchase'
   match '/cto', to: 'static_pages#cto'
   match '/dialogues/new/:id', to: 'dialogues#new'
+  match '/suppliers/:name', to: 'profiles#supplier_profile'
 
   #goal: allow show page to post a form. seems hacky - check with someone.
   match '/orders/:id', to: 'orders#update', via: :post
