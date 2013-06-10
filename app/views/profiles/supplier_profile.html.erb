@@ -16,12 +16,12 @@
 			</div>
 			<div class="container">
 				<div class="navbar">
-					<div class="navbar-inner">
+					<div class="navbar-inner options-menu">
 						<ul class="nav">
-							<li class="active"><%= link_to "Description", "#" %></li>
-							<% if @machines_toggle %><li><%= link_to "Machines", "#" %></li><% end %>
-							<% if @reviews_toggle %><li><%= link_to "Reviews", "#" %></li><% end %>
-							<% if @photos_toggle %><li><%= link_to "Photos", "#" %></li><% end %>
+							<li class="active"><%= link_to "Description", "#", :class => "description-toggle" %></li>
+							<% if @machines_toggle %><li><%= link_to "Machines", "#", :class => "machines-toggle" %></li><% end %>
+							<% if @reviews_toggle %><li><%= link_to "Reviews", "#", :class => "reviews-toggle" %></li><% end %>
+							<% if @photos_toggle %><li><%= link_to "Photos", "#", :class => "photos-toggle" %></li><% end %>
 						</ul>
 					</div>
 				</div>
