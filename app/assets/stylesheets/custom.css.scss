@@ -572,3 +572,8 @@ input, textarea, select, .uneditable-input {
   margin-top: 45px;
   @include box_sizing;
 }
+
+.biography {
+  max-width: 300px;
+  margin-bottom: 10px;
+}

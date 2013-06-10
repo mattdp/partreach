@@ -52,6 +52,11 @@ textarea {
   float: right;
 }
 
+.biography {
+  background-color: #345;
+}
+
+
 .clear {
   clear: both;
 }
