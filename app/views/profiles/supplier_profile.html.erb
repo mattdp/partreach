@@ -26,10 +26,11 @@
 					</div>
 				</div>
 				<div class="supplier-variable-content">
-					<div class="panel hidden description-content">DESCRIPTION</div>
-					<% if @machines_toggle %><div class="panel hidden machines-content">MACHINES</div><% end %>
-					<% if @reviews_toggle %><div class="panel hidden reviews-content">REVIEWS</div><% end %>
-					<% if @photos_toggle %><div class="panel hidden photos-content">PHOTOS</div><% end %>
+					<div class="panel description-content"><%= render :partial => "layouts/panel_text", :locals => {:no_yet => "description", :lead_type => "description_requested"} %></div>
+					<% if @machines_toggle %><div class="panel hidden machines-content">
+					<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested"} %></div><% end %>
+					<% if @reviews_toggle %><div class="panel hidden reviews-content"><%= render :partial => "layouts/panel_text", :locals => {:no_yet => "reviews", :lead_type => "reviews_requested"} %></div><% end %>
+					<% if @photos_toggle %><div class="panel hidden photos-content"><%= render :partial => "layouts/panel_text", :locals => {:no_yet => "photos", :lead_type => "photos_requested"} %></div><% end %>
 				</div>
 			</div>
 		<% end %>

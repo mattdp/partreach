@@ -9,4 +9,10 @@ class ProfilesController < ApplicationController
 		@supplier = Supplier.where("lower(name) = ?", params[:name].downcase).first
 	end
 
+	def submit_ask
+		#create ask based on inbound information (where get?)
+		#flash message of request received
+		#route to that supplier profile
+	end
+
 end
