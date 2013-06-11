@@ -3,6 +3,7 @@ NEXT PUSH
 	Push up
 	Rake db:migrate
 	Manual script for name_for_link in suppliers
+	Tag upload to capture changes in google doc
 
 TESTING
 

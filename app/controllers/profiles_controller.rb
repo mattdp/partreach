@@ -9,6 +9,7 @@ class ProfilesController < ApplicationController
 		current_user.nil? ? @user_id = 0 : @user_id = current_user.id
 
 		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
+		@tags = @supplier.visible_tags
 	end
 
 	def submit_ask

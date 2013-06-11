@@ -43,6 +43,15 @@ class Supplier < ActiveRecord::Base
     self.tags.include?(Tag.find(tag_id))
   end
 
+  def visible_tags
+    return nil if self.tags.nil?
+    answer = []
+    self.tags.each do |t|
+      answer << t if t.visible
+    end
+    return answer
+  end
+
 end
 
 #may need to add material and method

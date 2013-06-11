@@ -7,7 +7,7 @@
 			<% provide(:title, "#{@supplier.name} Profile") %>
 			<div>
 				<h1><%= "#{@supplier.name}" %></h1>
-				<p><%= "#{@supplier.tags.map { |m| m.name }.join(', ')}" %></p>
+				<p><%= "#{@tags.map { |m| m.name }.join(', ')}" %></p>
 				<p><%= link_to "Webpage", @supplier.url_main %></p>
 			</div>
 			<div>
