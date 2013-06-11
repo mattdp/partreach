@@ -43,11 +43,15 @@
 					<% end %>
 
 					<% s = Supplier.find(d.supplier_id) %>
-					<% if !s.url_main.nil? and s.url_main != "" %>
-						<td><%= link_to "#{s.name}", s.url_main %></td>
+					<td>
+					<% if s.profile_visible %>
+						<%= link_to "#{s.name}", supplier_profile_url(s.name) %>
+					<% elsif !s.url_main.nil? and s.url_main != "" %>
+						<%= link_to "#{s.name}", s.url_main %>
 					<% else %>
-						<td><%= s.name %></td>
+						<%= s.name %>
 					<% end %>
+					</td>
 
 					<td class="center"><%= bid_status(d) %></td>
 					<td class="right"><%= currencyize(d.total_cost, d.currency) %></td>

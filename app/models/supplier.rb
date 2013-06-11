@@ -17,7 +17,7 @@
 #
 
 class Supplier < ActiveRecord::Base
-  attr_accessible :name, :url_main, :url_materials, :blurb, :email, :phone, :address_id, :source, :profile_visible
+  attr_accessible :name, :url_main, :url_materials, :description, :email, :phone, :address_id, :source, :profile_visible
 
   has_many :dialogues
   has_one :address, :as => :place
