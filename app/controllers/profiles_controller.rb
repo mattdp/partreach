@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
 
 		current_user.nil? ? @user_id = 0 : @user_id = current_user.id
 
-		@supplier = Supplier.where("lower(name) = ?", params[:name].downcase).first
+		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
 	end
 
 	def submit_ask

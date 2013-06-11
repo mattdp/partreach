@@ -1,26 +1,8 @@
-need next iteration of css before do much with the blog
-
-need to 'jekyll build' from partreach/config/jekyll
-
-      create  lib/tasks/new_post.rake
-      create  lib/tasks/gen.rake
-Configuration file: config/jekyll/_config.yml
-       Deprecation: Auto-regeneration can no longer be set from your configuration file(s). Use the --watch/-w command-line option instead.
-Successfully generated site: config/jekyll -> public/blog
-
-See if goes to order page - that'd be why no header with "my rfq"
-
-BROKEN ON PROD - can't validate that signin happens when user already signed in, that's silly
-
-For test suite issues, pick exactly one test, so can follow what it's doing well. Potentially print state information. Unclear why dialogue saving fails once issued, since order and user are fine.
-
-Seems to pass in isolation now, maybe issue is lack of test DB clearance between run sets?
-	Maybe something weird with using build instead of create, if they all got built initially then they'd try to save over the same names?
-	I think factories only create different users when given a sequence, so the user will have to be totally new or somehow time-based
-
-Need at least one test showing that the new user not only gets created, but makes it to the next page	
-
-Look up how to get FactoryGirl creating a new user every time
+NEXT PUSH
+	Change flags so photos not in supplier profile
+	Push up
+	Rake db:migrate
+	Manual script for name_for_link in suppliers
 
 TESTING
 
