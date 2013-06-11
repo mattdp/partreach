@@ -363,6 +363,14 @@ strong {
   .nav {
     padding: 0px;
   }
+  .tag {
+    color: white;
+    background-color: #333;
+    -webkit-border-radius: 6px;
+            border-radius: 6px;
+    padding: 2px 5px;
+    line-height: 40px;
+  }
 }
 
 .cta {

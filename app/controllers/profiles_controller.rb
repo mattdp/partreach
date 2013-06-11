@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
 		# toggle if certain parts of the profile are visible
 		@machines_toggle = true
 		@reviews_toggle = true
-		@photos_toggle = true
+		@photos_toggle = false
 
 		current_user.nil? ? @user_id = 0 : @user_id = current_user.id
 
