@@ -1,20 +1,21 @@
 <div class="content">
-	<div class="container">
+	<div class="container supplier-profile">
 		<% if @supplier.nil? or (!@supplier.profile_visible and (current_user.nil? or !current_user.admin)) %>
 			<% provide(:title, "Profile not found") %>
 			<p>Profile not found.</p>
 		<% else %>
 			<% provide(:title, "#{@supplier.name} Profile") %>
-			<div>
-				<h1><%= "#{@supplier.name}" %></h1>
+			<h1 id="supplier-name"><%= "#{@supplier.name}" %></h1>
+			<div class="fleft">
+				<p><%= "Country: #{@supplier.address.country}" %></p>
 				<p><%= "#{@tags.map { |t| t.user_readable }.join(', ')}" %></p>
 				<p><%= link_to "Webpage", @supplier.url_main %></p>
 			</div>
-			<div>
+			<div class="fright">
 				<%= link_to "Request Quote", {:controller => "orders", :action => "new", :from_supplier => @supplier.id}, class: "btn btn-hero", id: "button-place-order" %>
 				<p><%= mail_to "claim_profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
 			</div>
-			<div class="container">
+			<div class="clear">
 				<div class="navbar">
 					<div class="navbar-inner options-menu">
 						<ul class="nav">

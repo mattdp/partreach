@@ -347,6 +347,24 @@ strong {
   }
 }
 
+.supplier-profile {
+  h1 {
+    text-align: left;
+  }
+  #button-place-order {
+    vertical-align: top;
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  .options-menu li{
+    margin: 0px;
+    padding: 0px;
+  }
+  .nav {
+    padding: 0px;
+  }
+}
+
 .cta {
   padding: 70px 0;
   .time {

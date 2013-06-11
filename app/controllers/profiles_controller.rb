@@ -10,7 +10,6 @@ class ProfilesController < ApplicationController
 
 		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
 		@tags = @supplier.visible_tags
-		binding.pry
 	end
 
 	def submit_ask
