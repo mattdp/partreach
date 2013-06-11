@@ -80,25 +80,26 @@ module DataEntry
 	TAG_NAME = 0
 	TAG_FAMILY = 1
 	TAG_READABLE = 2
-	TAG_NOTE = 2
-	TAG_EXCLUSIVE = 3
-	TAG_VISIBLE = 4
+	TAG_NOTE = 3
+	TAG_EXCLUSIVE = 4
+	TAG_VISIBLE = 5
 
 	def csv_to_tags_row_helper(row, counter)				
 		puts "first" if counter == 0
 		n = row[TAG_NAME]
 		if !n.nil? and n.length > 0 and counter > 0
-			t = Tag.new
+			t = Tag.find_by_name(n)
+			t = Tag.new if t.nil?
 			t.name = n
 			t.family = row[TAG_FAMILY]
-			t.readable = row[TAG_READABLE]
-			t.note = row[TAG_NOTE]
+			t.readable = row[TAG_READABLE] if !row[TAG_READABLE].nil? and row[TAG_READABLE].length > 0
+			t.note = row[TAG_NOTE] if !row[TAG_NOTE].nil? and row[TAG_NOTE].length > 0
 			t.exclusive = row[TAG_EXCLUSIVE] if !row[TAG_EXCLUSIVE].nil? and row[TAG_EXCLUSIVE].length > 0
 			t.visible = row[TAG_VISIBLE] if !row[TAG_VISIBLE].nil? and row[TAG_VISIBLE].length > 0
 			if t.save
-				puts "#{t.name} saved as new tag."
+				puts "#{t.name} saved."
 			else
-				puts "Error saving #{t.name} as new tag."
+				puts "Error saving #{t.name}."
 			end
 		end
 	end

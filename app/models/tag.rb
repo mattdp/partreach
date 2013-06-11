@@ -43,4 +43,8 @@ class Tag < ActiveRecord::Base
     return answers
   end
 
+  def user_readable
+    self.readable.nil? ? self.name : self.readable
+  end
+
 end
