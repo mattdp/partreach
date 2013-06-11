@@ -58,7 +58,9 @@
           <h3>Any particular suppliers we should quote for you?</h3>
           <p>We choose suppliers that fit your needs, based on quality, reliability, and speed.</p>
 
-          <%= text_area_tag 'suggested_suppliers_field', nil, :rows => 3, :placeholder => "Don't worry if you don't have suggestions, we can choose for you." %>
+          <% @supplier.nil? ? suggested_suppliers_default = nil : suggested_suppliers_default = "Include #{@supplier.name} (requested)" %>
+
+          <%= text_area_tag 'suggested_suppliers_field', suggested_suppliers_default, :rows => 3, :placeholder => "Don't worry if you don't have suggestions, we can choose for you." %>
           <p class="italics"> For example, for a US West Coast prototype SLS plastic part, we'd quote: Shapeways, Ponoko, Sculpteo, i.materialise, ZoomRP, RedEye, and 3dproparts </p>
         </div>
 

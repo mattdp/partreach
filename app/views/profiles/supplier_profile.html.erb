@@ -11,7 +11,7 @@
 				<p><%= link_to "Webpage", @supplier.url_main %></p>
 			</div>
 			<div>
-				<%= link_to "Request Quote", new_order_path, class: "btn btn-hero", id: "button-place-order" %>
+				<%= link_to "Request Quote", {:controller => "orders", :action => "new", :from_supplier => @supplier.id}, class: "btn btn-hero", id: "button-place-order" %>
 				<p><%= mail_to "claim_profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
 			</div>
 			<div class="container">

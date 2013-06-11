@@ -12,11 +12,8 @@ class ProfilesController < ApplicationController
 	end
 
 	def submit_ask
-		#create ask based on inbound information (where get?)
 		a = Ask.new(supplier_id: params[:supplier_id], request: params[:request], user_id: params[:user_id])
 		a.save
-		#flash message of request received
-		#route to that supplier profile
 		@supplier = Supplier.find(params[:supplier_id])
 		redirect_to supplier_profile_url(@supplier.name), notice: 'Suggestion received. Thanks!'
 	end
