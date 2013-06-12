@@ -360,6 +360,10 @@ strong {
     margin: 0px;
     padding: 0px;
   }
+  .navbar-inner {
+    -webkit-border-radius: 0px;
+            border-radius: 0px;
+  }
   .nav {
     padding: 0px;
   }
@@ -370,6 +374,14 @@ strong {
             border-radius: 6px;
     padding: 2px 5px;
     line-height: 40px;
+  }
+  .supplier-variable {
+    margin-bottom: 50px;
+    border: 1px #ccc solid;
+  }
+  .supplier-variable-content {
+    padding-left: 37px;
+    margin-bottom: 20px;
   }
 }
 

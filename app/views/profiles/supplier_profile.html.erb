@@ -22,7 +22,7 @@
 				<%= link_to "Request Quote", {:controller => "orders", :action => "new", :from_supplier => @supplier.id}, class: "btn btn-hero", id: "button-place-order" %>
 				<p><%= mail_to "claim_profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
 			</div>
-			<div class="clear">
+			<div class="clear supplier-variable">
 				<div class="navbar">
 					<div class="navbar-inner options-menu">
 						<ul class="nav">
