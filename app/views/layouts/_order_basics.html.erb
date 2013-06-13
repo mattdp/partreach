@@ -5,7 +5,7 @@
 <% if !@user.address.nil? and @user.address.zip.length > 0 %>
 	<p class="index_quantity"><strong>Zip Code: </strong><%= "#{@user.address.zip}" %></p>
 <% end %>
-<p><strong>Due date: </strong><%= "#{@order.deadline.to_s}" %></p>
+<p><strong>Units: </strong><%= "#{@order.drawing_units}" %></p>
 <% if !@order.material_message.nil? %>
 	<p><strong>Material requested: </strong><%= "#{@order.material_message}" %></p>
 <% end %>
