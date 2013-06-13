@@ -7,17 +7,18 @@
 #  url_main        :string(255)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  blurb           :text
+#  description     :text
 #  email           :string(255)
 #  phone           :string(255)
 #  address_id      :integer
 #  url_materials   :string(255)
 #  source          :string(255)
 #  profile_visible :boolean          default(FALSE)
+#  name_for_link   :string(255)
 #
 
 class Supplier < ActiveRecord::Base
-  attr_accessible :name, :url_main, :url_materials, :blurb, :email, :phone, :address_id, :source, :profile_visible
+  attr_accessible :name, :name_for_link, :url_main, :url_materials, :description, :email, :phone, :address_id, :source, :profile_visible
 
   has_many :dialogues
   has_one :address, :as => :place
@@ -40,6 +41,15 @@ class Supplier < ActiveRecord::Base
 
   def has_tag?(tag_id)
     self.tags.include?(Tag.find(tag_id))
+  end
+
+  def visible_tags
+    return nil if self.tags.nil?
+    answer = []
+    self.tags.each do |t|
+      answer << t if t.visible
+    end
+    return answer
   end
 
 end

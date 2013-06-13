@@ -1,115 +1,117 @@
-  <div class="row container">
-    <div class="span8 offset2 form">
+<div class="row container">
+  <div class="span8 offset2 form">
 
-      <div id="new-order-errors" class="error_explanation">
-        <h2><i></i> error(s) prohibited this order from being saved:</h2>
-        <ul></ul>
+    <div id="new-order-errors" class="error_explanation">
+      <h2><i></i> error(s) prohibited this order from being saved:</h2>
+      <ul></ul>
+    </div>
+
+    <div class="clear">
+      <h3>The basics</h3>
+    </div>
+
+    <p>Upload drawing (max size: 64 MB)</p>
+
+    <form id='direct-upload' action="https://partreach_initial_bucket.s3.amazonaws.com" method="post" enctype="multipart/form-data">
+      <input type='hidden' name='key' />
+      <input type='hidden' name='AWSAccessKeyId' value='AKIAIUO3BIWNATMYNELQ' />
+      <input type='hidden' name='acl' value='public-read' />
+      <input type='hidden' name='policy' />
+      <input type='hidden' name='signature' />
+      <input type='hidden' name='success_action_status' value='201' />
+      <input type='file' name='file' id='uploader' class='file-upload' />
+      <div class='progress progress-striped active'>
+        <div class='bar'></div>
+      </div>
+      <div id="direct-upload-success">
+        Upload succeeded.
+      </div>
+      <div id="direct-upload-failure">
+        Upload failed.
+      </div>
+    </form>
+
+    <%= form_tag '/orders.json', id: 'new-order', method: :post, 'data-remote' => true do %>
+
+      <input type="hidden" name="file" value="" id="direct-upload-file">
+
+      <div class="row">
+        <div class="pull-left half">
+          <%= label_tag 'quantity_field', 'Quantity' %>
+          <%= text_field_tag 'quantity_field', nil, :class => 'left-half' %>
+        </div>
+        <div class="pull-right half">
+          <%= label_tag 'drawing_units_field', 'Drawing units' %>
+          <%= text_field_tag 'drawing_units_field', nil, :placeholder => '(mm./in.)', :class => 'right-half' %>
+        </div>
       </div>
 
-      <div class="clear">
-        <h3>The basics</h3>
+      <div class="row">
+        <%= label_tag 'material_message_field', 'Material' %>
+        <%= text_area_tag 'material_message_field', nil, :rows => 3, :placeholder => '(ex: ABS, stainless steel, white durable nylon, UV curable resin, etc. If you\'re not sure, we can help you decide.)' %>
+
+        <%= label_tag 'zip_field', 'Zip Code' %>
+        <%= text_field_tag 'zip_field', nil, :placeholder => '(Required for shipping estimates)' %>
       </div>
 
-      <p>Upload drawing (max size: 64 MB)</p>
+      <div class="row">
+        <h3>Any particular suppliers we should quote for you?</h3>
+        <p>We choose suppliers that fit your needs, based on quality, reliability, and speed.</p>
 
-      <form id='direct-upload' action="https://partreach_initial_bucket.s3.amazonaws.com" method="post" enctype="multipart/form-data">
-        <input type='hidden' name='key' />
-        <input type='hidden' name='AWSAccessKeyId' value='AKIAIUO3BIWNATMYNELQ' />
-        <input type='hidden' name='acl' value='public-read' />
-        <input type='hidden' name='policy' />
-        <input type='hidden' name='signature' />
-        <input type='hidden' name='success_action_status' value='201' />
-        <input type='file' name='file' id='uploader' class='file-upload' />
-        <div class='progress progress-striped active'>
-          <div class='bar'></div>
-        </div>
-        <div id="direct-upload-success">
-          Upload succeeded.
-        </div>
-        <div id="direct-upload-failure">
-          Upload failed.
-        </div>
-      </form>
+        <% @supplier.nil? ? suggested_suppliers_default = nil : suggested_suppliers_default = "Include #{@supplier.name} (requested)" %>
 
-      <%= form_tag '/orders.json', id: 'new-order', method: :post, 'data-remote' => true do %>
+        <%= text_area_tag 'suggested_suppliers_field', suggested_suppliers_default, :rows => 3, :placeholder => "Don't worry if you don't have suggestions, we can choose for you." %>
+        <p class="italics"> For example, for a US West Coast prototype SLS plastic part, we'd quote: Shapeways, Ponoko, Sculpteo, i.materialise, ZoomRP, RedEye, and 3dproparts </p>
+      </div>
 
-        <input type="hidden" name="file" value="" id="direct-upload-file">
-
-        <div class="row">
-          <div class="pull-left half">
-            <%= label_tag 'quantity_field', 'Quantity' %>
-            <%= text_field_tag 'quantity_field', nil, :class => 'left-half' %>
+      <% if current_user.nil? %>
+        <div class="two-signins row">
+          <div class="half pull-left border-right">
+            <h3>Create account</h3>
+            <%= label_tag 'user_name_field', 'Name' %>
+            <%= text_field_tag 'user_name_field', nil, placeholder: 'Enter name here' %>
+            <%= label_tag 'user_email_field', 'Email' %>
+            <%= text_field_tag 'user_email_field', nil, placeholder: 'Enter email address here' %>
+            <%= label_tag 'user_password_field', 'Choose password' %>
+            <%= password_field_tag 'user_password_field', nil, placeholder: 'Enter password here' %>
           </div>
-          <div class="pull-right half">
-            <%= label_tag 'drawing_units_field', 'Drawing units' %>
-            <%= text_field_tag 'drawing_units_field', nil, :placeholder => '(mm./in.)', :class => 'right-half' %>
+          <div class="half pull-right">
+            <h3>Sign back in</h3>
+            <%= label_tag 'signin_email_field', 'Email' %>
+            <%= text_field_tag 'signin_email_field', nil, placeholder: 'Enter name here' %>
+            <%= label_tag 'signin_password_field', 'Password' %>
+            <%= password_field_tag 'signin_password_field', nil, placeholder: 'Enter password here' %>
           </div>
         </div>
-
-        <div class="row">
-          <%= label_tag 'material_message_field', 'Material' %>
-          <%= text_area_tag 'material_message_field', nil, :rows => 3, :placeholder => '(ex: ABS, stainless steel, white durable nylon, UV curable resin, etc. If you\'re not sure, we can help you decide.)' %>
-
-          <%= label_tag 'zip_field', 'Zip Code' %>
-          <%= text_field_tag 'zip_field', nil, :placeholder => '(Required for shipping estimates)' %>
-        </div>
-
-        <div class="row">
-          <h3>Any particular suppliers we should quote for you?</h3>
-          <p>We choose suppliers that fit your needs, based on quality, reliability, and speed.</p>
-
-          <%= text_area_tag 'suggested_suppliers_field', nil, :rows => 3, :placeholder => "Don't worry if you don't have suggestions, we can choose for you." %>
-          <p class="italics"> For example, for a US West Coast prototype SLS plastic part, we'd quote: Shapeways, Ponoko, Sculpteo, i.materialise, ZoomRP, RedEye, and 3dproparts </p>
-        </div>
-
-        <% if current_user.nil? %>
-          <div class="two-signins row">
-            <div class="half pull-left border-right">
-              <h3>Create account</h3>
-              <%= label_tag 'user_name_field', 'Name' %>
-              <%= text_field_tag 'user_name_field', nil, placeholder: 'Enter name here' %>
-              <%= label_tag 'user_email_field', 'Email' %>
-              <%= text_field_tag 'user_email_field', nil, placeholder: 'Enter email address here' %>
-              <%= label_tag 'user_password_field', 'Choose password' %>
-              <%= password_field_tag 'user_password_field', nil, placeholder: 'Enter password here' %>
-            </div>
-            <div class="half pull-right">
-              <h3>Sign back in</h3>
-              <%= label_tag 'signin_email_field', 'Email' %>
-              <%= text_field_tag 'signin_email_field', nil, placeholder: 'Enter name here' %>
-              <%= label_tag 'signin_password_field', 'Password' %>
-              <%= password_field_tag 'signin_password_field', nil, placeholder: 'Enter password here' %>
-            </div>
-          </div>
-        <% end %>
-
-        <div class="final-notes row">
-          <h3>Final notes</h3>
-          <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers?' %>
-          <%= text_area_tag 'supplier_message_field', nil, :rows => 3, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)" %>
-
-          <%= label_tag 'name_field', 'What do you want to call this order?' %>
-          <%= text_field_tag 'name_field', nil, :placeholder => "(optional)" %>
-        </div>
-
-        <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
-
-        <p id="order-disclaimer">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
-
-        <p class="back"><%= link_to 'Back to orders', orders_path %></p>
-
       <% end %>
 
-    </div>
-  </div>
-  <% if current_user.nil? %>
-    <%= form_tag :action => 'create', :controller => 'leads' do %>
+      <div class="final-notes row">
+        <h3>Final notes</h3>
+        <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers?' %>
+        <%= text_area_tag 'supplier_message_field', nil, :rows => 3, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)" %>
 
-      <input type="hidden" name="next_step_field" value="/orders/new">
-      <div class="clear cta">
-        <%= render 'layouts/email_collector' %>
+        <%= label_tag 'name_field', 'What do you want to call this order?' %>
+        <%= text_field_tag 'name_field', nil, :placeholder => "(optional)" %>
       </div>
 
+      <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
+
+      <p id="order-disclaimer">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
+
+      <p class="back"><%= link_to 'Back to orders', orders_path %></p>
+
     <% end %>
+
+  </div>
+</div>
+<% if current_user.nil? %>
+  <%= form_tag :action => 'create', :controller => 'leads' do %>
+
+    <input type="hidden" name="next_step_field" value="/orders/new">
+    <div class="clear cta">
+      <%= render 'layouts/email_collector' %>
+    </div>
+
   <% end %>
+<% end %>
 

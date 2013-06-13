@@ -31,6 +31,10 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
 
+    fs = params[:from_supplier]
+    @supplier = nil
+    @supplier = Supplier.find(fs) if not(fs.nil?)
+
     @order = Order.new
 
     respond_to do |format|

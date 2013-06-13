@@ -347,6 +347,44 @@ strong {
   }
 }
 
+.supplier-profile {
+  h1 {
+    text-align: left;
+  }
+  #button-place-order {
+    vertical-align: top;
+    margin-top: 0px;
+    margin-bottom: 5px;
+  }
+  .options-menu li{
+    margin: 0px;
+    padding: 0px;
+  }
+  .navbar-inner {
+    -webkit-border-radius: 0px;
+            border-radius: 0px;
+  }
+  .nav {
+    padding: 0px;
+  }
+  .tag {
+    color: white;
+    background-color: #333;
+    -webkit-border-radius: 6px;
+            border-radius: 6px;
+    padding: 2px 5px;
+    line-height: 40px;
+  }
+  .supplier-variable {
+    margin-bottom: 50px;
+    border: 1px #ccc solid;
+  }
+  .supplier-variable-content {
+    padding-left: 37px;
+    margin-bottom: 20px;
+  }
+}
+
 .cta {
   padding: 70px 0;
   .time {

@@ -1,0 +1,52 @@
+<div class="content">
+	<div class="container supplier-profile">
+		<% if @supplier.nil? or (!@supplier.profile_visible and (current_user.nil? or !current_user.admin)) %>
+			<% provide(:title, "Profile not found") %>
+			<p>Profile not found.</p>
+		<% else %>
+			<% provide(:title, "#{@supplier.name} Profile") %>
+			<h1 id="supplier-name"><%= "#{@supplier.name}" %></h1>
+			<div class="fleft">
+				<p><%= "Country: #{@supplier.address.country}" %></p>
+				<% counter = 0 %>
+				<p><% @tags.each do |t| %>
+					<span class="tag"><%= "#{t.user_readable}" %></span>
+					<% counter += 1 %>
+					<% if counter % 4 == 0 %>
+						<br>
+					<% end %>
+				<% end %></p>
+				<p><%= link_to "Webpage", @supplier.url_main %></p>
+			</div>
+			<div class="fright">
+				<%= link_to "Request Quote", {:controller => "orders", :action => "new", :from_supplier => @supplier.id}, class: "btn btn-hero", id: "button-place-order" %>
+				<p><%= mail_to "claim_profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
+			</div>
+			<div class="clear supplier-variable">
+				<div class="navbar">
+					<div class="navbar-inner options-menu">
+						<ul class="nav">
+							<li class="active"><%= link_to "Description", "#", :class => "description-toggle" %></li>
+							<% if @machines_toggle %><li><%= link_to "Machines", "#", :class => "machines-toggle" %></li><% end %>
+							<% if @reviews_toggle %><li><%= link_to "Reviews", "#", :class => "reviews-toggle" %></li><% end %>
+							<% if @photos_toggle %><li><%= link_to "Photos", "#", :class => "photos-toggle" %></li><% end %>
+						</ul>
+					</div>
+				</div>
+				<div class="supplier-variable-content">
+					<div class="panel description-content">
+						<% if @supplier.description.nil? %>
+							<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "description", :lead_type => "description_requested", :s_id => @supplier.id, :u_id => @user_id} %>
+						<% else %>
+							<p><%= @supplier.description %></p>
+						<% end %>
+					</div>
+					<% if @machines_toggle %><div class="panel hidden machines-content">
+					<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
+					<% if @reviews_toggle %><div class="panel hidden reviews-content"><%= render :partial => "layouts/panel_text", :locals => {:no_yet => "reviews", :lead_type => "reviews_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
+					<% if @photos_toggle %><div class="panel hidden photos-content"><%= render :partial => "layouts/panel_text", :locals => {:no_yet => "photos", :lead_type => "photos_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
+				</div>
+			</div>
+		<% end %>
+	</div>
+</div>
