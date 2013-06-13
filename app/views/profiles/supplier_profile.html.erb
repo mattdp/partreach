@@ -7,7 +7,13 @@
 			<% provide(:title, "#{@supplier.name} Profile") %>
 			<h1 id="supplier-name"><%= "#{@supplier.name}" %></h1>
 			<div class="fleft">
-				<p><%= "Country: #{@supplier.address.country}" %></p>
+				<p>Country: 
+					<% if !@supplier.address.nil? and !@supplier.address.country.nil? %>
+						<%= "#{@supplier.address.country}" %>
+					<% else %>
+						N/A
+					<% end %>
+				</p>
 				<% counter = 0 %>
 				<p><% @tags.each do |t| %>
 					<span class="tag"><%= "#{t.user_readable}" %></span>
@@ -16,7 +22,13 @@
 						<br>
 					<% end %>
 				<% end %></p>
-				<p><%= link_to "Webpage", @supplier.url_main %></p>
+				<p>
+					<% if !@supplier.url_main.nil? %>
+						<%= link_to "Webpage", @supplier.url_main %>
+					<% else %> 
+						Webpage unavailable.
+					<% end %>
+				</p>
 			</div>
 			<div class="fright">
 				<%= link_to "Request Quote", {:controller => "orders", :action => "new", :from_supplier => @supplier.id}, class: "btn btn-hero", id: "button-place-order" %>
