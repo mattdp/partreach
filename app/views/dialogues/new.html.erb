@@ -7,11 +7,11 @@
 	</div>
 
 	<div>
-		<%= radio_button_tag "form_use", "add_dialogues", true, :class => "fleft" %>
+		<%= radio_button_tag "form_use", "add_dialogues", true, :class => "fleft", :id => "add-dialogues-radio" %>
 		<%= label_tag "form_use", "Add dialogues", :class => "fleft" %>
-		<%= radio_button_tag "form_use", "add_tags", false, :class => "fleft" %>	
+		<%= radio_button_tag "form_use", "add_tags", false, :class => "fleft", :id => "add-tags-radio" %>	
 		<%= label_tag "form_use", "Add tags", :class => "fleft" %>
-		<%= radio_button_tag "form_use", "remove_tags", false, :class => "fleft" %>	
+		<%= radio_button_tag "form_use", "remove_tags", false, :class => "fleft", :id => "remove-tags-radio" %>	
 		<%= label_tag "form_use", "Remove tags", :class => "fleft" %>
 	</div>
 
@@ -29,7 +29,7 @@
 				<tr>
 					<td><strong><%= "#{k}" %><strong></td>
 					<% @family_names_and_tags[k].each do |t| %>
-						<td><%= check_box_tag "tag_selection[]", t.id, false, class: "fleft" %>
+						<td><%= check_box_tag "tag_selection[]", t.id, false, class: "fleft", id: "#{t.name}" %>
 						<p><%= "#{t.name}" %></p></td>
 					<% end %>
 				</tr>
