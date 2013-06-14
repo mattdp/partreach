@@ -1,6 +1,6 @@
 <p>No <%= no_yet %> yet! <%= link_to "Click here", :controller => "profiles", :action => "submit_ask", :request => lead_type, :supplier_id => s_id, :user_id => u_id %> to let them know you want this information
 	<% if no_yet == "reviews" %>
-		, or <%= link_to "leave a review", new_review_path %>.
+		or <%= link_to "leave a review", new_review_path %>.
 	<% else %>
 	  .
 	<% end %>
