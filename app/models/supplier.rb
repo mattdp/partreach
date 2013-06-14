@@ -52,6 +52,11 @@ class Supplier < ActiveRecord::Base
     return answer
   end
 
+  def safe_country
+    return self.address.country if self.address and self.address.country.present?
+    return "N/A"
+  end
+
 end
 
 #may need to add material and method

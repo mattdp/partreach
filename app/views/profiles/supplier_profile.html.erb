@@ -7,13 +7,7 @@
 			<% provide(:title, "#{@supplier.name} Profile") %>
 			<h1 id="supplier-name"><%= "#{@supplier.name}" %></h1>
 			<div class="fleft">
-				<p>Country: 
-					<% if !@supplier.address.nil? and !@supplier.address.country.nil? %>
-						<%= "#{@supplier.address.country}" %>
-					<% else %>
-						N/A
-					<% end %>
-				</p>
+				<p><%= "Country: #{@supplier.address.country}" %></p>
 				<% counter = 0 %>
 				<p><% @tags.each do |t| %>
 					<span class="tag"><%= "#{t.user_readable}" %></span>
