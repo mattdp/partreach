@@ -5,7 +5,10 @@
 			<p>Profile not found.</p>
 		<% else %>
 			<% provide(:title, "#{@supplier.name} Profile") %>
-			<h1 id="supplier-name"><%= "#{@supplier.name}" %></h1>
+			<h1 id="supplier-name">
+				<%= "#{@supplier.name}" %>
+				<%= " (not visible)" unless @supplier.profile_visible %>
+			</h1>
 			<div class="fleft">
 				<p><%= "Country: #{@supplier.safe_country}" %></p>
 				<% counter = 0 %>
