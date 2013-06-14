@@ -19,7 +19,7 @@
 		<%= link_to "Select all suppliers", "#", :class => "btn", :id => "all-suppliers" %>
 		<%#= button_to_function "button function", "SetAllCheckBoxes()", :class => "btn" %>
 	<div>
-			<% first_time = true %>
+		<% first_time = true %>
 		<% counter = 0 %>
 		<% supplier_columns = 3 %>
 		<% tag_columns = 6 %>
@@ -34,6 +34,13 @@
 					<% end %>
 				</tr>
 			<% end %>
+				<tr>
+					<td><strong><%= "Country (don't add)" %><strong></td>
+					<% ["no-country"].concat(Address.all_countries).each do |c| %>
+						<td><%= check_box_tag "tag_selection[]", c, false, class: "fleft", id: "#{c}" %>
+						<p><%= "#{c}" %></p></td>
+					<% end %>
+				</tr>
 		</table>
 
 		<% counter = 0 %>
@@ -46,7 +53,7 @@
 					<% tag_names << t.name %>
 				<% end %>
 
-				<%= check_box_tag "supplier_selection[]", s.id, false, class: "fleft supplier-checkbox #{tag_names.join(" ")}" %>
+				<%= check_box_tag "supplier_selection[]", s.id, false, class: "fleft supplier-checkbox #{tag_names.join(" ")}#{s.safe_country}" %>
 				<% if s.url_main.nil? %>
 					<%= "#{s.name}" %>
 				<% else %>

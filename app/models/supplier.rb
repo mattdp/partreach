@@ -54,7 +54,7 @@ class Supplier < ActiveRecord::Base
 
   def safe_country
     return self.address.country if self.address and self.address.country.present?
-    return "N/A"
+    return "no-country"
   end
 
 end

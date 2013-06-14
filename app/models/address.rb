@@ -23,4 +23,13 @@ class Address < ActiveRecord::Base
 
   validates :place_id, presence: true
   validates :place_type, presence: true
+
+  def self.all_countries
+  	countries = []
+  	Address.all.map {|a| countries << a.country}
+  	countries = countries.uniq
+  	countries.delete(nil) if countries.include?(nil)
+  	return countries
+  end
+
 end
