@@ -2,5 +2,5 @@
   <h3 class="sign-up">Not ready for a quote? <em>Sign up for updates.</em></h3>
   <%= text_field_tag 'email_field', nil, :placeholder => "example@domain.com", :class => "span9", :id => "email-submit-field" %>
   <%= submit_tag "Stay Updated", :disable_with => "Submitting", :class => "span3", :id => "email-submit-button" %>
-	<h3 class="referral">And check out <%= link_to "3D Printing Price Check", "http://www.3dprintingpricecheck.com" %> to help approximate cost.</h3>
+	<p id="referral">And check out <%= link_to "3D Printing Price Check", "http://www.3dprintingpricecheck.com", :class => "referral-link" %> to help approximate cost.</p>
 </div>
