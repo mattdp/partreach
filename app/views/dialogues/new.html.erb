@@ -48,7 +48,12 @@
 
 				<%= check_box_tag "supplier_selection[]", s.id, false, class: "fleft supplier-checkbox #{tag_names.join(" ")}" %>
 				<% s.address.nil? ? country = "N/A" : country = s.address.country %>
-				<%= label_tag "#{s.name} [#{tag_names.join(",")}] <#{country}>" %>
+				<% if s.url_main.nil? %>
+					<%= "#{s.name}" %>
+				<% else %>
+					<%= link_to s.name, s.url_main %>
+				<% end %>
+				<%= " [#{tag_names.join(',')}] <#{country}>" %>
 
 				<% if counter >= supplier_columns %>
 					</td></tr><tr><td>
