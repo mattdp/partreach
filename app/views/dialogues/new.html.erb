@@ -53,7 +53,7 @@
 					<% tag_names << t.name %>
 				<% end %>
 
-				<%= check_box_tag "supplier_selection[]", s.id, false, class: "fleft supplier-checkbox #{tag_names.join(" ")}#{s.safe_country}" %>
+				<%= check_box_tag "supplier_selection[]", s.id, false, class: "fleft supplier-checkbox #{tag_names.join(" ")} #{s.safe_country}" %>
 				<% if s.url_main.nil? %>
 					<%= "#{s.name}" %>
 				<% else %>
