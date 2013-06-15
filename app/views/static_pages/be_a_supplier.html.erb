@@ -2,7 +2,11 @@
 
 <div class="container">
 	<div class="span10 offset1">
+
+		<h4 class="center"><strong><%= mail_to "info@supplybetter.com", "If you already know you'd like to be a supplier, click here to get in touch!", encode: "javascript", target: "_blank", subject: "Tell me more about being a #{brand_name} supplier!", body: "I'm interested in becoming a #{brand_name} supplier. Please reach out to me with more information." %></strong></h4>
+
 		<h3 class="center">What's SupplyBetter?</h3>
+		<p><strong>SupplyBetter helps connect serious buyers of custom parts with the best manufacturers for their needs</strong>. When making recommendations, we take into account the process, quantity, materials, timeline, geography, application, and supplier reputation. This makes sure we send buyers the right matches, and that suppliers only get RFQs that fit their business.
 		
 		<h3 class="center">How does SupplyBetter make money?</h3>
 		<p><strong>There are no fixed fees or plans - if you're not bidding on jobs, SupplyBetter is free</strong>. All charges are on a per-bid basis: if we send you an RFQ and you want to bid on it, we pass your bid onto the client, and you owe SupplyBetter 1% of your bid, win or lose. You'll have a good chance of winning since we don't ask many suppliers/quote to bid, and you'll get the contact information of the buyer even if you don't win the business.
@@ -15,10 +19,12 @@
 		<p>That's a common complaint we hear about competitors. We make sure that doesn't happen in two ways:</p>
 		<ul>
 			<li><strong>Limited suppliers per bid</strong> - since we ask for per-bid payment, we keep the number of suppliers per RFQ small. If you're not winning bids, you won't want to submit more quotes, so we do our best to keep you winning.</li>
-			<li><strong>We get smarter about what RFQs we send you</strong> - our system adapts to what RFQs you don't choose to bid on, and avoids sending similar requests in the future. You'll get RFQs that line up with your preferred quantities, applications, price range, and timing.</li>
+			<li><strong>We get smarter about what RFQs we send you</strong> - our system adapts to what RFQs you don't choose to bid on, and avoids sending similar requests in the future. You'll get RFQs that line up with your preferred quantities, applications, price range, etc.</li>
 		</ul>
 
 		<h3 class="center">How can I find out more or sign up?</h3>
+		<p><strong><%= mail_to "info@supplybetter.com", "Get in touch with us", encode: "javascript", target: "_blank", subject: "Tell me more about being a #{brand_name} supplier!", body: "I'm interested in more information about becoming a #{brand_name} supplier." %></strong> to see if you can qualify as a supplier! You'll need a proven track record and a clear idea of what sort of business you want.</p>
+
 
 	</div>
 </div>
