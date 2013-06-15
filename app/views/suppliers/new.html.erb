@@ -1,0 +1,16 @@
+<% provide(:title,"New Supplier") %>
+
+
+<div class="container">
+	<div class="span10 offset1">
+
+		<%= form_tag :action => 'create', :controller => 'suppliers' do %>
+
+			<%= label_tag 'user_name_field', 'name' %><%= text_field_tag 'name', nil %>
+			<%= label_tag 'user_name_field', 'url_main' %><%= text_field_tag 'url_main', nil %>
+			<%= label_tag 'user_name_field', 'country' %><%= text_field_tag 'country', nil %>
+
+			<%= submit_tag "Create supplier", :disable_with => "Creating...", :id => "create_button" %>
+		<% end %>
+	</div>
+</div>
