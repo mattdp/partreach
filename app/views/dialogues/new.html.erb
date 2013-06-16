@@ -17,7 +17,10 @@
 
 	<div class="clear">
 		<%= link_to "Select all suppliers", "#", :class => "btn", :id => "all-suppliers" %>
-		<%#= button_to_function "button function", "SetAllCheckBoxes()", :class => "btn" %>
+	</div>
+
+	<%= link_to "Add new supplier", new_supplier_path %>
+
 	<div>
 		<% first_time = true %>
 		<% counter = 0 %>
