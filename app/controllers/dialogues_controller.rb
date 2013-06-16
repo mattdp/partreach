@@ -36,7 +36,7 @@ class DialoguesController < ApplicationController
 				end
 			end
 
-			redir_to = "/orders"
+			redir_to = "/dialogues/new"
 			redir_notice = 'Tags added to suppliers.'
 
 		elsif params[:form_use] == "remove_tags"
