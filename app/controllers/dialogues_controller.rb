@@ -26,7 +26,7 @@ class DialoguesController < ApplicationController
 			redir_to = "/orders/manipulate_dialogues/#{@dialogue.order_id}"
 			redir_notice = 'Dialogue added to order.'
 
-		elsif params[:form_use] == "add_tags"
+		elsif params[:form_use] == "add_tag" or params[:form_use] == "remove_tag"
 			
 			@tag_ids = params[:tag_selection]
 			@country = params[:country_selection][0] if params[:country_selection]
@@ -38,7 +38,7 @@ class DialoguesController < ApplicationController
 
 				if @tag_ids and @tag_ids.size > 0
 					@tag_ids.each do |t_id|
-						saved_ok = false unless s.add_tag(t_id)
+						saved_ok = false unless s.send "#{params[:form_use]}", t_id
 					end
 				end
 
@@ -63,21 +63,7 @@ class DialoguesController < ApplicationController
 			end
 
 			redir_to = "/dialogues/new"
-			redir_notice = 'Tags added to suppliers.'
-
-		# clearly should be refactored into add_tags
-		elsif params[:form_use] == "remove_tags"
-
-			@tag_ids = params[:tag_selection]
-
-			@supplier_ids.each do |s|
-				@tag_ids.each do |t|
-					Supplier.find(s).remove_tag(t)
-				end
-			end
-			
-			redir_to = "/dialogues/new"
-			redir_notice = 'Tags removed from suppliers.'
+			redir_notice = "#{params[:form_use]} to suppliers."
 
 		else #should never happen
 			saved_ok = false 
