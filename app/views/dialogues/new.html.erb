@@ -37,13 +37,17 @@
 					<% end %>
 				</tr>
 			<% end %>
-				<tr>
-					<td><strong><%= "Country (don't add)" %><strong></td>
-					<% ["no-country"].concat(Address.all_countries).each do |c| %>
-						<td><%= check_box_tag "tag_selection[]", c, false, class: "fleft", id: "#{c}" %>
-						<p><%= "#{c}" %></p></td>
-					<% end %>
-				</tr>
+			<tr>
+				<td><strong><%= "Country" %><strong></td>
+				<% ["no-country"].concat(Address.all_countries).each do |c| %>
+					<td><%= check_box_tag "country_selection[]", c, false, class: "fleft", id: "#{c}" %>
+					<p><%= "#{c}" %></p></td>
+				<% end %>
+			</tr>
+			<tr>
+				<td><strong><%= "State (2L: xx)" %><strong></td>
+				<td><%= text_field_tag 'state', nil %></td>
+			</tr>
 		</table>
 
 		<% counter = 0 %>

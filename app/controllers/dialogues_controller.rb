@@ -29,16 +29,43 @@ class DialoguesController < ApplicationController
 		elsif params[:form_use] == "add_tags"
 			
 			@tag_ids = params[:tag_selection]
+			@country = params[:country_selection][0] if params[:country_selection]
+			@state = params[:state]
 
-			@supplier_ids.each do |s|
-				@tag_ids.each do |t|
-					saved_ok = false unless Supplier.find(s).add_tag(t)
+			@supplier_ids.each do |s_id|
+
+				s = Supplier.find(s_id)
+
+				if @tag_ids and @tag_ids.size > 0
+					@tag_ids.each do |t_id|
+						saved_ok = false unless s.add_tag(t_id)
+					end
 				end
+
+				if @country 
+					if s.address
+						s.address.country = @country
+					else
+						s.address = Address.create(:country => @country)
+					end
+				end
+
+				if @state
+					if s.address
+						s.address.state = @state
+					else
+						s.address = Address.create(:state => @state)
+					end
+				end
+
+				s.address.save if @country or @state
+
 			end
 
 			redir_to = "/dialogues/new"
 			redir_notice = 'Tags added to suppliers.'
 
+		# clearly should be refactored into add_tags
 		elsif params[:form_use] == "remove_tags"
 
 			@tag_ids = params[:tag_selection]
@@ -49,7 +76,7 @@ class DialoguesController < ApplicationController
 				end
 			end
 			
-			redir_to = "/orders"
+			redir_to = "/dialogues/new"
 			redir_notice = 'Tags removed from suppliers.'
 
 		else #should never happen
