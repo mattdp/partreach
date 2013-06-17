@@ -57,6 +57,11 @@ class Supplier < ActiveRecord::Base
     return "no-country"
   end
 
+  def safe_state
+    return self.address.state if self.address and self.address.state.present?
+    return ""
+  end 
+
 end
 
 #may need to add material and method
