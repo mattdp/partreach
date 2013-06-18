@@ -30,6 +30,11 @@ Partreach::Application.routes.draw do
   match '/suppliers/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
   match '/submit_ask/', to: 'profiles#submit_ask'
 
+  match '/analytics', to: 'analytics#home', as: 'analytics_home'
+  match '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
+  match '/analytics/suppliers', to: 'analytics#suppliers', as: 'analytics_suppliers'
+  match '/analytics/emails', to: 'analytics#emails', as: 'analytics_emails'
+
   #goal: allow show page to post a form. seems hacky - check with someone.
   match '/orders/:id', to: 'orders#update', via: :post
 
