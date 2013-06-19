@@ -48,7 +48,7 @@ class Order < ActiveRecord::Base
     finished = [] 
     unfinished = []
 
-    all = Order.all.sort
+    all = Order.all.sort.reverse 
     all.each do |a|
       a.finished? ? finished << a : unfinished << a
     end
