@@ -16,6 +16,13 @@
 
 	<%= hidden_field_tag "id", @order.id %>
 
+	<%= label_tag "is_over_without_winner", "Over without winner?" %>
+	<%= check_box_tag "is_over_without_winner", 1, @order.is_over_without_winner %>
+	<%= label_tag "recommendation", "Recommendation" %>
+	<%= text_area_tag "recommendation", @order.recommendation %>
+	<%= label_tag "next_steps", "Next steps" %>
+	<%= text_area_tag "next_steps", @order.next_steps %>
+
 	<table>
 		<th>d_id</th>
 		<th>Supplier</th>

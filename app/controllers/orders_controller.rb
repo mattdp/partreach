@@ -198,6 +198,11 @@ class OrdersController < ApplicationController
     @textfields = setup_textfields
     @numberfields = setup_numberfields
 
+    @order.is_over_without_winner = params[:is_over_without_winner]
+    @order.recommendation = params[:recommendation]
+    @order.next_steps = params[:next_steps]
+    @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
+
     @dialogues.each do |d|
       if !params[d.id.to_s].nil?
         d_params = params[d.id.to_s]
