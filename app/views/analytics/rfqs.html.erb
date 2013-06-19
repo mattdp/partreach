@@ -14,7 +14,7 @@ Pending fields:  valid (not us, not duplicate?, 3dp)? when placed? conf email se
 		<td><%= link_to o.id, order_path(o.id) %></td>
 		<td><%= User.find(o.user_id).email if o.user_id %></td>
 		<td><%= o.dialogues.count %></td>
-		<td><%= o.finished? %></td>
+		<td><%= o.finished? ? "Finished." : "Needs work!" %></td>
 	</tr>
 	<% end %>
 </table>

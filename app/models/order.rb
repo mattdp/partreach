@@ -48,11 +48,11 @@ class Order < ActiveRecord::Base
     finished = [] 
     unfinished = []
 
-    all = Order.all.sort.reverse 
+    all = Order.all.sort
     all.each do |a|
       a.finished? ? finished << a : unfinished << a
     end
-    return finished.concat(unfinished)
+    return unfinished.concat(finished)
   end
 
 end
