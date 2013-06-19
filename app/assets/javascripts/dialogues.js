@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-	//select all suppliers
+	//select all visible suppliers
 	$('#all-suppliers').click(function() {
-		$('.supplier-checkbox').attr("checked","true")
+		$("td:not(.hidden)").find(".supplier-checkbox").attr("checked","true")
 	});
 
 	//allow multitag searching
