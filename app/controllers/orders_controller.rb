@@ -111,7 +111,8 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if did_user_work and did_order_save
         text_notification("#{brand_name}: Order created by #{current_user.email}, order number #{@order.id}. Go get quotes!") if Rails.env.production?
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to order_path(@order), notice: "Order successfully created. We'll be in touch by email soon to confirm!" }
+        #this line is somehow needed in a way I don't understand
         format.json { render json: @order, status: :created, location: @order }
       else
         logger.debug "ERRORS: #{@order.errors.full_messages}" 

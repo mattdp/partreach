@@ -23,7 +23,7 @@ class DialoguesController < ApplicationController
 				saved_ok = false unless @dialogue.save
 			end
 
-			redir_to = "/orders/manipulate_dialogues/#{@dialogue.order_id}"
+			redir_to = "/manipulate/#{@order.id}"
 			redir_notice = 'Dialogue added to order.'
 
 		elsif params[:form_use] == "add_tag" or params[:form_use] == "remove_tag"

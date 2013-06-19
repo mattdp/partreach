@@ -21,7 +21,7 @@ Partreach::Application.routes.draw do
   match '/business', to: 'static_pages#procurement'
   match '/materials', to: 'static_pages#materials'
   match '/be_a_supplier', to: 'static_pages#be_a_supplier'
-  match 'orders/manipulate_dialogues/:id', to: 'orders#manipulate_dialogues'
+  match '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate_path'
   match 'orders/update_dialogues', to: 'orders#update_dialogues'
   match 'orders/purchase/:order/:dialogue', to: 'orders#purchase'
   match '/cto', to: 'static_pages#cto'
