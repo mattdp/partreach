@@ -40,7 +40,8 @@ class Order < ActiveRecord::Base
     self.dialogues.each do |d|
       return true if d.won 
     end
-    self.is_over_without_winner ? true : false
+    return true if self.is_over_without_winner
+    return false #0 dialogue, multiple unwon dialogues, and is_over nil cases
   end
 
   def self.rfqs_order
@@ -53,5 +54,5 @@ class Order < ActiveRecord::Base
     end
     return finished.concat(unfinished)
   end
-  
+
 end
