@@ -35,4 +35,23 @@ class Order < ActiveRecord::Base
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
   validates :material_message, presence: true, length: {minimum: 2}
   validates :drawing_units, presence: true, length: {minimum: 1}
+
+  def finished?
+    self.dialogues.each do |d|
+      return true if d.won 
+    end
+    self.is_over_without_winner ? true : false
+  end
+
+  def self.rfqs_order
+    finished = [] 
+    unfinished = []
+
+    all = Order.all.sort
+    all.each do |a|
+      a.finished? ? finished << a : unfinished << a
+    end
+    return finished.concat(unfinished)
+  end
+  
 end

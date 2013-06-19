@@ -1,5 +1,22 @@
 <% provide(:title, "RFQ status") %>
 
-RFQ status to be implemented - see what streak has, needs order status
+Pending fields: 3d printing? when placed? conf email sent? quotes requested? returned quotes? paid bids? resulted in business? 
+
+<table>
+	<tr>
+		<th>ID</th>
+		<th>User email</th>
+		<th>Total suppliers</th>
+		<th>Ongoing?</th>
+	</tr>
+	<% @orders.each do |o| %>
+	<tr>
+		<td><%= link_to o.id, order_path(o.id) %></td>
+		<td><%= User.find(o.user_id).email if o.user_id %></td>
+		<td><%= o.dialogues.count %></td>
+		<td><%= o.finished? %></td>
+	</tr>
+	<% end %>
+</table>
 
 <%= render 'layouts/analytics_links' %>

@@ -5,6 +5,7 @@ class AnalyticsController < ApplicationController
 	end
 
 	def rfqs
+		@orders = Order.rfqs_order
 	end
 
 	def suppliers
