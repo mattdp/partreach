@@ -53,8 +53,19 @@
 							<p><%= @supplier.description %></p>
 						<% end %>
 					</div>
-					<% if @machines_toggle %><div class="panel hidden machines-content">
-					<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
+					<% if @machines_toggle %>
+						<div class="panel hidden machines-content">
+							<% if @supplier.machines.nil? %>
+								<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested", :s_id => @supplier.id, :u_id => @user_id} %>
+							<% else %>
+								<ul>
+									<% @supplier.machines.each do |m| %>
+										<li><%= "#{m.formatted_name}" %></li>
+									<% end %>
+								</ul>
+							<% end %>
+						</div>
+					<% end %>
 					<% if @reviews_toggle %><div class="panel hidden reviews-content"><%= render :partial => "layouts/panel_text", :locals => {:no_yet => "reviews", :lead_type => "reviews_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
 					<% if @photos_toggle %><div class="panel hidden photos-content"><%= render :partial => "layouts/panel_text", :locals => {:no_yet => "photos", :lead_type => "photos_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
 				</div>
