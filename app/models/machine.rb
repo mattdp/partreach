@@ -15,7 +15,7 @@ class Machine < ActiveRecord::Base
 	has_many :owners
 	has_many :suppliers, :through => :owners
 
-	validates :name, presence: true, uniqueness: {case_sensitive: false}
+	validates :name, presence: true
 	validates :manufacturer, presence: true
 
 	def formatted_name

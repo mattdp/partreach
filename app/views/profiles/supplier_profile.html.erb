@@ -55,7 +55,7 @@
 					</div>
 					<% if @machines_toggle %>
 						<div class="panel hidden machines-content">
-							<% if @supplier.machines.nil? %>
+							<% if @supplier.machines.nil? or @supplier.machines == [] %>
 								<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested", :s_id => @supplier.id, :u_id => @user_id} %>
 							<% else %>
 								<ul>
