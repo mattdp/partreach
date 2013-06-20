@@ -12,10 +12,10 @@
 <% if !(@order.supplier_message.nil? or @order.supplier_message == "") %>
 	<p><strong>Message to suppliers: </strong><%= "#{@order.supplier_message}" %></p>
 <% end %>
-<% if (@order.recommendation.nil? or @order.recommendation == "") %>
+<% if !(@order.recommendation.nil? or @order.recommendation == "") %>
 	<p><strong>Our recommendation: </strong><%= "#{@order.recommendation}" %></p>
 <% end %>
-<% if (@order.next_steps.nil? or @order.next_steps == "")%>
+<% if !(@order.next_steps.nil? or @order.next_steps == "")%>
 	<p><strong>Suggested next steps: </strong><%= "#{@order.next_steps}" %></p>
 <% end %>
 <%= link_to "Leave a supplier review", new_review_path %>
