@@ -10,7 +10,10 @@
 				<%= " (not visible)" unless @supplier.profile_visible %>
 			</h1>
 			<div class="fleft">
-				<p><%= "Country: #{@supplier.safe_country}" %></p>
+				<p>
+					<%= "Location: #{@supplier.safe_country}" %>
+					<%= " (#{@supplier.safe_state})" if @supplier.safe_state.length > 0 %>
+				</p>
 				<% counter = 0 %>
 				<p><% @tags.each do |t| %>
 					<span class="tag"><%= "#{t.user_readable}" %></span>
