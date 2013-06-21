@@ -4,13 +4,13 @@ Partreach::Application.routes.draw do
 
   resources :signed_urls, only: :index
   resources :orders
-  resources :dialogues, only: [:create]
+  resources :dialogues, only: [:new, :create]
   resources :users, only: [:new, :create, :edit, :update, :show] # no index, no destroy 
   resources :sessions, only: [:new, :create, :destroy]
   resources :leads, only: [:create]
   resources :reviews, only: [:new, :create]
   resources :password_resets
-  resources :suppliers, only: [:new, :create]
+  resources :suppliers, only: [:new, :create, :index]
 
   match '/signup', to: 'orders#new'
   match '/signin', to: 'sessions#new'
@@ -26,7 +26,6 @@ Partreach::Application.routes.draw do
   match 'orders/purchase/:order/:dialogue', to: 'orders#purchase'
   match '/cto', to: 'static_pages#cto'
   match '/dialogues/new/:id', to: 'dialogues#new'
-  match '/dialogues/new/', to: 'dialogues#new'
   match '/suppliers/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
   match '/submit_ask/', to: 'profiles#submit_ask'
 

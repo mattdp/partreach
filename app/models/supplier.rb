@@ -54,6 +54,10 @@ class Supplier < ActiveRecord::Base
     return answer
   end
 
+  def self.visible_profiles
+    Supplier.where('profile_visible = true')
+  end
+
   def safe_country
     return self.address.country if self.address and self.address.country.present?
     return "no-country"

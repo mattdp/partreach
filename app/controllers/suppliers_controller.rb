@@ -22,4 +22,8 @@ class SuppliersController < ApplicationController
 		redirect_to dialogues_new_path, notice: note
 	end
 
+	def index
+		@suppliers = Supplier.visible_suppliers
+	end
+
 end
