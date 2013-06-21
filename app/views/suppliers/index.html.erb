@@ -1,3 +1,5 @@
+<% provide(:title,"Supplier Profiles") %>
+
 <% @suppliers.each do |s| %>
-	<%= s.name %>
+	<%= link_to s.name, "/suppliers/#{s.name_for_link}" %>
 <% end %>
