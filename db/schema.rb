@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130620211144) do
+ActiveRecord::Schema.define(:version => 20130621165721) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(:version => 20130620211144) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "combos", ["supplier_id"], :name => "index_combos_on_supplier_id"
+
   create_table "dialogues", :force => true do |t|
     t.boolean  "initial_select"
     t.boolean  "opener_sent"
@@ -63,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20130620211144) do
     t.string   "currency",                                           :default => "dollars"
     t.boolean  "recommended",                                        :default => false
   end
+
+  add_index "dialogues", ["order_id"], :name => "index_dialogues_on_order_id"
 
   create_table "leads", :force => true do |t|
     t.string   "email"
@@ -103,6 +107,8 @@ ActiveRecord::Schema.define(:version => 20130620211144) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "owners", ["supplier_id"], :name => "index_owners_on_supplier_id"
 
   create_table "reviews", :force => true do |t|
     t.string   "company"
