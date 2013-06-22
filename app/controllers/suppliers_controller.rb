@@ -11,6 +11,8 @@ class SuppliersController < ApplicationController
 		@supplier.url_main = params[:url_main]
 		@supplier.address = Address.new
 		@supplier.address.country = params[:country]
+		@supplier.address.state = params[:state]
+		@supplier.address.zip = params[:zip]
 
 		note = ""
 		if @supplier.save and @supplier.address.save
@@ -19,7 +21,7 @@ class SuppliersController < ApplicationController
 			note = "Saving problem."
 		end
 
-		redirect_to dialogues_new_path, notice: note
+		redirect_to new_dialogue_path, notice: note
 	end
 
 	def index
