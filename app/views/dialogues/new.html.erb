@@ -24,24 +24,37 @@
 	<div>
 		<% first_time = true %>
 		<% counter = 0 %>
-		<% supplier_columns = 3 %>
+		<% supplier_columns = 1 %>
 		<% tag_columns = 6 %>
+
 
 		<table id="tag_matrix">
 			<% @family_names_and_tags.keys.each do |k| %>
+				<% counter = 0 %>
 				<tr>
 					<td><strong><%= "#{k}" %><strong></td>
 					<% @family_names_and_tags[k].each do |t| %>
+						<% if counter >= tag_columns %>
+							</tr><tr>
+							<% counter = 0 %>
+						<% end %>
 						<td><%= check_box_tag "tag_selection[]", t.id, false, class: "fleft", id: "#{t.name}" %>
 						<p><%= "#{t.name}" %></p></td>
+						<% counter += 1 %>
 					<% end %>
 				</tr>
 			<% end %>
+			<% counter = 0 %>
 			<tr>
 				<td><strong><%= "Country" %><strong></td>
 				<% ["no-country"].concat(Address.all_countries).each do |c| %>
+					<% if counter >= tag_columns %>
+						</tr><tr>
+						<% counter = 0 %>
+					<% end %>
 					<td><%= check_box_tag "country_selection[]", c, false, class: "fleft", id: "#{c}" %>
 					<p><%= "#{c}" %></p></td>
+					<% counter += 1 %>			
 				<% end %>
 			</tr>
 			<tr>
