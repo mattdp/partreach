@@ -30,7 +30,7 @@ class DialoguesController < ApplicationController
 			
 			@tag_ids = params[:tag_selection]
 			@country = params[:country_selection][0] if params[:country_selection]
-			@state = params[:state]
+			@state = params[:state] if !params[:state].nil? and params[:state] != ""
 
 			@supplier_ids.each do |s_id|
 

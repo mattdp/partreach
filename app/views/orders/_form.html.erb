@@ -49,9 +49,17 @@
       <div class="row">
         <%= label_tag 'material_message_field', 'Material' %>
         <%= text_area_tag 'material_message_field', nil, :rows => 3, :placeholder => '(ex: ABS, stainless steel, white durable nylon, UV curable resin, etc. If you\'re not sure, we can help you decide.)' %>
+      </div>
 
-        <%= label_tag 'zip_field', 'Zip Code' %>
-        <%= text_field_tag 'zip_field', nil, :placeholder => '(Required for shipping estimates)' %>
+      <div class="row">
+        <div class="pull-left half">
+          <%= label_tag 'zip_field', 'Postal Code' %>
+          <%= text_field_tag 'zip_field', nil, :placeholder => '(Needed for shipping estimates)' %>
+        </div>
+        <div class="pull-right half">
+          <%= label_tag 'country_field', 'Country' %>
+          <%= text_field_tag 'country_field', nil, :placeholder => '(Default: USA)' %>
+        </div>
       </div>
 
       <div class="row">

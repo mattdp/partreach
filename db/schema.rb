@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130621165721) do
+ActiveRecord::Schema.define(:version => 20130622014616) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -133,7 +133,6 @@ ActiveRecord::Schema.define(:version => 20130621165721) do
     t.text     "description"
     t.string   "email"
     t.string   "phone"
-    t.integer  "address_id"
     t.string   "url_materials"
     t.string   "source"
     t.boolean  "profile_visible", :default => false

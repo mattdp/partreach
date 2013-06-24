@@ -93,15 +93,16 @@ class OrdersController < ApplicationController
     if !params[:deadline].nil?
       @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
     end
-    if !params[:zip_field].nil? and did_user_work
+    if (!params[:zip_field].nil? or !params[:country_field].nil?) and did_user_work
       if current_user.address.nil?
         a = Address.new()
         a.place_id = current_user.id
         a.place_type = "User"
         a.zip = params[:zip_field]
+        a.country = params[:country_field]
         a.save
-      elsif current_user.address.zip != params[:zip_field]
-        current_user.address.update_attributes({:zip => params[:zip_field]}) 
+      elsif current_user.address.zip != params[:zip_field] or current_user.address.zip != params[:country_field]
+        current_user.address.update_attributes({:zip => params[:zip_field], :country => params[:country_field]})
       end
     end
     @order.supplier_message = params[:supplier_message_field]
