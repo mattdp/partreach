@@ -61,6 +61,10 @@
 				<td><strong><%= "State (2L: xx)" %><strong></td>
 				<td><%= text_field_tag 'state', nil %></td>
 			</tr>
+			<tr>
+				<td><strong><%= "Postal code" %><strong></td>
+				<td><%= text_field_tag 'zip', nil %></td>
+			</tr>
 		</table>
 
 		<% counter = 0 %>
@@ -79,7 +83,7 @@
 				<% else %>
 					<%= link_to s.name, s.url_main %>
 				<% end %>
-				<%= " [#{tag_names.join(',')}] <#{s.safe_country}:#{s.safe_state}>" %>
+				<%= " [#{tag_names.join(',')}] <#{s.safe_country}:#{s.safe_state}:#{s.safe_zip}>" %>
 
 				<% if counter >= supplier_columns %>
 					</td></tr><tr><td>

@@ -68,6 +68,11 @@ class Supplier < ActiveRecord::Base
     return ""
   end 
 
+  def safe_zip
+    return self.address.zip if self.address and self.address.zip.present?
+    return ""
+  end  
+
 end
 
 #may need to add material and method

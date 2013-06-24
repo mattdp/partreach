@@ -31,6 +31,7 @@ class DialoguesController < ApplicationController
 			@tag_ids = params[:tag_selection]
 			@country = params[:country_selection][0] if params[:country_selection]
 			@state = params[:state] if !params[:state].nil? and params[:state] != ""
+			@zip = params[:zip] if !params[:zip].nil? and params[:zip] != ""
 
 			@supplier_ids.each do |s_id|
 
@@ -58,7 +59,15 @@ class DialoguesController < ApplicationController
 					end
 				end
 
-				s.address.save if @country or @state
+				if @zip
+					if s.address
+						s.address.zip = @zip
+					else
+						s.address = Address.create(:zip => @zip)
+					end
+				end
+
+				s.address.save if @country or @state or @zip
 
 			end
 
