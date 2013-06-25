@@ -30,8 +30,9 @@ class Supplier < ActiveRecord::Base
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
   def add_tag(tag_id)
+    t = Tag.find_by_id(tag_id)    
+    return false if t.nil?    
     c = Combo.new(supplier_id: self.id, tag_id: tag_id)
-    t = Tag.find(tag_id)
     Combo.destroy_family_tags(self.id,tag_id) if t.exclusive and !t.family.nil?
     return c.save
   end
@@ -42,11 +43,15 @@ class Supplier < ActiveRecord::Base
   end
 
   def has_tag?(tag_id)
-    self.tags.include?(Tag.find(tag_id))
+    t = Tag.find_by_id(tag_id)
+    return false if t.nil?    
+    self.tags.include?(t)
   end
 
   def add_machine(machine_id)
-    w = Owner.new(supplier_id: self.id, machine_id: machine_id)
+    m = Machine.find_by_id(machine_id)    
+    return false if m.nil?
+    w = Owner.new(supplier_id: self.id, machine_id: machine_id) 
     return w.save
   end
 
@@ -55,8 +60,10 @@ class Supplier < ActiveRecord::Base
     Owner.destroy_all(supplier_id: self.id, machine_id: machine_id) unless w.nil?
   end
 
-  def has_tag?(machine_id)
-    self.machines.include?(Machine.find(machine_id))
+  def has_machine?(machine_id)
+    m = Machine.find_by_id(machine_id)
+    return false if m.nil?
+    self.machines.include?(m)
   end 
 
   def visible_tags
