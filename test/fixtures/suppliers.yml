@@ -10,7 +10,6 @@
 #  description     :text
 #  email           :string(255)
 #  phone           :string(255)
-#  address_id      :integer
 #  url_materials   :string(255)
 #  source          :string(255)
 #  profile_visible :boolean          default(FALSE)

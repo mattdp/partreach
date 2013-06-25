@@ -2,6 +2,21 @@ module DataEntry
 
 	require 'csv'
 
+	ZIP_COUNTRY = 0
+	ZIP_POSTAL = 1
+	ZIP_LOCATION_NAME = 2
+
+	def zipreader(url)
+		CSV.new(open(url), {:col_sep => "\t"}).each do |row|
+			l = Location.new({:country => row[ZIP_COUNTRY],
+												:zip => row[ZIP_POSTAL],
+												:location_name => row[ZIP_LOCATION_NAME]
+											})
+			l.save
+		end
+		return "Load attempted"
+	end
+
 	# CURRENT USE - csv_to_hashes(filepath) on local machine, result = <output> on heroku,
 	# call hashes_to_saved_changes(result) on heroku
 
