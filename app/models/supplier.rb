@@ -28,6 +28,23 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
+  def from_notes(field, options = {})
+    return false if self.address.nil? or self.address.country != "US" or self.address.notes.nil?
+    if field == "zip"
+      return false if self.address.zip.length > 0
+      matched = self.address.notes.match(/.*(\d{5})/)
+      return false if matched.nil?
+      puts "\n#{self.address.notes} ::::: #{matched[1]}" if options[:debug]
+      return matched[1]
+    elsif field == "state"
+      return false if self.address.state.length > 0
+      matched = self.address.notes.match(/.* ([A-Z]{2}) /)
+      return false if matched.nil?
+      puts "\n#{self.address.notes} ::::: #{matched[1]}" if options[:debug]           
+      return matched[1]
+    end
+  end
+
   def add_tag(tag_id)
     t = Tag.find_by_id(tag_id)    
     return false if t.nil?    
