@@ -1,11 +1,17 @@
 <% provide(:title,"Supplier Profiles") %>
 
-<% @visibles.keys.each do |country| %>
-	<h3><%= "#{country}" %></h3>
-	<% @visibles[country].keys.each do |state| %>
-		<h4><%= "#{state}" unless state == "no_state" %></h4>
-		<% @visibles[country][state].each do |s| %>
-			<%= link_to s.name, "/suppliers/#{s.name_for_link}" %>
+<div class="content order">
+	<div class="container row supplier-list">
+		<% @visibles.keys.each do |country| %>
+			<h3 class="supplier-list-country"><%= "#{country}" %></h3>
+			<% @visibles[country].keys.each do |state| %>
+				<h4 class="supplier-list-state"><%= "#{state}" unless state == "no_state" %></h4>
+				<% @visibles[country][state].each do |s| %>
+					<ul class="supplier-list-bullets">
+						<li><%= link_to s.name, "/suppliers/#{s.name_for_link}" %></li>
+					</ul>
+				<% end %>
+			<% end %> 
 		<% end %>
-	<% end %> 
-<% end %>
+	</div>
+</div>
