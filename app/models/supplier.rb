@@ -45,6 +45,20 @@ class Supplier < ActiveRecord::Base
     self.tags.include?(Tag.find(tag_id))
   end
 
+  def add_machine(machine_id)
+    w = Owner.new(supplier_id: self.id, machine_id: machine_id)
+    return w.save
+  end
+
+  def remove_machine(machine_id)
+    w = Owner.where("supplier_id = ? AND machine_id = ?", self.id, machine_id)
+    Owner.destroy_all(supplier_id: self.id, machine_id: machine_id) unless w.nil?
+  end
+
+  def has_tag?(machine_id)
+    self.machines.include?(Machine.find(machine_id))
+  end 
+
   def visible_tags
     return nil if self.tags.nil?
     answer = []
