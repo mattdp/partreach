@@ -93,6 +93,14 @@ class Supplier < ActiveRecord::Base
     return ""
   end  
 
+  def safe_location_name
+    if self.address and self.address.country and self.address.country = "US"
+      l = Location.find_by_zip(self.address.zip) if self.address.zip.present?
+      return l.location_name if !l.nil?
+    end
+    return ""
+  end   
+
 end
 
 #may need to add material and method
