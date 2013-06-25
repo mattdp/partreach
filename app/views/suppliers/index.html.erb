@@ -1,5 +1,11 @@
 <% provide(:title,"Supplier Profiles") %>
 
-<% @suppliers.each do |s| %>
-	<%= link_to s.name, "/suppliers/#{s.name_for_link}" %>
+<% @visibles.keys.each do |country| %>
+	<h3><%= "#{country}" %></h3>
+	<% @visibles[country].keys.each do |state| %>
+		<h4><%= "#{state}" unless state == "no_state" %></h4>
+		<% @visibles[country][state].each do |s| %>
+			<%= link_to s.name, "/suppliers/#{s.name_for_link}" %>
+		<% end %>
+	<% end %> 
 <% end %>

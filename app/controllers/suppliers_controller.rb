@@ -25,7 +25,7 @@ class SuppliersController < ApplicationController
 	end
 
 	def index
-		@suppliers = Supplier.visible_profiles
+		@visibles = Supplier.visible_profiles_sorted
 	end
 
 end

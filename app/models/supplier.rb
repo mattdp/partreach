@@ -78,6 +78,30 @@ class Supplier < ActiveRecord::Base
     Supplier.where('profile_visible = true')
   end
 
+  #return hash of countries, each with hash of states, containing array of suppliers
+  #no_state for country -> supplier direct stuff
+  def self.visible_profiles_sorted
+    profiles = Supplier.visible_profiles
+
+    answer = {}
+
+    profiles.each do |s|
+      next if s.address.nil? or s.address.country.nil?
+      country = s.address.country
+      state = s.address.state
+      answer[country] = {"no_state" => []} if answer[country].nil?
+      if s.address.state.nil?
+        answer[country]["no_state"] << s
+      elsif answer[country][state].nil?
+        answer[country][state] = [s]
+      else
+        answer[country][state] << s
+      end
+    end
+
+    return answer
+  end
+
   def safe_country
     return self.address.country if self.address and self.address.country.present?
     return "no-country"
