@@ -22,6 +22,10 @@
 									<% counter += 1 %>
 								<% end %>
 							<% end %>
+							<% while !(counter >= columns) %>
+								<td></td>
+								<% counter += 1 %>
+							<% end %>
 						</tr>
 					</ul>
 				</table>
