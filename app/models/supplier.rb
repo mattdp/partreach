@@ -14,10 +14,11 @@
 #  source          :string(255)
 #  profile_visible :boolean          default(FALSE)
 #  name_for_link   :string(255)
+#  claimed         :boolean          default(FALSE)
 #
 
 class Supplier < ActiveRecord::Base
-  attr_accessible :name, :name_for_link, :url_main, :url_materials, :description, :email, :phone, :address_id, :source, :profile_visible
+  attr_accessible :name, :name_for_link, :url_main, :url_materials, :description, :email, :phone, :address_id, :source, :profile_visible, :claimed
 
   has_many :dialogues
   has_one :address, :as => :place
@@ -102,17 +103,19 @@ class Supplier < ActiveRecord::Base
 
     answer = {}
 
-    profiles.each do |s|
+    profiles.each do |s|  
       next if s.address.nil? or s.address.country.nil?
       country = s.address.country
       state = s.address.state
       answer[country] = {"no_state" => []} if answer[country].nil?
       if s.address.state.nil?
         answer[country]["no_state"] << s
+        answer[country]["no_state"].sort! { |a,b| a.name <=> b.name }
       elsif answer[country][state].nil?
         answer[country][state] = [s]
       else
         answer[country][state] << s
+        answer[country][state].sort! { |a,b| a.name <=> b.name }
       end
     end
 

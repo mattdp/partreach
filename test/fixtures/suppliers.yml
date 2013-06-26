@@ -14,6 +14,7 @@
 #  source          :string(255)
 #  profile_visible :boolean          default(FALSE)
 #  name_for_link   :string(255)
+#  claimed         :boolean          default(FALSE)
 #
 
 1:

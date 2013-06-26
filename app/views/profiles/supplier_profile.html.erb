@@ -17,7 +17,8 @@
 				</p>
 				<% counter = 0 %>
 				<p><% @tags.each do |t| %>
-					<span class="tag"><%= "#{t.user_readable}" %></span>
+					<% t.note.nil? ? title_text = "" : title_text = t.note %>
+					<span class="tag" title="<%= "#{title_text}" %>"><%= "#{t.user_readable}" %></span>
 					<% counter += 1 %>
 					<% if counter % 4 == 0 %>
 						<br>

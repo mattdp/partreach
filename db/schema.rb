@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130625183324) do
+ActiveRecord::Schema.define(:version => 20130626021040) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -147,6 +147,7 @@ ActiveRecord::Schema.define(:version => 20130625183324) do
     t.string   "source"
     t.boolean  "profile_visible", :default => false
     t.string   "name_for_link"
+    t.boolean  "claimed",         :default => false
   end
 
   create_table "tags", :force => true do |t|
