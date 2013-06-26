@@ -389,7 +389,7 @@ strong {
     line-height: 40px;
   }
   .supplier-variable {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     border: 1px #ccc solid;
   }
   .supplier-variable-content {
@@ -614,6 +614,10 @@ input, textarea, select, .uneditable-input {
 
 .back_to_home {
   margin-top: 25px;
+}
+
+.back_to_suppliers {
+  margin-bottom: 50px;
 }
 
 .debug_dump {
