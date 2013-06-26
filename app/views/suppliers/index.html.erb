@@ -8,11 +8,23 @@
 			<h3 class="supplier-list-country"><%= "#{country}" %></h3>
 			<% @visibles[country].keys.sort.each do |state| %>
 				<h4 class="supplier-list-state"><%= "#{state}" unless state == "no_state" %></h4>
-				<% @visibles[country][state].each do |s| %>
+				<table>
+					<% columns = 3 %>
+					<% counter = 0 %>
 					<ul class="supplier-list-bullets">
-						<li><%= link_to s.name, "/suppliers/#{s.name_for_link}" %></li>
+						<tr>
+							<% @visibles[country][state].each do |s| %>
+								<% if counter >= columns %>
+									</tr><tr>
+									<% counter = 0 %>
+								<% else %>
+									<td><li><%= link_to s.name, "/suppliers/#{s.name_for_link}" %></li></td>
+									<% counter += 1 %>
+								<% end %>
+							<% end %>
+						</tr>
 					</ul>
-				<% end %>
+				</table>
 			<% end %> 
 		<% end %>
 	</div>

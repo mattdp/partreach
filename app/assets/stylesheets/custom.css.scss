@@ -276,6 +276,14 @@ strong {
 
 .supplier-list {
   margin-bottom: 10px;
+  table {
+    width: 90%;
+    margin-bottom: 10px;
+    margin-left: 50px;
+  }
+  td {
+    width: 30%;
+  }
   #supplier-list-intro {
     padding: 5px 0px 0px 0px;
   }
