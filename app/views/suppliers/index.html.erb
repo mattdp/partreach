@@ -2,7 +2,7 @@
 
 <div class="content order">
 	<div class="container row supplier-list">
-		<p id="supplier-list-intro">Supplier profiles are still being developed - this is a small sample for testing. We have 250+ suppliers catalogued, representing 20+ countries.</p>
+		<p id="supplier-list-intro">Supplier profiles are still being developed - this is a small sample for testing. We have 250+ suppliers catalogued, representing 20+ countries.<br>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %>
 
 		<% @visibles.keys.sort.each do |country| %>
 			<h3 class="supplier-list-country"><%= "#{country}" %></h3>
