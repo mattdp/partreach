@@ -84,6 +84,11 @@ class Supplier < ActiveRecord::Base
     self.machines.include?(m)
   end 
 
+  def add_external(url)
+    e = External.new(supplier_id: self.id, url: url)
+    e.save
+  end
+
   def visible_tags
     return nil if self.tags.nil?
     answer = []
