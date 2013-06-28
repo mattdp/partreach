@@ -26,6 +26,7 @@ class Supplier < ActiveRecord::Base
   has_many :tags, :through => :combos
   has_many :owners
   has_many :machines, :through => :owners
+  has_many :externals
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 

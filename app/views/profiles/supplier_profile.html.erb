@@ -31,6 +31,9 @@
 						Webpage unavailable.
 					<% end %>
 				</p>
+				<% @supplier.externals.each do |e| %>
+					<%= image_tag e.url %>
+				<% end %> 
 			</div>
 			<div class="fright">
 				<%= link_to "Request Quote", {:controller => "orders", :action => "new", :from_supplier => @supplier.id}, class: "btn btn-hero", id: "button-place-order" %>
