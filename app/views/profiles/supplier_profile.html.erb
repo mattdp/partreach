@@ -41,7 +41,9 @@
 			</div>
 			<div class="fright">
 				<%= link_to "Request Quote", {:controller => "orders", :action => "new", :from_supplier => @supplier.id}, class: "btn btn-hero", id: "button-place-order" %>
-				<p><%= mail_to "claim-profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
+				<% if !@supplier.claimed %>
+					<p><%= mail_to "claim-profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
+				<% end %>
 				<p><%= mail_to "suggest-edits@supplybetter.com", "Submit corrections or more information", encode: "javascript", target: "_blank", subject: "Suggested profile change for #{@supplier.name}" %></p>
 			</div>
 			<div class="clear supplier-variable">
