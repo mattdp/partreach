@@ -527,7 +527,7 @@ form {
 #direct-upload {
   border: 1px solid #bbb;
   padding: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 5px;
   .file-upload {
     border: 0;
     padding: 10px 0;
@@ -548,7 +548,7 @@ form {
   }
   h3 {
     font-size: 20px;
-    margin-top: 32px;
+    margin-top: 15px;
   }
   p {
     font-size: 14px;
@@ -559,8 +559,9 @@ form {
       width: 50%;
     }
   }
-  #order-disclaimer {
+  .detail-text {
     font-size: 12px;
+    font-style: italic;
   }
 }
 #create_button, .form-email form .sign-in-button, .order_table .save-button {

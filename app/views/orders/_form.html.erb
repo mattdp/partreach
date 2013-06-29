@@ -35,6 +35,8 @@
 
       <input type="hidden" name="file" value="" id="direct-upload-file">
 
+      <p class="detail-text"> 3D model preferred. If you have photos or sketches, we can help you find a designer to make the model.</p> 
+
       <div class="row">
         <div class="pull-left half">
           <%= label_tag 'quantity_field', 'Quantity' %>
@@ -69,7 +71,7 @@
         <% @supplier.nil? ? suggested_suppliers_default = nil : suggested_suppliers_default = "Include #{@supplier.name} (requested)" %>
 
         <%= text_area_tag 'suggested_suppliers_field', suggested_suppliers_default, :rows => 3, :placeholder => "Don't worry if you don't have suggestions, we can choose for you." %>
-        <p class="italics"> For example, for a US West Coast prototype SLS plastic part, we'd quote: Shapeways, Ponoko, Sculpteo, i.materialise, ZoomRP, RedEye, and 3dproparts </p>
+        <p class="detail-text"> For example, for a US West Coast prototype SLS plastic part, we'd quote: Shapeways, Ponoko, Sculpteo, i.materialise, ZoomRP, RedEye, and 3dproparts </p>
       </div>
 
       <% if current_user.nil? %>
@@ -104,7 +106,7 @@
 
       <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
 
-      <p id="order-disclaimer">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
+      <p class="detail-text">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
 
       <p class="back"><%= link_to 'Back to orders', orders_path %></p>
 
