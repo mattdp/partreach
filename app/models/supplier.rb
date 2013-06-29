@@ -50,6 +50,9 @@ class Supplier < ActiveRecord::Base
   def add_tag(tag_id)
     t = Tag.find_by_id(tag_id)    
     return false if t.nil?    
+    match = Combo.where("supplier_id = ? AND tag_id = ?", self.id, tag_id)
+    binding.pry
+    return false unless match == [] 
     c = Combo.new(supplier_id: self.id, tag_id: tag_id)
     Combo.destroy_family_tags(self.id,tag_id) if t.exclusive and !t.family.nil?
     return c.save
@@ -57,7 +60,7 @@ class Supplier < ActiveRecord::Base
 
   def remove_tag(tag_id)
     c = Combo.where("supplier_id = ? AND tag_id = ?", self.id, tag_id)
-    Combo.destroy_all(supplier_id: self.id, tag_id: tag_id) unless c.nil?
+    Combo.destroy_all(supplier_id: self.id, tag_id: tag_id) unless c.nil? or c == []
   end
 
   def has_tag?(tag_id)
