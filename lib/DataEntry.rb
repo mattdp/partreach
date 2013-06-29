@@ -12,7 +12,7 @@ module DataEntry
 												:zip => row[ZIP_POSTAL],
 												:location_name => row[ZIP_LOCATION_NAME]
 											})
-			l.save
+			l.save if Location.where('zip = ?',l.zip).nil?
 		end
 		return "Load attempted"
 	end
