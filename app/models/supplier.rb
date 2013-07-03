@@ -51,7 +51,6 @@ class Supplier < ActiveRecord::Base
     t = Tag.find_by_id(tag_id)    
     return false if t.nil?    
     match = Combo.where("supplier_id = ? AND tag_id = ?", self.id, tag_id)
-    binding.pry
     return false unless match == [] 
     c = Combo.new(supplier_id: self.id, tag_id: tag_id)
     Combo.destroy_family_tags(self.id,tag_id) if t.exclusive and !t.family.nil?
