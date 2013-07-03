@@ -9,6 +9,7 @@ class SuppliersController < ApplicationController
 
 		@supplier.name = params[:name]
 		@supplier.url_main = params[:url_main] if !(params[:url_main].nil? or params[:url_main] == "")
+		@supplier.description = params[:description] if !(params[:description].nil? or params[:description] == "")
 		@supplier.address = Address.new
 		@supplier.address.country = params[:country] if !(params[:country].nil? or params[:country] == "")
 		@supplier.address.state = params[:state] if !(params[:state].nil? or params[:state] == "")
