@@ -1,3 +1,10 @@
+have words show up for desc, mach
+have symbols instead
+cut the number of db refs for this, if possible
+
+
+
+
 <% title_text = "" %>
 					<% title_text = "\"" + t.note + "\"" unless t.note.nil? %>
 					<span class="tag" title=<%= title_text %>><%= "#{t.user_readable}" %></span>

@@ -18,7 +18,11 @@
 									</tr><tr>
 									<% counter = 0 %>
 								<% else %>
-									<td><li><%= link_to s.name, "/suppliers/#{s.name_for_link}" %></li></td>
+									<td>
+										<li>
+											<%= link_to s.name, "/suppliers/#{s.name_for_link}" %>
+										</li>
+									</td>
 									<% counter += 1 %>
 								<% end %>
 							<% end %>
