@@ -1,6 +1,7 @@
-have words show up for desc, mach
-have symbols instead
-cut the number of db refs for this, if possible
+[x] have words show up for desc, mach
+[] have symbols instead
+[] mouseover with information on what it is
+[] cut the number of db refs for this, if possible
 
 
 
