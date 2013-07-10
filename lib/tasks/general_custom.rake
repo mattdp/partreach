@@ -1,31 +1,30 @@
-#desc 'add 3dp tag to all suppliers with related tags'
-task :tag_threedee => :environment do
-	Supplier.all.each do |s|
+#should refactor so has set of primary tag to be invoked if a secondary is present
+desc 'add 3dp tag to all suppliers with related tags'
+task :tag_tree => :environment do
 
-		threedee_tag = Tag.find_by_name("3d_printing").id
+	automatics = {
+		"3d_printing" => ["SLS","FDM","SLA","Polyjet","ZPrinter","metal_printing","DMLS","FFF"],
+		"custom_machining" => ["5_axis_machining"],
+		"metal_printing" => ["DMLS"]
+	}
 
-		subtags = [
-			Tag.find_by_name("SLS").id,
-			Tag.find_by_name("FDM").id,
-			Tag.find_by_name("SLA").id,
-			Tag.find_by_name("Polyjet").id,
-			Tag.find_by_name("ZPrinter").id,
-			Tag.find_by_name("metal_printing").id,
-			Tag.find_by_name("DMLS").id,
-			Tag.find_by_name("FFF").id
-		]
+	automatics.keys.each do |k|
+		primary = Tag.find_by_name(k).id
+		secondaries = automatics[k].map { |t| t = Tag.find_by_name(t).id }
 
-		#ok that this falses a lot, though could be more efficient
-		if !s.has_tag?(threedee_tag)
-			s.tags.each do |t|
-				s.add_tag(threedee_tag) if subtags.include? t.id
+		Supplier.all.each do |s|
+			if !s.has_tag?(primary) #ok that this falses a lot, though could be more efficient
+				s.tags.each do |t|
+					s.add_tag(primary) if secondaries.include? t.id
+				end
 			end
 		end
 
 	end
+
 end
 
-#desc 'Setup URL names for suppliers'
+desc 'Setup URL names for suppliers'
 task :supplier_url_creation => :environment do
 	Supplier.all.each do |s|
 		s.name_for_link = s.name.downcase.gsub(/\s+/, "")
@@ -33,7 +32,7 @@ task :supplier_url_creation => :environment do
 	end
 end
 
-#desc 'Create sample ssuppliers for database'
+desc 'Create sample suppliers for database'
 task :populate_suppliers => :environment do
 	require 'active_record/fixtures'
 
