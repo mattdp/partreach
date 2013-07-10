@@ -1,5 +1,5 @@
 #should refactor so has set of primary tag to be invoked if a secondary is present
-desc 'add 3dp tag to all suppliers with related tags'
+desc 'add dependant tags to all suppliers automatically'
 task :tag_tree => :environment do
 
 	automatics = {
