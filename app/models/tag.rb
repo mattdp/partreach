@@ -43,6 +43,14 @@ class Tag < ActiveRecord::Base
     return answers
   end
 
+  def total_suppliers_tagged
+    counter = 0
+    Supplier.all.each do |s|
+      counter += 1 if s.has_tag?(self.id)
+    end
+    return counter
+  end
+
   def user_readable
     self.readable.nil? ? self.name : self.readable
   end
