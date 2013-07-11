@@ -43,10 +43,18 @@ class Tag < ActiveRecord::Base
     return answers
   end
 
-  def total_suppliers_tagged
+  #takes array of 1-n tags and a country
+  def self.total_suppliers_tagged(tags, country = nil)
     counter = 0
     Supplier.all.each do |s|
-      counter += 1 if s.has_tag?(self.id)
+      count_this = true
+      if !country.nil?
+        count_this = false if s.address.nil? or s.address.country != country
+      end
+      tags.each do |t|
+        count_this = false unless s.has_tag?(t.id)
+      end
+      counter += 1 if count_this
     end
     return counter
   end
