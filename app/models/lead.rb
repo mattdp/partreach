@@ -8,7 +8,7 @@
 #  updated_at       :datetime         not null
 #  email_valid      :boolean          default(TRUE)
 #  email_subscribed :boolean          default(TRUE)
-#
+# 
 
 class Lead < ActiveRecord::Base
   attr_accessible :email, :email_valid, :email_subscribed
