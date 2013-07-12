@@ -13,6 +13,8 @@
 #  remember_token         :string(255)
 #  password_reset_token   :string(255)
 #  password_reset_sent_at :datetime
+#  email_valid            :boolean          default(TRUE)
+#  email_subscribed       :boolean          default(TRUE)
 #
 
 class User < ActiveRecord::Base
@@ -38,6 +40,13 @@ class User < ActiveRecord::Base
     self.password_reset_sent_at = Time.zone.now
     save!(:validate => false)
     UserMailer.password_reset(self).deliver
+  end
+
+  def self.can_use_email?(email_address)
+    object = User.find_by_email(email_address)
+    object = Lead.find_by_email(email_address) if object.nil?
+    return false if object.nil?
+    return (object.email_valid and object.email_subscribed)
   end
 
   private

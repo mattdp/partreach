@@ -13,6 +13,8 @@
 #  remember_token         :string(255)
 #  password_reset_token   :string(255)
 #  password_reset_sent_at :datetime
+#  email_valid            :boolean          default(TRUE)
+#  email_subscribed       :boolean          default(TRUE)
 #
 
 require 'spec_helper'
