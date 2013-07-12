@@ -130,6 +130,17 @@ class Supplier < ActiveRecord::Base
     return answer
   end
 
+  def create_or_update_address(options)
+    address_attributes = options.delete_if { |k,v| v.empty?}
+
+    if self.address
+      self.address.update_attributes(address_attributes)
+    else
+      self.address = Address.create(address_attributes)
+    end
+
+  end
+
   def safe_country
     return self.address.country if self.address and self.address.country.present?
     return "no-country"

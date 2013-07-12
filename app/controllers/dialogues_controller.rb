@@ -28,47 +28,17 @@ class DialoguesController < ApplicationController
 
 		elsif params[:form_use] == "add_tag" or params[:form_use] == "remove_tag"
 			
+			@country = nil
+			@state = nil
+			@zip = nil
+
 			@tag_ids = params[:tag_selection]
 			@country = params[:country_selection][0] if params[:country_selection]
 			@state = params[:state] if !params[:state].nil? and params[:state] != ""
 			@zip = params[:zip] if !params[:zip].nil? and params[:zip] != ""
 
 			@supplier_ids.each do |s_id|
-
-				s = Supplier.find(s_id)
-
-				if @tag_ids and @tag_ids.size > 0
-					@tag_ids.each do |t_id|
-						saved_ok = false unless s.send "#{params[:form_use]}", t_id
-					end
-				end
-
-				if @country 
-					if s.address
-						s.address.country = @country
-					else
-						s.address = Address.create(:country => @country)
-					end
-				end
-
-				if @state
-					if s.address
-						s.address.state = @state
-					else
-						s.address = Address.create(:state => @state)
-					end
-				end
-
-				if @zip
-					if s.address
-						s.address.zip = @zip
-					else
-						s.address = Address.create(:zip => @zip)
-					end
-				end
-
-				s.address.save if @country or @state or @zip
-
+				s.create_or_update_address(country: @country, state: @state, zip: @zip)
 			end
 
 			redir_to = "/dialogues/new"
