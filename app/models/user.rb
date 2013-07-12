@@ -16,7 +16,7 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :name, :email, :password, :password_confirmation, :email_valid, :email_subscribed
   has_secure_password
 
   has_many :orders, :dependent => :destroy

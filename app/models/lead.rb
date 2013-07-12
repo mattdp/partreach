@@ -9,7 +9,7 @@
 #
 
 class Lead < ActiveRecord::Base
-  attr_accessible :email
+  attr_accessible :email, :email_valid, :email_subscribed
 
   validates :email, presence: true, length: {minimum: 2}
 end
