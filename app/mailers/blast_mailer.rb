@@ -8,10 +8,13 @@ class BlastMailer < ActionMailer::Base
   	return mail(to: email_address, subject: subject)
   end
 
-  def blast_email_sender(addresses,subject)
+  def blast_email_sender(addresses,subject,validate=true)
     addresses.each do |a|
-     b = BlastMailer.blast_email(a,subject)
-     b.deliver
+    if !validate or User.can_use_email?(a)
+      b = BlastMailer.blast_email(a,subject)
+      b.deliver
+    else
+      puts "Not sending to #{a}"
     end
   end
 
