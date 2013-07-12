@@ -4,6 +4,11 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-  	<%= @content if @content != false %>
+  	<p>We've just released our <%= link_to "first round of supplier profiles", "http://www.supplybetter.com/suppliers" %> - over 100 US 3D printing service bureaus, with tags to highlight what services they perform. Check out some examples (below), and find the best supplier for you!
+		<img src="/app/assets/images/logo.png"><%= image_tag attachments['example_1.png'].url %>
+		<p>This is our first public step towards becoming the best source for information on different 3D printing suppliers - we have over 300 suppliers in our database right now, and are growing every week. Many of the profiles are basic, but we'll be adding descriptions, machine information, reviews, pictures, and more. We've also been helping clients outside the US, and once we have those data sets finalized we'll roll out those additional countries as well.</p>
+		<p>Please let us know if you find this useful or have changes to suggest. Thanks for using SupplyBetter!</p>
+		<p>Matt</p>
+		<p>You are getting this email because you signed up for SupplyBetter notifications. If you wish to unsubscribe, <%= mail_to "unsubscribe@supplybetter.com", "just let us know", subject: "Please unsubscribe me from future emails", body: "I no longer wish to receive SupplyBetter emails." %>.</p>
   </body>
  </html>
