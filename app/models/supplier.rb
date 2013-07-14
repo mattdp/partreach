@@ -132,7 +132,6 @@ class Supplier < ActiveRecord::Base
 
   def create_or_update_address(options)
     return false if options.nil? or options == {}
-    binding.pry
     address_attributes = options.delete_if { |k,v| v.nil? or v.empty?}
 
     if self.address
