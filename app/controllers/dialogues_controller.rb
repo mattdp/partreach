@@ -38,6 +38,14 @@ class DialoguesController < ApplicationController
 			@zip = params[:zip] if !params[:zip].nil? and params[:zip] != ""
 
 			@supplier_ids.each do |s_id|
+				s = Supplier.find(s_id)
+
+				if @tag_ids and @tag_ids.size > 0
+					@tag_ids.each do |t_id|
+						saved_ok = false unless s.send "#{params[:form_use]}", t_id
+					end
+				end
+				
 				s.create_or_update_address(country: @country, state: @state, zip: @zip)
 			end
 

@@ -131,7 +131,9 @@ class Supplier < ActiveRecord::Base
   end
 
   def create_or_update_address(options)
-    address_attributes = options.delete_if { |k,v| v.empty?}
+    return false if options.nil? or options == {}
+    binding.pry
+    address_attributes = options.delete_if { |k,v| v.nil? or v.empty?}
 
     if self.address
       self.address.update_attributes(address_attributes)
