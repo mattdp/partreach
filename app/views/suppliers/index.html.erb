@@ -3,5 +3,38 @@
 <div class="content order">
 	<div class="container row supplier-list">
 		<p id="supplier-list-intro">Supplier profiles are still being developed - this page will be an index once the profiles are released. We have 250+ suppliers catalogued, representing 20+ countries.<br>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
+		<% @visibles.keys.sort.each do |country| %>
+			<h3 class="supplier-list-country"><%= "#{country}" %></h3>
+			<% @visibles[country].keys.sort.each do |state| %>
+				<h4 class="supplier-list-state"><%= "#{state}" unless state == "no_state" %></h4>
+				<table>
+					<% columns = 3 %>
+					<% counter = 0 %>
+					<ul class="supplier-list-bullets">
+						<tr>
+							<% @visibles[country][state].each do |s| %>
+								<% if counter >= columns %>
+									</tr><tr>
+									<% counter = 0 %>
+								<% else %>
+									<td>
+										<li>
+											<%= link_to s.name, "/suppliers/#{s.name_for_link}" %>
+											<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if (!s.description.nil? and !s.description != "") %>
+											<%= image_tag "tool_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has machine data" unless s.machines == [] %>
+										</li>
+									</td>
+									<% counter += 1 %>
+								<% end %>
+							<% end %>
+							<% while !(counter >= columns) %>
+								<td></td>
+								<% counter += 1 %>
+							<% end %>
+						</tr>
+					</ul>
+				</table>
+			<% end %> 
+		<% end %>
 	</div>
 </div>
