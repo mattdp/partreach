@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-07-14T19:10:24-07:00</updated>
+ <updated>2013-07-14T19:13:51-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -40,32 +40,37 @@
    <link href="YOUR_URL/tips-to-improve-your-requests-for-quotes.html"/>
    <updated>2013-07-02T00:00:00-07:00</updated>
    <id>BLOG_URL/tips-to-improve-your-requests-for-quotes</id>
-   <content type="html">&lt;p&gt;NEEDS LINKING&lt;/p&gt;
+   <content type="html">&lt;p&gt;Filling out a proper &lt;a href=&quot;&quot; title=&quot;http://www.supplybetter.com/orders/new&quot;&gt;Request for Quote (RFQ)&lt;/a&gt; is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter.&lt;/p&gt;
 
-&lt;p&gt;Filling out a proper Request for Quote (RFQ) is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Files&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Files
-STLs are the most common file type for 3D printing and have the widest acceptance, but we’re willing accept any file type as long as it’s relevant to your project.&lt;/p&gt;
+&lt;p&gt;STLs are the most common file type for 3D printing and have the widest acceptance, but we’re willing accept any file type as long as it’s relevant to your project.&lt;/p&gt;
 
-&lt;p&gt;Quantity
-Must be a number. If your requirement is more along the lines of “100 a month” or “50,000 pieces annually with quarterly POs”, then write those details in the “Final Notes” section.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Quantity&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Drawing Units
-Satellites crash if the units are wrong, so best double check this.&lt;/p&gt;
+&lt;p&gt;Must be a number. If your requirement is more along the lines of “100 a month” or “50,000 pieces annually with quarterly POs”, then write those details in the “Final Notes” section.&lt;/p&gt;
 
-&lt;p&gt;Material
-We’ve dealt with everything from production-level parts to beginner sculptures, so feel free to reach out to us if you want help picking your material. Also, check our Materials page if you’re looking for other resources on how to decide.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Drawing Units&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Postal Code and Country
-The minimum necessary for us to produce a quote that factors in shipping.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;&quot; title=&quot;http://en.wikipedia.org/wiki/Mars_Climate_Orbiter&quot;&gt;Satellites crash&lt;/a&gt; if the units are wrong, so best double check this.&lt;/p&gt;
 
-&lt;p&gt;Particular Suppliers
-If there is anyone in particular you’d like SupplyBetter to compare against, just enter their name here.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Material&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Message to Suppliers
-This is arguably the most important section of the RFQ. Suppliers love to get as much of an idea of just what it is you’re working on so they can understand your application and provide the best quote possible.&lt;/p&gt;
+&lt;p&gt;We’ve dealt with everything from production-level parts to beginner sculptures, so feel free to reach out to us if you want help picking your material. Also, check our &lt;a href=&quot;&quot; title=&quot;http://www.supplybetter.com/materials&quot;&gt;Materials page&lt;/a&gt; if you’re looking for other resources on how to decide.&lt;/p&gt;
 
-&lt;p&gt;Thanks,&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Postal Code and Country&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The minimum necessary for us to produce a quote that factors in shipping.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Particular Suppliers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If there is anyone in particular you’d like SupplyBetter to compare against, just enter their name here.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Message to Suppliers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This is arguably the most important section of the RFQ. Suppliers love to get as much of an idea of just what it is you’re working on so they can understand your application and provide the best quote possible.&lt;/p&gt;
+
+&lt;p&gt;Happy requesting,&lt;/p&gt;
 
 &lt;p&gt;Rob&lt;/p&gt;
 </content>
