@@ -4,7 +4,7 @@ author: Rob
 title: Tips to Improve Your RFQs
 ---
 
-Filling out a proper [Request for Quote (RFQ)]("http://www.supplybetter.com/orders/new") is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter. 
+Filling out a proper [Request for Quote (RFQ)](http://www.supplybetter.com/orders/new) is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter. 
 
 **Files**
 
@@ -16,11 +16,11 @@ Must be a number. If your requirement is more along the lines of “100 a month�
 
 **Drawing Units**
 
-[Satellites crash]("http://en.wikipedia.org/wiki/Mars_Climate_Orbiter") if the units are wrong, so best double check this. 
+[Satellites crash](http://en.wikipedia.org/wiki/Mars_Climate_Orbiter) if the units are wrong, so best double check this. 
 
 **Material**
 
-We’ve dealt with everything from production-level parts to beginner sculptures, so feel free to reach out to us if you want help picking your material. Also, check our [Materials page]("http://www.supplybetter.com/materials") if you’re looking for other resources on how to decide. 
+We’ve dealt with everything from production-level parts to beginner sculptures, so feel free to reach out to us if you want help picking your material. Also, check our [Materials page](http://www.supplybetter.com/materials) if you’re looking for other resources on how to decide. 
 
 **Postal Code and Country**
 
