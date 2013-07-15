@@ -16,7 +16,7 @@ class ProfilesController < ApplicationController
 		a = Ask.new(supplier_id: params[:supplier_id], request: params[:request], user_id: params[:user_id])
 		a.save
 		@supplier = Supplier.find(params[:supplier_id])
-		redirect_to supplier_profile_url(@supplier.name), notice: 'Suggestion received. Thanks!'
+		redirect_to supplier_profile_url(@supplier.name_for_link), notice: 'Suggestion received. Thanks!'
 	end
 
 end
