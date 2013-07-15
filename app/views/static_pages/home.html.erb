@@ -2,9 +2,11 @@
 	<div class="container">
 		<% provide(:title, "Comparison shopping for 3D printing") %>
 		<hgroup>
+			<p class="center"><%= link_to "Check out our new public listing of 100+ US 3D printing suppliers!", suppliers_path %></p>
 			<h1>Comparison shopping for 3D printing.</h1>
 			<h2><em>Know your options.</em> Get cheaper parts.</h2>
 		</hgroup>
+
 		<%= link_to "Get Started", signup_path, class: "btn btn-hero", id: "button-start-today" %>
 		<%= link_to "Wondering how to get started with 3D printing?", getting_started_path, class: "sec-hero" %>
 		<%= link_to "Are you a supplier?", be_a_supplier_path, class: "sec-hero" %>
@@ -14,12 +16,12 @@
 	<div class="container row">
 		<ol>
 			<li>
-				<h3>Fill out a quote request.</h3>
+				<h3>Fill out a <%= link_to "quote request", new_order_path, :class => "h3link" %>.</h3>
 				<%= image_tag "features-request.png" %>
 				<p>Give us quantity, a drawing, and the application, and we're ready to start.</p>
 			</li>
 			<li>
-				<h3>We reach out to suppliers.</h3>
+				<h3>We reach out to <%= link_to "suppliers", suppliers_path, :class => "h3link" %>.</h3>
 				<%= image_tag "features-suppliers.png" %>
 				<p>We select the best suppliers based on what you care about, whether that be cost, quality, process, or geography.</p>
 			</li>
