@@ -2,3 +2,5 @@
 <% title_text = "" %>
 					<% title_text = "\"" + t.note + "\"" unless t.note.nil? %>
 					<span class="tag" title=<%= title_text %>><%= "#{t.user_readable}" %></span>
+
+cd config/jekyll; jekyll build; rake css_css; cd ../..

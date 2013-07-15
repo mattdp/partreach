@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-07-14T18:32:35-07:00</updated>
+ <updated>2013-07-14T19:02:21-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -12,18 +12,18 @@
 
  
  <entry>
-   <title>The Joy Of Window Shopping</title>
-   <link href="YOUR_URL/the-joy-of-window-shopping.html"/>
+   <title>Announcing the Launch of Supplier Profiles</title>
+   <link href="YOUR_URL/announcing-the-launch-of-supplier-profiles.html"/>
    <updated>2013-07-14T00:00:00-07:00</updated>
-   <id>BLOG_URL/the-joy-of-window-shopping</id>
-   <content type="html">&lt;p&gt;We’re excited to announce that we’re launching [supplier profiles] for 3D Printing. We’ve been hard at work these past few months helping people get their custom mechanical parts made and this is just one more way we hope to make the experience better.&lt;/p&gt;
+   <id>BLOG_URL/announcing-the-launch-of-supplier-profiles</id>
+   <content type="html">&lt;p&gt;We’re excited to announce that we’re launching &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;supplier profiles&lt;/a&gt; for 3D Printing. We’ve been hard at work these past few months helping people get their custom mechanical parts made and this is just one more way we hope to make the experience better.&lt;/p&gt;
 
 &lt;p&gt;Here’s how this works:
-Browse through our [supplier profiles] to see if there is a supplier that matches your spec
-Click [“Get a Quote”] to upload your part and submit a Request for Quote (RFQ)
+Browse through our &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;supplier profiles&lt;/a&gt; to see if there is a supplier that matches your spec
+Click &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;“Get a Quote”&lt;/a&gt; to upload your part and submit a Request for Quote (RFQ)
 Sit back and let the magic happen&lt;/p&gt;
 
-&lt;p&gt;Our passion is to be the best source for getting your parts made, and we do this by presenting the suppliers we believe are best able to fulfill your needs. Our [standard RFQ] has already helped our customers achieve this, and we hope Supplier Profiles will make shopping for service bureaus even faster and more informative.&lt;/p&gt;
+&lt;p&gt;Our passion is to be the best source for getting your parts made, and we do this by presenting the suppliers we believe are best able to fulfill your needs. Our &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;standard RFQ&lt;/a&gt; has already helped our customers achieve this, and we hope Supplier Profiles will make shopping for service bureaus even faster and more informative.&lt;/p&gt;
 
 &lt;p&gt;--
 We’re always looking for ways to improve our service, so feel free to shoot us an email at feedback@supplybetter.com and share your thoughts!&lt;/p&gt;
@@ -35,11 +35,11 @@ We’re always looking for ways to improve our service, so feel free to shoot us
  </entry>
  
  <entry>
-   <title>Tips To Improve Your Rfqs</title>
-   <link href="YOUR_URL/tips-to-improve-your-rfqs.html"/>
+   <title>Tips to Improve Your RFQs</title>
+   <link href="YOUR_URL/tips-to-improve-your-requests-for-quotes.html"/>
    <updated>2013-07-02T00:00:00-07:00</updated>
-   <id>BLOG_URL/tips-to-improve-your-rfqs</id>
-   <content type="html">&lt;p&gt;Tips to Improve Your RFQs with SuppyBetter&lt;/p&gt;
+   <id>BLOG_URL/tips-to-improve-your-requests-for-quotes</id>
+   <content type="html">&lt;p&gt;NEEDS LINKING&lt;/p&gt;
 
 &lt;p&gt;Filling out a proper Request for Quote (RFQ) is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter.&lt;/p&gt;
 
@@ -47,7 +47,7 @@ We’re always looking for ways to improve our service, so feel free to shoot us
 STLs are the most common file type for 3D printing and have the widest acceptance, but we’re willing accept any file type as long as it’s relevant to your project.&lt;/p&gt;
 
 &lt;p&gt;Quantity
-Must be a number. If you’re requirement is more along the lines of “100 a month” or “50,000 pieces annually with quarterly POs”, then write those details in the “Final Notes” section.&lt;/p&gt;
+Must be a number. If your requirement is more along the lines of “100 a month” or “50,000 pieces annually with quarterly POs”, then write those details in the “Final Notes” section.&lt;/p&gt;
 
 &lt;p&gt;Drawing Units
 Satellites crash if the units are wrong, so best double check this.&lt;/p&gt;

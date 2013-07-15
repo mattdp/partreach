@@ -1,9 +1,10 @@
 --- 
 layout: post
 author: Rob
+title: Tips to Improve Your RFQs
 ---
 
-Tips to Improve Your RFQs with SuppyBetter 
+NEEDS LINKING
 
 Filling out a proper Request for Quote (RFQ) is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter. 
 
@@ -11,7 +12,7 @@ Files
 STLs are the most common file type for 3D printing and have the widest acceptance, but we’re willing accept any file type as long as it’s relevant to your project. 
 
 Quantity
-Must be a number. If you’re requirement is more along the lines of “100 a month” or “50,000 pieces annually with quarterly POs”, then write those details in the “Final Notes” section.
+Must be a number. If your requirement is more along the lines of “100 a month” or “50,000 pieces annually with quarterly POs”, then write those details in the “Final Notes” section.
 
 Drawing Units
 Satellites crash if the units are wrong, so best double check this. 
