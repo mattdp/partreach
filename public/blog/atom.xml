@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-07-15T08:53:52-07:00</updated>
+ <updated>2013-07-15T09:06:52-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -14,7 +14,7 @@
  <entry>
    <title>Announcing the Launch of Supplier Profiles</title>
    <link href="YOUR_URL/announcing-the-launch-of-supplier-profiles.html"/>
-   <updated>2013-07-14T00:00:00-07:00</updated>
+   <updated>2013-07-15T00:00:00-07:00</updated>
    <id>BLOG_URL/announcing-the-launch-of-supplier-profiles</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;We’re excited to announce that we’re launching &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;supplier profiles&lt;/a&gt; for 3D Printing.&lt;/strong&gt; We’ve been hard at work these past few months helping people get their custom mechanical parts made and this is just one more way we hope to make the experience better.&lt;/p&gt;
 

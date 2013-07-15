@@ -1,6 +1,7 @@
 desc 'Run Jekyll in config/jekyll directory without having to cd there'''
 task :generate do
   Dir.chdir("config/jekyll") do
-    system('jekyll')
+    system('jekyll build')
   end
+  Rake::Task["css_css"].invoke
 end
