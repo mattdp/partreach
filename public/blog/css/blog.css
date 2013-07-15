@@ -6,7 +6,7 @@
   min-height: 400px;
 }
 
-.blog-content p, a {
+.blog-content p, a, li {
   font-size: 20px;
   line-height: 24px;
 }
