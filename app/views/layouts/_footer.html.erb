@@ -2,7 +2,11 @@
   <div class="container">
   	<ul class="pull-left nav">
   		<li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "Blog", "http://www.supplybetter.com/blog" %></li>
+      <% if Rails.env.development? %>
+        <li><%= link_to "Blog", "http://localhost:3000/blog" %></li>
+      <% else %>
+        <li><%= link_to "Blog", "http://www.supplybetter.com/blog" %></li>
+      <% end %>
   		<li><%= link_to "Getting started 3D printing", getting_started_path %></li>
   		<li><%= link_to "Material recommendations", materials_path %></li>
   	</ul>

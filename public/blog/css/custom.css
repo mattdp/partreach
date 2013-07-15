@@ -52,10 +52,6 @@ textarea {
   float: right;
 }
 
-.biography {
-  background-color: #345;
-}
-
 .clear {
   clear: both;
 }
@@ -265,6 +261,33 @@ strong {
   font-weight: 400;
 }
 
+.supplier-list {
+  margin-bottom: 10px;
+}
+.supplier-list table {
+  width: 90%;
+  margin-bottom: 10px;
+  margin-left: 50px;
+}
+.supplier-list td {
+  width: 30%;
+}
+.supplier-list #supplier-list-intro {
+  padding: 5px 0px 0px 0px;
+}
+.supplier-list .supplier-list-country {
+  border: 1px solid black;
+  padding-left: 5px;
+  background: #3c3e44;
+  color: #fff;
+}
+.supplier-list .supplier-list-state {
+  padding-left: 25px;
+}
+.supplier-list .supplier-list-bullets {
+  padding-left: 50px;
+}
+
 .order {
   overflow-x: scroll;
 }
@@ -334,6 +357,54 @@ strong {
 }
 .order .row > p {
   padding: 32px 0;
+}
+
+.supplier-profile h1 {
+  text-align: left;
+}
+.supplier-profile #button-place-order {
+  vertical-align: top;
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+.supplier-profile .options-menu li {
+  margin: 0px;
+  padding: 0px;
+}
+.supplier-profile .navbar-inner {
+  -webkit-border-radius: 0px;
+  border-radius: 0px;
+}
+.supplier-profile .nav {
+  padding: 0px;
+}
+.supplier-profile .tag {
+  color: white;
+  background-color: #333;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  padding: 2px 5px;
+  line-height: 40px;
+}
+.supplier-profile .supplier-variable {
+  margin-bottom: 10px;
+  border: 1px #cccccc solid;
+}
+.supplier-profile .supplier-variable-content {
+  padding-left: 37px;
+  margin-bottom: 20px;
+}
+.supplier-profile .supplier-description p {
+  font-weight: bold;
+}
+.supplier-profile .supplier-image-box {
+  border: 5px #cccccc solid;
+  width: 200px;
+  margin-bottom: 5px;
+}
+
+.supplier-index-indicator {
+  width: 15px;
 }
 
 .cta {
@@ -438,7 +509,7 @@ form {
 #direct-upload {
   border: 1px solid #bbbbbb;
   padding: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 5px;
 }
 #direct-upload .file-upload {
   border: 0;
@@ -459,7 +530,7 @@ form {
 }
 #new-order h3, .form-email h3 {
   font-size: 20px;
-  margin-top: 32px;
+  margin-top: 15px;
 }
 #new-order p, .form-email p {
   font-size: 14px;
@@ -468,8 +539,9 @@ form {
   padding-right: 5%;
   width: 50%;
 }
-#new-order #order-disclaimer, .form-email #order-disclaimer {
+#new-order .detail-text, .form-email .detail-text {
   font-size: 12px;
+  font-style: italic;
 }
 
 #create_button, .form-email form .sign-in-button, .order_table .save-button {
@@ -549,6 +621,10 @@ input, textarea, select, .uneditable-input {
   margin-top: 25px;
 }
 
+.back_to_suppliers {
+  margin-bottom: 50px;
+}
+
 .debug_dump {
   clear: both;
   float: left;
@@ -557,4 +633,9 @@ input, textarea, select, .uneditable-input {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.biography {
+  max-width: 300px;
+  margin-bottom: 10px;
 }

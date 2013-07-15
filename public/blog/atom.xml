@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-06-05T16:01:29-07:00</updated>
+ <updated>2013-07-14T18:32:35-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -12,9 +12,71 @@
 
  
  <entry>
+   <title>The Joy Of Window Shopping</title>
+   <link href="YOUR_URL/the-joy-of-window-shopping.html"/>
+   <updated>2013-07-14T00:00:00-07:00</updated>
+   <id>BLOG_URL/the-joy-of-window-shopping</id>
+   <content type="html">&lt;p&gt;We’re excited to announce that we’re launching [supplier profiles] for 3D Printing. We’ve been hard at work these past few months helping people get their custom mechanical parts made and this is just one more way we hope to make the experience better.&lt;/p&gt;
+
+&lt;p&gt;Here’s how this works:
+Browse through our [supplier profiles] to see if there is a supplier that matches your spec
+Click [“Get a Quote”] to upload your part and submit a Request for Quote (RFQ)
+Sit back and let the magic happen&lt;/p&gt;
+
+&lt;p&gt;Our passion is to be the best source for getting your parts made, and we do this by presenting the suppliers we believe are best able to fulfill your needs. Our [standard RFQ] has already helped our customers achieve this, and we hope Supplier Profiles will make shopping for service bureaus even faster and more informative.&lt;/p&gt;
+
+&lt;p&gt;--
+We’re always looking for ways to improve our service, so feel free to shoot us an email at feedback@supplybetter.com and share your thoughts!&lt;/p&gt;
+
+&lt;p&gt;Thanks,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Tips To Improve Your Rfqs</title>
+   <link href="YOUR_URL/tips-to-improve-your-rfqs.html"/>
+   <updated>2013-07-02T00:00:00-07:00</updated>
+   <id>BLOG_URL/tips-to-improve-your-rfqs</id>
+   <content type="html">&lt;p&gt;Tips to Improve Your RFQs with SuppyBetter&lt;/p&gt;
+
+&lt;p&gt;Filling out a proper Request for Quote (RFQ) is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter.&lt;/p&gt;
+
+&lt;p&gt;Files
+STLs are the most common file type for 3D printing and have the widest acceptance, but we’re willing accept any file type as long as it’s relevant to your project.&lt;/p&gt;
+
+&lt;p&gt;Quantity
+Must be a number. If you’re requirement is more along the lines of “100 a month” or “50,000 pieces annually with quarterly POs”, then write those details in the “Final Notes” section.&lt;/p&gt;
+
+&lt;p&gt;Drawing Units
+Satellites crash if the units are wrong, so best double check this.&lt;/p&gt;
+
+&lt;p&gt;Material
+We’ve dealt with everything from production-level parts to beginner sculptures, so feel free to reach out to us if you want help picking your material. Also, check our Materials page if you’re looking for other resources on how to decide.&lt;/p&gt;
+
+&lt;p&gt;Postal Code and Country
+The minimum necessary for us to produce a quote that factors in shipping.&lt;/p&gt;
+
+&lt;p&gt;Particular Suppliers
+If there is anyone in particular you’d like SupplyBetter to compare against, just enter their name here.&lt;/p&gt;
+
+&lt;p&gt;Message to Suppliers
+This is arguably the most important section of the RFQ. Suppliers love to get as much of an idea of just what it is you’re working on so they can understand your application and provide the best quote possible.&lt;/p&gt;
+
+&lt;p&gt;--
+We’re always looking for ways to improve our service, so feel free to shoot us an email at feedback@supplybetter.com and share your thoughts!&lt;/p&gt;
+
+&lt;p&gt;Thanks,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
    <title>The Blog</title>
    <link href="YOUR_URL/the-blog.html"/>
-   <updated>2013-06-03T00:00:00-07:00</updated>
+   <updated>2013-06-12T00:00:00-07:00</updated>
    <id>BLOG_URL/the-blog</id>
    <content type="html">&lt;p&gt;Here at SupplyBetter, we aim to give buyers the best way to decide among suppliers, and to help suppliers by offering them the opportunity to quote the type of work that fits them best. We're starting off in 3D printing, and expanding to other manufacturing processes once we're ready.&lt;/p&gt;
 

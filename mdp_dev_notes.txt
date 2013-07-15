@@ -1,10 +1,3 @@
-[x] have words show up for desc, mach
-[] have symbols instead
-[] mouseover with information on what it is
-[] cut the number of db refs for this, if possible
-
-
-
 
 <% title_text = "" %>
 					<% title_text = "\"" + t.note + "\"" unless t.note.nil? %>

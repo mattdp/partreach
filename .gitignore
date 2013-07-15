@@ -15,7 +15,8 @@
 /tmp
 
 # Ignore generated blog from jekyll
-# /public/blog
+/public/blog/*
+/public/blog
 
 .DS_Store
 *~

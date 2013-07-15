@@ -4,3 +4,8 @@
 #supplier_matrix label {
   padding: 5px;
 }
+
+#tag_matrix td p {
+  padding: 0px;
+  margin: 0px;
+}

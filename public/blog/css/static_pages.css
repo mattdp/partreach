@@ -2,6 +2,13 @@
   margin: auto;
 }
 
+#referral {
+  text-align: center;
+  margin-left: 30px;
+  margin-top: 10px;
+  padding: 0px;
+}
+
 #materials-header {
   margin-top: 15px;
 }
@@ -39,10 +46,3 @@
 .h1-midpage {
   margin-bottom: 10px;
 }
-
-/*
-.video-iframe {
-	width: "640";
-	height: "360";
-	border: none;
-} */
