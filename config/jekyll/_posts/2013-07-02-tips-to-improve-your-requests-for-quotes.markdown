@@ -29,9 +29,6 @@ If there is anyone in particular you’d like SupplyBetter to compare against, j
 Message to Suppliers
 This is arguably the most important section of the RFQ. Suppliers love to get as much of an idea of just what it is you’re working on so they can understand your application and provide the best quote possible. 
 
---
-We’re always looking for ways to improve our service, so feel free to shoot us an email at feedback@supplybetter.com and share your thoughts!
-
 Thanks,
 
 Rob
