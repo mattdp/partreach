@@ -13,6 +13,28 @@
 			<%= label_tag 'zip', 'zip' %><%= text_field_tag 'zip', nil %>
 			<%= label_tag 'description', 'description' %><%= text_area_tag 'description', nil %>
 
+			<%# Heavy duplication from dialogues/new %>
+			<% counter = 0 %>
+			<% tag_columns = 6 %>
+
+			<table id="tag_matrix">
+				<% @family_names_and_tags.keys.each do |k| %>
+					<% counter = 0 %>
+					<tr>
+						<td><strong><%= "#{k}" %><strong></td>
+						<% @family_names_and_tags[k].each do |t| %>
+							<% if counter >= tag_columns %>
+								</tr><tr>
+								<% counter = 0 %>
+							<% end %>
+							<td><%= check_box_tag "tag_selection[]", t.id, false, class: "fleft", id: "#{t.name}" %>
+							<p><%= "#{t.name}" %></p></td>
+							<% counter += 1 %>
+						<% end %>
+					</tr>
+				<% end %>
+			</table>
+
 			<%= submit_tag "Create supplier", :disable_with => "Creating...", :id => "create_button" %>
 		<% end %>
 	</div>

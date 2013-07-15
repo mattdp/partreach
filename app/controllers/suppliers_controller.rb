@@ -2,6 +2,8 @@ class SuppliersController < ApplicationController
 	before_filter :admin_user, only: [:new, :create]
 
 	def new
+		@tags = Tag.all
+		@family_names_and_tags = Tag.family_names_and_tags
 	end
 
 	def create
@@ -15,8 +17,17 @@ class SuppliersController < ApplicationController
 		@supplier.address.state = params[:state] if !(params[:state].nil? or params[:state] == "")
 		@supplier.address.zip = params[:zip] if !(params[:zip].nil? or params[:zip] == "")
 
+		saved_ok = @supplier.save and @supplier.address.save
+
+		@tag_ids = params[:tag_selection]
+		if @tag_ids and @tag_ids.size > 0
+			@tag_ids.each do |t_id|
+				saved_ok = false unless @supplier.add_tag(t_id)
+			end
+		end
+
 		note = ""
-		if @supplier.save and @supplier.address.save
+		if saved_ok
 			note = "Saved OK!" 
 		else 
 			note = "Saving problem."
