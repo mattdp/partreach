@@ -12,6 +12,7 @@ gem 'twilio-ruby', '3.9.0'
 gem 'jekyll', '1.0.0'
 gem 'jekyll-sass', '1.1.0' #https://github.com/noct/jekyll-sass
 gem 'bloggy', '0.2.1'
+gem 'whenever', '0.8.3' #https://github.com/javan/whenever
 
 group :development, :test do
  	gem 'sqlite3', '1.3.5'
