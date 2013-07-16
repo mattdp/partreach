@@ -16,7 +16,8 @@
 								<% if counter >= columns %>
 									</tr><tr>
 									<% counter = 0 %>
-								<% else %>
+								<% end %>
+								<% if %>
 									<td>
 										<li>
 											<%= link_to s.name, "/suppliers/#{s.name_for_link}" %>
