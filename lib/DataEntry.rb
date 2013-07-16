@@ -61,6 +61,7 @@ module DataEntry
 	PB_ADDRESS = 4
 	PB_COUNTRY_CODE = 5	
 
+	#if ever use again, do more like castle - use Supplier create
 	def printabase_csv_loader(url)
 		
 		CSV.new(open(url)).each do |row|
@@ -93,8 +94,26 @@ module DataEntry
 
 	end
 
+	CA_COMPANY = 0
+	CA_LINK = 1
+	CA_STATE = 2
+	CA_TAGS = 3
+
+	# add the datadump tag
+	# tags to integers - method
 	def castle_csv_loader(url)
 
+		CSV.new(open(url)).each do |row|
+			if !(row[CA_COMPANY].nil? or row[CA_COMPANY] == "")
+				params = {}
+				params[:name] = row[CA_COMPANY]
+				params[:url_main] = row[CA_LINK]
+				params[:state] = row[CA_STATE]
+				params[:country] = "US"
+
+				Supplier.create(params)
+			end
+		end
 	end
 
 

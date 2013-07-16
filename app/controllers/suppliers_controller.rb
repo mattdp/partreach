@@ -14,10 +14,9 @@ class SuppliersController < ApplicationController
 		@supplier.description = params[:description] if !(params[:description].nil? or params[:description] == "")
 		@supplier.profile_visible = true if params[:profile_visible] == "1"
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
-		@supplier.address = Address.new
-		@supplier.address.country = params[:country] if !(params[:country].nil? or params[:country] == "")
-		@supplier.address.state = params[:state] if !(params[:state].nil? or params[:state] == "")
-		@supplier.address.zip = params[:zip] if !(params[:zip].nil? or params[:zip] == "")
+		@supplier.create_or_update_address(	country: params[:country],
+																				state: params[:state],
+																				zip: params[:zip])
 
 		saved_ok = @supplier.save and @supplier.address.save
 
