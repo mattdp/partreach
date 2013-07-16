@@ -12,7 +12,7 @@ class SuppliersController < ApplicationController
 		@supplier.name = params[:name]
 		@supplier.url_main = params[:url_main] if !(params[:url_main].nil? or params[:url_main] == "")
 		@supplier.description = params[:description] if !(params[:description].nil? or params[:description] == "")
-		@supplier.profile_visible = true if params[:profile_visible] == 1
+		@supplier.profile_visible = true if params[:profile_visible] == "1"
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
 		@supplier.address = Address.new
 		@supplier.address.country = params[:country] if !(params[:country].nil? or params[:country] == "")
