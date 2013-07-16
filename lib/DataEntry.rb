@@ -108,10 +108,11 @@ module DataEntry
 				params = {}
 				params[:name] = row[CA_COMPANY]
 				params[:url_main] = row[CA_LINK]
-				params[:state] = row[CA_STATE]
-				params[:country] = "US"
-
-				Supplier.create(params)
+				
+				s = Supplier.create(params)
+				s.create_or_update_address(	country: "US",
+																		state: row[CA_STATE]
+																	) if s
 			end
 		end
 	end
