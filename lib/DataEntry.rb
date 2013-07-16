@@ -6,6 +6,7 @@ module DataEntry
 	ZIP_POSTAL = 1
 	ZIP_LOCATION_NAME = 2
 
+	#for the canonical zip code database
 	def zipreader(url)
 		CSV.new(open(url), {:col_sep => "\t"}).each do |row|
 			l = Location.new({:country => row[ZIP_COUNTRY],
@@ -53,31 +54,31 @@ module DataEntry
 	end
 
 	#highly inflexible, based on "printabase-crawled-data"
-	USE_ROW = 0
-	COMPANY = 1
-	IS_SERVICE_BUREAU = 2
-	CLEANED_LINK = 3
-	ADDRESS = 4
-	COUNTRY_CODE = 5	
+	PB_USE_ROW = 0
+	PB_COMPANY = 1
+	PB_IS_SERVICE_BUREAU = 2
+	PB_CLEANED_LINK = 3
+	PB_ADDRESS = 4
+	PB_COUNTRY_CODE = 5	
 
-	def csv_to_suppliers(url)
+	def printabase_csv_loader(url)
 		
 		CSV.new(open(url)).each do |row|
-			if row[USE_ROW] == "TRUE" and Supplier.find_by_name(row[COMPANY].downcase).nil?
+			if row[PB_USE_ROW] == "TRUE" and Supplier.find_by_name(row[PB_COMPANY].downcase).nil?
 				
 				s = Supplier.new
-				s.name = row[COMPANY]
-				s.url_main = row[CLEANED_LINK]
+				s.name = row[PB_COMPANY]
+				s.url_main = row[PB_CLEANED_LINK]
 				if s.save
 					puts "#{s.name} saved successfully."
 				else
 					puts "Error saving #{s.name}"
 				end
 				
-				if !row[ADDRESS].nil? and row[ADDRESS].length > 0
+				if !row[PB_ADDRESS].nil? and row[PB_ADDRESS].length > 0
 					a = Address.new
-					a.country = row[COUNTRY_CODE]
-					a.notes = row[ADDRESS]
+					a.country = row[PB_COUNTRY_CODE]
+					a.notes = row[PB_ADDRESS]
 					a.place_id = s.id
 					a.place_type = "Supplier"
 					if a.save
@@ -91,6 +92,11 @@ module DataEntry
 		end
 
 	end
+
+	def castle_csv_loader(url)
+
+	end
+
 
 	TAG_NAME = 0
 	TAG_FAMILY = 1
