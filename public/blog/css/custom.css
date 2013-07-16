@@ -65,7 +65,7 @@ h1 {
   text-align: center;
 }
 
-h2 {
+h2, .h2link {
   font-size: 34px;
   letter-spacing: -1px;
   margin-bottom: 20px;
@@ -257,6 +257,8 @@ strong {
 }
 .features h3 {
   color: #1f252d;
+}
+.features h3, .features .h3link {
   font-size: 18px;
   font-weight: 400;
 }

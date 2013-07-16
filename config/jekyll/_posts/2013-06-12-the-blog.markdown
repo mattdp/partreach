@@ -2,6 +2,7 @@
 layout: post
 author: Matt
 title: The Blog
+published: true
 ---
 
 Here at SupplyBetter, we aim to give buyers the best way to decide among suppliers, and to help suppliers by offering them the opportunity to quote the type of work that fits them best. We're starting off in 3D printing, and expanding to other manufacturing processes once we're ready. 
