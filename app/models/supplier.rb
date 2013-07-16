@@ -21,12 +21,12 @@ class Supplier < ActiveRecord::Base
   attr_accessible :name, :name_for_link, :url_main, :url_materials, :description, :email, :phone, :address_id, :source, :profile_visible, :claimed
 
   has_many :dialogues
-  has_one :address, :as => :place
-  has_many :combos
+  has_one :address, :as => :place, :dependent => :destroy
+  has_many :combos, :dependent => :destroy
   has_many :tags, :through => :combos
-  has_many :owners
+  has_many :owners, :dependent => :destroy
   has_many :machines, :through => :owners
-  has_many :externals
+  has_many :externals, :dependent => :destroy
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
