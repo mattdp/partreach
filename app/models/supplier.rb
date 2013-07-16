@@ -30,6 +30,10 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
+  def self.proper_name_for_link(name)
+    return name.downcase.gsub(/\W+/, "")
+  end
+
   def from_notes(field, options = {})
     return false if self.address.nil? or self.address.country != "US" or self.address.notes.nil?
     if field == "zip"

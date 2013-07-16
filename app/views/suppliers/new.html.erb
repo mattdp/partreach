@@ -12,6 +12,8 @@
 			<%= label_tag 'state', 'state' %><%= text_field_tag 'state', nil %>
 			<%= label_tag 'zip', 'zip' %><%= text_field_tag 'zip', nil %>
 			<%= label_tag 'description', 'description' %><%= text_area_tag 'description', nil %>
+			<%= check_box_tag 'profile_visible', 1, false, :class => "fleft" %><%= label_tag 'profile_visible', 'profile_visible' %>
+			<br>
 
 			<%# Heavy duplication from dialogues/new %>
 			<% counter = 0 %>

@@ -44,7 +44,7 @@ end
 desc 'Setup URL names for suppliers'
 task :supplier_url_creation => :environment do
 	Supplier.all.each do |s|
-		s.name_for_link = s.name.downcase.gsub(/\W+/, "")
+		s.name_for_link =	Supplier.proper_name_for_link(s.name)
 		s.save
 	end
 end
