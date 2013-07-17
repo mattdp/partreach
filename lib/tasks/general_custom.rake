@@ -1,7 +1,7 @@
 desc 'expose all US suppliers with certain tag constraints'
 task :us_suppliers_public => :environment do
 	haves = ["3d_printing"]
-	have_nots = ["e1_existence_doubtful"] 
+	have_nots = ["e1_existence_doubtful","datadump"] 
 	Supplier.all.each do |s|
 		s.profile_visible = false
 		#practicing blocks; yes, this should be more lines. meant to test if 'have' tags are on supplier and 'have_nots' aren't.

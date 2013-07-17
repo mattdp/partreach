@@ -99,12 +99,10 @@ module DataEntry
 	CA_STATE = 2
 	CA_TAGS = 3
 
-	# add the datadump tag
-	# tags to integers - method
 	def castle_csv_loader(url)
 
 		CSV.new(open(url)).each do |row|
-			if !(row[CA_COMPANY].nil? or row[CA_COMPANY] == "")
+			if !(row[CA_COMPANY].nil? or row[CA_COMPANY] == "" or row[CA_COMPANY] == "company")
 				params = {}
 				params[:name] = row[CA_COMPANY]
 				params[:url_main] = row[CA_LINK]
@@ -123,6 +121,8 @@ module DataEntry
 
 			end
 		end
+
+		return true
 	end
 
 	def castle_tag_parser(tags)
@@ -135,13 +135,12 @@ module DataEntry
 			"J-P" => "Polyjet",
 			"3DP" => "ZPrinter",
 			"EBM" => "EBM",
-			"SLM" => "SLM"
-			"PRF" => "Perfactory"
+			"SLM" => "SLM",
+			"PRF" => "Perfactory",
 			"DOD" => "DOD"
 		}
-		tag_map.map{ |k,v| v = Tag.find_by_name(v).id }
+		translator.map{ |k,v| v = Tag.find_by_name(v).id }
 		return tags.map{|t| translator[t]}.reject!{|t| t.nil? or t.empty?} #get rid of no-returns
-
 	end
 
 
@@ -172,23 +171,13 @@ module DataEntry
 		end
 	end
 
-	def csv_to_tags(location, url_or_csv = "url")
+	def csv_to_tags(location)
 		counter = 0
-		if url_or_csv == "url"
-			CSV.new(open(location)).each do |row|
-				csv_to_tags_row_helper(row, counter)
-				counter += 1
-			end
-			return "URL attempted"
-		elsif url_or_csv == "csv"
-			CSV.foreach(location) do |row|
-				csv_to_tags_row_helper(row, counter)
-				counter += 1
-			end
-			return "CSV attempted"
-		else 
-			return '"url" or "csv"'
+		CSV.new(open(location)).each do |row|
+			csv_to_tags_row_helper(row, counter)
+			counter += 1
 		end
+		return "Tag upload attempted"
 	end
 
 	def csv_to_hashes(absolute_filepath)
