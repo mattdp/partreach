@@ -106,19 +106,21 @@ module DataEntry
 				params = {}
 				params[:name] = row[CA_COMPANY]
 				params[:url_main] = row[CA_LINK]
-				params[:source] = "castle"
+				params[:source] = "crawler_castle"
 
 				s = Supplier.create(params)
-				s.create_or_update_address(	country: "US",
-																		state: row[CA_STATE]
-																	) if s
-
-				tag_ids = castle_tag_parser(row[CA_TAGS])
-				tag_ids.each do |tag_id|
-					s.add_tag(tag_id)
+				if s.id.present?
+					s.create_or_update_address(	country: "US",
+																			state: row[CA_STATE]
+																		)
+					tag_ids = castle_tag_parser(row[CA_TAGS])
+					if tag_ids.present?
+						tag_ids.each do |tag_id|
+							s.add_tag(tag_id)
+						end
+					end
+					s.add_tag(Tag.find_by_name("datadump").id) #important to mark them as such
 				end
-				s.add_tag(Tag.find_by_name("datadump")) #important to mark them as such
-
 			end
 		end
 
@@ -127,7 +129,8 @@ module DataEntry
 
 	def castle_tag_parser(tags)
 		#starts as castle term : our term, for legibility. Then our term changed to tag_ids
-		translator = { 
+		split = tags.split(" ")
+		translator_input = { 
 			"SLA" => "SLA",
 			"FDM" => "FDM",
 			"SLS" => "SLS",
@@ -136,11 +139,15 @@ module DataEntry
 			"3DP" => "ZPrinter",
 			"EBM" => "EBM",
 			"SLM" => "SLM",
-			"PRF" => "Perfactory",
+			"Perfactory" => "Perfactory",
 			"DOD" => "DOD"
 		}
-		translator.map{ |k,v| v = Tag.find_by_name(v).id }
-		return tags.map{|t| translator[t]}.reject!{|t| t.nil? or t.empty?} #get rid of no-returns
+		translator = {}
+		translator_input.map{ |k,v| translator[k] = Tag.find_by_name(v).id }
+		in_progress = split.map{|t| translator[t]}
+		answer = in_progress.reject{|t| t.nil?} #get rid of no-returns
+		binding.pry
+		return answer
 	end
 
 
