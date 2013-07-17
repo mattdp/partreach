@@ -129,6 +129,7 @@ module DataEntry
 
 	def castle_tag_parser(tags)
 		#starts as castle term : our term, for legibility. Then our term changed to tag_ids
+		return nil unless tags.present?
 		split = tags.split(" ")
 		translator_input = { 
 			"SLA" => "SLA",
@@ -146,7 +147,6 @@ module DataEntry
 		translator_input.map{ |k,v| translator[k] = Tag.find_by_name(v).id }
 		in_progress = split.map{|t| translator[t]}
 		answer = in_progress.reject{|t| t.nil?} #get rid of no-returns
-		binding.pry
 		return answer
 	end
 
