@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130716201438) do
+ActiveRecord::Schema.define(:version => 20130717202935) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(:version => 20130716201438) do
     t.text     "notes"
     t.string   "currency",                                           :default => "dollars"
     t.boolean  "recommended",                                        :default => false
+    t.boolean  "informed"
   end
 
   add_index "dialogues", ["order_id"], :name => "index_dialogues_on_order_id"

@@ -314,9 +314,9 @@ class OrdersController < ApplicationController
       all_dialogues.each do |d|
         if d.recommended
           recommended << d 
-        elsif d.response_received and (!d.total_cost.nil? and d.total_cost > 0)
+        elsif d.bid?
           completed << d
-        elsif d.response_received
+        elsif d.declined?
           declined << d
         else
           pending << d
