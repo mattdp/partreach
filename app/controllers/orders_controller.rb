@@ -287,7 +287,7 @@ class OrdersController < ApplicationController
     end 
 
     def setup_checkboxes
-      checkboxes = [:initial_select, :opener_sent, :response_received, :further_negotiation, :won, :recommended]
+      checkboxes = [:initial_select, :opener_sent, :response_received, :further_negotiation, :informed, :won, :recommended]
     end
     
     def setup_textfields

@@ -35,7 +35,7 @@ class Dialogue < ActiveRecord::Base
   has_one :user, :through => :order
 
   def knows_outcome?
-  	return (self.informed or self.declined?)
+  	return (self.informed or self.declined? or self.won?)
   end
 
   def declined?
