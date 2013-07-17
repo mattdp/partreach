@@ -108,6 +108,7 @@ module DataEntry
 				params = {}
 				params[:name] = row[CA_COMPANY]
 				params[:url_main] = row[CA_LINK]
+				params[:source] = "castle"
 
 				s = Supplier.create(params)
 				s.create_or_update_address(	country: "US",
@@ -117,6 +118,9 @@ module DataEntry
 				tag_ids = castle_tag_parser(row[CA_TAGS])
 				tag_ids.each do |tag_id|
 					s.add_tag(tag_id)
+				end
+				s.add_tag(Tag.find_by_name("datadump")) #important to mark them as such
+
 			end
 		end
 	end
