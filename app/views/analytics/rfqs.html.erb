@@ -1,20 +1,29 @@
 <% provide(:title, "RFQ status") %>
 
-Pending fields:  valid (not us, not duplicate?, 3dp)? when placed? conf email sent? quotes requested? returned quotes? paid bids? resulted in business?
+Pending fields:  valid (not us, not duplicate?, 3dp)? when placed? resulted in business?
 
-<table>
+<table id="rfq-table">
 	<tr>
 		<th>ID</th>
 		<th>User email</th>
 		<th>Total suppliers</th>
 		<th>Finished?</th>
+		<th>Chosen</th>
+		<th>We emailed them</th>
+		<th>They bid or declined</th>
+		<th>They know how it ended up</th>
 	</tr>
 	<% @orders.each do |o| %>
+	<% analytics_count = o.analytics_count %>
 	<tr>
 		<td><%= link_to o.id, order_path(o.id) %></td>
 		<td><%= User.find(o.user_id).email if o.user_id %></td>
 		<td><%= o.dialogues.count %></td>
 		<td><%= o.finished? ? "Finished." : "Needs work!" %></td>
+		<td><%= analytics_count["selected_not_opened"] %></td>
+		<td><%= analytics_count["opened_not_responded"] %></td>
+		<td><%= analytics_count["responded_not_informed"] %></td>
+		<td><%= analytics_count["informed"] %></td>
 	</tr>
 	<% end %>
 </table>

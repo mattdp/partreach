@@ -641,6 +641,15 @@ input, textarea, select, .uneditable-input {
   @extend .error;
  }
 
+#rfq-table {
+  th {
+    padding-left: 10px;
+  }
+  td {
+    text-align: center;
+  }
+}
+
 /* miscellaneous */
 
 .back_to_home {

@@ -55,4 +55,16 @@ class Order < ActiveRecord::Base
     return unfinished.concat(finished)
   end
 
+  #{selected not opened, opened not responded, responded not informed, informed}
+  def analytics_count
+    dialogues = self.dialogues
+    answer = {
+      "selected_not_opened" => dialogues.map{|x| !(x.opener_sent or x.response_received) }.count(true),
+      "opened_not_responded" => dialogues.map{|x| x.opener_sent and !(x.response_received) }.count(true),
+      "responded_not_informed" => dialogues.map{|x| x.response_received and !(x.knows_outcome?) }.count(true),
+      "informed" => dialogues.map{|x| x.knows_outcome? }.count(true)
+    }
+    return answer
+  end
+
 end
