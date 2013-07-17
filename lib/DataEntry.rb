@@ -108,13 +108,36 @@ module DataEntry
 				params = {}
 				params[:name] = row[CA_COMPANY]
 				params[:url_main] = row[CA_LINK]
-				
+
 				s = Supplier.create(params)
 				s.create_or_update_address(	country: "US",
 																		state: row[CA_STATE]
 																	) if s
+
+				tag_ids = castle_tag_parser(row[CA_TAGS])
+				tag_ids.each do |tag_id|
+					s.add_tag(tag_id)
 			end
 		end
+	end
+
+	def castle_tag_parser(tags)
+		#starts as castle term : our term, for legibility. Then our term changed to tag_ids
+		translator = { 
+			"SLA" => "SLA",
+			"FDM" => "FDM",
+			"SLS" => "SLS",
+			"Scanning" => "3d_scanning",
+			"J-P" => "Polyjet",
+			"3DP" => "ZPrinter",
+			"EBM" => "EBM",
+			"SLM" => "SLM"
+			"PRF" => "Perfactory"
+			"DOD" => "DOD"
+		}
+		tag_map.map{ |k,v| v = Tag.find_by_name(v).id }
+		return tags.map{|t| translator[t]}.reject!{|t| t.nil? or t.empty?} #get rid of no-returns
+
 	end
 
 
