@@ -18,6 +18,9 @@
 								<%= label_tag "suppliers[#{supplier.id}]", "Not duplicate - add", :class => "fleft" %>
 							</p>
 							<p class="clear">
+								<%= label_tag "supplier_names[#{supplier.id}]", "New name:", :class => "fleft" %>
+								<%= text_field_tag "supplier_names[#{supplier.id}]", supplier.name %>
+							<p class="clear">
 								<%= radio_button_tag "suppliers[#{supplier.id}]", "duplicate", false, :class => "fleft" %>	
 								<%= label_tag "suppliers[#{supplier.id}]", "Duplicate - remove", :class => "fleft" %>
 							</p>

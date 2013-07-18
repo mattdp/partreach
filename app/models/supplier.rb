@@ -181,7 +181,7 @@ class Supplier < ActiveRecord::Base
     suppliers = Address.find_supplier_ids_by_country_and_state(self.address.country,self.address.state)
     screened_suppliers = suppliers.reject{|s| s.has_tag?(Tag.find_by_name("datadump").id)}
     return "No others in that country/state." if !screened_suppliers.present?
-    return "Other suppliers in that state: #{screened_suppliers.map{|s| s.name}}"
+    return "Other suppliers in that state: #{screened_suppliers.map{|s| s.name}.sort}"
   end
 
 end
