@@ -175,6 +175,12 @@ class Supplier < ActiveRecord::Base
     return ""
   end   
 
+  def get_supporting_info
+    return "Need more geo information for comparison!" if \
+    self.address.nil? or self.address.country != "US" or self.address.state.nil?
+    return "it's awesome!"
+  end
+
 end
 
 #may need to add material and method
