@@ -37,8 +37,8 @@ Partreach::Application.routes.draw do
   #goal: allow show page to post a form. seems hacky - check with someone.
   match '/orders/:id', to: 'orders#update', via: :post
 
-  match '/examinations', to: 'suppliers#setup_examinations', via: :get
-  match '/examinations', to: 'suppliers#submit_examinations', via: :post
+  match '/examinations', to: 'suppliers#setup_examinations', via: :get, as: "setup_examinations"
+  match '/examinations', to: 'suppliers#submit_examinations', via: :post, as: "submit_examinations"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

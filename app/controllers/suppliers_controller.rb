@@ -53,8 +53,19 @@ class SuppliersController < ApplicationController
 		@questionables = Supplier.quantity_by_tag_id(10,Tag.find_by_name("datadump").id)
 	end
 
+	#faster if batch load suppliers
 	def submit_examinations
-		binding.pry
+		datadump_id = Tag.find_by_name("datadump").id
+		params[:suppliers].each do |s_id,v|
+			supplier = Supplier.find(s_id)
+			if v == "duplicate"
+				supplier.destroy
+			elsif v == "not_duplicate"
+				supplier.remove_tag(datadump_id)
+			end
+		end
+
+		redirect_to setup_examinations_path, notice: "Examinations submitted."
 	end
 
 end

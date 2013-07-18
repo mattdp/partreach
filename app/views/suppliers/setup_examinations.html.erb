@@ -11,12 +11,12 @@
 			</div>
 			<div>
 				<div>
-					<%= radio_button_tag "#{supplier.id}", "not_duplicate", false, :class => "fleft" %>	
-					<%= label_tag "#{supplier.id}", "Not a duplicate - add to database", :class => "fleft" %>
+					<%= radio_button_tag "suppliers[#{supplier.id}]", "not_duplicate", false, :class => "fleft" %>	
+					<%= label_tag "suppliers[#{supplier.id}]", "Not a duplicate - add to database", :class => "fleft" %>
 				</div>
 				<div>
-					<%= radio_button_tag "#{supplier.id}", "duplicate", false, :class => "fleft" %>	
-					<%= label_tag "#{supplier.id}", "Duplicate - remove from database", :class => "fleft" %>
+					<%= radio_button_tag "suppliers[#{supplier.id}]", "duplicate", false, :class => "fleft" %>	
+					<%= label_tag "suppliers[#{supplier.id}]", "Duplicate - remove from database", :class => "fleft" %>
 				</div>
 			</div>
 		</div>
