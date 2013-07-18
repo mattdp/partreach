@@ -5,6 +5,7 @@ Pending fields:  valid (not us, not duplicate?, 3dp)? when placed? resulted in b
 <table id="rfq-table">
 	<tr>
 		<th>ID</th>
+		<th>Date</th>
 		<th>User email</th>
 		<th>Total suppliers</th>
 		<th>Finished?</th>
@@ -14,17 +15,18 @@ Pending fields:  valid (not us, not duplicate?, 3dp)? when placed? resulted in b
 		<th>They know how it ended up</th>
 	</tr>
 	<% @orders.each do |o| %>
-	<% analytics_count = o.analytics_count %>
-	<tr>
-		<td><%= link_to o.id, order_path(o.id) %></td>
-		<td><%= User.find(o.user_id).email if o.user_id %></td>
-		<td><%= o.dialogues.count %></td>
-		<td><%= o.status %></td>
-		<td><%= analytics_count["selected_not_opened"] %></td>
-		<td><%= analytics_count["opened_not_responded"] %></td>
-		<td><%= analytics_count["responded_not_informed"] %></td>
-		<td><%= analytics_count["informed"] %></td>
-	</tr>
+		<% analytics_count = o.analytics_count %>
+		<tr>
+			<td><%= link_to o.id, order_path(o.id) %></td>
+			<td><%= o.created_at.strftime("%Y-%m-%d") %></td>
+			<td><%= User.find(o.user_id).email if o.user_id %></td>
+			<td><%= o.dialogues.count %></td>
+			<td><%= o.status %></td>
+			<td><%= analytics_count["selected_not_opened"] %></td>
+			<td><%= analytics_count["opened_not_responded"] %></td>
+			<td><%= analytics_count["responded_not_informed"] %></td>
+			<td><%= analytics_count["informed"] %></td>
+		</tr>
 	<% end %>
 </table>
 
