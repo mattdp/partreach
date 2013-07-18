@@ -19,7 +19,7 @@ Pending fields:  valid (not us, not duplicate?, 3dp)? when placed? resulted in b
 		<td><%= link_to o.id, order_path(o.id) %></td>
 		<td><%= User.find(o.user_id).email if o.user_id %></td>
 		<td><%= o.dialogues.count %></td>
-		<td><%= o.finished? ? "Finished." : "Needs work!" %></td>
+		<td><%= o.status %></td>
 		<td><%= analytics_count["selected_not_opened"] %></td>
 		<td><%= analytics_count["opened_not_responded"] %></td>
 		<td><%= analytics_count["responded_not_informed"] %></td>
