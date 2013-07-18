@@ -169,6 +169,9 @@ class Supplier < ActiveRecord::Base
     return ""
   end   
 
+  def self.up_to_ten_datadumps
+  end
+
 end
 
 #may need to add material and method

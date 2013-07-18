@@ -11,6 +11,7 @@ Partreach::Application.routes.draw do
   resources :reviews, only: [:new, :create]
   resources :password_resets
   resources :suppliers, only: [:new, :create, :index]
+  resources :examinations, only: [:index, :update]
 
   match '/signup', to: 'orders#new'
   match '/signin', to: 'sessions#new'
