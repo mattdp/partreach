@@ -11,7 +11,6 @@ Partreach::Application.routes.draw do
   resources :reviews, only: [:new, :create]
   resources :password_resets
   resources :suppliers, only: [:new, :create, :index]
-  resources :examinations, only: [:index, :update]
 
   match '/signup', to: 'orders#new'
   match '/signin', to: 'sessions#new'
@@ -37,6 +36,9 @@ Partreach::Application.routes.draw do
 
   #goal: allow show page to post a form. seems hacky - check with someone.
   match '/orders/:id', to: 'orders#update', via: :post
+
+  match '/examinations', to: 'suppliers#setup_examinations', via: :get
+  match '/examinations', to: 'suppliers#submit_examinations', via: :post
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

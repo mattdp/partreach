@@ -1,5 +1,12 @@
+#add examiner to user, have it be either examiner 
+#need before_filters to have supporting text
+#need supplier fetcher method
+#need to show all, some, or none (with message) depending on return
+#need update to delete or untag appropriately
+
 class SuppliersController < ApplicationController
 	before_filter :admin_user, only: [:new, :create]
+	before_filter :examiner_user, only: [:setup_examinations, :submit_examinations]
 
 	def new
 		@tags = Tag.all
@@ -40,6 +47,14 @@ class SuppliersController < ApplicationController
 
 	def index
 		@visibles = Supplier.visible_profiles_sorted
+	end
+
+	def setup_examinations
+		@questionables = Supplier.quantity_by_tag_id(10,Tag.find_by_name("datadump").id)
+	end
+
+	def submit_examinations
+		binding.pry
 	end
 
 end
