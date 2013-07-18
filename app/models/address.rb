@@ -32,4 +32,11 @@ class Address < ActiveRecord::Base
   	return countries
   end
 
+  def self.find_supplier_ids_by_country_and_state(country,state)
+    addresses = Address.where("country = ? and state = ? and place_type = ?", \
+      country, state, "Supplier")
+    return [] if addresses == []
+    suppliers = Supplier.find(addresses.map{|a| a.place_id})
+  end
+
 end

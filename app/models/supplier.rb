@@ -178,7 +178,10 @@ class Supplier < ActiveRecord::Base
   def get_supporting_info
     return "Need more geo information for comparison!" if \
     self.address.nil? or self.address.country != "US" or self.address.state.nil?
-    return "it's awesome!"
+    suppliers = Address.find_supplier_ids_by_country_and_state(self.address.country,self.address.state)
+    screened_suppliers = suppliers.reject{|s| s.has_tag?(Tag.find_by_name("datadump").id)}
+    return "No others in that country/state." if !screened_suppliers.present?
+    return "Other suppliers in that state: #{screened_suppliers.map{|s| s.name}}"
   end
 
 end
