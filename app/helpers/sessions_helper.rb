@@ -44,6 +44,10 @@ module SessionsHelper
     redirect_to(root_path) unless current_user.admin?
   end
 
+  def examiner_user
+    redirect_to(root_path) unless current_user.admin? or current_user.examiner?
+  end
+
   def brand_name
     return "SupplyBetter"
   end

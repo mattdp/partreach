@@ -4,4 +4,8 @@ module UsersHelper
 		user.admin
 	end
 
+	def examiner?(user)
+		user.examiner
+	end
+
 end

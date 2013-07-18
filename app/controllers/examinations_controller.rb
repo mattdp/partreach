@@ -6,7 +6,7 @@
 
 class ExaminationsController < ApplicationController
   before_filter :signed_in_user
-  before_filter :admin_user
+  before_filter :examiner_user
 
   def index
   	@questionables = Supplier.up_to_ten_datadumps
