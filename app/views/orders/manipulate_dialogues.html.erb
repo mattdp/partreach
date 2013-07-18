@@ -66,7 +66,11 @@
 	<% end %></div>
 
 	<p>Order status</p>
+	<% ["Needs work","Waiting for supplier","Waiting for buyer","Finished - closed", "Finished - no close"].each do |message| %>
+		<%= radio_button_tag "status", message, @order.status == message, :class => "fleft" %>
+		<%= label_tag "status", message, :class => "fleft" %>
+	<% end %>
 
-	<%= submit_tag "Save changes", :disable_with => "Saving..." %>
+	<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "clear" %>
 
 <% end %>	

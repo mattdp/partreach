@@ -202,6 +202,7 @@ class OrdersController < ApplicationController
     @order.is_over_without_winner = params[:is_over_without_winner]
     @order.recommendation = params[:recommendation]
     @order.next_steps = params[:next_steps]
+    @order.status = params[:status] if params[:status].present?
     @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
 
     @dialogues.each do |d|
