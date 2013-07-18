@@ -1,3 +1,4 @@
+#add examiner to user, have it be either examiner 
 #need before_filters to have supporting text
 #need supplier fetcher method
 #need to show all, some, or none (with message) depending on return
