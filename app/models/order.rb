@@ -20,10 +20,12 @@
 #  next_steps             :text
 #  suggested_suppliers    :text
 #  drawing_units          :string(255)
+#  status                 :string(255)      default("Needs work")
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message, :is_over_without_winner, :material_message, :next_steps, :suggested_suppliers, :drawing_units
+  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message, :is_over_without_winner, \
+  :material_message, :next_steps, :suggested_suppliers, :drawing_units, :status
   has_attached_file :drawing,
   									:url => "/:attachment/:id/:style/:basename.:extension",
   									:path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
