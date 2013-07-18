@@ -63,7 +63,6 @@ class SuppliersController < ApplicationController
 			elsif v == "not_duplicate"
 				supplier.update_attributes({name: params[:supplier_names][s_id]})
 				supplier.remove_tag(datadump_id)
-				binding.pry
 			end
 		end
 
