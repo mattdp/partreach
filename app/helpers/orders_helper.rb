@@ -5,14 +5,9 @@ module OrdersHelper
 
 	def bids_received(order)
 
-		received = 0
-		order.dialogues.each do |d|
-			if d.response_received and !d.total_cost.nil? and d.total_cost > 0
-				received += 1
-			end
-		end
-
-		return received
+		dialogues = order.dialogues
+		return 0 if dialogues == []
+		return order.dialogues.map{|d| d.bid?}.count(true)
 
 	end
 
