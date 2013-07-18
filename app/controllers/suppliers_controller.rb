@@ -50,7 +50,7 @@ class SuppliersController < ApplicationController
 	end
 
 	def setup_examinations
-		@questionables = Supplier.quantity_by_tag_id(10,Tag.find_by_name("datadump").id)
+		@questionables = Supplier.quantity_by_tag_id(50,Tag.find_by_name("datadump").id)
 	end
 
 	#faster if batch load suppliers
