@@ -51,6 +51,12 @@ class Supplier < ActiveRecord::Base
     end
   end
 
+  def self.quantity_by_tag_id(quantity,tag_id)
+    combos = Combo.where("tag_id = ?", tag_id).take(quantity)
+    return [] if combos == []
+    return Supplier.find(combos.map{|c| c.supplier_id})
+  end
+
   def add_tag(tag_id)
     t = Tag.find_by_id(tag_id)    
     return false if t.nil?    
@@ -168,9 +174,6 @@ class Supplier < ActiveRecord::Base
     end
     return ""
   end   
-
-  def self.up_to_ten_datadumps
-  end
 
 end
 
