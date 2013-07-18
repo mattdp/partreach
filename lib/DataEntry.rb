@@ -24,7 +24,7 @@ module DataEntry
 	def usage_counter
 		answer = "Num_Ord\tNum_Bid\tUsr_id\tUsr_email\n"
 		total_order_counter = total_bid_counter = 0
-		User.all.each do |u|
+		User.find_each do |u|
 			order_counter = 0
 			bid_counter = 0 # not all users have orders
 			u.orders.each do |o|
@@ -45,7 +45,7 @@ module DataEntry
 
 	def list_dialogues(order_id)
 		answer = "Ord_id\tDia_id\tSupplier\n"
-		Dialogue.all.each do |d|
+		Dialogue.find_each do |d|
 			if d.order_id == order_id
 				answer += "#{order_id}\t#{d.id}\t#{Supplier.find(d.supplier_id).name}\n"
 			end

@@ -2,7 +2,7 @@ desc 'expose all US suppliers with certain tag constraints'
 task :us_suppliers_public => :environment do
 	haves = ["3d_printing"]
 	have_nots = ["e1_existence_doubtful","datadump"] 
-	Supplier.all.each do |s|
+	Supplier.find_each do |s|
 		s.profile_visible = false
 		#practicing blocks; yes, this should be more lines. meant to test if 'have' tags are on supplier and 'have_nots' aren't.
 		if s.address and s.address.country == "US" and !( 
@@ -29,7 +29,7 @@ task :tag_tree => :environment do
 		primary = Tag.find_by_name(k).id
 		secondaries = automatics[k].map { |t| t = Tag.find_by_name(t).id }
 
-		Supplier.all.each do |s|
+		Supplier.find_each do |s|
 			if !s.has_tag?(primary) #ok that this falses a lot, though could be more efficient
 				s.tags.each do |t|
 					s.add_tag(primary) if secondaries.include? t.id
@@ -43,7 +43,7 @@ end
 
 desc 'Setup URL names for suppliers'
 task :supplier_url_creation => :environment do
-	Supplier.all.each do |s|
+	Supplier.find_each do |s|
 		s.name_for_link =	Supplier.proper_name_for_link(s.name)
 		s.save
 	end
