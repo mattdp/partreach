@@ -650,6 +650,24 @@ input, textarea, select, .uneditable-input {
   }
 }
 
+.examinations-holder {
+  td {
+    border: 2px solid #000;
+  }
+  .examination {
+    width: 100%;
+    .under-examination {
+      width: 20%;
+    }
+    .choice {
+      width: 20%;
+    }
+    .supporting-info {
+      width: 60%;
+    }
+  }
+}
+
 /* miscellaneous */
 
 .back_to_home {
