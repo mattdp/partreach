@@ -18,5 +18,6 @@
 #/public/blog/*
 #/public/blog
 
+/public/system
 .DS_Store
 *~
