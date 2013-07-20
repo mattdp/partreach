@@ -28,6 +28,7 @@ Partreach::Application.routes.draw do
   match '/dialogues/new/:id', to: 'dialogues#new'
   match '/suppliers/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
   match '/submit_ask/', to: 'profiles#submit_ask'
+  match '/terms', to: 'static_pages#terms'
 
   match '/analytics', to: 'analytics#home', as: 'analytics_home'
   match '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
