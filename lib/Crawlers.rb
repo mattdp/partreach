@@ -1,5 +1,7 @@
 module Crawlers
 
+	require 'csv'
+	
 	#highly inflexible, based on "printabase-crawled-data"
 	PB_USE_ROW = 0
 	PB_COMPANY = 1
@@ -95,6 +97,30 @@ module Crawlers
 		in_progress = split.map{|t| translator[t]}
 		answer = in_progress.reject{|t| t.nil?} #get rid of no-returns
 		return answer
+	end
+
+	UTAH_COMPANY = 0
+	UTAH_LINK = 1
+	UTAH_POSSIBLE_STATE = 2
+
+	def utah_csv_loader(url)
+
+		CSV.new(open(url)).each do |row|
+			if !(row[UTAH_COMPANY].nil? or row[UTAH_COMPANY] == "" or row[UTAH_COMPANY] == "company")
+				params = {}
+				params[:name] = row[UTAH_COMPANY]
+				params[:url_main] = row[UTAH_LINK]
+				params[:source] = "crawler_utah"
+
+				s = Supplier.create(params)
+				if s.id.present?
+					s.create_or_update_address(	country: "US",
+																			state: Address.abbreviate_us_state(row[UTAH_POSSIBLE_STATE])
+																		) if Address.is_us_state?(row[UTAH_POSSIBLE_STATE],true)
+					s.add_tag(Tag.find_by_name("datadump").id) #important to mark them as such
+				end
+			end
+		end
 	end
 
 end
