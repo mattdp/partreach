@@ -11,6 +11,7 @@
 						<td class="under-examination">
 							<p><%= "Name: #{supplier.name}" %></p>
 							<p><%= "Address: #{address.country} #{address.state} #{address.zip}" if address %></p>
+							<p><%= link_to "Website", supplier.url_main %>
 						</td>
 						<td class="choice">
 							<p class="clear">

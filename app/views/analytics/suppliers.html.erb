@@ -1,5 +1,31 @@
 <% provide(:title, "Suppliers") %>
 
-Details on how many total suppliers, how many signed up, relevant rfqs
+<table>
+	<tr>
+		<th>Status</th>
+		<th>ID</th>
+		<th>Name</th>
+	</tr>
+	<tr>
+		<td>Suppliers that are signed:</td>
+	</tr>
+	<% @signed.each do |supplier| %>
+		<tr>
+			<td></td>
+			<td><%= "#{supplier.id}" %></td>
+			<td><%= "#{supplier.name}" %></td>
+		</tr>
+	<% end %>
+	<tr>
+		<td>Suppliers that have claimed profiles:</td>
+	</tr>
+	<% @claimed.each do |supplier| %>
+		<tr>
+			<td></td>
+			<td><%= "#{supplier.id}" %></td>
+			<td><%= "#{supplier.name}" %></td>
+		</tr>
+	<% end %>
+</table>
 
 <%= render 'layouts/analytics_links' %>

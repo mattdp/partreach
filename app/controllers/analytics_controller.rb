@@ -9,6 +9,8 @@ class AnalyticsController < ApplicationController
 	end
 
 	def suppliers
+		@signed = [Supplier.first]
+		@claimed = [Supplier.last]
 	end
 
 	def emails
