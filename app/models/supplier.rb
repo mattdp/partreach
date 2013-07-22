@@ -52,7 +52,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def self.quantity_by_tag_id(quantity,tag_id)
-    quantity = Combo.all.count if quantity = "all"
+    quantity = Combo.all.count if quantity == "all"
     combos = Combo.where("tag_id = ?", tag_id).take(quantity)
     return [] if combos == []
     return Supplier.find(combos.map{|c| c.supplier_id})
