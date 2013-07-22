@@ -69,4 +69,10 @@ class Order < ActiveRecord::Base
     return answer
   end
 
+  def visible_dialogues
+    visibles = []
+    self.dialogues.map{|d| visibles << d if d.opener_sent}
+    return visibles
+  end
+
 end
