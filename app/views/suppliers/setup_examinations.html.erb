@@ -21,11 +21,11 @@
 								<%= label_tag "supplier_names[#{supplier.id}]", "New name:", :class => "fleft" %>
 								<%= text_field_tag "supplier_names[#{supplier.id}]", supplier.name %>
 								<%= label_tag "supplier_countries[#{supplier.id}]", "New country:", :class => "fleft" %>
-								<%= text_field_tag "supplier_countries[#{supplier.id}]", supplier.address.country if supplier.address %>
+								<%= text_field_tag "supplier_countries[#{supplier.id}]", supplier.address ? supplier.address.country : "" %>
 								<%= label_tag "supplier_states[#{supplier.id}]", "New state:", :class => "fleft" %>
-								<%= text_field_tag "supplier_states[#{supplier.id}]", supplier.address.state if supplier.address %>
+								<%= text_field_tag "supplier_states[#{supplier.id}]", supplier.address ? supplier.address.state : "" %>
 								<%= label_tag "supplier_zips[#{supplier.id}]", "New zip:", :class => "fleft" %>
-								<%= text_field_tag "supplier_zips[#{supplier.id}]", supplier.address.zip if supplier.address %>
+								<%= text_field_tag "supplier_zips[#{supplier.id}]", supplier.address ? supplier.address.zip : "" %>
 							<p class="clear">
 								<%= radio_button_tag "suppliers[#{supplier.id}]", "duplicate", false, :class => "fleft" %>	
 								<%= label_tag "suppliers[#{supplier.id}]", "Duplicate - remove", :class => "fleft" %>
