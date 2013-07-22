@@ -45,7 +45,7 @@
 					<% s = Supplier.find(d.supplier_id) %>
 					<td>
 					<% if s.profile_visible %>
-						<%= link_to "#{s.name}", supplier_profile_path(supplier.name_for_link) %>
+						<%= link_to "#{s.name}", supplier_profile_path(s.name_for_link) %>
 					<% elsif !s.url_main.nil? and s.url_main != "" %>
 						<%= link_to "#{s.name}", s.url_main %>
 					<% else %>
