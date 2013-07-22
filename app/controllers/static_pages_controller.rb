@@ -11,6 +11,12 @@ class StaticPagesController < ApplicationController
 	def be_a_supplier
 	end
 
+	def terms
+	end
+
+	def privacy
+	end
+
 	def materials
 		@data_by_process = [
 				{process: "SLS", material: "Nylon (with various blends), ceramics, metals", looking_for: ["Decent mechanical performance","Low-volume production", "Thinner wall thickness than FDM", "Surface detail"], downsides: ["Dimensional stability lower than FDM", "Trapped powder with hollow object", "Porous"], example: ["A run of 20 custom cable brackets"]},
