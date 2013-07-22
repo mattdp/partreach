@@ -176,12 +176,23 @@ class Supplier < ActiveRecord::Base
   end   
 
   def get_supporting_info
-    return "Need more geo information for comparison!" if \
-    self.address.nil? or self.address.country != "US" or self.address.state.nil?
-    suppliers = Address.find_supplier_ids_by_country_and_state(self.address.country,self.address.state)
-    screened_suppliers = suppliers.reject{|s| s.has_tag?(Tag.find_by_name("datadump").id)}
-    return "No others in that country/state." if !screened_suppliers.present?
-    return "Other suppliers in that state: #{screened_suppliers.map{|s| s.name}.sort}"
+    datadump_id = Tag.find_by_name("datadump").id
+    if self.address.nil? or self.address.country != "US" or self.address.state.nil?
+      return self.supplier_names_by_first_character
+    else
+      suppliers = Address.find_supplier_ids_by_country_and_state(self.address.country,self.address.state)
+      screened_suppliers = suppliers.reject{|s| s.has_tag?(datadump_id)}
+      return "No others in that country/state." if !screened_suppliers.present?
+      return "Other non-datadump suppliers in that state: #{screened_suppliers.map{|s| s.name}.sort}"
+    end
+  end
+
+  def supplier_names_by_first_character
+    datadump_id = Tag.find_by_name("datadump").id
+    char = self.name[0].downcase
+    suppliers = Supplier.where("LOWER(LEFT(name,1)) = ?", char)
+    screened_suppliers = suppliers.reject{|s| s.has_tag?(datadump_id)}
+    return "Other non-datadump suppliers with names starting with #{char.upcase}: #{screened_suppliers.map{|s| s.name}.sort}"
   end
 
 end
