@@ -1,5 +1,5 @@
 <tr>
 	<td></td>
 	<td><%= "#{supplier.id}" %></td>
-	<td><%= link_to "#{supplier.name}", supplier.url_main %></td>
+	<td><%= link_to "#{supplier.name}", supplier_profile_path(supplier.name_for_link) %></td>
 </tr>
