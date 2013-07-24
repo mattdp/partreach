@@ -15,14 +15,15 @@
 		<% @visibles.keys.sort.each do |country| %>
 			<h3 class="supplier-list-country"><%= "#{country}" %></h3>
 			<% state_sort(@visibles[country].keys).each do |state| %>
-				<%== "<h4 class=\"supplier-list-state\" id=\"#{country}-#{state}\">" %>
+				<%== "<h4 class=\"supplier-list-state fleft\" id=\"#{country}-#{state}\">" %>
 					<% if state == "no_state" %>
 						<%= "Many-state / No state" %>
 					<% else %> 
 						<%= "#{state}" %>
 					<% end %>
 				</h4>
-				<table>
+				<%= link_to "Back to top", suppliers_path(anchor: "supplier-list-intro"), :class => "supplier-list-back-to-top fright" %>
+				<table class="clear">
 					<% columns = 3 %>
 					<% counter = 0 %>
 					<ul class="supplier-list-bullets">
