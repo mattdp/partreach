@@ -5,8 +5,10 @@
 #need update to delete or untag appropriately
 
 class SuppliersController < ApplicationController
+	include SuppliersHelper
 	before_filter :admin_user, only: [:new, :create]
 	before_filter :examiner_user, only: [:setup_examinations, :submit_examinations]
+	helper_method :state_sort
 
 	def new
 		@tags = Tag.all

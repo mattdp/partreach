@@ -129,12 +129,10 @@ class Supplier < ActiveRecord::Base
       answer[country] = {"no_state" => []} if answer[country].nil?
       if s.address.state.nil?
         answer[country]["no_state"] << s
-        answer[country]["no_state"].sort! { |a,b| a.name <=> b.name }
       elsif answer[country][state].nil?
         answer[country][state] = [s]
       else
         answer[country][state] << s
-        answer[country][state].sort! { |a,b| a.name <=> b.name }
       end
     end
 
