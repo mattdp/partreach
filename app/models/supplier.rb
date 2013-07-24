@@ -136,6 +136,12 @@ class Supplier < ActiveRecord::Base
       end
     end
 
+    answer.keys.each do |country|
+      answer[country].keys.each do |state|
+        answer[country][state].sort! { |a,b| a.name <=> b.name }
+      end
+    end
+
     return answer
   end
 
