@@ -1,12 +1,21 @@
 <% provide(:title,"Supplier Profiles") %>
 
-<div class="content order">
+<div class="content">
 	<div class="container row supplier-list">
-		<p id="supplier-list-intro">We have 600+ suppliers catalogued, representing 20+ countries. This is the set of US 3D printing suppliers we currently have catalogued. We will add other countries soon.<br><br>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
+		<p id="supplier-list-intro">We have 600+ suppliers catalogued, representing 20+ countries. This is the set of US 3D printing suppliers we currently have catalogued. We will add other countries soon.</p>
+		<p>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
+
+		<p>Navigate to a US state:</p>
+		<% to_index = Address.us_states_of_visible_profiles %>
+		<% to_index.each do |state| %>
+			<%= "|" if to_index != [] and state != to_index[0] %>
+			<%= link_to "#{state}", suppliers_path(anchor: "US-#{state}") %>
+		<% end %>
+
 		<% @visibles.keys.sort.each do |country| %>
 			<h3 class="supplier-list-country"><%= "#{country}" %></h3>
 			<% state_sort(@visibles[country].keys).each do |state| %>
-				<%== "<h4 class=\"supplier-list-state #{country}-#{state}\">" %>
+				<%== "<h4 class=\"supplier-list-state\" id=\"#{country}-#{state}\">" %>
 					<% if state == "no_state" %>
 						<%= "Many-state / No state" %>
 					<% else %> 

@@ -49,6 +49,15 @@ class Address < ActiveRecord::Base
     return US_STATE_HASH[longform]
   end
 
+  def self.us_states_of_visible_profiles
+    states = []
+    suppliers = Supplier.visible_profiles
+    suppliers.each do |s|
+      states << s.address.state.upcase if s.address and s.address.country == "US" and Address.is_us_state?(s.address.state)
+    end
+    return states.uniq.sort
+  end
+
   US_STATE_HASH = 
     {"Alabama" => "AL",
     "Alaska" => "AK",
