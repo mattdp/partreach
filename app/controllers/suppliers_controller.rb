@@ -65,8 +65,8 @@ class SuppliersController < ApplicationController
 			elsif v == "not_duplicate"
 				supplier.update_attributes({name: params[:supplier_names][s_id]})
 				supplier.create_or_update_address({ country: params[:supplier_countries][s_id], 
-																						state: params[:supplier_states][s_id]},
-																						zip: params[:supplier_zips][s_id])
+																						state: params[:supplier_states][s_id],
+																						zip: params[:supplier_zips][s_id]})
 				supplier.remove_tag(datadump_id)
 			end
 		end
