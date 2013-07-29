@@ -2,29 +2,28 @@
 #
 # Table name: orders
 #
-#  id                     :integer          not null, primary key
-#  quantity               :integer
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  user_id                :integer
-#  drawing_file_name      :string(255)
-#  drawing_content_type   :string(255)
-#  drawing_file_size      :integer
-#  drawing_updated_at     :datetime
-#  name                   :string(255)
-#  deadline               :date
-#  supplier_message       :text
-#  is_over_without_winner :boolean
-#  recommendation         :text
-#  material_message       :text
-#  next_steps             :text
-#  suggested_suppliers    :text
-#  drawing_units          :string(255)
-#  status                 :string(255)      default("Needs work")
+#  id                   :integer          not null, primary key
+#  quantity             :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  user_id              :integer
+#  drawing_file_name    :string(255)
+#  drawing_content_type :string(255)
+#  drawing_file_size    :integer
+#  drawing_updated_at   :datetime
+#  name                 :string(255)
+#  deadline             :date
+#  supplier_message     :text
+#  recommendation       :text
+#  material_message     :text
+#  next_steps           :text
+#  suggested_suppliers  :text
+#  drawing_units        :string(255)
+#  status               :string(255)      default("Needs work")
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message, :is_over_without_winner, \
+  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message, \
   :material_message, :next_steps, :suggested_suppliers, :drawing_units, :status
   has_attached_file :drawing,
   									:url => "/:attachment/:id/:style/:basename.:extension",
@@ -39,8 +38,8 @@ class Order < ActiveRecord::Base
   validates :drawing_units, presence: true, length: {minimum: 1}
 
   def finished?
-    stats = self.status
-    return true if self.is_over_without_winner or status == "Finished - closed" or status == "Finished - no close"
+    status = self.status
+    return true if Order.order_status_hash[status]
     self.dialogues.each do |d|
       return true if d.won
     end
@@ -74,6 +73,19 @@ class Order < ActiveRecord::Base
     visibles = []
     self.dialogues.map{|d| visibles << d if d.opener_sent}
     return visibles
+  end
+
+  #status, order completed
+  ORDER_STATUS_HASH = {
+    "Needs work" => false,
+    "Waiting for supplier" => false,
+    "Waiting for buyer" => false,
+    "Finished - closed" => true,
+    "Finished - no close" => true
+  }
+
+  def self.order_status_hash
+    return ORDER_STATUS_HASH
   end
 
 end

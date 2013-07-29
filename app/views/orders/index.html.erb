@@ -27,7 +27,7 @@
             <% end %>
           </td>
           <td class="center">
-            <% if order.is_over_without_winner %>
+            <% if winner(order).nil? and order.finished? %>
               <%= "Bidding concluded, no deal." %>
             <% elsif winner(order) %>
               <%= "'#{Supplier.find(winner(order).supplier_id).name}' selected as winner." %>

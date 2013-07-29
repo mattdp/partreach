@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130718180035) do
+ActiveRecord::Schema.define(:version => 20130729213305) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -103,8 +103,8 @@ ActiveRecord::Schema.define(:version => 20130718180035) do
 
   create_table "orders", :force => true do |t|
     t.integer  "quantity"
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "user_id"
     t.string   "drawing_file_name"
     t.string   "drawing_content_type"
@@ -113,13 +113,12 @@ ActiveRecord::Schema.define(:version => 20130718180035) do
     t.string   "name"
     t.date     "deadline"
     t.text     "supplier_message"
-    t.boolean  "is_over_without_winner"
     t.text     "recommendation"
     t.text     "material_message"
     t.text     "next_steps"
     t.text     "suggested_suppliers"
     t.string   "drawing_units"
-    t.string   "status",                 :default => "Needs work"
+    t.string   "status",               :default => "Needs work"
   end
 
   create_table "owners", :force => true do |t|
@@ -170,6 +169,15 @@ ActiveRecord::Schema.define(:version => 20130718180035) do
     t.boolean  "exclusive",  :default => false
     t.boolean  "visible",    :default => true
     t.string   "readable"
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "users", :force => true do |t|

@@ -16,8 +16,6 @@
 
 	<%= hidden_field_tag "id", @order.id %>
 
-	<%= label_tag "is_over_without_winner", "Over without winner?" %>
-	<%= check_box_tag "is_over_without_winner", 1, @order.is_over_without_winner %>
 	<%= label_tag "recommendation", "Recommendation" %>
 	<%= text_area_tag "recommendation", @order.recommendation %>
 	<%= label_tag "next_steps", "Next steps" %>
@@ -66,7 +64,7 @@
 	<% end %></div>
 
 	<p>Order status</p>
-	<% ["Needs work","Waiting for supplier","Waiting for buyer","Finished - closed", "Finished - no close"].each do |message| %>
+	<% Order.order_status_hash.keys.each do |message| %>
 		<%= radio_button_tag "status", message, @order.status == message, :class => "fleft" %>
 		<%= label_tag "status", message, :class => "fleft" %>
 	<% end %>

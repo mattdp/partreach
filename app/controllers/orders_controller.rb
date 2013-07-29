@@ -131,13 +131,8 @@ class OrdersController < ApplicationController
 
     if params[:submitting_page] and params[:submitting_page] == "orders_show"
 
-      if @order.is_over_without_winner and params[:won] and params[:won] != "0"
-        @order.is_over_without_winner = false
-        @order.save
-      end
-
-      if !@order.is_over_without_winner and params[:won] and params[:won] == "0"
-        @order.is_over_without_winner = true
+      if @order.status = "Finished - no close" and params[:won] and params[:won] != "0"
+        @order.status = "Needs work"
         @order.save
       end
 
@@ -199,12 +194,10 @@ class OrdersController < ApplicationController
     @textfields = setup_textfields
     @numberfields = setup_numberfields
 
-    @order.is_over_without_winner = params[:is_over_without_winner]
     @order.recommendation = params[:recommendation]
     @order.next_steps = params[:next_steps]
     @order.status = params[:status] if params[:status].present?
     @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
-
     @dialogues.each do |d|
       if !params[d.id.to_s].nil?
         d_params = params[d.id.to_s]
