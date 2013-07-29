@@ -40,7 +40,7 @@ class Order < ActiveRecord::Base
 
   def finished?
     stats = self.status
-    return true if self.is_over_without_winner or status = "Finished - closed" or status = "Finished - no close"
+    return true if self.is_over_without_winner or status == "Finished - closed" or status == "Finished - no close"
     self.dialogues.each do |d|
       return true if d.won or self.status
     end
@@ -51,8 +51,8 @@ class Order < ActiveRecord::Base
     finished = [] 
     unfinished = []
 
-    all = Order.all.sort
-    all.each do |a|
+    orders = Order.all.sort
+    orders.each do |a|
       a.finished? ? finished << a : unfinished << a
     end
     return unfinished.concat(finished)
