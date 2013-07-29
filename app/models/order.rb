@@ -39,10 +39,11 @@ class Order < ActiveRecord::Base
   validates :drawing_units, presence: true, length: {minimum: 1}
 
   def finished?
+    stats = self.status
+    return true if self.is_over_without_winner or status = "Finished - closed" or status = "Finished - no close"
     self.dialogues.each do |d|
-      return true if d.won 
+      return true if d.won or self.status
     end
-    return true if self.is_over_without_winner
     return false #0 dialogue, multiple unwon dialogues, and is_over nil cases
   end
 
