@@ -14,7 +14,6 @@
 #  name                   :string(255)
 #  deadline               :date
 #  supplier_message       :text
-#  is_over_without_winner :boolean
 #  recommendation         :text
 #  material_message       :text
 #  next_steps             :text
