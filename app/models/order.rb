@@ -42,7 +42,7 @@ class Order < ActiveRecord::Base
     stats = self.status
     return true if self.is_over_without_winner or status == "Finished - closed" or status == "Finished - no close"
     self.dialogues.each do |d|
-      return true if d.won or self.status
+      return true if d.won
     end
     return false #0 dialogue, multiple unwon dialogues, and is_over nil cases
   end
