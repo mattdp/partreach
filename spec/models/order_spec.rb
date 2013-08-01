@@ -20,6 +20,7 @@
 #  suggested_suppliers  :text
 #  drawing_units        :string(255)
 #  status               :string(255)      default("Needs work")
+#  next_action_date     :string(255)
 #
 
 require 'spec_helper'

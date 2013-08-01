@@ -9,6 +9,7 @@ Pending fields:  valid (not us, not duplicate?, 3dp)? when placed? resulted in b
 		<th>User email</th>
 		<th>Total suppliers</th>
 		<th>Finished?</th>
+		<th>Next Action Date</th>
 		<th>Chosen</th>
 		<th>We emailed them</th>
 		<th>They bid or declined</th>
@@ -22,6 +23,7 @@ Pending fields:  valid (not us, not duplicate?, 3dp)? when placed? resulted in b
 			<td><%= User.find(o.user_id).email if o.user_id %></td>
 			<td><%= o.dialogues.count %></td>
 			<td><%= o.status %></td>
+			<td><%= o.next_action_date %></td>
 			<td><%= analytics_count["selected_not_opened"] %></td>
 			<td><%= analytics_count["opened_not_responded"] %></td>
 			<td><%= analytics_count["responded_not_informed"] %></td>

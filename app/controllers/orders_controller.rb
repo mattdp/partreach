@@ -197,6 +197,7 @@ class OrdersController < ApplicationController
     @order.recommendation = params[:recommendation]
     @order.next_steps = params[:next_steps]
     @order.status = params[:status] if params[:status].present?
+    @order.next_action_date = params[:next_action_date] if params[:next_action_date].present?
     @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
     @dialogues.each do |d|
       if !params[d.id.to_s].nil?
