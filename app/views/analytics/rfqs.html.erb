@@ -18,7 +18,7 @@ Pending fields:  valid (not us, not duplicate?, 3dp)? when placed? resulted in b
 	<% @orders.each do |o| %>
 		<% analytics_count = o.analytics_count %>
 		<tr>
-			<td><%= link_to o.id, order_path(o.id) %></td>
+			<td><%= link_to o.id, manipulate_path(o) %></td>
 			<td><%= o.created_at.strftime("%Y-%m-%d") %></td>
 			<td><%= User.find(o.user_id).email if o.user_id %></td>
 			<td><%= o.dialogues.count %></td>
