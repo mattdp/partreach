@@ -24,40 +24,47 @@
 	<%= text_field_tag "next_action_date", @order.next_action_date %>
 
 	<table>
-		<th>d_id</th>
-		<th>Supplier</th>
-		<% [@checkboxes,@textfields,@numberfields].each do |set| %>
-			<% set.each do |h| %>
-				<th>
-					<% if set == @checkboxes %>
-						<%= "" %>
-					<% else %>
-						<%= "#{h.to_s}" %>
-					<% end %>
-				</th>
+		<tr>
+			<th>d_id</th>
+			<th>Supplier</th>
+			<% [@checkboxes,@textfields,@numberfields].each do |set| %>
+				<% set.each do |h| %>
+					<th>
+						<% if set == @checkboxes %>
+							<%= "" %>
+						<% else %>
+							<%= "#{h.to_s}" %>
+						<% end %>
+					</th>
+				<% end %>
 			<% end %>
-		<% end %>
-		<% @dialogues.each do |d| %>
-			<tr>
-				<td><%= "#{d.id}" %></td>
-				<td><%= "#{Supplier.find(d.supplier_id).name}" %>
-				<% @checkboxes.each do |c| %>
-					<td class="center">
-						<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s] %>
-					</td>
-				<% end %>
-				<% @textfields.each do |t| %>
+		</tr>
+			<% @dialogues.each do |d| %>
+				<tr>
+					<% @supplier = Supplier.find(d.supplier_id) %>
+					<td><%= "#{d.id}" %></td>
 					<td>
-						<%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
+						<strong><%= "#{@supplier.name}" %></strong>
+						<%= "\n#{@supplier.email}" if @supplier.email %>
+						<%= "\n#{@supplier.phone}" if @supplier.phone %>
 					</td>
-				<% end %>
-				<% @numberfields.each do |n| %>
-					<td>
-						<%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
-					</td>
-				<% end %>
-			</tr>
-		<% end %>
+					<% @checkboxes.each do |c| %>
+						<td class="center">
+							<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s] %>
+						</td>
+					<% end %>
+					<% @textfields.each do |t| %>
+						<td>
+							<%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
+						</td>
+					<% end %>
+					<% @numberfields.each do |n| %>
+						<td>
+							<%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
+						</td>
+					<% end %>
+				</tr>
+			<% end %>
 	</table>
 
 	<p>Ordering of checkboxes:</p>

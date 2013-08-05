@@ -22,6 +22,8 @@ class SuppliersController < ApplicationController
 		@supplier.url_main = params[:url_main] if !(params[:url_main].nil? or params[:url_main] == "")
 		@supplier.description = params[:description] if !(params[:description].nil? or params[:description] == "")
 		@supplier.source = params[:source] if !(params[:source].nil? or params[:source] == "")
+		@supplier.email = params[:email] if !(params[:email].nil? or params[:email] == "")
+		@supplier.phone = params[:phone] if !(params[:phone].nil? or params[:phone] == "")
 		@supplier.profile_visible = true if params[:profile_visible] == "1"
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
 		@supplier.create_or_update_address(	country: params[:country],
