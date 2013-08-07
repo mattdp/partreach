@@ -4,7 +4,14 @@
 	<div class="span10 offset1">
 		<h1><%= "Editing Profile for #{@supplier.name}" %></h1>
 		<div class="bit-of-space">
-			<%= link_to "See your profile as it looks right now", supplier_profile_path(@supplier.name_for_link) %>
+
+			<p>Editing your profile, which gives buyers better information and more reason to pick your business, is totally free and comes with no obligation.</p>
+			<p><%= " If you join our network, we will route more business your way, and each time you choose to bid on a lead SupplyBetter will charge you 1% of the bid and give you the potential client's contact information." if !@supplier.is_in_network? %></p>
+			<p><% if @supplier.is_in_network? %>
+				<%= link_to "See your profile as it looks to buyers right now.", supplier_profile_path(@supplier.name_for_link) %>
+			<% else %>
+				<%= link_to "Learn about joining our network", be_a_supplier_path %> or <%= link_to "see your profile as it looks right now.", supplier_profile_path(@supplier.name_for_link) %>
+			<% end %></p>
 		</div>
 		<div>
 		<%= form_tag supplier_path(@supplier), method: :put do %>
