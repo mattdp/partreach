@@ -1,6 +1,6 @@
 <div class="content">
 	<div class="container supplier-profile">
-		<% if @supplier.nil? or (!@supplier.profile_visible and (current_user.nil? or !current_user.admin)) %>
+		<% if !@allowed %>
 			<% provide(:title, "Profile not found") %>
 			<p>Profile not found.</p>
 		<% else %>
