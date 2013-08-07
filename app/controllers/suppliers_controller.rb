@@ -8,7 +8,7 @@ class SuppliersController < ApplicationController
 	include SuppliersHelper
 	before_filter :admin_user, only: [:new, :create]
 	before_filter :examiner_user, only: [:setup_examinations, :submit_examinations]
-	before_filter :correct_supplier_for_user, only: [:edit]
+	before_filter :correct_supplier_for_user, only: [:edit, :update]
 	helper_method :state_sort
 
 	def new
@@ -56,6 +56,9 @@ class SuppliersController < ApplicationController
 
 	def edit
 		@supplier = Supplier.find(params[:id])
+	end
+
+	def update
 	end
 
 	def setup_examinations

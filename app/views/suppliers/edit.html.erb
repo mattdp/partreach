@@ -1,3 +1,18 @@
 <% provide(:title,"Editing #{@supplier.name}") %>
 
-<%= "#{@supplier.name}" %>
+<div class="container">
+	<div class="span10 offset1">
+		<h1><%= "Editing Profile for #{@supplier.name}" %></h1>
+		<%= link_to "DEAD LINK PUT ONE IN", "#" %>
+		<div>
+			<%= form_tag :action => 'update', :controller => 'suppliers' do %>
+				<%= label_tag 'suggested_description', 'Add or change supplier description' %>
+				<%= text_area_tag 'suggested_description', nil %>
+				<%= label_tag 'suggested_machines', 'Add or change machine data' %>
+				<%= text_area_tag 'suggested_machines', nil %>
+
+				<%= submit_tag "Submit edits", :disable_with => "Creating...", :id => "create_button" %>
+			<% end %>
+		</div>
+	</div>
+</div>
