@@ -34,6 +34,15 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
+  def is_in_network?
+    network_tag_names = %w(n3_signedAndNDAd n5_signed_only)
+    network_tag_ids = network_tag_names.map {|n| Tag.find_by_name(n).id}
+    network_tag_ids.each do |tag_id|
+      return true if self.has_tag?(tag_id)
+    end
+    return false
+  end
+
   def attach_to_user(user_id)
     user = User.find(user_id)
     user.supplier_id = self.id
