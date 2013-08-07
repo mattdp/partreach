@@ -5,6 +5,9 @@
     </h1>
     <ul class="nav pull-right">
       <% if signed_in? %>
+        <% if current_user.supplier_id %>
+          <li><%= link_to "Edit my supplier page", edit_supplier_path(current_user.supplier_id) %></li>
+        <% end %>
         <li><%= link_to "New RFQ", new_order_path %></li>
         <li><%= link_to "My RFQs", orders_path %></li>
         <li id="fat-menu" class="dropdown">

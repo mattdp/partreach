@@ -20,6 +20,8 @@
 class Supplier < ActiveRecord::Base
   attr_accessible :name, :name_for_link, :url_main, :url_materials, :description, :email, :phone, :address_id, :source, :profile_visible, :claimed
 
+  belongs_to :user
+
   has_many :dialogues
   has_one :address, :as => :place, :dependent => :destroy
   has_many :combos, :dependent => :destroy

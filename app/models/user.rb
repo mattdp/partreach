@@ -19,13 +19,14 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :email_valid, :email_subscribed
+  attr_accessible :name, :email, :password, :password_confirmation, :email_valid, :email_subscribed, :supplier_id
   has_secure_password
 
   has_many :orders, :dependent => :destroy
   has_many :dialogues, :through => :orders, :dependent => :destroy
   has_many :reviews
   has_one :address, :as => :place
+  has_one :supplier
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -35,6 +36,7 @@ class User < ActiveRecord::Base
   validates	:email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+  validates :supplier_id, uniqueness: true
 
   def send_password_reset #http://railscasts.com/episodes/274-remember-me-reset-password
     generate_token(:password_reset_token)

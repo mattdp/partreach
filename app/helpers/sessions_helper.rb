@@ -48,6 +48,10 @@ module SessionsHelper
     redirect_to(root_path) unless current_user.admin? or current_user.examiner?
   end
 
+  def correct_supplier_for_user
+    redirect_to(root_path) unless current_user.admin? or (current_user.supplier_id and current_user.supplier_id == params[:id].to_i)
+  end
+
   def brand_name
     return "SupplyBetter"
   end
