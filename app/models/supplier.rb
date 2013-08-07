@@ -32,6 +32,12 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
+  def attach_to_user(user_id)
+    user = User.find(user_id)
+    user.supplier_id = self.id
+    return user.save(:validate => false)
+  end
+
   def self.proper_name_for_link(name)
     return name.downcase.gsub(/\W+/, "")
   end
