@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130807000549) do
+ActiveRecord::Schema.define(:version => 20130807201047) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -149,16 +149,18 @@ ActiveRecord::Schema.define(:version => 20130807000549) do
   create_table "suppliers", :force => true do |t|
     t.string   "name"
     t.string   "url_main"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.text     "description"
     t.string   "email"
     t.string   "phone"
     t.string   "url_materials"
-    t.string   "source",          :default => "manual"
-    t.boolean  "profile_visible", :default => false
+    t.string   "source",                :default => "manual"
+    t.boolean  "profile_visible",       :default => false
     t.string   "name_for_link"
-    t.boolean  "claimed",         :default => false
+    t.boolean  "claimed",               :default => false
+    t.text     "suggested_description"
+    t.text     "suggested_machines"
   end
 
   create_table "tags", :force => true do |t|

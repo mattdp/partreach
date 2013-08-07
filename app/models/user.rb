@@ -16,6 +16,7 @@
 #  email_valid            :boolean          default(TRUE)
 #  email_subscribed       :boolean          default(TRUE)
 #  examiner               :boolean          default(FALSE)
+#  supplier_id            :integer
 #
 
 class User < ActiveRecord::Base
