@@ -59,6 +59,14 @@ class SuppliersController < ApplicationController
 	end
 
 	def update
+		@supplier = Supplier.find(params[:id])
+
+		@supplier.suggested_description = params[:suggested_description]
+		@supplier.suggested_machines = params[:suggested_machines]
+
+		@supplier.save
+
+		redirect_to edit_supplier_path(@supplier), notice: "Suggestions received!"
 	end
 
 	def setup_examinations

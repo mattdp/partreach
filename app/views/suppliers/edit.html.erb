@@ -7,11 +7,11 @@
 			<%= link_to "See your profile as it looks right now", supplier_profile_path(@supplier.name_for_link) %>
 		</div>
 		<div>
-			<%= form_tag :action => 'update', :controller => 'suppliers' do %>
+		<%= form_tag supplier_path(@supplier), method: :put do %>
 				<%= label_tag 'suggested_description', 'Add or change supplier description' %>
-				<%= text_area_tag 'suggested_description', nil %>
+				<%= text_area_tag 'suggested_description', @supplier.suggested_description %>
 				<%= label_tag 'suggested_machines', 'Add or change machine data' %>
-				<%= text_area_tag 'suggested_machines', nil %>
+				<%= text_area_tag 'suggested_machines', @supplier.suggested_machines %>
 
 				<%= submit_tag "Suggest edits", :disable_with => "Creating...", :id => "create_button" %>
 			<% end %>
