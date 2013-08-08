@@ -25,6 +25,13 @@ class UserMailer < ActionMailer::Base
     @brand_name = brand_name
     mail(to: @user.email, subject: "Password reset requested")
   end
+
+  def supplier_intro_email(user,supplier)
+    @user = user
+    @brand_name = brand_name
+    @supplier = supplier
+    mail(to: @user.email, subject: "Your new #{brand_name} account")
+  end
   
   def email_internal_team(subject, note)
     @note = note

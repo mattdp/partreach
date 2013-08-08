@@ -39,11 +39,15 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   validates :supplier_id, uniqueness: true, allow_nil: true
 
-  def send_password_reset #http://railscasts.com/episodes/274-remember-me-reset-password
+  def send_password_reset(supplier_id=nil) #http://railscasts.com/episodes/274-remember-me-reset-password
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!(:validate => false)
-    UserMailer.password_reset(self).deliver
+    if supplier_id.nil?
+      UserMailer.password_reset(self).deliver
+    else
+      UserMailer.supplier_intro_email(self,supplier_id).deliver
+    end
   end
 
   def self.can_use_email?(email_address)
