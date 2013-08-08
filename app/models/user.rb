@@ -40,7 +40,7 @@ class User < ActiveRecord::Base
   validates :supplier_id, uniqueness: true, allow_nil: true
 
   #can cause some serious overlap problems if abused
-  def create_and_link_to_supplier(name,email,supplier_id)
+  def self.create_and_link_to_supplier(name,email,supplier_id)
     user = User.new
     user.name = name
     user.email = email
