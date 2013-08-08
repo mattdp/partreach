@@ -86,7 +86,7 @@
 				<% else %>
 					<%= link_to s.name, s.url_main %>
 				<% end %>
-				<%= " [#{tag_names.join(',')}] <#{s.safe_country}:#{s.safe_state}:#{s.safe_zip}>" %>
+				<%= " [#{tag_names.join(',')}] <#{s.safe_country}:#{s.safe_state}:#{s.safe_zip}> #{s.preferences}" %>
 
 				<% if counter >= supplier_columns %>
 					</td></tr><tr><td>
