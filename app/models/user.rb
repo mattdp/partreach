@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   validates	:email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
-  validates :supplier_id, uniqueness: true
+  validates :supplier_id, uniqueness: true, allow_nil: true
 
   def send_password_reset #http://railscasts.com/episodes/274-remember-me-reset-password
     generate_token(:password_reset_token)
