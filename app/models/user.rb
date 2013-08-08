@@ -39,6 +39,17 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   validates :supplier_id, uniqueness: true, allow_nil: true
 
+  #can cause some serious overlap problems if abused
+  def create_and_link_to_supplier(name,email,supplier_id)
+    user = User.new
+    user.name = name
+    user.email = email
+    user.supplier_id = supplier_id
+    user.save(:validate => false)
+
+    user.send_password_reset(supplier_id)
+  end
+
   def send_password_reset(supplier_id=nil) #http://railscasts.com/episodes/274-remember-me-reset-password
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
