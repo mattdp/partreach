@@ -252,8 +252,7 @@ class OrdersController < ApplicationController
     @dialogue.won = true
     note = "Purchase attempted. Order #{@order.id}, Supplier #{@supplier.name}"
     text_notification(note)
-    UserMailer.purchase_attempted(note).deliver
-
+    UserMailer.email_internal_team("Purchase attempted",note)
     respond_to do |format|
       format.html
       format.json { render json: @order }

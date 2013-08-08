@@ -65,7 +65,10 @@ class SuppliersController < ApplicationController
 		@supplier.suggested_machines = params[:suggested_machines]
 
 		@supplier.save
-
+		UserMailer.email_internal_team(
+			"Supplier profile edit: #{@supplier.name}",
+			"They changed their suggested description or machines."
+			)
 		redirect_to edit_supplier_path(@supplier), notice: "Suggestions received!"
 	end
 
