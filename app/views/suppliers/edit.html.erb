@@ -15,10 +15,12 @@
 		</div>
 		<div>
 		<%= form_tag supplier_path(@supplier), method: :put do %>
-				<%= label_tag 'suggested_description', 'Add or change supplier description' %>
+				<%= label_tag 'suggested_description', 'Add or change supplier description. This information is public.' %>
 				<%= text_area_tag 'suggested_description', @supplier.suggested_description %>
-				<%= label_tag 'suggested_machines', 'Add or change machine data' %>
+				<%= label_tag 'suggested_machines', 'Add or change machine data. This information is public.' %>
 				<%= text_area_tag 'suggested_machines', @supplier.suggested_machines %>
+				<%= label_tag 'suggested_machines', "Add or change preference data: do you prefer working in certain materials, to deal only with companies, or to avoid orders under certain quantities? If you have preferences about your ideal customer, that can help us send you better leads. This information is private." %>
+				<%= text_area_tag 'suggested_machines', @supplier.suggested_preferences %>
 
 				<%= submit_tag "Suggest edits", :disable_with => "Creating...", :id => "create_button" %>
 			<% end %>

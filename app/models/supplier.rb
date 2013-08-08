@@ -24,7 +24,7 @@
 class Supplier < ActiveRecord::Base
   attr_accessible :name, :name_for_link, :url_main, :url_materials, :description, \
   :email, :phone, :address_id, :source, :profile_visible, :claimed, \
-  :suggested_description, :suggested_machines
+  :suggested_description, :suggested_machines, :suggested_preferences, :preferences
 
   belongs_to :user
 
