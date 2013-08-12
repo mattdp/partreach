@@ -38,6 +38,21 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
+  #return hash of [machine => quantity]
+  def machines_quantity_hash
+    answer = {}
+    owners = self.owners
+    owners.each do |o|
+      m = o.machine_id
+      if answer[m].nil?
+        answer[m] = 1
+      else
+        answer[m] += 1
+      end
+    end
+    return answer
+  end
+
   def is_in_network?
     network_tag_names = %w(n3_signedAndNDAd n5_signed_only)
     network_tag_ids = network_tag_names.map {|n| Tag.find_by_name(n).id}
