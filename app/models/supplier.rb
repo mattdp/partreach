@@ -102,11 +102,14 @@ class Supplier < ActiveRecord::Base
     self.tags.include?(t)
   end
 
-  def add_machine(machine_id)
-    m = Machine.find_by_id(machine_id)    
+  def add_machine(machine_id, quantity=1)
+    m = Machine.find_by_id(machine_id)  
     return false if m.nil?
-    w = Owner.new(supplier_id: self.id, machine_id: machine_id) 
-    return w.save
+    w = false
+    (1..quantity).each do |n|
+      w = Owner.create(supplier_id: self.id, machine_id: machine_id) 
+    end
+    return w
   end
 
   def remove_machine(machine_id)
