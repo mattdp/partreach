@@ -91,7 +91,7 @@ class Supplier < ActiveRecord::Base
     return c.save
   end
 
-  def remove_tag(tag_id)
+  def remove_tags(tag_id)
     c = Combo.where("supplier_id = ? AND tag_id = ?", self.id, tag_id)
     Combo.destroy_all(supplier_id: self.id, tag_id: tag_id) unless c.nil? or c == []
   end
@@ -112,7 +112,7 @@ class Supplier < ActiveRecord::Base
     return w
   end
 
-  def remove_machine(machine_id)
+  def remove_machines(machine_id)
     w = Owner.where("supplier_id = ? AND machine_id = ?", self.id, machine_id)
     Owner.destroy_all(supplier_id: self.id, machine_id: machine_id) unless w.nil?
   end
