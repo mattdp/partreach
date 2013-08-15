@@ -3,6 +3,7 @@ module DataAnalysis
 	def paid_supplier_quotes
 		op = "Order date\tOrder #\tSupplier_id\tSupplier_name\tTotal cost\n"
 		Dialogue.find_each do |d|
+			next if !d.supplier_id.present? or !d.order_id.present?
 			s = Supplier.find(d.supplier_id)
 			next if !s.is_in_network?
 			o = Order.find(d.order_id)
