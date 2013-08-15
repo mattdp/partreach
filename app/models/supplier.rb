@@ -50,15 +50,17 @@ class Supplier < ActiveRecord::Base
     return false if guide.nil?
     supplier_set = []
     haves, have_nots, countries = guide[0], guide[1], guide[2]
-    Supplier.find_each do |s|
-      if (
-        (haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
-        (have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)) and
-        (countries == [] or (s.address and countries.include?(s.address.country)))
-        )
-        supplier_set << s
+    supplier_set = Rails.cache.fetch("index_#{index_name}", :expires_in => 12.hours) {
+      Supplier.find_each do |s|
+        if (
+          (haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
+          (have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)) and
+          (countries == [] or (s.address and countries.include?(s.address.country)))
+          )
+          supplier_set << s
+        end
       end
-    end
+    }
     return supplier_set
   end
 
