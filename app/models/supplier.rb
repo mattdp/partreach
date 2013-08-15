@@ -38,6 +38,30 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
 
+  #index is {name => [[haves tags],[have nots tags],[countries]]}
+  INDEX_HOLDER = 
+    {
+      "us_3d_printing" => [["3d_printing"],["e1_existence_doubtful","datadump"],["US"]]
+    }
+
+  #this will be slow, need to store it somewhere
+  def self.set_for_index(index_name)
+    guide = INDEX_HOLDER[index_name]
+    return false if guide.nil?
+    supplier_set = []
+    haves, have_nots, countries = guide[0], guide[1], guide[2]
+    Supplier.find_each do |s|
+      if (
+        (haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
+        (have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)) and
+        (countries == [] or (s.address and countries.include?(s.address.country)))
+        )
+        supplier_set << s
+      end
+    end
+    return supplier_set
+  end
+
   #return hash of [machine => quantity]
   def machines_quantity_hash
     answer = {}
