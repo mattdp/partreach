@@ -54,9 +54,9 @@ class Supplier < ActiveRecord::Base
       Supplier.find_each do |s|
         if (
             s.profile_visible and
+            (countries == [] or (s.address and countries.include?(s.address.country))) and
             !(haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
-            !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)) and
-            (countries == [] or (s.address and countries.include?(s.address.country)))
+            !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
           )
             internal_supplier_set << s
         end
@@ -194,7 +194,8 @@ class Supplier < ActiveRecord::Base
 
     if !(profiles.nil? or profiles == [])
       profiles.each do |s|  
-        next if s.address.nil? or s.address.country.nil?
+        #block odd error where cache appends a :@new_record after the last result
+        next if !s.is_a?(Supplier) or s.address.nil? or s.address.country.nil?
         country = s.address.country
         state = s.address.state
         answer[country] = {"no_state" => []} if answer[country].nil?
