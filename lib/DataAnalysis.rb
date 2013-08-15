@@ -1,5 +1,16 @@
 module DataAnalysis
 
+	def paying_suppliers_and_quotes
+		op = "Supplier_id\tSupplier_name\tOrder #\tTotal cost\n"
+		Dialogue.find_each do |d|
+			s = Supplier.find(d.supplier_id)
+			next if !s.is_in_network?
+			o = Order.find(d.order_id)
+			op += "#{s.id}\t#{s.name}\t#{o.id}\t#{d.total_cost}\n"
+		end
+		puts op
+	end
+
 	#return array of emails
 	def emails_of_paying_suppliers
 		t1 = Tag.find_by_name("n3_signedAndNDAd")
