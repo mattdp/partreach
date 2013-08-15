@@ -51,7 +51,7 @@ class SuppliersController < ApplicationController
 	end
 
 	def index
-		@visibles = Supplier.visible_profiles_sorted
+		@visibles = Supplier.visible_profiles_sorted("us_3d_printing")
 	end
 
 	def edit

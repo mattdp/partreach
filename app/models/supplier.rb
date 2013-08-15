@@ -53,6 +53,7 @@ class Supplier < ActiveRecord::Base
     supplier_set = Rails.cache.fetch("index_#{index_name}", :expires_in => 12.hours) {
       Supplier.find_each do |s|
         if (
+          s.profile_visible and
           (haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
           (have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)) and
           (countries == [] or (s.address and countries.include?(s.address.country)))
@@ -184,8 +185,8 @@ class Supplier < ActiveRecord::Base
 
   #return hash of countries, each with hash of states, containing array of suppliers
   #no_state for country -> supplier direct stuff
-  def self.visible_profiles_sorted
-    profiles = Supplier.visible_profiles
+  def self.visible_profiles_sorted(index_name)
+    profiles = Supplier.set_for_index(index_name)
 
     answer = {}
 
