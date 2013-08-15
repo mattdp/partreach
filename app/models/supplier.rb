@@ -192,7 +192,7 @@ class Supplier < ActiveRecord::Base
 
     answer = {}
 
-    if !profiles.nil? 
+    if !(profiles.nil? or profiles == [])
       profiles.each do |s|  
         next if s.address.nil? or s.address.country.nil?
         country = s.address.country
