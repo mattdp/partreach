@@ -49,8 +49,8 @@ class Supplier < ActiveRecord::Base
     guide = INDEX_HOLDER[index_name]
     return false if guide.nil?
     haves, have_nots, countries = guide[0], guide[1], guide[2]
-    supplier_set = Rails.cache.fetch("index_#{index_name}", :expires_in => 12.hours) {
-      internal_supplier_set = []
+    internal_supplier_set = []
+    external_supplier_set = Rails.cache.fetch("index_#{index_name}", :expires_in => 12.hours) {
       Supplier.find_each do |s|
         if (
             s.profile_visible and
@@ -63,7 +63,8 @@ class Supplier < ActiveRecord::Base
       end
       internal_supplier_set
     }
-    return supplier_set
+    return external_supplier_set if !external_supplier_set.nil?
+    return internal_supplier_set
   end
 
   #return hash of [machine => quantity]
