@@ -48,19 +48,20 @@ class Supplier < ActiveRecord::Base
   def self.set_for_index(index_name)
     guide = INDEX_HOLDER[index_name]
     return false if guide.nil?
-    supplier_set = []
     haves, have_nots, countries = guide[0], guide[1], guide[2]
     supplier_set = Rails.cache.fetch("index_#{index_name}", :expires_in => 12.hours) {
+      internal_supplier_set = []
       Supplier.find_each do |s|
         if (
-          s.profile_visible and
-          (haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
-          (have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)) and
-          (countries == [] or (s.address and countries.include?(s.address.country)))
+            s.profile_visible and
+            !(haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
+            !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)) and
+            (countries == [] or (s.address and countries.include?(s.address.country)))
           )
-          supplier_set << s
+            internal_supplier_set << s
         end
       end
+      internal_supplier_set
     }
     return supplier_set
   end
@@ -190,23 +191,25 @@ class Supplier < ActiveRecord::Base
 
     answer = {}
 
-    profiles.each do |s|  
-      next if s.address.nil? or s.address.country.nil?
-      country = s.address.country
-      state = s.address.state
-      answer[country] = {"no_state" => []} if answer[country].nil?
-      if s.address.state.nil?
-        answer[country]["no_state"] << s
-      elsif answer[country][state].nil?
-        answer[country][state] = [s]
-      else
-        answer[country][state] << s
+    if !profiles.nil? 
+      profiles.each do |s|  
+        next if s.address.nil? or s.address.country.nil?
+        country = s.address.country
+        state = s.address.state
+        answer[country] = {"no_state" => []} if answer[country].nil?
+        if s.address.state.nil?
+          answer[country]["no_state"] << s
+        elsif answer[country][state].nil?
+          answer[country][state] = [s]
+        else
+          answer[country][state] << s
+        end
       end
-    end
 
-    answer.keys.each do |country|
-      answer[country].keys.each do |state|
-        answer[country][state].sort! { |a,b| a.name <=> b.name }
+      answer.keys.each do |country|
+        answer[country].keys.each do |state|
+          answer[country][state].sort! { |a,b| a.name <=> b.name }
+        end
       end
     end
 
