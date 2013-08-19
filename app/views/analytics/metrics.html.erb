@@ -1,6 +1,13 @@
 <% provide(:title, "Metrics") %>
 
 <table>
+	<% @printout.each do |unit| %>
+		<tr>
+			<% unit.each do |datum| %>
+			<td><%= "#{datum}" %></td>
+			<% end %>
+		</tr>
+	<% end %>
 </table>
 
 <%= render 'layouts/analytics_links' %>
