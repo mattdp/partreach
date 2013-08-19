@@ -34,7 +34,7 @@ module OrdersHelper
 				currency_symbol = "$"
 			elsif currency == "euros"
 				currency_symbol = "€"
-			elsif currenct == "pounds"
+			elsif currency == "pounds"
 				currency_symbol = "£"
 			else
 				currency_symbol = ""
