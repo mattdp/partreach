@@ -28,14 +28,17 @@ class AnalyticsController < ApplicationController
 			dates << potential_date
 			potential_date = potential_date + 7
 		end
-		@titles = ["Week", "Leads and Users", "RFQ Creates" "Reviews"]
+		@titles = ["Week", "Leads and Users", "RFQ Creates","Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network"]
 		printout = [] #titles
 		dates.each do |date|
 			unit = []
 			unit << date
 			unit << Lead.where("created_at > ? AND created_at < ?", date, date + 7).count + User.where("created_at > ? AND created_at < ?", date, date + 7).count
 			unit << Order.where("created_at > ? AND created_at < ?", date, date + 7).count
+			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", date, date + 7, "Order", "closed_successfully").count
 			unit << Review.where("created_at > ? AND created_at < ?", date, date + 7).count
+			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", date, date + 7, "Supplier", "claimed_profile").count
+			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", date, date + 7, "Supplier", "joined_network").count
 			printout << unit
 		end
 		@printout = printout
