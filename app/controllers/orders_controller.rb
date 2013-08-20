@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = current_user.orders
+    current_user.supplier_id.nil? ? @supplier = nil : @supplier = Supplier.find(current_user.supplier_id)
 
     respond_to do |format|
       format.html # index.html.erb
