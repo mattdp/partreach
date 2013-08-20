@@ -10,5 +10,11 @@
 #
 
 class Event < ActiveRecord::Base
-  attr_accessible :happening, :model
+  attr_accessible :happening, :model, :model_id
+
+  def self.add_event(model,model_id,happening)
+  	event = Event.new(model: model, happening: happening)
+ 		return event.save
+  end
+
 end

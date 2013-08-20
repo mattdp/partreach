@@ -44,6 +44,8 @@ class Supplier < ActiveRecord::Base
       "us_3d_printing" => [["3d_printing"],["e1_existence_doubtful","datadump"],["US"]]
     }
 
+  NETWORK_TAG_NAMES = %w(n3_signedAndNDAd n5_signed_only) 
+
   #this will be slow, need to store it somewhere
   def self.set_for_index(index_name)
     guide = INDEX_HOLDER[index_name]
@@ -83,12 +85,17 @@ class Supplier < ActiveRecord::Base
   end
 
   def is_in_network?
-    network_tag_names = %w(n3_signedAndNDAd n5_signed_only)
-    network_tag_ids = network_tag_names.map {|n| Tag.find_by_name(n).id}
+    network_tag_ids = NETWORK_TAG_NAMES.map {|n| Tag.find_by_name(n).id}
     network_tag_ids.each do |tag_id|
       return true if self.has_tag?(tag_id)
     end
     return false
+  end
+
+  def claim_profile(user_id)
+    attach_to_user(user_id)
+    self.claimed = true
+    Event.add_event("Supplier",self.id,"claimed_profile") if self.save
   end
 
   def attach_to_user(user_id)
@@ -132,7 +139,9 @@ class Supplier < ActiveRecord::Base
     return false unless match == [] 
     c = Combo.new(supplier_id: self.id, tag_id: tag_id)
     Combo.destroy_family_tags(self.id,tag_id) if t.exclusive and !t.family.nil?
-    return c.save
+    to_return = c.save
+    Event.add_event("Supplier",self.id,"joined_network") if c.save and NETWORK_TAG_NAMES.include?(t.name)
+    return to_return
   end
 
   def remove_tags(tag_id)

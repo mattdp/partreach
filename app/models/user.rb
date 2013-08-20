@@ -44,8 +44,10 @@ class User < ActiveRecord::Base
     user = User.new
     user.name = name
     user.email = email
-    user.supplier_id = supplier_id
     user.save(:validate => false)
+
+    supplier = Supplier.find(supplier_id)
+    supplier.claim_profile(user.id)
 
     user.send_password_reset(supplier_id)
   end
