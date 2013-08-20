@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130808211922) do
+ActiveRecord::Schema.define(:version => 20130820182534) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -68,6 +68,13 @@ ActiveRecord::Schema.define(:version => 20130808211922) do
   end
 
   add_index "dialogues", ["order_id"], :name => "index_dialogues_on_order_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "model"
+    t.string   "happening"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "externals", :force => true do |t|
     t.integer  "supplier_id"
