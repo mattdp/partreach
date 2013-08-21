@@ -56,6 +56,7 @@ class SuppliersController < ApplicationController
 
 	def edit
 		@supplier = Supplier.find(params[:id])
+		@machines_quantity_hash = @supplier.machines_quantity_hash
 	end
 
 	def update

@@ -4,7 +4,6 @@
 	<div class="span10 offset1">
 		<h1><%= "Editing Profile for #{@supplier.name}" %></h1>
 		<div class="bit-of-space">
-
 			<p>Editing your profile, which gives buyers better information and more reason to pick your business, is totally free and comes with no obligation.</p>
 			<p><%= " If you join our network, we will route more business your way, and each time you choose to bid on a lead SupplyBetter will charge you 1% of the bid and give you the potential client's contact information." if !@supplier.is_in_network? %></p>
 			<p><% if @supplier.is_in_network? %>
@@ -14,16 +13,31 @@
 			<% end %></p>
 		</div>
 		<div>
-		<%= form_tag supplier_path(@supplier), method: :put do %>
-				<%= label_tag 'suggested_description', 'Add or change supplier description. This information is public.' %>
+      <%= form_tag supplier_path(@supplier), method: :put do %>
+				<br>
+				<%= label_tag 'suggested_description', 'Suggest additions or changes to supplier description. This information is public.' %>
 				<%= text_area_tag 'suggested_description', @supplier.suggested_description %>
-				<%= label_tag 'suggested_machines', 'Add or change machine data. This information is public.' %>
+				<p>Current description (will not change until reviewed by SupplyBetter): <%= simple_format(@supplier.description, :class => "supplier-description") if !@supplier.description.nil?%></p>
+				<br>
+				<%= label_tag 'suggested_machines', 'Suggest additions or changes to machine data. This information is public.' %>
 				<%= text_area_tag 'suggested_machines', @supplier.suggested_machines %>
-				<%= label_tag 'suggested_machines', "Add or change preference data: do you prefer working in certain materials, to deal only with companies, or to avoid orders under certain quantities? If you have preferences about your ideal customer, that can help us send you better leads. This information is private." %>
-				<%= text_area_tag 'suggested_machines', @supplier.suggested_preferences %>
+				<p>Current machines (will not change until reviewed by SupplyBetter):
+    			<% @machines_quantity_hash.each do |k,v| %>
+						<li>
+							<%= "#{Machine.find(k).formatted_name}"%>
+							<%= " (#{pluralize(v,"machine")})" if v > 1 %>
+						</li>
+					<% end %>
+				</p>
+				<br>
+				<%= label_tag 'suggested_preferences', "Suggest additions or changes to preference data: do you prefer working in certain materials, to deal only with companies, or to avoid orders under certain quantities? If you have preferences about your ideal customer, that can help us send you better leads. This information is private." %>
+				<%= text_area_tag 'suggested_preferences', @supplier.suggested_preferences %>
 
 				<%= submit_tag "Suggest edits", :disable_with => "Creating...", :id => "create_button" %>
-			<% end %>
+			<% end %>    
+    </div>
+		<div>
+
 		</div>
 	</div>
 </div>
