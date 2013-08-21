@@ -30,6 +30,12 @@
 					<% end %>
 				</p>
 				<br>
+				<%= label_tag 'suggested_services', "What sort of services do you perform? This could range from 'FDM 3D printing' to 'impression die forging' to 'reverse engineering'. We will take this explanation and tag your company for future searches. This information is public." %>
+				<%= text_area_tag 'suggested_services', @supplier.suggested_services %>
+				<% if @tags != [] %>
+					<p>Current tags: <%= "#{@tags.map{|t| t.name}.join(", ")}" %></p>
+				<% end %>
+				<br>
 				<%= label_tag 'suggested_preferences', "Suggest additions or changes to preference data: do you prefer working in certain materials, to deal only with companies, or to avoid orders under certain quantities? If you have preferences about your ideal customer, that can help us send you better leads. This information is private." %>
 				<%= text_area_tag 'suggested_preferences', @supplier.suggested_preferences %>
 

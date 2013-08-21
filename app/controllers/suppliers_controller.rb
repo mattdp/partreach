@@ -56,6 +56,7 @@ class SuppliersController < ApplicationController
 
 	def edit
 		@supplier = Supplier.find(params[:id])
+		@tags = @supplier.visible_tags
 		@machines_quantity_hash = @supplier.machines_quantity_hash
 	end
 
@@ -64,14 +65,15 @@ class SuppliersController < ApplicationController
 
 		@supplier.suggested_description = params[:suggested_description]
 		@supplier.suggested_machines = params[:suggested_machines]
+		@supplier.suggested_machines = params[:suggested_services]
 		@supplier.suggested_preferences = params[:suggested_preferences]
 
 		@supplier.save
 		UserMailer.email_internal_team(
 			"Supplier profile edit: #{@supplier.name}",
-			"They changed their suggested description or machines."
+			"They changed their suggested description, machines, services, or preferences."
 			)
-		redirect_to edit_supplier_path(@supplier), notice: "Suggestions received!"
+		redirect_to edit_supplier_path(@supplier), notice: "Suggestions received! We'll be in touch once they're reviewed."
 	end
 
 	def setup_examinations
