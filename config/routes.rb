@@ -26,7 +26,7 @@ Partreach::Application.routes.draw do
   match 'orders/purchase/:order/:dialogue', to: 'orders#purchase'
   match '/cto', to: 'static_pages#cto'
   match '/dialogues/new/:id', to: 'dialogues#new'
-  match '/suppliers/:name', to: 'profiles#supplier_profile', via: :get, as: 'supplier_profile'
+  match '/profiles/:name', to: 'profiles#supplier_profile', via: :get, as: 'supplier_profile'
   match '/submit_ask/', to: 'profiles#submit_ask'
   match '/terms', to: 'static_pages#terms'
   match '/privacy', to: 'static_pages#privacy'

@@ -36,7 +36,7 @@
 								<% if %>
 									<td>
 										<li>
-											<%= link_to s.name, "/suppliers/#{s.name_for_link}" %>
+											<%= link_to s.name, supplier_profile_path(s.name_for_link) %>
 											<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if (!s.description.nil? and !s.description != "") %>
 											<%= image_tag "tool_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has machine data" unless s.machines == [] %>
 										</li>

@@ -37,6 +37,7 @@ class Supplier < ActiveRecord::Base
   has_many :externals, :dependent => :destroy
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
+  validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
 
   #index is {name => [[haves tags],[have nots tags],[countries]]}
   INDEX_HOLDER = 

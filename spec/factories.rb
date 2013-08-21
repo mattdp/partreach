@@ -14,7 +14,8 @@ FactoryGirl.define do
   end
 
   factory :supplier do |s|
-    sequence(:name)   { |n| "Supplier#{n}"}
+    sequence(:name)   { |n| "Supplier#{n}" }
+    sequence(:name_for_link) { |n| "supplier#{n}" }
   end
 
   factory :tag do |t|
