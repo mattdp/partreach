@@ -2,29 +2,29 @@
 #
 # Table name: suppliers
 #
-#  id                    :integer          not null, primary key
-#  name                  :string(255)
-#  url_main              :string(255)
-#  created_at            :datetime         not null
-#  updated_at            :datetime         not null
-#  description           :text
-#  email                 :string(255)
-#  phone                 :string(255)
-#  url_materials         :string(255)
-#  source                :string(255)      default("manual")
-#  profile_visible       :boolean          default(FALSE)
-#  name_for_link         :string(255)
-#  claimed               :boolean          default(FALSE)
-#  suggested_description :text
-#  suggested_machines    :text
-#  suggested_preferences :text
-#  preferences           :text
+#  id                            :integer          not null, primary key
+#  name                          :string(255)
+#  url_main                      :string(255)
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  description                   :text
+#  email                         :string(255)
+#  phone                         :string(255)
+#  url_materials                 :string(255)
+#  source                        :string(255)      default("manual")
+#  profile_visible               :boolean          default(FALSE)
+#  name_for_link                 :string(255)
+#  claimed                       :boolean          default(FALSE)
+#  suggested_description         :text
+#  suggested_machines            :text
+#  suggested_preferences         :text
+#  internally_hidden_preferences :text
 #
 
 class Supplier < ActiveRecord::Base
   attr_accessible :name, :name_for_link, :url_main, :url_materials, :description, \
   :email, :phone, :address_id, :source, :profile_visible, :claimed, \
-  :suggested_description, :suggested_machines, :suggested_preferences, :preferences
+  :suggested_description, :suggested_machines, :suggested_preferences, :internally_hidden_preferences
 
   belongs_to :user
 

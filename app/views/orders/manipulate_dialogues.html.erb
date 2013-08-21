@@ -48,7 +48,7 @@
 						<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
 						<%= "\n#{@supplier.email}" if @supplier.email %>
 						<%= "\n#{@supplier.phone}" if @supplier.phone %>
-						<%= "\n#{@supplier.preferences}" if @supplier.preferences %>
+						<%= "\n#{@supplier.internally_hidden_preferences}" if @supplier.internally_hidden_preferences %>
 					</td>
 					<% @checkboxes.each do |c| %>
 						<td class="center">

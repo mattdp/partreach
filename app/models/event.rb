@@ -7,6 +7,7 @@
 #  happening  :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  model_id   :integer
 #
 
 class Event < ActiveRecord::Base
