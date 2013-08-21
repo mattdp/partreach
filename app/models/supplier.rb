@@ -19,6 +19,7 @@
 #  suggested_machines            :text
 #  suggested_preferences         :text
 #  internally_hidden_preferences :text
+#  suggested_services            :text
 #
 
 class Supplier < ActiveRecord::Base

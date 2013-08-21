@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130821000940) do
+ActiveRecord::Schema.define(:version => 20130821215504) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(:version => 20130821000940) do
     t.text     "suggested_machines"
     t.text     "suggested_preferences"
     t.text     "internally_hidden_preferences"
+    t.text     "suggested_services"
   end
 
   create_table "tags", :force => true do |t|
