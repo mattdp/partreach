@@ -1,0 +1,20 @@
+<% provide(:title, "Metrics") %>
+
+<p>Note that all event-based metrics are valid from the metric's creation date forward.</p>
+
+<table id="rfq-table">
+	<tr>
+		<% @titles.each do |title| %>
+			<th><%= "#{title}" %></th>
+		<% end %>
+	</tr>
+	<% @printout.each do |unit| %>
+		<tr>
+			<% unit.each do |datum| %>
+			<td><%= "#{datum}" %></td>
+			<% end %>
+		</tr>
+	<% end %>
+</table>
+
+<%= render 'layouts/analytics_links' %>

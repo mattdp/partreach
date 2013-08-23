@@ -2,6 +2,7 @@
 layout: post
 author: Rob
 title: Announcing the Launch of Supplier Profiles
+published: true
 ---
 
 **We’re excited to announce that we’re launching [supplier profiles](http://www.supplybetter.com/suppliers) for 3D Printing.** We’ve been hard at work these past few months helping people get their custom mechanical parts made and this is just one more way we hope to make the experience better. 

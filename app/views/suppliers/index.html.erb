@@ -1,13 +1,29 @@
 <% provide(:title,"Supplier Profiles") %>
 
-<div class="content order">
+<div class="content">
 	<div class="container row supplier-list">
-		<p id="supplier-list-intro">We have 250+ suppliers catalogued, representing 20+ countries. This is the set of US 3D printing suppliers we currently have catalogued. We will add other countries soon.<br><br>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
+		<p id="supplier-list-intro">We have 600+ suppliers catalogued, representing 20+ countries. This is the set of US 3D printing suppliers we currently have catalogued. We will add other countries soon.</p>
+		<p>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
+
+		<p>Navigate to a US state:</p>
+		<% to_index = Address.us_states_of_visible_profiles %>
+		<% to_index.each do |state| %>
+			<%= "|" if to_index != [] and state != to_index[0] %>
+			<%= link_to "#{state}", suppliers_path(anchor: "US-#{state}") %>
+		<% end %>
+
 		<% @visibles.keys.sort.each do |country| %>
 			<h3 class="supplier-list-country"><%= "#{country}" %></h3>
-			<% @visibles[country].keys.sort.each do |state| %>
-				<h4 class="supplier-list-state"><%= "#{state}" unless state == "no_state" %></h4>
-				<table>
+			<% state_sort(@visibles[country].keys).each do |state| %>
+				<%== "<h4 class=\"supplier-list-state fleft\" id=\"#{country}-#{state}\">" %>
+					<% if state == "no_state" %>
+						<%= "Many-state / No state" %>
+					<% else %> 
+						<%= "#{state}" %>
+					<% end %>
+				</h4>
+				<%= link_to "Back to top", suppliers_path(anchor: "supplier-list-intro"), :class => "supplier-list-back-to-top fright" %>
+				<table class="clear">
 					<% columns = 3 %>
 					<% counter = 0 %>
 					<ul class="supplier-list-bullets">
@@ -16,10 +32,11 @@
 								<% if counter >= columns %>
 									</tr><tr>
 									<% counter = 0 %>
-								<% else %>
+								<% end %>
+								<% if %>
 									<td>
 										<li>
-											<%= link_to s.name, "/suppliers/#{s.name_for_link}" %>
+											<%= link_to s.name, supplier_profile_path(s.name_for_link) %>
 											<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if (!s.description.nil? and !s.description != "") %>
 											<%= image_tag "tool_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has machine data" unless s.machines == [] %>
 										</li>

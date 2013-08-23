@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = current_user.orders
+    current_user.supplier_id.nil? ? @supplier = nil : @supplier = Supplier.find(current_user.supplier_id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,7 +20,7 @@ class OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @user = User.find(@order.user_id)
-    @sorted_dialogues = sort_dialogues(@order.dialogues)
+    @sorted_dialogues = sort_dialogues(@order.visible_dialogues)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -131,13 +132,8 @@ class OrdersController < ApplicationController
 
     if params[:submitting_page] and params[:submitting_page] == "orders_show"
 
-      if @order.is_over_without_winner and params[:won] and params[:won] != "0"
-        @order.is_over_without_winner = false
-        @order.save
-      end
-
-      if !@order.is_over_without_winner and params[:won] and params[:won] == "0"
-        @order.is_over_without_winner = true
+      if @order.status = "Finished - no close" and params[:won] and params[:won] != "0"
+        @order.status = "Needs work"
         @order.save
       end
 
@@ -199,11 +195,14 @@ class OrdersController < ApplicationController
     @textfields = setup_textfields
     @numberfields = setup_numberfields
 
-    @order.is_over_without_winner = params[:is_over_without_winner]
     @order.recommendation = params[:recommendation]
     @order.next_steps = params[:next_steps]
+    if params[:status].present?
+      Event.add_event("Order",@order.id,"closed_successfully") if params[:status] = "Finished - closed" and @order.status != params[:status]
+      @order.status = params[:status] 
+    end
+    @order.next_action_date = params[:next_action_date]
     @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
-
     @dialogues.each do |d|
       if !params[d.id.to_s].nil?
         d_params = params[d.id.to_s]
@@ -257,8 +256,7 @@ class OrdersController < ApplicationController
     @dialogue.won = true
     note = "Purchase attempted. Order #{@order.id}, Supplier #{@supplier.name}"
     text_notification(note)
-    UserMailer.purchase_attempted(note).deliver
-
+    UserMailer.email_internal_team("Purchase attempted",note)
     respond_to do |format|
       format.html
       format.json { render json: @order }
@@ -269,7 +267,7 @@ class OrdersController < ApplicationController
 
     def correct_user
       @orders = current_user.orders.find_by_id(params[:id])
-      redirect_to(root_path) if (@orders.nil? && current_user.admin = false)
+      redirect_to(root_path) if (@orders.nil? and !current_user.admin)
     end
 
     def text_notification(message_text)
@@ -287,7 +285,7 @@ class OrdersController < ApplicationController
     end 
 
     def setup_checkboxes
-      checkboxes = [:initial_select, :opener_sent, :response_received, :further_negotiation, :won, :recommended]
+      checkboxes = [:initial_select, :opener_sent, :response_received, :further_negotiation, :informed, :won, :recommended]
     end
     
     def setup_textfields
@@ -314,9 +312,9 @@ class OrdersController < ApplicationController
       all_dialogues.each do |d|
         if d.recommended
           recommended << d 
-        elsif d.response_received and (!d.total_cost.nil? and d.total_cost > 0)
+        elsif d.bid?
           completed << d
-        elsif d.response_received
+        elsif d.declined?
           declined << d
         else
           pending << d

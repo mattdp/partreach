@@ -5,14 +5,9 @@ module OrdersHelper
 
 	def bids_received(order)
 
-		received = 0
-		order.dialogues.each do |d|
-			if d.response_received and !d.total_cost.nil? and d.total_cost > 0
-				received += 1
-			end
-		end
-
-		return received
+		dialogues = order.dialogues
+		return 0 if dialogues == []
+		return order.dialogues.map{|d| d.bid?}.count(true)
 
 	end
 
@@ -20,14 +15,10 @@ module OrdersHelper
 
 		if dl.recommended
 			"Recommended"
-		elsif dl.response_received
-			if dl.total_cost.nil? or dl.total_cost == 0
-				"Declined to bid"
-			elsif dl.total_cost > 0
-				"Completed"
-			else
-				"Error: contact support"
-			end
+		elsif dl.declined?
+			"Declined to bid"
+		elsif dl.bid?
+			"Completed"
 		else
 			"Pending"
 		end
@@ -43,6 +34,8 @@ module OrdersHelper
 				currency_symbol = "$"
 			elsif currency == "euros"
 				currency_symbol = "€"
+			elsif currency == "pounds"
+				currency_symbol = "£"
 			else
 				currency_symbol = ""
 			end

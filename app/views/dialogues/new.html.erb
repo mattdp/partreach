@@ -28,7 +28,7 @@
 	<div>
 		<% first_time = true %>
 		<% counter = 0 %>
-		<% supplier_columns = 1 %>
+		<% supplier_columns = 0 %>
 		<% tag_columns = 6 %>
 
 		<table id="tag_matrix">
@@ -86,7 +86,7 @@
 				<% else %>
 					<%= link_to s.name, s.url_main %>
 				<% end %>
-				<%= " [#{tag_names.join(',')}] <#{s.safe_country}:#{s.safe_state}:#{s.safe_zip}>" %>
+				<%= " [#{tag_names.join(',')}] <#{s.safe_country}:#{s.safe_state}:#{s.safe_zip}> #{s.internally_hidden_preferences}" %>
 
 				<% if counter >= supplier_columns %>
 					</td></tr><tr><td>

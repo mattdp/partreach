@@ -45,7 +45,7 @@
 					<% s = Supplier.find(d.supplier_id) %>
 					<td>
 					<% if s.profile_visible %>
-						<%= link_to "#{s.name}", supplier_profile_url(s.name) %>
+						<%= link_to "#{s.name}", supplier_profile_path(s.name_for_link) %>
 					<% elsif !s.url_main.nil? and s.url_main != "" %>
 						<%= link_to "#{s.name}", s.url_main %>
 					<% else %>
@@ -64,14 +64,6 @@
 					<td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
 					</tr>
 				<% end %>
-				<tr>
-					<% 8.times do |t| %>
-						<td></td>
-					<% end %>
-					<td class="center">No deal, no winner:</td>
-					<td class="center"><%= radio_button_tag "won", 0, @order.is_over_without_winner, :class => "center order_no_top_margin" %></td>
-				</tr>
-
 			</table>
 
 			<%= submit_tag "Save changes", :class => "btn btn-hero", :disable_with => "Saving...", :disable_with => "Saving..."  %>

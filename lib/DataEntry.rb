@@ -6,6 +6,7 @@ module DataEntry
 	ZIP_POSTAL = 1
 	ZIP_LOCATION_NAME = 2
 
+	#for the canonical zip code database
 	def zipreader(url)
 		CSV.new(open(url), {:col_sep => "\t"}).each do |row|
 			l = Location.new({:country => row[ZIP_COUNTRY],
@@ -23,7 +24,7 @@ module DataEntry
 	def usage_counter
 		answer = "Num_Ord\tNum_Bid\tUsr_id\tUsr_email\n"
 		total_order_counter = total_bid_counter = 0
-		User.all.each do |u|
+		User.find_each do |u|
 			order_counter = 0
 			bid_counter = 0 # not all users have orders
 			u.orders.each do |o|
@@ -44,52 +45,12 @@ module DataEntry
 
 	def list_dialogues(order_id)
 		answer = "Ord_id\tDia_id\tSupplier\n"
-		Dialogue.all.each do |d|
+		Dialogue.find_each do |d|
 			if d.order_id == order_id
 				answer += "#{order_id}\t#{d.id}\t#{Supplier.find(d.supplier_id).name}\n"
 			end
 		end
 		return answer
-	end
-
-	#highly inflexible, based on "printabase-crawled-data"
-	USE_ROW = 0
-	COMPANY = 1
-	IS_SERVICE_BUREAU = 2
-	CLEANED_LINK = 3
-	ADDRESS = 4
-	COUNTRY_CODE = 5	
-
-	def csv_to_suppliers(url)
-		
-		CSV.new(open(url)).each do |row|
-			if row[USE_ROW] == "TRUE" and Supplier.find_by_name(row[COMPANY].downcase).nil?
-				
-				s = Supplier.new
-				s.name = row[COMPANY]
-				s.url_main = row[CLEANED_LINK]
-				if s.save
-					puts "#{s.name} saved successfully."
-				else
-					puts "Error saving #{s.name}"
-				end
-				
-				if !row[ADDRESS].nil? and row[ADDRESS].length > 0
-					a = Address.new
-					a.country = row[COUNTRY_CODE]
-					a.notes = row[ADDRESS]
-					a.place_id = s.id
-					a.place_type = "Supplier"
-					if a.save
-						puts "#{s.name}'s address saved successfully."
-					else
-						puts "Error saving #{s.name}'s address"
-					end
-				end
-				
-			end
-		end
-
 	end
 
 	TAG_NAME = 0
@@ -119,23 +80,13 @@ module DataEntry
 		end
 	end
 
-	def csv_to_tags(location, url_or_csv = "url")
+	def csv_to_tags(location)
 		counter = 0
-		if url_or_csv == "url"
-			CSV.new(open(location)).each do |row|
-				csv_to_tags_row_helper(row, counter)
-				counter += 1
-			end
-			return "URL attempted"
-		elsif url_or_csv == "csv"
-			CSV.foreach(location) do |row|
-				csv_to_tags_row_helper(row, counter)
-				counter += 1
-			end
-			return "CSV attempted"
-		else 
-			return '"url" or "csv"'
+		CSV.new(open(location)).each do |row|
+			csv_to_tags_row_helper(row, counter)
+			counter += 1
 		end
+		return "Tag upload attempted"
 	end
 
 	def csv_to_hashes(absolute_filepath)

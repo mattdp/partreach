@@ -108,6 +108,10 @@ strong {
   padding: 22px 0;
 }
 
+.bit-of-space {
+  margin: 10px 0px 10px 0px;
+}
+
 .logo {
   background: image-url('logo.png') no-repeat;
   height: 66px;
@@ -300,6 +304,9 @@ strong {
   }
   .supplier-list-bullets {
     padding-left: 50px;
+  }
+  .supplier-list-back-to-top {
+    margin-top: 10px;
   }
 }
 
@@ -640,6 +647,33 @@ input, textarea, select, .uneditable-input {
   @extend .control-group;
   @extend .error;
  }
+
+#rfq-table {
+  th {
+    padding-left: 10px;
+  }
+  td {
+    text-align: center;
+  }
+}
+
+.examinations-holder {
+  td {
+    border: 2px solid #000;
+  }
+  .examination {
+    width: 100%;
+    .under-examination {
+      width: 15%;
+    }
+    .choice {
+      width: 35%;
+    }
+    .supporting-info {
+      width: 50%;
+    }
+  }
+}
 
 /* miscellaneous */
 

@@ -5,7 +5,7 @@
 #  id                     :integer          not null, primary key
 #  name                   :string(255)
 #  email                  :string(255)
-#  admin                  :boolean
+#  admin                  :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  address_id             :integer
@@ -15,6 +15,8 @@
 #  password_reset_sent_at :datetime
 #  email_valid            :boolean          default(TRUE)
 #  email_subscribed       :boolean          default(TRUE)
+#  examiner               :boolean          default(FALSE)
+#  supplier_id            :integer
 #
 
 require 'spec_helper'

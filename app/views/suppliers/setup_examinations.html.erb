@@ -1,0 +1,45 @@
+<% provide(:title, "Supplier Examination") %>
+
+<div class="content">
+  <div class="container row">
+		<%= form_tag :action => 'submit_examinations', :controller => 'suppliers' do %>
+
+			<table class="examinations-holder">
+				<% @questionables.each do |supplier| %>
+					<% address = supplier.address %>
+					<tr class="examination">
+						<td class="under-examination">
+							<p><%= "Name: #{supplier.name}" %></p>
+							<p><%= "Address: #{address.country} #{address.state} #{address.zip}" if address %></p>
+							<p><%= link_to "Website", supplier.url_main %>
+						</td>
+						<td class="choice">
+							<p class="clear">
+								<%= radio_button_tag "suppliers[#{supplier.id}]", "not_duplicate", false, :class => "fleft" %>	
+								<%= label_tag "suppliers[#{supplier.id}]", "Not duplicate - add", :class => "fleft" %>
+							</p>
+							<p class="clear">
+								<%= label_tag "supplier_names[#{supplier.id}]", "New name:", :class => "fleft" %>
+								<%= text_field_tag "supplier_names[#{supplier.id}]", supplier.name %>
+								<%= label_tag "supplier_countries[#{supplier.id}]", "New country:", :class => "fleft" %>
+								<%= text_field_tag "supplier_countries[#{supplier.id}]", supplier.address ? supplier.address.country : "" %>
+								<%= label_tag "supplier_states[#{supplier.id}]", "New state:", :class => "fleft" %>
+								<%= text_field_tag "supplier_states[#{supplier.id}]", supplier.address ? supplier.address.state : "" %>
+								<%= label_tag "supplier_zips[#{supplier.id}]", "New zip:", :class => "fleft" %>
+								<%= text_field_tag "supplier_zips[#{supplier.id}]", supplier.address ? supplier.address.zip : "" %>
+							<p class="clear">
+								<%= radio_button_tag "suppliers[#{supplier.id}]", "duplicate", false, :class => "fleft" %>	
+								<%= label_tag "suppliers[#{supplier.id}]", "Duplicate - remove", :class => "fleft" %>
+							</p>
+						</td>
+						<td class="supporting-info">
+							<%= supplier.get_supporting_info %>
+						</td>
+					</tr>
+				<% end %>
+				<tr><td><%= submit_tag "Submit examinations", :disable_with => "Saving..." %></td></tr>
+			</table>
+			<p>Note: more than one user submitting this screen at a time will cause problems.</p>
+		<% end %>
+	</div>
+</div>

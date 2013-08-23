@@ -11,7 +11,11 @@
 			<%= label_tag 'country', 'country' %><%= text_field_tag 'country', nil %>
 			<%= label_tag 'state', 'state' %><%= text_field_tag 'state', nil %>
 			<%= label_tag 'zip', 'zip' %><%= text_field_tag 'zip', nil %>
+			<%= label_tag 'phone', 'phone' %><%= text_field_tag 'phone', nil %>
+			<%= label_tag 'email', 'email' %><%= text_field_tag 'email', nil %>
 			<%= label_tag 'description', 'description' %><%= text_area_tag 'description', nil %>
+			<%= check_box_tag 'profile_visible', 1, false, :class => "fleft" %><%= label_tag 'profile_visible', 'profile_visible' %>
+			<br>
 
 			<%# Heavy duplication from dialogues/new %>
 			<% counter = 0 %>

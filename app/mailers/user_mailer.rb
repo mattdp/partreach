@@ -3,7 +3,7 @@ class UserMailer < ActionMailer::Base
   include SessionsHelper
 
   MATT = "matt@supplybetter.com"
-  ROB = "rob@supplybetter.com"
+  ROB =   "rob@supplybetter.com"
   EMPLOYEES = [MATT,ROB]
 
   def welcome_email(user)
@@ -25,13 +25,18 @@ class UserMailer < ActionMailer::Base
     @brand_name = brand_name
     mail(to: @user.email, subject: "Password reset requested")
   end
-  
-  #-----
 
-  def purchase_attempted(note)
+  def supplier_intro_email(user,supplier)
+    @user = user
+    @brand_name = brand_name
+    @supplier = supplier
+    mail(to: @user.email, subject: "Your new #{brand_name} account")
+  end
+  
+  def email_internal_team(subject, note)
     @note = note
     EMPLOYEES.each do |e|
-      mail(to: e, subject: "Purchase attempted")
+      mail(to: e, subject: subject).deliver
     end
   end
 

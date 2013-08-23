@@ -32,4 +32,84 @@ class Address < ActiveRecord::Base
   	return countries
   end
 
+  def self.find_supplier_ids_by_country_and_state(country,state)
+    addresses = Address.where("country = ? and state = ? and place_type = ?", \
+      country, state, "Supplier")
+    return [] if addresses == []
+    suppliers = Supplier.find(addresses.map{|a| a.place_id})
+  end
+
+  def self.is_us_state?(text,longform = false)
+    return false if text.nil?
+    compare_to = longform ? :keys : :values
+    US_STATE_HASH.send(compare_to).map{|k| k.downcase}.include?(text.downcase)
+  end
+
+  def self.abbreviate_us_state(longform)
+    return US_STATE_HASH[longform]
+  end
+
+  def self.us_states_of_visible_profiles
+    states = []
+    suppliers = Supplier.visible_profiles
+    suppliers.each do |s|
+      states << s.address.state.upcase if s.address and s.address.country == "US" and Address.is_us_state?(s.address.state)
+    end
+    return states.uniq.sort
+  end
+
+  US_STATE_HASH = 
+    {"Alabama" => "AL",
+    "Alaska" => "AK",
+    "Arizona" => "AZ",
+    "Arkansas" => "AR",
+    "California" => "CA",
+    "Colorado" => "CO",
+    "Connecticut" => "CT",
+    "Delaware" => "DE",
+    "District of Columbia" => "DC",
+    "Florida" => "FL",
+    "Georgia" => "GA",
+    "Hawaii" => "HI",
+    "Idaho" => "ID",
+    "Illinois" => "IL",
+    "Indiana" => "IN",
+    "Iowa" => "IA",
+    "Kansas" => "KS",
+    "Kentucky" => "KY",
+    "Louisiana" => "LA",
+    "Maine" => "ME",
+    "Maryland" => "MD",
+    "Massachusetts" => "MA",
+    "Michigan" => "MI",
+    "Minnesota" => "MN",
+    "Mississippi" => "MS",
+    "Missouri" => "MO",
+    "Montana" => "MT",
+    "Nebraska" => "NE",
+    "Nevada" => "NV",
+    "New Hampshire" => "NH",
+    "New Jersey" => "NJ",
+    "New Mexico" => "NM",
+    "New York" => "NY",
+    "North Carolina" => "NC",
+    "North Dakota" => "ND",
+    "Ohio" => "OH",
+    "Oklahoma" => "OK",
+    "Oregon" => "OR",
+    "Pennsylvania" => "PA",
+    "Rhode Island" => "RI",
+    "South Carolina" => "SC",
+    "South Dakota" => "SD",
+    "Tennessee" => "TN",
+    "Texas" => "TX",
+    "Utah" => "UT",
+    "Vermont" => "VT",
+    "Virginia" => "VA",
+    "Washington" => "WA",
+    "West Virginia" => "WV",
+    "Wisconsin" => "WI",
+    "Wyoming" => "WY"
+  }
+
 end

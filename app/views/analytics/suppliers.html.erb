@@ -1,5 +1,19 @@
 <% provide(:title, "Suppliers") %>
 
-Details on how many total suppliers, how many signed up, relevant rfqs
+<table class="supplier-list">
+	<tr>
+		<th>Status</th>
+		<th>ID</th>
+		<th>Name</th>
+	</tr>
+	<% @listings.each do |k,v| %>
+		<tr>
+			<td><%= "#{k}" %></td>
+		</tr>
+		<% v.each do |supplier| %>
+			<%= render :partial => "layouts/analytics_supplier_listing", locals: {supplier: supplier} %>
+		<% end %>
+	<% end %>
+</table>
 
 <%= render 'layouts/analytics_links' %>

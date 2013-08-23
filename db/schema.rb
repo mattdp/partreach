@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130712220025) do
+ActiveRecord::Schema.define(:version => 20130821215504) do
 
   create_table "addresses", :force => true do |t|
     t.string   "name"
@@ -64,9 +64,18 @@ ActiveRecord::Schema.define(:version => 20130712220025) do
     t.text     "notes"
     t.string   "currency",                                           :default => "dollars"
     t.boolean  "recommended",                                        :default => false
+    t.boolean  "informed"
   end
 
   add_index "dialogues", ["order_id"], :name => "index_dialogues_on_order_id"
+
+  create_table "events", :force => true do |t|
+    t.string   "model"
+    t.string   "happening"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "model_id"
+  end
 
   create_table "externals", :force => true do |t|
     t.integer  "supplier_id"
@@ -102,8 +111,8 @@ ActiveRecord::Schema.define(:version => 20130712220025) do
 
   create_table "orders", :force => true do |t|
     t.integer  "quantity"
-    t.datetime "created_at",             :null => false
-    t.datetime "updated_at",             :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "user_id"
     t.string   "drawing_file_name"
     t.string   "drawing_content_type"
@@ -112,12 +121,13 @@ ActiveRecord::Schema.define(:version => 20130712220025) do
     t.string   "name"
     t.date     "deadline"
     t.text     "supplier_message"
-    t.boolean  "is_over_without_winner"
     t.text     "recommendation"
     t.text     "material_message"
     t.text     "next_steps"
     t.text     "suggested_suppliers"
     t.string   "drawing_units"
+    t.string   "status",               :default => "Needs work"
+    t.string   "next_action_date"
   end
 
   create_table "owners", :force => true do |t|
@@ -147,16 +157,21 @@ ActiveRecord::Schema.define(:version => 20130712220025) do
   create_table "suppliers", :force => true do |t|
     t.string   "name"
     t.string   "url_main"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.text     "description"
     t.string   "email"
     t.string   "phone"
     t.string   "url_materials"
-    t.string   "source"
-    t.boolean  "profile_visible", :default => false
+    t.string   "source",                        :default => "manual"
+    t.boolean  "profile_visible",               :default => false
     t.string   "name_for_link"
-    t.boolean  "claimed",         :default => false
+    t.boolean  "claimed",                       :default => false
+    t.text     "suggested_description"
+    t.text     "suggested_machines"
+    t.text     "suggested_preferences"
+    t.text     "internally_hidden_preferences"
+    t.text     "suggested_services"
   end
 
   create_table "tags", :force => true do |t|
@@ -170,12 +185,21 @@ ActiveRecord::Schema.define(:version => 20130712220025) do
     t.string   "readable"
   end
 
+  create_table "uploads", :force => true do |t|
+    t.string   "upload_file_name"
+    t.string   "upload_content_type"
+    t.integer  "upload_file_size"
+    t.datetime "upload_updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.boolean  "admin"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
+    t.boolean  "admin",                  :default => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "address_id"
     t.string   "password_digest"
     t.string   "remember_token"
@@ -183,6 +207,8 @@ ActiveRecord::Schema.define(:version => 20130712220025) do
     t.datetime "password_reset_sent_at"
     t.boolean  "email_valid",            :default => true
     t.boolean  "email_subscribed",       :default => true
+    t.boolean  "examiner",               :default => false
+    t.integer  "supplier_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

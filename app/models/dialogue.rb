@@ -22,14 +22,28 @@
 #  notes               :text
 #  currency            :string(255)      default("dollars")
 #  recommended         :boolean          default(FALSE)
+#  informed            :boolean
 #
 
 class Dialogue < ActiveRecord::Base
   attr_accessible :initial_select, :opener_sent, :response_received, :further_negotiation, :won, :order_id, :supplier_id, \
-  :material, :process_name, :process_cost, :process_time, :shipping_name, :shipping_cost, :total_cost, :notes, :currency, :recommended
+  :material, :process_name, :process_cost, :process_time, :shipping_name, :shipping_cost, :total_cost, :notes, :currency, \
+  :informed
 
   belongs_to :order
   has_one :supplier
   has_one :user, :through => :order
+
+  def knows_outcome?
+  	return (self.informed or self.declined? or self.won?)
+  end
+
+  def declined?
+  	return (self.response_received and (self.total_cost.nil? or self.total_cost == 0))
+  end
+
+  def bid?
+  	return (self.response_received and self.total_cost.present? and self.total_cost > 0)
+  end
 
 end

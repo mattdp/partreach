@@ -16,48 +16,57 @@
 
 	<%= hidden_field_tag "id", @order.id %>
 
-	<%= label_tag "is_over_without_winner", "Over without winner?" %>
-	<%= check_box_tag "is_over_without_winner", 1, @order.is_over_without_winner %>
 	<%= label_tag "recommendation", "Recommendation" %>
 	<%= text_area_tag "recommendation", @order.recommendation %>
 	<%= label_tag "next_steps", "Next steps" %>
 	<%= text_area_tag "next_steps", @order.next_steps %>
+	<%= label_tag "next_action_date", "Next action date" %>
+	<%= text_field_tag "next_action_date", @order.next_action_date %>
 
 	<table>
-		<th>d_id</th>
-		<th>Supplier</th>
-		<% [@checkboxes,@textfields,@numberfields].each do |set| %>
-			<% set.each do |h| %>
-				<th>
-					<% if set == @checkboxes %>
-						<%= "" %>
-					<% else %>
-						<%= "#{h.to_s}" %>
-					<% end %>
-				</th>
+		<tr>
+			<th>d_id</th>
+			<th>Supplier</th>
+			<% [@checkboxes,@textfields,@numberfields].each do |set| %>
+				<% set.each do |h| %>
+					<th>
+						<% if set == @checkboxes %>
+							<%= "" %>
+						<% else %>
+							<%= "#{h.to_s}" %>
+						<% end %>
+					</th>
+				<% end %>
 			<% end %>
-		<% end %>
-		<% @dialogues.each do |d| %>
-			<tr>
-				<td><%= "#{d.id}" %></td>
-				<td><%= "#{Supplier.find(d.supplier_id).name}" %>
-				<% @checkboxes.each do |c| %>
-					<td class="center">
-						<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s] %>
-					</td>
-				<% end %>
-				<% @textfields.each do |t| %>
+		</tr>
+			<% @dialogues.each do |d| %>
+				<tr>
+					<% @supplier = Supplier.find(d.supplier_id) %>
+					<td><%= "#{d.id}" %></td>
 					<td>
-						<%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
+						<strong><%= "#{@supplier.name}" %></strong>
+						<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
+						<%= "\n#{@supplier.email}" if @supplier.email %>
+						<%= "\n#{@supplier.phone}" if @supplier.phone %>
+						<%= "\n#{@supplier.internally_hidden_preferences}" if @supplier.internally_hidden_preferences %>
 					</td>
-				<% end %>
-				<% @numberfields.each do |n| %>
-					<td>
-						<%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
-					</td>
-				<% end %>
-			</tr>
-		<% end %>
+					<% @checkboxes.each do |c| %>
+						<td class="center">
+							<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s] %>
+						</td>
+					<% end %>
+					<% @textfields.each do |t| %>
+						<td>
+							<%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
+						</td>
+					<% end %>
+					<% @numberfields.each do |n| %>
+						<td>
+							<%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
+						</td>
+					<% end %>
+				</tr>
+			<% end %>
 	</table>
 
 	<p>Ordering of checkboxes:</p>
@@ -65,6 +74,12 @@
 		<%= "| #{c.to_s}" %>
 	<% end %></div>
 
-	<%= submit_tag "Save changes", :disable_with => "Saving..." %>
+	<p>Order status</p>
+	<% Order.order_status_hash.keys.each do |message| %>
+		<%= radio_button_tag "status", message, @order.status == message, :class => "fleft" %>
+		<%= label_tag "status", message, :class => "fleft" %>
+	<% end %>
+
+	<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "clear" %>
 
 <% end %>	

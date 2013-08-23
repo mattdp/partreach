@@ -5,7 +5,7 @@
 #  id                     :integer          not null, primary key
 #  name                   :string(255)
 #  email                  :string(255)
-#  admin                  :boolean
+#  admin                  :boolean          default(FALSE)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  address_id             :integer
@@ -15,31 +15,52 @@
 #  password_reset_sent_at :datetime
 #  email_valid            :boolean          default(TRUE)
 #  email_subscribed       :boolean          default(TRUE)
+#  examiner               :boolean          default(FALSE)
+#  supplier_id            :integer
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :email_valid, :email_subscribed
+  attr_accessible :name, :email, :password, :password_confirmation, :email_valid, :email_subscribed, :supplier_id
   has_secure_password
 
   has_many :orders, :dependent => :destroy
   has_many :dialogues, :through => :orders, :dependent => :destroy
   has_many :reviews
   has_one :address, :as => :place
+  has_one :supplier
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
-  validates :name, presence: true, length: { maximum: 20 }, uniqueness: true
+  validates :name, presence: true, length: { maximum: 20 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates	:email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+  validates :supplier_id, uniqueness: true, allow_nil: true
 
-  def send_password_reset #http://railscasts.com/episodes/274-remember-me-reset-password
+  #can cause some serious overlap problems if abused
+  def self.create_and_link_to_supplier(name,email,supplier_id)
+    user = User.new
+    user.name = name
+    user.email = email
+    user.save(:validate => false)
+
+    supplier = Supplier.find(supplier_id)
+    supplier.claim_profile(user.id)
+
+    user.send_password_reset(supplier_id)
+  end
+
+  def send_password_reset(supplier_id=nil) #http://railscasts.com/episodes/274-remember-me-reset-password
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!(:validate => false)
-    UserMailer.password_reset(self).deliver
+    if supplier_id.nil?
+      UserMailer.password_reset(self).deliver
+    else
+      UserMailer.supplier_intro_email(self,supplier_id).deliver
+    end
   end
 
   def self.can_use_email?(email_address)

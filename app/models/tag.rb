@@ -23,7 +23,7 @@ class Tag < ActiveRecord::Base
 
   def self.return_family_ids(family)
   	answer = []
-  	Tag.all.each do |t|
+  	Tag.find_each do |t|
   		answer << t.id if t.family == family
   	end
   	return answer
@@ -32,7 +32,7 @@ class Tag < ActiveRecord::Base
   #return hash of {family1:[tag1,tag2],family2:[tag3:tag4]}
   def self.family_names_and_tags
     answers = {}
-    Tag.all.each do |t|
+    Tag.find_each do |t|
       t.family.nil? ? tkey = "No family" : tkey = t.family
       if answers.has_key?(tkey)
         answers[tkey] << t
@@ -46,7 +46,7 @@ class Tag < ActiveRecord::Base
   #takes array of 1-n tags and a country
   def self.total_suppliers_tagged(tags, country = nil)
     counter = 0
-    Supplier.all.each do |s|
+    Supplier.find_each do |s|
       count_this = true
       if !country.nil?
         count_this = false if s.address.nil? or s.address.country != country

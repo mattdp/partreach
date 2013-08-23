@@ -1,6 +1,6 @@
 <div class="content">
 	<div class="container supplier-profile">
-		<% if @supplier.nil? or (!@supplier.profile_visible and (current_user.nil? or !current_user.admin)) %>
+		<% if !@allowed %>
 			<% provide(:title, "Profile not found") %>
 			<p>Profile not found.</p>
 		<% else %>
@@ -71,8 +71,11 @@
 								<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested", :s_id => @supplier.id, :u_id => @user_id} %>
 							<% else %>
 								<ul>
-									<% @supplier.machines.each do |m| %>
-										<li><%= "#{m.formatted_name}" %></li>
+									<% @machines_quantity_hash.each do |k,v| %>
+										<li>
+											<%= "#{Machine.find(k).formatted_name}"%>
+											<%= " (#{pluralize(v,"machine")})" if v > 1 %>
+										</li>
 									<% end %>
 								</ul>
 							<% end %>

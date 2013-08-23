@@ -22,6 +22,7 @@
 #  notes               :text
 #  currency            :string(255)      default("dollars")
 #  recommended         :boolean          default(FALSE)
+#  informed            :boolean
 #
 
 require 'spec_helper'
