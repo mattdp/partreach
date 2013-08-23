@@ -51,8 +51,8 @@ end
 
 desc 'Best-guess take on whether requests for supplier data were made by humans or crawlers'
 task :ask_screener => :environment do
-	reach = 3
-	range_in_seconds = 10
+	reach = 1 #lowered to be less forgiving
+	range_in_seconds = 7
 	Ask.find_each do |a|
 		if a.real.nil? #don't reprocess already-screened asks
 			past = Ask.where("id = ?",a.id - reach)
