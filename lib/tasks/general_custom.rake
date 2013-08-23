@@ -49,6 +49,29 @@ task :supplier_url_creation => :environment do
 	end
 end
 
+desc 'Best-guess take on whether requests for supplier data were made by humans or crawlers'
+task :ask_screener => :environment do
+	reach = 3
+	range_in_seconds = 10
+	Ask.find_each do |a|
+		if a.real.nil? #don't reprocess already-screened asks
+			past = Ask.where("id = ?",a.id - reach)
+			future = Ask.where("id = ?",a.id + reach)
+			if !(past == [] or future == [])
+				current_time = a.created_at
+				past_gap = (past[0].created_at - current_time).abs
+				future_gap = (future[0].created_at - current_time).abs
+				if past_gap < range_in_seconds or future_gap < range_in_seconds
+					a.real = false
+				else
+					a.real = true
+				end
+				a.save
+			end
+		end
+	end
+end
+
 desc 'Create sample suppliers for database'
 task :populate_suppliers => :environment do
 	require 'active_record/fixtures'
