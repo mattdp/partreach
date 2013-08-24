@@ -65,8 +65,10 @@ class SuppliersController < ApplicationController
 
 		@supplier.suggested_description = params[:suggested_description]
 		@supplier.suggested_machines = params[:suggested_machines]
-		@supplier.suggested_machines = params[:suggested_services]
+		@supplier.suggested_services = params[:suggested_services]
 		@supplier.suggested_preferences = params[:suggested_preferences]
+		@supplier.suggested_address = params[:suggested_address]
+		@supplier.suggested_url_main = params[:suggested_url_main]
 
 		@supplier.save
 		UserMailer.email_internal_team(
