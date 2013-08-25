@@ -31,7 +31,7 @@
 				<%= text_area_tag 'suggested_description', @supplier.suggested_description %>
 				<p>Current description (will not change until reviewed by SupplyBetter): <%= simple_format(@supplier.description, :class => "supplier-description") if !@supplier.description.nil?%></p>
 				<br>
-				<%= label_tag 'suggested_machines', 'Suggest additions or changes to machine data. This information is public.' %>
+				<%= label_tag 'suggested_machines', 'Suggest additions or changes to machine data. Please give us exact names of machines - we will use their capabilities, build envelopes, etc. to match you with jobs. This information is public.' %>
 				<%= text_area_tag 'suggested_machines', @supplier.suggested_machines %>
 				<p>Current machines (will not change until reviewed by SupplyBetter):
     			<% @machines_quantity_hash.each do |k,v| %>
