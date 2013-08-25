@@ -24,6 +24,10 @@ class Address < ActiveRecord::Base
   validates :place_id, presence: true
   validates :place_type, presence: true
 
+  def readable
+    return "#{self.street} #{self.city} #{self.state} #{self.zip} #{self.country}"
+  end
+
   def self.all_countries
   	countries = []
   	Address.all.map {|a| countries << a.country}

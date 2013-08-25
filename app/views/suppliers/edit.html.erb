@@ -15,6 +15,18 @@
 		<div>
       <%= form_tag supplier_path(@supplier), method: :put do %>
 				<br>
+				<%= label_tag 'suggested_url_main', "What is the web address of your homepage, if we don't have it already? This information is public." %>
+				<%= text_field_tag 'suggested_url_main', @supplier.suggested_url_main %>
+				<% if !@supplier.url_main.nil?%>
+					<p>Current URL: <%= "#{@supplier.url_main}" %></p>
+				<% end %>
+				<br>
+				<%= label_tag 'suggested_address', "What is the physical address of your primary production site, if we don't have it already? This information is public." %>
+				<%= text_area_tag 'suggested_address', @supplier.suggested_address %>
+				<% if @supplier.address %>
+					<p>Current address: <%= "#{@supplier.address.readable}" %></p>
+				<% end %>
+				<br>
 				<%= label_tag 'suggested_description', 'Suggest additions or changes to supplier description. This information is public.' %>
 				<%= text_area_tag 'suggested_description', @supplier.suggested_description %>
 				<p>Current description (will not change until reviewed by SupplyBetter): <%= simple_format(@supplier.description, :class => "supplier-description") if !@supplier.description.nil?%></p>
@@ -38,6 +50,7 @@
 				<br>
 				<%= label_tag 'suggested_preferences', "Suggest additions or changes to preference data: do you prefer working in certain materials, to deal only with companies, or to avoid orders under certain quantities? If you have preferences about your ideal customer, that can help us send you better leads. This information is private." %>
 				<%= text_area_tag 'suggested_preferences', @supplier.suggested_preferences %>
+				<br>
 
 				<%= submit_tag "Suggest edits", :disable_with => "Creating...", :id => "create_button" %>
 			<% end %>    
