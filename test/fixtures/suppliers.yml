@@ -22,6 +22,7 @@
 #  suggested_services            :text
 #  suggested_address             :text
 #  suggested_url_main            :string(255)
+#  points                        :integer          default(0)
 #
 
 1:

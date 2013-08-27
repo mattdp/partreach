@@ -22,6 +22,7 @@
 #  suggested_services            :text
 #  suggested_address             :text
 #  suggested_url_main            :string(255)
+#  points                        :integer          default(0)
 #
 
 class Supplier < ActiveRecord::Base
@@ -29,7 +30,7 @@ class Supplier < ActiveRecord::Base
   :email, :phone, :address_id, :source, :profile_visible, :claimed, \
   :suggested_description, :suggested_machines, :suggested_preferences, \
   :internally_hidden_preferences, :suggested_services, :suggested_address, \
-  :suggested_url_main
+  :suggested_url_main, :points
 
   belongs_to :user
 
