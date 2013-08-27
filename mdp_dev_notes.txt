@@ -1,16 +1,11 @@
+caching
 
-<% title_text = "" %>
-					<% title_text = "\"" + t.note + "\"" unless t.note.nil? %>
-					<span class="tag" title=<%= title_text %>><%= "#{t.user_readable}" %></span>
+	problem
+		seemed OK locally, but slowed things down in production badly
 
-cd config/jekyll; jekyll build; rake css_css; cd ../..
+	resources
+		http://guides.rubyonrails.org/caching_with_rails.html
+		https://devcenter.heroku.com/articles/caching-strategies
 
-
----
-is whenever making a crontab on my computer?
-	judging by http://railscasts.com/episodes/164-cron-in-ruby, need to have a command manually to have it turn into a crontab
-		to do command each deploy, railscast uses capistrano commands
-is that running effectively?
-how does it work on heroku?
-does it autogenerate on a new deploy?
-
+	irrelevant
+		consider_all_requests_local
