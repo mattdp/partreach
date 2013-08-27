@@ -6,6 +6,10 @@ caching
 	resources
 		http://guides.rubyonrails.org/caching_with_rails.html
 		https://devcenter.heroku.com/articles/caching-strategies
+		http://api.rubyonrails.org/classes/ActiveSupport/Cache/Store.html
+			do you need to declare a new cache object, as they do? 
+				doesn't look like it, but cn't be sure
+				if do have to declare, it'd be here - http://api.rubyonrails.org/classes/ActiveSupport/Cache/MemoryStore.html 
 
 	irrelevant
 		consider_all_requests_local
