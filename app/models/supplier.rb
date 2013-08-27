@@ -69,6 +69,7 @@ class Supplier < ActiveRecord::Base
             internal_supplier_set << s
         end
       end
+      logger.debug "MISS - Supplier set cache for #{index_name}"        
       internal_supplier_set
     }
     return external_supplier_set if !external_supplier_set.nil?
