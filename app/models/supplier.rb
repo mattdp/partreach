@@ -70,6 +70,7 @@ class Supplier < ActiveRecord::Base
             internal_supplier_set << s
         end
       end
+      logger.debug "MISS - Supplier set cache for #{index_name}"        
       internal_supplier_set
     }
     return external_supplier_set if !external_supplier_set.nil?
@@ -204,8 +205,8 @@ class Supplier < ActiveRecord::Base
   #return hash of countries, each with hash of states, containing array of suppliers
   #no_state for country -> supplier direct stuff
   def self.visible_profiles_sorted(index_name)
-    #profiles = Supplier.set_for_index(index_name)
-    profiles = Supplier.visible_profiles
+    profiles = Supplier.set_for_index(index_name)
+    #profiles = Supplier.visible_profiles
 
     answer = {}
 

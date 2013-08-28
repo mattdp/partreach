@@ -12,6 +12,8 @@ gem 'twilio-ruby', '3.9.0'
 gem 'jekyll', '1.0.0'
 gem 'jekyll-sass', '1.1.0' #https://github.com/noct/jekyll-sass
 gem 'bloggy', '0.2.1'
+gem 'dalli', '2.6.4' #https://devcenter.heroku.com/articles/building-a-rails-3-application-with-memcache
+gem 'memcachier', '0.0.2' #https://devcenter.heroku.com/articles/building-a-rails-3-application-with-memcache
 
 group :development, :test do
  	gem 'sqlite3', '1.3.5'
