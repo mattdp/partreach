@@ -35,3 +35,32 @@ next
 
 ---
 
+
+          #block odd error where cache appends a :@new_record after the last result
+
+2013-08-28T20:50:00.446550+00:00 heroku[web.1]: State changed from starting to up
+2013-08-28T20:50:06.774001+00:00 app[web.1]: Dalli/SASL authenticating as af5c2c
+2013-08-28T20:50:06.777925+00:00 app[web.1]: Dalli/SASL: af5c2c
+2013-08-28T20:50:06.807129+00:00 app[web.1]: Started GET "/suppliers" for 70.36.146.74 at 2013-08-28 20:50:06 +0000
+2013-08-28T20:50:10.671553+00:00 app[web.1]: 
+2013-08-28T20:50:10.671553+00:00 app[web.1]:     37: 									<td>
+2013-08-28T20:50:10.671553+00:00 app[web.1]: ActionView::Template::Error (undefined method `name' for :@new_record:Symbol):
+2013-08-28T20:50:10.671553+00:00 app[web.1]:     39: 											<%= link_to s.name, supplier_profile_path(s.name_for_link) %>
+2013-08-28T20:50:10.671553+00:00 app[web.1]:     40: 											<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if (!s.description.nil? and !s.description != "") %>
+2013-08-28T20:50:10.671553+00:00 app[web.1]:     42: 										</li>
+2013-08-28T20:50:10.671553+00:00 app[web.1]:     36: 								<% if %>
+2013-08-28T20:50:10.671744+00:00 app[web.1]:   app/views/suppliers/index.html.erb:31:in `each'
+2013-08-28T20:50:10.671553+00:00 app[web.1]:   app/views/suppliers/index.html.erb:39:in `block (3 levels) in _app_views_suppliers_index_html_erb___1552490306132885215_46283440'
+2013-08-28T20:50:10.671744+00:00 app[web.1]:   app/views/suppliers/index.html.erb:31:in `block (2 levels) in _app_views_suppliers_index_html_erb___1552490306132885215_46283440'
+2013-08-28T20:50:10.671553+00:00 app[web.1]:     38: 										<li>
+2013-08-28T20:50:10.671744+00:00 app[web.1]:   app/views/suppliers/index.html.erb:17:in `block in _app_views_suppliers_index_html_erb___1552490306132885215_46283440'
+2013-08-28T20:50:10.671744+00:00 app[web.1]:   app/views/suppliers/index.html.erb:17:in `each'
+2013-08-28T20:50:10.671553+00:00 app[web.1]:     41: 											<%= image_tag "tool_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has machine data" unless s.machines == [] %>
+2013-08-28T20:50:10.671744+00:00 app[web.1]:   app/views/suppliers/index.html.erb:15:in `each'
+2013-08-28T20:50:10.671744+00:00 app[web.1]: 
+2013-08-28T20:50:10.671744+00:00 app[web.1]:   app/views/suppliers/index.html.erb:15:in `_app_views_suppliers_index_html_erb___1552490306132885215_46283440'
+2013-08-28T20:50:10.671744+00:00 app[web.1]: 
+2013-08-28T20:50:10.672697+00:00 app[web.1]: Processing by SuppliersController#index as HTML
+2013-08-28T20:50:10.672697+00:00 app[web.1]:   Rendered suppliers/index.html.erb within layouts/application (2335.8ms)
+2013-08-28T20:50:10.672697+00:00 app[web.1]: Completed 500 Internal Server Error in 3666ms
+2013-08-28T20:50:10.674143+00:00 heroku[router]: at=info method=GET path=/suppliers host=www.supplybetter.com fwd="70.36.146.74" dyno=web.1 connect=1ms service=7536ms status=500 bytes=744
