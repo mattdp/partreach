@@ -12,7 +12,7 @@ end
 module Partreach
   class Application < Rails::Application
 
-    config.cache_store = :memory_store
+    config.cache_store = :dalli_store
 
     #based on https://devcenter.heroku.com/articles/rails-asset-pipeline
     config.assets.initialize_on_precompile = false
