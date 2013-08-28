@@ -58,8 +58,7 @@ class Supplier < ActiveRecord::Base
     guide = INDEX_HOLDER[index_name]
     return false if guide.nil?
     haves, have_nots, countries = guide[0], guide[1], guide[2]
-    internal_supplier_set = []
-    external_supplier_set = Rails.cache.fetch("set_for_index_#{index_name}", :expires_in => 24.hours) {
+    supplier_set = []
       Supplier.find_each do |s|
         if (
             s.profile_visible and
@@ -67,14 +66,10 @@ class Supplier < ActiveRecord::Base
             !(haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
             !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
           )
-            internal_supplier_set << s
+            supplier_set << s
         end
       end
-      logger.debug "MISS - Supplier set cache for #{index_name}"        
-      internal_supplier_set
-    }
-    return external_supplier_set if !external_supplier_set.nil?
-    return internal_supplier_set
+    return supplier_set
   end
 
   #return hash of [machine => quantity]
@@ -207,7 +202,6 @@ class Supplier < ActiveRecord::Base
   def self.visible_profiles_sorted(index_name)
     Rails.cache.fetch("visible_profiles_sorted_#{index_name}", :expires_in => 24.hours) {
       profiles = Supplier.set_for_index(index_name)
-      #profiles = Supplier.visible_profiles
 
       answer = {}
 
