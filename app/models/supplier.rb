@@ -58,7 +58,8 @@ class Supplier < ActiveRecord::Base
     guide = INDEX_HOLDER[index_name]
     return false if guide.nil?
     haves, have_nots, countries = guide[0], guide[1], guide[2]
-    supplier_set = []
+    holder = []
+    supplier_set = Rails.cache.fetch("set_for_index_#{index_name}", :expires_in => 24.hours) {
       Supplier.find_each do |s|
         if (
             s.profile_visible and
@@ -66,9 +67,11 @@ class Supplier < ActiveRecord::Base
             !(haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
             !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
           )
-            supplier_set << s
+            holder << s
         end
       end
+      holder
+    }
     return supplier_set
   end
 
@@ -200,7 +203,6 @@ class Supplier < ActiveRecord::Base
   #return hash of countries, each with hash of states, containing array of suppliers
   #no_state for country -> supplier direct stuff
   def self.visible_profiles_sorted(index_name)
-    Rails.cache.fetch("visible_profiles_sorted_#{index_name}", :expires_in => 24.hours) {
       profiles = Supplier.set_for_index(index_name)
 
       answer = {}
@@ -228,8 +230,8 @@ class Supplier < ActiveRecord::Base
         end
       end
 
-      answer 
-    }
+      return answer
+
   end
 
   def create_or_update_address(options)
