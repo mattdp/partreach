@@ -20,7 +20,7 @@
 #  suggested_preferences         :text
 #  internally_hidden_preferences :text
 #  suggested_services            :text
-#  suggested_address             :text
+#  suggested_address             x`:text
 #  suggested_url_main            :string(255)
 #  points                        :integer          default(0)
 #
@@ -227,7 +227,7 @@ class Supplier < ActiveRecord::Base
 
       answer.keys.each do |country|
         answer[country].keys.each do |state|
-          answer[country][state].sort! { |a,b| a.name <=> b.name }
+          answer[country][state].sort_by! { |a| [a.name] } #, a.source] } #works w/ two as long as not points; need an ordering, mayhap?
         end
       end
     end
