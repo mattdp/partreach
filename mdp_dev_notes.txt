@@ -26,5 +26,10 @@ caching
 	irrelevant
 		consider_all_requests_local
 
+next
+	[] try to take live, see what problems if any are
+	[] if works, leave up and figure out how to test local
+	[] set times to check cache size and see if we're goign to hit the end of the plan		
+
 ---
 
