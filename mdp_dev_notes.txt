@@ -1,6 +1,5 @@
 git push heroku yourbranch:master - pushing a remote branch to heroku
 
-
 caching
 
 	problem

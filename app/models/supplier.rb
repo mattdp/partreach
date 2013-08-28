@@ -59,7 +59,7 @@ class Supplier < ActiveRecord::Base
     return false if guide.nil?
     haves, have_nots, countries = guide[0], guide[1], guide[2]
     internal_supplier_set = []
-    external_supplier_set = Rails.cache.fetch("index_#{index_name}", :expires_in => 12.hours) {
+    external_supplier_set = Rails.cache.fetch("set_for_index_#{index_name}", :expires_in => 24.hours) {
       Supplier.find_each do |s|
         if (
             s.profile_visible and
@@ -205,35 +205,37 @@ class Supplier < ActiveRecord::Base
   #return hash of countries, each with hash of states, containing array of suppliers
   #no_state for country -> supplier direct stuff
   def self.visible_profiles_sorted(index_name)
-    profiles = Supplier.set_for_index(index_name)
-    #profiles = Supplier.visible_profiles
+    Rails.cache.fetch("visible_profiles_sorted_#{index_name}", :expires_in => 24.hours) {
+      profiles = Supplier.set_for_index(index_name)
+      #profiles = Supplier.visible_profiles
 
-    answer = {}
+      answer = {}
 
-    if !(profiles.nil? or profiles == [])
-      profiles.each do |s|  
-        #block odd error where cache appends a :@new_record after the last result
-        next if !s.is_a?(Supplier) or s.address.nil? or s.address.country.nil?
-        country = s.address.country
-        state = s.address.state
-        answer[country] = {"no_state" => []} if answer[country].nil?
-        if s.address.state.nil?
-          answer[country]["no_state"] << s
-        elsif answer[country][state].nil?
-          answer[country][state] = [s]
-        else
-          answer[country][state] << s
+      if !(profiles.nil? or profiles == [])
+        profiles.each do |s|  
+          #block odd error where cache appends a :@new_record after the last result
+          next if !s.is_a?(Supplier) or s.address.nil? or s.address.country.nil?
+          country = s.address.country
+          state = s.address.state
+          answer[country] = {"no_state" => []} if answer[country].nil?
+          if s.address.state.nil?
+            answer[country]["no_state"] << s
+          elsif answer[country][state].nil?
+            answer[country][state] = [s]
+          else
+            answer[country][state] << s
+          end
+        end
+
+        answer.keys.each do |country|
+          answer[country].keys.each do |state|
+            answer[country][state].sort_by! { |a| [a.name] } #, a.source] } #works w/ two as long as not points; need an ordering, mayhap?
+          end
         end
       end
 
-      answer.keys.each do |country|
-        answer[country].keys.each do |state|
-          answer[country][state].sort_by! { |a| [a.name] } #, a.source] } #works w/ two as long as not points; need an ordering, mayhap?
-        end
-      end
-    end
-
-    return answer
+      answer 
+    }
   end
 
   def create_or_update_address(options)
