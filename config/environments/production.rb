@@ -4,6 +4,8 @@ Partreach::Application.configure do
   # Code is not reloaded between requests
   config.cache_classes = true
 
+  config.eager_load = true
+
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -15,7 +17,7 @@ Partreach::Application.configure do
   config.assets.compress = true
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.compile = true
+  config.assets.js_compressor = :uglifier
 
   # Generate digests for assets URLs
   config.assets.digest = true

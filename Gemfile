@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
-ruby "1.9.3"
+ruby "2.0.0"
 
-gem 'rails', '3.2.11'
+gem 'rails', '4.0.0'
 gem 'webrick', '= 1.3.1' #https://github.com/JumpstartLab/curriculum/issues/373
 gem 'bootstrap-sass', '2.1'
 gem 'faker', '1.0.1'
@@ -14,6 +14,17 @@ gem 'jekyll-sass', '1.1.0' #https://github.com/noct/jekyll-sass
 gem 'bloggy', '0.2.1'
 gem 'dalli', '2.6.4' #https://devcenter.heroku.com/articles/building-a-rails-3-application-with-memcache
 gem 'memcachier', '0.0.2' #https://devcenter.heroku.com/articles/building-a-rails-3-application-with-memcache
+
+# add these gems to help with the transition:
+gem 'protected_attributes'
+gem 'rails-observers'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
+
+#old assets block
+gem 'sass-rails',   '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
  	gem 'sqlite3', '1.3.5'
@@ -30,18 +41,6 @@ end
 group :test do
 	gem 'capybara', '1.1.2'
 	gem 'factory_girl_rails', '4.1.0'
-end
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.5'
-  gem 'coffee-rails', '~> 3.2.2'
-
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier', '>= 1.2.3'
 end
 
 gem 'jquery-rails', '2.0.2'

@@ -12,35 +12,35 @@ Partreach::Application.routes.draw do
   resources :password_resets
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
 
-  match '/signup', to: 'orders#new'
-  match '/signin', to: 'sessions#new'
+  get '/signup', to: 'orders#new'
+  get '/signin', to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
-  match '/getting_started', to: 'static_pages#getting_started'
-  match '/procurement', to: 'static_pages#procurement'
-  match '/alpha', to: 'static_pages#procurement'
-  match '/business', to: 'static_pages#procurement'
-  match '/materials', to: 'static_pages#materials'
-  match '/be_a_supplier', to: 'static_pages#be_a_supplier'
-  match '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
-  match 'orders/update_dialogues', to: 'orders#update_dialogues'
-  match 'orders/purchase/:order/:dialogue', to: 'orders#purchase'
-  match '/cto', to: 'static_pages#cto'
-  match '/dialogues/new/:id', to: 'dialogues#new'
-  match '/profiles/:name', to: 'profiles#supplier_profile', via: :get, as: 'supplier_profile'
-  match '/submit_ask/', to: 'profiles#submit_ask'
-  match '/terms', to: 'static_pages#terms'
-  match '/privacy', to: 'static_pages#privacy'
+  get '/getting_started', to: 'static_pages#getting_started'
+  get '/procurement', to: 'static_pages#procurement'
+  get '/alpha', to: 'static_pages#procurement'
+  get '/business', to: 'static_pages#procurement'
+  get '/materials', to: 'static_pages#materials'
+  get '/be_a_supplier', to: 'static_pages#be_a_supplier'
+  get '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
+  get 'orders/update_dialogues', to: 'orders#update_dialogues'
+  get 'orders/purchase/:order/:dialogue', to: 'orders#purchase'
+  get '/cto', to: 'static_pages#cto'
+  get '/dialogues/new/:id', to: 'dialogues#new'
+  get '/profiles/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
+  get '/submit_ask/', to: 'profiles#submit_ask'
+  get '/terms', to: 'static_pages#terms'
+  get '/privacy', to: 'static_pages#privacy'
 
-  match '/analytics', to: 'analytics#home', as: 'analytics_home'
-  match '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
-  match '/analytics/suppliers', to: 'analytics#suppliers', as: 'analytics_suppliers'
-  match '/analytics/emails', to: 'analytics#emails', as: 'analytics_emails'
-  match '/analytics/metrics', to: 'analytics#metrics', as: 'analytics_metrics'
+  get '/analytics', to: 'analytics#home', as: 'analytics_home'
+  get '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
+  get '/analytics/suppliers', to: 'analytics#suppliers', as: 'analytics_suppliers'
+  get '/analytics/emails', to: 'analytics#emails', as: 'analytics_emails'
+  get '/analytics/metrics', to: 'analytics#metrics', as: 'analytics_metrics'
 
   #goal: allow show page to post a form. seems hacky - check with someone.
   match '/orders/:id', to: 'orders#update', via: :post
 
-  match '/examinations', to: 'suppliers#setup_examinations', via: :get, as: "setup_examinations"
+  get '/examinations', to: 'suppliers#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'suppliers#submit_examinations', via: :post, as: "submit_examinations"
 
   # The priority is based upon order of creation:
