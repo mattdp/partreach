@@ -45,6 +45,7 @@ end
 gem 'jquery-rails', '3.0.4'
 
 group :production do
+	gem 'rails_12factor', '0.0.2'
 end
 
 
