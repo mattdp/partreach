@@ -59,20 +59,17 @@ class Supplier < ActiveRecord::Base
     return false if guide.nil?
     haves, have_nots, countries = guide[0], guide[1], guide[2]
     holder = []
-    supplier_set = Rails.cache.fetch("set_for_index_#{index_name}", :expires_in => 24.hours) {
-      Supplier.find_each do |s|
-        if (
-            s.profile_visible and
-            (countries == [] or (s.address and countries.include?(s.address.country))) and
-            !(haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
-            !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
-          )
-            holder << s
-        end
+    Supplier.find_each do |s|
+      if (
+          s.profile_visible and
+          (countries == [] or (s.address and countries.include?(s.address.country))) and
+          !(haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
+          !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
+        )
+          holder << s
       end
-      holder
-    }
-    return supplier_set
+    end
+    return holder
   end
 
   #return hash of [machine => quantity]
@@ -209,8 +206,6 @@ class Supplier < ActiveRecord::Base
 
       if !(profiles.nil? or profiles == [])
         profiles.each do |s|  
-          #block odd error where cache appends a :@new_record after the last result
-          next if !s.is_a?(Supplier) or s.address.nil? or s.address.country.nil?
           country = s.address.country
           state = s.address.state
           answer[country] = {"no_state" => []} if answer[country].nil?
