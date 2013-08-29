@@ -21,7 +21,7 @@ describe "Order and users" do
 	# 	end
 	# end
 
-	describe "lack of orders" do
+	describe "lack of orders", type: :request do
 		let(:user) { FactoryGirl.create(:user) }
 		subject { page }
 

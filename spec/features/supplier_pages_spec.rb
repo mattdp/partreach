@@ -44,7 +44,7 @@ describe "Supplier-related pages" do
 			end
 		end
 
-		describe "non supplier-linked users" do
+		describe "non supplier-linked users", type: :request do
 			before do
     		sign_in @non_supplier_linked_user
     		visit orders_path
