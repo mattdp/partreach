@@ -10,6 +10,7 @@ describe "User pages" do
       @supplier = FactoryGirl.create(:supplier)
       @saved_user = FactoryGirl.create(:user)
       @new_user = User.new(name: "NewUser", email: "newuser@fakemail.com", password: "newuser")
+      @supplier_linked_user = FactoryGirl.create(:user, supplier_id: @supplier.id)
     end
 
     before do 
@@ -82,6 +83,10 @@ describe "User pages" do
             it { should have_link('Sign in') }
           end
         end
+      end
+
+      describe "for a supplier-linked user" do
+
       end
 
     end

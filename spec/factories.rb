@@ -4,6 +4,8 @@ FactoryGirl.define do
     sequence(:email)  { |n| "personis#{n}@example.com"}   
     password              "foobar"
     password_confirmation "foobar"
+    supplier_id           nil
+    admin                 false
   end
 
   factory :order do |o|
@@ -19,7 +21,7 @@ FactoryGirl.define do
   end
 
   factory :tag do |t|
-    sequence(:name)   { |n| "Supplier#{n}"}
+    sequence(:name)   { |n| "Tag#{n}"}
     family            "generic"
     exclusive         false
   end

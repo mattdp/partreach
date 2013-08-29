@@ -27,7 +27,7 @@ describe "Order and users" do
 
 		before do 
 			sign_in user
-			visit "/orders"
+			visit orders_path
 		end
 
 		it { should have_selector('p', text: 'No orders') }
