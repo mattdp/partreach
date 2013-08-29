@@ -14,10 +14,10 @@ Partreach::Application.configure do
   config.serve_static_assets = false
 
   # Compress JavaScripts and CSS
-  config.assets.compress = true
+  config.assets.js_compressor = :uglifier
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
-  config.assets.js_compressor = :uglifier
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
