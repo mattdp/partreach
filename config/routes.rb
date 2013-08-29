@@ -30,6 +30,7 @@ Partreach::Application.routes.draw do
   match '/submit_ask/', to: 'profiles#submit_ask'
   match '/terms', to: 'static_pages#terms'
   match '/privacy', to: 'static_pages#privacy'
+  match '/supplier_profile_reachout', to:'blast_mailer#supplier_profile_reachout'
 
   match '/analytics', to: 'analytics#home', as: 'analytics_home'
   match '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
