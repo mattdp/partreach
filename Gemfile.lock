@@ -225,7 +225,7 @@ DEPENDENCIES
   pry-rails (= 0.3.2)
   rails (= 4.0.0)
   rails-observers
-  rails_12factor
+  rails_12factor (= 0.0.2)
   rspec-rails (= 2.14.0)
   sass-rails (~> 4.0.0)
   shoulda-matchers (= 2.3.0)
