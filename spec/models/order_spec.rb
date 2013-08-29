@@ -43,12 +43,4 @@ describe "Order" do
 		it { should_not be_valid }
 	end
 
-	describe "accessible attributes" do
-		it "should not allow access to user_id" do
-			expect do
-				Order.new(user_id: @order.id)
-			end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
-		end
-	end
-
 end

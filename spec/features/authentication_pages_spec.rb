@@ -45,9 +45,9 @@ describe "Authentication" do
           it { should have_selector('h1', text: 'Sign in') }
         end
 
-        describe "submitting to the update action" do
-          before { put user_path(user) }
-          specify { response.should redirect_to(signin_path) }
+        describe "submitting PATCH to the update action", type: :request do
+          before { patch user_path(user) }
+          specify { expect(response).to redirect_to signin_path }
         end
 
       end
