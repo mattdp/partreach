@@ -13,6 +13,7 @@ class UserMailer < ActionMailer::Base
   	mail(to: @user.email, subject: "Welcome to #{brand_name}")
   end
 
+  #VET THIS - think it's broken
   def bid_completed_email(user,order)
   	@user = user
   	@order = order
