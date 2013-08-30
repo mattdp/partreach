@@ -22,7 +22,7 @@ Partreach::Application.routes.draw do
   get '/materials', to: 'static_pages#materials'
   get '/be_a_supplier', to: 'static_pages#be_a_supplier'
   get '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
-  get 'orders/update_dialogues', to: 'orders#update_dialogues'
+  match 'orders/update_dialogues', to: 'orders#update_dialogues', via: :post
   get 'orders/purchase/:order/:dialogue', to: 'orders#purchase'
   get '/cto', to: 'static_pages#cto'
   get '/dialogues/new/:id', to: 'dialogues#new'
