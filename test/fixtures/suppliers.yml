@@ -27,6 +27,7 @@
 
 1:
   name: "Shapeways"
+  name_for_link: "asdf"
   url_main: "http://www.shapeways.com"
   url_materials: "http://www.shapeways.com/materials"
   blurb: "Shapeways is a 3D Printing marketplace and community"
@@ -34,6 +35,7 @@
   phone: "N/A"
 2:
   name: "Ponoko"
+  name_for_link: "asdfd"  
   url_main: "https://www.ponoko.com/"
   url_materials: "http://www.ponoko.com/make-and-sell/materials/ponoko-united-states?kind=3D+Printed&mode=materials"
   blurb: "The world's easiest making system"
@@ -41,6 +43,7 @@
   phone: "N/A"
 3:
   name: "Sculpteo"
+  name_for_link: "sdf"
   url_main: "http://www.sculpteo.com/"
   url_materials: "http://www.sculpteo.com/en/materials/"
   blurb: "Innovative 3D printing service for creative people"
@@ -48,6 +51,7 @@
   phone: "18008141270"
 4:
   name: "i.materialise"
+  name_for_link: "efaefdf"
   url_main: "http://i.materialise.com/"
   url_materials: "http://i.materialise.com/materials"
   blurb: " i.materialise offers all people with an eye for design and a head full of ideas the possibility to turn these ideas into 3D reality"
@@ -55,6 +59,7 @@
   phone: "N/A"
 5:
   name: "RedEye"
+  name_for_link: "asefeefedf"
   url_main: "http://www.redeyeondemand.com/"
   url_materials: "http://www.redeyeondemand.com/Materials.aspx"
   blurb: "Choose from a wide variety of high-performance engineering materials for your detailed functional prototypes, durable manufacturing tools and low-volume manufacturing needs."
@@ -62,6 +67,7 @@
   phone: "18668826934"
 6:
   name: "ZoomRP"
+  name_for_link: "weeef"
   url_main: "http://www.zoomrp.com/"
   url_materials: "http://www.zoomrp.com/products.aspx"
   blurb: "We offer the fastest self-service prototype parts available"
@@ -69,6 +75,7 @@
   phone: "N/A"
 7:
   name: "PartSnap"
+  name_for_link: "asdfeefefefe"  
   url_main: "http://www.partsnap.com/"
   url_materials: "http://www.partsnap.com/3d-printing/3d-printing-materials-stratasys-fdm/"
   blurb: "PartSnap is a home-based business focused on customer service and speed."
@@ -76,6 +83,7 @@
   phone: "12144491455"
 8:
   name: "3Dproparts"
+  name_for_link: "asdfo"  
   url_main: "http://www.3dproparts.com/"
   url_materials: "http://3dproparts.com/technologies/3d-printing"
   blurb: "Single source for all your design to manufacturing needs"
@@ -83,6 +91,7 @@
   phone: "18773377672"
 9:
   name: "Inition"
+  name_for_link: "asdfm"
   url_main: "http://inition.co.uk/3d-printing-service#overlay-context=product-section/3d-printing-service"
   url_materials: "http://inition.co.uk/3d-printing-service#overlay-context=product-section/3d-printing-service"
   blurb: "3D design, scanning, and printing company located in London"
@@ -90,6 +99,7 @@
   phone: "+442073772949"
 10:
   name: "Rapitypes"
+  name_for_link: "ascf"
   url_main: "http://rapitypes.com/Default.html"
   url_materials: "http://rapitypes.com/activities-rapidprototyping.html"
   blurb: "Multi-process low volume production company in Leicester, UK"
@@ -97,6 +107,7 @@
   phone: "+4401162536591"
 11: 
   name: "Ogle"
+  name_for_link: "asdfeef"  
   url_main: "http://www.oglemodels.com/"
   url_materials: "http://www.oglemodels.com/processes/datasheets.php"
   blurb: "Modeling and prototyping company in "
@@ -104,6 +115,7 @@
   phone: "+4401462682661"
 12:
   name: "CP"
+  name_for_link: "assees"
   url_main: "http://www.cp-gmbh.de/index_eng.html"
   url_materials: "http://www.cp-gmbh.de/english/leistungen/maschinen.html"
   blurb: "Plastic and metal prototyping, in Erkelenz, Germany"
