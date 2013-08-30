@@ -19,6 +19,7 @@ module Crawlers
 				s = Supplier.new
 				s.name = row[PB_COMPANY]
 				s.url_main = row[PB_CLEANED_LINK]
+				s.name_for_link = Supplier.proper_name_for_link(s.name)
 				if s.save
 					puts "#{s.name} saved successfully."
 				else
@@ -56,6 +57,7 @@ module Crawlers
 				params[:name] = row[CA_COMPANY]
 				params[:url_main] = row[CA_LINK]
 				params[:source] = "crawler_castle"
+				params[:name_for_link] = Supplier.proper_name_for_link(params[:name])
 
 				s = Supplier.create(params)
 				if s.id.present?
@@ -111,6 +113,7 @@ module Crawlers
 				params[:name] = row[UTAH_COMPANY]
 				params[:url_main] = row[UTAH_LINK]
 				params[:source] = "crawler_utah"
+				params[:name_for_link] = Supplier.proper_name_for_link(params[:name])
 
 				s = Supplier.create(params)
 				if s.id.present?
