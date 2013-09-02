@@ -197,12 +197,10 @@ class OrdersController < ApplicationController
 
     @order.recommendation = params[:recommendation]
     @order.next_steps = params[:next_steps]
-    binding.pry
     if params[:status].present?
       Event.add_event("Order",@order.id,"closed_successfully") if params[:status] == "Finished - closed" and @order.status != params[:status]
       @order.status = params[:status] 
     end
-    binding.pry
     @order.next_action_date = params[:next_action_date]
     @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
     @dialogues.each do |d|
