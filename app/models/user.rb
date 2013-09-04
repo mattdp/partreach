@@ -49,19 +49,23 @@ class User < ActiveRecord::Base
     supplier = Supplier.find(supplier_id)
     supplier.claim_profile(user.id)
 
-    user.send_password_reset(supplier_id)
+    user.send_supplier_intro_email(supplier_id)
   end
 
-  def send_password_reset(supplier_id=nil) #http://railscasts.com/episodes/274-remember-me-reset-password
+  def send_password_reset #http://railscasts.com/episodes/274-remember-me-reset-password
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     self.save!(:validate => false)
     Event.add_event("User",self.id,"requested_password_reset")
-    if supplier_id.nil?
-      UserMailer.password_reset(self).deliver
-    else
-      UserMailer.supplier_intro_email(self,supplier_id).deliver
-    end
+    UserMailer.password_reset(self).deliver
+  end
+
+  def send_supplier_intro_email(supplier_id)
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    self.save!(:validate => false)
+    Event.add_event("Supplier",self.id,"sent_account_intro_email")
+    UserMailer.supplier_intro_email(self,supplier_id).deliver
   end
 
   def self.can_use_email?(email_address)
