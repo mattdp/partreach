@@ -53,6 +53,10 @@ class Supplier < ActiveRecord::Base
 
   NETWORK_TAG_NAMES = %w(n3_signedAndNDAd n5_signed_only) 
 
+  def has_event_of_request(request_name)
+    Ask.where("supplier_id = ? and request = ?",self.id,request_name).present?
+  end
+
   def asks_hash
     answer = {}
     self_id = self.id
