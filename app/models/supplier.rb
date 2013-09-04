@@ -53,6 +53,21 @@ class Supplier < ActiveRecord::Base
 
   NETWORK_TAG_NAMES = %w(n3_signedAndNDAd n5_signed_only) 
 
+  def asks_hash
+    answer = {}
+    self_id = self.id
+    Ask.find_each do |a|
+      if a.real and a.supplier_id == self_id
+        if answer[a.request].present?
+          answer[a.request] += 1 
+        else
+          answer[a.request] = 0
+        end
+      end
+    end
+    return answer
+  end
+
   #this will be slow, need to store it somewhere
   def self.set_for_index(index_name)
     guide = INDEX_HOLDER[index_name]
