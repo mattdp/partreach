@@ -14,7 +14,7 @@
 
 		<% @visibles.keys.sort.each do |country| %>
 			<h3 class="supplier-list-country"><%= "#{country}" %></h3>
-			<% @visibles[country].keys.each do |state| %>
+			<% @visibles[country].keys.sort{|a,b| a.to_s <=> b.to_s}.each do |state| %>
 				<%== "<h4 class=\"supplier-list-state fleft\" id=\"#{country}-#{state}\">" %>
 					<% if state == "no_state" %>
 						<%= "Many-state / No state" %>
