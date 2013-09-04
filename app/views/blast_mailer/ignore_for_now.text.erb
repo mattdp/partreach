@@ -1,16 +1,18 @@
-Hey NAME,
-
 We have customers asking about <%= @supplier.name %> on <% "#{@brand_name}" %>!
-
-ACTIVITY ON YOUR PROFILE
 
 On your <% "#{@brand_name}" %> profile there have been:
 
-XX requests for a company description
-XX requests for what machines you use
-XX requests for reviews from your past clients
+<% if @asks_hash["description_requested"] %>
+  -<%= pluralize(@asks_hash["description_requested"],"request")%>for a company description
+<% end %>
+<% if @asks_hash["machines_requested"] %>
+  -<%= pluralize(@asks_hash["machines_requested"],"request")%> for what machines you use
+<% end %>
+<% if @asks_hash["reviews_requested"] %>
+ -<%= pluralize(@asks_hash["reviews_requested"],"request")%> for reviews from your past clients
+<% end %>
 
-You can view the <% "#{@brand_name}" %> profile for <%= @supplier.name %> by visiting: http://supplybetter.com<% "#{@url_edit}" %>.
+You can view the <% "#{@brand_name}" %> profile for <%= @supplier.name %> by visiting: http://supplybetter.com<% "#{@url_name_for_link}" %>.
 
 People who visit <% "#{@brand_name}" %> looking for 3D Printing are interested in learning more about who you are and what you make. You can update your company details by making an account and claiming your profile. You can claim by either clicking "Claim this profile" on your company's profile page or emailing claim-profile@supplybetter.com. 
 
@@ -30,4 +32,4 @@ You are receiving this email because your email address was linked to <%= @suppl
 
 You can unsubscribe from these emails by messaging unsuscribe@supplybetter.com.
 
-<% "#{@brand_name}" %>, Inc. - 1688 Sacramento Street, #302, San Francisco, CA 94109
+SupplyBetter, Inc. - 1688 Sacramento Street, #302, San Francisco, CA 94109
