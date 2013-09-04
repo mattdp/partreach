@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   def send_password_reset(supplier_id=nil) #http://railscasts.com/episodes/274-remember-me-reset-password
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
-    save!(:validate => false)
+    self.save!(:validate => false)
     if supplier_id.nil?
       UserMailer.password_reset(self).deliver
     else
