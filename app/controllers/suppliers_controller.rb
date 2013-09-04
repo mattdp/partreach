@@ -51,7 +51,9 @@ class SuppliersController < ApplicationController
 	end
 
 	def index
-		@visibles = Supplier.visible_profiles_sorted("us_3d_printing")
+		@visibles = Rails.cache.fetch "us_3d_printing" do 
+			Supplier.visible_profiles_sorted("us_3d_printing")
+		end
 	end
 
 	def edit

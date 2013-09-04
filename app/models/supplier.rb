@@ -72,25 +72,6 @@ class Supplier < ActiveRecord::Base
     return answer
   end
 
-  #this will be slow, need to store it somewhere
-  def self.set_for_index(index_name)
-    guide = INDEX_HOLDER[index_name]
-    return false if guide.nil?
-    haves, have_nots, countries = guide[0], guide[1], guide[2]
-    holder = []
-    Supplier.find_each do |s|
-      if (
-          s.profile_visible and
-          (countries == [] or (s.address and countries.include?(s.address.country))) and
-          !(haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
-          !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
-        )
-          holder << s
-      end
-    end
-    return holder
-  end
-
   #return hash of [machine => quantity]
   def machines_quantity_hash
     answer = {}
@@ -216,11 +197,29 @@ class Supplier < ActiveRecord::Base
     Supplier.where('profile_visible = true')
   end
 
+  #this will be slow, need to store it somewhere
+  def self.set_for_index(index_name)
+    guide = INDEX_HOLDER[index_name]
+    return false if guide.nil?
+    haves, have_nots, countries = guide[0], guide[1], guide[2]
+    holder = []
+    Supplier.find_each do |s|
+      if (
+          s.profile_visible and
+          (countries == [] or (s.address and countries.include?(s.address.country))) and
+          !(haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
+          !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
+        )
+          holder << s
+      end
+    end
+    return holder
+  end
+
   #return hash of countries, each with hash of states, containing array of suppliers
   #no_state for country -> supplier direct stuff
   def self.visible_profiles_sorted(index_name)
-      #profiles = Supplier.set_for_index(index_name)
-      profiles = Supplier.visible_profiles #take out once figure out caching
+      profiles = Supplier.set_for_index(index_name)
 
       answer = {}
 
