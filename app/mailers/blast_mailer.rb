@@ -24,6 +24,7 @@ class BlastMailer < ActionMailer::Base
     @brand_name = brand_name
     @url_name_for_link = supplier_profile_path(supplier.name_for_link)
     @url_edit = edit_supplier_path(supplier.id)
+    @asks_hash = supplier.asks_hash
     mail(to: supplier.email, subject:"Customers want to know more about #{supplier.name} on #{brand_name}!")
   end
 

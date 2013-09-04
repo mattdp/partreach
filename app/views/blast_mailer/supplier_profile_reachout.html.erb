@@ -26,9 +26,15 @@
               On&nbsp;<a style="color: #333;" href=<%= "http://supplybetter.com#{@url_name_for_link}" %> target="_blank">
               your SupplyBetter profile</a>&nbsp;there have been:
               <ul>
-                <li><strong>5 requests</strong> for a company description</li>
-                <li><strong>7 requests</strong> for what machines you use</li>
-                <li><strong>3 requests</strong> for reviews from your past clients</li>
+                <% if @asks_hash["description_requested"] %>
+                  <li><strong><%= pluralize(@asks_hash["description_requested"],"request")%></strong> for a company description</li>
+                <% end %>
+                <% if @asks_hash["machines_requested"] %>
+                  <li><strong><%= pluralize(@asks_hash["machines_requested"],"request")%></strong> for what machines you use</li>
+                <% end %>
+                <% if @asks_hash["reviews_requested"] %>
+                  <li><strong><%= pluralize(@asks_hash["reviews_requested"],"request")%></strong> for reviews from your past clients</li>
+                <% end %>
               </ul>
               
               People who visit SupplyBetter looking for 3D Printing are interested in learning more about who you are and what you make. You can update your company details by making an account and&nbsp;<%= mail_to "claim-profile@supplybetter.com", "claiming your profile", subject: "Please create my supplier account so I can claim my profile", body: "I'd like to claim the profile for #{@supplier.name}", target: "_blank", style: "color: #333;" %>&nbsp;. Once your information is updated we'll be able to start connecting you to your potential customers.
