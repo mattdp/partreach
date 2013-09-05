@@ -21,6 +21,7 @@ class BlastMailer < ActionMailer::Base
         logger.debug "Not sending to #{s.name}, event shows it was sent already"
       end
     end
+    return "Sending attempted"
   end
 
   def basic_supplier_profile_email(email_address,subject)
