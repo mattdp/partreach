@@ -9,7 +9,7 @@ class BlastMailer < ActionMailer::Base
     @url_edit = edit_supplier_path(supplier.id)
     @asks_hash = supplier.asks_hash
     Event.add_event("Supplier",supplier.id,"profile_reachout_sent")
-    mail(to: supplier.email, subject:"Customers want to know more about #{supplier.name} on #{brand_name}!")
+    mail(to: supplier.email, from: "supplier-reachouts@supplybetter.com", subject:"Customers want to know more about #{supplier.name} on #{brand_name}!")
   end
   #takes array of suppliers
   def supplier_profile_reachout_sender(suppliers,validate=true)

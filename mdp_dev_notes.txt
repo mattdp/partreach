@@ -1,5 +1,13 @@
 . git push heroku yourbranch:master - pushing a remote branch to heroku
 
+first set of supplier email sendouts, highly nonscientific
+	"Tuscany3D LLC"=>[4, 6, 5]
+	"Northwest Rapid Manufacturing"=>[2, 1, 1]
+	"Empire Prototype"=>[3, 6, 4]
+	"Brightop Inc."=>[2, 7, 3]
+	"Intrinsic3D"=>[1, 2, 5]
+	"Design Alternatives"=>[1, 0, 1]
+
 jekyll
 
 	can't find error information online
