@@ -14,7 +14,7 @@ class BlastMailer < ActionMailer::Base
   #takes array of suppliers
   def supplier_profile_reachout_sender(suppliers,validate=true)
     suppliers.each do |s|
-      if !validate or !Supplier.has_event_of_request("profile_reachout_sent")
+      if !validate or !s.has_event_of_request("profile_reachout_sent")
         b = BlastMailer.supplier_profile_reachout(s)
         b.deliver
       else
