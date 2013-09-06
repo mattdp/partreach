@@ -1,5 +1,7 @@
 . git push heroku yourbranch:master - pushing a remote branch to heroku
 
+
+
 first set of supplier email sendouts, highly nonscientific
 	"Tuscany3D LLC"=>[4, 6, 5]
 	"Northwest Rapid Manufacturing"=>[2, 1, 1]
@@ -10,41 +12,7 @@ first set of supplier email sendouts, highly nonscientific
 
 jekyll
 
-	can't find error information online
-			Matthews-MacBook-Pro:partreach matt$ rake generate
-		rake aborted!
-		uninitialized constant Jekyll::Sass::StaticFile
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2/gems/jekyll-sass-1.1.0/lib/jekyll-sass.rb:21:in `<module:Sass>'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2/gems/jekyll-sass-1.1.0/lib/jekyll-sass.rb:4:in `<module:Jekyll>'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2/gems/jekyll-sass-1.1.0/lib/jekyll-sass.rb:3:in `<top (required)>'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:72:in `require'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:72:in `block (2 levels) in require'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:70:in `each'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:70:in `block in require'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:59:in `each'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:59:in `require'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2@global/gems/bundler-1.3.5/lib/bundler.rb:132:in `require'
-		/Users/matt/partreach/config/application.rb:5:in `<top (required)>'
-		/Users/matt/partreach/Rakefile:5:in `require'
-		/Users/matt/partreach/Rakefile:5:in `<top (required)>'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2/bin/ruby_noexec_wrapper:14:in `eval'
-		/Users/matt/.rvm/gems/ruby-2.0.0-rc2/bin/ruby_noexec_wrapper:14:in `<main>'
-		(See full trace by running task with --trace)
-		Matthews-MacBook-Pro:partreach matt$ bundle outdated
-		Fetching gem metadata from https://rubygems.org/.......
-		Fetching gem metadata from https://rubygems.org/..
-		Resolving dependencies...
-
-		Outdated gems included in the bundle:
-		  * bcrypt-ruby (3.1.2 > 3.0.1)
-		  * builder (3.2.2 > 3.1.4)
-		  * coderay (1.1.0 > 1.0.9)
-		  * jekyll (1.1.2 > 0.12.1)
-		  * kramdown (1.2.0 > 0.14.2)
-		  * liquid (2.5.2 > 2.5.1)
-		  * minitest (5.0.6 > 4.7.5)
-		  * pygments.rb (0.5.2 > 0.3.7)
-		  * tzinfo (1.0.1 > 0.3.37)
+	https://github.com/gkwelding/gkwelding.github.com/ super helpful in modeling off
 
 caching
 
