@@ -13,6 +13,7 @@ gem 'dalli', '2.6.4' #https://devcenter.heroku.com/articles/building-a-rails-3-a
 gem 'memcachier', '0.0.2' #https://devcenter.heroku.com/articles/building-a-rails-3-application-with-memcache
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'jquery-rails', '3.0.4'
+gem 'bloggy', '0.2.2'
 
 # add these gems to help with the transition to Rails 4.0:
 gem 'protected_attributes'
