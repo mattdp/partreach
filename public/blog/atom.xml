@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-09-06T14:41:57-07:00</updated>
+ <updated>2013-09-06T14:51:28-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -12,11 +12,92 @@
 
  
  <entry>
-   <title>A Test Post</title>
-   <link href="YOUR_URL/a-test-post.html"/>
-   <updated>2012-04-25T00:00:00-07:00</updated>
-   <id>BLOG_URL/a-test-post</id>
-   <content type="html">&lt;p&gt;Zach was bored while his girlfriend and her sister were talking and watching the voice. so this gem was created to generate a blog inside my rails application for my engine yard blog post.&lt;/p&gt;
+   <title>Suppliers can now claim and edit their comapny profiles</title>
+   <link href="YOUR_URL/suppliers-can-now-claim-and-edit-their-company-profiles.html"/>
+   <updated>2013-08-30T00:00:00-07:00</updated>
+   <id>BLOG_URL/suppliers-can-now-claim-and-edit-their-company-profiles</id>
+   <content type="html">&lt;p&gt;The SupplyBetter team is constantly working to maintain the most comprehensive database of 3D printing suppliers, and we are pleased to announce that suppliers can now claim and edit their own profiles in our &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;Supplier Index&lt;/a&gt;. By uploading custom company descriptions, details about their machines, and company photos suppliers can use this support material to really make their profile stand on its own. Doing so allows our customers to better understand each company and improves the intelligence of how SupplyBetter matches. &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;Submit an RFQ&lt;/a&gt; today and discover the best suppliers to make your custom parts.&lt;/p&gt;
+
+&lt;p&gt;Simply meshing about,
+Rob&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Announcing the Launch of Supplier Profiles</title>
+   <link href="YOUR_URL/announcing-the-launch-of-supplier-profiles.html"/>
+   <updated>2013-07-15T00:00:00-07:00</updated>
+   <id>BLOG_URL/announcing-the-launch-of-supplier-profiles</id>
+   <content type="html">&lt;p&gt;&lt;strong&gt;We’re excited to announce that we’re launching &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;supplier profiles&lt;/a&gt; for 3D Printing.&lt;/strong&gt; We’ve been hard at work these past few months helping people get their custom mechanical parts made and this is just one more way we hope to make the experience better.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Here’s how this works:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Browse through our &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;supplier profiles&lt;/a&gt; to see if there is a supplier that matches your spec&lt;/li&gt;
+&lt;li&gt;Click &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;“Get a Quote”&lt;/a&gt; to upload your part and submit a Request for Quote (RFQ)&lt;/li&gt;
+&lt;li&gt;Sit back and let the magic happen&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Our passion is to be the best source for getting your parts made, and we do this by presenting the suppliers we believe are best able to fulfill your needs. Our &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;standard RFQ&lt;/a&gt; has already helped our customers achieve this, and we hope Supplier Profiles will make shopping for service bureaus even faster and more informative.&lt;/p&gt;
+
+&lt;p&gt;Thanks,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Tips to Improve Your RFQs</title>
+   <link href="YOUR_URL/tips-to-improve-your-requests-for-quotes.html"/>
+   <updated>2013-07-02T00:00:00-07:00</updated>
+   <id>BLOG_URL/tips-to-improve-your-requests-for-quotes</id>
+   <content type="html">&lt;p&gt;Filling out a proper &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;Request for Quote (RFQ)&lt;/a&gt; is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Files&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;STLs are the most common file type for 3D printing and have the widest acceptance, but we’re willing accept any file type as long as it’s relevant to your project.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Quantity&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Must be a number. If your requirement is more along the lines of “100 a month” or “50,000 pieces annually with quarterly POs”, then write those details in the “Final Notes” section.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Drawing Units&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Mars_Climate_Orbiter&quot;&gt;Satellites crash&lt;/a&gt; if the units are wrong, so best double check this.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Material&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We’ve dealt with everything from production-level parts to beginner sculptures, so feel free to reach out to us if you want help picking your material. Also, check our &lt;a href=&quot;http://www.supplybetter.com/materials&quot;&gt;Materials page&lt;/a&gt; if you’re looking for other resources on how to decide.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Postal Code and Country&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The minimum necessary for us to produce a quote that factors in shipping.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Particular Suppliers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;If there is anyone in particular you’d like SupplyBetter to compare against, just enter their name here.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Message to Suppliers&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;This is arguably the most important section of the RFQ. Suppliers love to get as much of an idea of just what it is you’re working on so they can understand your application and provide the best quote possible.&lt;/p&gt;
+
+&lt;p&gt;Happy requesting,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>The Blog</title>
+   <link href="YOUR_URL/the-blog.html"/>
+   <updated>2013-06-12T00:00:00-07:00</updated>
+   <id>BLOG_URL/the-blog</id>
+   <content type="html">&lt;p&gt;Here at SupplyBetter, we aim to give buyers the best way to decide among suppliers, and to help suppliers by offering them the opportunity to quote the type of work that fits them best. We&#39;re starting off in 3D printing, and expanding to other manufacturing processes once we&#39;re ready.&lt;/p&gt;
+
+&lt;p&gt;In this blog, we&#39;ll explore interesting technical and mechanical challenges, feature suppliers that do a great job for their buyers, and explain new features as SupplyBetter continues to improve. Thanks for reading!&lt;/p&gt;
+
+&lt;p&gt;-Matt&lt;/p&gt;
 </content>
  </entry>
  
