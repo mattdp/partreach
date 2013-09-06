@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-09-06T14:51:28-07:00</updated>
+ <updated>2013-09-06T15:00:45-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -12,14 +12,15 @@
 
  
  <entry>
-   <title>Suppliers can now claim and edit their comapny profiles</title>
+   <title>Suppliers can now claim and edit their company profiles</title>
    <link href="YOUR_URL/suppliers-can-now-claim-and-edit-their-company-profiles.html"/>
    <updated>2013-08-30T00:00:00-07:00</updated>
    <id>BLOG_URL/suppliers-can-now-claim-and-edit-their-company-profiles</id>
    <content type="html">&lt;p&gt;The SupplyBetter team is constantly working to maintain the most comprehensive database of 3D printing suppliers, and we are pleased to announce that suppliers can now claim and edit their own profiles in our &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;Supplier Index&lt;/a&gt;. By uploading custom company descriptions, details about their machines, and company photos suppliers can use this support material to really make their profile stand on its own. Doing so allows our customers to better understand each company and improves the intelligence of how SupplyBetter matches. &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;Submit an RFQ&lt;/a&gt; today and discover the best suppliers to make your custom parts.&lt;/p&gt;
 
-&lt;p&gt;Simply meshing about,
-Rob&lt;/p&gt;
+&lt;p&gt;Simply meshing about,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
 </content>
  </entry>
  
