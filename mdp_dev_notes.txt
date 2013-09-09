@@ -5,6 +5,7 @@ supplier_intro_email error
 		  Rendered user_mailer/supplier_intro_email.html.erb (16.3ms)
 			ActionView::Template::Error: No route matches {:action=>"edit", :controller=>"password_resets", :id=>nil, :format=>nil} missing required keys: [:id]
 			from /Users/matt/.rvm/gems/ruby-2.0.0-rc2/gems/actionpack-4.0.0/lib/action_dispatch/journey/formatter.rb:35:in `generate'
+	need a password_reset_token to be generated
 
 first set of supplier email sendouts, highly nonscientific
 	"Tuscany3D LLC"=>[4, 6, 5]
