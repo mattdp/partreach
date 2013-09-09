@@ -1,6 +1,10 @@
 . git push heroku yourbranch:master - pushing a remote branch to heroku
 
-
+supplier_intro_email error
+	local and prod same
+		  Rendered user_mailer/supplier_intro_email.html.erb (16.3ms)
+			ActionView::Template::Error: No route matches {:action=>"edit", :controller=>"password_resets", :id=>nil, :format=>nil} missing required keys: [:id]
+			from /Users/matt/.rvm/gems/ruby-2.0.0-rc2/gems/actionpack-4.0.0/lib/action_dispatch/journey/formatter.rb:35:in `generate'
 
 first set of supplier email sendouts, highly nonscientific
 	"Tuscany3D LLC"=>[4, 6, 5]
@@ -9,15 +13,6 @@ first set of supplier email sendouts, highly nonscientific
 	"Brightop Inc."=>[2, 7, 3]
 	"Intrinsic3D"=>[1, 2, 5]
 	"Design Alternatives"=>[1, 0, 1]
-
-jekyll
-
-	https://github.com/gkwelding/gkwelding.github.com/ super helpful in modeling off
-	looking at /blog/blog/... for css, js
-		routing error but works for the main one
-		put in real routes to them?
-			/blog-css
-			/blog-js
 
 caching
 

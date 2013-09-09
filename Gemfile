@@ -18,8 +18,6 @@ gem 'bloggy', '0.2.2'
 # add these gems to help with the transition to Rails 4.0:
 gem 'protected_attributes'
 gem 'rails-observers'
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
 
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'

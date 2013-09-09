@@ -20,7 +20,6 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :email_valid, :email_subscribed, :supplier_id
   has_secure_password
 
   has_many :orders, :dependent => :destroy
@@ -32,7 +31,7 @@ class User < ActiveRecord::Base
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
-  validates :name, presence: true, length: { maximum: 20 }
+  validates :name, presence: true, length: { maximum: 40 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates	:email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
@@ -65,7 +64,7 @@ class User < ActiveRecord::Base
     self.password_reset_sent_at = Time.zone.now
     self.save!(:validate => false)
     Event.add_event("Supplier",self.id,"sent_account_intro_email")
-    UserMailer.supplier_intro_email(self,supplier_id).deliver
+    UserMailer.supplier_intro_email(self,Supplier.find(supplier_id)).deliver
   end
 
   def self.can_use_email?(email_address)
