@@ -13,6 +13,11 @@ first set of supplier email sendouts, highly nonscientific
 jekyll
 
 	https://github.com/gkwelding/gkwelding.github.com/ super helpful in modeling off
+	looking at /blog/blog/... for css, js
+		routing error but works for the main one
+		put in real routes to them?
+			/blog-css
+			/blog-js
 
 caching
 

@@ -1,8 +1,12 @@
 ---
 layout: default
 ---
-<div id="post">
-{{ content }}
+<div id="header">
+	<h1>{{ page.title }}</h1>
+</div>
+
+<div id="post" class="blog-content">
+	{{ content }}
 </div>
 
 <div id="related">
@@ -12,4 +16,9 @@ layout: default
       <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="/blog{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
+</div>
+
+<div id="bottom" class="back_to_home">
+	<a href="/blog">Back to blog</a>
+	<p><a href="mailto:feedback@supplybetter.com" target="_blank">Email us at feedback@supplybetter.com with suggestions or comments</a></p>
 </div>
