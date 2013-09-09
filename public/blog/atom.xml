@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-09-09T10:46:38-07:00</updated>
+ <updated>2013-09-09T10:52:40-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -96,9 +96,11 @@
    <id>BLOG_URL/the-blog</id>
    <content type="html">&lt;p&gt;Here at SupplyBetter, we aim to give buyers the best way to decide among suppliers, and to help suppliers by offering them the opportunity to quote the type of work that fits them best. We&#39;re starting off in 3D printing, and expanding to other manufacturing processes once we&#39;re ready.&lt;/p&gt;
 
-&lt;p&gt;In this blog, we&#39;ll explore interesting technical and mechanical challenges, feature suppliers that do a great job for their buyers, and explain new features as SupplyBetter continues to improve. Thanks for reading!&lt;/p&gt;
+&lt;p&gt;In this blog, we&#39;ll explore interesting technical and mechanical challenges, feature suppliers that do a great job for their buyers, and explain new features as SupplyBetter continues to improve.&lt;/p&gt;
 
-&lt;p&gt;-Matt&lt;/p&gt;
+&lt;p&gt;Thanks for reading,&lt;/p&gt;
+
+&lt;p&gt;Matt&lt;/p&gt;
 </content>
  </entry>
  

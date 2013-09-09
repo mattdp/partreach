@@ -2,7 +2,7 @@
 layout: default
 ---
 <div id="header">
-	<h1>{{ page.title }}</h1>
+	<h3 class="center">{{ page.title }}</h3>
 </div>
 
 <div id="post" class="blog-content">
@@ -10,7 +10,7 @@ layout: default
 </div>
 
 <div id="related">
-  <h2>Related Posts</h2>
+  <h3>Related Posts</h3>
   <ul class="posts">
     {% for post in site.related_posts limit:3 %}
       <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="/blog{{ post.url }}">{{ post.title }}</a></li>
