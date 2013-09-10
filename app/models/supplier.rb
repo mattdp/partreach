@@ -217,35 +217,41 @@ class Supplier < ActiveRecord::Base
     return holder
   end
 
-  #return hash of countries, each with hash of states, containing array of suppliers
+  #return nested, ordered arrays of [country][state][supplier]
   #no_state for country -> supplier direct stuff
+  #super slow, relies on caching, hurts me to do this :/
   def self.visible_profiles_sorted(index_name)
-      profiles = Supplier.visible_set_for_index(index_name)
+    profiles = Supplier.visible_set_for_index(index_name)
 
-      answer = {}
+    order = ActiveSupport::OrderedHash.new
+    chaos = {}
 
-      if !(profiles.nil? or profiles == [])
-        profiles.each do |s|  
-          country = s.address.country
-          state = s.address.state
-          answer[country] = {"no_state" => []} if answer[country].nil?
-          if s.address.state.nil?
-            answer[country]["no_state"] << s
-          elsif answer[country][state].nil?
-            answer[country][state] = [s]
-          else
-            answer[country][state] << s
-          end
-        end
-
-        answer.keys.each do |country|
-          answer[country].keys.each do |state|
-            answer[country][state].sort_by! { |a| [a.name] } #, a.source] } #works w/ two as long as not points; need an ordering, mayhap?
-          end
+    if !(profiles.nil? or profiles == [])
+      #create unsorted set of hashes        
+      profiles.each do |s|  
+        country = s.address.country
+        state = s.address.state
+        chaos[country] = {"no_state" => []} if chaos[country].nil?
+        if s.address.state.nil?
+          chaos[country]["no_state"] << s
+        elsif chaos[country][state].nil?
+          chaos[country][state] = [s]
+        else
+          chaos[country][state] << s
         end
       end
 
-      return answer
+      chaos.keys.sort.each do |country|
+        order[country] = ActiveSupport::OrderedHash.new
+        order[country]["no_state"] = chaos[country]["no_state"].sort_by{ |a| [a.name] }
+        chaos[country].keys.sort.each do |state|
+          #works w/ two as long as not points; need an ordering, mayhap?
+          order[country][state] = chaos[country][state].sort_by{ |a| [a.name] } unless state == "no_state"
+        end
+      end
+    end
+
+    return order
 
   end
 
