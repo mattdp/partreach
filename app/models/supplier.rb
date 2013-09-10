@@ -199,7 +199,7 @@ class Supplier < ActiveRecord::Base
   end
 
   #this will be slow, need to store it somewhere
-  def self.set_for_index(index_name)
+  def self.visible_set_for_index(index_name)
     guide = INDEX_HOLDER[index_name]
     return false if guide.nil?
     haves, have_nots, countries = guide[0], guide[1], guide[2]
@@ -220,7 +220,7 @@ class Supplier < ActiveRecord::Base
   #return hash of countries, each with hash of states, containing array of suppliers
   #no_state for country -> supplier direct stuff
   def self.visible_profiles_sorted(index_name)
-      profiles = Supplier.set_for_index(index_name)
+      profiles = Supplier.visible_set_for_index(index_name)
 
       answer = {}
 
