@@ -15,7 +15,13 @@ first set of supplier email sendouts, highly nonscientific
 	"Intrinsic3D"=>[1, 2, 5]
 	"Design Alternatives"=>[1, 0, 1]
 
+logging
+
+	--tail for constant log stream
+
 caching
+
+	memcachier.com/documentation
 
 	problem
 		seemed OK locally, but slowed things down in production badly
