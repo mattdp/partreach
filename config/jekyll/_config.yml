@@ -6,6 +6,3 @@ exclude:
   - Rakefile
   - Gemfile
   - .gitignore
-sass:
-  syntax: scss        # scss|sass
-  style:  expanded  # nested|expanded|compact|compressed

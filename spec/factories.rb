@@ -18,6 +18,14 @@ FactoryGirl.define do
   factory :supplier do |s|
     sequence(:name)   { |n| "Supplier#{n}" }
     sequence(:name_for_link) { |n| "supplier#{n}" }
+    s.after(:build) do |supplier|
+      supplier.address ||= FactoryGirl.build(:address, :place_id => supplier.id)
+    end
+  end
+
+  factory :address do |a|
+    country             "Outer Haven"
+    place_type          "Supplier"
   end
 
   factory :tag do |t|

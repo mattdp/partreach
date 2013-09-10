@@ -37,6 +37,10 @@ Partreach::Application.routes.draw do
   get '/analytics/emails', to: 'analytics#emails', as: 'analytics_emails'
   get '/analytics/metrics', to: 'analytics#metrics', as: 'analytics_metrics'
 
+  #attempting hacky way to have an always-ok link for blog resources
+  #get '/blog-css', to:'/blog/css/all.css'
+  #get '/blog-js', to:'/blog/js/all.js'
+
   #goal: allow show page to post a form. seems hacky - check with someone.
   match '/orders/:id', to: 'orders#update', via: :post
 

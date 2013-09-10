@@ -1,3 +1,18 @@
+/* temp - used http://sass-lang.com/try.html to put into CSS, since no asset pipeline installed */
+
+#blog-logo {
+  background-image: url("../../blog/images/bloglogo.png");
+}
+
+.blog-min-height {
+  min-height: 400px;
+}
+
+.blog-content p, a, li {
+}
+
+/* pasted of custom.css */
+
 /* Image Replacement -  */
 
 .hide-text, .logo {
@@ -113,7 +128,7 @@ strong {
 }
 
 .logo {
-  background: image-url('/logo.png') no-repeat;
+  background: image-url('logo.png') no-repeat;
   height: 66px;
   float: left;
   width: 240px;

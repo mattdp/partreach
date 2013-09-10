@@ -38,4 +38,3 @@ This is arguably the most important section of the RFQ. Suppliers love to get as
 Happy requesting,
 
 Rob
-

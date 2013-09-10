@@ -27,7 +27,7 @@
 
 class Supplier < ActiveRecord::Base
   attr_accessible :name, :name_for_link, :url_main, :url_materials, :description, \
-  :email, :phone, :address_id, :source, :profile_visible, :claimed, \
+  :email, :phone, :source, :profile_visible, :claimed, \
   :suggested_description, :suggested_machines, :suggested_preferences, \
   :internally_hidden_preferences, :suggested_services, :suggested_address, \
   :suggested_url_main, :points
@@ -44,6 +44,7 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates_presence_of :address
 
   #index is {name => [[haves tags],[have nots tags],[countries]]}
   INDEX_HOLDER = 
