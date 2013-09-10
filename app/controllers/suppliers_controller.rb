@@ -53,7 +53,7 @@ class SuppliersController < ApplicationController
 	def index
 		@visibles = Rails.cache.fetch "us_3d_printing" do 
 			Supplier.visible_profiles_sorted("us_3d_printing")
-			logger.debug "Cache miss: us_3d_printing"
+			logger.error "Cache miss: us_3d_printing"
 		end
 	end
 
