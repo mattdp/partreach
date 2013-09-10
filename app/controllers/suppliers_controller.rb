@@ -50,10 +50,11 @@ class SuppliersController < ApplicationController
 		redirect_to new_dialogue_path, notice: note
 	end
 
-	def index
+	#note that using "key" instead of the us_3d... caused failure
+		def index
 		@visibles = Rails.cache.fetch "us_3d_printing", :expires_in => 24.hours do |key|
-			logger.debug "Cache miss: #{key}"
-			Supplier.visible_profiles_sorted("#{key}")
+			logger.debug "Cache miss: us_3d_printing"
+			Supplier.visible_profiles_sorted("us_3d_printing")
 		end
 	end
 
