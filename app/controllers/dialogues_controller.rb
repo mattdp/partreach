@@ -36,11 +36,11 @@ class DialoguesController < ApplicationController
 			@country = params[:country_selection][0] if params[:country_selection]
 			@state = params[:state] if !params[:state].nil? and params[:state] != ""
 			@zip = params[:zip] if !params[:zip].nil? and params[:zip] != ""
-			@email = params[:email] if !params[:email].nil? and params[:email] != ""
-			@phone = params[:phone] if !params[:phone].nil? and params[:phone] != ""
 
 			@supplier_ids.each do |s_id|
 				s = Supplier.find(s_id)
+				s.email = params[:email] if !params[:email].nil? and params[:email] != ""
+				s.phone = params[:phone] if !params[:phone].nil? and params[:phone] != ""				
 
 				if @tag_ids and @tag_ids.size > 0
 					@tag_ids.each do |t_id|
