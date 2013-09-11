@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
-  before_filter :signed_in_user, only: [:index, :edit, :update, :show, :destroy, :manipulate_dialogues]
-  before_filter :correct_user, only: [:edit, :update, :show, :destroy]
+  before_filter :signed_in_user, only: [:index, :show, :destroy, :manipulate_dialogues]
+  before_filter :correct_user, only: [:show, :destroy]
   before_filter :admin_user, only: [:manipulate_dialogues, :update_dialogues]
 
   # GET /orders
@@ -42,10 +42,6 @@ class OrdersController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @order }
     end
-  end
-
-  # GET /orders/1/edit
-  def edit
   end
 
   # POST /orders
@@ -124,44 +120,6 @@ class OrdersController < ApplicationController
         logger.debug "ERRORS: #{@order.errors.full_messages}" 
         format.html { render action: "new" }
         format.json { render json: @order.errors.full_messages, status: 400 }
-      end
-    end
-  end
-
-  # PUT /orders/1
-  # PUT /orders/1.json
-  def update
-    @order = Order.find(params[:id])
-    @sorted_dialogues = sort_dialogues(@order.dialogues)
-
-    if params[:submitting_page] and params[:submitting_page] == "orders_show"
-
-      if @order.status = "Finished - no close" and params[:won] and params[:won] != "0"
-        @order.status = "Needs work"
-        @order.save
-      end
-
-      @order.dialogues.each do |d|
-        [:further_negotiation, :won].each do |attribute|
-          if params[attribute] and params[attribute].include? d.id.to_s
-            d[attribute] = true
-          elsif params[attribute] and not params[attribute].include? d.id.to_s
-            d[attribute] = false
-          else #params[attribute].nil?
-            d[attribute] = false
-          end  
-        end
-        d.save
-      end
-    end
-
-    respond_to do |format|
-      if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "show" }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
       end
     end
   end
