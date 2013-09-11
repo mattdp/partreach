@@ -1,51 +1,40 @@
-<% if false %>
-    <div class="row">
-      <div class="span6 offset3">
-        <p>We've disabled signup until our software is ready to launch.</p> 
-        <p>If you're interested in <%= "#{brand_name}" %>, check out our <%= link_to "procurement services", procurement_path %>, or <%= mail_to "matt@supplybetter.com", "email us for more information", encode: "javascript", target: "_blank", subject: "Tell me more about #{brand_name}!", body: "I'm interested in more information, and notification when you launch." %>.
-        <p class="back_to_home"><%= link_to "Back to home", root_path %></p>
-      </div>
-    </div>
-<% end %>
+<%= form_for(@user) do |f| %>
+  <div class="row">
+    <div class="span6 offset3">
 
-<% if true %>
-  <%= form_for(@user) do |f| %>
-    <div class="row">
-      <div class="span6 offset3">
-
-        <% if @user.errors.any? %>
-          <div class="error_explanation">
-            <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-            <ul>
-            <% @user.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-
-        <%= f.label :password_confirmation, "Password confirmation" %>
-        <%= f.password_field :password_confirmation %>
-
-      <% if signed_in? %>
-        <%= f.submit "Edit my account", class: "btn btn-large btn-primary" %>
-        <p id="signin-backlink"><%= link_to 'Back to my profile', root_path %></p>
-      <% else %>
-        <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-        <p class="backlink"><%= link_to 'Already a user? Sign in', signin_path %></p>
-        <p class="back_to_home"><%= link_to "Back to home", root_path %></p>
+      <% if @user.errors.any? %>
+        <div class="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <ul>
+          <% @user.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
 
-      </div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Password confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+    <% if signed_in? %>
+      <%= f.submit "Edit my account", class: "btn btn-large btn-primary" %>
+      <p id="signin-backlink"><%= link_to 'Back to my profile', root_path %></p>
+    <% else %>
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <p class="backlink"><%= link_to 'Already a user? Sign in', signin_path %></p>
+      <p class="back_to_home"><%= link_to "Back to home", root_path %></p>
+    <% end %>
+
     </div>
-  <% end %>
+  </div>
 <% end %>
+

@@ -331,7 +331,7 @@ strong {
   .order_table {
     border: 1px solid #ddd;
     border-collapse: separate;
-    margin: 0 0 80px;
+    margin: 0 0 10px;
     padding: 0;
     th, td {
       padding: 10px 12px;
@@ -679,6 +679,7 @@ input, textarea, select, .uneditable-input {
 
 .back_to_home {
   margin-top: 25px;
+  margin-bottom: 10px;
 }
 
 .back_to_suppliers {
