@@ -14,10 +14,6 @@
 /log/*.log
 /tmp
 
-# Ignore generated blog from jekyll - TURN OFF TO PUSH NEW VERSION
-#/public/blog/*
-#/public/blog
-
 /public/system
 .DS_Store
 *~
