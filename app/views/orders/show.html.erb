@@ -15,61 +15,54 @@
 		  </div>
 		<% end %>
 
-		<%= form_tag :action => 'update', :controller => 'orders' do %>
+		<%= render 'layouts/order_basics' %>
 
-			<%= hidden_field_tag "submitting_page", "orders_show" %>
+		<table class="order_table" cellspacing="0">
+		  <tr class="order_table_header_row">
+		    <th>Name</th>
+		    <th>Bid status</th>
+		    <th>Total bid</th>
+		    <th>Time (days)</th>
+		    <th>Mat'l</th>
+		    <th>Process</th>
+		    <th>Process cost</th>
+		    <th>Shipping cost</th>
+		    <th>Notes</th>
+		    <th>Selection</th>
+		  </tr>
 
-			<%= render 'layouts/order_basics' %>
-
-			<table class="order_table" cellspacing="0">
-			  <tr class="order_table_header_row">
-			    <th>Name</th>
-			    <th>Bid status</th>
-			    <th>Total bid</th>
-			    <th>Time (days)</th>
-			    <th>Mat'l</th>
-			    <th>Process</th>
-			    <th>Process cost</th>
-			    <th>Shipping cost</th>
-			    <th>Notes</th>
-			    <th>Selection</th>
-			  </tr>
-
-				<% @sorted_dialogues.each do |d| %>
-					<% if d.recommended %>
-						<tr class="recommended">
-					<% else %>
-						<tr>
-					<% end %>
-
-					<% s = Supplier.find(d.supplier_id) %>
-					<td>
-					<% if s.profile_visible %>
-						<%= link_to "#{s.name}", supplier_profile_path(s.name_for_link) %>
-					<% elsif !s.url_main.nil? and s.url_main != "" %>
-						<%= link_to "#{s.name}", s.url_main %>
-					<% else %>
-						<%= s.name %>
-					<% end %>
-					</td>
-
-					<td class="center"><%= bid_status(d) %></td>
-					<td class="right"><%= currencyize(d.total_cost, d.currency) %></td>
-					<td class="center"><%= d.process_time %></td>
-					<td class="center"><%= d.material %></td>
-					<td class="center"><%= d.process_name %></td>
-					<td class="right"><%= currencyize(d.process_cost, d.currency) %></td>
-					<td class="right"><%= currencyize(d.shipping_cost, d.currency) %></td>
-					<td class="center" title="<%= notarize(d.shipping_name,d.notes) %>"><%= notarize(d.shipping_name,d.notes) %></td>
-					<td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
-					</tr>
+			<% @sorted_dialogues.each do |d| %>
+				<% if d.recommended %>
+					<tr class="recommended">
+				<% else %>
+					<tr>
 				<% end %>
-			</table>
 
-			<%= submit_tag "Save changes", :class => "btn btn-hero", :disable_with => "Saving...", :disable_with => "Saving..."  %>
+				<% s = Supplier.find(d.supplier_id) %>
+				<td>
+				<% if s.profile_visible %>
+					<%= link_to "#{s.name}", supplier_profile_path(s.name_for_link) %>
+				<% elsif !s.url_main.nil? and s.url_main != "" %>
+					<%= link_to "#{s.name}", s.url_main %>
+				<% else %>
+					<%= s.name %>
+				<% end %>
+				</td>
 
-			<p class="block"><%= link_to 'Back', orders_path %></p>
+				<td class="center"><%= bid_status(d) %></td>
+				<td class="right"><%= currencyize(d.total_cost, d.currency) %></td>
+				<td class="center"><%= d.process_time %></td>
+				<td class="center"><%= d.material %></td>
+				<td class="center"><%= d.process_name %></td>
+				<td class="right"><%= currencyize(d.process_cost, d.currency) %></td>
+				<td class="right"><%= currencyize(d.shipping_cost, d.currency) %></td>
+				<td class="center" title="<%= notarize(d.shipping_name,d.notes) %>"><%= notarize(d.shipping_name,d.notes) %></td>
+				<td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
+				</tr>
+			<% end %>
+		</table>
 
-		<% end %>
+		<p class="block"><%= link_to 'Back', orders_path %></p>
+
 	</div>
 </div>

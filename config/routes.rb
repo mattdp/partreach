@@ -3,7 +3,7 @@ Partreach::Application.routes.draw do
   root :to => 'static_pages#home', via: :get
 
   resources :signed_urls, only: :index
-  resources :orders
+  resources :orders, only: [:index, :show, :new, :create, :destroy]
   resources :dialogues, only: [:new, :create]
   resources :users, only: [:new, :create, :edit, :update, :show] # no index, no destroy 
   resources :sessions, only: [:new, :create, :destroy]
@@ -40,9 +40,6 @@ Partreach::Application.routes.draw do
   #attempting hacky way to have an always-ok link for blog resources
   #get '/blog-css', to:'/blog/css/all.css'
   #get '/blog-js', to:'/blog/js/all.js'
-
-  #goal: allow show page to post a form. seems hacky - check with someone.
-  match '/orders/:id', to: 'orders#update', via: :post
 
   get '/examinations', to: 'suppliers#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'suppliers#submit_examinations', via: :post, as: "submit_examinations"
