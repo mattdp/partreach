@@ -41,6 +41,15 @@ task :tag_tree => :environment do
 
 end
 
+desc 'Reset cache daily for expensive computations we don\'t want users to hit'
+task :daily_cache_reset => :environment do
+	#name in cache, method to call
+	to_reset = {}
+	to_reset.each do |key,method_string|
+		#rewrite all of them
+	end
+end
+
 desc 'Setup URL names for suppliers'
 task :supplier_url_creation => :environment do
 	Supplier.find_each do |s|
