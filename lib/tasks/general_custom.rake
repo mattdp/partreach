@@ -43,10 +43,18 @@ end
 
 desc 'Reset cache daily for expensive computations we don\'t want users to hit'
 task :daily_cache_reset => :environment do
-	#name in cache, method to call
-	to_reset = {}
+
+	expires_hours = 25
+	
+	to_reset = {
+		"us_3d_printing" => 'Supplier.visible_profiles_sorted("us_3d_printing")',
+		"us_states_of_visible_profiles" => 'Address.us_states_of_visible_profiles'
+	}
+
+	Rails.cache.clear
+
 	to_reset.each do |key,method_string|
-		#rewrite all of them
+		Rails.cache.write(key,eval(method_string),:expires_in => expires_hours.hours)
 	end
 end
 
