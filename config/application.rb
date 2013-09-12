@@ -7,7 +7,7 @@ Bundler.require(:default, Rails.env)
 module Partreach
   class Application < Rails::Application
 
-    config.cache_store = :dalli_store
+    config.cache_store = :dalli_store, {compress: true}
 
     #based on https://devcenter.heroku.com/articles/rails-asset-pipeline
     config.assets.initialize_on_precompile = false
