@@ -51,8 +51,6 @@ task :daily_cache_reset => :environment do
 		"us_states_of_visible_profiles" => 'Address.us_states_of_visible_profiles'
 	}
 
-	Rails.cache.clear
-
 	to_reset.each do |key,method_string|
 		Rails.cache.write(key,eval(method_string),:expires_in => expires_hours.hours)
 	end
