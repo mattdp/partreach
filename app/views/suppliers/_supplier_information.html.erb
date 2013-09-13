@@ -1,0 +1,41 @@
+<%= form_tag :action => 'create', :controller => 'suppliers' do %>
+
+	<%= label_tag 'name', 'name' %><%= text_field_tag 'name', @supplier.name %>
+	<%= label_tag 'url_main', 'url_main' %><%= text_field_tag 'url_main', @supplier.url_main %>
+	<%= label_tag 'phone', 'phone' %><%= text_field_tag 'phone', @supplier.phone %>
+	<%= label_tag 'email', 'email' %><%= text_field_tag 'email', @supplier.email %>
+	<%= label_tag 'description', 'description' %><%= text_area_tag 'description', @supplier.description %>
+	<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, :class => "fleft" %><%= label_tag 'profile_visible', 'profile_visible' %>
+
+	<% if false %>
+		<%= label_tag 'country', 'country' %><%= text_field_tag 'country', @supplier.country %>
+		<%= label_tag 'state', 'state' %><%= text_field_tag 'state', @supplier.state %>
+		<%= label_tag 'zip', 'zip' %><%= text_field_tag 'zip', @supplier.zip %>
+	<% end %>
+
+	<br>
+
+	<%# Heavy duplication from dialogues/new %>
+	<% counter = 0 %>
+	<% tag_columns = 6 %>
+
+	<table id="tag_matrix">
+		<% @family_names_and_tags.keys.each do |k| %>
+			<% counter = 0 %>
+			<tr>
+				<td><strong><%= "#{k}" %><strong></td>
+				<% @family_names_and_tags[k].each do |t| %>
+					<% if counter >= tag_columns %>
+						</tr><tr>
+						<% counter = 0 %>
+					<% end %>
+					<td><%= check_box_tag "tag_selection[]", t.id, false, class: "fleft", id: "#{t.name}" %>
+					<p><%= "#{t.name}" %></p></td>
+					<% counter += 1 %>
+				<% end %>
+			</tr>
+		<% end %>
+	</table>
+
+	<%= submit_tag "Create supplier", :disable_with => "Creating...", :id => "create_button" %>
+<% end %>
