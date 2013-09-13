@@ -1,3 +1,6 @@
+pickup at tags reflecting supplier information
+--
+
 . git push heroku yourbranch:master - pushing a remote branch to heroku
 
 supplier_intro_email error
@@ -18,41 +21,6 @@ first set of supplier email sendouts, highly nonscientific
 logging
 
 	--tail for constant log stream
-
-caching
-
-	memcachier.com/documentation
-
-	problem
-		seemed OK locally, but slowed things down in production badly
-
-	resources - MEMORY STORE DOESN'T WORK WITH HEROKU
-		http://guides.rubyonrails.org/caching_with_rails.html
-		https://devcenter.heroku.com/articles/caching-strategies
-		http://api.rubyonrails.org/classes/ActiveSupport/Cache/Store.html
-			do you need to declare a new cache object, as they do? 
-				doesn't look like it, but cn't be sure
-				if do have to declare, it'd be here - http://api.rubyonrails.org/classes/ActiveSupport/Cache/MemoryStore.html 
-
-	alternate
-		https://devcenter.heroku.com/articles/memcache - DEPRECATED may work better with heroku
-		http://stackoverflow.com/questions/2232981/heroku-with-caching
-
-	memcache/dalli
-		https://devcenter.heroku.com/articles/building-a-rails-3-application-with-memcache
-			TRY THIS FIRST 
-
-	iron-cache		
-		https://devcenter.heroku.com/articles/iron_cache#getting-started
-		http://dev.iron.io/cache/
-
-	irrelevant
-		consider_all_requests_local
-
-	next
-		[] try to take live, see what problems if any are
-		[] if works, leave up and figure out how to test local
-		[] set times to check cache size and see if we're goign to hit the end of the plan		
 
 password reset
 
