@@ -31,9 +31,7 @@ module DataAnalysis
 
 	#return array of emails
 	def emails_of_paying_suppliers
-		t1 = Tag.find_by_name("n3_signedAndNDAd")
-		t2 = Tag.find_by_name("n5_signed_only")
-		tags = [t1,t2]
+		tags = Supplier.network_tag_names.map{|t| Tag.find_by_name(t)}
 
 		emails = []
 		no_email_found = []
