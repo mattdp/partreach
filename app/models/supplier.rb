@@ -52,7 +52,9 @@ class Supplier < ActiveRecord::Base
       "us_3d_printing" => [["3d_printing"],["e1_existence_doubtful","datadump"],["US"]]
     }
 
-  NETWORK_TAG_NAMES = %w(n3_signedAndNDAd n5_signed_only) 
+  def self.network_tag_names
+    %w(n6_signedAndNDAd n5_signed_only) 
+  end
 
   def has_event_of_request(request_name)
     Ask.where("supplier_id = ? and request = ?",self.id,request_name).present?
@@ -89,7 +91,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def is_in_network?
-    network_tag_ids = NETWORK_TAG_NAMES.map {|n| Tag.find_by_name(n).id}
+    network_tag_ids = Supplier.network_tag_names.map {|n| Tag.find_by_name(n).id}
     network_tag_ids.each do |tag_id|
       return true if self.has_tag?(tag_id)
     end
@@ -144,7 +146,7 @@ class Supplier < ActiveRecord::Base
     c = Combo.new(supplier_id: self.id, tag_id: tag_id)
     Combo.destroy_family_tags(self.id,tag_id) if t.exclusive and !t.family.nil?
     to_return = c.save
-    Event.add_event("Supplier",self.id,"joined_network") if c.save and NETWORK_TAG_NAMES.include?(t.name)
+    Event.add_event("Supplier",self.id,"joined_network") if c.save and Supplier.network_tag_names.include?(t.name)
     return to_return
   end
 
