@@ -6,7 +6,7 @@
 
 class SuppliersController < ApplicationController
 	include SuppliersHelper
-	before_filter :admin_user, only: [:new, :create]
+	before_filter :admin_user, only: [:new, :create, :admin_edit, :admin_update]
 	before_filter :examiner_user, only: [:setup_examinations, :submit_examinations]
 	before_filter :correct_supplier_for_user, only: [:edit, :update]
 	helper_method :state_sort
@@ -66,6 +66,16 @@ class SuppliersController < ApplicationController
 		@supplier = Supplier.find(params[:id])
 		@tags = @supplier.visible_tags
 		@machines_quantity_hash = @supplier.machines_quantity_hash
+	end
+
+	def admin_edit
+		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
+		@tags = @supplier.tags
+		@machines_quantity_hash = @supplier.machines_quantity_hash
+	end
+
+	def admin_update
+		redirect_to admin_edit_path(@supplier), notice: "Save attempted. NOT YET IMPLEMENTED"
 	end
 
 	def update

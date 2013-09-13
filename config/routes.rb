@@ -22,11 +22,13 @@ Partreach::Application.routes.draw do
   get '/materials', to: 'static_pages#materials'
   get '/be_a_supplier', to: 'static_pages#be_a_supplier'
   get '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
-  match 'orders/update_dialogues', to: 'orders#update_dialogues', via: :post
-  get 'orders/purchase/:order/:dialogue', to: 'orders#purchase'
+  match '/orders/update_dialogues', to: 'orders#update_dialogues', via: :post
+  get '/orders/purchase/:order/:dialogue', to: 'orders#purchase'
   get '/cto', to: 'static_pages#cto'
   get '/dialogues/new/:id', to: 'dialogues#new'
   get '/profiles/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
+  get 'suppliers/admin_edit/:name', to: 'suppliers#admin_edit', as: 'admin_edit'
+  match 'suppliers/admin_update', to: 'suppliers#admin_update', as: 'admin_update', via: :post
   get '/submit_ask/', to: 'profiles#submit_ask'
   get '/terms', to: 'static_pages#terms'
   get '/privacy', to: 'static_pages#privacy'
