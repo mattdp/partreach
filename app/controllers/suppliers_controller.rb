@@ -13,6 +13,7 @@ class SuppliersController < ApplicationController
 
 	def new
 		@supplier = Supplier.new
+		@address = Address.new
 		@tags = Tag.all
 		@family_names_and_tags = Tag.family_names_and_tags
 	end
@@ -72,6 +73,7 @@ class SuppliersController < ApplicationController
 	def admin_edit
 		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
 		@tags = Tag.all
+		@address = @supplier.address
 		@family_names_and_tags = Tag.family_names_and_tags
 		@machines_quantity_hash = @supplier.machines_quantity_hash
 	end

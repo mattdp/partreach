@@ -7,11 +7,9 @@
 	<%= label_tag 'description', 'description' %><%= text_area_tag 'description', @supplier.description %>
 	<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, :class => "fleft" %><%= label_tag 'profile_visible', 'profile_visible' %>
 
-	<% if false %>
-		<%= label_tag 'country', 'country' %><%= text_field_tag 'country', @supplier.country %>
-		<%= label_tag 'state', 'state' %><%= text_field_tag 'state', @supplier.state %>
-		<%= label_tag 'zip', 'zip' %><%= text_field_tag 'zip', @supplier.zip %>
-	<% end %>
+	<%= label_tag 'country', 'country' %><%= text_field_tag 'country', @address.country %>
+	<%= label_tag 'state', 'state' %><%= text_field_tag 'state', @address.state %>
+	<%= label_tag 'zip', 'zip' %><%= text_field_tag 'zip', @address.zip %>
 
 	<br>
 
