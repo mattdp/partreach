@@ -1,6 +1,3 @@
-pickup at tags reflecting supplier information
---
-
 . git push heroku yourbranch:master - pushing a remote branch to heroku
 
 supplier_intro_email error
