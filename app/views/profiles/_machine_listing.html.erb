@@ -1,0 +1,8 @@
+<ul>
+	<% machines_quantity_hash.each do |k,v| %>
+		<li>
+			<%= "#{Machine.find(k).formatted_name}"%>
+			<%= " (#{pluralize(v,"machine")})" if v > 1 %>
+		</li>
+	<% end %>
+</ul>

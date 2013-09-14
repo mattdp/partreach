@@ -69,17 +69,18 @@
 
 	<%= label_tag 'machines_in_database', 'Machines in the database & quantities (change from terminal)' %>
 	<%# Duplication from supplier_profile %>
-	<% @machines_quantity_hash.each do |k,v| %>
-		<li>
-			<%= "#{Machine.find(k).formatted_name}"%>
-			<%= " (#{pluralize(v,"machine")})" if v > 1 %>
-		</li>
+	<% if @machines_quantity_hash %>
+		<%= render :partial => "profiles/machine_listing", :locals => { :machines_quantity_hash => @machines_quantity_hash } %>
 	<% end %>
 
 	<h3>Tag information</h3>
 
 	<%= label_tag 'suggested_services', 'suggested_services (from supplier)' if @suggested_services %>
 	<%= @supplier.suggested_services %>
+
+	<%= label_tag 'display_tag_information', 'Display current tag information (white backgrounds only visible to admin)' %>
+
+	<%= label_tag 'change_tag_information', 'Change tag information' %>
 
 	<%# Heavy duplication from dialogues/new %>
 	<% counter = 0 %>

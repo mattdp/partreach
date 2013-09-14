@@ -70,14 +70,7 @@
 							<% if @supplier.machines.nil? or @supplier.machines == [] %>
 								<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested", :s_id => @supplier.id, :u_id => @user_id} %>
 							<% else %>
-								<ul>
-									<% @machines_quantity_hash.each do |k,v| %>
-										<li>
-											<%= "#{Machine.find(k).formatted_name}"%>
-											<%= " (#{pluralize(v,"machine")})" if v > 1 %>
-										</li>
-									<% end %>
-								</ul>
+								<%= render :partial => "profiles/machine_listing", :locals => { :machines_quantity_hash => @machines_quantity_hash } %>
 							<% end %>
 						</div>
 					<% end %>
