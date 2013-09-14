@@ -2,7 +2,9 @@
 <p>
 	<% tags.each do |t| %>
 		<% t.note.nil? ? title_text = "" : title_text = t.note %>
-		<span class="tag" title="<%= "#{title_text}" %>"><%= "#{t.user_readable}" %></span>
+			<% class_text = "tag" %>
+			<% class_text = "tag inverse-colors" if !t.visible %>
+			<span class="<%= "#{class_text}" %>" title="<%= "#{title_text}" %>"><%= "#{t.user_readable}" %></span>
 		<% counter += 1 %>
 		<% if counter % row_end == 0 %>
 			<br>

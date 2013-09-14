@@ -413,6 +413,10 @@ strong {
             border-radius: 6px;
     padding: 2px 5px;
     line-height: 40px;
+    &.inverse-colors {
+      color: #333;
+      background-color: white;
+    }
   }
   .supplier-variable {
     margin-bottom: 10px;
