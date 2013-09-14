@@ -72,7 +72,7 @@ class SuppliersController < ApplicationController
 
 	def admin_edit
 		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
-		@tags = Tag.all
+		@tags = @supplier.tags
 		@address = @supplier.address
 		@family_names_and_tags = Tag.family_names_and_tags
 		@claimant = User.find_by_supplier_id(@supplier.id)

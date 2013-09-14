@@ -16,15 +16,7 @@
 						<%= " - #{@supplier.safe_location_name}" if @supplier.safe_location_name.length > 0 %>					
 						<%= ", #{@supplier.safe_state}" if @supplier.safe_state.length > 0 %>
 					</p>
-					<% counter = 0 %>
-					<p><% @tags.each do |t| %>
-						<% t.note.nil? ? title_text = "" : title_text = t.note %>
-						<span class="tag" title="<%= "#{title_text}" %>"><%= "#{t.user_readable}" %></span>
-						<% counter += 1 %>
-						<% if counter % 4 == 0 %>
-							<br>
-						<% end %>
-					<% end %></p>
+					<%= render :partial => "/profiles/tag_display", locals: {tags: @tags, row_end: 4} %>
 					<p>
 						<% if !@supplier.url_main.nil? %>
 							<%= link_to "Webpage", @supplier.url_main %>

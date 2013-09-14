@@ -1,0 +1,11 @@
+<% counter = 0 %>
+<p>
+	<% tags.each do |t| %>
+		<% t.note.nil? ? title_text = "" : title_text = t.note %>
+		<span class="tag" title="<%= "#{title_text}" %>"><%= "#{t.user_readable}" %></span>
+		<% counter += 1 %>
+		<% if counter % row_end == 0 %>
+			<br>
+		<% end %>
+	<% end %>
+</p>

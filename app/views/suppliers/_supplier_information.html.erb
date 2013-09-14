@@ -70,7 +70,7 @@
 	<%= label_tag 'machines_in_database', 'Machines in the database & quantities (change from terminal)' %>
 	<%# Duplication from supplier_profile %>
 	<% if @machines_quantity_hash %>
-		<%= render :partial => "profiles/machine_listing", :locals => { :machines_quantity_hash => @machines_quantity_hash } %>
+		<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash } %>
 	<% end %>
 
 	<h3>Tag information</h3>
@@ -78,14 +78,14 @@
 	<%= label_tag 'suggested_services', 'suggested_services (from supplier)' if @suggested_services %>
 	<%= @supplier.suggested_services %>
 
-	<%= label_tag 'display_tag_information', 'Display current tag information (white backgrounds only visible to admin)' %>
+	<div class="supplier-profile">
+		<%= label_tag 'display_tag_information', 'Display current tag information (white backgrounds only visible to admin)' %>
+		<%= render :partial => "/profiles/tag_display", locals: {tags: @tags, row_end: 8} %>
+	</div>
 
 	<%= label_tag 'change_tag_information', 'Change tag information' %>
-
-	<%# Heavy duplication from dialogues/new %>
 	<% tag_columns = 6 %>
-
-	<%= render :partial => "/suppliers/tag_matrix", :locals => {:tag_columns => tag_columns, :family_names_and_tags => @family_names_and_tags, :existing_tags => @supplier.tags } %>
+	<%= render :partial => "/suppliers/tag_matrix", locals: {tag_columns: tag_columns, family_names_and_tags: @family_names_and_tags, existing_tags: @supplier.tags } %>
 
 	<%= submit_tag "Submit", :disable_with => "Submitting...", :id => "create_button" %>
 <% end %>
