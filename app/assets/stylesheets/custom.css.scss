@@ -79,6 +79,9 @@ h2, .h2link {
   margin-bottom: 20px;
   text-align: center;
   color: #999;
+  &.dark {
+    color: #333;
+  }
 }
 
 h3, .h3link {

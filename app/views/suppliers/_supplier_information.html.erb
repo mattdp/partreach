@@ -1,36 +1,36 @@
 <%= form_tag :action => 'create', :controller => 'suppliers' do %>
 
-	<h3 class="center">
+	<h2 class="center dark">
 		<% if @supplier.name.present? %>
 			<%= "#{@supplier.name} - Admin edit" %>
 		<% else %>
 			<%= "Create new supplier" %>
 		<% end %>
-	</h3>
+	</h2>
 
+	<h3>Public supplier information</h3>
 	<%= label_tag 'name', 'name' %><%= text_field_tag 'name', @supplier.name %>
-
 	<%= label_tag 'url_main', 'url_main' %>
-		<%= link_to "Clickable link to their webpage", @supplier.url_main if @supplier.url_main.present? %>
+	<%= link_to "Clickable link to their webpage", @supplier.url_main if @supplier.url_main.present? %>
 	<%= text_field_tag 'url_main', @supplier.url_main %>
-
+	<%= label_tag 'description', 'description (public)' %><%= text_area_tag 'description', @supplier.description %>
+	<h3>Hidden supplier information</h3>
+	<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, :class => "fleft" %><%= label_tag 'profile_visible', 'profile_visible' %>
+	<%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %><%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
+	<h3>Contact information</h3>
 	<%= label_tag 'phone', 'phone' %><%= text_field_tag 'phone', @supplier.phone %>
 	<%= label_tag 'email', 'email' %><%= text_field_tag 'email', @supplier.email %>
-	<%= label_tag 'description', 'description (public)' %><%= text_area_tag 'description', @supplier.description %>
-	<%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %><%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
-	<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, :class => "fleft" %><%= label_tag 'profile_visible', 'profile_visible' %>
-
+	<h3>Address information</h3>
 	<%= label_tag 'country', 'country' %><%= text_field_tag 'country', @address.country %>
 	<%= label_tag 'state', 'state' %><%= text_field_tag 'state', @address.state %>
 	<%= label_tag 'zip', 'zip' %><%= text_field_tag 'zip', @address.zip %>
-
-	<br>
 
 	<%# Heavy duplication from dialogues/new %>
 	<% counter = 0 %>
 	<% tag_columns = 6 %>
 	<% existing_tags = @supplier.tags %>
 
+	<h3>Tag information</h3>
 	<table id="tag_matrix">
 		<% @family_names_and_tags.keys.each do |k| %>
 			<% counter = 0 %>
