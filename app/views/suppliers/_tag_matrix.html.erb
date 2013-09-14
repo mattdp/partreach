@@ -1,0 +1,17 @@
+<table id="tag_matrix">
+	<% @family_names_and_tags.keys.each do |k| %>
+		<% counter = 0 %>
+		<tr>
+			<td><strong><%= "#{k}" %><strong></td>
+			<% @family_names_and_tags[k].each do |t| %>
+				<% if counter >= tag_columns %>
+					</tr><tr>
+					<% counter = 0 %>
+				<% end %>
+				<td><%= check_box_tag "tag_selection[]", t.id, existing_tags.include?(t), class: "fleft", id: "#{t.name}" %>
+				<p><%= "#{t.name}" %></p></td>
+				<% counter += 1 %>
+			<% end %>
+		</tr>
+	<% end %>
+</table>

@@ -26,27 +26,12 @@
 	<%= link_to "Add new supplier", new_supplier_path %>
 
 	<div>
-		<% first_time = true %>
-		<% counter = 0 %>
 		<% supplier_columns = 0 %>
 		<% tag_columns = 6 %>
 
-		<table id="tag_matrix">
-			<% @family_names_and_tags.keys.each do |k| %>
-				<% counter = 0 %>
-				<tr>
-					<td><strong><%= "#{k}" %><strong></td>
-					<% @family_names_and_tags[k].each do |t| %>
-						<% if counter >= tag_columns %>
-							</tr><tr>
-							<% counter = 0 %>
-						<% end %>
-						<td><%= check_box_tag "tag_selection[]", t.id, false, class: "fleft", id: "#{t.name}" %>
-						<p><%= "#{t.name}" %></p></td>
-						<% counter += 1 %>
-					<% end %>
-				</tr>
-			<% end %>
+		<%= render :partial => "/suppliers/tag_matrix", :locals => {:tag_columns => tag_columns, :family_names_and_tags => @family_names_and_tags, :existing_tags => []} %>
+
+		<table class="tag_matrix">
 			<% counter = 0 %>
 			<tr>
 				<td><strong><%= "Country" %><strong></td>
