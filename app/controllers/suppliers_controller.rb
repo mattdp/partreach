@@ -75,6 +75,7 @@ class SuppliersController < ApplicationController
 		@tags = Tag.all
 		@address = @supplier.address
 		@family_names_and_tags = Tag.family_names_and_tags
+		@claimant = User.find_by_supplier_id(@supplier.id)
 		@machines_quantity_hash = @supplier.machines_quantity_hash
 	end
 

@@ -20,7 +20,7 @@
 #  suggested_preferences         :text
 #  internally_hidden_preferences :text
 #  suggested_services            :text
-#  suggested_address             x`:text
+#  suggested_address             :text
 #  suggested_url_main            :string(255)
 #  points                        :integer          default(0)
 #

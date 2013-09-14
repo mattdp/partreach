@@ -2,35 +2,90 @@
 
 	<h2 class="center dark">
 		<% if @supplier.name.present? %>
-			<%= "#{@supplier.name} - Admin edit" %>
+			<%= "#{@supplier.name} - admin_edit" %>
 		<% else %>
 			<%= "Create new supplier" %>
 		<% end %>
 	</h2>
 
-	<h3>Public supplier information</h3>
-	<%= label_tag 'name', 'name' %><%= text_field_tag 'name', @supplier.name %>
-	<%= label_tag 'url_main', 'url_main' %>
+	<h3>Externally-facing supplier information</h3>
+
+	<%= label_tag 'name', 'name' %>
+	<%= text_field_tag 'name', @supplier.name %>
+
+	<%= label_tag 'url_main', 'url_main', class: "fleft" %>
 	<%= link_to "Clickable link to their webpage", @supplier.url_main if @supplier.url_main.present? %>
 	<%= text_field_tag 'url_main', @supplier.url_main %>
-	<%= label_tag 'description', 'description (public)' %><%= text_area_tag 'description', @supplier.description %>
-	<h3>Hidden supplier information</h3>
-	<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, :class => "fleft" %><%= label_tag 'profile_visible', 'profile_visible' %>
-	<%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %><%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
+
+	<%= label_tag 'suggested_description', 'suggested_description (from supplier)' if @supplier.suggested_description %>
+	<%= @supplier.suggested_description %>
+	<%= label_tag 'description', 'description (public)' %>
+	<%= text_area_tag 'description', @supplier.description %>
+	
+	<h3>Internally-facing supplier information</h3>
+
+	<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, :class => "fleft" %>
+	<%= label_tag 'profile_visible', 'profile_visible' %>
+
+	<%= label_tag 'suggested_preferences', 'suggested_preferences (from supplier)' if @suggested_preferences %>
+	<%= @supplier.suggested_preferences %>
+
+	<%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %>
+	<%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
+
+	<%= label_tag 'source', 'source of supplier entry to database' %>
+	<%= @supplier.source %>
+
+	<%= label_tag 'claimed', 'Page claimed? By whom? (change from terminal)' %>
+	<%= @supplier.claimed %>
+	<%= " - #{@claimant.name} (#{@claimant.email})" if @claimant %>
+
 	<h3>Contact information</h3>
-	<%= label_tag 'phone', 'phone' %><%= text_field_tag 'phone', @supplier.phone %>
-	<%= label_tag 'email', 'email' %><%= text_field_tag 'email', @supplier.email %>
+
+	<%= label_tag 'phone', 'phone' %>
+	<%= text_field_tag 'phone', @supplier.phone %>
+
+	<%= label_tag 'email', 'email' %>
+	<%= text_field_tag 'email', @supplier.email %>
+
 	<h3>Address information</h3>
-	<%= label_tag 'country', 'country' %><%= text_field_tag 'country', @address.country %>
-	<%= label_tag 'state', 'state' %><%= text_field_tag 'state', @address.state %>
-	<%= label_tag 'zip', 'zip' %><%= text_field_tag 'zip', @address.zip %>
+
+	<%= label_tag 'suggested_address', 'suggested_address (from supplier)' if @suggested_address %>
+	<%= @supplier.suggested_address %>
+
+	<%= label_tag 'country', 'country' %>
+	<%= text_field_tag 'country', @address.country %>
+
+	<%= label_tag 'state', 'state' %>
+	<%= text_field_tag 'state', @address.state %>
+
+	<%= label_tag 'zip', 'zip' %>
+	<%= text_field_tag 'zip', @address.zip %>
+
+	<h3>Machine information</h3>
+
+	<%= label_tag 'suggested_machines', 'suggested_machines (from supplier)' if @supplier.suggested_machines %>
+	<%= @supplier.suggested_machines %>
+
+	<%= label_tag 'machines_in_database', 'Machines in the database & quantities (change from terminal)' %>
+	<%# Duplication from supplier_profile %>
+	<% @machines_quantity_hash.each do |k,v| %>
+		<li>
+			<%= "#{Machine.find(k).formatted_name}"%>
+			<%= " (#{pluralize(v,"machine")})" if v > 1 %>
+		</li>
+	<% end %>
+
+	<h3>Tag information</h3>
+
+	<%= label_tag 'suggested_services', 'suggested_services (from supplier)' if @suggested_services %>
+	<%= @supplier.suggested_services %>
 
 	<%# Heavy duplication from dialogues/new %>
 	<% counter = 0 %>
 	<% tag_columns = 6 %>
 	<% existing_tags = @supplier.tags %>
 
-	<h3>Tag information</h3>
 	<table id="tag_matrix">
 		<% @family_names_and_tags.keys.each do |k| %>
 			<% counter = 0 %>
