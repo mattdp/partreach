@@ -34,6 +34,9 @@ class Dialogue < ActiveRecord::Base
   has_one :supplier
   has_one :user, :through => :order
 
+  validates :supplier_id, :presence => true
+  validates :order_id, :presence => true
+
   def knows_outcome?
   	return (self.informed or self.declined? or self.won?)
   end

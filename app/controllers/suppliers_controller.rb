@@ -14,7 +14,6 @@ class SuppliersController < ApplicationController
 	def new
 		@supplier = Supplier.new
 		@address = Address.new
-		@tags = Tag.all
 		@family_names_and_tags = Tag.family_names_and_tags
 	end
 
@@ -77,6 +76,7 @@ class SuppliersController < ApplicationController
 		@family_names_and_tags = Tag.family_names_and_tags
 		@claimant = User.find_by_supplier_id(@supplier.id)
 		@machines_quantity_hash = @supplier.machines_quantity_hash
+		@dialogues = Dialogue.where("supplier_id = ?",@supplier.id)
 	end
 
 	def admin_update

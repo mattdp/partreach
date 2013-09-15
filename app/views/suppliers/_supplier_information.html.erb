@@ -89,7 +89,18 @@
 
 	<h3>Dialogue information</h3>
 
-	
+	<% if @dialogues %>
+		<table>
+			<% @dialogues.each do |d| %>
+				<tr>
+					<td><%= link_to "Order #{d.order_id}: ", order_path(Order.find(d.order_id)) %></td>
+					<td><%= "opener sent" if d.opener_sent %></td>
+					<td><%= "bid placed" if d.bid? %></td>
+					<td><%= "won" if d.won %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
 
 	<%= submit_tag "Submit", :disable_with => "Submitting...", :id => "create_button" %>
 <% end %>
