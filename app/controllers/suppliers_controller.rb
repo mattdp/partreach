@@ -18,6 +18,7 @@ class SuppliersController < ApplicationController
 	end
 
 	def create
+		params = clean_params
 
 		@supplier = Supplier.new(admin_params)
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
@@ -63,10 +64,11 @@ class SuppliersController < ApplicationController
 	end
 
 	def admin_update
+		params = clean_params
 		@supplier = Supplier.find(params[:id])
 		@supplier.assign_attributes(admin_params)
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
-		@supplier.create_or_update_address(address_params)	
+		@supplier.create_or_update_address(address_params)
 
 		saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
 		if saved_ok
@@ -79,9 +81,10 @@ class SuppliersController < ApplicationController
 	end
 
 	def update
+		params = clean_params
 		@supplier = Supplier.find(params[:id])
 	
-		@supplier.update_attributes(supplier_params)
+		@supplier.update_attributes(clean_params(supplier_params))
 		
 		UserMailer.email_internal_team(
 			"Supplier profile edit: #{@supplier.name}",
