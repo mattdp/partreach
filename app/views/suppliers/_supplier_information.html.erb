@@ -16,7 +16,10 @@
 	<%= text_field_tag 'name', @supplier.name %>
 
 	<%= label_tag 'url_main', 'url_main', class: "fleft" %>
+	<%= "<><>" %>
 	<%= link_to "Clickable link to their webpage", @supplier.url_main if @supplier.url_main.present? %>
+	<%= "<><>" %>
+	<%= link_to "Their supplier profile", supplier_profile_path(@supplier.name_for_link) if @supplier.name_for_link %>
 	<%= text_field_tag 'url_main', @supplier.url_main %>
 
 	<%= label_tag 'suggested_description', 'suggested_description (from supplier)' if @supplier.suggested_description %>
