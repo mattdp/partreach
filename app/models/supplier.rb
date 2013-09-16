@@ -263,9 +263,9 @@ class Supplier < ActiveRecord::Base
     address_attributes = options.delete_if { |k,v| v.nil? or v.empty?}
 
     if self.address
-      self.address.update_attributes(address_attributes)
+      return self.address.update_attributes(address_attributes)
     else
-      self.address = Address.create(address_attributes)
+      return self.address = Address.create(address_attributes)
     end
 
   end
@@ -314,5 +314,3 @@ class Supplier < ActiveRecord::Base
   end
 
 end
-
-#may need to add material and method

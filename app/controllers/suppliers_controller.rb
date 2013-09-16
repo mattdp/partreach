@@ -18,21 +18,10 @@ class SuppliersController < ApplicationController
 	end
 
 	def create
-		@supplier = Supplier.new
 
-		@supplier.name = params[:name]
-		@supplier.url_main = params[:url_main] if !(params[:url_main].nil? or params[:url_main] == "")
-		@supplier.description = params[:description] if !(params[:description].nil? or params[:description] == "")
-		@supplier.source = params[:source] if !(params[:source].nil? or params[:source] == "")
-		@supplier.email = params[:email] if !(params[:email].nil? or params[:email] == "")
-		@supplier.phone = params[:phone] if !(params[:phone].nil? or params[:phone] == "")
-		@supplier.profile_visible = true if params[:profile_visible] == "1"
+		@supplier = Supplier.new(admin_params)
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
-		@supplier.create_or_update_address(	country: params[:country],
-																				state: params[:state],
-																				zip: params[:zip])
-
-		saved_ok = @supplier.save and @supplier.address.save
+		@supplier.create_or_update_address(address_params)
 
 		@tag_ids = params[:tag_selection]
 		if @tag_ids and @tag_ids.size > 0
@@ -41,14 +30,13 @@ class SuppliersController < ApplicationController
 			end
 		end
 
-		note = ""
-		if saved_ok
+		if @supplier.save
 			note = "Saved OK!" 
 		else 
 			note = "Saving problem."
 		end
 
-		redirect_to new_dialogue_path, notice: note
+		redirect_to new_supplier_path, notice: note
 	end
 
 	#note that using "key" instead of the us_3d... caused failure
@@ -85,15 +73,8 @@ class SuppliersController < ApplicationController
 
 	def update
 		@supplier = Supplier.find(params[:id])
-
-		@supplier.suggested_description = params[:suggested_description]
-		@supplier.suggested_machines = params[:suggested_machines]
-		@supplier.suggested_services = params[:suggested_services]
-		@supplier.suggested_preferences = params[:suggested_preferences]
-		@supplier.suggested_address = params[:suggested_address]
-		@supplier.suggested_url_main = params[:suggested_url_main]
-
-		@supplier.save
+		@supplier.update_attributes(supplier_params)
+		
 		UserMailer.email_internal_team(
 			"Supplier profile edit: #{@supplier.name}",
 			"They changed their suggested description, machines, services, or preferences."
@@ -124,5 +105,26 @@ class SuppliersController < ApplicationController
 
 		redirect_to setup_examinations_path, notice: "Examinations submitted."
 	end
+
+	private
+
+		def admin_params
+			params.permit(:name, :name_for_link, :url_main, :url_materials, :description, \
+  									:email, :phone, :source, :profile_visible, :claimed, \
+  									:suggested_description, :suggested_machines, :suggested_preferences, \
+  									:internally_hidden_preferences, :suggested_services, :suggested_address, \
+  									:suggested_url_main, :points
+  									)
+		end
+
+		def supplier_params
+			params.permit(:suggested_description, :suggested_machines, :suggested_preferences, \
+										:suggested_services, :suggested_address, :url_main, :email, :phone
+										)
+		end
+
+		def address_params
+			params.permit(:country, :state, :zip)
+		end
 
 end
