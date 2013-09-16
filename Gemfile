@@ -29,6 +29,7 @@ group :development, :test do
  	gem 'shoulda-matchers', '2.3.0'
  	gem 'pry', '0.9.12.2'
 	gem 'pry-rails', '0.3.2'
+	gem 'pry-nav', '0.2.3'
 end
 
 group :development do

@@ -115,6 +115,8 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-nav (0.2.3)
+      pry (~> 0.9.10)
     pry-rails (0.3.2)
       pry (>= 0.9.10)
     pygments.rb (0.3.7)
@@ -216,6 +218,7 @@ DEPENDENCIES
   pg (= 0.16.0)
   protected_attributes
   pry (= 0.9.12.2)
+  pry-nav (= 0.2.3)
   pry-rails (= 0.3.2)
   rails (= 4.0.0)
   rails-observers
