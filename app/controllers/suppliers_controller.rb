@@ -22,7 +22,7 @@ class SuppliersController < ApplicationController
 		@supplier = Supplier.new(admin_params)
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
 		@supplier.create_or_update_address(address_params)
-		
+
 		saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
 
 		if saved_ok
@@ -31,7 +31,7 @@ class SuppliersController < ApplicationController
 			note = "Saving problem."
 		end
 
-		redirect_to new_supplier_path, notice: note
+		redirect_to admin_edit_path(@supplier.name_for_link), notice: note
 	end
 
 	#note that using "key" instead of the us_3d... caused failure
@@ -63,11 +63,24 @@ class SuppliersController < ApplicationController
 	end
 
 	def admin_update
-		redirect_to admin_edit_path(@supplier), notice: "Save attempted. NOT YET IMPLEMENTED"
+		@supplier = Supplier.find(params[:id])
+		@supplier.assign_attributes(admin_params)
+		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
+		@supplier.create_or_update_address(address_params)	
+
+		saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
+		if saved_ok
+			note = "Saved OK!" 
+		else 
+			note = "Saving problem."
+		end
+
+		redirect_to admin_edit_path(@supplier.name_for_link), notice: note
 	end
 
 	def update
 		@supplier = Supplier.find(params[:id])
+	
 		@supplier.update_attributes(supplier_params)
 		
 		UserMailer.email_internal_team(

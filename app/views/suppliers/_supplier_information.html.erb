@@ -1,6 +1,6 @@
-<%= form_tag :action => 'create', :controller => 'suppliers' do %>
+<%= form_tag :action => form_action, :controller => 'suppliers' do %>
 
-	<h1>The controller doesn't work - this is only a frontend.</h1>
+	<%= hidden_field_tag 'id', "#{@supplier.id}" %>
 
 	<h2 class="center dark">
 		<% if @supplier.name.present? %>
