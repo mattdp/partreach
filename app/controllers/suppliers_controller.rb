@@ -22,15 +22,10 @@ class SuppliersController < ApplicationController
 		@supplier = Supplier.new(admin_params)
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
 		@supplier.create_or_update_address(address_params)
+		
+		saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
 
-		@tag_ids = params[:tag_selection]
-		if @tag_ids and @tag_ids.size > 0
-			@tag_ids.each do |t_id|
-				saved_ok = false unless @supplier.add_tag(t_id)
-			end
-		end
-
-		if @supplier.save
+		if saved_ok
 			note = "Saved OK!" 
 		else 
 			note = "Saving problem."

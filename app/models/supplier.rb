@@ -60,6 +60,17 @@ class Supplier < ActiveRecord::Base
     Ask.where("supplier_id = ? and request = ?",self.id,request_name).present?
   end
 
+  def update_tags(tag_ids)
+    saved_ok = true
+    if tag_ids and tag_ids.size > 0
+      tag_ids.each do |t_id|
+        binding.pry
+        saved_ok = false unless self.add_tag(t_id)
+      end
+    end
+    return saved_ok
+  end
+
   def asks_hash
     answer = {}
     self_id = self.id
