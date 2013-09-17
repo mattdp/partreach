@@ -8,7 +8,7 @@
 			<h1 id="supplier-name">
 				<%= "#{@supplier.name}" %>
 				<%= " (not visible)" unless @supplier.profile_visible %>
-				<%= link_to "Link to admin_edit", admin_edit_path(@supplier.name_for_link) if current_user.admin? %>
+				<%= link_to "Link to admin_edit", admin_edit_path(@supplier.name_for_link) if current_user and current_user.admin? %>
 			</h1>
 			<div class="fleft">
 				<div>
