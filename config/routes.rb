@@ -38,6 +38,7 @@ Partreach::Application.routes.draw do
   get '/analytics/suppliers', to: 'analytics#suppliers', as: 'analytics_suppliers'
   get '/analytics/emails', to: 'analytics#emails', as: 'analytics_emails'
   get '/analytics/metrics', to: 'analytics#metrics', as: 'analytics_metrics'
+  get '/analytics/machines', to: 'analytics#machines', as: 'analytics_machines'
 
   #attempting hacky way to have an always-ok link for blog resources
   #get '/blog-css', to:'/blog/css/all.css'

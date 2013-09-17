@@ -23,6 +23,10 @@ class AnalyticsController < ApplicationController
 	def emails
 	end
 
+	def machines
+		@machines = Machine.all.sort_by{ |m| [m.manufacturer,m.name] }
+	end
+
 	def metrics
 		potential_date = Date.new(2013,3,2)
 		dates = []
