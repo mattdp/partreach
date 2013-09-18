@@ -1,11 +1,38 @@
 . git push heroku yourbranch:master - pushing a remote branch to heroku
 
-supplier_intro_email error
-	local and prod same
-		  Rendered user_mailer/supplier_intro_email.html.erb (16.3ms)
-			ActionView::Template::Error: No route matches {:action=>"edit", :controller=>"password_resets", :id=>nil, :format=>nil} missing required keys: [:id]
-			from /Users/matt/.rvm/gems/ruby-2.0.0-rc2/gems/actionpack-4.0.0/lib/action_dispatch/journey/formatter.rb:35:in `generate'
-	need a password_reset_token to be generated
+irb(main):003:0> User.create_and_link_to_supplier("DC Plastico","csandhage@dcplstico.com",Supplier.last.id)
+RuntimeError: Password digest missing on new record
+	from /app/vendor/bundle/ruby/2.0.0/gems/activemodel-4.0.0/lib/active_model/secure_password.rb:63:in `block in has_secure_password'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.0/lib/active_support/callbacks.rb:377:in `_run__340778235291597534__create__callbacks'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.0/lib/active_support/callbacks.rb:80:in `run_callbacks'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/callbacks.rb:303:in `create_record'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/timestamp.rb:57:in `create_record'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/persistence.rb:466:in `create_or_update'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/callbacks.rb:299:in `block in create_or_update'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.0/lib/active_support/callbacks.rb:403:in `_run__340778235291597534__save__callbacks'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activesupport-4.0.0/lib/active_support/callbacks.rb:80:in `run_callbacks'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/callbacks.rb:299:in `create_or_update'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/persistence.rb:106:in `save'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/validations.rb:51:in `save'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/attribute_methods/dirty.rb:32:in `save'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/transactions.rb:270:in `block (2 levels) in save'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/transactions.rb:326:in `block in with_transaction_returning_status'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/connection_adapters/abstract/database_statements.rb:202:in `block in transaction'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/connection_adapters/abstract/database_statements.rb:210:in `within_new_transaction'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/connection_adapters/abstract/database_statements.rb:202:in `transaction'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/transactions.rb:209:in `transaction'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/transactions.rb:323:in `with_transaction_returning_status'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/transactions.rb:270:in `block in save'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/transactions.rb:281:in `rollback_active_record_state!'
+	from /app/vendor/bundle/ruby/2.0.0/gems/activerecord-4.0.0/lib/active_record/transactions.rb:269:in `save'
+	from /app/app/models/user.rb:47:in `create_and_link_to_supplier'
+	from (irb):3
+	from /app/vendor/bundle/ruby/2.0.0/gems/railties-4.0.0/lib/rails/commands/console.rb:90:in `start'
+	from /app/vendor/bundle/ruby/2.0.0/gems/railties-4.0.0/lib/rails/commands/console.rb:9:in `start'
+	from /app/vendor/bundle/ruby/2.0.0/gems/railties-4.0.0/lib/rails/commands.rb:64:in `<top (required)>'
+	from /app/bin/rails:4:in `require'
+	from /app/bin/rails:4:in `<main>'irb(main):004:0> User.last
+
 
 first set of supplier email sendouts, highly nonscientific
 	"Tuscany3D LLC"=>[4, 6, 5]

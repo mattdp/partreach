@@ -44,7 +44,8 @@ class User < ActiveRecord::Base
     user = User.new
     user.name = name
     user.email = email
-    user.save(:validate => false)
+    user.password_digest = SecureRandom.urlsafe_base64 #have something in there so it can save
+    user.save(validate: false)
 
     supplier = Supplier.find(supplier_id)
     supplier.claim_profile(user.id)
