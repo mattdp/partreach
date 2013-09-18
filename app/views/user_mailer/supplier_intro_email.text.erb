@@ -3,9 +3,9 @@ Thanks for requesting a supplier account on <%= "#{@brand_name}" %>! This accoun
 -know what leads to send you - the more detailed your preferences, the better we know you're the right supplier for a set of clients 
 -be more likely to feature you in examples and press as ideal suppliers in our data set
 
-To access your <%= "#{@brand_name}" %> account, click the URL below to set up your password and log in.
+To access your <%= "#{@brand_name}" %> account, click the link below to set up your password and log in.
 
-<%= edit_password_reset_url(@user.password_reset_token) %>
+<%= "http://#{@brand_name.downcase}.com#{edit_password_reset_path(@user.password_reset_token)}" %>
 
 If you have any questions, feel free to contact us at support@supplybetter.com.
 
