@@ -44,6 +44,7 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates :points, numericality: true
   validates_presence_of :address
 
   #index is {name => [[haves tags],[have nots tags],[countries]]}
@@ -274,10 +275,10 @@ class Supplier < ActiveRecord::Base
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
-        order[country]["no_state"] = chaos[country]["no_state"].sort_by{ |a,m| [a.name] }
+        order[country]["no_state"] = chaos[country]["no_state"].sort_by{ |a,m| [a.points, a.name] }
         chaos[country].keys.sort.each do |state|
           #works w/ two as long as not points; need an ordering, mayhap?
-          order[country][state] = chaos[country][state].sort_by{ |a,m| [a.name] } unless state == "no_state"
+          order[country][state] = chaos[country][state].sort_by{ |a,m| [a.points, a.name] } unless state == "no_state"
         end
       end
     end
