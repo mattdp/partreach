@@ -10,6 +10,8 @@
 		<% end %>
 	</h2>
 
+	<%= link_to "Back to suppliers list", suppliers_path if @supplier.name.present? %>
+
 	<h3>Externally-facing supplier information</h3>
 
 	<%= label_tag 'name', 'name' %>
