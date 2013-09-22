@@ -84,7 +84,7 @@ class SuppliersController < ApplicationController
 		params = clean_params
 		@supplier = Supplier.find(params[:id])
 	
-		@supplier.update_attributes(clean_params(supplier_params))
+		@supplier.update_attributes(supplier_params)
 		
 		UserMailer.email_internal_team(
 			"Supplier profile edit: #{@supplier.name}",
