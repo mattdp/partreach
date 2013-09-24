@@ -6,6 +6,21 @@
   overflow: hidden;
 }
 
+/* mixins, variables, etc. */
+
+$recommendedColor: #b6d7a8;
+$bodyBackground: #dadde2;
+$h2Default: #999999;
+$h2Dark: #333333;
+$textMidGrey: #c3c8d9;
+$textDarkGrey: #1f252d;
+
+@mixin box_sizing {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 /* universal */
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
@@ -16,7 +31,7 @@ html {
 }
 
 body {
-  background: #dadde2;
+  background: $bodyBackground;
   font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-weight: 300;
   height: 100%;
@@ -53,17 +68,6 @@ textarea {
   clear: both;
 }
 
-/* mixins, variables, etc. */
-
-$grayMediumLight: #eaeaea;
-$recommendedColor: #b6d7a8;
-
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 /* typography */
 
 h1 {
@@ -78,9 +82,9 @@ h2, .h2link {
   letter-spacing: -1px;
   margin-bottom: 20px;
   text-align: center;
-  color: #999;
+  color: $h2Default;
   &.dark {
-    color: #333;
+    color: $h2Dark;
   }
 }
 
@@ -115,6 +119,10 @@ strong {
   margin: 10px 0px 10px 0px;
 }
 
+.testimonials {
+  background: #fff;
+}
+
 .logo {
   background: image-url('/logo.png') no-repeat;
   height: 66px;
@@ -128,23 +136,23 @@ strong {
     float: left;
     margin: 0 10px 0 0;
     padding: 0 10px 0 0;
-    border-right: 1px solid #c3c8d9;
+    border-right: 1px solid $textMidGrey;
     &:last-child {
       margin-right: 0;
       padding-right: 0;
       border: 0;
     }
     a {
-      color: #c3c8d9;
+      color: $textMidGrey;
       &:hover {
         background: transparent;
         color: #fff;
       }
     }
     .dropdown-menu a {
-      color: #1f252d;
+      color: $textDarkGrey;
       &:hover {
-        color: #c3c8d9;
+        color: $textMidGrey;
       }
     }
   }
@@ -152,7 +160,7 @@ strong {
 .content {
   background: #f6f6f6;
   &.features, &.forms, &.sign-in {
-    background: #dadde2;
+    background: $bodyBackground;
   }
   &.header, &.hero, &.footer {
     background: #3c3e44;
@@ -163,7 +171,7 @@ strong {
   .hero {
     padding: 30px 0;
     h1 {
-      color: #1f252d;
+      color: $textDarkGrey;
     }
   }
 }
@@ -195,7 +203,7 @@ strong {
     font-size: 26px;
     font-weight: 300;
     em {
-      color: #c3c8d9;
+      color: $textMidGrey;
       font-style: normal;
     }
   }
@@ -233,7 +241,7 @@ strong {
 }
 
 .sec-hero {
-  color: #c3c8d9;
+  color: $textMidGrey;
   font-size: 16px;
   margin-top: 10px;
   text-align: center;
@@ -274,7 +282,7 @@ strong {
     }
   }
   h3 {
-    color: #1f252d;
+    color: $textDarkGrey;
   }
   h3, .h3link {
     font-size: 18px;
@@ -510,7 +518,7 @@ strong {
 /* orders/new */
 
 .order_top_header {
-  color: #1f252d;
+  color: $textDarkGrey;
   font-size: 46px;
   font-weight: 300;
   margin: 0 0 16px;

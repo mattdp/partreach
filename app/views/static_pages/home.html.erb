@@ -6,6 +6,11 @@
 			<h1>Comparison shopping for 3D printing.</h1>
 			<h2><em>Know your options.</em> Get cheaper parts.</h2>
 		</hgroup>
+		<div class="testimonials center">
+			<% tm = @testimonials[0] %>
+			<p class="center"><%= "#{tm[:praise]}" %></p>
+			<p class="right"><%= "-#{tm[:person]}, #{tm[:company]}" %></p>
+		</div>
 		<%= link_to "Get Started", signup_path, class: "btn btn-hero", id: "button-start-today" %>
 		<div class="center bit-of-space">
 			<%= link_to "Are you a supplier?", be_a_supplier_path, class: "sec-hero" %>

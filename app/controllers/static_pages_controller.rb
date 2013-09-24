@@ -1,5 +1,17 @@
 class StaticPagesController < ApplicationController
 	def home
+		@testimonials = [
+			{
+				person: "Bob Dole", 
+				company: "BigCorp",
+				praise: "SupplyBetter improved my golf game and fixed my marriage. Thanks, SupplyBetter!"
+			},
+			{
+				person: "Captain America",
+				company: "Justice League",
+				praise: "I needed an invincible shield/frisbee, and was able to get one from China in 2 weeks with SupplyBetter."
+			}
+		]
 	end
 
 	def getting_started
