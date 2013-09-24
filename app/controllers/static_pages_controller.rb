@@ -2,16 +2,19 @@ class StaticPagesController < ApplicationController
 	def home
 		@testimonials = [
 			{
-				person: "Bob Dole", 
-				company: "BigCorp",
-				praise: "SupplyBetter improved my golf game and fixed my marriage. Thanks, SupplyBetter!"
+				person: "Jack Al-Kahwati",
+				title: "CEO",
+				company: "Velo Labs",
+				praise: "Robert and his team have an amazing service for hardware companies.  Finding a supplier for prototyping at cost and schedule is no longer an issue with SupplyBetter.  They had answers for all my questions and even went to the trouble of finding out more answers by talking to supplier on my behalf. Their services exceeded my expectations."
 			},
 			{
-				person: "Captain America",
-				company: "Justice League",
-				praise: "I needed an invincible shield/frisbee, and was able to get one from China in 2 weeks with SupplyBetter."
+				person: "Leandro Margulis",
+				title: "Founder",
+				company: "TrazeTag",
+				praise: "SupplyBetter is a great way of finding suppliers. Submitting an RFQ was easy and comparing quotes from suppliers was straightforward. They helped me with the first iteration of my new product, and I will definitely be using them again."
 			}
 		]
+		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
 	end
 
 	def getting_started

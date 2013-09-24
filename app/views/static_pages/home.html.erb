@@ -7,9 +7,9 @@
 			<h2><em>Know your options.</em> Get cheaper parts.</h2>
 		</hgroup>
 		<div class="testimonials center">
-			<% tm = @testimonials[0] %>
+			<% tm = @testimonial %>
 			<p class="center"><%= "#{tm[:praise]}" %></p>
-			<p class="right"><%= "-#{tm[:person]}, #{tm[:company]}" %></p>
+			<p class="right"><%= "-#{tm[:person]}, #{tm[:title]}, #{tm[:company]}" %></p>
 		</div>
 		<%= link_to "Get Started", signup_path, class: "btn btn-hero", id: "button-start-today" %>
 		<div class="center bit-of-space">
