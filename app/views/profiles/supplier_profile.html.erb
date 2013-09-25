@@ -17,7 +17,7 @@
 						<%= " - #{@supplier.safe_location_name}" if @supplier.safe_location_name.length > 0 %>					
 						<%= ", #{@supplier.safe_state}" if @supplier.safe_state.length > 0 %>
 					</p>
-					<%= render :partial => "/profiles/tag_display", locals: {tags: @tags, row_end: 4} %>
+					<%= render :partial => "/profiles/tag_display", locals: {tags: @tags, row_end: 6} %>
 					<p>
 						<% if !@supplier.url_main.nil? %>
 							<%= link_to "Webpage", @supplier.url_main %>
