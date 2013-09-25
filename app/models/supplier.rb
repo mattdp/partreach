@@ -268,22 +268,23 @@ class Supplier < ActiveRecord::Base
         country = s.address.country
         state = s.address.state
         machine_count = s.machines.count
+        review_count = s.reviews.count
         chaos[country] = {"no_state" => []} if chaos[country].nil?
         if s.address.state.nil?
-          chaos[country]["no_state"] << [s,machine_count]
+          chaos[country]["no_state"] << [s,machine_count,review_count]
         elsif chaos[country][state].nil?
-          chaos[country][state] = [[s,machine_count]]
+          chaos[country][state] = [[s,machine_count,review_count]]
         else
-          chaos[country][state] << [s,machine_count]
+          chaos[country][state] << [s,machine_count,review_count]
         end
       end
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
-        order[country]["no_state"] = chaos[country]["no_state"].sort_by{ |a,m| [a.points, a.name] }
+        order[country]["no_state"] = chaos[country]["no_state"].sort_by{ |a,m,r| [a.points, a.name] }
         chaos[country].keys.sort.each do |state|
           #works w/ two as long as not points; need an ordering, mayhap?
-          order[country][state] = chaos[country][state].sort_by{ |a,m| [a.points, a.name] } unless state == "no_state"
+          order[country][state] = chaos[country][state].sort_by{ |a,m,r| [a.points, a.name] } unless state == "no_state"
         end
       end
     end
