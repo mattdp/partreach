@@ -13,12 +13,10 @@ Partreach::Application.routes.draw do
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
 
   get '/signup', to: 'orders#new'
-  get '/signin', to: 'sessions#new'
+  get '/signin', to: 'sessions#new', as: 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
   get '/getting_started', to: 'static_pages#getting_started'
   get '/procurement', to: 'static_pages#procurement'
-  get '/alpha', to: 'static_pages#procurement'
-  get '/business', to: 'static_pages#procurement'
   get '/materials', to: 'static_pages#materials'
   get '/be_a_supplier', to: 'static_pages#be_a_supplier'
   get '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
@@ -39,10 +37,6 @@ Partreach::Application.routes.draw do
   get '/analytics/emails', to: 'analytics#emails', as: 'analytics_emails'
   get '/analytics/metrics', to: 'analytics#metrics', as: 'analytics_metrics'
   get '/analytics/machines', to: 'analytics#machines', as: 'analytics_machines'
-
-  #attempting hacky way to have an always-ok link for blog resources
-  #get '/blog-css', to:'/blog/css/all.css'
-  #get '/blog-js', to:'/blog/js/all.js'
 
   get '/examinations', to: 'suppliers#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'suppliers#submit_examinations', via: :post, as: "submit_examinations"
