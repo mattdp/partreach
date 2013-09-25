@@ -7,7 +7,6 @@
 class SuppliersController < ApplicationController
 	include SuppliersHelper
 	before_filter :admin_user, only: [:new, :create, :admin_edit, :admin_update]
-	before_filter :examiner_user, only: [:setup_examinations, :submit_examinations]
 	before_filter :correct_supplier_for_user, only: [:edit, :update]
 	helper_method :state_sort
 
@@ -91,30 +90,6 @@ class SuppliersController < ApplicationController
 			"They changed their suggested description, machines, services, or preferences."
 			)
 		redirect_to edit_supplier_path(@supplier), notice: "Suggestions received! We'll be in touch once they're reviewed."
-	end
-
-	def setup_examinations
-		@questionables = Supplier.quantity_by_tag_id(50,Tag.find_by_name("datadump").id)
-	end
-
-	#faster if batch load suppliers
-	def submit_examinations
-		datadump_id = Tag.find_by_name("datadump").id
-		params[:suppliers].each do |s_id,v|
-			supplier = Supplier.find(s_id)
-			if v == "duplicate"
-				supplier.destroy
-			elsif v == "not_duplicate"
-				supplier.update_attributes({name: params[:supplier_names][s_id]})
-				supplier.create_or_update_address({ country: params[:supplier_countries][s_id], 
-																						state: params[:supplier_states][s_id],
-																						zip: params[:supplier_zips][s_id]
-																					})
-				supplier.remove_tag(datadump_id)
-			end
-		end
-
-		redirect_to setup_examinations_path, notice: "Examinations submitted."
 	end
 
 	private

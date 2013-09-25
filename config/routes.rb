@@ -38,7 +38,7 @@ Partreach::Application.routes.draw do
   get '/analytics/metrics', to: 'analytics#metrics', as: 'analytics_metrics'
   get '/analytics/machines', to: 'analytics#machines', as: 'analytics_machines'
 
-  get '/examinations', to: 'suppliers#setup_examinations', as: "setup_examinations"
-  match '/examinations', to: 'suppliers#submit_examinations', via: :post, as: "submit_examinations"
+  get '/examinations', to: 'examinations#setup_examinations', as: "setup_examinations"
+  match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"
 
 end
