@@ -1,1 +1,22 @@
-<td>HI!</td>
+<% user = User.find(review.user_id) if review.user_id %>
+<td class="under-examination">
+	<p><%= "ID: #{review.id}" %></p>
+	<p><%= "Submitter: #{user.name} (#{user.email})" if user %></p>
+</td>
+<td class="choice">
+	<p class="clear">
+		<%= radio_button_tag "reviews[#{review.id}]", "no_display", false, :class => "fleft" %>	
+		<%= label_tag "reviews[#{review.id}]", "Don't use", :class => "fleft" %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "reviews[#{review.id}]", "display", false, :class => "fleft" %>
+		<%= label_tag "reviews[#{review.id}]", "Do use", :class => "fleft" %>
+	</p>
+	<p class="clear">
+		<%= label_tag "review_supplier_id[#{review.id}]", "Supplier ID to link to", :class => "fleft" %>
+		<%= text_field_tag "review_supplier_id[#{review.id}]", review.supplier_id ? review.supplier_id : "" %>
+	</p>
+</td>
+<td class="supporting-info">
+	<p><%= "INSERT REVIEW PARTIAL HERE" %></p>
+</td>

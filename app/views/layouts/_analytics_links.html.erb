@@ -6,5 +6,6 @@
 	<li><%= link_to "Machines", analytics_machines_path %></li>
 	<li><%= link_to "Suppliers (stub)" , analytics_suppliers_path %></li>
 	<li><%= link_to "Emails (stub)" , analytics_emails_path %></li>
-	<li><%= link_to "Supplier review queue", setup_examinations_path %></li>
+	<li><%= link_to "Supplier examinations", setup_examinations_path("suppliers") %></li>
+	<li><%= link_to "Review examinations", setup_examinations_path("reviews") %></li>
 </ul>
