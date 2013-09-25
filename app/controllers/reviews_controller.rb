@@ -12,21 +12,13 @@ class ReviewsController < ApplicationController
 
 	def create
 
-		@review = Review.create(
-			company: params[:company],
-			process: params[:process],
-			part_type: params[:part_type],
-			would_recommend: params[:would_recommend],
-			quality: params[:quality],
-			adaptability: params[:adaptability],
-			delivery: params[:delivery],
-			did_well: params[:did_well],
-			did_badly: params[:did_badly],
-			user_id: current_user.id
-			)
+		params = clean_params
+
+		@review = Review.new(review_params)
+		@review.user_id = current_user.id
 
 		respond_to do |format|
-			if @review
+			if @review.save
 				format.html { redirect_to orders_path, notice: 'Review was successfully submitted. Thanks!' }
 				format.json { render json: orders_path }
 			else
@@ -35,5 +27,13 @@ class ReviewsController < ApplicationController
 			end
 		end
 	end
+
+	private
+
+		def review_params
+			params.permit(:company, :process, :part_type, :would_recommend, :quality, \
+										:adaptability, :delivery, :did_well, :did_badly
+										)
+		end
 
 end

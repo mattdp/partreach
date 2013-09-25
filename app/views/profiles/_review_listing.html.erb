@@ -1,1 +1,29 @@
-I AM A LISTING
+
+<p>
+	<% if review.process %> This review is for the "<%= review.process %>" process. <% end %>
+	<% if review.part_type %>The client was quoting a "<%= review.part_type %>".<% end %>
+	<% if review.would_recommend %>They <strong><%= review.would_recommend ? "would" : "would not" %></strong> recommend working with this supplier again.<% end %>
+
+<% if review.quality or review.adaptability or review.delivery %>
+	<p><strong>Ratings (1 low, 5 high)</strong></p>
+	<p>
+		<% if review.quality %><strong>Quality:</strong> <%= review.quality %><% end %>
+		<% if review.adaptability %><strong>Adaptability:</strong> <%= review.adaptability %><% end %>
+		<% if review.delivery %><strong>Delivery:</strong> <%= review.delivery %><% end %>
+	</p>
+<% end %>
+
+<% if review.did_well %>
+	<p><strong>What did the supplier do well?</strong></p>
+	<p>
+		<%= review.did_well %>
+	</p>
+<% end %>
+<% if review.did_badly %>
+	<p><strong>What did the supplier do badly?</strong></p>
+	<p>
+		<%= review.did_badly %>
+	</p>
+<% end %>
+
+<p><%= "Review created on #{review.created_at.strftime("%B %d, %Y")}." %></p>
