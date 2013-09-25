@@ -67,7 +67,19 @@
 							<% end %>
 						</div>
 					<% end %>
-					<% if @reviews_toggle %><div class="panel hidden reviews-content"><%= render :partial => "layouts/panel_text", :locals => {:no_yet => "reviews", :lead_type => "reviews_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
+					<% if @reviews_toggle %>
+						<div class="panel hidden reviews-content">
+							<% if @supplier.reviews.nil? or @supplier.reviews == [] %>
+								<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "reviews", :lead_type => "reviews_requested", :s_id => @supplier.id, :u_id => @user_id} %>
+							<% else %>
+								<% @supplier.reviews.each do |review| %>
+									<div>
+										<%= render :partial => "profiles/review_listing", locals: {review: review} %>
+									</div>
+								<% end %>
+							<% end %>
+						</div>
+					<% end %>
 					<% if @photos_toggle %><div class="panel hidden photos-content"><%= render :partial => "layouts/panel_text", :locals => {:no_yet => "photos", :lead_type => "photos_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
 				</div>
 			</div>
