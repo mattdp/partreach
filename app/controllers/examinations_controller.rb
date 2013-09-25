@@ -1,5 +1,5 @@
 class ExaminationsController < ApplicationController
-	before_filter :examiner_user, only: [:setup_examinations, :submit_examinations]
+	before_filter :examiner_user
 
 	def setup_examinations
 		@questionables = Supplier.quantity_by_tag_id(50,Tag.find_by_name("datadump").id)
