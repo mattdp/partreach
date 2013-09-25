@@ -69,10 +69,11 @@
 					<% end %>
 					<% if @reviews_toggle %>
 						<div class="panel hidden reviews-content">
-							<% if @supplier.reviews.nil? or @supplier.reviews == [] %>
+							<% visible_reviews = @supplier.visible_reviews %>
+							<% if visible_reviews == [] %>
 								<%= render :partial => "layouts/panel_text", :locals => {:no_yet => "reviews", :lead_type => "reviews_requested", :s_id => @supplier.id, :u_id => @user_id} %>
 							<% else %>
-								<% @supplier.reviews.each do |review| %>
+								<% visible_reviews.each do |review| %>
 									<div>
 										<%= render :partial => "profiles/review_listing", locals: {review: review} %>
 									</div>

@@ -34,6 +34,20 @@ class ExaminationsController < ApplicationController
 			note = "Suppliers submitted"
 		elsif params[:model_examined] == "review"
 			note = "Reviews submitted"
+			if params[:reviews]
+				params[:reviews].each do |r_id, v|
+					review = Review.find(r_id)
+					review.supplier_id = params[:review_supplier_id][r_id] if params[:review_supplier_id] and params[:review_supplier_id][r_id]					
+					if v == "display"
+						review.displayable = true
+					elsif v == "no_display"
+						review.displayable = false
+					else
+						note = "At least one review had an incorrect display/no_display value"
+					end
+					review.save
+				end
+			end
 		end 
 
 		redirect_to setup_examinations_path(params[:model_examined]), notice: note

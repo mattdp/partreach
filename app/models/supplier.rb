@@ -230,6 +230,10 @@ class Supplier < ActiveRecord::Base
     Supplier.where('profile_visible = true')
   end
 
+  def visible_reviews
+    Review.where('supplier_id = ? and displayable = true', self.id)
+  end
+
   #this will be slow, need to store it somewhere
   def self.visible_set_for_index(index_name)
     guide = INDEX_HOLDER[index_name]
