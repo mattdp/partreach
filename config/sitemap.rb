@@ -36,7 +36,7 @@ SitemapGenerator::Sitemap.create do
   add cto_path, changefreq: 'weekly'
 
   add '/blog'
-  # how get each of the blog posts
+  # how get each of the blog posts?
 
   Supplier.find_each do |s|
     add supplier_profile_path(s.name_for_link), changefreq: 'daily'

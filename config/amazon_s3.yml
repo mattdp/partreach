@@ -1,20 +1,20 @@
 development:
   bucket: 'partreach_initial_bucket'
   access_key_id: 'AKIAIUO3BIWNATMYNELQ'
-  secret_access_key: ENV['SB_AWS_SECRET_ACCESS_KEY']
+  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
   max_file_size: 67108864
   acl: private
 
 test:
   bucket: 'partreach_initial_bucket'
   access_key_id: 'AKIAIUO3BIWNATMYNELQ'
-  secret_access_key: ENV['SB_AWS_SECRET_ACCESS_KEY']
+  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
   max_file_size: 67108864
   acl: private
 
 production:
   bucket: 'partreach_initial_bucket'
   access_key_id: 'AKIAIUO3BIWNATMYNELQ'
-  secret_access_key: ENV['SB_AWS_SECRET_ACCESS_KEY']
+  secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
   max_file_size: 67108864
   acl: private

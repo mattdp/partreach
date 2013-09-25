@@ -1,6 +1,6 @@
 class SignedUrlsController < ApplicationController
   S3_BUCKET = 'partreach_initial_bucket'
-  AWS_SECRET_KEY_ID = ENV['SB_AWS_SECRET_ACCESS_KEY']
+  AWS_SECRET_KEY_ID = ENV['AWS_SECRET_ACCESS_KEY']
   
   def index
     render json: {
