@@ -2,7 +2,13 @@ class ExaminationsController < ApplicationController
 	before_filter :examiner_user
 
 	def setup_examinations
-		@questionables = Supplier.quantity_by_tag_id(50,Tag.find_by_name("datadump").id)
+		if params[:name] == "reviews"
+			@name = "review"
+			@questionables = Review.quantity_for_examination(20)
+		else
+			@name = "supplier"
+			@questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
+		end
 	end
 
 	#faster if batch load suppliers

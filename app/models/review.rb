@@ -27,6 +27,12 @@ class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :supplier
 
+  def self.quantity_for_examination(quantity)
+    quantity = Review.all.count if quantity == "all"
+    reviews = Review.where("displayable IS NULL").take(quantity)
+    return reviews
+  end 
+
   #validates :company, presence: true, length: {minimum: 1}
   #validates :process, presence: true, length: {minimum: 1}
   #validates :part_type, presence: true, length: {minimum: 1}

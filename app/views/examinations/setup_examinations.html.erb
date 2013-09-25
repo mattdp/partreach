@@ -3,11 +3,10 @@
 <div class="content">
   <div class="container row">
 		<%= form_tag :action => 'submit_examinations', :controller => 'examinations' do %>
-
 			<table class="examinations-holder">
-				<% @questionables.each do |supplier| %>
+				<% @questionables.each do |questionable| %>
 					<tr class="examination">
-						<%= render partial: "examinations/supplier_examination", locals: {supplier: supplier} %>
+						<%= render partial: "examinations/#{@name}_examination", locals: {@name.to_sym => questionable} %>
 					</tr>
 				<% end %>
 				<tr><td><%= submit_tag "Submit examinations", :disable_with => "Saving..." %></td></tr>
