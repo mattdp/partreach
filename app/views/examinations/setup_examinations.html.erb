@@ -3,6 +3,7 @@
 <div class="content">
   <div class="container row">
 		<%= form_tag :action => 'submit_examinations', :controller => 'examinations' do %>
+			<%= hidden_field_tag "model_examined", "#{@name}" %>
 			<table class="examinations-holder">
 				<% @questionables.each do |questionable| %>
 					<tr class="examination">
