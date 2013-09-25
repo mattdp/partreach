@@ -102,6 +102,11 @@ strong {
   font-weight: bold;
 }
 
+.disclaimer {
+  font-size: 12px;
+  line-height: 16px;
+}
+
 .italics {
   font-style: italic;
 }
@@ -716,4 +721,9 @@ input, textarea, select, .uneditable-input {
 .biography {
   max-width: 300px;
   margin-bottom: 10px;
+}
+
+.review_on_profile {
+  border: 2px solid $textDarkGrey;
+  padding: 20px;
 }
