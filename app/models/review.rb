@@ -15,12 +15,17 @@
 #  user_id         :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  displayable     :boolean
+#  supplier_id     :integer
 #
 
 class Review < ActiveRecord::Base
-  attr_accessible :adaptability, :company, :delivery, :did_badly, :did_well, :part_type, :process, :quality, :would_recommend, :user_id
+  attr_accessible :adaptability, :company, :delivery, :did_badly, :did_well, :part_type, \
+                  :process, :quality, :would_recommend, :user_id, \
+                  :displayable, :supplier_id
 
   belongs_to :user
+  belongs_to :supplier
 
   #validates :company, presence: true, length: {minimum: 1}
   #validates :process, presence: true, length: {minimum: 1}

@@ -41,6 +41,7 @@ class Supplier < ActiveRecord::Base
   has_many :owners, :dependent => :destroy
   has_many :machines, :through => :owners
   has_many :externals, :dependent => :destroy
+  has_many :reviews, :dependent => :destroy
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
