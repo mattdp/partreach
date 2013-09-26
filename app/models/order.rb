@@ -48,6 +48,14 @@ class Order < ActiveRecord::Base
     return false #0 dialogue, multiple unwon dialogues, and is_over nil cases
   end
 
+  def self.incomplete_orders
+    incompletes = []
+    Order.find_each do |o|
+      incompletes << o if !o.finished?
+    end
+    return incompletes
+  end
+
   def self.rfqs_order
     finished = [] 
     unfinished = []

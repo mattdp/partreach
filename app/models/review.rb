@@ -33,6 +33,10 @@ class Review < ActiveRecord::Base
     return reviews
   end 
 
+  def self.pending_examination
+    return Review.where("displayable IS NULL").count
+  end
+
   #validates :company, presence: true, length: {minimum: 1}
   #validates :process, presence: true, length: {minimum: 1}
   #validates :part_type, presence: true, length: {minimum: 1}

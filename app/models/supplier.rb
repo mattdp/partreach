@@ -62,6 +62,11 @@ class Supplier < ActiveRecord::Base
     Ask.where("supplier_id = ? and request = ?",self.id,request_name).present?
   end
 
+  def self.pending_examination
+    datadump_id = Tag.find_by_name("datadump").id
+    return Combo.where("tag_id = ?", datadump_id).count
+  end
+
   def update_tags(submitted_tag_ids)
     saved_ok = true
     
