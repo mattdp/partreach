@@ -99,23 +99,40 @@ class Supplier < ActiveRecord::Base
         "Supplier has claimed profile.",
         "self.claimed ? values[:points] : 0"
       ]
+      # [
+      #   "not_in_use",
+      #   100,
+      #   4,
+      #   false,
+      #   "Shouldn't show up",
+      #   "100"
+      # ]
     ]
     structure = {}
     preloader.map{ |key,points,repeats,in_use,longform,assessment| 
                     structure[key] = {
-                      points: points,
-                      repeats: repeats,
-                      in_use: in_use,
-                      longform: longform,
-                      assessment: assessment
+                      points: points, #how many points for fulfilling criteria once
+                      repeats: repeats, #how many times can you fulfill criteria for score
+                      in_use: in_use, #is this currently used on the site
+                      longform: longform, #longer description than key
+                      assessment: assessment #code to see how many points a supplier gets
                     }
                   }
     return structure
   end
 
-  #takes a hash of hashes - could be one set of stuff to evaluate, could be entire point structure
+  def self.get_in_use_point_structure
+    return Supplier.get_point_structure.delete_if{ |key,values| !values[:in_use] }
+  end
+
+  #doesn't check if in use
   def point_scoring(structure)
-    return structure.map { |key, values| eval(values[:assessment]) if values[:in_use] }.sum
+    return structure.map { |key, values| eval(values[:assessment]) }.sum
+  end
+
+  #doesn't check if in use
+  def self.max_point_scoring(structure)
+    return structure.map { |key, values| values[:repeats] * values[:points] }.sum
   end
 
   def has_event_of_request(request_name)

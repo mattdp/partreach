@@ -1,0 +1,26 @@
+<p>Points exist to measure how complete your profile is. The more points you have, the higher on our list in your state & country you will be displayed.</p>
+
+<table>
+	<tr>
+		<th>Category</th>
+		<th>Your points</th>
+		<th>Possible points</th>
+		<th>Description</th>
+	</tr>
+	<% point_structure.each do |key,values| %>
+		<tr>
+			<td><%= key %></td>
+			<td><%= supplier.point_scoring({key: values}) %></td>
+			<td><%= Supplier.max_point_scoring({key: values}) %></td>
+			<td><%= values[:longform] %></td>
+		</tr>
+	<% end %>
+	<tr>
+		<% supplier_points = supplier.point_scoring(point_structure) %>
+		<% total_points = Supplier.max_point_scoring(point_structure) %>
+		<td>Total points</td>
+		<td><%= supplier_points %></td>
+		<td><%= total_points %></td>
+		<td>You have <strong><%= "#{'%2.f' % (100 * supplier_points/total_points.to_f)}%" %></strong> of points you could earn.</td>
+	</tr>
+</table>

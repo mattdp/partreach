@@ -50,6 +50,7 @@ class SuppliersController < ApplicationController
 		@supplier = Supplier.find(params[:id])
 		@tags = @supplier.visible_tags
 		@machines_quantity_hash = @supplier.machines_quantity_hash
+		@point_structure = Supplier.get_in_use_point_structure
 	end
 
 	def admin_edit
