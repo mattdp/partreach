@@ -69,13 +69,31 @@ class Supplier < ActiveRecord::Base
     [
       [
         "has_description",
-        10,
+        20,
         1,
         true,
         "Profile has a description of the supplier."
       ],
       [
-        ""
+        "has_machines",
+        20,
+        1,
+        true,
+        "Profile has at least one machine listed."
+      ],
+      [
+        "has_reviews",
+        20,
+        4,
+        true,
+        "Profile has up to four approved reviews."
+      ],
+      [
+        "profile_claimed",
+        40,
+        1,
+        true,
+        "Supplier has claimed profile."
       ]
     ]
     structure = {}
@@ -90,6 +108,7 @@ class Supplier < ActiveRecord::Base
     return structure
   end
 
+  #needs to handle whether or not something's in use
   def point_scoring
     return true
   end
