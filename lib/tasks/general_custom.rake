@@ -1,6 +1,6 @@
 desc 'send daily update email'
 task :daily_internal_update => :environment do 
-	UserMailer.daily_interal_update
+	UserMailer.daily_internal_update
 end
 
 desc 'expose all US suppliers with certain tag constraints'
