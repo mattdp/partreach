@@ -5,11 +5,14 @@
 	<% if review.would_recommend %>They <strong><%= review.would_recommend ? "would" : "would not" %></strong> recommend working with this supplier again.<% end %>
 
 <% if review.quality or review.adaptability or review.delivery %>
-	<p><strong>Ratings (1 low, 5 high)</strong></p>
 	<p>
-		<% if review.quality %><strong>Quality:</strong> <%= review.quality %><% end %>
-		<% if review.adaptability %><strong>Adaptability:</strong> <%= review.adaptability %><% end %>
-		<% if review.delivery %><strong>Delivery:</strong> <%= review.delivery %><% end %>
+		<strong>Ratings (1 low, 5 high) - </strong>
+		<%= link_to "What do these mean?", new_review_path %>
+	</p>
+	<p>
+		<% if review.quality %><strong title="How well did the part(s) come out? If there was more than one part produced, how good or bad was the consistency between parts?">Quality:</strong> <%= review.quality %><% end %>
+		<% if review.adaptability %><strong title="Was the supplier able to answer your questions in a timely fashion? Were there any issues that had to be worked through, and was the supplier helpful in reaching a solution?">Adaptability:</strong> <%= review.adaptability %><% end %>
+		<% if review.delivery %><strong title="Was the order processed and shipped on time? Did the package arrive on time? When you received the package, were the parts packed properly to avoid damage?">Delivery:</strong> <%= review.delivery %><% end %>
 	</p>
 <% end %>
 
