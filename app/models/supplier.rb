@@ -72,45 +72,50 @@ class Supplier < ActiveRecord::Base
         20,
         1,
         true,
-        "Profile has a description of the supplier."
+        "Profile has a description of the supplier.",
+        "self.description.present? ? values[:points] : 0"
       ],
       [
         "has_machines",
         20,
         1,
         true,
-        "Profile has at least one machine listed."
+        "Profile has at least one machine listed.",
+        "self.machines.count > 0 ? values[:points] : 0"
       ],
       [
         "has_reviews",
         20,
         4,
         true,
-        "Profile has up to four approved reviews."
+        "Profile has up to four approved reviews.",
+        "[self.visible_reviews.count * values[:points], values[:repeats] * values[:points]].min"
       ],
       [
         "profile_claimed",
         40,
         1,
         true,
-        "Supplier has claimed profile."
+        "Supplier has claimed profile.",
+        "self.claimed ? values[:points] : 0"
       ]
     ]
     structure = {}
-    preloader.map{ |key,points,repeats,in_use,longform| 
+    preloader.map{ |key,points,repeats,in_use,longform,assessment| 
                     structure[key] = {
                       points: points,
                       repeats: repeats,
                       in_use: in_use,
-                      longform: longform
+                      longform: longform,
+                      assessment: assessment
                     }
                   }
     return structure
   end
 
-  #needs to handle whether or not something's in use
-  def point_scoring
-    return true
+  #takes a hash of hashes - could be one set of stuff to evaluate, could be entire point structure
+  def point_scoring(structure)
+    return structure.map { |key, values| eval(values[:assessment]) if values[:in_use] }.sum
   end
 
   def has_event_of_request(request_name)
