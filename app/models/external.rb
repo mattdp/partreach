@@ -16,4 +16,5 @@ class External < ActiveRecord::Base
 
   validates :supplier_id, presence: true
   validates :url, presence: true, uniqueness: { case_sensitive: false } 
+  validates_uniqueness_of :url, scope: :supplier_id
 end

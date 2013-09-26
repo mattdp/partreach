@@ -15,6 +15,8 @@ class Combo < ActiveRecord::Base
   belongs_to :supplier
   belongs_to :tag
 
+  validates_uniqueness_of :supplier_id, scope: :tag_id
+
   def self.destroy_family_tags(supplier_id, tag_id)
   	family = Tag.find(tag_id).family
   	removees = Tag.return_family_ids(family)

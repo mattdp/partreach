@@ -45,6 +45,7 @@ class Supplier < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates :url_main, uniqueness: {case_sensitive: false}, allow_nil: true
   validates :points, numericality: true
   validates_presence_of :address
 
