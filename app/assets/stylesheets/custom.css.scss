@@ -64,8 +64,14 @@ textarea {
 .fright {
   float: right;
 }
+
 .clear {
   clear: both;
+}
+
+.detail-text {
+  font-size: 12px;
+  font-style: italic;
 }
 
 /* typography */
@@ -590,10 +596,6 @@ form {
       padding-right: 5%;
       width: 50%;
     }
-  }
-  .detail-text {
-    font-size: 12px;
-    font-style: italic;
   }
 }
 #create_button, .form-email form .sign-in-button, .order_table .save-button {
