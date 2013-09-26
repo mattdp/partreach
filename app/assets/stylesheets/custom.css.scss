@@ -74,6 +74,18 @@ textarea {
   font-style: italic;
 }
 
+.one-fourth {
+  width: 25%;
+}
+
+.almost-one-half {
+  width: 45%;
+}
+
+.padding-left {
+  padding-left: 5px;
+}
+
 /* typography */
 
 h1 {
@@ -521,6 +533,18 @@ strong {
     font-size: 24px;
     font-weight: bold;
     float: right;
+  }
+}
+
+.review-table {
+  .numeric-input {
+    width: 5%;
+  }
+  .overall-category {
+    width: 10%;
+  }
+  .explanation {
+    width: 55%;
   }
 }
 
