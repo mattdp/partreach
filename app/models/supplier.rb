@@ -63,6 +63,37 @@ class Supplier < ActiveRecord::Base
     %w(e0_out_of_business e1_existence_doubtful)
   end
 
+  #unreadable without the method that assesses suppliers. After this is more fixed, make it into a model.
+  def self.get_point_structure
+    preloader = 
+    [
+      [
+        "has_description",
+        10,
+        1,
+        true,
+        "Profile has a description of the supplier."
+      ],
+      [
+        ""
+      ]
+    ]
+    structure = {}
+    preloader.map{ |key,points,repeats,in_use,longform| 
+                    structure[key] = {
+                      points: points,
+                      repeats: repeats,
+                      in_use: in_use,
+                      longform: longform
+                    }
+                  }
+    return structure
+  end
+
+  def point_scoring
+    return true
+  end
+
   def has_event_of_request(request_name)
     Ask.where("supplier_id = ? and request = ?",self.id,request_name).present?
   end
