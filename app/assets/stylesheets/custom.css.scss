@@ -341,6 +341,13 @@ strong {
   .supplier-list-back-to-top {
     margin-top: 10px;
   }
+  a.out-of-business {
+    font-style: italic;
+    color: $textMidGrey;
+  }
+  a.claimed {
+    font-weight: bold;
+  }
 }
 
 .order {

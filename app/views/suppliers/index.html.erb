@@ -2,7 +2,7 @@
 
 <div class="content">
 	<div class="container row supplier-list">
-		<p id="supplier-list-intro">We have 600+ suppliers catalogued, representing 20+ countries. This is the set of US 3D printing suppliers we currently have catalogued. We will add other countries soon.</p>
+		<p id="supplier-list-intro">We have 600+ suppliers catalogued, representing 20+ countries. This is the set of US 3D printing suppliers we currently have catalogued, focused initially on national and California suppliers. We will add other countries soon.</p>
 		<p>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
 
 		<p>Navigate to a US state:</p>
@@ -27,7 +27,7 @@
 					<% counter = 0 %>
 					<ul class="supplier-list-bullets">
 						<tr>
-							<% @visibles[country][state].each do |s,machine_count,review_count| %>
+							<% @visibles[country][state].each do |s,machine_count,review_count,claimed,out_of_business| %>
 								<% if counter >= columns %>
 									</tr><tr>
 									<% counter = 0 %>
@@ -35,7 +35,13 @@
 								<% if %>
 									<td>
 										<li>
-											<%= link_to s.name, supplier_profile_path(s.name_for_link) %>
+											<% if claimed %>
+												<%= link_to s.name, supplier_profile_path(s.name_for_link), class: "claimed", title: "Supplier has claimed their profile" %>
+											<% elsif out_of_business %>
+												<%= link_to s.name, supplier_profile_path(s.name_for_link), class: "out-of-business", title: "May be out of business" %>
+											<% else %>
+												<%= link_to s.name, supplier_profile_path(s.name_for_link) %>
+											<% end %>
 											<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if (!s.description.nil? and !s.description != "") %>
 											<%= image_tag "tool_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has machine data" if machine_count > 0 %>
 											<%= image_tag "star_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has at least one review" if review_count > 0 %>

@@ -59,6 +59,10 @@ class Supplier < ActiveRecord::Base
     %w(n6_signedAndNDAd n5_signed_only) 
   end
 
+  def self.risky_tag_names
+    %w(e0_out_of_business e1_existence_doubtful)
+  end
+
   def has_event_of_request(request_name)
     Ask.where("supplier_id = ? and request = ?",self.id,request_name).present?
   end
@@ -269,28 +273,31 @@ class Supplier < ActiveRecord::Base
     chaos = {}
 
     if !(profiles.nil? or profiles == [])
-      #create unsorted set of hashes        
+      risky_tag_ids = Supplier.risky_tag_names.map{|t| Tag.find_by_name(t).id}
       profiles.each do |s|  
         country = s.address.country
         state = s.address.state
         machine_count = s.machines.count
         review_count = s.reviews.count
+        claimed = s.claimed
+        out_of_business = risky_tag_ids.any?{ |t_id| s.has_tag?(t_id) }
         chaos[country] = {"no_state" => []} if chaos[country].nil?
         if s.address.state.nil?
-          chaos[country]["no_state"] << [s,machine_count,review_count]
+          chaos[country]["no_state"] << [s,machine_count,review_count,claimed,out_of_business]
         elsif chaos[country][state].nil?
-          chaos[country][state] = [[s,machine_count,review_count]]
+          chaos[country][state] = [[s,machine_count,review_count,claimed,out_of_business]]
         else
-          chaos[country][state] << [s,machine_count,review_count]
+          chaos[country][state] << [s,machine_count,review_count,claimed,out_of_business]
         end
       end
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
-        order[country]["no_state"] = chaos[country]["no_state"].sort_by{ |a,m,r| [a.points, a.name.downcase] }
+        order[country]["no_state"] = chaos[country]["no_state"].sort_by{ |a,m,r,c,o| [a.points, a.name.downcase] }
+        order[country]["CA"] = chaos[country]["CA"].sort_by{ |a,m,r,c,o| [a.points, a.name.downcase] }
         chaos[country].keys.sort.each do |state|
           #works w/ two as long as not points; need an ordering, mayhap?
-          order[country][state] = chaos[country][state].sort_by{ |a,m,r| [a.points, a.name.downcase] } unless state == "no_state"
+          order[country][state] = chaos[country][state].sort_by{ |a,m,r,c,o| [a.points, a.name.downcase] } unless state == "no_state" or state == "CA"
         end
       end
     end
