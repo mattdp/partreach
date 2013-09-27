@@ -7,8 +7,12 @@ desc 'update all suppliers points'
 task :update_all_suppliers_points => :environment do
 	point_structure = Supplier.get_in_use_point_structure
 	Supplier.find_each do |s|
-		s.points = s.point_scoring(point_structure)
-		s.save
+		if s.existence_questionable?
+			s.points = -1
+		else
+			s.points = s.point_scoring(point_structure)
+		end
+		s.save(validate: false)
 	end
 end
 

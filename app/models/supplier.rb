@@ -130,7 +130,7 @@ class Supplier < ActiveRecord::Base
     return Supplier.get_point_structure.delete_if{ |key,values| !values[:in_use] }
   end
 
-  #doesn't check if in use
+  #doesn't check if in use, does check if supplier in network
   def point_scoring(structure)
     return structure.map { |key, values| eval(values[:assessment]) }.sum
   end
@@ -213,6 +213,14 @@ class Supplier < ActiveRecord::Base
       return true if self.has_tag?(tag_id)
     end
     return false
+  end
+
+  def existence_questionable?
+    risky_tag_ids = Supplier.risky_tag_names.map {|n| Tag.find_by_name(n).id}
+    risky_tag_ids.each do |tag_id|
+      return true if self.has_tag?(tag_id)
+    end
+    return false    
   end
 
   def claim_profile(user_id)
