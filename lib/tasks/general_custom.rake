@@ -3,6 +3,15 @@ task :daily_internal_update => :environment do
 	UserMailer.daily_internal_update
 end
 
+desc 'update all suppliers points'
+task :update_all_suppliers_points => :environment do
+	point_structure = Supplier.get_in_use_point_structure
+	Supplier.find_each do |s|
+		s.points = s.point_scoring(point_structure)
+		s.save
+	end
+end
+
 desc 'expose all US suppliers with certain tag constraints'
 task :us_suppliers_public => :environment do
 	haves = ["3d_printing"]

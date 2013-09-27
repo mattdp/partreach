@@ -124,6 +124,10 @@ strong {
   font-style: italic;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 /* header */
 .container {
   width: 940px;
@@ -311,6 +315,18 @@ strong {
     font-size: 18px;
     font-weight: 400;
   }
+}
+
+.basic-table {
+  width: 100%;
+  border: 1px solid #ccc;
+  th {
+    text-decoration: underline;
+  }
+  th, td {
+    padding: 0px 5px;
+  }
+  margin: 5px 0px;
 }
 
 .supplier-list {

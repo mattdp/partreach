@@ -69,14 +69,16 @@ class Supplier < ActiveRecord::Base
     [
       [
         "has_description",
+        "Description",
         20,
         1,
         true,
-        "Profile has a description of the supplier.",
+        "Profile has an approved description of the supplier.",
         "self.description.present? ? values[:points] : 0"
       ],
       [
         "has_machines",
+        "Machines",
         20,
         1,
         true,
@@ -85,6 +87,7 @@ class Supplier < ActiveRecord::Base
       ],
       [
         "has_reviews",
+        "Reviews",
         20,
         4,
         true,
@@ -93,6 +96,7 @@ class Supplier < ActiveRecord::Base
       ],
       [
         "profile_claimed",
+        "Profile claimed",
         40,
         1,
         true,
@@ -109,9 +113,10 @@ class Supplier < ActiveRecord::Base
       # ]
     ]
     structure = {}
-    preloader.map{ |key,points,repeats,in_use,longform,assessment| 
+    preloader.map{ |key,shortform,points,repeats,in_use,longform,assessment| 
                     structure[key] = {
                       points: points, #how many points for fulfilling criteria once
+                      shortform: shortform, #small description for table
                       repeats: repeats, #how many times can you fulfill criteria for score
                       in_use: in_use, #is this currently used on the site
                       longform: longform, #longer description than key

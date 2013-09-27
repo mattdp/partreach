@@ -1,17 +1,19 @@
-<p>Points exist to measure how complete your profile is. The more points you have, the higher on our list in your state & country you will be displayed.</p>
+<p>Points exist to measure how complete your profile is. Earn more points to be displayed higher on our list in your state and country!</p>
 
-<table>
+<table class="basic-table">
 	<tr>
-		<th>Category</th>
-		<th>Your points</th>
-		<th>Possible points</th>
-		<th>Description</th>
+		<th class="center">Category</th>
+		<th class="center">Your points</th>
+		<th class="center">Possible points</th>
+		<th class="center">Description</th>
 	</tr>
 	<% point_structure.each do |key,values| %>
 		<tr>
-			<td><%= key %></td>
-			<td><%= supplier.point_scoring({key: values}) %></td>
-			<td><%= Supplier.max_point_scoring({key: values}) %></td>
+			<% supplier_points = supplier.point_scoring({key: values}) %>
+			<% total_points = Supplier.max_point_scoring({key: values}) %>
+			<td><%= values[:shortform] %></td>
+			<td class="center <%== "bold" if supplier_points < total_points %>"><%= supplier_points %></td>
+			<td class="center <%== "bold" if supplier_points < total_points %>"><%= total_points %></td>
 			<td><%= values[:longform] %></td>
 		</tr>
 	<% end %>
@@ -19,8 +21,16 @@
 		<% supplier_points = supplier.point_scoring(point_structure) %>
 		<% total_points = Supplier.max_point_scoring(point_structure) %>
 		<td>Total points</td>
-		<td><%= supplier_points %></td>
-		<td><%= total_points %></td>
+		<td class="center"><%= supplier_points %></td>
+		<td class="center"><%= total_points %></td>
 		<td>You have <strong><%= "#{'%2.f' % (100 * supplier_points/total_points.to_f)}%" %></strong> of points you could earn.</td>
 	</tr>
 </table>
+
+<p>
+	<% if on_edit_page %>
+		To get more points, update your profile!
+	<% else %>
+		To get more points, <%= link_to "update your profile!", edit_supplier_path(current_user.supplier_id) %>
+	<% end %>
+</p>

@@ -12,7 +12,7 @@
 				<%= link_to "Learn about joining our network", be_a_supplier_path %> or <%= link_to "see your profile as it looks right now.", supplier_profile_path(@supplier.name_for_link) %>
 			<% end %></p>
 		</div>
-		<%= render partial: "suppliers/points_table", locals: {supplier: @supplier, point_structure: @point_structure} %>
+		<%= render partial: "suppliers/points_table", locals: {supplier: @supplier, point_structure: @point_structure, on_edit_page: true} %>
 		<div>
       <%= form_tag supplier_path(@supplier), method: :put do %>
 				<br>
