@@ -370,6 +370,7 @@ class Supplier < ActiveRecord::Base
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
+        #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
         order[country]["no_state"] = chaos[country]["no_state"].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
         order[country]["CA"] = chaos[country]["CA"].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
         chaos[country].keys.sort.each do |state|
