@@ -370,11 +370,11 @@ class Supplier < ActiveRecord::Base
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
-        order[country]["no_state"] = chaos[country]["no_state"].sort_by{ |a,m,r,c,o| [a.points, a.name.downcase] }
-        order[country]["CA"] = chaos[country]["CA"].sort_by{ |a,m,r,c,o| [a.points, a.name.downcase] }
+        order[country]["no_state"] = chaos[country]["no_state"].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
+        order[country]["CA"] = chaos[country]["CA"].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
         chaos[country].keys.sort.each do |state|
           #works w/ two as long as not points; need an ordering, mayhap?
-          order[country][state] = chaos[country][state].sort_by{ |a,m,r,c,o| [a.points, a.name.downcase] } unless state == "no_state" or state == "CA"
+          order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state == "no_state" or state == "CA"
         end
       end
     end
