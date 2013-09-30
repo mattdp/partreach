@@ -57,7 +57,7 @@ describe "User pages" do
             click_button submit 
             visit orders_path
           end
-          it { should have_selector('h1', text: 'My requests for quotes') }
+          it { should have_selector('h3', text: 'Order information') }
         end
 
       end
@@ -75,7 +75,7 @@ describe "User pages" do
             visit orders_path
           end
 
-          it { should have_selector('h1', text: 'My requests for quotes') }
+          it { should have_selector('h3', text: 'Order information') }
           it { should have_link ('Sign out') }
 
           describe "followed by signout" do
