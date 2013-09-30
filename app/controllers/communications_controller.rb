@@ -16,8 +16,6 @@ class CommunicationsController < ApplicationController
 			note = "Communication saving problem."
 		end
 
-		binding.pry
-
 		redirect_to admin_edit_path(@supplier.name_for_link), notice: note
 	end
 

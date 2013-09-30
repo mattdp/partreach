@@ -61,6 +61,7 @@ class SuppliersController < ApplicationController
 		@claimant = User.find_by_supplier_id(@supplier.id)
 		@machines_quantity_hash = @supplier.machines_quantity_hash
 		@dialogues = Dialogue.where("supplier_id = ?",@supplier.id)
+		@communications = Communication.where("supplier_id = ?",@supplier.id)
 	end
 
 	def admin_update

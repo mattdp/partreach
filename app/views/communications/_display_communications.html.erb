@@ -1,1 +1,5 @@
-THE DISPLAY OF EXISTING COMMUNICATIONS
+<% if communications and communications != [] %>
+	<% communications.each do |c| %>
+		<%= "#{c.created_at}: #{c.means_of_interaction}/#{c.interaction_title} - #{c.notes}" %>
+	<% end %>
+<% end %>

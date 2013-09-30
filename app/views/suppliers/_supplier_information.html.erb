@@ -1,5 +1,5 @@
 <%= render :partial => "communications/new_communication", locals: {supplier_id: @supplier.id} %>
-<%= render :partial => "communications/display_communications", locals: {} %>	
+<%= render :partial => "communications/display_communications", locals: {communications: @communications} %>	
 
 <%= form_tag :action => form_action, :controller => 'suppliers' do %>
 
