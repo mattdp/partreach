@@ -6,17 +6,16 @@
   <body>
     <h1>Daily update on SupplyBetter metrics</h1>
     <h2>Things to move towards 0</h2>
-
-		<% if @pending.values.any?{ |x| x > 0 } %>  
-			<h3>Pending examination</h3>
-			<p><%= link_to "The analytics page has links to the queues", "http://www.#{@brand_name}.com#{analytics_home_path}" %></p>
-			<ul>
+	<% if @pending.values.any?{ |x| x > 0 } %>  
+		<h3>Pending examination</h3>
+		<p><%= link_to "The analytics page has links to the queues", "http://www.#{@brand_name}.com#{analytics_home_path}" %></p>
+		<ul>
     		<% @pending.each do |k,v| %>
     			<% if v > 0 %>
     				<li><%= "#{k.titleize}: #{v} pending" %></li>
     			<% end %>
     		<% end %>
-    	</ul>
+	   </ul>
     <% end %>
 
     <% if @incomplete_orders != [] %>
@@ -28,6 +27,13 @@
     		<% end %>
     	</ul>
     <% end %>    
-
+    <h2>Overall counts</h2>
+    <ul>
+        <li><%= Order.all.count %> - all orders</li>
+        <li>NOT IMPLEMENTED - Revenue (1% of winners on completed orders where winner in-network; could overestimate since went in-network after deal)</li>
+        <li>NOT IMPLEMENTED - Claimed profiles</li>
+        <li>NOT IMPLEMENTED - Claimed profiles with supplier updates</li>
+        <li>NOT IMPLEMENTED - In-network suppliers</li>
+    </ul>
   </body>
 </html>

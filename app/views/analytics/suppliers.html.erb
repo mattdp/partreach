@@ -11,9 +11,9 @@
 			<td><%= "#{k}" %></td>
 		</tr>
 		<% v.each do |supplier| %>
-			<%= render :partial => "layouts/analytics_supplier_listing", locals: {supplier: supplier} %>
+			<%= render :partial => "analytics/supplier_listing", locals: {supplier: supplier} %>
 		<% end %>
 	<% end %>
 </table>
 
-<%= render 'layouts/analytics_links' %>
+<%= render 'analytics/links' %>

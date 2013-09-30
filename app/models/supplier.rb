@@ -129,6 +129,17 @@ class Supplier < ActiveRecord::Base
     return structure
   end
 
+  def self.all_signed
+    Supplier.network_tag_names.each do |tag_name|
+      signed = signed.concat(Supplier.quantity_by_tag_id("all",Tag.find_by_name(tag_name).id))
+    end
+    return signed
+  end
+
+  def self.all_claimed
+    Supplier.where("claimed = true")
+  end
+
   def self.get_in_use_point_structure
     return Supplier.get_point_structure.delete_if{ |key,values| !values[:in_use] }
   end
@@ -142,6 +153,8 @@ class Supplier < ActiveRecord::Base
   def self.max_point_scoring(structure)
     return structure.map { |key, values| values[:repeats] * values[:points] }.sum
   end
+
+  def 
 
   def has_event_of_request(request_name)
     Ask.where("supplier_id = ? and request = ?",self.id,request_name).present?

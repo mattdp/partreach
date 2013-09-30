@@ -9,10 +9,7 @@ class AnalyticsController < ApplicationController
 	end
 
 	def suppliers
-		signed = []
-		Supplier.network_tag_names.each do |tag_name|
-			signed = signed.concat(Supplier.quantity_by_tag_id("all",Tag.find_by_name(tag_name).id))
-		end
+		@signed = Supplier.all_signed
 		claimed = Supplier.where("claimed = true")
 		@listings = {
 			"Suppliers that are signed:" => signed,
