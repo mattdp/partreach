@@ -1,6 +1,7 @@
 class BlastMailer < ActionMailer::Base
 	default from: "noreply@supplybetter.com"
   include SessionsHelper
+  layout "blast_mailer"
 
   def supplier_profile_reachout(supplier)
     @supplier = supplier
@@ -38,6 +39,10 @@ class BlastMailer < ActionMailer::Base
         logger.debug "Not sending to #{a}"
       end
     end
+  end
+
+  def test_for_layout
+    mail(to: "matt@supplybetter.com", from: "supplier-reachouts@supplybetter.com", subject:"test email!").deliver
   end
 
 end
