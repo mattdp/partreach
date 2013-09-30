@@ -39,6 +39,12 @@
 	<%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %>
 	<%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
 
+	<%= label_tag 'next_contact_date', 'next_contact_date' %>
+	<%= date_field_tag 'next_contact_date', @supplier.next_contact_date %>
+
+	<%= label_tag 'next_contact_content', 'next_contact_content' %>
+	<%= text_field_tag 'next_contact_content', @supplier.next_contact_content %>
+
 	<h3>Contact information</h3>
 
 	<%= label_tag 'phone', 'phone' %>

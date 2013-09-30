@@ -101,7 +101,7 @@ class SuppliersController < ApplicationController
   									:email, :phone, :source, :profile_visible, :claimed, \
   									:suggested_description, :suggested_machines, :suggested_preferences, \
   									:internally_hidden_preferences, :suggested_services, :suggested_address, \
-  									:suggested_url_main, :points
+  									:suggested_url_main, :points, :next_contact_date, :next_contact_content
   									)
 		end
 
