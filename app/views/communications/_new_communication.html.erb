@@ -2,17 +2,21 @@
 <p>New communication</p>
 <%= form_tag :action => "create", :controller => "communications" do %>
 
-	<%= label_tag :means_of_interaction %>
- 	<%= text_field_tag :means_of_interaction, nil, class: "input_field" %>
+	<div class="almost-one-half fleft"	>
+		<%= label_tag :means_of_interaction %>
+	 	<%= text_field_tag :means_of_interaction, nil, class: "input_field" %>
+ 	</div>
+	<div class="almost-one-half fleft">
+		<%= label_tag :interaction_title %>
+	 	<%= text_field_tag :interaction_title, nil, class: "input_field" %>
+ 	</div>
+	<div class="clear">
+  	<%= label_tag :notes %>
+	  <%= text_area_tag :notes %>
 
-	<%= label_tag :interaction_title %>
- 	<%= text_field_tag :interaction_title, nil, class: "input_field" %>
+		<%= hidden_field_tag :supplier_id, supplier_id %>
 
-  <%= label_tag :notes %>
-  <%= text_area_tag :notes %>
-
-  <%= hidden_field_tag :supplier_id, supplier_id %>
-
-	<%= submit_tag "Create" %>
+		<%= submit_tag "Create" %>
+	 </div>
 
 <% end %>
