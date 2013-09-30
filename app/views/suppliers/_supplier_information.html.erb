@@ -31,6 +31,13 @@
 	
 	<h3>Internally-facing supplier information</h3>
 
+	<%= label_tag 'source', 'source of supplier entry to database' %>
+	<%= @supplier.source %>
+
+	<%= label_tag 'claimed', 'Page claimed? By whom? (change from terminal)' %>
+	<%= @supplier.claimed %>
+	<%= " - #{@claimant.name} (#{@claimant.email})" if @claimant %>
+
 	<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, :class => "fleft" %>
 	<%= label_tag 'profile_visible', 'profile_visible' %>
 
@@ -40,12 +47,8 @@
 	<%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %>
 	<%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
 
-	<%= label_tag 'source', 'source of supplier entry to database' %>
-	<%= @supplier.source %>
-
-	<%= label_tag 'claimed', 'Page claimed? By whom? (change from terminal)' %>
-	<%= @supplier.claimed %>
-	<%= " - #{@claimant.name} (#{@claimant.email})" if @claimant %>
+	<%= render :partial => "communications/new_communication", locals: {} %>
+	<%= render :partial => "communications/display_communications", locals: {} %>	
 
 	<h3>Contact information</h3>
 
