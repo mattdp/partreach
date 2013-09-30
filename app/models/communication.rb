@@ -12,10 +12,11 @@
 #
 
 class Communication < ActiveRecord::Base
+	attr_accessible :means_of_interaction, :interaction_title, :notes, :supplier_id
 
 	belongs_to :supplier
 
 	validates :supplier_id, presence: true
-	validates :type, presence: true
+	validates :means_of_interaction, presence: true
 
 end

@@ -1,3 +1,6 @@
+<%= render :partial => "communications/new_communication", locals: {supplier_id: @supplier.id} %>
+<%= render :partial => "communications/display_communications", locals: {} %>	
+
 <%= form_tag :action => form_action, :controller => 'suppliers' do %>
 
 	<%= hidden_field_tag 'id', "#{@supplier.id}" %>
@@ -46,9 +49,6 @@
 
 	<%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %>
 	<%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
-
-	<%= render :partial => "communications/new_communication", locals: {} %>
-	<%= render :partial => "communications/display_communications", locals: {} %>	
 
 	<h3>Contact information</h3>
 

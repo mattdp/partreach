@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930182110) do
+ActiveRecord::Schema.define(version: 20130930190345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,8 +48,8 @@ ActiveRecord::Schema.define(version: 20130930182110) do
   add_index "combos", ["supplier_id"], name: "index_combos_on_supplier_id", using: :btree
 
   create_table "communications", force: true do |t|
-    t.string   "type"
-    t.string   "subtype"
+    t.string   "means_of_interaction"
+    t.string   "interaction_title"
     t.text     "notes"
     t.integer  "supplier_id"
     t.datetime "created_at"
