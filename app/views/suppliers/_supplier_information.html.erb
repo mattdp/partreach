@@ -1,17 +1,6 @@
-<%= render :partial => "communications/new_communication", locals: {supplier_id: @supplier.id} %>
-<%= render :partial => "communications/display_communications", locals: {communications: @communications} %>	
-
 <%= form_tag :action => form_action, :controller => 'suppliers' do %>
 
 	<%= hidden_field_tag 'id', "#{@supplier.id}" %>
-
-	<h2 class="center dark">
-		<% if @supplier.name.present? %>
-			<%= "#{@supplier.name} - admin_edit" %>
-		<% else %>
-			<%= "Create new supplier" %>
-		<% end %>
-	</h2>
 
 	<%= link_to "Back to suppliers list", suppliers_path if @supplier.name.present? %>
 

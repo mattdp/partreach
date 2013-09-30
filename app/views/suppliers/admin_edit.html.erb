@@ -3,6 +3,12 @@
 <div class="container">
 	<div class="span10 offset1">
 
+		<h2 class="center dark">
+			<%= "#{@supplier.name} - admin_edit" %>
+		</h2>
+
+		<%= render :partial => "communications/new_communication", locals: {supplier_id: @supplier.id} %>
+		<%= render :partial => "communications/display_communications", locals: {communications: @communications} %>	
 		<%= render :partial => "suppliers/supplier_information", locals: {form_action: "admin_update"} %>
 
 	</div>
