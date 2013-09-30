@@ -130,6 +130,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def self.all_signed
+    signed = []
     Supplier.network_tag_names.each do |tag_name|
       signed = signed.concat(Supplier.quantity_by_tag_id("all",Tag.find_by_name(tag_name).id))
     end
@@ -138,6 +139,18 @@ class Supplier < ActiveRecord::Base
 
   def self.all_claimed
     Supplier.where("claimed = true")
+  end
+
+  #suppliers that have made updates to their own profiles
+  def self.all_claimed_and_updated
+    potentials = Supplier.all_claimed
+    updatable_fields = [:suggested_description, :suggested_machines, :suggested_preferences, \
+                        :suggested_services, :suggested_address, :suggested_url_main]
+    updated = []
+    potentials.each do |supplier|
+      updated << supplier if updatable_fields.any?{|field| supplier.send(field).present?}
+    end
+    return updated
   end
 
   def self.get_in_use_point_structure
@@ -153,8 +166,6 @@ class Supplier < ActiveRecord::Base
   def self.max_point_scoring(structure)
     return structure.map { |key, values| values[:repeats] * values[:points] }.sum
   end
-
-  def 
 
   def has_event_of_request(request_name)
     Ask.where("supplier_id = ? and request = ?",self.id,request_name).present?

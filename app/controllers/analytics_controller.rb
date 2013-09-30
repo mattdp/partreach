@@ -9,8 +9,8 @@ class AnalyticsController < ApplicationController
 	end
 
 	def suppliers
-		@signed = Supplier.all_signed
-		claimed = Supplier.where("claimed = true")
+		signed = Supplier.all_signed
+		claimed = Supplier.all_claimed
 		@listings = {
 			"Suppliers that are signed:" => signed,
 			"Suppliers that have claimed profiles:" => claimed
