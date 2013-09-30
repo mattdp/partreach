@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130925181241) do
+ActiveRecord::Schema.define(version: 20130930182110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20130925181241) do
   end
 
   add_index "combos", ["supplier_id"], name: "index_combos_on_supplier_id", using: :btree
+
+  create_table "communications", force: true do |t|
+    t.string   "type"
+    t.string   "subtype"
+    t.text     "notes"
+    t.integer  "supplier_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "dialogues", force: true do |t|
     t.boolean  "initial_select"
@@ -180,6 +189,8 @@ ActiveRecord::Schema.define(version: 20130925181241) do
     t.text     "suggested_address"
     t.string   "suggested_url_main"
     t.integer  "points",                        default: 0
+    t.date     "next_contact_date"
+    t.string   "next_contact_content"
   end
 
   create_table "tags", force: true do |t|

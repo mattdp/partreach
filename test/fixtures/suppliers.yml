@@ -23,6 +23,8 @@
 #  suggested_address             :text
 #  suggested_url_main            :string(255)
 #  points                        :integer          default(0)
+#  next_contact_date             :date
+#  next_contact_content          :string(255)
 #
 
 1:
