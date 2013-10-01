@@ -1,39 +1,31 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-  </head>
-  <body>
-    <h1>Daily update on SupplyBetter metrics</h1>
-    <h2>Things to move towards 0</h2>
-	<% if @pending.values.any?{ |x| x > 0 } %>  
-		<h3>Pending examination</h3>
-		<p><%= link_to "The analytics page has links to the queues", "http://www.#{@brand_name}.com#{analytics_home_path}" %></p>
-		<ul>
-    		<% @pending.each do |k,v| %>
-    			<% if v > 0 %>
-    				<li><%= "#{k.titleize}: #{v} pending" %></li>
-    			<% end %>
-    		<% end %>
-	   </ul>
-    <% end %>
-
-    <% if @incomplete_orders != [] %>
-    	<h3>Incomplete RFQs</h3>
-    	<p>There are <%= "#{@incomplete_orders.count}" %> incomplete orders. <%= link_to "Go to the analytics page to check this out", "http://www.#{@brand_name}.com#{analytics_home_path}" %></p>
-    	<ul>
-    		<% for o in @incomplete_orders do %>
-    			<li><%= "ID:#{o.id}\tStatus:#{o.status}\tCreated:#{o.created_at.strftime('%Y-%m-%d')}" %></li>
-    		<% end %>
-    	</ul>
-    <% end %>    
-    <h2>Overall counts</h2>
+<h1>Daily update on SupplyBetter metrics</h1>
+<h2>Things to move towards 0</h2>
+<% if @pending.values.any?{ |x| x > 0 } %>  
+    <h3>Pending examination</h3>
+    <p><%= link_to "The analytics page has links to the queues", "http://www.#{@brand_name}.com#{analytics_home_path}" %></p>
     <ul>
-        <li><%= Order.all.count %> - all orders</li>
-        <li>NOT IMPLEMENTED - Revenue (1% of winners on completed orders where winner in-network; could overestimate since went in-network after deal)</li>
-        <li><%= Supplier.all_claimed.count %> - Claimed profiles</li>
-        <li><%= Supplier.all_claimed_and_updated %> - Claimed profiles with supplier updates</li>
-        <li><%= Supplier.all_signed.count %> - In-network suppliers</li>
+    	<% @pending.each do |k,v| %>
+    		<% if v > 0 %>
+    			<li><%= "#{k.titleize}: #{v} pending" %></li>
+    		<% end %>
+    	<% end %>
     </ul>
-  </body>
-</html>
+<% end %>
+
+<% if @incomplete_orders != [] %>
+    <h3>Incomplete RFQs</h3>
+    <p>There are <%= "#{@incomplete_orders.count}" %> incomplete orders. <%= link_to "Go to the analytics page to check this out", "http://www.#{@brand_name}.com#{analytics_home_path}" %></p>
+    <ul>
+    	<% for o in @incomplete_orders do %>
+    		<li><%= "ID:#{o.id}\tStatus:#{o.status}\tCreated:#{o.created_at.strftime('%Y-%m-%d')}" %></li>
+    	<% end %>
+    </ul>
+<% end %>    
+<h2>Overall counts</h2>
+<ul>
+    <li><%= Order.all.count %> - all orders</li>
+    <li>NOT IMPLEMENTED - Revenue (1% of winners on completed orders where winner in-network; could overestimate since went in-network after deal)</li>
+    <li><%= Supplier.all_claimed.count %> - Claimed profiles</li>
+    <li><%= Supplier.all_claimed_and_updated %> - Claimed profiles with supplier updates</li>
+    <li><%= Supplier.all_signed.count %> - In-network suppliers</li>
+</ul>

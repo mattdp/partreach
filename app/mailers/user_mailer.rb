@@ -9,7 +9,12 @@ class UserMailer < ActionMailer::Base
   def email_internal_team(subject, note)
     @note = note
     EMPLOYEES.each do |e|
-      mail(to: e, subject: subject).deliver
+      mail(to: e, subject: subject).deliver do |format|
+        format.html { render layout: "layouts/blast_mailer", 
+                    locals: { title: subject, 
+                              supplier: nil} 
+                            }
+      end
     end
   end
 
@@ -22,36 +27,61 @@ class UserMailer < ActionMailer::Base
     @incomplete_orders = Order.incomplete_orders
     @brand_name = brand_name
     EMPLOYEES.each do |e|
-      mail(to: e, subject: subject).deliver
+      mail(to: e, subject: subject).deliver do |format|
+        format.html { render layout: "layouts/blast_mailer", 
+                    locals: { title: subject, 
+                              supplier: nil} 
+                            }
+      end
     end
   end
 
   def welcome_email(user)
   	@user = user
     @brand_name = brand_name
-  	@url = Rails.env.production? ? "http://www.supplybetter.com" : "http://localhost:3000"
-  	mail(to: @user.email, subject: "Welcome to #{brand_name}")
+    subject = "Welcome to #{brand_name}!"
+  	mail(to: @user.email, subject: subject) do |format|
+      format.html { render layout: "layouts/blast_mailer", 
+                    locals: { title: subject, 
+                              supplier: nil} 
+                            }
+      format.text
+    end
   end
 
   #VET THIS - think it's broken
-  def bid_completed_email(user,order)
-  	@user = user
-  	@order = order
-  	@url = orders_path(order)
-  	mail(to: @user.email, subject: "Your #{brand_name} quotes have arrived")
-  end
+  # def bid_completed_email(user,order)
+  # 	@user = user
+  # 	@order = order
+  # 	@url = orders_path(order)
+  # 	mail(to: @user.email, subject: "Your #{brand_name} quotes have arrived")
+  # end
 
   def password_reset(user)
     @user = user
     @brand_name = brand_name
-    mail(to: @user.email, subject: "Password reset requested")
+    subject = "Password reset requested"
+    mail(to: @user.email, subject: subject) do |format|
+      format.html { render layout: "layouts/blast_mailer", 
+                    locals: { title: subject, 
+                              supplier: nil} 
+                            }
+      format.text
+    end
   end
 
   def supplier_intro_email(user,supplier)
     @user = user
     @brand_name = brand_name
     @supplier = supplier
-    mail(to: @user.email, subject: "Your new #{brand_name} account")
+    subject = "Your new #{brand_name} account"
+    mail(to: @user.email, subject: subject) do |format|
+      format.html { render layout: "layouts/blast_mailer", 
+                    locals: { title: subject, 
+                              supplier: supplier} 
+                            }
+      format.text
+    end
   end
 
 end

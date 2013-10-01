@@ -20,7 +20,7 @@
             <% if supplier %>
               You are receiving this email because your email address was linked to <%= supplier.name %> on SupplyBetter.com.
             <% else %>
-              You are receiving this email because you gave us your email on SupplyBetter.com.
+              Let us know if you no longer wish to receive email from us.
             <% end %>
           </p>
           <%= mail_to "unsubscribe@supplybetter.com", "Unsubscribe", subject: "Please unsubscribe me from future emails", body: "I no longer wish to receive SupplyBetter emails." %>
