@@ -9,7 +9,14 @@ class BlastMailer < ActionMailer::Base
     @url_edit = edit_supplier_path(supplier.id)
     @asks_hash = supplier.asks_hash
     Event.add_event("Supplier",supplier.id,"profile_reachout_sent")
-    mail(to: supplier.email, from: "supplier-reachouts@supplybetter.com", subject:"Customers want to know more about #{supplier.name} on #{brand_name}!")
+    mail( to: supplier.email, 
+          from: "supplier-reachouts@supplybetter.com", 
+          subject:"Customers want to know more about #{supplier.name} on #{brand_name}!") do |format|
+      format.html { render layout: "layouts/blast_mailer", 
+                    locals: { title: "Customers want to know more about #{supplier.name} on #{brand_name}!", 
+                              supplier: supplier} 
+                            }
+    end
   end
   #takes array of suppliers
   def supplier_profile_reachout_sender(suppliers,validate=true)
@@ -24,26 +31,10 @@ class BlastMailer < ActionMailer::Base
     return "Sending attempted"
   end
 
-  def basic_supplier_profile_email(email_address,subject)
-    attachments.inline['pixil3d.jpg'] = File.read('./app/assets/images/profile_pixil3d.jpg')
-    attachments.inline['partsnap.jpg'] = File.read('./app/assets/images/profile_partsnap.jpg')
-    return mail(to: email_address, subject: subject)
-  end
-  def basic_supplier_profile_email_sender(addresses,subject,validate=true)
-    addresses.each do |a|
-      if !validate or User.can_use_email?(a)
-        b = BlastMailer.blast_email(a,subject)
-        b.deliver
-      else
-        logger.debug "Not sending to #{a}"
-      end
-    end
-  end
-
   def test_for_layout
     @title = "Test title"
     m = mail(to: "matt@supplybetter.com", from: "supplier-reachouts@supplybetter.com", subject:"test email!") do |format|
-      format.html { render layout: "layouts/blast_mailer", locals: {supplier: Supplier.first} }
+      format.html { render layout: "layouts/blast_mailer", locals: {title: "Test title", supplier: nil} }
     end
   end
 

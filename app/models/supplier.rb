@@ -212,7 +212,7 @@ class Supplier < ActiveRecord::Base
         if answer[a.request].present?
           answer[a.request] += 1 
         else
-          answer[a.request] = 0
+          answer[a.request] = 1
         end
       end
     end
