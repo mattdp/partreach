@@ -1,12 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html> 
-
-  <head>     
-  <meta property="og:title" content="<%= title %>"/>
-
-  <title><%= title %></title> 
-  </head>
-  
   <body>
     <div style="min-width:550px;background-color:#3c3e44;color: #333333; text-shadow: 1px 1px 0 #fff; font-family: 'OpenSans', 'HelveticaNeue', 'Helvetica Neue', 'HelveticaNeueRoman', 'HelveticaNeue-Roman', 'Helvetica Neue Roman', 'TeXGyreHerosRegular', 'Helvetica', 'Tahoma', 'Geneva', 'Arial', sans-serif; font-weight: 400; font-stretch: normal;text-align:center;">
       <img src="https://www.supplybetter.com/assets/logo-7888d1412d5c568526ac6288f97c757a.png" alt="SupplyBetter Logo" style="margin:35px 0 35px;text-align:center">
@@ -19,9 +12,9 @@
           </div>
         </div>
         <div style="border-top:1px dashed #fff; padding:30px 10px; text-align:center; font-size:10px; font-weight:bold; color:#333; text-decoration:none">
-          <p>You are receiving this email because your email address was linked to <%= @supplier.name %> on SupplyBetter.com.
+          <p>You are receiving this email because your email address was linked to <%= supplier.name %> on SupplyBetter.com.
           </p>
-          <%= mail_to "unsubscribe@supplybetter.com", "Unsubscribe", subject: "Please unsubscribe me from future emails", body: "I no longer wish to receive SupplyBetter emails on behalf of #{@supplier.name}." %>
+          <%= mail_to "unsubscribe@supplybetter.com", "Unsubscribe", subject: "Please unsubscribe me from future emails", body: "I no longer wish to receive SupplyBetter emails on behalf of #{supplier.name}." %>
         </div>
       </div>
       <div style="font-size:10px; font-weight:normal;color:#888;text-shadow:none;margin-bottom:45px;">

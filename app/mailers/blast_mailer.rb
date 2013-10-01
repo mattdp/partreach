@@ -1,7 +1,6 @@
 class BlastMailer < ActionMailer::Base
 	default from: "noreply@supplybetter.com"
   include SessionsHelper
-  layout "blast_mailer"
 
   def supplier_profile_reachout(supplier)
     @supplier = supplier
@@ -42,7 +41,10 @@ class BlastMailer < ActionMailer::Base
   end
 
   def test_for_layout
-    mail(to: "matt@supplybetter.com", from: "supplier-reachouts@supplybetter.com", subject:"test email!").deliver
+    @title = "Test title"
+    m = mail(to: "matt@supplybetter.com", from: "supplier-reachouts@supplybetter.com", subject:"test email!") do |format|
+      format.html { render layout: "layouts/blast_mailer", locals: {supplier: Supplier.first} }
+    end
   end
 
 end
