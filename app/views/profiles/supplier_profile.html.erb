@@ -44,8 +44,10 @@
 					<div class="navbar-inner options-menu">
 						<ul class="nav">
 							<li class="active"><%= link_to "Description", "#", :class => "description-toggle" %></li>
-							<% if @machines_toggle %><li><%= link_to "Machines", "#", :class => "machines-toggle" %></li><% end %>
-							<% if @reviews_toggle %><li><%= link_to "Reviews", "#", :class => "reviews-toggle" %></li><% end %>
+							<% @num_machines > 0 ? machines_link_text = "Machines (#{@num_machines})" : machines_link_text = "Machines" %>
+							<% if @machines_toggle %><li><%= link_to "#{machines_link_text}", "#", :class => "machines-toggle" %></li><% end %>
+							<% @num_reviews > 0 ? reviews_link_text = "Reviews (#{@num_reviews})" : reviews_link_text = "Reviews" %>							
+							<% if @reviews_toggle %><li><%= link_to "#{reviews_link_text}", "#", :class => "reviews-toggle" %></li><% end %>
 							<% if @photos_toggle %><li><%= link_to "Photos", "#", :class => "photos-toggle" %></li><% end %>
 						</ul>
 					</div>

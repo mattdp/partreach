@@ -12,6 +12,8 @@ class ProfilesController < ApplicationController
 		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
 		@tags = @supplier.visible_tags if @supplier
 		@machines_quantity_hash = @supplier.machines_quantity_hash
+		@num_machines = @machines_quantity_hash.sum{|k,v| v}
+		@num_reviews = @supplier.visible_reviews.count
 		@allowed = allowed_to_see_supplier_profile?(@supplier)
 	end
 
