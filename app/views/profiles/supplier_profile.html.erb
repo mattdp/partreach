@@ -57,7 +57,9 @@
 						<% if @supplier.description.nil? %>
 							<%= render :partial => "profiles/panel_text", :locals => {:no_yet => "description", :lead_type => "description_requested", :s_id => @supplier.id, :u_id => @user_id} %>
 						<% else %>
-							<%= simple_format(@supplier.description, :class => "supplier-description") %>
+							<div class="supplier-description">
+								<%= raw(@supplier.description) %>
+							</div>
 						<% end %>
 					</div>
 					<% if @machines_toggle %>
