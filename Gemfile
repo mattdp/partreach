@@ -17,10 +17,6 @@ gem 'bloggy', '0.2.2'
 gem 'sitemap_generator', '4.2.0' #https://github.com/kjvarga/sitemap_generator
 gem 'fog', '1.15.0' #for remote sitemap_generator uploads
 
-# add these gems to help with the transition to Rails 4.0:
-gem 'protected_attributes'
-gem 'rails-observers'
-
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -46,5 +42,3 @@ end
 group :production do
 	gem 'rails_12factor', '0.0.2'
 end
-
-

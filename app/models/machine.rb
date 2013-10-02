@@ -10,7 +10,6 @@
 #
 
 class Machine < ActiveRecord::Base
-	attr_accessible :manufacturer, :name
 
 	has_many :owners
 	has_many :suppliers, :through => :owners

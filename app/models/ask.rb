@@ -12,7 +12,6 @@
 #
 
 class Ask < ActiveRecord::Base
-  attr_accessible :supplier_id, :user_id, :request, :real
 
   has_one :supplier
 

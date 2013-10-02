@@ -11,7 +11,6 @@
 #
 
 class Location < ActiveRecord::Base
-	attr_accessible :country, :zip, :location_name
 
 	validates :country, presence: true
 	validates :zip, presence: true

@@ -11,8 +11,6 @@
 # 
 
 class Lead < ActiveRecord::Base
-  attr_accessible :email, :email_valid, :email_subscribed
-
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :email, presence: true, length: {minimum: 2}, \

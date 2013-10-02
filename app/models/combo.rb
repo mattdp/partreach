@@ -10,7 +10,6 @@
 #
 
 class Combo < ActiveRecord::Base
-  attr_accessible :supplier_id, :tag_id
 
   belongs_to :supplier
   belongs_to :tag

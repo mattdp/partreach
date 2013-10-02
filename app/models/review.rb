@@ -20,9 +20,6 @@
 #
 
 class Review < ActiveRecord::Base
-  attr_accessible :adaptability, :company, :delivery, :did_badly, :did_well, :part_type, \
-                  :process, :quality, :would_recommend, :user_id, \
-                  :displayable, :supplier_id
 
   belongs_to :user
   belongs_to :supplier

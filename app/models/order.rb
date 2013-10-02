@@ -24,9 +24,6 @@
 #
 
 class Order < ActiveRecord::Base
-  attr_accessible :quantity, :drawing, :name, :deadline, :supplier_message, \
-  :material_message, :next_steps, :suggested_suppliers, :drawing_units, :status, \
-  :next_action_date
   has_attached_file :drawing,
   									:url => "/:attachment/:id/:style/:basename.:extension",
   									:path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"

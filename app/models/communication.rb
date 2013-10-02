@@ -12,7 +12,6 @@
 #
 
 class Communication < ActiveRecord::Base
-	attr_accessible :means_of_interaction, :interaction_title, :notes, :supplier_id
 
 	belongs_to :supplier
 

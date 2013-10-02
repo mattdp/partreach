@@ -10,8 +10,6 @@
 #
 
 class External < ActiveRecord::Base
-  attr_accessible :supplier_id, :url
-
   has_one :supplier
 
   validates :supplier_id, presence: true

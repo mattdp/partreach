@@ -10,7 +10,6 @@
 #
 
 class Owner < ActiveRecord::Base
-	attr_accessible :supplier_id, :machine_id
 
 	belongs_to :supplier
 	belongs_to :machine

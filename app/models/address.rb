@@ -16,7 +16,6 @@
 #
 
 class Address < ActiveRecord::Base
-  attr_accessible :city, :name, :state, :street, :zip, :country, :notes
 
   belongs_to :place, :polymorphic => true
 

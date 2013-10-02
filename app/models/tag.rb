@@ -14,7 +14,6 @@
 #
 
 class Tag < ActiveRecord::Base
-  attr_accessible :family, :name, :note, :exclusive, :visible, :readable
 
   has_many :combos
   has_many :suppliers, :through => :combos

@@ -28,12 +28,6 @@
 #
 
 class Supplier < ActiveRecord::Base
-  attr_accessible :name, :name_for_link, :url_main, :url_materials, :description, \
-  :email, :phone, :source, :profile_visible, :claimed, \
-  :suggested_description, :suggested_machines, :suggested_preferences, \
-  :internally_hidden_preferences, :suggested_services, :suggested_address, \
-  :suggested_url_main, :points, :next_contact_content, :next_contact_date
-
   belongs_to :user
 
   has_many :dialogues
