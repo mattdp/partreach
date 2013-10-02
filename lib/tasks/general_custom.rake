@@ -105,6 +105,16 @@ task :ask_screener => :environment do
 	end
 end
 
+desc 'paragraphify supplier descriptions outside <p> tags'
+task :paragraphify_suppliers => :environment do
+	Supplier.find_each do |supplier|
+		if supplier.description.present? and !supplier.description.include?("<")
+			supplier.description = "<p>#{supplier.description}</p>"
+			supplier.save validate: false
+		end
+	end
+end
+
 desc 'Create sample suppliers for database'
 task :populate_suppliers => :environment do
 	require 'active_record/fixtures'
