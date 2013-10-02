@@ -75,7 +75,7 @@
 											<% else %>
 												<%= link_to s.name, supplier_profile_path(s.name_for_link) %>
 											<% end %>
-											<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if (!s.description.nil? and !s.description != "") %>
+											<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if !(s.description.nil? or s.description == "") %>
 											<%= image_tag "tool_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has machine data" if machine_count > 0 %>
 											<%= image_tag "star_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has at least one review" if review_count > 0 %>
 										</li>
