@@ -2,9 +2,11 @@
 	<div class="container supplier-profile">
 		<% if !@allowed %>
 			<% provide(:title, "Profile not found") %>
+			<% meta_description "Profile not found" %>
 			<p>Profile not found.</p>
 		<% else %>
 			<% provide(:title, "#{@supplier.name} - Supplier Profile") %>
+			<% meta_description "#{@supplier.name} - Supplier Profile" %>
 			<h1 id="supplier-name">
 				<%= "#{@supplier.name}" %>
 				<%= " (not visible)" unless @supplier.profile_visible %>
