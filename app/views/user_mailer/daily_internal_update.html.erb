@@ -26,6 +26,6 @@
     <li><%= Order.all.count %> - all orders</li>
     <li>NOT IMPLEMENTED - Revenue (1% of winners on completed orders where winner in-network; could overestimate since went in-network after deal)</li>
     <li><%= Supplier.all_claimed.count %> - Claimed profiles</li>
-    <li><%= Supplier.all_claimed_and_updated %> - Claimed profiles with supplier updates</li>
+    <li><%= Supplier.all_claimed_and_updated.count %> - Claimed profiles with supplier updates</li>
     <li><%= Supplier.all_signed.count %> - In-network suppliers</li>
 </ul>
