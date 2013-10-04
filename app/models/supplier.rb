@@ -383,7 +383,7 @@ class Supplier < ActiveRecord::Base
       profiles.each do |s|  
         country = s.address.country
         state = s.address.state
-        machine_count = s.machines.count
+        machine_count = s.owners.count
         review_count = s.reviews.count
         claimed = s.claimed
         out_of_business = risky_tag_ids.any?{ |t_id| s.has_tag?(t_id) }

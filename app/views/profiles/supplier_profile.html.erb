@@ -6,7 +6,7 @@
 			<p>Profile not found.</p>
 		<% else %>
 			<% provide(:title, "#{@supplier.name} - Supplier Profile") %>
-			<% meta_description "#{@supplier.name} - Supplier Profile" %>
+			<% meta_description @meta %>
 			<h1 id="supplier-name">
 				<%= "#{@supplier.name}" %>
 				<%= " (not visible)" unless @supplier.profile_visible %>

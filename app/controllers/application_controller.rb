@@ -22,4 +22,18 @@ class ApplicationController < ActionController::Base
 	  }
 	end
 
+	def andlist(clauses)
+    case clauses.length
+    when 0
+      return ""
+    when 1
+      return "#{clauses[0]}"
+    when 2
+      return "#{clauses[0]} and #{clauses[1]}"
+    else
+      clauses[clauses.length-1] = "and " + clauses[clauses.length-1]
+      return clauses.join ", "
+    end
+  end
+
 end

@@ -19,6 +19,7 @@ class Tag < ActiveRecord::Base
   has_many :suppliers, :through => :combos
  
   validates :name, presence: true, uniqueness: {case_sensitive: false}
+  validates :readable, presence: true, uniqueness: {case_sensitive: false}
 
   def self.return_family_ids(family)
   	answer = []
