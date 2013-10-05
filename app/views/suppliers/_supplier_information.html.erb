@@ -30,11 +30,15 @@
 	<%= @supplier.claimed %>
 	<%= " - #{@claimant.name} (#{@claimant.email})" if @claimant %>
 
-	<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, :class => "fleft" %>
-	<%= label_tag 'profile_visible', 'profile_visible' %>
+	<div>
+		<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, class: "fleft" %>
+		<%= label_tag 'profile_visible', 'profile_visible', class: "fleft" %>
+	</div>
 
-	<%= label_tag 'suggested_preferences', 'suggested_preferences (from supplier)' if @suggested_preferences %>
-	<%= @supplier.suggested_preferences %>
+	<div class="clear">
+		<%= label_tag 'suggested_preferences', 'suggested_preferences (from supplier)' if @suggested_preferences %>
+		<%= @supplier.suggested_preferences %>
+	</div>
 
 	<%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %>
 	<%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
