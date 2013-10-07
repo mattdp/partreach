@@ -34,8 +34,8 @@ class OrdersController < ApplicationController
   def new
 
     fs = params[:from_supplier]
-    looking_for_supplier = Supplier.where("id = ?",fs) if not(fs.nil?)
-    looking_for_supplier.present? ? @supplier = nil : @supplier = looking_for_supplier[0]
+    looking_for_supplier = Supplier.where("id = ?",fs.to_i) if not(fs.nil?)
+    looking_for_supplier.present? ? @supplier = looking_for_supplier[0] : @supplier = nil
 
     @order = Order.new
 
