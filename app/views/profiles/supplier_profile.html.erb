@@ -91,6 +91,9 @@
 					<% if @photos_toggle %><div class="panel hidden photos-content"><%= render :partial => "profiles/panel_text", :locals => {:no_yet => "photos", :lead_type => "photos_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
 				</div>
 			</div>
+		<% else %>
+			<h3 class="center">This is not a valid URL to find a supplier profile</h3>
+			<p>It's possible we haven't released a profile for this supplier yet, or perhaps you typed in a bad address. Want to head to the <%= link_to "home page", root_path %> instead?</p>
 		<% end %>
 		<div class="back_to_suppliers">
 			<%= link_to "Return to supplier index", suppliers_path %>
