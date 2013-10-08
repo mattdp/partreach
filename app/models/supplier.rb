@@ -277,11 +277,15 @@ class Supplier < ActiveRecord::Base
     end
   end
 
-  def self.quantity_by_tag_id(quantity,tag_id)
+  def self.quantity_by_tag_id(quantity,tag_id,country=nil,state=nil)
     quantity = Combo.all.count if quantity == "all"
     combos = Combo.where("tag_id = ?", tag_id).take(quantity)
     return [] if combos == []
-    return Supplier.find(combos.map{|c| c.supplier_id})
+    suppliers = Supplier.find(combos.map{|c| c.supplier_id})
+    suppliers = suppliers.delete_if{|s| s.address.country != country} if country
+    return [] if suppliers == []
+    suppliers = suppliers.delete_if{|s| s.address.state != state} if state    
+    return suppliers
   end
 
   def add_communication(subtype,type="email")
@@ -421,9 +425,8 @@ class Supplier < ActiveRecord::Base
 
   end
 
-  def create_or_update_address(options)
-    return false if options.nil? or options == {}
-    address_attributes = options.delete_if { |k,v| v.nil? or v.empty?}
+  def create_or_update_address(options=nil)
+    address_attributes = options.delete_if { |k,v| v.nil? or v.empty?} if options.present?
 
     if self.address
       return self.address.update_attributes(address_attributes)

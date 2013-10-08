@@ -74,11 +74,15 @@ task :daily_cache_reset => :environment do
 	end
 end
 
-desc 'Setup URL names for suppliers'
+desc 'Setup URL names for suppliers and tags'
 task :supplier_url_creation => :environment do
 	Supplier.find_each do |s|
 		s.name_for_link =	Supplier.proper_name_for_link(s.name)
 		s.save
+	end
+	Tag.find_each do |t|
+		t.name_for_link = Tag.proper_name_for_link(t.readable)
+		t.save
 	end
 end
 

@@ -1,3 +1,5 @@
 <% provide(:title,"FILL THIS IN") %>
 
-<%= @state %>
+<% @suppliers.each do |s| %>
+	<p><%= s.name %></p>
+<% end %>
