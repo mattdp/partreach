@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
 
     supplier = Supplier.find(supplier_id)
     supplier.claim_profile(user.id)
+    supplier.add_communication("create_and_link_to_supplier")
 
     user.send_supplier_intro_email(supplier_id)
   end

@@ -284,6 +284,14 @@ class Supplier < ActiveRecord::Base
     return Supplier.find(combos.map{|c| c.supplier_id})
   end
 
+  def add_communication(subtype,type="email")
+    c = Communication.new({ supplier_id: self.id
+                            type: type
+                            subtype: subtype
+                          })
+    return c.save
+  end
+
   def add_tag(tag_id)
     t = Tag.find_by_id(tag_id)    
     return false if t.nil?    
