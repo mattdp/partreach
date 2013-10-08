@@ -44,7 +44,7 @@
 					<% @supplier = Supplier.find(d.supplier_id) %>
 					<td><%= "#{d.id}" %></td>
 					<td>
-						<strong><%= "#{@supplier.name}" %></strong>
+						<strong><%= link_to "#{@supplier.name}", admin_edit_path(@supplier.id) %></strong>
 						<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
 						<%= "\n#{@supplier.email}" if @supplier.email %>
 						<%= "\n#{@supplier.phone}" if @supplier.phone %>

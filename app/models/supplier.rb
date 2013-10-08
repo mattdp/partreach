@@ -285,8 +285,8 @@ class Supplier < ActiveRecord::Base
   end
 
   def add_communication(subtype,type="email")
-    c = Communication.new({ supplier_id: self.id
-                            type: type
+    c = Communication.new({ supplier_id: self.id,
+                            type: type,
                             subtype: subtype
                           })
     return c.save
