@@ -1,5 +1,36 @@
-<% provide(:title,"FILL THIS IN") %>
+<% if @valid_guide %>
+	<% provide(:title,"#{@tag.readable} suppliers in #{@state} (#{@country})") %>
+	<div>
+		<% count = @suppliers.count %>
+		<% noun = "suppliers" %>
+		<p>
+			<% if count == 0 %>
+				There are no publicly listed
+			<% elsif count == 1 %>
+				<% noun = "supplier" %>	
+				There is one
+			<% else %>
+				<%= "There are #{@suppliers.count}" %> 
+			<% end %>
+		 	<%= " #{@tag.readable} #{noun} in #{@state} (#{@country})." %>
+		</p>
 
-<% @suppliers.each do |s| %>
-	<p><%= s.name %></p>
+		<p>
+			<strong><%= "#{@tag.readable}: " %></strong><%= "#{@tag.note}" %>
+		</p>
+	</div>
+
+	<div>
+		<% if @suppliers.present? %>
+			<% @suppliers.each do |s| %>
+				<p><%= link_to "#{s.name}", supplier_profile_path("#{s.name_for_link}") %></p>
+			<% end %>
+		<% else %>
+			<p>If you know of a supplier that should be in this category, <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
+		<% end %>	
+	</div>
+<% else %>
+	<% provide(:title,"No publicly released guide at this address") %>
+	<h3 class="center">This is not a valid URL to find a guide</h3>
+	<p>It's possible we haven't released a guide for this geography or tag yet, or perhaps you typed in a bad address. Want to head to the <%= link_to "home page", root_path %> instead?</p>
 <% end %>
