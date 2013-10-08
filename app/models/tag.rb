@@ -20,6 +20,11 @@ class Tag < ActiveRecord::Base
  
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :readable, presence: true, uniqueness: {case_sensitive: false}
+  validates :name_for_link, presence: true
+
+  def self.proper_name_for_link(readable)
+    Supplier.proper_name_for_link(readable)
+  end
 
   def self.return_family_ids(family)
   	answer = []

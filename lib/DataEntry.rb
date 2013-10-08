@@ -68,7 +68,8 @@ module DataEntry
 			t = Tag.new if t.nil?
 			t.name = n
 			t.family = row[TAG_FAMILY]
-			t.readable = row[TAG_READABLE] if !row[TAG_READABLE].nil? and row[TAG_READABLE].length > 0
+			t.readable = row[TAG_READABLE]
+			t.name_for_link = Tag.proper_name_for_link(t.readable)
 			t.note = row[TAG_NOTE] if !row[TAG_NOTE].nil? and row[TAG_NOTE].length > 0
 			t.exclusive = row[TAG_EXCLUSIVE] if !row[TAG_EXCLUSIVE].nil? and row[TAG_EXCLUSIVE].length > 0
 			t.visible = row[TAG_VISIBLE] if !row[TAG_VISIBLE].nil? and row[TAG_VISIBLE].length > 0

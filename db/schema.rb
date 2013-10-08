@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930190345) do
+ActiveRecord::Schema.define(version: 20131008221245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -197,11 +197,12 @@ ActiveRecord::Schema.define(version: 20130930190345) do
     t.string   "name"
     t.string   "family"
     t.text     "note"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "exclusive",  default: false
-    t.boolean  "visible",    default: true
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "exclusive",     default: false
+    t.boolean  "visible",       default: true
     t.string   "readable"
+    t.string   "name_for_link"
   end
 
   create_table "uploads", force: true do |t|
