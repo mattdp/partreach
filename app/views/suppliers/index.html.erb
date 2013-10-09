@@ -11,7 +11,7 @@
 			<p>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
 		</div>
 
-		<%= render partial:"suppliers/supplier_list_key" %>
+		<%= render partial: "suppliers/supplier_list_key" %>
 
 		<p class="clear">Navigate to a US state:</p>
 		<% @to_index.each do |state| %>
@@ -35,7 +35,7 @@
 					<% counter = 0 %>
 					<ul class="supplier-list-bullets">
 						<tr>
-							<% @visibles[country][state].each do |s,machine_count,review_count,claimed,out_of_business| %>
+							<% @visibles[country][state].each do |supplier,machine_count,review_count,claimed,out_of_business| %>
 								<% if counter >= columns %>
 									</tr><tr>
 									<% counter = 0 %>
@@ -43,16 +43,7 @@
 								<% if %>
 									<td>
 										<li>
-											<% if claimed %>
-												<%= link_to s.name, supplier_profile_path(s.name_for_link), class: "claimed", title: "Supplier has claimed their profile" %>
-											<% elsif out_of_business %>
-												<%= link_to s.name, supplier_profile_path(s.name_for_link), class: "out-of-business", title: "May be out of business" %>
-											<% else %>
-												<%= link_to s.name, supplier_profile_path(s.name_for_link) %>
-											<% end %>
-											<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if !(s.description.nil? or s.description == "") %>
-											<%= image_tag "tool_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has machine data" if machine_count > 0 %>
-											<%= image_tag "star_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has at least one review" if review_count > 0 %>
+											<%= render partial: "suppliers/supplier_link_and_icons", locals: {supplier: supplier, machine_count: machine_count, review_count: review_count, claimed: claimed, out_of_business: out_of_business} %>
 										</li>
 									</td>
 									<% counter += 1 %>

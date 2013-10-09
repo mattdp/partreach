@@ -32,9 +32,23 @@
 			<%= render partial:"suppliers/supplier_list_key" %>
 			
 			<div class="clear">
+				<h3 class="supplier-list-country"><%= "#{@tag.readable} suppliers in #{@state} (#{@country})" %></h3>
 				<% if @suppliers.present? %>
-					<% @suppliers.each do |s| %>
-						<p><%= link_to "#{s.name}", supplier_profile_path("#{s.name_for_link}") %></p>
+					<% @suppliers.each do |supplier| %>
+						<% if counter >= columns %>
+							</tr><tr>
+							<% counter = 0 %>
+						<% end %>
+						<td>
+							<li>
+								<%= render partial: "suppliers/supplier_link_and_icons", locals: {supplier: supplier, machine_count: machine_count, review_count: review_count, claimed: claimed, out_of_business: out_of_business} %>
+							</li>
+						</td>
+						<% counter += 1 %>
+						<% while !(counter >= columns) %>
+							<td></td>
+							<% counter += 1 %>
+						<% end %>
 					<% end %>
 				<% else %>
 					<p>If you know of a supplier that should be in this category, <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>

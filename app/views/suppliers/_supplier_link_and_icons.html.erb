@@ -1,0 +1,10 @@
+<% if claimed %>
+	<%= link_to supplier.name, supplier_profile_path(supplier.name_for_link), class: "claimed", title: "Supplier has claimed their profile" %>
+<% elsif out_of_business %>
+	<%= link_to supplier.name, supplier_profile_path(supplier.name_for_link), class: "out-of-business", title: "May be out of business" %>
+<% else %>
+	<%= link_to supplier.name, supplier_profile_path(supplier.name_for_link) %>
+<% end %>
+<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if !(supplier.description.nil? or supplier.description == "") %>
+<%= image_tag "tool_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has machine data" if machine_count > 0 %>
+<%= image_tag "star_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has at least one review" if review_count > 0 %>
