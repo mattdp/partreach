@@ -8,11 +8,21 @@ class GuidesController < ApplicationController
 		@tag = Tag.find_by_name_for_link(params[:tag_name_for_link])
 		@valid_guide = valid_guide?(@country,@state,@tag.name_for_link)
 		if @valid_guide
-			supplier_holder = Supplier.visible_profiles_sorted(nil,@tag,@country,@state)
+			supplier_holder = Rails.cache.fetch "#{@country}-#{@state}-#{@tag.name_for_link}", :expires_in => 25.hours do |key|
+				logger.debug "Cache miss: us_3d_printing"
+				Supplier.visible_profiles_sorted(nil,@tag,@country,@state)
+			end
 			@supplier_information_arrays = supplier_holder[@country][@state] if supplier_holder.present?
 		end
 	end
 
+
+@visibles = Rails.cache.fetch "us_3d_printing", :expires_in => 25.hours do |key|
+			logger.debug "Cache miss: us_3d_printing"
+			Supplier.visible_profiles_sorted("us_3d_printing")
+		end
+
+Rails.cache.fetch "us_3d_printing", :expires_in => 25.hours
 	private
 
 		def valid_guide?(country,state,tag_name)
