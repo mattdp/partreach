@@ -22,6 +22,22 @@ class Tag < ActiveRecord::Base
   validates :readable, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true
 
+  def self.tag_set(category,attribute)
+    sets = {
+      risky: %w(e0_out_of_business e1_existence_doubtful),
+      network: %w(n6_signedAndNDAd n5_signed_only)
+    }
+    if attribute == :name
+      return sets[category]
+    elsif attribute == :id
+      return sets[category].map { |n| Tag.find_by_name(n).id }
+    elsif attribute == :object 
+      return sets[category].map { |n| Tag.find_by_name(n) }
+    else
+      return "This should never happen"
+    end
+  end
+
   def self.proper_name_for_link(readable)
     Supplier.proper_name_for_link(readable)
   end

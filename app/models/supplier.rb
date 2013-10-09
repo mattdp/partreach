@@ -52,14 +52,6 @@ class Supplier < ActiveRecord::Base
       "us_3d_printing" => [["3d_printing"],["e1_existence_doubtful","datadump"],["US"]]
     }
 
-  def self.network_tag_names
-    %w(n6_signedAndNDAd n5_signed_only) 
-  end
-
-  def self.risky_tag_names
-    %w(e0_out_of_business e1_existence_doubtful)
-  end
-
   #unreadable without the method that assesses suppliers. After this is more fixed, make it into a model.
   def self.get_point_structure
     preloader = 
@@ -125,8 +117,8 @@ class Supplier < ActiveRecord::Base
 
   def self.all_signed
     signed = []
-    Supplier.network_tag_names.each do |tag_name|
-      signed = signed.concat(Supplier.quantity_by_tag_id("all",Tag.find_by_name(tag_name).id))
+    Tag.tag_set(:network,:id) do |tag_id|
+      signed = signed.concat(Supplier.quantity_by_tag_id("all",tag_id))
     end
     return signed
   end
@@ -229,7 +221,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def is_in_network?
-    network_tag_ids = Supplier.network_tag_names.map {|n| Tag.find_by_name(n).id}
+    network_tag_ids = Tag.tag_set(:network,:id)
     network_tag_ids.each do |tag_id|
       return true if self.has_tag?(tag_id)
     end
@@ -237,7 +229,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def existence_questionable?
-    risky_tag_ids = Supplier.risky_tag_names.map {|n| Tag.find_by_name(n).id}
+    risky_tag_ids = Tag.tag_set(:risky,:id)
     risky_tag_ids.each do |tag_id|
       return true if self.has_tag?(tag_id)
     end
@@ -304,7 +296,7 @@ class Supplier < ActiveRecord::Base
     c = Combo.new(supplier_id: self.id, tag_id: tag_id)
     Combo.destroy_family_tags(self.id,tag_id) if t.exclusive and !t.family.nil?
     to_return = c.save
-    Event.add_event("Supplier",self.id,"joined_network") if c.save and Supplier.network_tag_names.include?(t.name)
+    Event.add_event("Supplier",self.id,"joined_network") if c.save and Tag.tag_set(:network,:name).include?(t.name)
     return to_return
   end
 
@@ -381,6 +373,10 @@ class Supplier < ActiveRecord::Base
     return holder
   end
 
+  def array_for_sorting
+    [self, self.owners.count, self.reviews.count, s.claimed, Tag.tag_set(:risky,:id).any?{ |t_id| s.has_tag?(t_id) }]
+  end
+
   #return nested, ordered arrays of [country][state][supplier]
   #no_state for country -> supplier direct stuff
   #super slow, relies on caching, hurts me to do this :/
@@ -391,7 +387,6 @@ class Supplier < ActiveRecord::Base
     chaos = {}
 
     if !(profiles.nil? or profiles == [])
-      risky_tag_ids = Supplier.risky_tag_names.map{|t| Tag.find_by_name(t).id}
       profiles.each do |s|  
         country = s.address.country
         state = s.address.state

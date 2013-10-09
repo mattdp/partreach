@@ -31,7 +31,7 @@ module DataAnalysis
 
 	#return array of emails
 	def emails_of_paying_suppliers
-		tags = Supplier.network_tag_names.map{|t| Tag.find_by_name(t)}
+		tags = Tag.tag_set(:network,:object)
 
 		emails = []
 		no_email_found = []
