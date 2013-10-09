@@ -374,7 +374,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def array_for_sorting
-    [self, self.owners.count, self.reviews.count, s.claimed, Tag.tag_set(:risky,:id).any?{ |t_id| s.has_tag?(t_id) }]
+    return [self, self.owners.count, self.reviews.count, self.claimed, Tag.tag_set(:risky,:id).any?{ |t_id| self.has_tag?(t_id) }]
   end
 
   #return nested, ordered arrays of [country][state][supplier]
@@ -390,17 +390,14 @@ class Supplier < ActiveRecord::Base
       profiles.each do |s|  
         country = s.address.country
         state = s.address.state
-        machine_count = s.owners.count
-        review_count = s.reviews.count
-        claimed = s.claimed
-        out_of_business = risky_tag_ids.any?{ |t_id| s.has_tag?(t_id) }
+        array_for_sorting = s.array_for_sorting
         chaos[country] = {"no_state" => []} if chaos[country].nil?
         if s.address.state.nil?
-          chaos[country]["no_state"] << [s,machine_count,review_count,claimed,out_of_business]
+          chaos[country]["no_state"] << array_for_sorting
         elsif chaos[country][state].nil?
-          chaos[country][state] = [[s,machine_count,review_count,claimed,out_of_business]]
+          chaos[country][state] = [array_for_sorting]
         else
-          chaos[country][state] << [s,machine_count,review_count,claimed,out_of_business]
+          chaos[country][state] << array_for_sorting
         end
       end
 
