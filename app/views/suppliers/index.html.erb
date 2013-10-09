@@ -10,34 +10,8 @@
 
 			<p>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
 		</div>
-		<div id="supplier-list-key">
-			<table class="basic-table">
-				<tr>
-					<th class="skinny">Symbol</th>
-					<th class="fat">Meaning</th>
-				</tr>
-				<tr>
-					<td class="skinny"><%= link_to "Bold", "#", class: "claimed", rel: "nofollow" %></td>
-					<td class="fat">Supplier claimed profile</td>
-				</tr>
-				<tr>
-					<td class="skinny"><%= link_to "Grey", "#", class: "out-of-business", rel: "nofollow" %></td>
-					<td class="fat">May be out of business</td>
-				</tr>
-				<tr>
-					<td class="skinny"><%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" %></td>
-					<td class="fat">Profile has a supplier description</td>
-				</tr>
-				<tr>
-					<td class="skinny"><%= image_tag "tool_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has machine data" %></td>
-					<td class="fat">Profile has data on supplier's machines</td>
-				</tr>
-				<tr>
-					<td class="skinny"><%= image_tag "star_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has at least one review" %></td>
-					<td class="fat">Profile has at least one supplier review</td>
-				</tr>
-			</table>
-		</div>
+
+		<%= render partial:"suppliers/supplier_list_key" %>
 
 		<p class="clear">Navigate to a US state:</p>
 		<% @to_index.each do |state| %>
