@@ -6,7 +6,7 @@ class GuidesController < ApplicationController
 		@state = params[:state].upcase
 		@tag = Tag.find_by_name_for_link(params[:tag_name_for_link])
 		@suppliers = Supplier.quantity_by_tag_id("all",@tag.id,@country,@state)
-		@valid_guide = true
+		@valid_guide = false
 	end
 
 end
