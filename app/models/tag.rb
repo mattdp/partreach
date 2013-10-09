@@ -2,15 +2,16 @@
 #
 # Table name: tags
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  family     :string(255)
-#  note       :text
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  exclusive  :boolean          default(FALSE)
-#  visible    :boolean          default(TRUE)
-#  readable   :string(255)
+#  id            :integer          not null, primary key
+#  name          :string(255)
+#  family        :string(255)
+#  note          :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  exclusive     :boolean          default(FALSE)
+#  visible       :boolean          default(TRUE)
+#  readable      :string(255)
+#  name_for_link :string(255)
 #
 
 class Tag < ActiveRecord::Base
