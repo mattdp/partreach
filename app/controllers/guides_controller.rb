@@ -5,8 +5,9 @@ class GuidesController < ApplicationController
 		@country = params[:country].upcase
 		@state = params[:state].upcase
 		@tag = Tag.find_by_name_for_link(params[:tag_name_for_link])
-		@suppliers = Supplier.quantity_by_tag_id("all",@tag.id,@country,@state)
-		@valid_guide = false
+		supplier_holder = Supplier.visible_profiles_sorted(nil,@tag,@country,@state)
+		@supplier_information_arrays = supplier_holder[@country][@state]
+		@valid_guide = true
 	end
 
 end

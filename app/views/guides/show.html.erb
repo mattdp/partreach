@@ -8,7 +8,7 @@
 					<strong><%= "#{@tag.readable}: " %></strong><%= "#{@tag.note}" %>
 				</p>
 
-				<% count = @suppliers.count %>
+				<% count = @supplier_information_arrays.count %>
 				<% noun = "suppliers" %>
 				<p>
 					<% if count == 0 %>
@@ -17,7 +17,7 @@
 						<% noun = "supplier" %>	
 						There is one
 					<% else %>
-						<%= "There are #{@suppliers.count}" %> 
+						<%= "There are #{count}" %> 
 					<% end %>
 				 	<%= " #{@tag.readable} #{noun} in #{@state} (#{@country})." %>
 				</p>
@@ -33,8 +33,10 @@
 			
 			<div class="clear">
 				<h3 class="supplier-list-country"><%= "#{@tag.readable} suppliers in #{@state} (#{@country})" %></h3>
-				<% if @suppliers.present? %>
-					<% @suppliers.each do |supplier| %>
+				<% if count > 0 %>
+					<% columns = 3 %>
+					<% counter = 0 %>
+					<% @supplier_information_arrays.each do |supplier,machine_count,review_count,claimed,out_of_business| %>
 						<% if counter >= columns %>
 							</tr><tr>
 							<% counter = 0 %>

@@ -377,11 +377,21 @@ class Supplier < ActiveRecord::Base
     return [self, self.owners.count, self.reviews.count, self.claimed, Tag.tag_set(:risky,:id).any?{ |t_id| self.has_tag?(t_id) }]
   end
 
+  def self.basic_guide_set(country,state,tag_name_for_link)
+    return "IMPLEMENT HERE"
+  end
+
   #return nested, ordered arrays of [country][state][supplier]
   #no_state for country -> supplier direct stuff
   #super slow, relies on caching, hurts me to do this :/
-  def self.visible_profiles_sorted(index_name)
-    profiles = Supplier.visible_set_for_index(index_name)
+  def self.visible_profiles_sorted(index_name,tag=nil,country=nil,state=nil)
+    if index_name
+      profiles = Supplier.visible_set_for_index(index_name)
+    elsif country and state and tag
+      profiles = Supplier.quantity_by_tag_id("all",tag.id,country,state)
+    else
+      profiles = nil
+    end
 
     order = ActiveSupport::OrderedHash.new
     chaos = {}
@@ -403,12 +413,19 @@ class Supplier < ActiveRecord::Base
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
-        #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
-        order[country]["no_state"] = chaos[country]["no_state"].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
-        order[country]["CA"] = chaos[country]["CA"].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
-        chaos[country].keys.sort.each do |state|
-          #works w/ two as long as not points; need an ordering, mayhap?
-          order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state == "no_state" or state == "CA"
+        if index_name
+          #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
+          order[country]["no_state"] = chaos[country]["no_state"].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
+          order[country]["CA"] = chaos[country]["CA"].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
+          chaos[country].keys.sort.each do |state|
+            #works w/ two as long as not points; need an ordering, mayhap?
+            order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state == "no_state" or state == "CA"
+          end
+        else
+          chaos[country].keys.sort.each do |state|
+            #works w/ two as long as not points; need an ordering, mayhap?
+            order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
+          end
         end
       end
     end
