@@ -44,7 +44,7 @@ class Word < ActiveRecord::Base
 
   def self.transform(from_symbol,input,to_symbol)
     word = Word.locate(input,from_symbol)
-    return false if word.nil?
+    return nil if word.nil?
     return word.send(to_symbol)
   end
 
