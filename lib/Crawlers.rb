@@ -118,7 +118,7 @@ module Crawlers
 				s = Supplier.create(params)
 				if s.id.present?
 					s.create_or_update_address(	country: "US",
-																			state: Address.geo_name_transform("us_state",row[UTAH_POSSIBLE_STATE],:to_longform)
+																			state: Word.transform(:shortform,row[UTAH_POSSIBLE_STATE],:longform)
 																		) if Word.is_in_family?(row[UTAH_POSSIBLE_STATE],"us_states",:longform)
 					s.add_tag(Tag.find_by_name("datadump").id) #important to mark them as such
 				end

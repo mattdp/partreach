@@ -42,6 +42,12 @@ class Word < ActiveRecord::Base
   	Word.all.detect {|word| word.send(symbol) == text}
   end
 
+  def self.transform(from_symbol,input,to_symbol)
+    word = Word.locate(input,from_symbol)
+    return false if word.nil?
+    return word.send(to_symbol)
+  end
+
 	#to delete after initial load
 	def self.initial_information
 

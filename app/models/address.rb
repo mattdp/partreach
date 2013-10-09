@@ -41,21 +41,6 @@ class Address < ActiveRecord::Base
     suppliers = Supplier.find(addresses.map{|a| a.place_id})
   end
 
-  def self.geo_name_transform(attribute,input,symbol)
-    if attribute == "country"
-      hash = COUNTRIES_HASH
-    elsif attribute == "us_state"
-      hash = US_STATE_HASH
-    else
-      return false
-    end
-
-    #states always upcase
-    return hash[input].upcase if symbol == :to_shortform
-    return hash.map{ |k,v| k if v == input }.compact[0] if symbol == :to_longform  
-    return false
-  end
-
   def self.us_states_of_visible_profiles
     states = []
     suppliers = Supplier.visible_profiles
