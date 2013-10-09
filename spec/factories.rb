@@ -29,10 +29,11 @@ FactoryGirl.define do
   end
 
   factory :tag do |t|
-    sequence(:name)     { |n| "Tag#{n}" }
-    sequence(:readable) { |n| "Readable#{n}" }
-    family              "generic"
-    exclusive           false
+    sequence(:name)           { |n| "Tag#{n}" }
+    sequence(:name_for_link)  { |n| "tag#{n}" }
+    sequence(:readable)       { |n| "Readable#{n}" }
+    family                    "generic"
+    exclusive                 false
   end
 
 end
