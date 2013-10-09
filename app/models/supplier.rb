@@ -280,10 +280,10 @@ class Supplier < ActiveRecord::Base
     return suppliers
   end
 
-  def add_communication(subtype,type="email")
+  def add_communication(interaction_title,means_of_interaction="email")
     c = Communication.new({ supplier_id: self.id,
-                            type: type,
-                            subtype: subtype
+                            means_of_interaction: means_of_interaction,
+                            interaction_title: interaction_title
                           })
     return c.save
   end
