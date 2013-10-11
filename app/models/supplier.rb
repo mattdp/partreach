@@ -46,10 +46,11 @@ class Supplier < ActiveRecord::Base
   validates :points, numericality: true
   validates_presence_of :address
 
-  #index is {name => [[haves tags],[have nots tags],[countries]]}
+  #index is {name => [[mandatory have tags 'ands'],[have one of to get into set 'ors'][ mandatory have nots tags],[countries]]}
+  #needs to have at least one thing in one of the first two categories
   INDEX_HOLDER = 
     {
-      "us_3d_printing" => [["3d_printing"],["datadump"],["US"]]
+      "us_3d_printing" => [[],["3d_printing"],["datadump"],["US"]]
     }
 
   #unreadable without the method that assesses suppliers. After this is more fixed, make it into a model.
@@ -358,14 +359,16 @@ class Supplier < ActiveRecord::Base
   def self.visible_set_for_index(index_name)
     guide = INDEX_HOLDER[index_name]
     return false if guide.nil?
-    haves, have_nots, countries = guide[0], guide[1], guide[2]
+    and_style_haves, or_style_haves, and_style_have_nots, countries = guide[0], guide[1], guide[2], guide[3]
     holder = []
     Supplier.find_each do |s|
       if (
           s.profile_visible and
           (countries == [] or (s.address and countries.include?(s.address.country))) and
-          !(haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) and
-          !(have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
+          !(and_style_have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
+        ) and (
+          !(and_style_haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) or #either has all tags that're required, making ors irrelevant
+          (and_style_haves == [] and or_style_haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)) #or has at least one of the or_style tags, when ands not a factor
         )
           holder << s
       end
