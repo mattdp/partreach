@@ -7,7 +7,6 @@ class GuidesController < ApplicationController
 		@state_long = Word.transform(:name_for_link,params[:state],:longform)
 		@tag = Tag.find_by_name_for_link(params[:tag_name_for_link])
 		@valid_guide = valid_guide?(@country,@state,@tag.name_for_link)
-		binding.pry
 		if @valid_guide
 			id_string = "#{@country}-#{@state}-#{@tag.name_for_link}"
 			supplier_holder = Rails.cache.fetch id_string, :expires_in => 25.hours do |key|
