@@ -430,6 +430,7 @@ class Supplier < ActiveRecord::Base
           end
         end
       end
+      
     end
 
     return order
