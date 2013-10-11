@@ -385,7 +385,7 @@ class Supplier < ActiveRecord::Base
   #super slow, relies on caching
   #no_state for country -> supplier direct stuff
   #exceptions - array of state names, that go first on the list in that order
-  def self.visible_profiles_sorted(index_name,tag=nil,country=nil,state=nil, up_front_states=[])
+  def self.visible_profiles_sorted(index_name,tag=nil,country=nil,state=nil, up_front_states=nil)
     if index_name
       profiles = Supplier.visible_set_for_index(index_name)
     elsif country and state and tag
@@ -415,13 +415,13 @@ class Supplier < ActiveRecord::Base
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
         if index_name
-          if up_front_states do |upfront|
-            #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
-            order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
-            chaos[country].keys.sort.each do |state|
-              #works w/ two as long as not points; need an ordering, mayhap?
-              order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state.in?(up_front_states)
+          if up_front_states.present? 
+            up_front_states.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
+              order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
             end
+          end
+          chaos[country].keys.sort.each do |state|
+            order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state.in?(up_front_states)
           end
         else
           chaos[country].keys.sort.each do |state|
@@ -430,7 +430,7 @@ class Supplier < ActiveRecord::Base
           end
         end
       end
-      
+
     end
 
     return order
