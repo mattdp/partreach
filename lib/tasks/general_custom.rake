@@ -65,7 +65,7 @@ task :daily_cache_reset => :environment do
 	expires_hours = 25
 	
 	to_reset = {
-		"us_3d_printing" => 'Supplier.visible_profiles_sorted("us_3d_printing")',
+		"us_3d_printing" => 'Supplier.visible_profiles_sorted({index: {name: "us_3d_printing"}},["no_state","CA"])',
 		"us_states_of_visible_profiles" => 'Address.us_states_of_visible_profiles'
 	}
 

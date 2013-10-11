@@ -385,11 +385,14 @@ class Supplier < ActiveRecord::Base
   #super slow, relies on caching
   #no_state for country -> supplier direct stuff
   #exceptions - array of state names, that go first on the list in that order
-  def self.visible_profiles_sorted(index_name,tag=nil,country=nil,state=nil, up_front_states=nil)
-    if index_name
-      profiles = Supplier.visible_set_for_index(index_name)
-    elsif country and state and tag
-      profiles = Supplier.quantity_by_tag_id("all",tag.id,country,state)
+  #index: {name: index_name}
+  #tcs: {tag: country: state:}
+  def self.visible_profiles_sorted(selectors, up_front_states=nil)
+    if selectors.keys.include?(:index)
+      profiles = Supplier.visible_set_for_index(selectors[:index][:name])
+    elsif selectors.keys.include?(:tcs)
+      hash = selectors[:tcs]
+      profiles = Supplier.quantity_by_tag_id("all",hash[:tag].id,hash[:country],hash[:state])
     else
       profiles = nil
     end
@@ -414,7 +417,7 @@ class Supplier < ActiveRecord::Base
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
-        if index_name
+        if selectors.keys.include?(:index)
           if up_front_states.present? 
             up_front_states.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
               order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
