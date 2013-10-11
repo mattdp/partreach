@@ -19,44 +19,7 @@
 			<%= link_to "#{state}", suppliers_path(anchor: "US-#{state}") %>
 		<% end %>
 
-		<% @visibles.keys.each do |country| %>
-			<h3 class="supplier-list-country"><%= "#{country}" %></h3>
-			<% @visibles[country].keys.each do |state| %>
-				<%== "<h4 class=\"supplier-list-state fleft\" id=\"#{country}-#{state}\">" %>
-					<% if state == "no_state" %>
-						<%= "Many-state / No state" %>
-					<% else %> 
-						<%= "#{state}" %>
-					<% end %>
-				</h4>
-				<%= link_to "Back to top", suppliers_path(anchor: "supplier-list-intro"), :class => "supplier-list-back-to-top fright" %>
-				<table class="clear">
-					<% columns = 3 %>
-					<% counter = 0 %>
-					<ul class="supplier-list-bullets">
-						<tr>
-							<% @visibles[country][state].each do |supplier,machine_count,review_count,claimed,out_of_business| %>
-								<% if counter >= columns %>
-									</tr><tr>
-									<% counter = 0 %>
-								<% end %>
-								<% if %>
-									<td>
-										<li>
-											<%= render partial: "suppliers/supplier_link_and_icons", locals: {supplier: supplier, machine_count: machine_count, review_count: review_count, claimed: claimed, out_of_business: out_of_business} %>
-										</li>
-									</td>
-									<% counter += 1 %>
-								<% end %>
-							<% end %>
-							<% while !(counter >= columns) %>
-								<td></td>
-								<% counter += 1 %>
-							<% end %>
-						</tr>
-					</ul>
-				</table>
-			<% end %> 
-		<% end %>
+		<%= render partial: "suppliers/supplier_list", locals: {visibles: @visibles, columns: 3, header_text: @visibles.keys[0]} %>
+
 	</div>
 </div>
