@@ -3,6 +3,7 @@ class GuidesController < ApplicationController
 	#only works for all of country, state, tag being present and nicely formatted
 	def show
 		@country = Word.transform(:name_for_link,params[:country],:shortform)
+		@country_long = Word.transform(:name_for_link,params[:country],:longform)
 		@state = Word.transform(:name_for_link,params[:state],:shortform)
 		@state_long = Word.transform(:name_for_link,params[:state],:longform)
 		@tag = Tag.find_by_name_for_link(params[:tag_name_for_link])

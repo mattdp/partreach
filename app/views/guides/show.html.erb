@@ -1,5 +1,11 @@
+<% if @state.present? %>
+	<% location_phrase = "#{@state_long} (#{@country_long})" %>
+<% else %>
+	<% location_phrase = "#{@country_long}" %>
+<% end %>
+
 <% if @valid_guide %>
-	<% provide(:title,"#{@tag.readable} suppliers in #{@state} (#{@country})") %>
+	<% provide(:title,"#{@tag.readable} suppliers in #{location_phrase}.") %>
 	<div class="content">
 		<div class="container row supplier-list">
 
@@ -19,7 +25,7 @@
 					<% else %>
 						<%= "There are #{count}" %> 
 					<% end %>
-				 	<%= " #{@tag.readable} #{noun} in #{@state_long} (#{@country})." %>
+				 	<%= " #{@tag.readable} #{noun} in #{location_phrase}." %>
 				</p>
 				<% if count > 1 %>
 					<p>Suppliers are sorted by profile completeness, since supplier profiles with descriptions, machine data, and reviews are more informative. If you're a supplier, find your profile, claim it, and increase your ranking!</p>
@@ -32,7 +38,7 @@
 			<%= render partial:"suppliers/supplier_list_key" %>
 			
 			<div class="clear">
-				<h3 class="supplier-list-country"><%= "#{@tag.readable} suppliers in #{@state_long} (#{@country})" %></h3>
+				<h3 class="supplier-list-country"><%= "#{@tag.readable} suppliers in #{location_phrase}" %></h3>
 				<% if count > 0 %>
 					<% columns = 3 %>
 					<% counter = 0 %>
