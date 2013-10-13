@@ -1,5 +1,5 @@
 class Filter
-	attr_reader :name, :format, :info
+	attr_reader :name, :format, :limits
 
 	def self.all
 		all = {}
@@ -9,17 +9,17 @@ class Filter
 		return all
 	end
 
-	def initialize(name,format,info)
+	def initialize(name,format,limits)
 		@name = name
 		@format = format
-		@info = {}
+		@limits = {}
 		if format == "cst"
 			a,b,c = :country,:state,:tag
-			@info[a], @info[b], @info[c] = info[0], info[1], info[2]
+			@limits[a], @limits[b], @limits[c] = limits[0], limits[1], limits[2]
 		elsif format == "stipulations"
 			a,b = :and_style_haves, :or_style_haves
 			c,d = :and_style_have_nots, :countries
-			@info[a], @info[b], @info[c], @info[d] = info[0], info[1], info[2], info[3]
+			@limits[a], @limits[b], @limits[c], @limits[d] = limits[0], limits[1], limits[2], limits[3]
 		end
 	end
 

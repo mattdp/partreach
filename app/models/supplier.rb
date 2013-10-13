@@ -302,7 +302,7 @@ class Supplier < ActiveRecord::Base
   def has_tag?(tag_id)
     t = Tag.find_by_id(tag_id)
     return false if t.nil?    
-    self.tags.include?(t)
+    return self.tags.include?(t)
   end
 
   def add_machine(machine_id, quantity=1)
@@ -350,23 +350,33 @@ class Supplier < ActiveRecord::Base
 
   #this will be slow, need to store it somewhere
   def self.visible_set_for_index(index_name)
-    guide = INDEX_HOLDER[index_name]
-    return false if guide.nil?
-    and_style_haves, or_style_haves, and_style_have_nots, countries = guide[0], guide[1], guide[2], guide[3]
+    filter = Filter.get(index_name)
+    return false if filter.nil?
+    limits = filter.limits
+    and_style_haves, or_style_haves, and_style_have_nots, countries = limits[:and_style_haves], limits[:or_style_haves], limits[:and_style_have_nots], limits[:countries]
     holder = []
-    Supplier.find_each do |s|
-      if (
-          s.profile_visible and
-          (countries == [] or (s.address and countries.include?(s.address.country))) and
-          !(and_style_have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true))
-        ) and (
-          !(and_style_haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false)) or #either has all tags that're required, making ors irrelevant
-          (and_style_haves == [] and or_style_haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)) #or has at least one of the or_style tags, when ands not a factor
-        )
-          holder << s
+    Supplier.find_each do |supplier|
+      if Supplier.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries)
+        holder << supplier
       end
     end
+    binding.pry
     return holder
+  end
+
+  def self.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries)
+    test_visibility = supplier.profile_visible
+    test_countries = (countries == [] or (supplier.address and countries.include?(supplier.address.country)))
+    test_and_style_have_nots = !(and_style_have_nots.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
+    test_and_style_haves = and_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(false)
+    test_or_style_haves = (and_style_haves == [] and or_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
+
+    requisites = (test_visibility and test_countries and test_and_style_have_nots)
+    eithers = (test_and_style_haves or test_or_style_haves)
+
+    binding.pry
+
+    return (requisites and eithers)
   end
 
   def array_for_sorting
