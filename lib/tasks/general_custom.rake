@@ -65,13 +65,17 @@ task :daily_cache_reset => :environment do
 	expires_hours = 25
 	
 	to_reset = {
-		"us_3d_printing" => 'Supplier.visible_profiles_sorted({index: {name: "us_3d_printing"}},["no_state","CA"])',
 		"us_states_of_visible_profiles" => 'Address.us_states_of_visible_profiles'
 	}
 
 	to_reset.each do |key,method_string|
 		Rails.cache.write(key,eval(method_string),:expires_in => expires_hours.hours)
 	end
+
+	Filter.all.each do |filter|
+		Rails.cache.write(filter.name,Supplier.visible_profiles_sorted(filter))
+	end
+
 end
 
 desc 'Setup URL names for suppliers and tags'
