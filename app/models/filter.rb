@@ -9,10 +9,10 @@ class Filter
 		return all
 	end
 
-	def initialize(name,format,limits,up_front_states=[])
+	def initialize(name,format,limits,up_front_states)
 		@name = name
 		@format = format
-		@up_front_states = up_front_states if up_front_states.present?
+		@up_front_states = up_front_states
 
 		@limits = {}
 		if format == "cst"
@@ -51,7 +51,7 @@ class Filter
 					"CA",
 					"3d_printing"
 				],
-				[]
+				nil
 			]
 		]
 	end

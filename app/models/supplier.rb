@@ -420,7 +420,7 @@ class Supplier < ActiveRecord::Base
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
         ufs = filter.up_front_states
-        if format == "index"
+        if format == "stipulations"
           if ufs.present? 
             ufs.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
               order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } if chaos[country][upfront].present?
