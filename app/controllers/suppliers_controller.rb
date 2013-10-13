@@ -38,7 +38,8 @@ class SuppliersController < ApplicationController
 	def index
 		@visibles, @supplier_count = Rails.cache.fetch "us_3d_printing", :expires_in => 25.hours do |key|
 			logger.debug "Cache miss: us_3d_printing"
-			Supplier.visible_profiles_sorted({index: {name: "us_3d_printing"}},["no_state","CA"])
+			filter = Filter.get("us_3d_printing")
+			Supplier.visible_profiles_sorted(filter)
 		end
 		@to_index = Rails.cache.fetch "us_states_of_visible_profiles", :expires_in => 25.hours do |key|
 			logger.debug "Cache miss: us_states_of_visible_profiles"

@@ -7,12 +7,12 @@ class GuidesController < ApplicationController
 		@state = Word.transform(:name_for_link,params[:state],:shortform)
 		@state_long = Word.transform(:name_for_link,params[:state],:longform)
 		@tag = Tag.find_by_name_for_link(params[:tag_name_for_link])
-		@valid_guide = Filter.get("#{@country}-#{@state}-#{@tag.name_for_link}")
-		if @valid_guide
+		filter = Filter.get("#{@country}-#{@state}-#{@tag.name_for_link}")
+		if filter
 			id_string = "#{@country}-#{@state}-#{@tag.name_for_link}"
 			@visibles, @supplier_count = Rails.cache.fetch id_string, :expires_in => 25.hours do |key|
 				logger.debug "Cache miss: #{id_string}"
-				Supplier.visible_profiles_sorted({tcs: {tag: @tag, country: @country, state: @state}})
+				Supplier.visible_profiles_sorted(filter)
 			end
 		end
 	end

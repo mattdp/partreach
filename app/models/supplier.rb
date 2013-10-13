@@ -349,8 +349,7 @@ class Supplier < ActiveRecord::Base
   end
 
   #this will be slow, need to store it somewhere
-  def self.visible_set_for_index(index_name)
-    filter = Filter.get(index_name)
+  def self.visible_set_for_index(filter)
     return false if filter.nil?
     limits = filter.limits
     and_style_haves, or_style_haves, and_style_have_nots, countries = limits[:and_style_haves], limits[:or_style_haves], limits[:and_style_have_nots], limits[:countries]
@@ -383,15 +382,14 @@ class Supplier < ActiveRecord::Base
   #return nested, ordered arrays of [country][state][supplier]
   #super slow, relies on caching
   #no_state for country -> supplier direct stuff
-  #exceptions - array of state names, that go first on the list in that order
-  #index: {name: index_name}
-  #tcs: {tag: country: state:}
-  def self.visible_profiles_sorted(selectors, up_front_states=nil)
-    if selectors.keys.include?(:index)
-      profiles = Supplier.visible_set_for_index(selectors[:index][:name])
-    elsif selectors.keys.include?(:tcs)
-      hash = selectors[:tcs]
-      profiles = Supplier.quantity_by_tag_id("all",hash[:tag].id,hash[:country],hash[:state])
+
+  def self.visible_profiles_sorted(filter)
+    format = filter.format
+    if format == "stipulations"
+      profiles = Supplier.visible_set_for_index(filter)
+    elsif format == "cst"
+      limits = filter.limits
+      profiles = Supplier.quantity_by_tag_id("all",Tag.find_by_name(limits[:tag_name]).id,limits[:country],limits[:state])
     else
       profiles = nil
     end
@@ -421,14 +419,15 @@ class Supplier < ActiveRecord::Base
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
-        if selectors.keys.include?(:index)
-          if up_front_states.present? 
-            up_front_states.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
-              order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
+        ufs = filter.up_front_states
+        if format == "index"
+          if ufs.present? 
+            ufs.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
+              order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } if chaos[country][upfront].present?
             end
           end
           chaos[country].keys.sort.each do |state|
-            order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state.in?(up_front_states)
+            order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state.in?(ufs)
           end
         else
           chaos[country].keys.sort.each do |state|
