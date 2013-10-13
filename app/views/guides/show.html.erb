@@ -14,19 +14,10 @@
 					<strong><%= "#{@tag.readable}: " %></strong><%= "#{@tag.note}" %>
 				</p>
 
-				<% count = 6 %>
+				<% count = 999 %>
+				<%# ^ magic number, set correctly when reeimplement count %>
 				<% noun = "suppliers" %>
-				<p>
-					<% if count == 0 %>
-						There are no publicly listed
-					<% elsif count == 1 %>
-						<% noun = "supplier" %>	
-						There is one
-					<% else %>
-						<%= "There are #{count}" %> 
-					<% end %>
-				 	<%= " #{@tag.readable} #{noun} in #{location_phrase}." %>
-				</p>
+
 				<% if count > 1 %>
 					<p>Suppliers are sorted by profile completeness, since supplier profiles with descriptions, machine data, and reviews are more informative. If you're a supplier, find your profile, claim it, and increase your ranking!</p>
 				<% end %>
