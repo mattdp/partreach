@@ -408,9 +408,13 @@ class Supplier < ActiveRecord::Base
         country = s.address.country
         state = s.address.state
         array_for_sorting = s.array_for_sorting
-        chaos[country] = {"no_state" => []} if chaos[country].nil?
+        chaos[country] = {} if chaos[country].nil?
         if s.address.state.nil?
-          chaos[country]["no_state"] << array_for_sorting
+          if chaos[country]["no_state"].nil?
+            chaos[country]["no_state"] = [array_for_sorting]
+          else
+            chaos[country]["no_state"] << array_for_sorting
+          end
         elsif chaos[country][state].nil?
           chaos[country][state] = [array_for_sorting]
         else
