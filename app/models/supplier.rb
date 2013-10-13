@@ -400,6 +400,7 @@ class Supplier < ActiveRecord::Base
       profiles = nil
     end
 
+    count = profiles.count
     order = ActiveSupport::OrderedHash.new
     chaos = {}
 
@@ -443,7 +444,7 @@ class Supplier < ActiveRecord::Base
 
     end
 
-    return order
+    return [order, count]
 
   end
 

@@ -14,14 +14,24 @@
 					<strong><%= "#{@tag.readable}: " %></strong><%= "#{@tag.note}" %>
 				</p>
 
-				<% count = 999 %>
-				<%# ^ magic number, set correctly when reeimplement count %>
 				<% noun = "suppliers" %>
 
-				<% if count > 1 %>
+				<p>
+					<% if @supplier_count == 0 %>
+						There are no publicly listed
+					<% elsif @supplier_count == 1 %>
+						<% noun = "supplier" %>
+						There is one
+					<% else %>
+						<%= "There are #{@supplier_count}" %>
+					<% end %>
+					<%= " #{@tag.readable} #{noun} in #{location_phrase}." %>
+				</p>
+
+				<% if @supplier_count > 1 %>
 					<p>Suppliers are sorted by profile completeness, since supplier profiles with descriptions, machine data, and reviews are more informative. If you're a supplier, find your profile, claim it, and increase your ranking!</p>
 				<% end %>
-				<% if count > 0 %>
+				<% if @supplier_count > 0 %>
 					<p>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
 				<% end %>
 			</div>
@@ -29,7 +39,7 @@
 			<%= render partial:"suppliers/supplier_list_key" %>
 			
 			<div class="clear">
-				<% if count > 0 %>
+				<% if @supplier_count > 0 %>
 					<%= render partial: "suppliers/supplier_list", locals: { visibles: @visibles, columns: 1, header_text: "#{@tag.readable} suppliers in #{location_phrase}" } %>
 				<% else %>
 					<h3 class="supplier-list-country"><%= "#{@tag.readable} suppliers in #{location_phrase}" %></h3>

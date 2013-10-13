@@ -36,7 +36,7 @@ class SuppliersController < ApplicationController
 
 	#note that using "key" instead of the us_3d... caused failure
 	def index
-		@visibles = Rails.cache.fetch "us_3d_printing", :expires_in => 25.hours do |key|
+		@visibles, @supplier_count = Rails.cache.fetch "us_3d_printing", :expires_in => 25.hours do |key|
 			logger.debug "Cache miss: us_3d_printing"
 			Supplier.visible_profiles_sorted({index: {name: "us_3d_printing"}},["no_state","CA"])
 		end
