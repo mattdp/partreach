@@ -4,7 +4,7 @@
 	<% location_phrase = "#{@country_long}" %>
 <% end %>
 
-<% if @valid_guide %>
+<% if @filter %>
 	<% provide(:title,"#{@tag.readable} suppliers in #{location_phrase}.") %>
 	<div class="content">
 		<div class="container row supplier-list">
