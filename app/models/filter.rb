@@ -1,4 +1,5 @@
 class Filter
+	attr_reader :name, :format, :info
 
 	def self.all
 		all = {}
@@ -8,20 +9,18 @@ class Filter
 		return all
 	end
 
-	def intialize(name,format,info)
+	def initialize(name,format,info)
 		@name = name
-		answer = {format: format}
-		if format == "tcs"
+		@format = format
+		@info = {}
+		if format == "cst"
 			a,b,c = :country,:state,:tag
-			answer[a], answer[b], answer[c] = info[0], info[1], info[2]
+			@info[a], @info[b], @info[c] = info[0], info[1], info[2]
 		elsif format == "stipulations"
 			a,b = :and_style_haves, :or_style_haves
 			c,d = :and_style_have_nots, :countries
-			answer[a], answer[b], answer[c], answer[d] = info[0], info[1], info[2], info[3]
-		else
-			return nil
+			@info[a], @info[b], @info[c], @info[d] = info[0], info[1], info[2], info[3]
 		end
-		return answer
 	end
 
 	def self.get(name)
