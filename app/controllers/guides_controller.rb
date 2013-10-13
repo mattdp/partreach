@@ -10,11 +10,10 @@ class GuidesController < ApplicationController
 		@valid_guide = valid_guide?(@country,@state,@tag.name_for_link)
 		if @valid_guide
 			id_string = "#{@country}-#{@state}-#{@tag.name_for_link}"
-			supplier_holder = Rails.cache.fetch id_string, :expires_in => 25.hours do |key|
+			@visibles = Rails.cache.fetch id_string, :expires_in => 25.hours do |key|
 				logger.debug "Cache miss: #{id_string}"
 				Supplier.visible_profiles_sorted({tcs: {tag: @tag, country: @country, state: @state}})
 			end
-			@supplier_information_arrays = supplier_holder[@country][@state] if supplier_holder.present?
 		end
 	end
 

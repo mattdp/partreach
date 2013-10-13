@@ -14,7 +14,7 @@
 					<strong><%= "#{@tag.readable}: " %></strong><%= "#{@tag.note}" %>
 				</p>
 
-				<% count = @supplier_information_arrays.count %>
+				<% count = 6 %>
 				<% noun = "suppliers" %>
 				<p>
 					<% if count == 0 %>
@@ -38,27 +38,10 @@
 			<%= render partial:"suppliers/supplier_list_key" %>
 			
 			<div class="clear">
-				<h3 class="supplier-list-country"><%= "#{@tag.readable} suppliers in #{location_phrase}" %></h3>
 				<% if count > 0 %>
-					<% columns = 3 %>
-					<% counter = 0 %>
-					<% @supplier_information_arrays.each do |supplier,machine_count,review_count,claimed,out_of_business| %>
-						<% if counter >= columns %>
-							</tr><tr>
-							<% counter = 0 %>
-						<% end %>
-						<td>
-							<li>
-								<%= render partial: "suppliers/supplier_link_and_icons", locals: {supplier: supplier, machine_count: machine_count, review_count: review_count, claimed: claimed, out_of_business: out_of_business} %>
-							</li>
-						</td>
-						<% counter += 1 %>
-						<% while !(counter >= columns) %>
-							<td></td>
-							<% counter += 1 %>
-						<% end %>
-					<% end %>
+					<%= render partial: "suppliers/supplier_list", locals: { visibles: @visibles, columns: 1, header_text: "#{@tag.readable} suppliers in #{location_phrase}" } %>
 				<% else %>
+					<h3 class="supplier-list-country"><%= "#{@tag.readable} suppliers in #{location_phrase}" %></h3>
 					<p>If you know of a supplier that should be in this category, <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
 				<% end %>	
 			</div>
