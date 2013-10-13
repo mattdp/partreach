@@ -302,7 +302,7 @@ class Supplier < ActiveRecord::Base
   def has_tag?(tag_id)
     t = Tag.find_by_id(tag_id)
     return false if t.nil?    
-    return self.tags.include?(t)
+    return true if self.tags.include?(t)
   end
 
   def add_machine(machine_id, quantity=1)
@@ -323,7 +323,7 @@ class Supplier < ActiveRecord::Base
   def has_machine?(machine_id)
     m = Machine.find_by_id(machine_id)
     return false if m.nil?
-    self.machines.include?(m)
+    return true if self.machines.include?(m)
   end 
 
   def add_external(url)
@@ -360,7 +360,6 @@ class Supplier < ActiveRecord::Base
         holder << supplier
       end
     end
-    binding.pry
     return holder
   end
 
@@ -374,17 +373,11 @@ class Supplier < ActiveRecord::Base
     requisites = (test_visibility and test_countries and test_and_style_have_nots)
     eithers = (test_and_style_haves or test_or_style_haves)
 
-    binding.pry
-
     return (requisites and eithers)
   end
 
   def array_for_sorting
     return [self, self.owners.count, self.reviews.count, self.claimed, Tag.tag_set(:risky,:id).any?{ |t_id| self.has_tag?(t_id) }]
-  end
-
-  def self.basic_guide_set(country,state,tag_name_for_link)
-    return "IMPLEMENT HERE"
   end
 
   #return nested, ordered arrays of [country][state][supplier]
