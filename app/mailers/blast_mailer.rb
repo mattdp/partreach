@@ -1,5 +1,6 @@
 class BlastMailer < ActionMailer::Base
-	default from: "noreply@supplybetter.com"
+	default from: "noreply@supplybetter.com",
+          bcc: "partreach@gmail.com"
   include SessionsHelper
 
   def supplier_profile_reachout(supplier)

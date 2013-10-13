@@ -1,5 +1,6 @@
 class UserMailer < ActionMailer::Base
-  default from: "noreply@supplybetter.com"
+  default from: "noreply@supplybetter.com",
+          bcc: "partreach@gmail.com"
   include SessionsHelper
 
   MATT = "matt@supplybetter.com"
