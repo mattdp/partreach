@@ -17,13 +17,4 @@ class GuidesController < ApplicationController
 		end
 	end
 
-	private
-
-		def valid_guide?(country,state,tag_name)
-			comparitor = [country,state,tag_name]
-			return comparitor.in?([
-				["US","CA","3dprinting"]
-			])
-		end
-
 end

@@ -46,13 +46,6 @@ class Supplier < ActiveRecord::Base
   validates :points, numericality: true
   validates_presence_of :address
 
-  #index is {name => [[mandatory have tags 'ands'],[have one of to get into set 'ors'][ mandatory have nots tags],[countries]]}
-  #needs to have at least one thing in one of the first two categories
-  INDEX_HOLDER = 
-    {
-      "us_3d_printing" => [[],["3d_printing"],["datadump"],["US"]]
-    }
-
   #unreadable without the method that assesses suppliers. After this is more fixed, make it into a model.
   def self.get_point_structure
     preloader = 
