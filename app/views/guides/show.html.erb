@@ -12,12 +12,12 @@
 
 				<p>
 					<% if @supplier_count == 0 %>
-						There are no publicly listed
+						We have not publicly catalogued any
 					<% elsif @supplier_count == 1 %>
 						<% noun = "supplier" %>
-						There is one
+						We have catalogued one
 					<% else %>
-						<%= "There are #{@supplier_count}" %>
+						<%= "We have catalogued #{@supplier_count}" %>
 					<% end %>
 					<%= " #{@tags_short} #{noun} in #{@location_phrase}." %>
 				</p>
