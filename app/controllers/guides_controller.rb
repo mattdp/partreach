@@ -13,8 +13,8 @@ class GuidesController < ApplicationController
 			@filter = Filter.get(id_string)
 
 			state.present? ? @location_phrase = "#{state_long} (#{country_long})" : @location_phrase = "#{country_long}"
-			@tags_name = tag.readable
-			@tags_note = tag.note
+			@tags_short = tag.readable
+			@tags_long = tag.note
 
 		elsif params[:stipulation_name]
 			id_string = params[:stipulation_name]
@@ -22,10 +22,22 @@ class GuidesController < ApplicationController
 			if @filter
 				country_long = Word.transform(:shortform,@filter.limits[:countries][0],:longform) #won't work well for international regions
 				@location_phrase = "#{country_long}"
-				@tags_name = "TEST FIX THIS"
-				@tags_note = "TEST ALSO FIX THIS"
+				tag_name = nil
+				[:and_style_haves,:or_style_haves].each do |have|
+					tag_name = @filter.limits[have][0] if @filter.limits[have].length == 1
+				end
+				tag = Tag.find_by_name(tag_name) if tag_name.present?
 			end
 		end
+
+		if tag
+			@tags_short = tag.readable
+			@tags_long = tag.note
+		else
+			@tags_short = @filter.tags_short
+			@tags_long = @filter.tags_long
+		end
+
 		if @filter
 			@visibles, @supplier_count = Rails.cache.fetch id_string, :expires_in => 25.hours do |key|
 				logger.debug "Cache miss: #{id_string}"

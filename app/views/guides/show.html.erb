@@ -1,11 +1,11 @@
 <% if @filter %>
-	<% provide(:title,"#{@tags_name} suppliers in #{@location_phrase}.") %>
+	<% provide(:title,"#{@tags_short} suppliers in #{@location_phrase}.") %>
 	<div class="content">
 		<div class="container row supplier-list">
 
 			<div id="supplier-list-intro">
 				<p>
-					<strong><%= "#{@tags_name}: " %></strong><%= "#{@tags_note}" %>
+					<strong><%= "#{@tags_short}: " %></strong><%= "#{@tags_long}" %>
 				</p>
 
 				<% noun = "suppliers" %>
@@ -19,7 +19,7 @@
 					<% else %>
 						<%= "There are #{@supplier_count}" %>
 					<% end %>
-					<%= " #{@tags_name} #{noun} in #{@location_phrase}." %>
+					<%= " #{@tags_short} #{noun} in #{@location_phrase}." %>
 				</p>
 
 				<% if @supplier_count > 1 %>
@@ -34,9 +34,9 @@
 			
 			<div class="clear">
 				<% if @supplier_count > 0 %>
-					<%= render partial: "suppliers/supplier_list", locals: { visibles: @visibles, columns: 1, header_text: "#{@tags_name} suppliers in #{@location_phrase}" } %>
+					<%= render partial: "suppliers/supplier_list", locals: { visibles: @visibles, columns: 1, header_text: "#{@tags_short} suppliers in #{@location_phrase}" } %>
 				<% else %>
-					<h3 class="supplier-list-country"><%= "#{@tags_name} suppliers in #{@location_phrase}" %></h3>
+					<h3 class="supplier-list-country"><%= "#{@tags_short} suppliers in #{@location_phrase}" %></h3>
 					<p>If you know of a supplier that should be in this category, <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
 				<% end %>	
 			</div>

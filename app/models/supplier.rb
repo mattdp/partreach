@@ -381,8 +381,6 @@ class Supplier < ActiveRecord::Base
     requisites = (test_visibility and test_countries and test_and_style_have_nots)
     eithers = (test_and_style_haves or test_or_style_haves)
 
-    binding.pry if supplier.name_for_link == "taggedup"
-
     return (requisites and eithers)
   end
 
