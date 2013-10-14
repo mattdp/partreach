@@ -28,6 +28,7 @@
 				<% if @supplier_count > 0 %>
 					<p>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
 				<% end %>
+				<p>Or if you want help finding the best <%= "#{@tags_short} suppliers" %>, <%= link_to "request quotes now!", {:controller => "orders", :action => "new", :from_supplier => nil}, rel: "nofollow" %></p>
 			</div>
 
 			<%= render partial:"suppliers/supplier_list_key" %>
