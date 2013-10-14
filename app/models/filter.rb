@@ -100,7 +100,7 @@ class Filter
 					["US"]
 				],
 				["no_state","CA"],
-				["FDM and FFF","The proprietary and nonpropreietary names for a printing process that constructs a 3D model by laying down a bead of heated plastic one layer at a time."]
+				["FDM and FFF","The proprietary and nonproprietary names for a printing process that constructs a 3D model by laying down a bead of heated plastic one layer at a time."]
 			],							
 		]
 	end
