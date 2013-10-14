@@ -16,6 +16,7 @@ gem 'jquery-rails', '3.0.4'
 gem 'bloggy', '0.2.2'
 gem 'sitemap_generator', '4.2.0' #https://github.com/kjvarga/sitemap_generator
 gem 'fog', '1.15.0' #for remote sitemap_generator uploads
+gem 'bugsnag', '1.6.1' #https://devcenter.heroku.com/articles/bugsnag#using-with-rails-3-x-4
 
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'
