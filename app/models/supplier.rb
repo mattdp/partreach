@@ -302,7 +302,11 @@ class Supplier < ActiveRecord::Base
   def has_tag?(tag_id)
     t = Tag.find_by_id(tag_id)
     return false if t.nil?    
-    return true if self.tags.include?(t)
+    if self.tags.include?(t)
+      return true
+    else
+      return false
+    end
   end
 
   def add_machine(machine_id, quantity=1)
@@ -323,7 +327,11 @@ class Supplier < ActiveRecord::Base
   def has_machine?(machine_id)
     m = Machine.find_by_id(machine_id)
     return false if m.nil?
-    return true if self.machines.include?(m)
+    if self.machines.include?(m)
+      return(true)
+    else
+      return(false)
+    end
   end 
 
   def add_external(url)
@@ -363,14 +371,17 @@ class Supplier < ActiveRecord::Base
   end
 
   def self.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries)
+    return false unless supplier.tags.present?
     test_visibility = supplier.profile_visible
     test_countries = (countries == [] or (supplier.address and countries.include?(supplier.address.country)))
     test_and_style_have_nots = !(and_style_have_nots.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
-    test_and_style_haves = and_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(false)
+    test_and_style_haves = (and_style_haves != [] and !and_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(false))
     test_or_style_haves = (and_style_haves == [] and or_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
 
     requisites = (test_visibility and test_countries and test_and_style_have_nots)
     eithers = (test_and_style_haves or test_or_style_haves)
+
+    binding.pry if supplier.name_for_link == "taggedup"
 
     return (requisites and eithers)
   end

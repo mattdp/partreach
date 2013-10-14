@@ -52,6 +52,16 @@ class Filter
 					"3d_printing"
 				],
 				nil
+			],
+			[ "us_sls",
+				"stipulations",
+				[
+					["SLS"],
+					[],
+					["datadump"],
+					["US"]
+				],
+				["no_state","CA"]
 			]
 		]
 	end

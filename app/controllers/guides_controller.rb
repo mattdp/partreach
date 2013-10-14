@@ -16,8 +16,15 @@ class GuidesController < ApplicationController
 			@tags_name = tag.readable
 			@tags_note = tag.note
 
-		elsif params[:index_name]
-			@filter = Filter.get(params[:index_name])
+		elsif params[:stipulation_name]
+			id_string = params[:stipulation_name]
+			@filter = Filter.get(id_string)
+			if @filter
+				country_long = Word.transform(:shortform,@filter.limits[:countries][0],:longform) #won't work well for international regions
+				@location_phrase = "#{country_long}"
+				@tags_name = "TEST FIX THIS"
+				@tags_note = "TEST ALSO FIX THIS"
+			end
 		end
 		if @filter
 			@visibles, @supplier_count = Rails.cache.fetch id_string, :expires_in => 25.hours do |key|
