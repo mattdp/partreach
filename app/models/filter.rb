@@ -80,10 +80,10 @@ class Filter
 				["no_state","CA"],
 				nil
 			],
-			[ "us_cnc",
+			[ "us_custom_machining",
 				"stipulations",
 				[
-					["CNC"],
+					["custom_machining"],
 					[],
 					["datadump"],
 					["US"]

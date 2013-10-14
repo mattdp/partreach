@@ -30,12 +30,14 @@ class GuidesController < ApplicationController
 			end
 		end
 
-		if tag
-			@tags_short = tag.readable
-			@tags_long = tag.note
-		else
-			@tags_short = @filter.tags_short
-			@tags_long = @filter.tags_long
+		if @filter
+			if tag
+				@tags_short = tag.readable
+				@tags_long = tag.note
+			else
+				@tags_short = @filter.tags_short
+				@tags_long = @filter.tags_long
+			end
 		end
 
 		if @filter
