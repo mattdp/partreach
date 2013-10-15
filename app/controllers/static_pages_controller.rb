@@ -30,6 +30,13 @@ class StaticPagesController < ApplicationController
 	end
 
 	def be_a_supplier
+		@testimonial =
+			{
+				person: "Chris Kopack",
+				title: "Owner",
+				company: "Parts Oven",
+				praise: "SupplyBetter helps me reach even more customers than ever before. Better yet, their website builds confidence with the clients making sure they are getting the most for their money. This means more repeat business, and higher overall satisfaction. The quote system is fast and worth every penny."
+			}
 	end
 
 	def terms
