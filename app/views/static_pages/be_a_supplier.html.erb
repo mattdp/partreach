@@ -1,7 +1,7 @@
 <% provide(:title,"Becoming a SupplyBetter supplier") %>
 <% meta_description "Learn more about free supplier profiles and joining our network" %>
 
-<div class="container">
+<div class="container be-a-supplier">
 	<div class="span10 offset1">
 
 		<h4 class="center"><strong><%= mail_to "info@supplybetter.com", "If you already know you'd like fill out a free profile or join our supplier network, click here to get in touch!", encode: "javascript", target: "_blank", subject: "Tell me more about being a #{brand_name} supplier!", body: "I'm interested in becoming a #{brand_name} supplier. Please reach out to me with more information." %></strong></h4>
@@ -15,7 +15,7 @@
 		<h3 class="center">How does SupplyBetter make money?</h3>
 		<p><strong>There are no fixed fees or plans - if you're not bidding on jobs, SupplyBetter is free</strong>. All charges are on a per-bid basis: if we send you an RFQ and you want to bid on it, we pass your bid onto the client, and you owe SupplyBetter 1% of your bid, win or lose. You'll have a good chance of winning, since we limit the number of suppliers per quote, and you'll get the contact information of the buyer even if you don't win the business. Future business with that client doesn't have to go through us, or incur any fees.
 
-		<%= render partial: "static_pages/testimonial", locals: {testimonial: @testimonial} %>
+		<%= render partial: "static_pages/testimonial", locals: {testimonial: @testimonial, alternate_colors: true} %>
 		
 		<h3 class="center">Why do suppliers pay per bid?</h3>
 		<p>We like this system because it makes sure <strong>you only pay when you get valuable leads</strong> - if the lead isn't good enough to make a bid, you don't have to pay at all. Many of our competitors ask for a flat fee per month, and you have to pay that even if none of the leads were good.</p>

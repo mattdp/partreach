@@ -149,6 +149,10 @@ strong {
   border-radius: 6px;
   margin: 0 auto;
   padding: 2px;
+  &.alternate-colors {
+    background: #3c3e44;
+    color: $textMidGrey;
+  }
 }
 
 .logo {
