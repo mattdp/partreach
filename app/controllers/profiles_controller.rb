@@ -10,18 +10,19 @@ class ProfilesController < ApplicationController
 		current_user.nil? ? @user_id = 0 : @user_id = current_user.id
 
 		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
-		@tags = @supplier.visible_tags if @supplier
-		@machines_quantity_hash = @supplier.machines_quantity_hash
-		@num_machines = @machines_quantity_hash.sum{|k,v| v}
-		@num_reviews = @supplier.visible_reviews.count
 		@allowed = allowed_to_see_supplier_profile?(@supplier)
-		
-		@meta = ""
-		@meta += "Tags for #{@supplier.name} include " + andlist(@tags.take(3).map{ |t| "\"#{t.readable}\""}) + ". " if @tags.present?
-		profile_factors = andlist(meta_for_supplier(@supplier))
-		@meta += "The #{@supplier.name} profile has " + andlist(meta_for_supplier(@supplier)) + ". " if profile_factors.present?
-
-		@meta = @meta.present? ? @meta : "#{@supplier.name} - Supplier profile"
+		if @allowed
+			@tags = @supplier.visible_tags if @supplier
+			@machines_quantity_hash = @supplier.machines_quantity_hash
+			@num_machines = @machines_quantity_hash.sum{|k,v| v}
+			@num_reviews = @supplier.visible_reviews.count
+			
+			@meta = ""
+			@meta += "Tags for #{@supplier.name} include " + andlist(@tags.take(3).map{ |t| "\"#{t.readable}\""}) + ". " if @tags.present?
+			profile_factors = andlist(meta_for_supplier(@supplier))
+			@meta += "The #{@supplier.name} profile has " + andlist(meta_for_supplier(@supplier)) + ". " if profile_factors.present?
+			@meta = @meta.present? ? @meta : "#{@supplier.name} - Supplier profile"
+		end
 	end
 
 	def submit_ask
