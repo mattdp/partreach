@@ -4,12 +4,31 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-09-10T13:42:26-07:00</updated>
+ <updated>2013-10-16T16:36:54-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>California descriptions and navigating the supplier index</title>
+   <link href="YOUR_URL/california-descriptions-and-navigating-the-supplier-index.html"/>
+   <updated>2013-10-17T00:00:00-07:00</updated>
+   <id>BLOG_URL/california-descriptions-and-navigating-the-supplier-index</id>
+   <content type="html">&lt;p&gt;We&#39;ve been working closely with our Californian suppliers to create the best matching experience for custom manufacturing, and to show some love we&#39;ve added basic company descriptions for &lt;a href=&quot;http://www.supplybetter.com/guides/unitedstates/california/3dprinting&quot;&gt;all 3D printing suppliers based in the Golden State&lt;/a&gt;. People from all over the world submit RFQs through SupplyBetter, and supplier descriptions are just one way to help find the right match for their projects. Since our last update we&#39;ve worked with suppliers to add equipment data, as well as reviews. To help buyers navigate our &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;supplier index&lt;/a&gt; we&#39;ve added a key to quickly illustrate which kinds of information are available for each supplier.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/blog/images/supplier_index_key.png&quot; alt=&quot;Supplier index legend&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our goal remains the same: to create the best marketplace for buyers to find suppliers. A marketplace that is convenient for buyers, fair for suppliers, and is the first place to go when it&#39;s time to make your custom mechanical parts.&lt;/p&gt;
+
+&lt;p&gt;We&#39;re always listening for feedback, so feel free to let us know what you think at feedback@supplybetter.com&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Suppliers can now claim and edit their company profiles</title>
