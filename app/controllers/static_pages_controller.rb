@@ -17,7 +17,7 @@ class StaticPagesController < ApplicationController
 				person: "Karl Boucher",
 				title: "Owner",
 				company: "Five And Dime LLC",
-				praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able so simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price.  I’m more productive as well since I spend more time designing instead of running a desktop 3D printer.  I’ve used Supplybetter for prototyping injection molded parts as well as for direct digital manufacture parts and have been very pleased with the results."
+				praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able so simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price.  I’m more productive as well since I spend more time designing instead of running a desktop 3D printer.  I’ve used SupplyBetter for prototyping injection molded parts as well as for direct digital manufacture parts and have been very pleased with the results."
 			}
 		]
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
