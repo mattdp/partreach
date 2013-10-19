@@ -73,7 +73,7 @@ class SuppliersController < ApplicationController
 		@supplier.create_or_update_address(address_params)
 
 		saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
-		binding.pry
+
 		if saved_ok
 			note = "Saved OK!" 
 		else 
