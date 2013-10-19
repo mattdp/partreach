@@ -111,7 +111,7 @@ class Supplier < ActiveRecord::Base
 
   def self.all_signed
     signed = []
-    Tag.tag_set(:network,:id) do |tag_id|
+    Tag.tag_set(:network,:id).each do |tag_id|
       signed = signed.concat(Supplier.quantity_by_tag_id("all",tag_id))
     end
     return signed
