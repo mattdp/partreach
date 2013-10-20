@@ -1,0 +1,61 @@
+--- 
+layout: post
+author: Rob
+title: DFM tips for 3D printing
+published: true
+---
+
+SupplyBetter loves 3D printing. 
+
+FFF vs. FDM -  Nuances
+	First, a clarification. Both of these 3D printing process are basically the same, and if you'd like to learn extensively about either, definitely check out thorough explanations of each here. This post is why you would choose one vs. the other. 
+
+	Figure 1: A quick table
+	Materials possible:
+		FFF: ABS (a few different varieties), Nylon (6 and...), PLA, PVA (just don't), and maybe PC
+		FDM: ABS (a few different varieties), Nylon, PC, bio-compatible, ESD, Ultem, and many many more. 
+
+	Average price per cm^3
+		Question: Do I have a good test piece to compare this with?
+		FFF: $0.25 
+		FDM: $???
+
+	Tolerance:
+		FFF
+			XY:
+			Z-height: 
+		FDM
+			XY:
+			Z-height:
+
+	Turn-around time:
+	I don't actually know the answer to this question. What does it depend on? Does it matter? 
+
+	Design constraints:
+	FFF: Support material is your enemy
+	FDM: May not be able to define infill
+
+	Why should you choose FFF?
+	If you plan to get final pieces printed in FDM want practically zero risk with quick turn-around time 
+
+
+
+Themes to consider when deciding which process to use
+Materials
+Wall thickness
+Trapped spaces
+Undercuts
+Future manufacturing plans
+Finishing
+Mechanical Performance
+3D Printing vs. Other processes
+	Machining
+	Bending
+	Cast Urethane
+	Injection Molding
+	Vacuum Forming
+	Laser Cutting
+
+Cheers,
+
+Rob
