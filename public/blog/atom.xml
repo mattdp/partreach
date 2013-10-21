@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-10-16T16:36:54-07:00</updated>
+ <updated>2013-10-21T12:53:29-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -23,6 +23,19 @@
 &lt;p&gt;Our goal remains the same: to create the best marketplace for buyers to find suppliers. A marketplace that is convenient for buyers, fair for suppliers, and is the first place to go when it&#39;s time to make your custom mechanical parts.&lt;/p&gt;
 
 &lt;p&gt;We&#39;re always listening for feedback, so feel free to let us know what you think at feedback@supplybetter.com&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>SupplyBetter wins 2nd place at the NetIP Fast Pitch Competition</title>
+   <link href="YOUR_URL/supplybetter-wins-2nd-place-at-the-netip-fast-pitch-competition.html"/>
+   <updated>2013-09-29T00:00:00-07:00</updated>
+   <id>BLOG_URL/supplybetter-wins-2nd-place-at-the-netip-fast-pitch-competition</id>
+   <content type="html">&lt;p&gt;We&#39;re proud to report that SupplyBetter recently placed 2nd at the &lt;a href=&quot;http://www.netip.org/blog/2013/09/17/fast-pitch-competition-draws-in-a-huge-crowd/&quot;&gt;NetIP Fast Pitch Competition&lt;/a&gt; here in San Francisco. We had the pleasure of competing against companies working on solving some really interesting problems such as &lt;a href=&quot;http://www.airpost.io/&quot;&gt;Airpost&lt;/a&gt; (1st place) and &lt;a href=&quot;https://campbx.com/&quot;&gt;CampBX&lt;/a&gt; (3rd Place). Thank you NetIP for letting us compete and &lt;a href=&quot;http://www.rackspace.com/&quot;&gt;Rackspace&lt;/a&gt; for sponsoring the event. With our 2nd place standing we&#39;ve won $1000/month credit on the Rackspace US Cloud portfolio for 12 months. We&#39;re excited to make the switch from Heroku to Rackspace, and we&#39;ll be sure to let you know how switching goes.&lt;/p&gt;
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 
