@@ -109,6 +109,11 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if did_user_work and did_order_save
+        Analytics.track(
+          user_id: @user.id,
+          event: "Placed order",
+          properties: {order_id: @order.id}
+          )
         note = "#{brand_name}: Order created by #{current_user.email}, order number #{@order.id}. Go get quotes!"
         if Rails.env.production?
           text_notification(note) 
