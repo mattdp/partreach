@@ -59,6 +59,7 @@ module SessionsHelper
   def track(category,action,label)
     if Rails.env.production? and (current_user.nil? or !current_user.admin)
       Analytics.track(
+        user_id: 0,
         event: action,
         properties: { category: category, 
                       label: label}
