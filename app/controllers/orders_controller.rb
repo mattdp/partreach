@@ -22,6 +22,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @user = User.find(@order.user_id)
     @sorted_dialogues = sort_dialogues(@order.visible_dialogues)
+    track("order","viewed",@order.id)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -49,6 +50,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
 
+    existed_already = false
     did_user_work = false
     if current_user.nil?
       #they've filled out the signin form
@@ -73,6 +75,7 @@ class OrdersController < ApplicationController
       end
     else # there is a current user, already signed in
       @user = current_user
+      existed_already = true
       did_user_work = true
     end
 
@@ -109,11 +112,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if did_user_work and did_order_save
-        Analytics.track(
-          user_id: @user.id,
-          event: "Placed order",
-          properties: {order_id: @order.id}
-          )
+        track("order","created",@order.id)
+        track("order","created_by_repeat_user",@order.id) if existed_already
         note = "#{brand_name}: Order created by #{current_user.email}, order number #{@order.id}. Go get quotes!"
         if Rails.env.production?
           text_notification(note) 

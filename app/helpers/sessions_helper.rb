@@ -55,5 +55,15 @@ module SessionsHelper
   def brand_name
     return "SupplyBetter"
   end
-  
+
+  def track(category,action,label)
+    if Rails.env.production? and (current_user.nil? or !current_user.admin)
+      Analytics.track(
+        event: action,
+        properties: { category: category, 
+                      label: label}
+      )
+    end
+  end
+
 end

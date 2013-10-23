@@ -46,10 +46,6 @@ class StaticPagesController < ApplicationController
 	end
 
 	def terms
-		Analytics.track(
-      user_id: 0,
-      event: "Test - browsed terms page"
-    )
 	end
 
 	def privacy
