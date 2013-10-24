@@ -22,7 +22,9 @@
 			<%= link_to "#{state}", suppliers_path(anchor: "US-#{state}") %>
 		<% end %>
 
-		<%= render partial: "suppliers/supplier_list", locals: {visibles: @visibles, columns: 3, header_text: @visibles.keys[0]} %>
+		<% if @visibles.present? %>
+			<%= render partial: "suppliers/supplier_list", locals: {visibles: @visibles, columns: 3, header_text: @visibles.keys[0]} %>
+		<% end %>
 
 	</div>
 </div>

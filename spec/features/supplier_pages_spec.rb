@@ -6,7 +6,8 @@ describe "Supplier-related pages" do
 
 	describe "Supplier index" do
 
-		before do
+		before(:each) do
+			@supplier = FactoryGirl.create(:supplier)
 			visit suppliers_path
 		end
 
