@@ -403,11 +403,12 @@ class Supplier < ActiveRecord::Base
       profiles = nil
     end
 
-    count = profiles.count
+    count = 0
     order = ActiveSupport::OrderedHash.new
     chaos = {}
 
     if !(profiles.nil? or profiles == [])
+      count = profiles.find_all {|supplier| !supplier.existence_questionable?}.count
       profiles.each do |s|  
         country = s.address.country
         state = s.address.state
