@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-10-28T12:30:45-07:00</updated>
+ <updated>2013-10-28T13:36:53-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -20,33 +20,35 @@
 &lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/DFM_FDM_photo.JPG&quot; width=&quot;49%&quot;&gt;&lt;/p&gt;
 
 &lt;div class=&quot;footer&quot;&gt;
-    (left) Frogs printing on a Makerbot out of PLA material. Layer heights from left to right are 0.1mm, 0.27mm, and 0.34mm. Image courtesy of &lt;a href=&quot;https://www.flickr.com/photos/creative_tools/&quot;&gt;Creative Tools&lt;/a&gt; under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/deed.en&quot;&gt;CC BY 2.0&lt;/a&gt;. (right) Custom bracket 3D printed through SupplyBetter by &lt;a href=&quot;https://supplybetter.com/profiles/makeparts&quot;&gt;Make-Parts.com&lt;/a&gt;. The solube support material is still attached in this photo, which was later removed in post process.
+    (left) Frogs printing on a Makerbot out of PLA material. Layer heights from left to right are 0.1mm, 0.27mm, and 0.34mm. Image courtesy of &lt;a href=&quot;https://www.flickr.com/photos/creative_tools/&quot;&gt;Creative Tools&lt;/a&gt; under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/deed.en&quot;&gt;CC BY 2.0&lt;/a&gt;. (right) Custom bracket 3D printed through SupplyBetter by &lt;a href=&quot;https://supplybetter.com/profiles/makeparts&quot;&gt;Make-Parts.com&lt;/a&gt;. The soluble support material is still attached in this photo (later removed in post process).
 &lt;/div&gt;
 
 
-&lt;p&gt;SupplyBetter loves 3D printing. For the past eight months we&#39;ve seen a wide variety of projects &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;submitted through our platform&lt;/a&gt; we&#39;ve have had the pleasure of helping get made. We&#39;ve dealt with a full spectrum of 3D printing projects ranging from small to large, one-offs to medium volume runs, and plastics to exotic materials. Interestingly, some patterns have started to emerge. In particular we deal with quite a few RFQs from people who are looking to  transition from desktop printing to commercial printing or vice versa. While we have &lt;a href=&quot;http://www.supplybetter.com/materials&quot;&gt;a page dedicated to comparing various 3D printing method and materials&lt;/a&gt;, I wanted to specifically focus on the difference in materials between FFF and FDM machines.&lt;/p&gt;
+&lt;p&gt;SupplyBetter loves 3D printing. For the past eight months we&#39;ve seen a wide variety of projects &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;submitted through our platform&lt;/a&gt;, and  have had the pleasure of helping get them made. We&#39;ve dealt with a full spectrum of 3D printing projects, ranging from small to large, one-offs to medium volume runs, and plastics to exotic materials. Some patterns have started to emerge - in particular, we deal with quite a few RFQs from people who are looking to transition from desktop printing to commercial printing or vice versa. While we have &lt;a href=&quot;http://www.supplybetter.com/materials&quot;&gt;a page dedicated to comparing various 3D printing method and materials&lt;/a&gt;, I wanted to specifically focus on the difference in materials between FFF and FDM machines.&lt;/p&gt;
 
-&lt;h3&gt;First, a clarification&lt;/h3&gt;
+&lt;h3&gt;Two clarifications&lt;/h3&gt;
 
-&lt;p&gt;This is not a post about which 3D printer you should purchase, though &lt;a href=&quot;http://blog.cubehero.com/2013/04/12/what-you-need-to-know-about-buying-a-3d-printer/&quot;&gt;here&#39;s a great analysis on this subject&lt;/a&gt;. This post is dedicated to discussing the material differences when using FFF and FDM, and how it may influence your design. Next, &lt;strong&gt;Fused Filament Fabrication (FFF)&lt;/strong&gt; and &lt;strong&gt;Fused Deposition Modeling (FDM)&lt;/strong&gt; 3D printing processes are &lt;a href=&quot;http://en.wikipedia.org/wiki/Fused_filament_fabrication&quot;&gt;basically the same&lt;/a&gt;. To show how similar they are, here&#39;s a &lt;a href=&quot;http://www.3ders.org/articles/20131014-jet-engine-made-on-a-3d-printer.html&quot;&gt;scale model jet turbine made via FFF&lt;/a&gt; compared to a &lt;a href=&quot;http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=ALA2Gp59_IM&quot;&gt;full-scale model turbo prop made via FDM&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This is not a post about which 3D printer you should purchase, though &lt;a href=&quot;http://blog.cubehero.com/2013/04/12/what-you-need-to-know-about-buying-a-3d-printer/&quot;&gt;here&#39;s a great analysis on this subject&lt;/a&gt;. This post is dedicated to discussing the material differences when using FFF and FDM, and how it may influence your design.&lt;/p&gt;
 
-&lt;h3&gt;Both are great, with limiations&lt;/h3&gt;
+&lt;p&gt;Also, &lt;strong&gt;Fused Filament Fabrication (FFF)&lt;/strong&gt; and &lt;strong&gt;Fused Deposition Modeling (FDM)&lt;/strong&gt; 3D printing processes are &lt;a href=&quot;http://en.wikipedia.org/wiki/Fused_filament_fabrication&quot;&gt;basically the same&lt;/a&gt;. To show how similar they are, here&#39;s a &lt;a href=&quot;http://www.3ders.org/articles/20131014-jet-engine-made-on-a-3d-printer.html&quot;&gt;scale model jet turbine made via FFF&lt;/a&gt; compared to a &lt;a href=&quot;http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=ALA2Gp59_IM&quot;&gt;full-scale model turbo prop made via FDM&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3&gt;Both are great, with limitations&lt;/h3&gt;
 
 &lt;h4&gt;FFF is great for&lt;/h4&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Cheap prototyping&lt;/strong&gt; Seriously, at about &lt;a href=&quot;http://www.octave.com/p1173433089/Octave-Natural-ABS-Filament-1.75mm-1kg-2.2lbs-Spool/product_info.html&quot;&gt;$0.03 per gram&lt;/a&gt;, this is as cheap as it gets.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Fast printing&lt;/strong&gt; Want something in your hand as fast as possible? Set a big layer height and &lt;a href=&quot;http://davedurant.wordpress.com/2011/10/12/ultimaker-faq-but-what-about-the-quality-of-prints/&quot;&gt;watch your printer fly&lt;/a&gt;. You can also have greater control over the infill of your print, which means you can lay down the least amount of material necessary to keep your model from collapsing in on itself.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Experimentation&lt;/strong&gt; Want to &lt;a href=&quot;http://3dprintingindustry.com/2013/10/14/3d-printing-land-chocolate/&quot;&gt;3D print in chocolate&lt;/a&gt;? Go for it! Want to quickly switch between PLA, ABS, and PC, not a problem. Cheap machines are awesome for this and if you destroy an extruder or mangle one of your stepper motors, &lt;a href=&quot;http://reprap.org/wiki/RepRap_Buyers&#39;_Guide&quot;&gt;then spare parts are readily available&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fast printing&lt;/strong&gt; Want something in your hand as fast as possible? Set a large layer height and &lt;a href=&quot;http://davedurant.wordpress.com/2011/10/12/ultimaker-faq-but-what-about-the-quality-of-prints/&quot;&gt;watch your printer fly&lt;/a&gt;. You can also have greater control over the infill of your print, which means you can lay down the least amount of material necessary to keep your model from collapsing in on itself.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Experimentation&lt;/strong&gt; Want to &lt;a href=&quot;http://3dprintingindustry.com/2013/10/14/3d-printing-land-chocolate/&quot;&gt;3D print in chocolate&lt;/a&gt;? Go for it! Want to quickly switch between PLA, ABS, and PC? Not a problem. Cheap machines are awesome for this, and if you destroy an extruder or mangle one of your stepper motors, &lt;a href=&quot;http://reprap.org/wiki/RepRap_Buyers&#39;_Guide&quot;&gt;spare parts are readily available&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;h4&gt;FFF is not great for&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Mechanical performance&lt;/strong&gt; Delamination is a chief concern when printing from an FFF machine, and &lt;a href=&quot;http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=5uJyqLZU7YI&quot;&gt;here&#39;s a great example&lt;/a&gt; of what that can look like. In case anyone is currently experiencing delamination woes, &lt;a href=&quot;http://www.3ders.org/articles/20120709-some-tips-for-getting-better-3d-printing-results.html&quot;&gt;3ders posted some handy tips&lt;/a&gt; for mitigating this problem (pulled from a &lt;a href=&quot;http://www.soliforum.com/topic/3917/problem-with-layer-adhesion-i-think/&quot;&gt;thorough discussion on Soliforum&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mechanical performance&lt;/strong&gt; Delamination is a chief concern when printing from an FFF machine. &lt;a href=&quot;http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=5uJyqLZU7YI&quot;&gt;Here&#39;s a great example&lt;/a&gt; of what that can look like. In case anyone is currently experiencing delamination woes, &lt;a href=&quot;http://www.3ders.org/articles/20120709-some-tips-for-getting-better-3d-printing-results.html&quot;&gt;3ders posted some handy tips&lt;/a&gt; for mitigating this problem (pulled from a &lt;a href=&quot;http://www.soliforum.com/topic/3917/problem-with-layer-adhesion-i-think/&quot;&gt;thorough discussion on Soliforum&lt;/a&gt;).&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt; One of the tradeoffs made in low cost filament is consistency in cross sectional area. &lt;a href=&quot;http://www.protoparadigm.com/blog/2011/11/filament-tolerances-and-print-quality/&quot;&gt;Protoparadigm has an incredibly thorough rundown&lt;/a&gt; of what this looks like and how you can take measures to lessen its effect on prints.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Support Material&lt;/strong&gt; Ask someone who regularly prints using FFF how much support material they use their answer will likely be &quot;As little as possible&quot;. Yes, dual extruder FFF machines are making progress with utilizing support material alongside structure material, but right now the vast majority of FFF suppliers simply use structure material (PLA, ABS, etc) for their support. Since the structure and support materials are the same, removal is tedious and the surface finish suffers (though, post processing with &lt;a href=&quot;http://www.youtube.com/watch?v=bcXLJRIKGuQ&quot;&gt;acetone vapor&lt;/a&gt; is an increasingly viable option). If you can design your parts without any need for support material then great, but if not and surface finish is important you&#39;re better off using FDM.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Support Material&lt;/strong&gt; Ask someone who regularly prints using FFF how much support material they use. Their answer will likely be &quot;as little as possible&quot;. Yes, dual extruder FFF machines are making progress with utilizing support material alongside structure material, but right now the vast majority of FFF suppliers simply use structure material (PLA, ABS, etc) for their support. Since the structure and support materials are the same, removal is tedious and the surface finish suffers (though post processing with &lt;a href=&quot;http://www.youtube.com/watch?v=bcXLJRIKGuQ&quot;&gt;acetone vapor&lt;/a&gt; is an increasingly viable option). If you can design your parts without any need for support material then great, but if that&#39;s not possible and surface finish is important, you&#39;re better off using FDM.&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -55,17 +57,17 @@
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Mechanical performance&lt;/strong&gt; These are some of the strongest plastic 3D printing parts you&#39;ll get.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt; Heated build chambers mean a lot less warping, which if you&#39;ve talked to anyone printing ABS on a RepRap machine, is typically a big challenge&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Production use&lt;/strong&gt; In certain production cases, having certified parts can be crucial. For instance, one of the great properties of Ultem is that it&#39;s &lt;a href=&quot;http://boingboing.net/2010/09/15/hard-to-burn-lightwe.html&quot;&gt;flame retardant&lt;/a&gt;, which allows it to be certified for use in aircraft, which is a rather high bar a far as certifications are concerned.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Production use&lt;/strong&gt; In certain production cases, having certified parts can be crucial. For instance, one of the great properties of Ultem is that it&#39;s &lt;a href=&quot;http://boingboing.net/2010/09/15/hard-to-burn-lightwe.html&quot;&gt;flame retardant&lt;/a&gt;, which allows it to be certified for use in aircraft.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Support Material&lt;/strong&gt; The right-hand picture at the top of this post is an FDM part using soluble support material to accomodate for the overhangs and undercuts present in the model. Since the material is soluble there are virtually no signs of the support material once it&#39;s been removed. Awesome.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Large geometries&lt;/strong&gt; FDM build envelopes can go as large as 914 x 610 x 914 mm, as &lt;a href=&quot;http://www.youtube.com/watch?v=W5h2d7Vyj6s&amp;amp;feature=player_detailpage#t=170&quot;&gt;this video&lt;/a&gt; shows (I&#39;m ignoring &lt;a href=&quot;http://bigthink.com/endless-innovation/why-3d-printed-houses-matter&quot;&gt;3D printing for architecture application&lt;/a&gt; since it&#39;s worthy of an entirely separate discussion). Remember the &lt;a href=&quot;http://www.3ders.org/articles/20130211-urbee-2-announced-the-world-first-3d-printed-car-go-for-actual-production.html&quot;&gt;Urbee&lt;/a&gt;? It was printed using FDM. If you need to print prototype cars, then this is likely how you&#39;re going to do it. Though, I will add that &lt;a href=&quot;http://www.re3d.org/#!gigabot/canh&quot;&gt;Gigabot recently finished a successful Kickstarter&lt;/a&gt; for a 600mm x 600mm x 600mm FFF printer.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Large geometries&lt;/strong&gt; FDM build envelopes can go as large as 914 x 610 x 914 mm, as &lt;a href=&quot;http://www.youtube.com/watch?v=W5h2d7Vyj6s&amp;amp;feature=player_detailpage#t=170&quot;&gt;this video&lt;/a&gt; shows (I&#39;m ignoring &lt;a href=&quot;http://bigthink.com/endless-innovation/why-3d-printed-houses-matter&quot;&gt;3D printing for architecture applications&lt;/a&gt; since it&#39;s worthy of an entirely separate discussion). Remember the &lt;a href=&quot;http://www.3ders.org/articles/20130211-urbee-2-announced-the-world-first-3d-printed-car-go-for-actual-production.html&quot;&gt;Urbee&lt;/a&gt;? It was printed using FDM. If you need to print prototype cars, then this is likely how you&#39;re going to do it (however, I will add that &lt;a href=&quot;http://www.re3d.org/#!gigabot/canh&quot;&gt;Gigabot recently finished a successful Kickstarter&lt;/a&gt; for a 600mm x 600mm x 600mm FFF printer).&lt;/li&gt;
 &lt;/ul&gt;
 
 
 &lt;h4&gt;FDM is not great for&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Quick and dirty printing&lt;/strong&gt; Like I said with FFF, if you&#39;re looking for quick and dirty, you&#39;re not going to beat desktop printers. Even if you use &lt;a href=&quot;https://bolsonmaterials.com/Products_Overview-Rapid_Prototyping_Materials#Dimension&quot;&gt;non-OEM vendors&lt;/a&gt;, material is still going to cost you between $0.20 - $0.25 per gram. Not quite a magnitude more expensive than FFF filament, but enough to make you reconsider how much material you&#39;re using in your design (and it&#39;s enough to incentivize &lt;a href=&quot;http://hackaday.com/2012/09/19/this-hack-can-refill-your-stratasys-3d-printer/&quot;&gt;work-arounds for reloading cartridges&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Experimentation&lt;/strong&gt; These machines are expensive, with the cheapest ones being &lt;a href=&quot;http://www.engineering.com/3DPrinting/3DPrintingArticles/ArticleID/4405/Hands-on-with-the-Mojo-3D-Printer.aspx&quot;&gt;the Mojo at around $10,000 USD&lt;/a&gt;. If you&#39;re looking to experiment with different materials, I would suggest &lt;a href=&quot;http://haveblue.org/?p=439&quot;&gt;scouring Craigslist like Have Blue&lt;/a&gt; and pick up an older model for cheap.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Quick and dirty printing&lt;/strong&gt; Like I said with FFF, if you&#39;re looking for quick and dirty, you&#39;re not going to beat desktop printers. Even if you use &lt;a href=&quot;https://bolsonmaterials.com/Products_Overview-Rapid_Prototyping_Materials#Dimension&quot;&gt;non-OEM vendors&lt;/a&gt;, material is still going to cost you between $0.20 - $0.25 per gram. Not quite a magnitude more expensive than FFF filament, but enough to make you reconsider how much material you&#39;re using in your design (and to incentivize &lt;a href=&quot;http://hackaday.com/2012/09/19/this-hack-can-refill-your-stratasys-3d-printer/&quot;&gt;work-arounds for reloading cartridges&lt;/a&gt;)&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Experimentation&lt;/strong&gt; These machines are expensive, with the cheapest ones being &lt;a href=&quot;http://www.engineering.com/3DPrinting/3DPrintingArticles/ArticleID/4405/Hands-on-with-the-Mojo-3D-Printer.aspx&quot;&gt;the Mojo at around $10,000 USD&lt;/a&gt;. If you&#39;re looking to experiment with different materials, I would suggest &lt;a href=&quot;http://haveblue.org/?p=439&quot;&gt;scouring Craigslist like Have Blue&lt;/a&gt; to pick up an older model cheaply.&lt;/p&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -133,7 +135,7 @@
 
 &lt;p&gt;Overall, I feel like there&#39;s a lot of room to innovate with different filament materials. The RepRap community has shown that they are willing to try printing with just about everything under the sun, while the Stratasys has definitely pushed the envelope with reliability and consitency. I&#39;m optimistic that we&#39;ll see even more interesting materials very soon in the future.&lt;/p&gt;
 
-&lt;p&gt;Also, While this isn&#39;t strictly related to FFF or FDM, &lt;a href=&quot;http://www.indiegogo.com/projects/high-quality-3d-printer-resin&quot;&gt;MadeSolid recently launched a Kickstarter&lt;/a&gt; featuring some all new materials for the SLA machines.&lt;/p&gt;
+&lt;p&gt;Also, while this isn&#39;t strictly related to FFF or FDM, &lt;a href=&quot;http://www.indiegogo.com/projects/high-quality-3d-printer-resin&quot;&gt;MadeSolid recently launched a Kickstarter&lt;/a&gt; featuring some all-new materials for the SLA machines.&lt;/p&gt;
 
 &lt;p&gt;Still have questions? Feel free to &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;submit an RFQ&lt;/a&gt; if you would like us to match with you with the right suppliers for your project.&lt;/p&gt;
 
@@ -160,19 +162,6 @@
 &lt;p&gt;Our goal remains the same: to create the best marketplace for buyers to find suppliers. A marketplace that is convenient for buyers, fair for suppliers, and is the first place to go when it&#39;s time to make your custom mechanical parts.&lt;/p&gt;
 
 &lt;p&gt;We&#39;re always listening for feedback, so feel free to let us know what you think at feedback@supplybetter.com&lt;/p&gt;
-
-&lt;p&gt;Cheers,&lt;/p&gt;
-
-&lt;p&gt;Rob&lt;/p&gt;
-</content>
- </entry>
- 
- <entry>
-   <title>SupplyBetter wins 2nd place at the NetIP Fast Pitch Competition</title>
-   <link href="YOUR_URL/supplybetter-wins-2nd-place-at-the-netip-fast-pitch-competition.html"/>
-   <updated>2013-09-30T00:00:00-07:00</updated>
-   <id>BLOG_URL/supplybetter-wins-2nd-place-at-the-netip-fast-pitch-competition</id>
-   <content type="html">&lt;p&gt;We&#39;re proud to report that SupplyBetter recently placed 2nd at the &lt;a href=&quot;http://www.netip.org/blog/2013/09/17/fast-pitch-competition-draws-in-a-huge-crowd/&quot;&gt;NetIP Fast Pitch Competition&lt;/a&gt; here in San Francisco. We had the pleasure of competing against companies working on solving some really interesting problems such as &lt;a href=&quot;http://www.airpost.io/&quot;&gt;Airpost&lt;/a&gt; (1st place) and &lt;a href=&quot;https://campbx.com/&quot;&gt;CampBX&lt;/a&gt; (3rd Place). Thank you NetIP for letting us compete and &lt;a href=&quot;http://www.rackspace.com/&quot;&gt;Rackspace&lt;/a&gt; for sponsoring the event. With our 2nd place standing we&#39;ve won $1000/month credit on the Rackspace US Cloud portfolio for a period of 12 consecutive months. We&#39;re excited to make the switch from Heroku to Rackspace, and we&#39;ll be sure to let you know how switching goes.&lt;/p&gt;
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 

@@ -514,7 +514,13 @@ strong {
   }
 }
 
-.footer { color: #9499a7; }
+.footer { 
+  color: #9499a7;
+  font-size: 14px;
+  a {
+    font-size: 14px;
+  }
+}
 
 /* orders/new */
 
