@@ -29,7 +29,7 @@ Also, **Fused Filament Fabrication (FFF)** and **Fused Deposition Modeling (FDM)
 ####FFF is not great for####
 
 * **Mechanical performance** Delamination is a chief concern when printing from an FFF machine. [Here's a great example](http://www.youtube.com/watch?feature=player_embedded&v=5uJyqLZU7YI) of what that can look like. In case anyone is currently experiencing delamination woes, [3ders posted some handy tips](http://www.3ders.org/articles/20120709-some-tips-for-getting-better-3d-printing-results.html) for mitigating this problem (pulled from a [thorough discussion on Soliforum](http://www.soliforum.com/topic/3917/problem-with-layer-adhesion-i-think/)).
-* **Consistency** One of the tradeoffs made in low cost filament is consistency in cross sectional area. [Protoparadigm has an incredibly thorough rundown](http://www.protoparadigm.com/blog/2011/11/filament-tolerances-and-print-quality/) of what this looks like and how you can take measures to lessen its effect on prints. 
+* **Consistency** One of the tradeoffs made in low cost filament is consistency in cross sectional area. Ideally, if you look at 3D printing filament head-on it should be a circle, but along a stretch of filament the cross section can change from a circle to an oval, which can affect the quality of the print. [Protoparadigm has an incredibly thorough rundown](http://www.protoparadigm.com/blog/2011/11/filament-tolerances-and-print-quality/) of exactly what this looks like and how you can take measures to lessen its effect on prints. 
 * **Support Material** Ask someone who regularly prints using FFF how much support material they use. Their answer will likely be "as little as possible". Yes, dual extruder FFF machines are making progress with utilizing support material alongside structure material, but right now the vast majority of FFF suppliers simply use structure material (PLA, ABS, etc) for their support. Since the structure and support materials are the same, removal is tedious and the surface finish suffers (though post processing with [acetone vapor](http://www.youtube.com/watch?v=bcXLJRIKGuQ) is an increasingly viable option). If you can design your parts without any need for support material then great, but if that's not possible and surface finish is important, you're better off using FDM. 
 
 ####FDM is great for####
@@ -96,5 +96,5 @@ Cheers,
 Rob
 
 <div class="footer">
-    Note: SupplyBetter has no affiliation with any 3D printing company. The opinions expressed in this post are the author's alone.
+    SupplyBetter's mission is to find the best supplier match for your manufacturing needs. The opinions expressed in this post are the author's alone. 
 </div>

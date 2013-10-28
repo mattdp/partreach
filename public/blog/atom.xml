@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-10-28T13:36:53-07:00</updated>
+ <updated>2013-10-28T15:18:04-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -47,7 +47,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Mechanical performance&lt;/strong&gt; Delamination is a chief concern when printing from an FFF machine. &lt;a href=&quot;http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=5uJyqLZU7YI&quot;&gt;Here&#39;s a great example&lt;/a&gt; of what that can look like. In case anyone is currently experiencing delamination woes, &lt;a href=&quot;http://www.3ders.org/articles/20120709-some-tips-for-getting-better-3d-printing-results.html&quot;&gt;3ders posted some handy tips&lt;/a&gt; for mitigating this problem (pulled from a &lt;a href=&quot;http://www.soliforum.com/topic/3917/problem-with-layer-adhesion-i-think/&quot;&gt;thorough discussion on Soliforum&lt;/a&gt;).&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt; One of the tradeoffs made in low cost filament is consistency in cross sectional area. &lt;a href=&quot;http://www.protoparadigm.com/blog/2011/11/filament-tolerances-and-print-quality/&quot;&gt;Protoparadigm has an incredibly thorough rundown&lt;/a&gt; of what this looks like and how you can take measures to lessen its effect on prints.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt; One of the tradeoffs made in low cost filament is consistency in cross sectional area. Ideally, if you look at 3D printing filament head-on it should be a circle, but along a stretch of filament the cross section can change from a circle to an oval, which can affect the quality of the print. &lt;a href=&quot;http://www.protoparadigm.com/blog/2011/11/filament-tolerances-and-print-quality/&quot;&gt;Protoparadigm has an incredibly thorough rundown&lt;/a&gt; of exactly what this looks like and how you can take measures to lessen its effect on prints.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Support Material&lt;/strong&gt; Ask someone who regularly prints using FFF how much support material they use. Their answer will likely be &quot;as little as possible&quot;. Yes, dual extruder FFF machines are making progress with utilizing support material alongside structure material, but right now the vast majority of FFF suppliers simply use structure material (PLA, ABS, etc) for their support. Since the structure and support materials are the same, removal is tedious and the surface finish suffers (though post processing with &lt;a href=&quot;http://www.youtube.com/watch?v=bcXLJRIKGuQ&quot;&gt;acetone vapor&lt;/a&gt; is an increasingly viable option). If you can design your parts without any need for support material then great, but if that&#39;s not possible and surface finish is important, you&#39;re better off using FDM.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -144,7 +144,7 @@
 &lt;p&gt;Rob&lt;/p&gt;
 
 &lt;div class=&quot;footer&quot;&gt;
-    Note: SupplyBetter has no affiliation with any 3D printing company. The opinions expressed in this post are the author&#39;s alone.
+    SupplyBetter&#39;s mission is to find the best supplier match for your manufacturing needs. The opinions expressed in this post are the author&#39;s alone. 
 &lt;/div&gt;
 
 </content>
