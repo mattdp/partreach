@@ -14,9 +14,9 @@ SupplyBetter loves 3D printing. For the past eight months we've seen a wide vari
 
 ###Two clarifications###
 
-This is not a post about which 3D printer you should purchase, though [here's a great analysis on this subject](http://blog.cubehero.com/2013/04/12/what-you-need-to-know-about-buying-a-3d-printer/). This post is dedicated to discussing the material differences when using FFF and FDM, and how it may influence your design. 
+This is not a post about which 3D printer you should purchase, though [here's a great analysis on the subject](http://blog.cubehero.com/2013/04/12/what-you-need-to-know-about-buying-a-3d-printer/). This post is dedicated to discussing the difference in materials when using FFF and FDM, and how it may influence your design. 
 
-Also, **Fused Filament Fabrication (FFF)** and **Fused Deposition Modeling (FDM)** 3D printing processes are [basically the same](http://en.wikipedia.org/wiki/Fused_filament_fabrication). To show how similar they are, here's a [scale model jet turbine made via FFF](http://www.3ders.org/articles/20131014-jet-engine-made-on-a-3d-printer.html) compared to a [full-scale model turbo prop made via FDM](http://www.youtube.com/watch?feature=player_embedded&v=ALA2Gp59_IM). Both processes do a solid job at rapid prototyping, but there are some important nuances that should be considered when designing your parts. 
+Next, the 3D printing processes **Fused Filament Fabrication (FFF)** and **Fused Deposition Modeling (FDM)** are [basically the same](http://en.wikipedia.org/wiki/Fused_filament_fabrication). To show how similar they are, here's a [scale model jet turbine made via FFF](http://www.3ders.org/articles/20131014-jet-engine-made-on-a-3d-printer.html) compared to a [full-scale model turbo prop made via FDM](http://www.youtube.com/watch?feature=player_embedded&v=ALA2Gp59_IM). Both processes do a solid job at rapid prototyping, but there are some important nuances that should be considered when designing your parts. 
 
 ###Both are great, with limitations###
 
@@ -34,9 +34,9 @@ Also, **Fused Filament Fabrication (FFF)** and **Fused Deposition Modeling (FDM)
 
 ####FDM is great for####
 
-* **Mechanical performance** These are some of the strongest plastic 3D printing parts you'll get. 
-* **Consistency** Heated build chambers mean a lot less warping, which if you've talked to anyone printing ABS on a RepRap machine, is typically a big challenge
-* **Production use** In certain production cases, having certified parts can be crucial. For instance, one of the great properties of Ultem is that it's [flame retardant](http://boingboing.net/2010/09/15/hard-to-burn-lightwe.html), which allows it to be certified for use in aircraft.
+* **Mechanical performance** These are some of the strongest plastic 3D printing parts you'll get. In the datasheets found later in this post, you can see that FFF ABS has a tensile strength of about half that of FDM Ultem.   
+* **Consistency** Heated build chambers mean a lot less warping, which if you've talked to anyone printing ABS on an FFF machine, is challenge that [often needs addressing](http://hackaday.com/2011/11/15/a-technique-to-avoid-warping-on-large-3d-prints/). There are some [interesting solutions](http://www.instructables.com/id/100-Warp-Free-MakerBot-3D-Printing/) out there, but FDM's answer is to use a heated build chamber, which allows for the entire part to be printed before letting the thermoplastic cool down to room temperature.  
+* **Production use** In certain production cases, having certified parts can be crucial. For instance, one of the great properties of Ultem is that it's [flame retardant](http://boingboing.net/2010/09/15/hard-to-burn-lightwe.html), which allows it to be certified for [use in aircraft](http://www.makepartsfast.com/2013/07/5904/eye-hospital-takes-flight-with-air-duct-made-from-ultem-on-a-3d-printer).
 * **Support Material** The right-hand picture at the top of this post is an FDM part using soluble support material to accomodate for the overhangs and undercuts present in the model. Since the material is soluble there are virtually no signs of the support material once it's been removed. Awesome.
 * **Large geometries** FDM build envelopes can go as large as 914 x 610 x 914 mm, as [this video](http://www.youtube.com/watch?v=W5h2d7Vyj6s&feature=player_detailpage#t=170) shows (I'm ignoring [3D printing for architecture applications](http://bigthink.com/endless-innovation/why-3d-printed-houses-matter) since it's worthy of an entirely separate discussion). Remember the [Urbee](http://www.3ders.org/articles/20130211-urbee-2-announced-the-world-first-3d-printed-car-go-for-actual-production.html)? It was printed using FDM. If you need to print prototype cars, then this is likely how you're going to do it (however, I will add that [Gigabot recently finished a successful Kickstarter](http://www.re3d.org/#!gigabot/canh) for a 600mm x 600mm x 600mm FFF printer). 
 
@@ -85,9 +85,9 @@ Also, [here's a great comparison](http://www.stratasys.com/materials/fdm/compare
 
 ###The Future of FFF materials###
 
-Overall, I feel like there's a lot of room to innovate with different filament materials. The RepRap community has shown that they are willing to try printing with just about everything under the sun, while the Stratasys has definitely pushed the envelope with reliability and consitency. I'm optimistic that we'll see even more interesting materials very soon in the future. 
+Overall, there's a lot of room to innovate with different filament materials. The RepRap community has shown that they are willing to try printing with just about everything under the sun, while the Stratasys has definitely pushed the envelope with reliability and consistency. I'm optimistic that we'll see even more interesting materials very soon in the future. 
 
-Also, while this isn't strictly related to FFF or FDM, [MadeSolid recently launched a Kickstarter](http://www.indiegogo.com/projects/high-quality-3d-printer-resin) featuring some all-new materials for the SLA machines.
+Speaking of which, while this isn't strictly related to FFF or FDM, [MadeSolid recently launched a Kickstarter](http://www.indiegogo.com/projects/high-quality-3d-printer-resin) featuring some all-new materials for the SLA machines.
 
 Still have questions? Feel free to [submit an RFQ](http://www.supplybetter.com/orders/new) if you would like us to match with you with the right suppliers for your project. 
 

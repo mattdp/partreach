@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-10-28T15:32:50-07:00</updated>
+ <updated>2013-10-28T16:49:58-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -28,9 +28,9 @@
 
 &lt;h3&gt;Two clarifications&lt;/h3&gt;
 
-&lt;p&gt;This is not a post about which 3D printer you should purchase, though &lt;a href=&quot;http://blog.cubehero.com/2013/04/12/what-you-need-to-know-about-buying-a-3d-printer/&quot;&gt;here&#39;s a great analysis on this subject&lt;/a&gt;. This post is dedicated to discussing the material differences when using FFF and FDM, and how it may influence your design.&lt;/p&gt;
+&lt;p&gt;This is not a post about which 3D printer you should purchase, though &lt;a href=&quot;http://blog.cubehero.com/2013/04/12/what-you-need-to-know-about-buying-a-3d-printer/&quot;&gt;here&#39;s a great analysis on the subject&lt;/a&gt;. This post is dedicated to discussing the difference in materials when using FFF and FDM, and how it may influence your design.&lt;/p&gt;
 
-&lt;p&gt;Also, &lt;strong&gt;Fused Filament Fabrication (FFF)&lt;/strong&gt; and &lt;strong&gt;Fused Deposition Modeling (FDM)&lt;/strong&gt; 3D printing processes are &lt;a href=&quot;http://en.wikipedia.org/wiki/Fused_filament_fabrication&quot;&gt;basically the same&lt;/a&gt;. To show how similar they are, here&#39;s a &lt;a href=&quot;http://www.3ders.org/articles/20131014-jet-engine-made-on-a-3d-printer.html&quot;&gt;scale model jet turbine made via FFF&lt;/a&gt; compared to a &lt;a href=&quot;http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=ALA2Gp59_IM&quot;&gt;full-scale model turbo prop made via FDM&lt;/a&gt;. Both processes do a solid job at rapid prototyping, but there are some important nuances that should be considered when designing your parts.&lt;/p&gt;
+&lt;p&gt;Next, the 3D printing processes &lt;strong&gt;Fused Filament Fabrication (FFF)&lt;/strong&gt; and &lt;strong&gt;Fused Deposition Modeling (FDM)&lt;/strong&gt; are &lt;a href=&quot;http://en.wikipedia.org/wiki/Fused_filament_fabrication&quot;&gt;basically the same&lt;/a&gt;. To show how similar they are, here&#39;s a &lt;a href=&quot;http://www.3ders.org/articles/20131014-jet-engine-made-on-a-3d-printer.html&quot;&gt;scale model jet turbine made via FFF&lt;/a&gt; compared to a &lt;a href=&quot;http://www.youtube.com/watch?feature=player_embedded&amp;amp;v=ALA2Gp59_IM&quot;&gt;full-scale model turbo prop made via FDM&lt;/a&gt;. Both processes do a solid job at rapid prototyping, but there are some important nuances that should be considered when designing your parts.&lt;/p&gt;
 
 &lt;h3&gt;Both are great, with limitations&lt;/h3&gt;
 
@@ -55,9 +55,9 @@
 &lt;h4&gt;FDM is great for&lt;/h4&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Mechanical performance&lt;/strong&gt; These are some of the strongest plastic 3D printing parts you&#39;ll get.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt; Heated build chambers mean a lot less warping, which if you&#39;ve talked to anyone printing ABS on a RepRap machine, is typically a big challenge&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Production use&lt;/strong&gt; In certain production cases, having certified parts can be crucial. For instance, one of the great properties of Ultem is that it&#39;s &lt;a href=&quot;http://boingboing.net/2010/09/15/hard-to-burn-lightwe.html&quot;&gt;flame retardant&lt;/a&gt;, which allows it to be certified for use in aircraft.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Mechanical performance&lt;/strong&gt; These are some of the strongest plastic 3D printing parts you&#39;ll get. In the datasheets found later in this post, you can see that FFF ABS has a tensile strength of about half that of FDM Ultem.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt; Heated build chambers mean a lot less warping, which if you&#39;ve talked to anyone printing ABS on an FFF machine, is challenge that &lt;a href=&quot;http://hackaday.com/2011/11/15/a-technique-to-avoid-warping-on-large-3d-prints/&quot;&gt;often needs addressing&lt;/a&gt;. There are some &lt;a href=&quot;http://www.instructables.com/id/100-Warp-Free-MakerBot-3D-Printing/&quot;&gt;interesting solutions&lt;/a&gt; out there, but FDM&#39;s answer is to use a heated build chamber, which allows for the entire part to be printed before letting the thermoplastic cool down to room temperature.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Production use&lt;/strong&gt; In certain production cases, having certified parts can be crucial. For instance, one of the great properties of Ultem is that it&#39;s &lt;a href=&quot;http://boingboing.net/2010/09/15/hard-to-burn-lightwe.html&quot;&gt;flame retardant&lt;/a&gt;, which allows it to be certified for &lt;a href=&quot;http://www.makepartsfast.com/2013/07/5904/eye-hospital-takes-flight-with-air-duct-made-from-ultem-on-a-3d-printer&quot;&gt;use in aircraft&lt;/a&gt;.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Support Material&lt;/strong&gt; The right-hand picture at the top of this post is an FDM part using soluble support material to accomodate for the overhangs and undercuts present in the model. Since the material is soluble there are virtually no signs of the support material once it&#39;s been removed. Awesome.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Large geometries&lt;/strong&gt; FDM build envelopes can go as large as 914 x 610 x 914 mm, as &lt;a href=&quot;http://www.youtube.com/watch?v=W5h2d7Vyj6s&amp;amp;feature=player_detailpage#t=170&quot;&gt;this video&lt;/a&gt; shows (I&#39;m ignoring &lt;a href=&quot;http://bigthink.com/endless-innovation/why-3d-printed-houses-matter&quot;&gt;3D printing for architecture applications&lt;/a&gt; since it&#39;s worthy of an entirely separate discussion). Remember the &lt;a href=&quot;http://www.3ders.org/articles/20130211-urbee-2-announced-the-world-first-3d-printed-car-go-for-actual-production.html&quot;&gt;Urbee&lt;/a&gt;? It was printed using FDM. If you need to print prototype cars, then this is likely how you&#39;re going to do it (however, I will add that &lt;a href=&quot;http://www.re3d.org/#!gigabot/canh&quot;&gt;Gigabot recently finished a successful Kickstarter&lt;/a&gt; for a 600mm x 600mm x 600mm FFF printer).&lt;/li&gt;
 &lt;/ul&gt;
