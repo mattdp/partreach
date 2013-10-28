@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+  <head>
+     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+     <meta name="google-site-verification" content="xsEb-S9JoWbJsphstmoBu_x0vxGQLUr3FT6oNTyPcww" />
+     <meta name="description" content="The SupplyBetter blog covers site updates, sourcing in general, and 3D printing.">
+     <title>Design for 3D Printing - When to choose FFF vs. FDM - Materials</title>
+
+     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
+
+     <script src='/blog/js/all.js' type='text/javascript'></script>
+     <link href='/blog/css/all.css' rel='stylesheet' type='text/css'>
+     <link rel="shortcut icon" href="/images/favicon.ico">
+
+  </head>
+  <body>
+    <div>
+      <header class="header content">
+        <div class="container">
+          <h1>
+            <a href="/blog" id="blog-logo" class="logo pull-left">SupplyBetter Blog</a>
+          </h1>
+          <ul class="nav pull-right">
+            <li><a href="/">Looking for the main SupplyBetter page?</a></li>
+          </ul>
+        </div>
+      </header>
+      
+      <div class="content">
+        <div class="container blog-min-height">
+          <div id="header">
+	<h3 class="center">Design for 3D Printing - When to choose FFF vs. FDM - Materials</h3>
+</div>
+
+<div id="post" class="blog-content">
+	<p><img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/8592837554_e02715f7b1_c.jpg" width="49%">
+<img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/DFM_FDM_photo.JPG" width="49%"></p>
+
+<div class="footer">
+    (left) Frogs printing on a Makerbot out of PLA material. Layer heights from left to right are 0.1mm, 0.27mm, and 0.34mm. Image courtesy of <a href="https://www.flickr.com/photos/creative_tools/">Creative Tools</a> under <a href="https://creativecommons.org/licenses/by/2.0/deed.en">CC BY 2.0</a>. (right) Custom bracket 3D printed through SupplyBetter by <a href="https://supplybetter.com/profiles/makeparts">Make-Parts.com</a>. The solube support material is still attached in this photo, which was later removed in post process.
+</div>
+
+
+<p>SupplyBetter loves 3D printing. For the past eight months we've seen a wide variety of projects <a href="http://www.supplybetter.com/orders/new">submitted through our platform</a> we've have had the pleasure of helping get made. We've dealt with a full spectrum of 3D printing projects ranging from small to large, one-offs to medium volume runs, and plastics to exotic materials. Interestingly, some patterns have started to emerge. In particular we deal with quite a few RFQs from people who are looking to  transition from desktop printing to commercial printing or vice versa. While we have <a href="http://www.supplybetter.com/materials">a page dedicated to comparing various 3D printing method and materials</a>, I wanted to specifically focus on the difference in materials between FFF and FDM machines.</p>
+
+<h3>First, a clarification</h3>
+
+<p>This is not a post about which 3D printer you should purchase, though <a href="http://blog.cubehero.com/2013/04/12/what-you-need-to-know-about-buying-a-3d-printer/">here's a great analysis on this subject</a>. This post is dedicated to discussing the material differences when using FFF and FDM, and how it may influence your design. Next, <strong>Fused Filament Fabrication (FFF)</strong> and <strong>Fused Deposition Modeling (FDM)</strong> 3D printing processes are <a href="http://en.wikipedia.org/wiki/Fused_filament_fabrication">basically the same</a>. To show how similar they are, here's a <a href="http://www.3ders.org/articles/20131014-jet-engine-made-on-a-3d-printer.html">scale model jet turbine made via FFF</a> compared to a <a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=ALA2Gp59_IM">full-scale model turbo prop made via FDM</a>.</p>
+
+<h3>Both are great, with limiations</h3>
+
+<h4>FFF is great for</h4>
+
+<ul>
+<li><strong>Cheap prototyping</strong> Seriously, at about <a href="http://www.octave.com/p1173433089/Octave-Natural-ABS-Filament-1.75mm-1kg-2.2lbs-Spool/product_info.html">$0.03 per gram</a>, this is as cheap as it gets.</li>
+<li><strong>Fast printing</strong> Want something in your hand as fast as possible? Set a big layer height and <a href="http://davedurant.wordpress.com/2011/10/12/ultimaker-faq-but-what-about-the-quality-of-prints/">watch your printer fly</a>. You can also have greater control over the infill of your print, which means you can lay down the least amount of material necessary to keep your model from collapsing in on itself.</li>
+<li><strong>Experimentation</strong> Want to <a href="http://3dprintingindustry.com/2013/10/14/3d-printing-land-chocolate/">3D print in chocolate</a>? Go for it! Want to quickly switch between PLA, ABS, and PC, not a problem. Cheap machines are awesome for this and if you destroy an extruder or mangle one of your stepper motors, <a href="http://reprap.org/wiki/RepRap_Buyers'_Guide">then spare parts are readily available</a>.</li>
+</ul>
+
+
+<h4>FFF is not great for</h4>
+
+<ul>
+<li><strong>Mechanical performance</strong> Delamination is a chief concern when printing from an FFF machine, and <a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=5uJyqLZU7YI">here's a great example</a> of what that can look like. In case anyone is currently experiencing delamination woes, <a href="http://www.3ders.org/articles/20120709-some-tips-for-getting-better-3d-printing-results.html">3ders posted some handy tips</a> for mitigating this problem (pulled from a <a href="http://www.soliforum.com/topic/3917/problem-with-layer-adhesion-i-think/">thorough discussion on Soliforum</a>).</li>
+<li><strong>Consistency</strong> One of the tradeoffs made in low cost filament is consistency in cross sectional area. <a href="http://www.protoparadigm.com/blog/2011/11/filament-tolerances-and-print-quality/">Protoparadigm has an incredibly thorough rundown</a> of what this looks like and how you can take measures to lessen its effect on prints.</li>
+<li><strong>Support Material</strong> Ask someone who regularly prints using FFF how much support material they use their answer will likely be "As little as possible". Yes, dual extruder FFF machines are making progress with utilizing support material alongside structure material, but right now the vast majority of FFF suppliers simply use structure material (PLA, ABS, etc) for their support. Since the structure and support materials are the same, removal is tedious and the surface finish suffers (though, post processing with <a href="http://www.youtube.com/watch?v=bcXLJRIKGuQ">acetone vapor</a> is an increasingly viable option). If you can design your parts without any need for support material then great, but if not and surface finish is important you're better off using FDM.</li>
+</ul>
+
+
+<h4>FDM is great for</h4>
+
+<ul>
+<li><strong>Mechanical performance</strong> These are some of the strongest plastic 3D printing parts you'll get.</li>
+<li><strong>Consistency</strong> Heated build chambers mean a lot less warping, which if you've talked to anyone printing ABS on a RepRap machine, is typically a big challenge</li>
+<li><strong>Production use</strong> In certain production cases, having certified parts can be crucial. For instance, one of the great properties of Ultem is that it's <a href="http://boingboing.net/2010/09/15/hard-to-burn-lightwe.html">flame retardant</a>, which allows it to be certified for use in aircraft, which is a rather high bar a far as certifications are concerned.</li>
+<li><strong>Support Material</strong> The right-hand picture at the top of this post is an FDM part using soluble support material to accomodate for the overhangs and undercuts present in the model. Since the material is soluble there are virtually no signs of the support material once it's been removed. Awesome.</li>
+<li><strong>Large geometries</strong> FDM build envelopes can go as large as 914 x 610 x 914 mm, as <a href="http://www.youtube.com/watch?v=W5h2d7Vyj6s&amp;feature=player_detailpage#t=170">this video</a> shows (I'm ignoring <a href="http://bigthink.com/endless-innovation/why-3d-printed-houses-matter">3D printing for architecture application</a> since it's worthy of an entirely separate discussion). Remember the <a href="http://www.3ders.org/articles/20130211-urbee-2-announced-the-world-first-3d-printed-car-go-for-actual-production.html">Urbee</a>? It was printed using FDM. If you need to print prototype cars, then this is likely how you're going to do it. Though, I will add that <a href="http://www.re3d.org/#!gigabot/canh">Gigabot recently finished a successful Kickstarter</a> for a 600mm x 600mm x 600mm FFF printer.</li>
+</ul>
+
+
+<h4>FDM is not great for</h4>
+
+<ul>
+<li><p><strong>Quick and dirty printing</strong> Like I said with FFF, if you're looking for quick and dirty, you're not going to beat desktop printers. Even if you use <a href="https://bolsonmaterials.com/Products_Overview-Rapid_Prototyping_Materials#Dimension">non-OEM vendors</a>, material is still going to cost you between $0.20 - $0.25 per gram. Not quite a magnitude more expensive than FFF filament, but enough to make you reconsider how much material you're using in your design (and it's enough to incentivize <a href="http://hackaday.com/2012/09/19/this-hack-can-refill-your-stratasys-3d-printer/">work-arounds for reloading cartridges</a>)</p></li>
+<li><p><strong>Experimentation</strong> These machines are expensive, with the cheapest ones being <a href="http://www.engineering.com/3DPrinting/3DPrintingArticles/ArticleID/4405/Hands-on-with-the-Mojo-3D-Printer.aspx">the Mojo at around $10,000 USD</a>. If you're looking to experiment with different materials, I would suggest <a href="http://haveblue.org/?p=439">scouring Craigslist like Have Blue</a> and pick up an older model for cheap.</p></li>
+</ul>
+
+
+<h3>Materials possible</h3>
+
+<p>Quite a wide variety of different materials have been attempted, most of which are categorized on the <a href="http://reprap.org/wiki/Category:Thermoplastic">RepRap wiki</a> Some have datasheets, though most do not. If you come across a datasheet for any material here that doesn't have one, let us know! We'd love to compare.</p>
+
+<h4>FFF</h4>
+
+<ul>
+<li>ABS (Octave Brand): <a href="https://s3.amazonaws.com/partreach_initial_bucket/uploads/PA-747R_ISO.pdf">datasheet</a></li>
+<li>Laywoo-D3 (wood): <a href="http://www.3ders.org/articles/20130204-wood-filament-laywoo-d3-suppliers-and-price-compare.html">description</a></li>
+<li>Nylon-618 (PLA): <a href="http://reprap.org/wiki/Taulman3D_618_Nylon">description</a></li>
+<li>Nylon-645: <a href="http://taulman3d.com/645-features.html">description</a>, <a href="http://www.youtube.com/watch?v=kUkhy92ad64">video showing flexibility</a></li>
+<li>PC: <a href="http://reprap.org/wiki/Polycarbonate">description</a>
+
+<ul>
+<li><a href="http://www.youtube.com/watch?feature=player_detailpage&amp;v=ZuMWhni7E2g#t=7">video comparing mechanical properties of ABS, PLA, and PC</a></li>
+</ul>
+</li>
+<li>PLA 4042D: <a href="http://www.natureworksllc.com/Technical-Resources/~/media/Technical_Resources/Technical_Data_Sheets/TechnicalDataSheet_4032D_films_pdf.pdf">datasheet</a></li>
+<li>PLA 4043D: <a href="http://www.natureworksllc.com/Technical-Resources/~/media/Technical_Resources/Technical_Data_Sheets/TechnicalDataSheet_4043D_films_pdf.pdf">datasheet</a></li>
+<li>Ingeo™ Biopolymer 2003D: <a href="https://dzevsq2emy08i.cloudfront.net/paperclip/technology_attachment_uploaded_files/34/original/TechnicalDataSheet_2003D_FFP-FSW.pdf?1370544691">datasheet</a></li>
+<li>PVA (while possible it's not advisable)</li>
+<li>HIPS (support material): <a href="http://reprap.org/wiki/HIPS">description</a></li>
+<li>Chocolate (technically a filament, but not really): <a href="http://reprap.org/wiki/Chocolate_Extrusion">description</a></li>
+</ul>
+
+
+<h4>FDM</h4>
+
+<ul>
+<li>ABSplus-430: <a href="http://www.stratasys.com/~/media/Main/Secure/material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-ABSplus-01-13-web.ashx">datasheet</a></li>
+<li>ABS-ESD7: <a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-ABS-ESD7-01-13-web.ashx">datasheet</a></li>
+<li>ABSi: <a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-*%20ABSi-01-13-web.ashx">datasheet</a></li>
+<li>ABS-M30: <a href="http://www.stratasys.com/materials/fdm/abs-m30">datasheet</a>
+
+<ul>
+<li><a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/SSYS-MS-ABS-M30-PropertiesReport-01-11.ashx">Tensile Test</a></li>
+</ul>
+</li>
+<li>ABS-M30i: <a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-M30i-01-13-web.ashx">datasheet</a></li>
+<li>PC: <a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-PC-01-13-web.ashx">datasheet</a>
+
+<ul>
+<li><a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/SSYS-MS-PC-PropertiesReport-01-11.ashx">Tensile Test</a></li>
+</ul>
+</li>
+<li>PC-ABS: <a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-PC-ABS-01-13-web.ashx">datasheet</a></li>
+<li>PC-ISO: <a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-PC-ISO-01-13-web.ashx">datasheet</a></li>
+<li>PPSF/PPSU: <a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-PPSF-01-13-web.ashx">datasheet</a></li>
+<li>ULTEM 9085: <a href="http://www.stratasys.com/~/media/Main/Secure/Material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-ULTEM9085-01-13-web.ashx">datasheet</a>
+
+<ul>
+<li><a href="http://www.stratasys.com/~/media/Main/Files/FDM%20Test%20Reports/Mechanical%20Properties%20of%20Ultem%20FDM%20Parts.ashx">Tensile Test</a></li>
+</ul>
+</li>
+<li>Support Material: There's soluble and break-away kinds, both of which appear to proprietary (even though break-away looks surprising like HIPS).</li>
+</ul>
+
+
+<p>Also, <a href="http://www.stratasys.com/materials/fdm/compare-fdm-materials">here's a great comparison</a> of materials on the Stratasys website (including support material).</p>
+
+<h3>The Future of FFF materials</h3>
+
+<p>Overall, I feel like there's a lot of room to innovate with different filament materials. The RepRap community has shown that they are willing to try printing with just about everything under the sun, while the Stratasys has definitely pushed the envelope with reliability and consitency. I'm optimistic that we'll see even more interesting materials very soon in the future.</p>
+
+<p>Also, While this isn't strictly related to FFF or FDM, <a href="http://www.indiegogo.com/projects/high-quality-3d-printer-resin">MadeSolid recently launched a Kickstarter</a> featuring some all new materials for the SLA machines.</p>
+
+<p>Still have questions? Feel free to <a href="http://www.supplybetter.com/orders/new">submit an RFQ</a> if you would like us to match with you with the right suppliers for your project.</p>
+
+<p>Cheers,</p>
+
+<p>Rob</p>
+
+<div class="footer">
+    Note: SupplyBetter has no affiliation with any 3D printing company. The opinions expressed in this post are the author's alone.
+</div>
+
+
+</div>
+
+<div id="related">
+  <h3>Related Posts</h3>
+  <ul class="posts">
+    
+      <li><span>17 Oct 2013</span> &raquo; <a href="/blog/california-descriptions-and-navigating-the-supplier-index.html">California descriptions and navigating the supplier index</a></li>
+    
+      <li><span>30 Sep 2013</span> &raquo; <a href="/blog/supplybetter-wins-2nd-place-at-the-netip-fast-pitch-competition.html">SupplyBetter wins 2nd place at the NetIP Fast Pitch Competition</a></li>
+    
+      <li><span>29 Sep 2013</span> &raquo; <a href="/blog/supplybetter-wins-2nd-place-at-the-netip-fast-pitch-competition.html">SupplyBetter wins 2nd place at the NetIP Fast Pitch Competition</a></li>
+    
+  </ul>
+</div>
+
+<div id="bottom" class="back_to_home">
+	<a href="/blog">Back to blog</a>
+	<p><a href="mailto:feedback@supplybetter.com" target="_blank">Email us at feedback@supplybetter.com with suggestions or comments</a></p>
+</div>
+
+        </div>
+      </div>
+        
+      <footer class="footer content">
+        <div class="container">
+          <ul class="pull-left nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/suppliers">Suppliers</a></li>
+            <li><a href="/getting_started">Getting started</a></li>
+            <li><a href="/materials">Materials</a></li>
+            <li><a href="">Terms</a></li>
+            <li><a href="">Privacy</a></li>
+          </ul>
+          <p class="pull-right nav">
+        &copy; 2013 SupplyBetter
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
