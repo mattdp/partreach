@@ -28,9 +28,11 @@
         <% @need_to_inform_suppliers_structure.each do |supplier_id,order_ids| %>
             <% supplier = Supplier.find(supplier_id) %>
             <li>
-                <%= link_to "#{supplier.name}: ", admin_edit_url(@supplier.name_for_link) %>
+                <%= link_to "#{supplier.name}:", admin_edit_url(supplier.name_for_link) %>
+                <%= " " %>
                 <% order_ids.each do |o_id| %>
-                    <%= link_to "#{o_id} ", order_url(o_id) %>
+                    <%= link_to "#{o_id}", order_url(o_id) %>
+                    <%= " " %>
                 <% end %>
             </li>
         <% end %>
