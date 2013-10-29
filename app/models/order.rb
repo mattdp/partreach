@@ -87,12 +87,33 @@ class Order < ActiveRecord::Base
     "Needs work" => false,
     "Waiting for supplier" => false,
     "Waiting for buyer" => false,
+    "Need to inform suppliers" => false,
     "Finished - closed" => true,
     "Finished - no close" => true
   }
 
   def self.order_status_hash
     return ORDER_STATUS_HASH
+  end
+
+  # return{supplier1.name => [order1.id, order2.id, order3.id], ...}
+  def self.need_to_inform_suppliers_structure
+    answer = {} 
+    orders = Order.where("status = ?",'Need to inform suppliers')
+    return answer unless orders.present?
+    orders.each do |o|
+      o.dialogues.each do |d|
+        if d.should_be_informed?
+          supplier = Supplier.find(d.supplier_id)
+          if answer[supplier.id].present?
+            answer[supplier.id] << o.id
+          else
+            answer[supplier.id] = [o.id]
+          end
+        end
+      end
+    end
+    return answer
   end
 
 end

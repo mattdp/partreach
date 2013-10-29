@@ -46,4 +46,8 @@ class Dialogue < ActiveRecord::Base
   	return (self.response_received and self.total_cost.present? and self.total_cost > 0)
   end
 
+  def should_be_informed?
+    return (self.opener_sent and !self.knows_outcome?)
+  end
+
 end

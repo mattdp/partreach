@@ -21,6 +21,22 @@
     	<% end %>
     </ul>
 <% end %>    
+
+<% if @need_to_inform_suppliers_structure.present? %>
+    <h3>Suppliers to inform</h3>
+    <ul>
+        <% @need_to_inform_suppliers_structure.each do |supplier_id,order_ids| %>
+            <% supplier = Supplier.find(supplier_id) %>
+            <li>
+                <%= link_to "#{supplier.name}: ", admin_edit_url(@supplier.name_for_link) %>
+                <% order_ids.each do |o_id| %>
+                    <%= link_to "#{o_id} ", order_url(o_id) %>
+                <% end %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
+
 <h2>Overall counts</h2>
 <ul>
     <li><%= Order.all.count %> - all orders</li>

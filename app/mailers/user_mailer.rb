@@ -27,6 +27,7 @@ class UserMailer < ActionMailer::Base
     }
     @incomplete_orders = Order.incomplete_orders
     @brand_name = brand_name
+    @need_to_inform_suppliers_structure = Order.need_to_inform_suppliers_structure
     EMPLOYEES.each do |e|
       mail(to: e, subject: subject).deliver do |format|
         format.html { render layout: "layouts/blast_mailer", 
