@@ -30,7 +30,7 @@
 class Supplier < ActiveRecord::Base
   belongs_to :user
 
-  has_many :dialogues
+  has_many :dialogues, :dependent => :destroy
   has_one :address, :as => :place, :dependent => :destroy
   has_many :combos, :dependent => :destroy
   has_many :tags, :through => :combos
