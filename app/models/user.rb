@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_many :orders, :dependent => :destroy
   has_many :dialogues, :through => :orders, :dependent => :destroy
   has_many :reviews
-  has_one :address, :as => :place
+  has_one :address, :as => :place, :dependent => :destroy
   has_one :supplier
 
   before_save { |user| user.email = email.downcase }
