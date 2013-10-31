@@ -50,4 +50,21 @@ class Dialogue < ActiveRecord::Base
     return (self.opener_sent and !self.knows_outcome?)
   end
 
+  #return array of hashes, each containing the needed information on suppliers, for caching purposes
+  def self.dialogues_new_setup
+    structure = []
+    suppliers = Supplier.all.sort_by! { |s| s.name.downcase }
+    suppliers.each do |supplier|
+      address = supplier.address
+      structure << {
+        supplier: supplier,
+        tag_names: supplier.tags.map{|t| t.name},
+        safe_country: supplier.safe_country,
+        safe_state: supplier.safe_state,
+        safe_zip: supplier.safe_zip
+      }
+    end
+    return structure
+  end
+
 end

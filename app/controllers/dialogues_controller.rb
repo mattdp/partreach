@@ -2,8 +2,10 @@ class DialoguesController < ApplicationController
 	before_filter :admin_user, only: [:new, :create]
 
 	def new
-		@suppliers = sort_suppliers(Supplier.all)
-		@tags = Tag.all
+		@structure = Rails.cache.fetch "dialogues_new_setup", :expires_in => 25.hours do |key|
+			logger.debug "Cache miss: dialogues_new_setup"
+			Dialogue.dialogues_new_setup
+		end
 		@family_names_and_tags = Tag.family_names_and_tags
 	end
 
@@ -68,11 +70,5 @@ class DialoguesController < ApplicationController
 	    end
 	  end
   end
-
-  private
-
-  	def sort_suppliers(all_suppliers)
-  		all_suppliers.sort_by! { |s| s.name.downcase }
-  	end
 
 end
