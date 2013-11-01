@@ -389,7 +389,12 @@ strong {
     float: right; }
 
 .footer {
-  color: #9499a7; }
+  color: #9499a7; 
+  font-size: 14px;
+}
+.footer a {
+  font-size: 14px;
+}
 
 /* orders/new */
 .order_top_header {
