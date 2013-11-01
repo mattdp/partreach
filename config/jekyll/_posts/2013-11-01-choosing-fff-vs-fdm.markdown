@@ -90,7 +90,7 @@ Also, <a href="http://www.stratasys.com/materials/fdm/compare-fdm-materials" tar
 
 Overall, there's a lot of room to innovate with different filament materials. The RepRap community has shown that they are willing to try printing with just about everything under the sun, while the Stratasys has definitely pushed the envelope with reliability and consistency. I'm optimistic that we'll see even more interesting materials very soon in the future. 
 
-Speaking of which, while this isn't strictly related to FFF or FDM, <a href="http://www.indiegogo.com/projects/high-quality-3d-printer-resin" target="_blank">MadeSolid recently completed an Indiegogo campaign</a> featuring some all-new materials for the SLA machines.
+Speaking of which, while this isn't strictly related to FFF or FDM, <a href="http://www.indiegogo.com/projects/high-quality-3d-printer-resin" target="_blank">MadeSolid recently completed an Indiegogo campaign</a> featuring some all-new materials for SLA machines.
 
 Still have questions? Feel free to <a href="http://www.supplybetter.com/orders/new" target="_blank">submit an RFQ</a> if you would like us to match you with the right suppliers for your project. 
 
