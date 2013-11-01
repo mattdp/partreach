@@ -86,7 +86,7 @@ Quite a wide variety of different materials have been attempted, most of which a
 
 Also, <a href="http://www.stratasys.com/materials/fdm/compare-fdm-materials" target="_blank">here's a great comparison</a> of materials on the Stratasys website (including support material).
 
-###The Future of hobby-level materials###
+###The future of hobby-level materials###
 
 Overall, there's a lot of room to innovate with different filament materials. The RepRap community has shown that they are willing to try printing with just about everything under the sun, while the Stratasys has definitely pushed the envelope with reliability and consistency. I'm optimistic that we'll see even more interesting materials very soon in the future. 
 
