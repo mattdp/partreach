@@ -4,7 +4,7 @@
      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
      <meta name="google-site-verification" content="xsEb-S9JoWbJsphstmoBu_x0vxGQLUr3FT6oNTyPcww" />
      <meta name="description" content="The SupplyBetter blog covers site updates, sourcing in general, and 3D printing.">
-     <title>Design for 3D Printing - When to choose FFF vs. FDM - Materials</title>
+     <title>When to choose hobby vs. commercial level 3D printers - Materials</title>
 
      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
 
@@ -29,7 +29,7 @@
       <div class="content">
         <div class="container blog-min-height">
           <div id="header">
-	<h3 class="center">Design for 3D Printing - When to choose FFF vs. FDM - Materials</h3>
+	<h3 class="center">When to choose hobby vs. commercial level 3D printers - Materials</h3>
 </div>
 
 <div id="post" class="blog-content">
@@ -41,17 +41,19 @@
 </div>
 
 
+<p>[<strong>11/1 Edit:</strong> As reddit user intentional3D has pointed out, we're really discussing the differences between hobby level printers and commercial level 3D printers. This is as opposed to FFF vs. FDM which can be a rather confusing distinction and we've updated this post to make this point clearer.]</p>
+
 <p>SupplyBetter loves 3D printing. For the past eight months we've seen a wide variety of projects <a href="http://www.supplybetter.com/orders/new" target="_blank">submitted through our platform</a>, and have had the pleasure of matching them to the best suppliers for the job. We've dealt with a full spectrum of 3D printing projects, ranging from small to large, one-offs to medium volume runs, and plastics to exotic materials. Some patterns have started to emerge - in particular, we deal with quite a few RFQs from people who are looking to transition from desktop printing to commercial printing or vice versa. While we have <a href="http://www.supplybetter.com/materials" target="_blank">a page dedicated to comparing various 3D printing method and materials</a>, I wanted to specifically focus on the difference in materials between FFF and FDM machines.</p>
 
 <h3>Two clarifications</h3>
 
 <p>This is not a post about which 3D printer you should purchase, though <a href="http://blog.cubehero.com/2013/04/12/what-you-need-to-know-about-buying-a-3d-printer/" target="_blank">here's a great analysis on the subject</a>. This post is dedicated to discussing the difference in materials when using FFF and FDM, and how it may influence your design.</p>
 
-<p>Next, the 3D printing processes <strong>Fused Filament Fabrication (FFF)</strong> and <strong>Fused Deposition Modeling (FDM)</strong> are <a href="http://en.wikipedia.org/wiki/Fused_filament_fabrication" target="_blank">basically the same</a>. To show how similar they are, here's a <a href="http://www.3ders.org/articles/20131014-jet-engine-made-on-a-3d-printer.html" target="_blank">scale model jet turbine made via FFF</a> compared to a <a href="http://www.youtube.com/watch?feature=player_embedded&v=ALA2Gp59_IM" target="_blank">full-scale model turbo prop made via FDM</a>. Both processes do a solid job at rapid prototyping, but there are some important nuances that should be considered when designing your parts.</p>
+<p>Next, the 3D printing processes <strong>Fused Filament Fabrication (FFF)</strong> and <strong>Fused Deposition Modeling (FDM)</strong> are <a href="http://en.wikipedia.org/wiki/Fused_filament_fabrication" target="_blank">basically the same</a> (FDM is a Stratasys trademark). To show how similar they are, here's a <a href="http://www.3ders.org/articles/20131014-jet-engine-made-on-a-3d-printer.html" target="_blank">scale model jet turbine made via FFF</a> compared to a <a href="http://www.youtube.com/watch?feature=player_embedded&v=ALA2Gp59_IM" target="_blank">full-scale model turbo prop made via FDM</a>. Both processes do a solid job at rapid prototyping, but there are some important nuances that should be considered when designing your parts. That distinction primarily involves deciding whether a hobby-level 3D printer is suitable for a project vs. a commercial-grade printer. We explore the differences here.</p>
 
 <h3>Both are great, with limitations</h3>
 
-<h4>FFF is great for</h4>
+<h4>Hobby-level is great for</h4>
 
 <ul>
 <li><strong>Cheap prototyping</strong> Seriously, at about <a href="http://www.octave.com/p1173433089/Octave-Natural-ABS-Filament-1.75mm-1kg-2.2lbs-Spool/product_info.html" target="_blank">$0.03 per gram</a>, this is as cheap as it gets.</li>
@@ -60,7 +62,7 @@
 </ul>
 
 
-<h4>FFF is not great for</h4>
+<h4>Hobby-level is not great for</h4>
 
 <ul>
 <li><strong>Mechanical performance</strong> Delamination is a chief concern when printing from an FFF machine. <a href="http://www.youtube.com/watch?feature=player_embedded&v=5uJyqLZU7YI" target="_blank">Here's a great example</a> of what that can look like. In case anyone is currently experiencing delamination woes, <a href="http://www.3ders.org/articles/20120709-some-tips-for-getting-better-3d-printing-results.html" target="_blank">3ders posted some handy tips</a> for mitigating this problem (pulled from a <a href="http://www.soliforum.com/topic/3917/problem-with-layer-adhesion-i-think/" target="_blank">thorough discussion on Soliforum</a>).</li>
@@ -69,7 +71,7 @@
 </ul>
 
 
-<h4>FDM is great for</h4>
+<h4>Commercial-grade is great for</h4>
 
 <ul>
 <li><strong>Mechanical performance</strong> These are some of the strongest plastic 3D printing parts you'll get. In the datasheets found later in this post, you can see that FFF ABS has a tensile strength of about half that of FDM Ultem.</li>
@@ -80,7 +82,7 @@
 </ul>
 
 
-<h4>FDM is not great for</h4>
+<h4>Commercial-grade is not great for</h4>
 
 <ul>
 <li><p><strong>Quick and dirty printing</strong> Like I said with FFF, if you're looking for quick and dirty, you're not going to beat desktop printers. Even if you use <a href="https://bolsonmaterials.com/Products_Overview-Rapid_Prototyping_Materials#Dimension" target="_blank">non-OEM vendors</a>, material is still going to cost you between $0.20 - $0.25 per gram. Not quite a magnitude more expensive than FFF filament, but enough to make you reconsider how much material you're using in your design (and to incentivize <a href="http://hackaday.com/2012/09/19/this-hack-can-refill-your-stratasys-3d-printer/" target="_blank">work-arounds for reloading cartridges</a>)</p></li>
@@ -92,7 +94,7 @@
 
 <p>Quite a wide variety of different materials have been attempted, most of which are categorized on the <a href="http://reprap.org/wiki/Category:Thermoplastic" target="_blank">RepRap wiki</a> Some have datasheets, though most do not. If you come across a datasheet for any material here that doesn't have one, let us know! We'd love to compare.</p>
 
-<h4>FFF</h4>
+<h4>Hobby-level</h4>
 
 <ul>
 <li>ABS (Octave Brand): <a href="https://s3.amazonaws.com/partreach_initial_bucket/uploads/PA-747R_ISO.pdf" target="_blank">datasheet</a></li>
@@ -114,7 +116,7 @@
 </ul>
 
 
-<h4>FDM</h4>
+<h4>Commercial-grade</h4>
 
 <ul>
 <li>ABSplus-430: <a href="http://www.stratasys.com/~/media/Main/Secure/material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-ABSplus-01-13-web.ashx" target="_blank">datasheet</a></li>
@@ -148,11 +150,11 @@
 
 <p>Also, <a href="http://www.stratasys.com/materials/fdm/compare-fdm-materials" target="_blank">here's a great comparison</a> of materials on the Stratasys website (including support material).</p>
 
-<h3>The Future of FFF materials</h3>
+<h3>The Future of hobby-level materials</h3>
 
 <p>Overall, there's a lot of room to innovate with different filament materials. The RepRap community has shown that they are willing to try printing with just about everything under the sun, while the Stratasys has definitely pushed the envelope with reliability and consistency. I'm optimistic that we'll see even more interesting materials very soon in the future.</p>
 
-<p>Speaking of which, while this isn't strictly related to FFF or FDM, <a href="http://www.indiegogo.com/projects/high-quality-3d-printer-resin" target="_blank">MadeSolid recently launched a Kickstarter</a> featuring some all-new materials for the SLA machines.</p>
+<p>Speaking of which, while this isn't strictly related to FFF or FDM, <a href="http://www.indiegogo.com/projects/high-quality-3d-printer-resin" target="_blank">MadeSolid recently completed an Indiegogo campaign</a> featuring some all-new materials for the SLA machines.</p>
 
 <p>Still have questions? Feel free to <a href="http://www.supplybetter.com/orders/new" target="_blank">submit an RFQ</a> if you would like us to match you with the right suppliers for your project.</p>
 
