@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-11-01T09:43:27-07:00</updated>
+ <updated>2013-11-01T09:59:45-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -13,9 +13,9 @@
  
  <entry>
    <title>Design for 3D Printing - When to choose FFF vs. FDM - Materials</title>
-   <link href="YOUR_URL/dfm-tips-for-3d-printing.html"/>
+   <link href="YOUR_URL/choosing-fff-vs-fdm.html"/>
    <updated>2013-11-01T00:00:00-07:00</updated>
-   <id>BLOG_URL/dfm-tips-for-3d-printing</id>
+   <id>BLOG_URL/choosing-fff-vs-fdm</id>
    <content type="html">&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/8592837554_e02715f7b1_c.jpg&quot; width=&quot;49%&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/DFM_FDM_photo.JPG&quot; width=&quot;49%&quot;&gt;&lt;/p&gt;
 
