@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-10-28T17:04:05-07:00</updated>
+ <updated>2013-11-01T09:43:27-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -14,7 +14,7 @@
  <entry>
    <title>Design for 3D Printing - When to choose FFF vs. FDM - Materials</title>
    <link href="YOUR_URL/dfm-tips-for-3d-printing.html"/>
-   <updated>2013-10-23T00:00:00-07:00</updated>
+   <updated>2013-11-01T00:00:00-07:00</updated>
    <id>BLOG_URL/dfm-tips-for-3d-printing</id>
    <content type="html">&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/8592837554_e02715f7b1_c.jpg&quot; width=&quot;49%&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/DFM_FDM_photo.JPG&quot; width=&quot;49%&quot;&gt;&lt;/p&gt;
@@ -59,7 +59,7 @@
 &lt;li&gt;&lt;strong&gt;Consistency&lt;/strong&gt; Heated build chambers mean a lot less warping, which if you&#39;ve talked to anyone printing ABS on a RepRap machine, is challenge that &lt;a href=&quot;http://hackaday.com/2011/11/15/a-technique-to-avoid-warping-on-large-3d-prints&quot; target=&quot;_blank&quot;&gt;often needs addressing&lt;/a&gt;. There are some &lt;a href=&quot;http://www.instructables.com/id/100-Warp-Free-MakerBot-3D-Printing/&quot; target=&quot;_blank&quot;&gt;interesting solutions&lt;/a&gt; out there, but FDM&#39;s answer is to use a heated build chamber, which allows for the entire part to be printed before letting the thermoplastic cool down to room temperature.&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Production use&lt;/strong&gt; In certain production cases, having certified parts can be crucial. For instance, one of the great properties of Ultem is that it&#39;s &lt;a href=&quot;http://boingboing.net/2010/09/15/hard-to-burn-lightwe.html&quot; target=&quot;_blank&quot;&gt;flame retardant&lt;/a&gt;, which allows it to be certified for &lt;a href=&quot;http://www.makepartsfast.com/2013/07/5904/eye-hospital-takes-flight-with-air-duct-made-from-ultem-on-a-3d-printer&quot; target=&quot;_blank&quot;&gt;use in aircraft&lt;/a&gt;.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;Support Material&lt;/strong&gt; The right-hand picture at the top of this post is an FDM part using soluble support material to accomodate for the overhangs and undercuts present in the model. Since the material is soluble there are virtually no signs of the support material once it&#39;s been removed. Awesome.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Large geometries&lt;/strong&gt; FDM build envelopes can go as large as 914 x 610 x 914 mm, as &lt;a href=&quot;http://www.youtube.com/watch?v=W5h2d7Vyj6s&amp;feature=player_detailpage#t=170&quot; target=&quot;_blank&quot;&gt;this video&lt;/a&gt; shows (I&#39;m ignoring &lt;a href=&quot;http://bigthink.com/endless-innovation/why-3d-printed-houses-matter&quot; target=&quot;_blank&quot;&gt;3D printing for architecture applications&lt;/a&gt; since it&#39;s worthy of an entirely separate discussion). Remember the &lt;a href=&quot;http://www.3ders.org/articles/20130211-urbee-2-announced-the-world-first-3d-printed-car-go-for-actual-production.html&quot; target=&quot;_blank&quot;&gt;Urbee&lt;/a&gt;? It was printed using FDM. If you need to print prototype cars, then this is likely how you&#39;re going to do it (however, I will add that &lt;a href=&quot;http://www.re3d.org/#!gigabot/canh&quot; target=&quot;_blank&quot;&gt;Gigabot recently finished a successful Kickstarter&lt;/a&gt; for a 600mm x 600mm x 600mm FFF printer).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Large geometries&lt;/strong&gt; FDM build envelopes can go as large as 914 x 610 x 914 mm, as &lt;a href=&quot;http://www.youtube.com/watch?v=W5h2d7Vyj6s&amp;feature=player_detailpage#t=170&quot; target=&quot;_blank&quot;&gt;this video&lt;/a&gt; shows (I&#39;m ignoring &lt;a href=&quot;http://bigthink.com/endless-innovation/why-3d-printed-houses-matter&quot; target=&quot;_blank&quot;&gt;3D printing for architecture applications&lt;/a&gt; since it&#39;s worthy of an entirely separate discussion). Remember the &lt;a href=&quot;http://www.3ders.org/articles/20130211-urbee-2-announced-the-world-first-3d-printed-car-go-for-actual-production.html&quot; target=&quot;_blank&quot;&gt;Urbee&lt;/a&gt;? It was printed using FDM. If you need to print prototype cars, then this is likely how you&#39;re going to do it (however, I will add that &lt;a href=&quot;http://www.re3d.org/#!gigabot/canh&quot; target=&quot;_blank&quot;&gt;Gigabot&lt;/a&gt; recently finished a successful &lt;a href=&quot;http://www.kickstarter.com/projects/re3d/gigabot-3d-printing-this-is-huge&quot; target=&quot;_blank&quot;&gt;Kickstarter&lt;/a&gt; for a 600mm x 600mm x 600mm FFF printer).&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -137,7 +137,7 @@
 
 &lt;p&gt;Speaking of which, while this isn&#39;t strictly related to FFF or FDM, &lt;a href=&quot;http://www.indiegogo.com/projects/high-quality-3d-printer-resin&quot; target=&quot;_blank&quot;&gt;MadeSolid recently launched a Kickstarter&lt;/a&gt; featuring some all-new materials for the SLA machines.&lt;/p&gt;
 
-&lt;p&gt;Still have questions? Feel free to &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot; target=&quot;_blank&quot;&gt;submit an RFQ&lt;/a&gt; if you would like us to match with you with the right suppliers for your project.&lt;/p&gt;
+&lt;p&gt;Still have questions? Feel free to &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot; target=&quot;_blank&quot;&gt;submit an RFQ&lt;/a&gt; if you would like us to match you with the right suppliers for your project.&lt;/p&gt;
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 
