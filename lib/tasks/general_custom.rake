@@ -1,4 +1,4 @@
-require "#{Rails.root}/lib/tasks/rake_helper.rb"
+require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
 desc 'test the scaling of workers'
