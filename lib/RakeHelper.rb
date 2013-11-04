@@ -1,5 +1,4 @@
 module RakeHelper
-	include SessionsHelper
 
 	#drawn from http://engineering.nulogy.com/posts/automatically-scaling-heroku-workers/
 
@@ -17,4 +16,11 @@ module RakeHelper
 	def get_heroku
 		return Heroku::API.new(:api_key => ENV['HEROKU_API_KEY'])
 	end
+
+	def app_name
+    return "afternoon-castle-1693" if Rails.env.production?
+    return "quiet-waters-6381" if Rails.env.staging?
+    return "No app name."
+  end
+
 end
