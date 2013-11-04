@@ -63,6 +63,12 @@ module SessionsHelper
     return "http://www.supplybetter.com"
   end
 
+  def app_name
+    return "afternoon-castle-1693" if Rails.env.production?
+    return "quiet-waters-6381" if Rails.env.staging?
+    return "No app name."
+  end
+
   def track(category,action,label)
     if Rails.env.production? and (current_user.nil? or !current_user.admin)
       Analytics.track(
