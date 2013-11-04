@@ -1,3 +1,12 @@
+require "#{Rails.root}/lib/tasks/rake_helper.rb"
+include RakeHelper
+
+desc 'test the scaling of workers'
+task :test_worker_scaling => :environment do
+	scale_workers(4)
+	count_workers	
+end
+
 desc 'send daily update email'
 task :daily_internal_update => :environment do 
 	UserMailer.daily_internal_update

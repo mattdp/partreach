@@ -99,6 +99,8 @@ GEM
       nokogiri (~> 1.5)
       ruby-hmac
     formatador (0.2.4)
+    heroku-api (0.3.15)
+      excon (~> 0.25.1)
     hike (1.2.3)
     httparty (0.12.0)
       json (~> 1.8)
@@ -249,6 +251,7 @@ DEPENDENCIES
   factory_girl_rails (= 4.2.1)
   faker (= 1.2.0)
   fog (= 1.15.0)
+  heroku-api (= 0.3.15)
   jquery-rails (= 3.0.4)
   memcachier (= 0.0.2)
   newrelic_rpm (= 3.6.6.147)

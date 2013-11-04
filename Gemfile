@@ -44,4 +44,5 @@ end
 
 group :production, :staging do
 	gem 'rails_12factor', '0.0.2'
+	gem 'heroku-api', '0.3.15'
 end
