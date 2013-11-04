@@ -6,6 +6,7 @@ class BlastMailer < ActionMailer::Base
   def supplier_profile_reachout(supplier)
     @supplier = supplier
     @brand_name = brand_name
+    @base_url = base_url
     @url_name_for_link = supplier_profile_path(supplier.name_for_link)
     @url_edit = edit_supplier_path(supplier.id)
     @asks_hash = supplier.asks_hash
@@ -19,9 +20,9 @@ class BlastMailer < ActionMailer::Base
                             }
     end
   end
+  
   #takes array of suppliers
-  @base_url = base_url
-  def supplier_profile_reachout_sender(suppliers,validate=true)
+  def supplier_profile_reachout_sender(suppliers,validate=true)    
     suppliers.each do |s|
       if !validate or !s.has_event_of_request("profile_reachout_sent")
         b = BlastMailer.supplier_profile_reachout(s)
