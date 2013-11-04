@@ -1,9 +1,11 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
-desc 'test the scaling of workers'
+desc 'crawl a set of suppliers in the background'
 task :test_worker_scaling => :environment do
-	puts count_workers	
+	scale_workers(1)
+	puts "NEED TO IMPLEMENT"
+	scale_workers(0)
 end
 
 desc 'send daily update email'
