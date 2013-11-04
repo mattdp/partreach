@@ -56,6 +56,13 @@ module SessionsHelper
     return "SupplyBetter"
   end
 
+  def base_url
+    return "http://www.supplybetter.com" if Rails.env.production?
+    return "http://quiet-waters-6381.herokuapp.com" if Rails.env.staging?
+    return "localhost:3000" if Rails.env.development?
+    return "http://www.supplybetter.com"
+  end
+
   def track(category,action,label)
     if Rails.env.production? and (current_user.nil? or !current_user.admin)
       Analytics.track(

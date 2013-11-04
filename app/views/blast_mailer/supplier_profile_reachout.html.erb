@@ -2,7 +2,7 @@
 We have customers asking about <%= @supplier.name %> on SupplyBetter!
 </p>
 <p>
-  On&nbsp;<a style="color: #333;" href=<%= "http://supplybetter.com#{@url_name_for_link}" %> target="_blank">your SupplyBetter profile</a>&nbsp;there have been:
+  On&nbsp;<a style="color: #333;" href=<%= "#{base_url}#{@url_name_for_link}" %> target="_blank">your SupplyBetter profile</a>&nbsp;there have been:
   <ul>
     <% if @asks_hash["description_requested"] %>
       <li><strong><%= pluralize(@asks_hash["description_requested"],"request")%></strong> for a company description</li>
