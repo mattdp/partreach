@@ -47,7 +47,7 @@ class Filter
 					["US"],
 					[]
 				],
-				["no_state","CA"]
+				["no_state","CA","NY"]
 			],
 			[	"US-CA-3d_printing",
 				"cst",
