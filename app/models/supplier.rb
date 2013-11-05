@@ -507,4 +507,7 @@ class Supplier < ActiveRecord::Base
     return "Other non-datadump suppliers with names starting with #{char.upcase}: #{screened_suppliers.map{|s| s.name}.sort}"
   end
 
+  def self.next_contact_suppliers_sorted
+    return Supplier.where("next_contact_date is not null").order("next_contact_date ASC")
+  end
 end
