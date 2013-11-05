@@ -22,6 +22,17 @@
     </ul>
 <% end %>    
 
+<% if @to_bother %>
+    <h3>Suppliers we need to talk to</h3>
+    <ul>
+        <% @to_bother.each do |supplier| %>
+            <li>
+                <%= link_to "#{supplier.name} (#{supplier.next_contact_date})", admin_edit_url(supplier.name_for_link) %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
+
 <% if @need_to_inform_suppliers_structure.present? %>
     <h3>Suppliers to inform</h3>
     <ul>
