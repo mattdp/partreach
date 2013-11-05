@@ -9,6 +9,16 @@ class Crawler
 
 	MAX_PAGES_PER_SITE = 15
 
+	def self.crawl_master(suppliers)
+		begin
+			Crawler.crawl_saver(Crawler.crawl_runner(suppliers))
+		rescue StandardError => e
+  		$stdout.puts "Error during crawl_master"
+  		return false
+		end
+		return true
+	end
+
 	def self.crawl_runner(suppliers)
 		raw_data = {} 
 		suppliers.each do |supplier|

@@ -2,11 +2,10 @@ require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
 desc 'crawl a set of suppliers in the background'
-task :test_worker_scaling => :environment do
+task :crawler_dispatcher => :environment do
 	scale_workers(1)
-	suppliers = Supplier.quantity_by_tag_id(10,1) #test for 3d printing on staging
-	Crawler.delay.crawl_saver(Crawler.crawl_runner(suppliers))
-	scale_workers(0)
+	suppliers = [Supplier.quantity_by_tag_id(10,1)[8]] #test for 3d printing on staging
+	Crawler.delay.crawl_master(suppliers)
 end
 
 desc 'send daily update email'
