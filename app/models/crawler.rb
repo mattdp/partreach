@@ -146,12 +146,12 @@ class Crawler
 
 			text = page.text
 
-			site_info[:zip] << text.scan(/(\d{5})/)
-			#looking near zip codes only
+			#states generally live near zip codes
+			site_info[:zip] << text.scan(/[A-Z]{2}[\s,]+(\d{5})/)
 			site_info[:state] << text.scan(/([A-Z]{2})[\s,]+\d{5}/)
-			site_info[:email] << text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})\s/i)
 			#phone-groups of 3 3 4 separated by at most 2 of any char, without numbers on either end
 			site_info[:phone] << text.scan(/(\d{3,4}).{,2}(\d{3}).{,2}(\d{4})/)
+			site_info[:email] << text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})\s/i)
 
 			new_links = page.css('a').map{|l| l['href']}
 			links_to_explore.concat(new_links)
