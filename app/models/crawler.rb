@@ -14,8 +14,10 @@ class Crawler
 			Crawler.crawl_saver(Crawler.crawl_runner(suppliers))
 		rescue StandardError => e
   		$stdout.puts "Error during crawl_master"
+  		scale_workers(0)
   		return false
 		end
+		scale_workers(0)
 		return true
 	end
 
