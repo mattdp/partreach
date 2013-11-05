@@ -7,9 +7,9 @@
 class Crawler
 	require 'open-uri'
 
-	MAX_PAGES_PER_SITE = 10
+	MAX_PAGES_PER_SITE = 15
 
-	def self.crawl_processor(suppliers)
+	def self.crawl_runner(suppliers)
 		raw_data = {} 
 		suppliers.each do |supplier|
 			if supplier.url_main.present?
@@ -51,6 +51,23 @@ class Crawler
 
 		return processed_data
 
+	end
+
+	#example output: {64810937=>{:phone=>"19623201665", :email=>nil, :zip=>"19624", :state=>nil}}
+	def self.crawl_saver(crawl_runner_output)
+		address_attributes = [:zip, :state]
+		crawl_runner_output.each do |supplier_id, attributes|
+			supplier = Supplier.find(supplier_id)
+			address = supplier.address
+			attributes.each do |attribute, value|
+				if value.present?
+					address_attributes.include?(attribute) ? model = address : model = supplier
+					model.send("#{attribute}=",value) unless model.send(attribute).present?
+				end
+			end
+			supplier.save
+			address.save
+		end
 	end
 
 	private 
