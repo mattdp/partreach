@@ -23,12 +23,16 @@ class Crawler
 
 	def self.crawl_runner(suppliers)
 		raw_data = {} 
+		count = 0
+		size = suppliers.size
 		suppliers.each do |supplier|
 			if supplier.url_main.present?
-				$stdout.puts "---\nExamining site for supplier: #{supplier.name}\n---"
+				count += 1
+				$stdout.puts "---\nExamining site for supplier (#{count} of #{size}): #{supplier.name}\n---"
 				raw_data[supplier.id] = Crawler.site_crawl(supplier.url_main)
 			else
-				$stdout.puts "---\nNo URL found, skipping: #{supplier.name}\n---"
+				count += 1
+				$stdout.puts "---\nNo URL found, skipping: #{supplier.name} (#{count} of #{size})\n---"
 			end
 		end
 
@@ -79,6 +83,7 @@ class Crawler
 			end
 			supplier.save
 			address.save
+			$stdout.puts "#{supplier.name} processed."
 		end
 	end
 
