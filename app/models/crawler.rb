@@ -9,8 +9,17 @@ class Crawler
 
 	MAX_PAGES_PER_SITE = 10
 
-	def self.crawl_processor
-		raw_data = Crawler.crawl_launcher
+	def self.crawl_processor(suppliers)
+		raw_data = {} 
+		suppliers.each do |supplier|
+			if supplier.url_main.present?
+				$stdout.puts "---\nExamining site for supplier: #{supplier.name}\n---"
+				raw_data[supplier.id] = Crawler.site_crawl(supplier.url_main)
+			else
+				$stdout.puts "---\nNo URL found, skipping: #{supplier.name}\n---"
+			end
+		end
+
 		processed_data = {}
 
 		$stdout.puts "Processing results."
@@ -158,21 +167,6 @@ class Crawler
 			end
 
 			return site_info
-		end
-
-		def self.crawl_launcher
-			inputs = [
-				["MMI","http://www.mmisonora.com"]
-			]
-
-			answer = {}
-
-			inputs.each do |input|
-				$stdout.puts "---\nExamining site: '#{input[0]}'\n---"
-				answer[input[0]] = Crawler.site_crawl(input[1])
-			end
-
-			return answer
 		end
 
 end
