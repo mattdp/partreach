@@ -44,7 +44,8 @@ class Filter
 					[],
 					["3d_printing"],
 					["datadump"],
-					["US"]
+					["US"],
+					[]
 				],
 				["no_state","CA"]
 			],
@@ -58,13 +59,24 @@ class Filter
 				nil,
 				nil
 			],
+			[	"US-NY-3d_printing",
+				"cst",
+				[
+					"US",
+					"NY",
+					"3d_printing"
+				],
+				nil,
+				nil
+			],			
 			[ "us_sls",
 				"stipulations",
 				[
 					["SLS"],
 					[],
 					["datadump"],
-					["US"]
+					["US"],
+					[]
 				],
 				["no_state","CA"],
 				nil
@@ -75,7 +87,8 @@ class Filter
 					["SLA"],
 					[],
 					["datadump"],
-					["US"]
+					["US"],
+					[]
 				],
 				["no_state","CA"],
 				nil
@@ -86,7 +99,8 @@ class Filter
 					["custom_machining"],
 					[],
 					["datadump"],
-					["US"]
+					["US"],
+					[]
 				],
 				["no_state","CA"],
 				nil
@@ -97,11 +111,12 @@ class Filter
 					[],
 					["FDM","FFF"],
 					["datadump"],
-					["US"]
+					["US"],
+					[]
 				],
 				["no_state","CA"],
 				["FDM and FFF","The proprietary and nonproprietary names for a printing process that constructs a 3D model by laying down a bead of heated plastic one layer at a time."]
-			],							
+			]							
 		]
 	end
 
