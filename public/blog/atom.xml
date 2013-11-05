@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-11-01T14:50:19-07:00</updated>
+ <updated>2013-11-05T11:04:43-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -133,11 +133,11 @@
 
 &lt;p&gt;Also, &lt;a href=&quot;http://www.stratasys.com/materials/fdm/compare-fdm-materials&quot; target=&quot;_blank&quot;&gt;here&#39;s a great comparison&lt;/a&gt; of materials on the Stratasys website (including support material).&lt;/p&gt;
 
-&lt;h3&gt;The Future of hobby-level materials&lt;/h3&gt;
+&lt;h3&gt;The future of hobby-level materials&lt;/h3&gt;
 
 &lt;p&gt;Overall, there&#39;s a lot of room to innovate with different filament materials. The RepRap community has shown that they are willing to try printing with just about everything under the sun, while the Stratasys has definitely pushed the envelope with reliability and consistency. I&#39;m optimistic that we&#39;ll see even more interesting materials very soon in the future.&lt;/p&gt;
 
-&lt;p&gt;Speaking of which, while this isn&#39;t strictly related to FFF or FDM, &lt;a href=&quot;http://www.indiegogo.com/projects/high-quality-3d-printer-resin&quot; target=&quot;_blank&quot;&gt;MadeSolid recently completed an Indiegogo campaign&lt;/a&gt; featuring some all-new materials for the SLA machines.&lt;/p&gt;
+&lt;p&gt;Speaking of which, while this isn&#39;t strictly related to FFF or FDM, &lt;a href=&quot;http://www.indiegogo.com/projects/high-quality-3d-printer-resin&quot; target=&quot;_blank&quot;&gt;MadeSolid recently completed an Indiegogo campaign&lt;/a&gt; featuring some all-new materials for SLA machines.&lt;/p&gt;
 
 &lt;p&gt;Still have questions? Feel free to &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot; target=&quot;_blank&quot;&gt;submit an RFQ&lt;/a&gt; if you would like us to match you with the right suppliers for your project.&lt;/p&gt;
 
