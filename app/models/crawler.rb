@@ -9,6 +9,41 @@ class Crawler
 
 	MAX_PAGES_PER_SITE = 10
 
+	def self.crawl_processor
+		raw_data = Crawler.crawl_launcher
+		processed_data = {}
+
+		$stdout.puts "Processing results."
+		if !raw_data.empty?
+			raw_data.each do |company,information| #ie {"shapeways": {BLOB}}
+				processed_data[company] = {}
+				information.each do |attribute,values| #ie {phone: [[["230","424","9334"],["432","545","2341"]]]}
+					if !values.flatten.empty?
+						#get a workable list from the convoluted .scan structure
+						if attribute != :phone
+							values = values.flatten
+						elsif attribute == :phone
+							values = values.flatten(1) #so happy this exists
+							values = values.map{|a,b,c| "#{a}#{b}#{c}"}
+						end
+						#get a frequency distribution
+						#http://stackoverflow.com/questions/9480852/array-to-hash-words-count
+						frequency = Hash.new(0)
+						values.map{ |value| frequency[value] += 1 }
+						#take the top ones
+						processed_data[company][attribute] = frequency.max_by{|k,v| v}[0]
+					else
+						processed_data[company][attribute] = nil
+					end
+				end
+
+			end
+		end
+
+		return processed_data
+
+	end
+
 	private 
 
 		def self.sleeper
@@ -138,41 +173,6 @@ class Crawler
 			end
 
 			return answer
-		end
-
-		def self.crawl_processer
-			raw_data = Crawler.crawl_launcher
-			processed_data = {}
-
-			$stdout.puts "Processing results."
-			if !raw_data.empty?
-				raw_data.each do |company,information| #ie {"shapeways": {BLOB}}
-					processed_data[company] = {}
-					information.each do |attribute,values| #ie {phone: [[["230","424","9334"],["432","545","2341"]]]}
-						if !values.flatten.empty?
-							#get a workable list from the convoluted .scan structure
-							if attribute != :phone
-								values = values.flatten
-							elsif attribute == :phone
-								values = values.flatten(1) #so happy this exists
-								values = values.map{|a,b,c| "#{a}#{b}#{c}"}
-							end
-							#get a frequency distribution
-							#http://stackoverflow.com/questions/9480852/array-to-hash-words-count
-							frequency = Hash.new(0)
-							values.map{ |value| frequency[value] += 1 }
-							#take the top ones
-							processed_data[company][attribute] = frequency.max_by{|k,v| v}[0]
-						else
-							processed_data[company][attribute] = nil
-						end
-					end
-
-				end
-			end
-
-			return processed_data
-
 		end
 
 end
