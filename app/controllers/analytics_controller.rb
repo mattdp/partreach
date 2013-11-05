@@ -9,9 +9,11 @@ class AnalyticsController < ApplicationController
 	end
 
 	def suppliers
+		to_bother = Supplier.next_contact_suppliers_sorted
 		signed = Supplier.all_signed
 		claimed = Supplier.all_claimed
 		@listings = {
+			"Suppliers to bother:" => to_bother,
 			"Suppliers that are signed:" => signed,
 			"Suppliers that have claimed profiles:" => claimed
 		}		
