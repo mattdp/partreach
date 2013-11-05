@@ -4,7 +4,10 @@ include RakeHelper
 desc 'crawl a set of suppliers in the background'
 task :crawler_dispatcher => :environment do
 	scale_workers(1)
-	suppliers = Supplier.visible_set_for_index(Filter.get("US-NY-3d_printing"))
+	
+	limits = Filter.get("US-NY-3d_printing").limits
+  suppliers = Supplier.quantity_by_tag_id("all",Tag.find_by_name(limits[:tag_name]).id,limits[:country],limits[:state])
+	
 	Crawler.delay.crawl_master(suppliers) #shuts off the worker
 end
 
