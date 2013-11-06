@@ -509,7 +509,7 @@ class Supplier < ActiveRecord::Base
 
   def self.next_contact_suppliers_sorted(only_after_today=true)
     if only_after_today
-      where_clause = "next_contact_date IS NOT NULL AND next_contact_date > '#{Date.today.to_s}'"
+      where_clause = "next_contact_date IS NOT NULL AND next_contact_date <= '#{Date.today.to_s}'"
     else
       where_clause = "next_contact_date IS NOT NULL"
     end
