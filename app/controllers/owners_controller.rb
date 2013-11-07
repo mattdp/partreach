@@ -16,7 +16,7 @@ class OwnersController < ApplicationController
 			note = "Saving problem."
 		end
 
-		redirect_to admin_edit_path(supplier.name_for_link), notice: note
+		redirect_to new_owner_path(supplier.id), notice: note
 	end
 
 end
