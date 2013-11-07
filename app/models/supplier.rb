@@ -310,6 +310,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def add_machine(machine_id, quantity=1)
+    binding.pry
     m = Machine.find_by_id(machine_id)  
     return false if m.nil?
     w = false

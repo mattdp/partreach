@@ -13,6 +13,7 @@ Partreach::Application.routes.draw do
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
   resources :communications, only: [:new, :create]
   resources :machines, only: [:new, :create]
+  resources :owners, only: [:create]
 
   get '/signup', to: 'orders#new'
   get '/signin', to: 'sessions#new', as: 'signin'
@@ -34,6 +35,7 @@ Partreach::Application.routes.draw do
   get '/privacy', to: 'static_pages#privacy'
   get '/guides/:country/:state/:tag_name_for_link', to: 'guides#show', as: 'guide_cst'
   get '/guides/:stipulation_name', to: 'guides#show', as: 'guide_stipulation'
+  get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'
 
   get '/analytics', to: 'analytics#home', as: 'analytics_home'
   get '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'

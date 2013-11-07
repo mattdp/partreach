@@ -1,18 +1,7 @@
 <% provide(:title,"Machine listing") %>
 
-<table class="order_table">
-	<tr>
-		<th>Manufacturer</th>
-		<th>Name</th>
-		<th>ID #</th>
-	</tr>
-	<% @machines.each do |m| %>
-		<tr>
-			<td><%= "#{m.manufacturer}" %></td>
-			<td><%= "#{m.name}" %></td>
-			<td><%= "#{m.id}" %></td>
-		</tr>
-	<% end %>
-</table>
+<%= link_to "Add new machine", new_machine_path %>
+
+<%= render :partial => 'analytics/machines_table', locals: {machines: @machines} %>
 
 <%= render 'analytics/links' %>

@@ -76,7 +76,8 @@
 	<%= label_tag 'suggested_machines', 'suggested_machines (from supplier)' if @supplier.suggested_machines %>
 	<%= @supplier.suggested_machines %>
 
-	<%= label_tag 'machines_in_database', 'Machines in the database & quantities (change from terminal)' %>
+	<%= link_to "Add machines for this supplier", new_owner_path(@supplier.id) %>
+	<%= label_tag 'machines_in_database', 'Machines in the database & quantity (if above 1)' %>
 	<%# Duplication from supplier_profile %>
 	<% if @machines_quantity_hash %>
 		<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash } %>

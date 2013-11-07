@@ -1,0 +1,30 @@
+<% provide(:title, "Add machines to supplier") %>
+<h3>Add machines to supplier</h3>
+
+<%= form_tag :action => "create", :controller => "owners" do %>
+	<div>
+		<%= label_tag :supplier_id, "Supplier ID" %>
+	 	<%= text_field_tag :supplier_id, @supplier_id, class: "input_field" %>
+ 	</div>
+	<div>
+		<%= label_tag :machine_id, "Machine ID" %>
+	 	<%= text_field_tag :machine_id, nil, class: "input_field" %>
+ 	</div>
+	<div>
+		<%= label_tag :quantity, "Quantity to add" %>
+	 	<%= text_field_tag :quantity, 1, class: "input_field" %>
+ 	</div> 	
+	<div class="clear">
+		<%= submit_tag "Add machine(s)" %>
+	</div>
+<% end %>
+
+<h3>Existing machines</h3>
+
+<% if @machines_quantity_hash %>
+	<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash } %>
+<% end %>
+
+<h3>All machine IDs</h3>
+
+<%= render :partial => 'analytics/machines_table', locals: {machines: @machines} %>
