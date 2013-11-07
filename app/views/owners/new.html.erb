@@ -19,6 +19,8 @@
 	</div>
 <% end %>
 
+<%= link_to "Back to supplier admin edit", admin_edit_path(@supplier.name_for_link) %>
+
 <h3>Existing machines</h3>
 
 <% if @machines_quantity_hash %>
