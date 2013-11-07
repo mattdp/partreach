@@ -27,4 +27,6 @@
 
 <h3>All machine IDs</h3>
 
+<%= link_to "Add a machine to the list", new_machine_path %>
+
 <%= render :partial => 'analytics/machines_table', locals: {machines: @machines} %>
