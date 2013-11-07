@@ -4,7 +4,7 @@
 <%= form_tag :action => "create", :controller => "owners" do %>
 	<div>
 		<%= label_tag :supplier_id, "Supplier ID" %>
-	 	<%= text_field_tag :supplier_id, @supplier_id, class: "input_field" %>
+	 	<%= text_field_tag :supplier_id, @supplier.id, class: "input_field" %>
  	</div>
 	<div>
 		<%= label_tag :machine_id, "Machine ID" %>

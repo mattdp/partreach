@@ -2,8 +2,8 @@ class OwnersController < ApplicationController
 	before_filter :admin_user
 
 	def new
-		@supplier_id = params[:supplier_id]
-		@machines_quantity_hash = Supplier.find(@supplier_id).machines_quantity_hash
+		@supplier = Supplier.find(params[:supplier_id])
+		@machines_quantity_hash = @supplier.machines_quantity_hash
 		@machines = Machine.all.sort_by{ |m| [m.manufacturer,m.name] }
 	end
 
