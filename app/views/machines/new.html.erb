@@ -1,0 +1,18 @@
+<% provide(:title,"New machine creation") %>
+
+<h3>Create new machine</h3>
+<%= form_for @machine, :action => "create" do |f| %>
+
+	<div class="almost-one-half fleft"	>
+		<%= f.label :name %>
+	 	<%= f.text_field :name %>
+ 	</div>
+	<div class="almost-one-half fleft">
+		<%= f.label :manufacturer %>
+	 	<%= f.text_field :manufacturer %>
+ 	</div>
+	<div class="clear">
+		<%= submit_tag "Create" %>
+	</div>
+
+<% end %>

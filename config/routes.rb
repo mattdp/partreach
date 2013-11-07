@@ -12,6 +12,7 @@ Partreach::Application.routes.draw do
   resources :password_resets
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
   resources :communications, only: [:new, :create]
+  resources :machines, only: [:new, :create]
 
   get '/signup', to: 'orders#new'
   get '/signin', to: 'sessions#new', as: 'signin'
