@@ -3,6 +3,7 @@ class MachinesController < ApplicationController
 
 	def new
 		@machine = Machine.new
+		@machines = Machine.all.sort_by{ |m| [m.manufacturer,m.name] }
 	end
 
 	def create

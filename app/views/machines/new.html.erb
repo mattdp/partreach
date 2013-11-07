@@ -16,3 +16,7 @@
 	</div>
 
 <% end %>
+
+<h3>All existing machines</h3>
+
+<%= render :partial => 'analytics/machines_table', locals: {machines: @machines} %>
