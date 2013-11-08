@@ -429,7 +429,7 @@ class Supplier < ActiveRecord::Base
           end
         end
         chaos[country].keys.sort.each do |state|
-          order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state.in?(ufs)
+          order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless (ufs.present? and state.in?(ufs))
         end
       end
 
