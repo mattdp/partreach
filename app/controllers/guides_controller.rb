@@ -5,6 +5,8 @@ class GuidesController < ApplicationController
 
 		id_string = params[:stipulation_name]
 		@filter = Filter.get(id_string)
+		#NEED MORE HERE FOR PRETTY URL HARVESTING
+
 		if @filter
 			country_long = Word.transform(:shortform,@filter.limits[:countries][0],:longform) #won't work well for international regions
 			@location_phrase = "#{country_long}"
