@@ -1,4 +1,6 @@
 # https://github.com/kjvarga/sitemap_generator/wiki/Generate-Sitemaps-on-read-only-filesystems-like-Heroku
+# controlled by a rake task, rake sitemap:refresh, run each 24h on heroku
+
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "http://www.supplybetter.com"
 # pick a place safe to write the files
@@ -41,14 +43,14 @@ SitemapGenerator::Sitemap.create do
   add terms_path, changefreq: 'weekly'
   add privacy_path, changefreq: 'weekly'
   add cto_path, changefreq: 'weekly'
-
+  add suppliers_path, changefreq: 'daily'
+ 
   add '/blog'
   # how get each of the blog posts?
 
   Supplier.find_each do |s|
-    add supplier_profile_path(s.name_for_link), changefreq: 'daily'
+    add supplier_profile_path(s.name_for_link), changefreq: 'daily' if s.profile_visible
   end
 
-  add suppliers_path, changefreq: 'daily'
 
 end
