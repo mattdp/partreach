@@ -4,7 +4,7 @@ class Filter
 	def self.all
 		all = {}
 		Filter.raw_list.each do |line|
-			all[line[0]] = new(line[0],line[1]],line[2],line[3])
+			all[line[0]] = new(line[0],line[1],line[2],line[3])
 		end
 		return all
 	end
@@ -18,9 +18,12 @@ class Filter
 		end
 
 		@limits = {}
-		a,b = :and_style_haves, :or_style_haves
-		c,d = :and_style_have_nots, :countries
-		@limits[a], @limits[b], @limits[c], @limits[d] = limits[0], limits[1], limits[2], limits[3]
+		counter = 0
+		limit_keys = [:and_style_haves, :or_style_haves, :and_style_have_nots, :countries, :states]
+		limit_keys.each do |key|
+			@limits[key] = limits[counter]
+			counter += 1
+		end
 	end
 
 	def self.get(name)
@@ -43,7 +46,8 @@ class Filter
 					["US"],
 					[]
 				],
-				["no_state","CA","NY"]
+				["no_state","CA","NY"],
+				nil
 			],
 			[ "us_sls",
 				[
