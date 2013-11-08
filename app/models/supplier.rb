@@ -393,7 +393,7 @@ class Supplier < ActiveRecord::Base
   #no_state for country -> supplier direct stuff
 
   def self.visible_profiles_sorted(filter)
-    
+
     profiles = Supplier.visible_set_for_index(filter)
     count = 0
     order = ActiveSupport::OrderedHash.new
@@ -422,20 +422,13 @@ class Supplier < ActiveRecord::Base
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
         ufs = filter.up_front_states
-        if format == "stipulations"
-          if ufs.present? 
-            ufs.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
-              order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } if chaos[country][upfront].present?
-            end
+        if ufs.present? 
+          ufs.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
+            order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } if chaos[country][upfront].present?
           end
-          chaos[country].keys.sort.each do |state|
-            order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state.in?(ufs)
-          end
-        else
-          chaos[country].keys.sort.each do |state|
-            #works w/ two as long as not points; need an ordering, mayhap?
-            order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
-          end
+        end
+        chaos[country].keys.sort.each do |state|
+          order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state.in?(ufs)
         end
       end
 
