@@ -78,7 +78,17 @@ class Filter
 				],
 				nil,
 				nil
-			],					
+			],
+			[	"US-PA-3d_printing",
+				"cst",
+				[
+					"US",
+					"PA",
+					"3d_printing"
+				],
+				nil,
+				nil
+			],									
 			[ "us_sls",
 				"stipulations",
 				[

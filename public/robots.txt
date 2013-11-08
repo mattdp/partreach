@@ -2,4 +2,4 @@
 
 Sitemap: https://s3.amazonaws.com/supplybetterSitemaps/sitemap.xml.gz
 User-Agent: *
-Disallow: /submit_ask
+Disallow: /submit_ask*
