@@ -16,8 +16,13 @@ class GuidesController < ApplicationController
 		@filter = Filter.get(id_string)
 
 		if @filter
-			country_long = Word.transform(:shortform,@filter.limits[:countries][0],:longform) #won't work well for international regions
-			@location_phrase = "#{country_long}"
+
+			if @filter.limits[:states].present?
+				@location_phrase = Word.transform(:shortform,@filter.limits[:states][0],:longform)
+			else
+				@location_phrase = Word.transform(:shortform,@filter.limits[:countries][0],:longform) #won't work well for international regions
+			end
+
 			tag_name = nil
 			[:and_style_haves,:or_style_haves].each do |have|
 				tag_name = @filter.limits[have][0] if @filter.limits[have].length == 1
