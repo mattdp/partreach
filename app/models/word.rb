@@ -48,6 +48,10 @@ class Word < ActiveRecord::Base
     return word.send(to_symbol)
   end
 
+  def self.all_us_states_shortform
+  	Word.where("family = 'us_states'").map{|w| w.shortform}
+  end
+
 	#to delete after initial load
 	def self.initial_information
 

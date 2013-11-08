@@ -370,7 +370,7 @@ class Supplier < ActiveRecord::Base
     return holder
   end
 
-  def self.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries)
+  def self.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries, states)
     return false unless supplier.tags.present?
     test_visibility = supplier.profile_visible
     test_countries = (countries == [] or (supplier.address and countries.include?(supplier.address.country)))

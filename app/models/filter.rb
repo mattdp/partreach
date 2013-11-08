@@ -1,12 +1,45 @@
 class Filter
-	attr_reader :name, :limits, :up_front_states, :tags_name, :tags_short, :tags_long
+	attr_reader :name, :limits, :up_front_states, :tags_short, :tags_long
 
 	def self.all
 		all = {}
+
 		Filter.raw_list.each do |line|
 			all[line[0]] = new(line[0],line[1],line[2],line[3])
 		end
+
+		us_states = Word.all_us_states_shortform
+		tags_and_custom_for_each_state = [
+			[["SLS"],[]],
+			[["FDM","FFF"],["FDM and FFF","The proprietary and nonproprietary names for a printing process that constructs a 3D model by laying down a bead of heated plastic one layer at a time."]]
+		]
+		tags_and_custom_for_each_state.each do |line|
+			line[0] = line[0].map{|name| Tag.find_by_name(name)}
+		end
+
+		us_states.each do |state|
+			tags_and_custom_for_each_state.each do |tags,custom_descriptions|
+				tag_combination_name = Filter.name_formatter("US",state,tags.map{|tag| tag.name_for_link}.join("-"))
+				all[tag_combination_name] = new(
+					tag_combination_name,
+					[
+						[],
+						tags.map{|tag| tag.name},
+						["datadump"],
+						["US"],
+						[state]
+					],
+					nil, #no prioritized state, since in a state
+					custom_descriptions.present? ? custom_descriptions : nil
+				)
+			end
+		end
+
 		return all
+	end
+
+	def self.name_formatter(country,state,tag_combination_name)
+		return "#{country}-#{state}-#{tag_combination_name}"
 	end
 
 	def initialize(name,limits,up_front_states,tag_short_and_long)

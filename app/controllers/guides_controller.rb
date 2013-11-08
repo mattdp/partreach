@@ -3,9 +3,17 @@ class GuidesController < ApplicationController
 	#only works for all of country, state, tag being present and nicely formatted
 	def show
 
-		id_string = params[:stipulation_name]
+		if params[:name]
+			id_string = params[:name]
+		elsif (params[:country] and params[:country] == "unitedstates" and params[:state] and params[:tags_string])
+			country = "US"
+			state = Word.transform(:name_for_link,params[:state],:shortform)
+			id_string = Filter.name_formatter(country,state,params[:tags_string])
+		else
+			id_string = nil
+		end
+
 		@filter = Filter.get(id_string)
-		#NEED MORE HERE FOR PRETTY URL HARVESTING
 
 		if @filter
 			country_long = Word.transform(:shortform,@filter.limits[:countries][0],:longform) #won't work well for international regions
