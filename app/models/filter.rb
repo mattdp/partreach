@@ -1,17 +1,16 @@
 class Filter
-	attr_reader :name, :format, :limits, :up_front_states, :tags_name, :tags_short, :tags_long
+	attr_reader :name, :limits, :up_front_states, :tags_name, :tags_short, :tags_long
 
 	def self.all
 		all = {}
 		Filter.raw_list.each do |line|
-			all[line[0]] = new(line[0],line[1],line[2],line[3],line[4])
+			all[line[0]] = new(line[0],line[1]],line[2],line[3])
 		end
 		return all
 	end
 
-	def initialize(name,format,limits,up_front_states,tag_short_and_long)
+	def initialize(name,limits,up_front_states,tag_short_and_long)
 		@name = name
-		@format = format
 		@up_front_states = up_front_states
 		if tag_short_and_long.present?
 			@tags_short = tag_short_and_long[0]
@@ -37,7 +36,6 @@ class Filter
 	def self.raw_list
 		[
 			[	"us_3d_printing",
-				"stipulations",
 				[
 					[],
 					["3d_printing"],
@@ -48,7 +46,6 @@ class Filter
 				["no_state","CA","NY"]
 			],
 			[ "us_sls",
-				"stipulations",
 				[
 					["SLS"],
 					[],
@@ -60,7 +57,6 @@ class Filter
 				nil
 			],
 			[ "us_sla",
-				"stipulations",
 				[
 					["SLA"],
 					[],
@@ -72,7 +68,6 @@ class Filter
 				nil
 			],
 			[ "us_custom_machining",
-				"stipulations",
 				[
 					["custom_machining"],
 					[],
@@ -84,7 +79,6 @@ class Filter
 				nil
 			],
 			[ "us_fdm-and-fff",
-				"stipulations",
 				[
 					[],
 					["FDM","FFF"],
