@@ -393,16 +393,8 @@ class Supplier < ActiveRecord::Base
   #no_state for country -> supplier direct stuff
 
   def self.visible_profiles_sorted(filter)
-    format = filter.format
-    if format == "stipulations"
-      profiles = Supplier.visible_set_for_index(filter)
-    elsif format == "cst"
-      limits = filter.limits
-      profiles = Supplier.quantity_by_tag_id("all",Tag.find_by_name(limits[:tag_name]).id,limits[:country],limits[:state])
-    else
-      profiles = nil
-    end
-
+    
+    profiles = Supplier.visible_set_for_index(filter)
     count = 0
     order = ActiveSupport::OrderedHash.new
     chaos = {}

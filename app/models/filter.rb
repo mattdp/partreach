@@ -19,14 +19,9 @@ class Filter
 		end
 
 		@limits = {}
-		if format == "cst"
-			a,b,c = :country,:state,:tag_name
-			@limits[a], @limits[b], @limits[c] = limits[0], limits[1], limits[2]
-		elsif format == "stipulations"
-			a,b = :and_style_haves, :or_style_haves
-			c,d = :and_style_have_nots, :countries
-			@limits[a], @limits[b], @limits[c], @limits[d] = limits[0], limits[1], limits[2], limits[3]
-		end
+		a,b = :and_style_haves, :or_style_haves
+		c,d = :and_style_have_nots, :countries
+		@limits[a], @limits[b], @limits[c], @limits[d] = limits[0], limits[1], limits[2], limits[3]
 	end
 
 	def self.get(name)
@@ -52,46 +47,6 @@ class Filter
 				],
 				["no_state","CA","NY"]
 			],
-			[	"US-CA-3d_printing",
-				"cst",
-				[
-					"US",
-					"CA",
-					"3d_printing"
-				],
-				nil,
-				nil
-			],
-			[	"US-NY-3d_printing",
-				"cst",
-				[
-					"US",
-					"NY",
-					"3d_printing"
-				],
-				nil,
-				nil
-			],		
-			[	"US-MI-3d_printing",
-				"cst",
-				[
-					"US",
-					"MI",
-					"3d_printing"
-				],
-				nil,
-				nil
-			],
-			[	"US-PA-3d_printing",
-				"cst",
-				[
-					"US",
-					"PA",
-					"3d_printing"
-				],
-				nil,
-				nil
-			],									
 			[ "us_sls",
 				"stipulations",
 				[
