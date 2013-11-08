@@ -30,7 +30,10 @@ class Filter
 	end
 
 	def self.get(name)
-		return Filter.all[name]
+		all = Rails.cache.fetch "filter_all", :expires_in => 25.hours do |key|
+			Filter.all
+		end 
+		return all[name]
 	end
 
   #index is {name => [[mandatory have tags 'ands'],[have one of to get into set 'ors'][ mandatory have nots tags],[countries]]}
