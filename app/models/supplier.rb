@@ -374,7 +374,7 @@ class Supplier < ActiveRecord::Base
     return false unless supplier.tags.present?
     test_visibility = supplier.profile_visible
     test_countries = (countries == [] or (supplier.address and countries.include?(supplier.address.country)))
-    test_states = (states == [] or supplier.address and states.include?(supplier.address.state))
+    test_states = (states == [] or (supplier.address and states.include?(supplier.address.state)))
     test_and_style_have_nots = !(and_style_have_nots.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
     test_and_style_haves = (and_style_haves != [] and !and_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(false))
     test_or_style_haves = (and_style_haves == [] and or_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
