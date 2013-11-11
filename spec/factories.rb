@@ -21,6 +21,9 @@ FactoryGirl.define do
     profile_visible        true
     s.after(:build) do |supplier|
       supplier.address ||= FactoryGirl.build(:address, :place_id => supplier.id)
+      supplier.billing_contact ||= FactoryGirl.build(:billing_contact, :contactable_id => supplier.id)
+      supplier.contract_contact ||= FactoryGirl.build(:contract_contact, :contactable_id => supplier.id)
+      supplier.rfq_contact ||= FactoryGirl.build(:rfq_contact, :contactable_id => supplier.id)
     end
   end
 
@@ -28,6 +31,13 @@ FactoryGirl.define do
     country             "Outer Haven"
     place_type          "Supplier"
   end
+
+  factory :billing_contact do |c|
+  end
+  factory :contract_contact do |c|
+  end
+  factory :rfq_contact do |c|
+  end    
 
   factory :tag do |t|
     sequence(:name)           { |n| "Tag#{n}" }
