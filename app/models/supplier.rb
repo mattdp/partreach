@@ -48,7 +48,9 @@ class Supplier < ActiveRecord::Base
   validates :url_main, uniqueness: {case_sensitive: false}, allow_nil: true
   validates :points, numericality: true
   validates_presence_of :address
-
+  validates_presence_of :contract_contact
+  validates_presence_of :billing_contact
+  
   #unreadable without the method that assesses suppliers. After this is more fixed, make it into a model.
   def self.get_point_structure
     preloader = 
