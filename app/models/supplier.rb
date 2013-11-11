@@ -8,8 +8,6 @@
 #  created_at                    :datetime         not null
 #  updated_at                    :datetime         not null
 #  description                   :text
-#  email                         :string(255)
-#  phone                         :string(255)
 #  url_materials                 :string(255)
 #  source                        :string(255)      default("manual")
 #  profile_visible               :boolean          default(FALSE)
