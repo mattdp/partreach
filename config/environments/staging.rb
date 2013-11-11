@@ -3,7 +3,7 @@ Partreach::Application.configure do
 
   # http://edgar.tumblr.com/post/30209472511/ruby-on-rails-how-to-add-http-basic-authentication
   # prevent access to staging for bots / passersby
-  config.middleware.insert_after(::Rack::Lock, "::Rack::Auth::Basic", "Partreach") do |u, p|
+  config.middleware.insert_after(::Rack::Runtime, "::Rack::Auth::Basic", "Partreach") do |u, p|
     [u, p] == [ENV['STAGING_HTTP_USER'], ENV['STAGING_HTTP_PASSWORD']]
   end
 
