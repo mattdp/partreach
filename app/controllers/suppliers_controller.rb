@@ -14,6 +14,8 @@ class SuppliersController < ApplicationController
 		@supplier = Supplier.new
 		@address = Address.new
 		@family_names_and_tags = Tag.family_names_and_tags
+		@billing_contact = BillingContact.new
+		@contract_contact = ContractContact.new
 	end
 
 	def create
@@ -22,6 +24,7 @@ class SuppliersController < ApplicationController
 		@supplier = Supplier.new(admin_params)
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
 		@supplier.create_or_update_address(address_params)
+		Contact.create_or_update_contacts(@supplier,params)
 
 		saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
 
@@ -64,6 +67,8 @@ class SuppliersController < ApplicationController
 		@machines_quantity_hash = @supplier.machines_quantity_hash
 		@dialogues = Dialogue.where("supplier_id = ?",@supplier.id)
 		@communications = Communication.where("supplier_id = ?",@supplier.id)
+		@billing_contact = @supplier.billing_contact
+		@contract_contact = @supplier.contract_contact
 	end
 
 	def admin_update
@@ -72,6 +77,7 @@ class SuppliersController < ApplicationController
 		@supplier.assign_attributes(admin_params)
 		@supplier.name_for_link = Supplier.proper_name_for_link(@supplier.name)
 		@supplier.create_or_update_address(address_params)
+		Contact.create_or_update_contacts(@supplier,params)
 
 		saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
 

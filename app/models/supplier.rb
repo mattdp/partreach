@@ -50,7 +50,7 @@ class Supplier < ActiveRecord::Base
   validates_presence_of :address
   validates_presence_of :contract_contact
   validates_presence_of :billing_contact
-  
+
   #unreadable without the method that assesses suppliers. After this is more fixed, make it into a model.
   def self.get_point_structure
     preloader = 

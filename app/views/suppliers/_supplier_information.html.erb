@@ -59,10 +59,10 @@
 	<%= text_field_tag 'email', @supplier.email %>
 
 	<h4>Billing contact</h4>
-	<%= render partial: "suppliers/contact_information", locals: {contact: @supplier.billing_contact, contact_type: "billing_contact"} %>
+	<%= render partial: "suppliers/contact_information", locals: {contact: @billing_contact, contact_type: "billing_contact"} %>
 
 	<h4>Contract contact</h4>
-	<%= render partial: "suppliers/contact_information", locals: {contact: @supplier.contract_contact, contact_type: "contract_contact"} %>
+	<%= render partial: "suppliers/contact_information", locals: {contact: @contract_contact, contact_type: "contract_contact"} %>
 
 	<h3>Address information</h3>
 
