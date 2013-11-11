@@ -1,3 +1,0 @@
-class UserContact < Contact
-	
-end

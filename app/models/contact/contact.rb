@@ -26,9 +26,6 @@ class Contact < ActiveRecord::Base
 	    								:billing_contact => BillingContact, 
 	    								:contract_contact => ContractContact,
 	    								:rfq_contact => RfqContact
-    								},
-    								"User" => { 
-    									:user_contact => UserContact
     								}
     							}					
 
