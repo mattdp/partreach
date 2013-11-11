@@ -1,0 +1,3 @@
+class BillingContact < Contact
+	
+end

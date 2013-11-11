@@ -39,10 +39,9 @@ class Supplier < ActiveRecord::Base
   has_many :externals, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
   has_many :communications, :dependent => :destroy
-  
-  has_one :billing_contact, :as => :contactable, :dependent => :destroy
+
   has_one :contract_contact, :as => :contactable, :dependent => :destroy
-  has_one :contact, :as => :contactable, :dependent => :destroy
+  has_one :billing_contact, :as => :contactable, :dependent => :destroy
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
