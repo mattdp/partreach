@@ -42,6 +42,7 @@ class Supplier < ActiveRecord::Base
 
   has_one :contract_contact, :as => :contactable, :dependent => :destroy
   has_one :billing_contact, :as => :contactable, :dependent => :destroy
+  has_one :rfq_contact, :as => :contactable, :dependent => :destroy
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
@@ -50,6 +51,7 @@ class Supplier < ActiveRecord::Base
   validates_presence_of :address
   validates_presence_of :contract_contact
   validates_presence_of :billing_contact
+  validates_presence_of :rfq_contact
 
   #unreadable without the method that assesses suppliers. After this is more fixed, make it into a model.
   def self.get_point_structure

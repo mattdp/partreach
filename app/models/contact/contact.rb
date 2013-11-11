@@ -20,8 +20,19 @@ class Contact < ActiveRecord::Base
 
 	#will need to expand to allow different models
 	def self.create_or_update_contacts(model,parameters)
-    updatables = {:billing_contact => BillingContact, :contract_contact => ContractContact}
-    updatables.each do |method_name,class_name|
+		binding.pry
+    updatables = {
+    								"Supplier" => { 
+	    								:billing_contact => BillingContact, 
+	    								:contract_contact => ContractContact,
+	    								:rfq_contact => RfqContact
+    								},
+    								"User" => { 
+    									:user_contact => UserContact
+    								}
+    							}					
+
+    updatables[model.class.to_s].each do |method_name,class_name|
     	if parameters[method_name].present?
     		cleaner_parameters = parameters[method_name].delete_if { |k,v| v.nil? or v.empty?}
 	    	if !model.send(method_name).present?

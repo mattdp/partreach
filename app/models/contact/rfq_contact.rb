@@ -1,0 +1,3 @@
+class RfqContact < Contact
+	
+end
