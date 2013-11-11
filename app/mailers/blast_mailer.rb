@@ -11,7 +11,7 @@ class BlastMailer < ActionMailer::Base
     @url_edit = edit_supplier_path(supplier.id)
     @asks_hash = supplier.asks_hash
     Event.add_event("Supplier",supplier.id,"profile_reachout_sent")
-    mail( to: supplier.email, 
+    mail( to: supplier.rfq_contact.email, 
           from: "supplier-reachouts@supplybetter.com", 
           subject:"Customers want to know more about #{supplier.name} on #{brand_name}!") do |format|
       format.html { render layout: "layouts/blast_mailer", 

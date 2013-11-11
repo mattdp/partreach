@@ -41,9 +41,9 @@ class DialoguesController < ApplicationController
 
 			@supplier_ids.each do |s_id|
 				s = Supplier.find(s_id)
-				s.email = params[:email] if !params[:email].nil? and params[:email] != ""
-				s.phone = params[:phone] if !params[:phone].nil? and params[:phone] != ""
-				s.save				
+				s.rfq_contact.email = params[:email] if !params[:email].nil? and params[:email] != ""
+				s.rfq_contact.phone = params[:phone] if !params[:phone].nil? and params[:phone] != ""
+				s.rfq_contact.save				
 
 				if @tag_ids and @tag_ids.size > 0
 					@tag_ids.each do |t_id|

@@ -46,8 +46,8 @@
 					<td>
 						<strong><%= link_to "#{@supplier.name}", admin_edit_path(@supplier.name_for_link) %></strong>
 						<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
-						<%= "\n#{@supplier.email}" if @supplier.email %>
-						<%= "\n#{@supplier.phone}" if @supplier.phone %>
+						<%= "\n#{@supplier.rfq_contact.email}" if @supplier.email %>
+						<%= "\n#{@supplier.rfq_contact.phone}" if @supplier.phone %>
 						<%= "\n#{@supplier.internally_hidden_preferences}" if @supplier.internally_hidden_preferences %>
 					</td>
 					<% @checkboxes.each do |c| %>
