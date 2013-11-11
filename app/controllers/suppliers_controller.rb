@@ -17,7 +17,6 @@ class SuppliersController < ApplicationController
 		@billing_contact = BillingContact.new
 		@contract_contact = ContractContact.new
 		@rfq_contact = RfqContact.new
-		@user_contact = UserContact.new #unused. seems like the constant doesn't load unless used in controller first. unsure why.
 	end
 
 	def create
@@ -72,7 +71,6 @@ class SuppliersController < ApplicationController
 		@billing_contact = @supplier.billing_contact
 		@contract_contact = @supplier.contract_contact
 		@rfq_contact = @supplier.rfq_contact
-		@user_contact = UserContact.new #unused. seems like the constant doesn't load unless used in controller first. unsure why.
 	end
 
 	def admin_update
