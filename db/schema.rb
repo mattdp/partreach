@@ -60,9 +60,9 @@ ActiveRecord::Schema.define(version: 20131109051918) do
     t.string   "name"
     t.string   "phone"
     t.string   "email"
+    t.string   "method"
     t.text     "notes"
-    t.integer  "contactable_id"
-    t.string   "contactable_type"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

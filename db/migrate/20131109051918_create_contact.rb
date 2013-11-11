@@ -4,8 +4,9 @@ class CreateContact < ActiveRecord::Migration
     	t.string :name
     	t.string :phone
     	t.string :email
+        t.string :method
     	t.text :notes
-    	t.references :contactable, polymorphic: true
+        t.string :type
     	t.timestamps
     end
   end
