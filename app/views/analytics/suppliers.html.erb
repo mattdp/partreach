@@ -1,21 +1,24 @@
 <% provide(:title, "Suppliers") %>
 
-<table class="supplier-list">
-	<tr>
-		<th>Status</th>
-		<th>ID</th>
-		<th>Name</th>
-		<th>Next contact date</th>
-		<th>Next contact content</th>
-	</tr>
-	<% @listings.each do |k,v| %>
+<div class="container">
+	<table class="supplier-list">
 		<tr>
-			<td><%= "#{k} #{v.count}" %></td>
+			<th>Status</th>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Next contact date</th>
+			<th>Next contact content</th>
 		</tr>
-		<% v.each do |supplier| %>
-			<%= render :partial => "analytics/supplier_listing", locals: {supplier: supplier} %>
+		<% @listings.each do |k,v| %>
+			<tr>
+				<td><%= "#{k} #{v.count}" %></td>
+			</tr>
+			<% v.each do |supplier| %>
+				<%= render :partial => "analytics/supplier_listing", locals: {supplier: supplier} %>
+			<% end %>
 		<% end %>
-	<% end %>
-</table>
+	</table>
 
-<%= render 'analytics/links' %>
+	<%= render 'analytics/links' %>
+
+</div>
