@@ -11,6 +11,8 @@ class Filter
 		us_states = Word.all_us_states_shortform
 		tags_and_custom_for_each_state = [
 			[["SLS"],[]],
+			[["3d_printing"],[]],
+			[["SLA"],[]],
 			[["FDM","FFF"],["FDM and FFF","The proprietary and nonproprietary names for a printing process that constructs a 3D model by laying down a bead of heated plastic one layer at a time."]]
 		]
 		tags_and_custom_for_each_state.each do |line|

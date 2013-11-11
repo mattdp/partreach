@@ -20,7 +20,6 @@ class Contact < ActiveRecord::Base
 
 	#will need to expand to allow different models
 	def self.create_or_update_contacts(model,parameters)
-		binding.pry
     updatables = {
     								"Supplier" => { 
 	    								:billing_contact => BillingContact, 
