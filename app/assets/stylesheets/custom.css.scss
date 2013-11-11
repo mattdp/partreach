@@ -445,6 +445,12 @@ strong {
    .recommended {
       background-color: $recommendedColor;
     }
+    .big-field {
+      width: 25%;
+    }
+    .little-field {
+      width: 5%;
+    }
   }
   .btn {
     background: #01c8ff;
