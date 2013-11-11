@@ -365,25 +365,26 @@ class Supplier < ActiveRecord::Base
   def self.visible_set_for_index(filter)
     return false if filter.nil?
     limits = filter.limits
-    and_style_haves, or_style_haves, and_style_have_nots, countries = limits[:and_style_haves], limits[:or_style_haves], limits[:and_style_have_nots], limits[:countries]
+    and_style_haves, or_style_haves, and_style_have_nots, countries, states = limits[:and_style_haves], limits[:or_style_haves], limits[:and_style_have_nots], limits[:countries], limits[:states]
     holder = []
     Supplier.find_each do |supplier|
-      if Supplier.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries)
+      if Supplier.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries, states)
         holder << supplier
       end
     end
     return holder
   end
 
-  def self.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries)
+  def self.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries, states)
     return false unless supplier.tags.present?
     test_visibility = supplier.profile_visible
     test_countries = (countries == [] or (supplier.address and countries.include?(supplier.address.country)))
+    test_states = (states == [] or (supplier.address and states.include?(supplier.address.state)))
     test_and_style_have_nots = !(and_style_have_nots.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
     test_and_style_haves = (and_style_haves != [] and !and_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(false))
     test_or_style_haves = (and_style_haves == [] and or_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
 
-    requisites = (test_visibility and test_countries and test_and_style_have_nots)
+    requisites = (test_visibility and test_countries and test_states and test_and_style_have_nots)
     eithers = (test_and_style_haves or test_or_style_haves)
 
     return (requisites and eithers)
@@ -398,16 +399,8 @@ class Supplier < ActiveRecord::Base
   #no_state for country -> supplier direct stuff
 
   def self.visible_profiles_sorted(filter)
-    format = filter.format
-    if format == "stipulations"
-      profiles = Supplier.visible_set_for_index(filter)
-    elsif format == "cst"
-      limits = filter.limits
-      profiles = Supplier.quantity_by_tag_id("all",Tag.find_by_name(limits[:tag_name]).id,limits[:country],limits[:state])
-    else
-      profiles = nil
-    end
 
+    profiles = Supplier.visible_set_for_index(filter)
     count = 0
     order = ActiveSupport::OrderedHash.new
     chaos = {}
@@ -435,20 +428,13 @@ class Supplier < ActiveRecord::Base
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
         ufs = filter.up_front_states
-        if format == "stipulations"
-          if ufs.present? 
-            ufs.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
-              order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } if chaos[country][upfront].present?
-            end
+        if ufs.present? 
+          ufs.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
+            order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } if chaos[country][upfront].present?
           end
-          chaos[country].keys.sort.each do |state|
-            order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless state.in?(ufs)
-          end
-        else
-          chaos[country].keys.sort.each do |state|
-            #works w/ two as long as not points; need an ordering, mayhap?
-            order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] }
-          end
+        end
+        chaos[country].keys.sort.each do |state|
+          order[country][state] = chaos[country][state].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } unless (ufs.present? and state.in?(ufs))
         end
       end
 

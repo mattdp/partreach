@@ -1,17 +1,49 @@
 class Filter
-	attr_reader :name, :format, :limits, :up_front_states, :tags_name, :tags_short, :tags_long
+	attr_reader :name, :limits, :up_front_states, :tags_short, :tags_long
 
 	def self.all
 		all = {}
+
 		Filter.raw_list.each do |line|
-			all[line[0]] = new(line[0],line[1],line[2],line[3],line[4])
+			all[line[0]] = new(line[0],line[1],line[2],line[3])
 		end
+
+		us_states = Word.all_us_states_shortform
+		tags_and_custom_for_each_state = [
+			[["SLS"],[]],
+			[["FDM","FFF"],["FDM and FFF","The proprietary and nonproprietary names for a printing process that constructs a 3D model by laying down a bead of heated plastic one layer at a time."]]
+		]
+		tags_and_custom_for_each_state.each do |line|
+			line[0] = line[0].map{|name| Tag.find_by_name(name)}
+		end
+
+		us_states.each do |state|
+			tags_and_custom_for_each_state.each do |tags,custom_descriptions|
+				tag_combination_name = Filter.name_formatter("US",state,tags.map{|tag| tag.name_for_link}.join("-"))
+				all[tag_combination_name] = new(
+					tag_combination_name,
+					[
+						[],
+						tags.map{|tag| tag.name},
+						["datadump"],
+						["US"],
+						[state]
+					],
+					nil, #no prioritized state, since in a state
+					custom_descriptions.present? ? custom_descriptions : nil
+				)
+			end
+		end
+
 		return all
 	end
 
-	def initialize(name,format,limits,up_front_states,tag_short_and_long)
+	def self.name_formatter(country,state,tag_combination_name)
+		return "#{country}-#{state}-#{tag_combination_name}"
+	end
+
+	def initialize(name,limits,up_front_states,tag_short_and_long)
 		@name = name
-		@format = format
 		@up_front_states = up_front_states
 		if tag_short_and_long.present?
 			@tags_short = tag_short_and_long[0]
@@ -19,13 +51,11 @@ class Filter
 		end
 
 		@limits = {}
-		if format == "cst"
-			a,b,c = :country,:state,:tag_name
-			@limits[a], @limits[b], @limits[c] = limits[0], limits[1], limits[2]
-		elsif format == "stipulations"
-			a,b = :and_style_haves, :or_style_haves
-			c,d = :and_style_have_nots, :countries
-			@limits[a], @limits[b], @limits[c], @limits[d] = limits[0], limits[1], limits[2], limits[3]
+		counter = 0
+		limit_keys = [:and_style_haves, :or_style_haves, :and_style_have_nots, :countries, :states]
+		limit_keys.each do |key|
+			@limits[key] = limits[counter]
+			counter += 1
 		end
 	end
 
@@ -42,7 +72,6 @@ class Filter
 	def self.raw_list
 		[
 			[	"us_3d_printing",
-				"stipulations",
 				[
 					[],
 					["3d_printing"],
@@ -50,50 +79,10 @@ class Filter
 					["US"],
 					[]
 				],
-				["no_state","CA","NY"]
-			],
-			[	"US-CA-3d_printing",
-				"cst",
-				[
-					"US",
-					"CA",
-					"3d_printing"
-				],
-				nil,
+				["no_state","CA","NY"],
 				nil
 			],
-			[	"US-NY-3d_printing",
-				"cst",
-				[
-					"US",
-					"NY",
-					"3d_printing"
-				],
-				nil,
-				nil
-			],		
-			[	"US-MI-3d_printing",
-				"cst",
-				[
-					"US",
-					"MI",
-					"3d_printing"
-				],
-				nil,
-				nil
-			],
-			[	"US-PA-3d_printing",
-				"cst",
-				[
-					"US",
-					"PA",
-					"3d_printing"
-				],
-				nil,
-				nil
-			],									
 			[ "us_sls",
-				"stipulations",
 				[
 					["SLS"],
 					[],
@@ -105,7 +94,6 @@ class Filter
 				nil
 			],
 			[ "us_sla",
-				"stipulations",
 				[
 					["SLA"],
 					[],
@@ -117,7 +105,6 @@ class Filter
 				nil
 			],
 			[ "us_custom_machining",
-				"stipulations",
 				[
 					["custom_machining"],
 					[],
@@ -129,7 +116,6 @@ class Filter
 				nil
 			],
 			[ "us_fdm-and-fff",
-				"stipulations",
 				[
 					[],
 					["FDM","FFF"],

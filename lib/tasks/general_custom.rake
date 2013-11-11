@@ -88,7 +88,7 @@ task :daily_cache_reset => :environment do
 	end
 
 	Filter.all.each do |name,filter|
-		Rails.cache.write(name,Supplier.visible_profiles_sorted(filter))
+		Rails.cache.write(name,Supplier.visible_profiles_sorted(filter),:expires_in => expires_hours.hours)
 	end
 
 end

@@ -33,8 +33,8 @@ Partreach::Application.routes.draw do
   get '/submit_ask/', to: 'profiles#submit_ask'
   get '/terms', to: 'static_pages#terms'
   get '/privacy', to: 'static_pages#privacy'
-  get '/guides/:country/:state/:tag_name_for_link', to: 'guides#show', as: 'guide_cst'
-  get '/guides/:stipulation_name', to: 'guides#show', as: 'guide_stipulation'
+  get '/guides/:country/:state/:tags_string', to: 'guides#show', as: 'guide_cst'
+  get '/guides/:name', to: 'guides#show', as: 'guide_name'
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'
 
   get '/analytics', to: 'analytics#home', as: 'analytics_home'
