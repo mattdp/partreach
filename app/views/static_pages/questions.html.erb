@@ -26,7 +26,7 @@
 					<% @content.each do |column, values| %>
 						<td>
 							<% values[:options].each do |option_name, display_information| %>
-								<%= radio_button_tag "questions[#{column}]", option_name, false %>
+								<%= radio_button_tag "questions[#{column}]", option_name, false, class: "#{column} question_radio_button", data: {summary: display_information[:summary]} %>
 								<%= label_tag "questions[#{column}]", display_information[:punchy] %>
 								<span class="option_detail"><%= display_information[:detail] %></span>
 							<% end %>
