@@ -3,7 +3,7 @@ ruby "2.0.0"
 
 gem 'rails', '4.0.0'
 gem 'webrick', '= 1.3.1' #https://github.com/JumpstartLab/curriculum/issues/373
-gem 'bootstrap-sass', '2.3.2.2'
+gem 'bootstrap-sass', '3.0.2.1'
 gem 'faker', '1.2.0'
 gem 'newrelic_rpm', '3.6.6.147'
 gem 'paperclip', '3.5.1' #https://github.com/thoughtbot/paperclip
