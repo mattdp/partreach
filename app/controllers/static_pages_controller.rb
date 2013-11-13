@@ -32,6 +32,9 @@ class StaticPagesController < ApplicationController
 	def getting_started
 	end
 
+  def questions
+  end
+
 	def procurement
 	end
 
