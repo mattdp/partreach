@@ -1,34 +1,33 @@
 <% provide(:title,"RFQ framing questions") %>
 <% meta_description "Submit a new request for quotes - give us some details about your project, and we'll find the right suppliers." %>
 
-<div class="content forms">
+<div class="content container">
 	<%#= get, since passing params to orders_new, without a state change in the database %>
 	<%= form_tag new_order_path, method: :get do %>
 
-		<p class="page_number">Page 1 of 2</p>
-
 		<div>
-			<h1 class="center">Help us ask you the right questions.</h1>
+			<p class="page-number fright">Page 1 of 2</p>
+			<h1 class="center clear">Help us ask you the right questions.</h1>
 			<h2 class="center">For each topic, which fits this job best?</h2>
 		</div>
 
 		<div>
-			<table>
+			<table class="equal-column-spacing">
 				<tr>
 					<% @content.each do |column, values| %>
-						<th>
-							<span class="main_header"><%= values[:main_header] %></span>
+						<th class="equal-column-cell add-bottom">
+							<h4 class="main_header"><%= values[:main_header] %></h4>
 							<span class="sub_header"><%= values[:sub_header] %></span>
 						</th>
 					<% end %>
 				</tr>
 				<tr>
 					<% @content.each do |column, values| %>
-						<td>
+						<td class="equal-column-cell">
 							<% values[:options].each do |option_name, display_information| %>
-								<%= radio_button_tag "questions[#{column}]", option_name, false, class: "#{column} question_radio_button", data: {summary: display_information[:summary]} %>
-								<%= label_tag "questions[#{column}]", display_information[:punchy] %>
-								<span class="option_detail"><%= display_information[:detail] %></span>
+								<%= radio_button_tag "questions[#{column}]", option_name, false, class: "#{column} question_radio_button fleft", data: {summary: display_information[:summary]} %>
+								<%= label_tag "questions[#{column}] ", display_information[:punchy], class: "fleft" %>
+								<p class="option_detail clear"><%= display_information[:detail] %></p>
 							<% end %>
 						</td>
 					<% end %>
@@ -37,10 +36,12 @@
 		</div>
 
 		<div class="summary_and_submission">
-			<h4>Summary</h4>
-			<p>I <span class="summary_experience">__________</span>, most care about <span class="summary_priority">__________</span>, and 3D printing <span class="summary_manufacturing">__________</span> the method.
+			<span class="fleft summary">
+				<h4 class="summary-header">Summary</h4>
+				<p>I <span class="fill-in summary_experience">__________</span>, most care about <span class="fill-in summary_priority">__________</span>, and 3D printing <span class="fill-in summary_manufacturing">__________</span> the method.</p>
+			</span>
 
-			<%= submit_tag "Final step", :disable_with => "Submitting...", :id => "create_button" %>
+			<%= submit_tag "Final step", :disable_with => "Submitting...", :id => "create_button", class: "fright" %>
 		</div>
 
 	<% end %>

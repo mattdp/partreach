@@ -1,7 +1,6 @@
 <% provide(:title, "My requests for quotes") %>
 
-<div class="content">
-  <div class="container row">
+<div class="content container">
 
     <% if !@supplier.nil? %>
       <div>
@@ -63,5 +62,4 @@
       <p> No orders yet! Make a <%= link_to 'new request for quotes', new_order_path %> now! </p>
     <% end %>
 
-  </div>
 </div>

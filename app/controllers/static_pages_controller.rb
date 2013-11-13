@@ -92,14 +92,14 @@ class StaticPagesController < ApplicationController
   				other:
   				{
   					summary: "shouldn't be",
-  					punchy: "something other than 3D printing",
+  					punchy: "Some other method",
   					detail: "3D printing isn't appropriate for this."
   				},
   				unknown:
   				{
   					summary: "might be",
   					punchy: "I don't know",
-  					detail: "I don't know if 3D printing is a fit for this job."
+  					detail: "I don't know what's best."
   				}
   			}
   		}
