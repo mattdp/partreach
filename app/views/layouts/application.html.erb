@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 	  <title><%= yield(:title) %> | <%= "#{brand_name}" %></title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
@@ -8,6 +8,7 @@
 	  <%= csrf_meta_tags %>
 	  <meta name="google-site-verification" content="xsEb-S9JoWbJsphstmoBu_x0vxGQLUr3FT6oNTyPcww" />
 	  <meta name="description" content="<%= meta_description %>" />
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	  <%= render 'layouts/shim' %>
 	  <%= render 'layouts/segmentio' %>
 	</head>
