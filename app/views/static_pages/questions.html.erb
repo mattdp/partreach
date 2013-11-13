@@ -2,5 +2,12 @@
 <% meta_description "Submit a new request for quotes - give us some details about your project, and we'll find the right suppliers." %>
 
 <div class="content forms">
+	<%#= get, since passing params to orders_new, without a state change in the database %>
+	<%= form_tag new_order_path, method: :get do %>
 
+		<%= hidden_field_tag 'paramtest', "gobbledygook" %>
+
+		<%= submit_tag "Submit", :disable_with => "Submitting...", :id => "create_button" %>
+
+	<% end %>
 </div>
