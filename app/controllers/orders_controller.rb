@@ -34,8 +34,6 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
 
-    binding.pry
-
     fs = params[:from_supplier]
     looking_for_supplier = Supplier.where("id = ?",fs.to_i) if not(fs.nil?)
     looking_for_supplier.present? ? @supplier = looking_for_supplier[0] : @supplier = nil
