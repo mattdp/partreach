@@ -33,6 +33,77 @@ class StaticPagesController < ApplicationController
 	end
 
   def questions
+  	@content = {
+  		experience: {
+				main_header: "Experience",
+				sub_header: "Are you experienced with this sort of job?",
+				options:
+				{
+					experienced: 
+					{
+						summary: "am experienced",
+						punchy: "Experienced",
+						detail: "I know the details. Let me tell you exactly what I need."
+					},
+					rookie:
+					{
+						summary: "am still learning",
+						punchy: "Still learning",
+						detail: "I'm not sure what's best for the job. I could use a little help."
+					}
+				}
+  		},
+  		priority: {
+  			main_header: "Priorities",
+  			sub_header: "It's nice to have everything, but what do you care about most?",
+  			options:
+  			{
+  				speed:
+  				{
+  					summary: "speed",
+  					punchy: "Speed",
+  					detail: "This needs to be done soon."
+  				},
+  				quality:
+  				{
+  					summary: "quality",
+  					punchy: "Quality",
+  					detail: "The details have to be exactly right."
+  				},
+  				cost:
+  				{
+  					summary: "cost",
+  					punchy: "Cost",
+  					detail: "Find me an inexpensive supplier."
+  				}
+  			}
+  		},
+  		manufacturing: {
+  			main_header: "Manufacturing method",
+  			sub_header: "How do you think this should be made?",
+  			options:
+  			{
+  				printing:
+  				{
+  					summary: "should be",
+  					punchy: "3D printing",
+  					detail: "I think this should be 3D printed."
+  				},
+  				other:
+  				{
+  					summary: "shouldn't be",
+  					punchy: "something other than 3D printing",
+  					detail: "3D printing isn't appropriate for this."
+  				},
+  				unknown:
+  				{
+  					summary: "might be",
+  					punchy: "I don't know",
+  					detail: "I don't know if 3D printing is a fit for this job."
+  				}
+  			}
+  		}
+  	}
   end
 
 	def procurement

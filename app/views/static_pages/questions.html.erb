@@ -5,9 +5,43 @@
 	<%#= get, since passing params to orders_new, without a state change in the database %>
 	<%= form_tag new_order_path, method: :get do %>
 
-		<%= hidden_field_tag 'paramtest', "gobbledygook" %>
+		<p class="page_number">Page 1 of 2</p>
 
-		<%= submit_tag "Submit", :disable_with => "Submitting...", :id => "create_button" %>
+		<div>
+			<h1 class="center">Help us ask you the right questions.</h1>
+			<h2 class="center">For each topic, which fits this job best?</h2>
+		</div>
+
+		<div>
+			<table>
+				<tr>
+					<% @content.each do |column, values| %>
+						<th>
+							<span class="main_header"><%= values[:main_header] %></span>
+							<span class="sub_header"><%= values[:sub_header] %></span>
+						</th>
+					<% end %>
+				</tr>
+				<tr>
+					<% @content.each do |column, values| %>
+						<td>
+							<% values[:options].each do |option_name, display_information| %>
+								<%= radio_button_tag "questions[#{column}]", option_name, false %>
+								<%= label_tag "questions[#{column}]", display_information[:punchy] %>
+								<span class="option_detail"><%= display_information[:detail] %></span>
+							<% end %>
+						</td>
+					<% end %>
+				</tr>
+			</table>
+		</div>
+
+		<div class="summary_and_submission">
+			<h4>Summary</h4>
+			<p>I <span class="summary_experience">__________</span>, most care about <span class="summary_priority">__________</span>, and 3D printing <span class="summary_manufacturing">__________</span> the method.
+
+			<%= submit_tag "Final step", :disable_with => "Submitting...", :id => "create_button" %>
+		</div>
 
 	<% end %>
 </div>
