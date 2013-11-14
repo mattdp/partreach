@@ -111,6 +111,10 @@ h1, h2, h3, h4 {
   background: $mainAreaBackground;
 }
 
+.word-break {
+  word-break: break-all;
+}
+
 /* typography */
 
 h1 {
@@ -673,7 +677,7 @@ form {
     }
   }
 }
-#create_button, .form-email form .sign-in-button, .order_table .save-button {
+#create_button, .form-email form .sign-in-button, .save-button {
   background: #00aede image-url('btn-arrow.png') no-repeat 194px 50%;
   border: 0;
   color: #fff;
@@ -682,7 +686,7 @@ form {
   font-weight: bold;
   height: 60px;
   line-height: 60px;
-  margin: 38px 0 0;
+  margin: 10px 0 10px;
   padding: 0;
   text-align: center;
   text-indent: -20px;
@@ -728,6 +732,10 @@ input, textarea, select, .uneditable-input {
 input.radio {
   width:auto;
   margin-right: 5px;
+}
+
+input.checkbox {
+  width: auto;
 }
 
 .error_explanation {

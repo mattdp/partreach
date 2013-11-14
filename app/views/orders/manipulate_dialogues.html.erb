@@ -38,7 +38,7 @@
 						<th>Supplier</th>
 						<% [@checkboxes,@textfields,@numberfields].each do |set| %>
 							<% set.each do |h| %>
-								<th>
+								<th class="word-break">
 									<% if set == @checkboxes %>
 										<%= "" %>
 									<% else %>
@@ -61,7 +61,7 @@
 								</td>
 								<% @checkboxes.each do |c| %>
 									<td class="center">
-										<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s] %>
+										<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s], class: "checkbox" %>
 									</td>
 								<% end %>
 								<% @textfields.each do |t| %>
@@ -86,7 +86,9 @@
 					</div>
 				<% end %>
 
-				<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "clear" %>
+				<div class="clear">
+					<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
+				</div>
 
 			<% end %>	
 
