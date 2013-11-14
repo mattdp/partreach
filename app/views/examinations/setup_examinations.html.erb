@@ -1,18 +1,22 @@
 <% provide(:title, "Supplier Examination") %>
 
-<div class="content">
-  <div class="container row">
-		<%= form_tag :action => 'submit_examinations', :controller => 'examinations' do %>
-			<%= hidden_field_tag "model_examined", "#{@name}" %>
-			<table class="examinations-holder">
-				<% @questionables.each do |questionable| %>
-					<tr class="examination">
-						<%= render partial: "examinations/#{@name}_examination", locals: {@name.to_sym => questionable} %>
-					</tr>
-				<% end %>
-				<tr><td><%= submit_tag "Submit examinations", :disable_with => "Saving..." %></td></tr>
-			</table>
-			<p>Note: more than one user submitting this screen at a time will cause problems.</p>
-		<% end %>
+<div class="container">
+  <div class="row">
+  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
+			<%= form_tag :action => 'submit_examinations', :controller => 'examinations' do %>
+				<%= hidden_field_tag "model_examined", "#{@name}" %>
+				<table class="examinations-holder">
+					<% @questionables.each do |questionable| %>
+						<tr class="examination">
+							<%= render partial: "examinations/#{@name}_examination", locals: {@name.to_sym => questionable} %>
+						</tr>
+					<% end %>
+					<tr><td><%= submit_tag "Submit examinations", :disable_with => "Saving..." %></td></tr>
+				</table>
+				<p>Note: more than one user submitting this screen at a time will cause problems.</p>
+			<% end %>
+
+		</div>
 	</div>
 </div>
