@@ -1,23 +1,22 @@
 <% provide(:title, "Sign in") %>
 <% meta_description "Sign into SupplyBetter to see what quotes you've received" %>
 
-<div class="content sign-in">
-  <div class="hero container">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
     <h1>Sign in</h1>
-  </div>
 
-  <div class="row container">
-    <div class="span8 offset2 form form-email">
-      <%= form_for(:session, url: sessions_path) do |f| %>
+    <%= form_for(:session, url: sessions_path) do |f| %>
 
-        <%= f.label :email %>
-        <%= f.text_field :email, class: "input_field" %>
+      <%= f.label :email %>
+      <%= f.text_field :email, class: "input_field" %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password %>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
 
-        <%= f.submit "Sign in", class: "sign-in-button" %>
-      <% end %>
+      <%= f.submit "Sign in", class: "sign-in-button" %>
+    <% end %>
 
     <p class="bit-of-space"><%= link_to "Forgot your password?", new_password_reset_path %></p>
 
