@@ -5,11 +5,11 @@
 </td>
 <td class="choice">
 	<p class="clear">
-		<%= radio_button_tag "reviews[#{review.id}]", "no_display", false, :class => "fleft" %>	
+		<%= radio_button_tag "reviews[#{review.id}]", "no_display", false, :class => "fleft radio" %>	
 		<%= label_tag "reviews[#{review.id}]", "Don't use", :class => "fleft" %>
 	</p>
 	<p class="clear">
-		<%= radio_button_tag "reviews[#{review.id}]", "display", false, :class => "fleft" %>
+		<%= radio_button_tag "reviews[#{review.id}]", "display", false, :class => "fleft radio" %>
 		<%= label_tag "reviews[#{review.id}]", "Do use", :class => "fleft" %>
 	</p>
 	<p class="clear">

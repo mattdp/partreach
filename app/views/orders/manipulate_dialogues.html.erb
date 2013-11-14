@@ -81,8 +81,8 @@
 				<p>Order status</p>
 				<% Order.order_status_hash.keys.each do |message| %>
 					<div class="clear">
-						<%= radio_button_tag "status", message, @order.status == message, :class => "fleft padding-left" %>
-						<%= label_tag "status_#{message}", message, :class => "fleft padding-left" %>
+						<%= radio_button_tag "status", message, @order.status == message, :class => "fleft radio" %>
+						<%= label_tag "status_#{message}", message, :class => "fleft" %>
 					</div>
 				<% end %>
 

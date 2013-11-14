@@ -6,7 +6,7 @@
 </td>
 <td class="choice">
 	<p class="clear">
-		<%= radio_button_tag "suppliers[#{supplier.id}]", "not_duplicate", false, :class => "fleft" %>	
+		<%= radio_button_tag "suppliers[#{supplier.id}]", "not_duplicate", false, :class => "fleft radio" %>	
 		<%= label_tag "suppliers[#{supplier.id}]", "Not duplicate - add", :class => "fleft" %>
 	</p>
 	<p class="clear">
@@ -19,7 +19,7 @@
 		<%= label_tag "supplier_zips[#{supplier.id}]", "New zip:", :class => "fleft" %>
 		<%= text_field_tag "supplier_zips[#{supplier.id}]", supplier.address ? supplier.address.zip : "" %>
 	<p class="clear">
-		<%= radio_button_tag "suppliers[#{supplier.id}]", "duplicate", false, :class => "fleft" %>	
+		<%= radio_button_tag "suppliers[#{supplier.id}]", "duplicate", false, :class => "fleft radio" %>	
 		<%= label_tag "suppliers[#{supplier.id}]", "Duplicate - remove", :class => "fleft" %>
 	</p>
 </td>

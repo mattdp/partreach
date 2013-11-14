@@ -103,6 +103,10 @@ h1, h2, h3, h4 {
   padding-left: 5px;
 }
 
+.margin-left {
+  margin-left: 5px;
+}
+
 .main-area-contrast {
   background: $mainAreaBackground;
 }
@@ -719,6 +723,11 @@ input, textarea, select, .uneditable-input {
   width: 100%;
   padding: 10px;
   @include box_sizing;
+}
+
+input.radio {
+  width:auto;
+  margin-right: 5px;
 }
 
 .error_explanation {

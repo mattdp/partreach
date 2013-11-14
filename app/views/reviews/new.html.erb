@@ -20,7 +20,7 @@
 
 			  <h1 class="center">Supplier review</h1>
 
-			  <p><strong>These reviews will be anonymized.</strong> Your company name and drawing will not be shared.</p>
+			  <p><strong>These reviews will be anonymized.</strong> Your company name and part design will not be shared.</p>
 
 				<div class="almost-one-half fleft">
 					<%= label_tag 'company', 'Which supplier are you reviewing?' %>
@@ -38,16 +38,18 @@
 				</div>
 
 				<div>
-					<%= label_tag 'would_recommend', 'Would you work with this supplier again?' %>
-
-					<div class="one-fourth fleft">
-						<%= radio_button_tag 'would_recommend', true, false, class: "fleft center" %>
-						<%= label_tag 'would_recommend', 'Yes', class: "fleft padding-left" %>
+					<div>
+						<%= label_tag 'would_recommend', 'Would you work with this supplier again?' %>
 					</div>
 
 					<div class="one-fourth fleft">
-						<%= radio_button_tag 'would_recommend', true, false, class: "fleft center padding-left" %>
-						<%= label_tag 'would_recommend', 'No', class: "fleft padding-left" %>
+						<%= radio_button_tag 'would_recommend', true, false, class: "fleft center radio" %>
+						<%= label_tag 'would_recommend', 'Yes', class: "fleft" %>
+					</div>
+
+					<div class="one-fourth fleft">
+						<%= radio_button_tag 'would_recommend', true, false, class: "fleft center padding-left radio" %>
+						<%= label_tag 'would_recommend', 'No', class: "fleft" %>
 					</div>
 
 				</div>
