@@ -47,6 +47,13 @@ textarea {
   resize: vertical;
 }
 
+/* how can this work better without such kludge? include order rearrangement didn't work for my attempt */
+.override {
+  h1, h2, h3, h4 {
+    font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  }
+}
+
 .center {
   text-align: center;
   vertical-align: middle;
