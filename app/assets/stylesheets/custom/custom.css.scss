@@ -144,14 +144,6 @@ strong {
   font-weight: bold;
 }
 
-/* header */
-
-.navbar, .footer {
-  padding: 5px 0;
-  background: $headerFooterDark;
-  margin-bottom: 0px;
-}
-
 .bit-of-space {
   margin: 10px 0px 10px 0px;
 }
@@ -175,7 +167,14 @@ strong {
   width: 240px;
 }
 
+.navbar, .footer {
+  padding: 5px 0;
+  background: $headerFooterDark;
+  margin-bottom: 0px;
+}
+
 .nav {
+  color: $textMidGrey;
   -webkit-border-radius: 0; 
      -moz-border-radius: 0; 
           border-radius: 0;
@@ -584,8 +583,6 @@ strong {
     width: 55%;
   }
 }
-
-.footer { color: #9499a7; }
 
 /* orders/new */
 
