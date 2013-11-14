@@ -1,85 +1,93 @@
 <% provide(:title, "Manipulate dialogues") %>
 
-<h1><%= "Changes to Order \##{@order.id} (User #{User.find(@order.user_id).name})"  %></h1>	
+<div class="container">
+  <div class="row">
+  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-<%= render "layouts/order_basics" %>
+			<h1><%= "Changes to Order \##{@order.id} (User #{User.find(@order.user_id).name})"  %></h1>	
 
-<p><strong>User email: </strong><%= "#{User.find(@order.user_id).email}" %></p>
-<% if !@order.drawing_file_name.nil? and @order.drawing_file_name != "" %>
-	<p><strong>Drawing name: </strong><%= "#{@order.drawing_file_name}" %></p>
-<% end %>
+			<%= render "layouts/order_basics" %>
 
-<p> <%= link_to "Add a dialogue", "/dialogues/new/#{@order.id}" %> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
-<%= link_to "Add new supplier", new_supplier_path %>
+			<p><strong>User email: </strong><%= "#{User.find(@order.user_id).email}" %></p>
+			<% if !@order.drawing_file_name.nil? and @order.drawing_file_name != "" %>
+				<p><strong>Drawing name: </strong><%= "#{@order.drawing_file_name}" %></p>
+			<% end %>
 
-<%= form_tag :action => 'update_dialogues', :controller => 'orders' do %>
+			<p> <%= link_to "Add a dialogue", "/dialogues/new/#{@order.id}" %> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
+			<%= link_to "Add new supplier", new_supplier_path %>
 
-	<%= hidden_field_tag "id", @order.id %>
+			<%= form_tag :action => 'update_dialogues', :controller => 'orders' do %>
 
-	<%= label_tag "recommendation", "Recommendation" %>
-	<%= text_area_tag "recommendation", @order.recommendation %>
-	<%= label_tag "next_steps", "Next steps" %>
-	<%= text_area_tag "next_steps", @order.next_steps %>
-	<%= label_tag "next_action_date", "Next action date" %>
-	<%= text_field_tag "next_action_date", @order.next_action_date %>
+				<%= hidden_field_tag "id", @order.id %>
 
-	<table>
-		<tr>
-			<th>d_id</th>
-			<th>Supplier</th>
-			<% [@checkboxes,@textfields,@numberfields].each do |set| %>
-				<% set.each do |h| %>
-					<th>
-						<% if set == @checkboxes %>
-							<%= "" %>
-						<% else %>
-							<%= "#{h.to_s}" %>
+				<%= label_tag "recommendation", "Recommendation" %>
+				<%= text_area_tag "recommendation", @order.recommendation %>
+				<%= label_tag "next_steps", "Next steps" %>
+				<%= text_area_tag "next_steps", @order.next_steps %>
+				<%= label_tag "next_action_date", "Next action date" %>
+				<%= text_field_tag "next_action_date", @order.next_action_date %>
+
+				<table>
+					<tr>
+						<th>d_id</th>
+						<th>Supplier</th>
+						<% [@checkboxes,@textfields,@numberfields].each do |set| %>
+							<% set.each do |h| %>
+								<th>
+									<% if set == @checkboxes %>
+										<%= "" %>
+									<% else %>
+										<%= "#{h.to_s}" %>
+									<% end %>
+								</th>
+							<% end %>
 						<% end %>
-					</th>
+					</tr>
+						<% @dialogues.each do |d| %>
+							<tr>
+								<% @supplier = Supplier.find(d.supplier_id) %>
+								<td><%= "#{d.id}" %></td>
+								<td>
+									<strong><%= link_to "#{@supplier.name}", admin_edit_path(@supplier.name_for_link) %></strong>
+									<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
+									<%= "\n#{@supplier.rfq_contact.email}" if @supplier.rfq_contact.email %>
+									<%= "\n#{@supplier.rfq_contact.phone}" if @supplier.rfq_contact.phone %>
+									<%= "\n#{@supplier.internally_hidden_preferences}" if @supplier.internally_hidden_preferences %>
+								</td>
+								<% @checkboxes.each do |c| %>
+									<td class="center">
+										<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s] %>
+									</td>
+								<% end %>
+								<% @textfields.each do |t| %>
+									<td>
+										<%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
+									</td>
+								<% end %>
+								<% @numberfields.each do |n| %>
+									<td>
+										<%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
+									</td>
+								<% end %>
+							</tr>
+						<% end %>
+				</table>
+
+				<p>Ordering of checkboxes:</p>
+				<div><% @checkboxes.each do |c| %>
+					<%= "| #{c.to_s}" %>
+				<% end %></div>
+
+				<p>Order status</p>
+				<% Order.order_status_hash.keys.each do |message| %>
+					<%= radio_button_tag "status", message, @order.status == message, :class => "fleft" %>
+					<%= label_tag "status", message, :class => "fleft" %>
 				<% end %>
-			<% end %>
-		</tr>
-			<% @dialogues.each do |d| %>
-				<tr>
-					<% @supplier = Supplier.find(d.supplier_id) %>
-					<td><%= "#{d.id}" %></td>
-					<td>
-						<strong><%= link_to "#{@supplier.name}", admin_edit_path(@supplier.name_for_link) %></strong>
-						<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
-						<%= "\n#{@supplier.rfq_contact.email}" if @supplier.email %>
-						<%= "\n#{@supplier.rfq_contact.phone}" if @supplier.phone %>
-						<%= "\n#{@supplier.internally_hidden_preferences}" if @supplier.internally_hidden_preferences %>
-					</td>
-					<% @checkboxes.each do |c| %>
-						<td class="center">
-							<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s] %>
-						</td>
-					<% end %>
-					<% @textfields.each do |t| %>
-						<td>
-							<%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
-						</td>
-					<% end %>
-					<% @numberfields.each do |n| %>
-						<td>
-							<%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
-						</td>
-					<% end %>
-				</tr>
-			<% end %>
-	</table>
 
-	<p>Ordering of checkboxes:</p>
-	<div><% @checkboxes.each do |c| %>
-		<%= "| #{c.to_s}" %>
-	<% end %></div>
+				<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "clear" %>
 
-	<p>Order status</p>
-	<% Order.order_status_hash.keys.each do |message| %>
-		<%= radio_button_tag "status", message, @order.status == message, :class => "fleft" %>
-		<%= label_tag "status", message, :class => "fleft" %>
-	<% end %>
+			<% end %>	
 
-	<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "clear" %>
-
-<% end %>	
+		</div>
+	</div>
+</div>			

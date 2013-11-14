@@ -1,8 +1,13 @@
 <% provide(:title, "New request for quotes") %>
 <% meta_description "Let us know what you're making and how to contact you so we can find the best suppliers." %>
 
-<div class="content forms">
-  <h1 class="order_top_header">New request for quotes</h1>
-  <%= render 'form' %>
-</div>
+<div class="container">
+  <div class="row">
+  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
+		  <h1 class="order_top_header">New request for quotes</h1>
+		  <%= render partial: 'orders/new_order_form' %>
+
+ 		</div>
+	</div>
+</div> 

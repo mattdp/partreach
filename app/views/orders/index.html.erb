@@ -1,65 +1,69 @@
 <% provide(:title, "My requests for quotes") %>
 
-<div class="content container">
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-    <% if !@supplier.nil? %>
-      <div>
-        <h3>Supplier information</h3>
-        <p>This account is linked to the supplier profile for <%= "#{@supplier.name}" %>. Free of charge, you can <%= link_to "edit the supplier profile", edit_supplier_path(current_user.supplier_id) %> or <%= link_to "see what it looks like", supplier_profile_path(@supplier.name_for_link) %>.
-        <% if !@supplier.is_in_network? %>
-          If you're interested in joining our paid supplier network and getting more business, you can <%= link_to "read more information here", be_a_supplier_path %>.
-        <% end %>
-        </p>
+      <% if !@supplier.nil? %>
+        <div>
+          <h3>Supplier information</h3>
+          <p>This account is linked to the supplier profile for <%= "#{@supplier.name}" %>. Free of charge, you can <%= link_to "edit the supplier profile", edit_supplier_path(current_user.supplier_id) %> or <%= link_to "see what it looks like", supplier_profile_path(@supplier.name_for_link) %>.
+          <% if !@supplier.is_in_network? %>
+            If you're interested in joining our paid supplier network and getting more business, you can <%= link_to "read more information here", be_a_supplier_path %>.
+          <% end %>
+          </p>
 
-        <%= render partial: "suppliers/points_table", locals: {supplier: @supplier, point_structure: @point_structure, on_edit_page: false} %>
+          <%= render partial: "suppliers/points_table", locals: {supplier: @supplier, point_structure: @point_structure, on_edit_page: false} %>
 
-      </div>
-    <% end %>
+        </div>
+      <% end %>
 
-    <% if @orders.size > 0 %>
+      <% if @orders.size > 0 %>
 
-      <h3>Order information</h3>
+        <h3>Order information</h3>
 
-      <div class="order">
-        <table class="order_table">
-          <tr class="order_table_header_row">
-            <th>Order name</th>
-            <th>Quantity</th>
-            <th>Bid due date</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
+        <div class="order">
+          <table class="order_table">
+            <tr class="order_table_header_row">
+              <th>Order name</th>
+              <th>Quantity</th>
+              <th>Bid due date</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
 
-        <% @orders.each do |order| %>
+          <% @orders.each do |order| %>
 
-          <tr class="order_table_content_row">
-            <td><%= order.name %></td>
-            <td class="right"><%= order.quantity %></td>
-            <td class="center">
-              <% if not(order.deadline.nil?) %>
-                <%= "Due by #{order.deadline.to_s}" %>
-              <% end %>
-            </td>
-            <td class="center">
-              <% if winner(order).nil? and order.finished? %>
-                <%= "Bidding concluded, no deal." %>
-              <% elsif winner(order) %>
-                <%= "'#{Supplier.find(winner(order).supplier_id).name}' selected as winner." %>
-              <% else %>
-                <%= "#{pluralize(bids_received(order),'bid')} received, " %>
-                <%= "#{pluralize(order.visible_dialogues.count, 'supplier')} contacted" %>
-              <% end %>
-            </td>
-            <td class="center"><%= link_to 'View order and bids', order %></td>
-          </tr>
-        <% end %>
-        </table>
-      </div>
+            <tr class="order_table_content_row">
+              <td><%= order.name %></td>
+              <td class="right"><%= order.quantity %></td>
+              <td class="center">
+                <% if not(order.deadline.nil?) %>
+                  <%= "Due by #{order.deadline.to_s}" %>
+                <% end %>
+              </td>
+              <td class="center">
+                <% if winner(order).nil? and order.finished? %>
+                  <%= "Bidding concluded, no deal." %>
+                <% elsif winner(order) %>
+                  <%= "'#{Supplier.find(winner(order).supplier_id).name}' selected as winner." %>
+                <% else %>
+                  <%= "#{pluralize(bids_received(order),'bid')} received, " %>
+                  <%= "#{pluralize(order.visible_dialogues.count, 'supplier')} contacted" %>
+                <% end %>
+              </td>
+              <td class="center"><%= link_to 'View order and bids', order %></td>
+            </tr>
+          <% end %>
+          </table>
+        </div>
 
-      <p><%= link_to 'Or create a new RFQ', new_order_path %></p>
+        <p><%= link_to 'Or create a new RFQ', new_order_path %></p>
 
-    <% else %>
-      <p> No orders yet! Make a <%= link_to 'new request for quotes', new_order_path %> now! </p>
-    <% end %>
+      <% else %>
+        <p> No orders yet! Make a <%= link_to 'new request for quotes', new_order_path %> now! </p>
+      <% end %>
 
+    </div>
+  </div>
 </div>
