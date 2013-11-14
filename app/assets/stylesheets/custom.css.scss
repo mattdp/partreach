@@ -130,9 +130,6 @@ strong {
 }
 
 /* header */
-.container {
-  width: 940px;
-}
 
 .header, .footer {
   padding: 22px 0;
@@ -210,15 +207,7 @@ strong {
 .alert {
   margin-bottom: 0;
 }
-// .container {
-//   padding: 0 20px;
-// }
-// @media (min-width: 768px) {
-//   .container {
-//     padding-left: 0;
-//     padding-right: 0;
-//   }
-// }
+
 .hero {
   padding: 0 0 70px;
   hgroup {
@@ -398,10 +387,6 @@ strong {
       color: #1b1b1b;
     }
   }
-  .container {
-    width: 90%;
-    padding: 0 5%;
-  }
   .order_table {
     border: 1px solid #ddd;
     border-collapse: separate;
@@ -457,9 +442,6 @@ strong {
     margin: 38px 0;
     padding: 0 40px;
     text-indent: 0;
-  }
-  .row > p {
-    padding: 32px 0;
   }
 }
 
