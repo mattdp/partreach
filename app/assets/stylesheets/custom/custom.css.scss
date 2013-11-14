@@ -560,7 +560,7 @@ $supplierProfileBorderColor: $headerFooterDark;
       color: #6c6f78;
       font-size: 26px;
       font-weight: 300;
-      padding: 30px 0;
+      padding: 10px 0;
       text-align: center;
       em {
         color: #151517;
@@ -583,13 +583,19 @@ $supplierProfileBorderColor: $headerFooterDark;
     font-weight: 300;
     line-height: 38px;
     padding-left: 24px;
+    margin-bottom: 5px;
+    max-width: 40%;
+    float: left;
+    border: 1px solid #ccc;
   }
   #email-submit-button {
     background: #fb5022;
     color: #fff;
     font-size: 24px;
     font-weight: bold;
-    float: right;
+    max-width: 40%;
+    float: left;
+    margin-left: 10px;
   }
 }
 
@@ -712,14 +718,6 @@ form {
 }
 .sign-up {
   margin: 15px 0 0 30px;
-}
-.back {
-  padding: 30px 0;
-  float: right;
-  a {
-    font-size: 12px;
-    font-family: Arial, sans-serif;
-  }
 }
 
 input, textarea, select, .uneditable-input {
