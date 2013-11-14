@@ -506,8 +506,12 @@ $supplierProfileBorderColor: $headerFooterDark;
     li {
       padding: 0px;
       border-color: $supplierProfileBorderColor;
+      &.active {
+        font-weight: bold;
+      }
     }
     a.description-toggle, a.machines-toggle, a.reviews-toggle {
+      color: $textDarkGrey !important;
       border-color: $supplierProfileBorderColor !important;
     }
   }
