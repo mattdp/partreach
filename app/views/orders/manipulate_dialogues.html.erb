@@ -27,6 +27,11 @@
 				<%= label_tag "next_action_date", "Next action date" %>
 				<%= text_field_tag "next_action_date", @order.next_action_date %>
 
+				<p>Ordering of checkboxes:</p>
+				<div><% @checkboxes.each do |c| %>
+					<%= "| #{c.to_s}" %>
+				<% end %></div>
+
 				<table>
 					<tr>
 						<th>d_id</th>
@@ -73,15 +78,12 @@
 						<% end %>
 				</table>
 
-				<p>Ordering of checkboxes:</p>
-				<div><% @checkboxes.each do |c| %>
-					<%= "| #{c.to_s}" %>
-				<% end %></div>
-
 				<p>Order status</p>
 				<% Order.order_status_hash.keys.each do |message| %>
-					<%= radio_button_tag "status", message, @order.status == message, :class => "fleft" %>
-					<%= label_tag "status", message, :class => "fleft" %>
+					<div class="clear">
+						<%= radio_button_tag "status", message, @order.status == message, :class => "fleft padding-left" %>
+						<%= label_tag "status_#{message}", message, :class => "fleft padding-left" %>
+					</div>
 				<% end %>
 
 				<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "clear" %>
