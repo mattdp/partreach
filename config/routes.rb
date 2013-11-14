@@ -25,7 +25,6 @@ Partreach::Application.routes.draw do
   get '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
   match '/orders/update_dialogues', to: 'orders#update_dialogues', via: :post
   get '/orders/purchase/:order/:dialogue', to: 'orders#purchase'
-  get '/cto', to: 'static_pages#cto'
   get '/dialogues/new/:id', to: 'dialogues#new'
   get '/profiles/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
   get 'suppliers/admin_edit/:name', to: 'suppliers#admin_edit', as: 'admin_edit'

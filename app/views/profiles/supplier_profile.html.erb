@@ -5,8 +5,9 @@
 			<% if !@allowed %>
 				<% provide(:title, "Profile not found") %>
 				<% meta_description "Profile not found" %>
-				<h3 class="center">This is not a valid URL to find a supplier profile</h3>
-				<p>It's possible we haven't released a profile for this supplier yet, or perhaps you typed in a bad address. Want to head to the <%= link_to "home page", root_path %> instead?</p>
+				<h1 class="center">This is not a valid URL to find a supplier profile</h3>
+				<p>It's possible we haven't released a profile for this supplier yet, or perhaps you typed in a bad address.</p>
+				<p>Want to head to the <%= link_to "home page", root_path %> instead?</p>
 			<% else %>
 				<% provide(:title, "#{@supplier.name} - Supplier Profile") %>
 				<% meta_description @meta %>
