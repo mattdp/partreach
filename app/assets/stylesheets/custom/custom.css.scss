@@ -115,7 +115,57 @@ h1, h2, h3, h4 {
   word-break: break-all;
 }
 
+.supplybetter-blue {
+  background: #00aede;
+  color: #fff;
+  &:hover {
+    background: #01c8ff;
+    color: #fff;
+  }
+  &:active {
+    background: #01c8ff;
+    color: #fff;
+  }
+}
+
+.btn-xl {
+  padding: 9px 36px;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+/* margins */
+
+.bit-of-space {
+  margin: 10px 0px 10px 0px;
+}
+
+.backlink {
+  margin-top: 10px;
+}
+
+.back_to_home {
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.back_to_suppliers {
+  margin-bottom: 50px;
+}
+
 /* typography */
+
+strong {
+  font-weight: bold;
+}
+
+.italics {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
 
 h1 {
   font-size: 42px;
@@ -140,25 +190,9 @@ h3, .h3link {
   margin: 0px 0px 0px 0px;
 }
 
-p, ul, li, a, label {
+p, ul, li, a, label, .order_basics {
   font-size: 16px;
   line-height: 20px;
-}
-
-strong {
-  font-weight: bold;
-}
-
-.italics {
-  font-style: italic;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.bit-of-space {
-  margin: 10px 0px 10px 0px;
 }
 
 .testimonials {
@@ -258,6 +292,10 @@ strong {
   }
 }
 
+.homepage-background {
+  background: $headerFooterDark;
+}
+
 .btn-hero {
   background: #00aede image-url('btn-arrow.png') no-repeat 234px 50%;
   border: 0;
@@ -300,21 +338,17 @@ strong {
 }
 
 .features {
-  border-bottom: 1px solid #cbced3;
   padding: 96px 0 130px;
   text-align: center;
   ol {
-    width: 970px;
-    margin-left: -485px;
-    position: relative;
-    left: 50%;
+    width: 100%;
     li {
       border-left: 1px solid #cbced3;
       float: left;
       list-style: none;
       margin-left: 20px;
       padding: 0 20px;
-      width: 310px;
+      width: 30%;
       &:first-child {
         border-left: 0;
         margin-left: 0;
@@ -463,12 +497,6 @@ strong {
     .little-field {
       width: 5%;
     }
-  }
-  .btn {
-    background: #01c8ff;
-    margin: 38px 0;
-    padding: 0 40px;
-    text-indent: 0;
   }
 }
 
@@ -819,19 +847,6 @@ input.checkbox {
 
   
 /* miscellaneous */
-
-.backlink {
-  margin-top: 10px;
-}
-
-.back_to_home {
-  margin-top: 25px;
-  margin-bottom: 10px;
-}
-
-.back_to_suppliers {
-  margin-bottom: 50px;
-}
 
 .debug_dump {
   clear: both;

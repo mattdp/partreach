@@ -1,61 +1,58 @@
 <% provide(:title, "Helping you find the right supplier ") %>
 
-<div class="content hero">
-	<div class="container">
-		<% provide(:title, "Comparison shopping for 3D printing") %>
-		<hgroup>
-			<p class="center"><%= link_to "Check out our public listing of 300+ US 3D printing suppliers!", suppliers_path %></p>
-			<h1>Comparison shopping for 3D printing.</h1>
-			<h2><em>Know your options.</em> Get cheaper parts.</h2>
-		</hgroup>
-		<%= render partial: "static_pages/testimonial", locals: {testimonial: @testimonial, alternate_colors: false} %>
-		<%= link_to "Get Started", signup_path, class: "btn btn-hero", id: "button-start-today" %>
-		<div class="center bit-of-space">
-			<%= link_to "Are you a supplier?", be_a_supplier_path, class: "sec-hero" %>
-			<%= link_to "Or wondering how to get started with 3D printing?", getting_started_path, class: "sec-hero" %>
+<div class="homepage-background">
+	<div class= "container hero">
+
+			<% provide(:title, "Comparison shopping for 3D printing") %>
+			<hgroup>
+				<p class="center"><%= link_to "Check out our public listing of 300+ US 3D printing suppliers!", suppliers_path %></p>
+				<h1>Comparison shopping for 3D printing.</h1>
+				<h2><em>Know your options.</em> Get cheaper parts.</h2>
+			</hgroup>
+			<%= render partial: "static_pages/testimonial", locals: {testimonial: @testimonial, alternate_colors: false} %>
+			<p class="center bit-of-space">
+				<%= link_to "Get Started", signup_path, class: "btn btn-xl supplybetter-blue" %>
+			</p>
+			<div class="center bit-of-space">
+				<%= link_to "Are you a supplier?", be_a_supplier_path, class: "sec-hero" %>
+				<%= link_to "Or wondering how to get started with 3D printing?", getting_started_path, class: "sec-hero" %>
+			</div>
+
+	</div>
+</div>
+
+<div class="container">
+	<div class = "row">
+		<div class="content features">
+			<ol>
+				<li>
+					<h3>Fill out a <%= link_to "quote request", new_order_path, :class => "h3link" %>.</h3>
+					<%= image_tag "features-request.png" %>
+					<p>Give us quantity, a drawing, and the application, and we're ready to start.</p>
+				</li>
+				<li>
+					<h3>We reach out to <%= link_to "suppliers", suppliers_path, :class => "h3link" %>.</h3>
+					<%= image_tag "features-suppliers.png" %>
+					<p>We select the best suppliers based on what you care about, whether that be cost, quality, process, or geography.</p>
+				</li>
+				<li>
+					<h3>You pick the best quote.</h3>
+					<%= image_tag "features-quote.png" %>
+					<p>Pick the quote that fits your needs best. No obligation to buy.</p>
+				</li>
+			</ol>
 		</div>
 	</div>
-</div>
-<div class="content features">
-	<div class="container row">
-		<ol>
-			<li>
-				<h3>Fill out a <%= link_to "quote request", new_order_path, :class => "h3link" %>.</h3>
-				<%= image_tag "features-request.png" %>
-				<p>Give us quantity, a drawing, and the application, and we're ready to start.</p>
-			</li>
-			<li>
-				<h3>We reach out to <%= link_to "suppliers", suppliers_path, :class => "h3link" %>.</h3>
-				<%= image_tag "features-suppliers.png" %>
-				<p>We select the best suppliers based on what you care about, whether that be cost, quality, process, or geography.</p>
-			</li>
-			<li>
-				<h3>You pick the best quote.</h3>
-				<%= image_tag "features-quote.png" %>
-				<p>Pick the quote that fits your needs best. No obligation to buy.</p>
-			</li>
-		</ol>
-	</div>
-</div>
-<div class="content cta">
-	<div class="container time">
-		<h3 class="time-heading pull-left">Spend your time designing, coding, and selling.</h3>
-		<p class="span6 pull-right">
-			Let us do the hard work of quoting and supplier selection for you, so you can get back to improving your business.
-		</p>
-		<p class="span6 pull-right">
-			<%= link_to "Get started now – for free!", signup_path %>
-		</p>
-	</div>
 	<% if current_user.nil? %>
-    <%= form_tag :action => 'create', :controller => 'leads' do %>
+		<div class="row">
+		  <%= form_tag :action => 'create', :controller => 'leads' do %>
 
-      <input type="hidden" name="next_step_field" value="/">
-      <div class="clear cta">
-      	<%= render 'layouts/email_collector' %>
-      </div>
-
-    <% end %>
-  <% end %>
+		    <input type="hidden" name="next_step_field" value="/">
+		    <div class="clear cta">
+		    	<%= render 'layouts/email_collector' %>
+		    </div>
+	  	<% end %>
+	  </div>
+	<% end %>
 </div>
 
