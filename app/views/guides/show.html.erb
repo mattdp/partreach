@@ -1,49 +1,56 @@
-<% if @filter %>
-	<% provide(:title,"#{@tags_short} suppliers in #{@location_phrase}.") %>
-	<div class="content">
-		<div class="container row supplier-list">
+<div class="container">
+  <div class="row">
+  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-			<div id="supplier-list-intro">
-				<p>
-					<strong><%= "#{@tags_short}: " %></strong><%= "#{@tags_long}" %>
-				</p>
+			<% if @filter %>
+				<% provide(:title,"#{@tags_short} suppliers in #{@location_phrase}.") %>
+				<div class="supplier-list">
 
-				<% noun = "suppliers" %>
+					<div id="supplier-list-intro">
+						<p>
+							<strong><%= "#{@tags_short}: " %></strong><%= "#{@tags_long}" %>
+						</p>
 
-				<p>
-					<% if @supplier_count == 0 %>
-						We have not publicly catalogued any
-					<% elsif @supplier_count == 1 %>
-						<% noun = "supplier" %>
-						We have catalogued one
-					<% else %>
-						<%= "We have catalogued #{@supplier_count}" %>
-					<% end %>
-					<%= " #{@tags_short} #{noun} in #{@location_phrase}." %>
-				</p>
+						<% noun = "suppliers" %>
 
-				<% if @supplier_count > 1 %>
-					<p>Suppliers are sorted by profile completeness, since supplier profiles with descriptions, machine data, and reviews are more informative. If you're a supplier, find your profile, claim it, and increase your ranking!</p>
-				<% end %>
-				<p>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
-				<p>Or if you want help finding the best <%= "#{@tags_short} suppliers" %>, <%= link_to "request quotes now!", {:controller => "orders", :action => "new", :from_supplier => nil}, rel: "nofollow" %></p>
-			</div>
+						<p>
+							<% if @supplier_count == 0 %>
+								We have not publicly catalogued any
+							<% elsif @supplier_count == 1 %>
+								<% noun = "supplier" %>
+								We have catalogued one
+							<% else %>
+								<%= "We have catalogued #{@supplier_count}" %>
+							<% end %>
+							<%= " #{@tags_short} #{noun} in #{@location_phrase}." %>
+						</p>
 
-			<%= render partial:"suppliers/supplier_list_key" %>
-			
-			<div class="clear">
-				<% if @supplier_count > 0 %>
-					<%= render partial: "suppliers/supplier_list", locals: { visibles: @visibles, columns: 1, header_text: "#{@tags_short} suppliers in #{@location_phrase}" } %>
-				<% else %>
-					<h3 class="supplier-list-country"><%= "#{@tags_short} suppliers in #{@location_phrase}" %></h3>
-					<p>If you know of a supplier that should be in this category, <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
-				<% end %>	
-			</div>
+						<% if @supplier_count > 1 %>
+							<p>Suppliers are sorted by profile completeness, since supplier profiles with descriptions, machine data, and reviews are more informative. If you're a supplier, find your profile, claim it, and increase your ranking!</p>
+						<% end %>
+						<p>Are we missing a supplier that you know about? Please <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
+						<p>Or if you want help finding the best <%= "#{@tags_short} suppliers" %>, <%= link_to "request quotes now!", {:controller => "orders", :action => "new", :from_supplier => nil}, rel: "nofollow" %></p>
+					</div>
+
+					<%= render partial:"suppliers/supplier_list_key" %>
+					
+					<div class="clear">
+						<% if @supplier_count > 0 %>
+							<%= render partial: "suppliers/supplier_list", locals: { visibles: @visibles, columns: 1, header_text: "#{@tags_short} suppliers in #{@location_phrase}" } %>
+						<% else %>
+							<h3 class="supplier-list-country"><%= "#{@tags_short} suppliers in #{@location_phrase}" %></h3>
+							<p>If you know of a supplier that should be in this category, <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
+						<% end %>	
+					</div>
+
+				</div>
+				
+			<% else %>
+				<% provide(:title,"No publicly released guide at this address") %>
+				<h3 class="center">This is not a valid URL to find a guide</h3>
+				<p>It's possible we haven't released a guide for this geography or tag yet, or perhaps you typed in a bad address. Want to head to the <%= link_to "home page", root_path %> instead?</p>
+			<% end %>
 
 		</div>
 	</div>
-<% else %>
-	<% provide(:title,"No publicly released guide at this address") %>
-	<h3 class="center">This is not a valid URL to find a guide</h3>
-	<p>It's possible we haven't released a guide for this geography or tag yet, or perhaps you typed in a bad address. Want to head to the <%= link_to "home page", root_path %> instead?</p>
-<% end %>
+</div>
