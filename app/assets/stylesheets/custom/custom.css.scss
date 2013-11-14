@@ -15,6 +15,7 @@ $h2Default: #999999;
 $h2Dark: #333333;
 $textMidGrey: #c3c8d9;
 $textDarkGrey: #1f252d;
+$headerFooterDark: #3c3e44;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -71,6 +72,12 @@ h1, h2, h3, h4 {
 
 .clear {
   clear: both;
+}
+
+.full-height {
+  min-height: 100%;
+  margin: 0;
+  height: 100%;
 }
 
 /* used in profile details in DB */
@@ -139,8 +146,10 @@ strong {
 
 /* header */
 
-.header, .footer {
-  padding: 22px 0;
+.navbar, .footer {
+  padding: 5px 0;
+  background: $headerFooterDark;
+  margin-bottom: 0px;
 }
 
 .bit-of-space {
@@ -163,46 +172,45 @@ strong {
 .logo {
   background: image-url('/logo.png') no-repeat;
   height: 66px;
-  float: left;
   width: 240px;
 }
 
 .nav {
-  padding: 16px 0 0;
+  -webkit-border-radius: 0; 
+     -moz-border-radius: 0; 
+          border-radius: 0;
   li {
-    float: left;
-    margin: 0 10px 0 0;
-    padding: 0 10px 0 0;
-    border-right: 1px solid $textMidGrey;
-    &:last-child {
-      margin-right: 0;
-      padding-right: 0;
-      border: 0;
-    }
+    padding: 5px 0px;
     a {
+      color: $textMidGrey;
+      &:hover {
+        background: transparent;        
+        color: #fff;
+      }
+    }
+    .dropdown-toggle {
       color: $textMidGrey;
       &:hover {
         background: transparent;
         color: #fff;
       }
     }
-    .dropdown-menu a {
-      color: $textDarkGrey;
-      &:hover {
-        color: $textMidGrey;
+    .dropdown-menu {
+      a {
+        color: $textDarkGrey;
+      }
+      li {
+        border: 0px;
+        float: clear;
+        width: 100%;
+        &:hover {
+          background: $wideAngleBackground;
+        }
       }
     }
   }
 }
-.content {
-  background: #f6f6f6;
-  &.features, &.forms, &.sign-in {
-    background: $wideAngleBackground;
-  }
-  &.header, &.hero, &.footer {
-    background: #3c3e44;
-  }
-}
+
 .sign-in {
   min-height: 93%;
   .hero {
@@ -466,13 +474,6 @@ strong {
     margin: 0px;
     padding: 0px;
   }
-  .navbar-inner {
-    -webkit-border-radius: 0px;
-            border-radius: 0px;
-  }
-  .nav {
-    padding: 0px;
-  }
   .tag {
     color: white;
     background-color: #333;
@@ -703,7 +704,7 @@ form {
   }
 }
 
-textarea, select, .uneditable-input {
+input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
   padding: 10px;
