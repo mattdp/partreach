@@ -6,7 +6,7 @@
 
       <% if !@supplier.nil? %>
         <div>
-          <h3>Supplier information</h3>
+          <h3 class="bit-of-space">Supplier information</h3>
           <p>This account is linked to the supplier profile for <%= "#{@supplier.name}" %>. Free of charge, you can <%= link_to "edit the supplier profile", edit_supplier_path(current_user.supplier_id) %> or <%= link_to "see what it looks like", supplier_profile_path(@supplier.name_for_link) %>.
           <% if !@supplier.is_in_network? %>
             If you're interested in joining our paid supplier network and getting more business, you can <%= link_to "read more information here", be_a_supplier_path %>.
@@ -20,7 +20,7 @@
 
       <% if @orders.size > 0 %>
 
-        <h3>Order information</h3>
+        <h3 class="bit-of-space">Order information</h3>
 
         <div class="order">
           <table class="order_table">

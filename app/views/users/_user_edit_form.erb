@@ -24,7 +24,7 @@
   <%= f.password_field :password_confirmation %>
 
 <% if signed_in? %>
-  <%= f.submit "Edit my account", class: "btn btn-large btn-primary" %>
+  <%= f.submit "Submit", class: "save-button" %>
   <p id="signin-backlink"><%= link_to 'Back to my profile', root_path %></p>
 <% else %>
   <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
