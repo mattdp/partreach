@@ -43,6 +43,10 @@
 
   <input type="hidden" name="file" value="" id="direct-upload-file">
 
+  <%= hidden_field_tag "stated_experience_field", @experience %>
+  <%= hidden_field_tag "stated_priority_field", @priority %>
+  <%= hidden_field_tag "stated_manufacturing_field", @manufacturing %>
+
   <p class="detail-text"> 3D model preferred. If you have photos or sketches, we can help you find a designer to make the model.</p> 
 
     <div class="pull-left half">
@@ -73,12 +77,12 @@
   <% if @priority = "speed" %>
   <div>
     <div class="pull-left half">
-      <%= label_tag 'deadline', 'Deadline (date and time)' %>
+      <%= label_tag 'deadline_field', 'Deadline (date and time)' %>
       <%= text_field_tag 'deadline_field', nil %>
     </div>
     <div class="pull-right half">
-      <%= label_tag 'phone', 'Phone number of primary contact' %>
-      <%= text_field_tag 'phone_field', nil, :placeholder => 'We call rather than email on rush jobs.' %>
+      <%= label_tag 'user_phone_field', 'Phone number of primary contact' %>
+      <%= text_field_tag 'user_phone_field', nil, :placeholder => 'We call with questions on rush jobs.' %>
     </div>
   </div> 
   <% end %>

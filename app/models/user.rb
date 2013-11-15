@@ -17,6 +17,7 @@
 #  email_subscribed       :boolean          default(TRUE)
 #  examiner               :boolean          default(FALSE)
 #  supplier_id            :integer
+#  phone                  :string(255)
 #
 
 class User < ActiveRecord::Base

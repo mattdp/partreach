@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112210308) do
+ActiveRecord::Schema.define(version: 20131115031012) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(version: 20131112210308) do
     t.integer  "drawing_file_size"
     t.datetime "drawing_updated_at"
     t.string   "name"
-    t.date     "deadline"
+    t.string   "deadline"
     t.text     "supplier_message"
     t.text     "recommendation"
     t.text     "material_message"
@@ -169,6 +169,10 @@ ActiveRecord::Schema.define(version: 20131112210308) do
     t.string   "drawing_units"
     t.string   "status",               default: "Needs work"
     t.string   "next_action_date"
+    t.string   "stated_experience"
+    t.string   "stated_priority"
+    t.string   "stated_manufacturing"
+    t.text     "notes"
   end
 
   create_table "owners", force: true do |t|
@@ -258,6 +262,7 @@ ActiveRecord::Schema.define(version: 20131112210308) do
     t.boolean  "email_subscribed",       default: true
     t.boolean  "examiner",               default: false
     t.integer  "supplier_id"
+    t.string   "phone"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

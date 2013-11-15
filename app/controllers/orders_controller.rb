@@ -63,7 +63,6 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-
     existed_already = false
     did_user_work = false
     if current_user.nil?
@@ -83,7 +82,8 @@ class OrdersController < ApplicationController
         @user = User.create(name: params[:user_name_field], 
           email: params[:user_email_field], 
           password: params[:user_password_field], 
-          password_confirmation: params[:user_password_field] )
+          password_confirmation: params[:user_password_field] 
+          )
         sign_in @user
         did_user_work = true
       end
@@ -105,6 +105,11 @@ class OrdersController < ApplicationController
     @order.name = params[:name_field]
     @order.material_message = params[:material_message_field]
     @order.suggested_suppliers = params[:suggested_suppliers_field]
+    @order.deadline = params[:deadline_field]
+    @order.stated_experience = params[:stated_experience_field]
+    @order.stated_priority = params[:stated_priority_field]
+    @order.stated_manufacturing = params[:stated_manufacturing_field]
+    @order.notes = "#{params[:user_phone_field]} is user contact number for rush order" if params[:user_phone_field].present?
     if !params[:deadline].nil?
       @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
     end
@@ -178,6 +183,7 @@ class OrdersController < ApplicationController
     @numberfields = setup_numberfields
 
     @order.recommendation = params[:recommendation]
+    @order.notes = params[:notes]
     @order.next_steps = params[:next_steps]
     if params[:status].present?
       Event.add_event("Order",@order.id,"closed_successfully") if params[:status] == "Finished - closed" and @order.status != params[:status]

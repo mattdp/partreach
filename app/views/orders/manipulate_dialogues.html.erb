@@ -26,6 +26,8 @@
 				<%= text_area_tag "next_steps", @order.next_steps %>
 				<%= label_tag "next_action_date", "Next action date" %>
 				<%= text_field_tag "next_action_date", @order.next_action_date %>
+				<%= label_tag "order notes", "Internal notes on order" %>
+				<%= text_area_tag "notes", @order.notes %>
 
 				<p>Ordering of checkboxes:</p>
 				<div><% @checkboxes.each do |c| %>

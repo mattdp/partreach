@@ -12,7 +12,7 @@
 #  drawing_file_size    :integer
 #  drawing_updated_at   :datetime
 #  name                 :string(255)
-#  deadline             :date
+#  deadline             :string(255)
 #  supplier_message     :text
 #  recommendation       :text
 #  material_message     :text
@@ -21,6 +21,9 @@
 #  drawing_units        :string(255)
 #  status               :string(255)      default("Needs work")
 #  next_action_date     :string(255)
+#  stated_experience    :string(255)
+#  stated_priority      :string(255)
+#  stated_manufacturing :string(255)
 #
 
 require 'spec_helper'
