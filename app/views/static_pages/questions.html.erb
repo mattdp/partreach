@@ -8,6 +8,8 @@
 			<%#= get, since passing params to orders_new, without a state change in the database %>
 			<%= form_tag new_order_path, method: :get do %>
 
+				<%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
+
 				<div>
 					<p class="page-number fright">Page 1 of 2</p>
 					<h1 class="center clear">Help us ask you the right questions.</h1>
@@ -46,9 +48,7 @@
 					<% blanks = "__________" %>
 					<%= render partial: "orders/preference_summary", locals: {position_class: "fleft", experience: blanks, priority: blanks, manufacturing: blanks} %>
 
-					<p>
-						<%= link_to "Final step", new_order_path, class: "btn btn-xl supplybetter-blue fright space-below" %>
-					</p>
+					<p><%= submit_tag "Final step", :disable_with => "Processing...", id: "create_button", class: "fright" %></p>
 				</div>
 
 			<% end %>

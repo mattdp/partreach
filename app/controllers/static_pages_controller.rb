@@ -34,6 +34,7 @@ class StaticPagesController < ApplicationController
 
   def questions
   	@content = Question.raw_list
+  	@from_supplier_name = Supplier.find(params[:from_supplier]).name if params[:from_supplier]
   end
 
 	def procurement
