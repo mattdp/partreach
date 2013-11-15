@@ -15,7 +15,7 @@ Partreach::Application.routes.draw do
   resources :machines, only: [:new, :create]
   resources :owners, only: [:create]
 
-  get '/signup', to: 'orders#new'
+  get '/signup', to: 'static_pages#questions'
   get '/signin', to: 'sessions#new', as: 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
   get '/getting_started', to: 'static_pages#getting_started'
