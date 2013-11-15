@@ -55,7 +55,7 @@ class StaticPagesController < ApplicationController
   		},
   		priority: {
   			main_header: "Priorities",
-  			sub_header: "It's nice to have everything, but what do you care about most?",
+  			sub_header: "What do you care about most?",
   			options:
   			{
   				speed:

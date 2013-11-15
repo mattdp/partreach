@@ -38,6 +38,14 @@ class OrdersController < ApplicationController
     looking_for_supplier = Supplier.where("id = ?",fs.to_i) if not(fs.nil?)
     looking_for_supplier.present? ? @supplier = looking_for_supplier[0] : @supplier = nil
 
+    blanks = "__________"
+    questions = params["questions"]
+    [:experience, :priority, :manufacturing].each do |summary_var|
+      value = blanks
+      value = questions[summary_var] if questions.present? and questions[summary_var].present?
+      instance_variable_set("@#{summary_var}",value)
+    end
+
     @order = Order.new
 
     respond_to do |format|

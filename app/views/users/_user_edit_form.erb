@@ -28,7 +28,7 @@
   <p id="signin-backlink"><%= link_to 'Back to my profile', root_path %></p>
 <% else %>
   <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
-  <p class="backlink"><%= link_to 'Already a user? Sign in', signin_path %></p>
+  <p class="space-above"><%= link_to 'Already a user? Sign in', signin_path %></p>
   <p class="back_to_home"><%= link_to "Back to home", root_path %></p>
 <% end %>
 

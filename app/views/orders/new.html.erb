@@ -5,6 +5,14 @@
   <div class="row">
   	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
+  		<div>
+				<p class="page-number fright">Page 2 of 2</p>
+			</div>
+
+			<div>
+			<%= render partial: "orders/preference_summary", locals: {experience: @experience, priority: @priority, manufacturing: @manufacturing} %>
+			</div>
+
 		  <h1 class="order_top_header">New request for quotes</h1>
 		  <%= render partial: 'orders/new_order_form' %>
 
