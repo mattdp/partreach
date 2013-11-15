@@ -14,7 +14,7 @@ describe "User pages" do
     end
 
     before do 
-      visit signup_path
+      visit new_order_path
     end
 
     let(:submit) { "Create order" }
