@@ -42,7 +42,12 @@ class OrdersController < ApplicationController
     questions = params["questions"]
     [:experience, :priority, :manufacturing].each do |summary_var|
       value = blanks
-      value = questions[summary_var] if questions.present? and questions[summary_var].present?
+      if questions.present? and questions[summary_var].present?
+        option_details = Question.get_option_details(summary_var,questions[summary_var])
+        if option_details
+          value = option_details[:summary]
+        end
+      end 
       instance_variable_set("@#{summary_var}",value)
     end
 
