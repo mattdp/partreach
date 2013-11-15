@@ -24,6 +24,7 @@
 #  stated_experience    :string(255)
 #  stated_priority      :string(255)
 #  stated_manufacturing :string(255)
+#  notes                :text
 #
 
 require 'spec_helper'
