@@ -46,9 +46,10 @@ class OrdersController < ApplicationController
         option_details = Question.get_option_details(summary_var,questions[summary_var])
         if option_details
           value = option_details[:summary]
+          instance_variable_set("@#{summary_var}",questions[summary_var])
         end
       end 
-      instance_variable_set("@#{summary_var}",value)
+      instance_variable_set("@#{summary_var}_summary_wording",value)
     end
 
     @order = Order.new

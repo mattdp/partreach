@@ -3,9 +3,19 @@
   <ul></ul>
 </div>
 
-<div class="clear">
-  <p>We select the best suppliers for your part, and let you know how much it would cost to buy from each of them.</p>
-  <h3>The basics</h3>
+<div class="clear space-above">
+
+  <% if @experience == "rookie" %>
+    <p><strong>Thanks for telling us you're not highly experienced!</strong> We'll make sure to be especially helpful in outlining your options.</p>
+  <% end %>
+
+  <% if @priority == "speed" %>
+    <p><strong>You need this fast, and we can help.</strong> Make sure to give us your deadline and phone number below so we can move quickly.</p>
+  <% end %>
+
+  <p>Based on your needs, we select the best suppliers for your part, and let you know how much it would cost to buy from each of them.</p>
+
+  <h3>Basic information for quote request</h3>
 </div>
 
 <p>Upload drawing (max size: 64 MB)</p>
@@ -60,7 +70,20 @@
     </div>
   </div>
 
-  <div class="clear">
+  <% if @priority = "speed" %>
+  <div>
+    <div class="pull-left half">
+      <%= label_tag 'deadline', 'Deadline (date and time)' %>
+      <%= text_field_tag 'deadline_field', nil %>
+    </div>
+    <div class="pull-right half">
+      <%= label_tag 'phone', 'Phone number of primary contact' %>
+      <%= text_field_tag 'phone_field', nil, :placeholder => 'We call rather than email on rush jobs.' %>
+    </div>
+  </div> 
+  <% end %>
+
+  <div class="clear space-above">
     <h3>Any particular suppliers we should quote for you?</h3>
     <p>We choose suppliers that fit your needs, based on quality, reliability, and speed.</p>
 
@@ -93,11 +116,8 @@
 
   <div class="final-notes clear">
     <h3>Final notes</h3>
-    <%= label_tag 'text_field_tag', 'What message do you want sent to suppliers?' %>
+    <%= label_tag 'text_field_tag', 'Do you have a message for potential suppliers?' %>
     <%= text_area_tag 'supplier_message_field', nil, :rows => 3, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)" %>
-
-    <%= label_tag 'name_field', 'What do you want to call this order?' %>
-    <%= text_field_tag 'name_field', nil, :placeholder => "(optional)" %>
   </div>
 
   <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
