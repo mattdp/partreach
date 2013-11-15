@@ -42,11 +42,13 @@
 					</table>
 				</div>
 
-				<div class="summary_and_submission bit-of-space">
+				<div class="summary_and_submission space-above space-below">
 					<% blanks = "__________" %>
-					<%= render partial: "orders/preference_summary", locals: {experience: blanks, priority: blanks, manufacturing: blanks} %>
+					<%= render partial: "orders/preference_summary", locals: {position_class: "fleft", experience: blanks, priority: blanks, manufacturing: blanks} %>
 
-					<%= submit_tag "Final step", :disable_with => "Submitting...", :id => "create_button", class: "fright" %>
+					<p>
+						<%= link_to "Final step", new_order_path, class: "btn btn-xl supplybetter-blue fright space-below" %>
+					</p>
 				</div>
 
 			<% end %>
