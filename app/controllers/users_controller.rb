@@ -40,7 +40,7 @@ class UsersController < ApplicationController
       sign_in @user
       UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to #{brand_name}!"
-      redirect_to new_order_path
+      redirect_to order_questions_path
     else
       render 'new'
     end
