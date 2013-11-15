@@ -5,10 +5,6 @@
 
 <div class="clear space-above">
 
-  <% if @experience == "rookie" %>
-    <p><strong>Thanks for telling us you're not highly experienced!</strong> We'll make sure to be especially helpful in outlining your options.</p>
-  <% end %>
-
   <% if @priority == "speed" %>
     <p><strong>You need this fast, and we can help.</strong> Make sure to give us your deadline and phone number below so we can move quickly.</p>
   <% end %>
@@ -74,7 +70,7 @@
     </div>
   </div>
 
-  <% if @priority = "speed" %>
+  <% if @priority == "speed" %>
   <div>
     <div class="pull-left half">
       <%= label_tag 'deadline_field', 'Deadline (date and time)' %>
