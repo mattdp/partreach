@@ -1,0 +1,19 @@
+<%= form_for machine, :action => form_action do |f| %>
+
+	<div class="almost-one-half fleft">
+		<%= f.label :manufacturer %>
+	 	<%= f.text_field :manufacturer %>
+ 	</div>
+	<div class="almost-one-half fleft"	>
+		<%= f.label :name %>
+	 	<%= f.text_field :name %>
+ 	</div>
+	<div class="clear">
+		<%= submit_tag "Create" %>
+	</div>
+
+<% end %>
+
+<h3>All existing machines</h3>
+
+<%= render :partial => 'analytics/machines_table', locals: {machines: machines} %>

@@ -12,7 +12,7 @@ Partreach::Application.routes.draw do
   resources :password_resets
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
   resources :communications, only: [:new, :create]
-  resources :machines, only: [:new, :create]
+  resources :machines, only: [:new, :create, :edit, :update]
   resources :owners, only: [:create]
 
   get '/signup', to: 'static_pages#questions'

@@ -3,12 +3,14 @@
 		<th>Manufacturer</th>
 		<th>Name</th>
 		<th>ID #</th>
+		<th>Edit</th>
 	</tr>
 	<% machines.each do |m| %>
 		<tr>
 			<td><%= "#{m.manufacturer}" %></td>
 			<td><%= "#{m.name}" %></td>
 			<td><%= "#{m.id}" %></td>
+			<td><%= link_to "Edit", edit_machine_path(m) %></td>
 		</tr>
 	<% end %>
 </table>

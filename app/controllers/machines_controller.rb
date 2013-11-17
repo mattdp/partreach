@@ -19,6 +19,24 @@ class MachinesController < ApplicationController
 		redirect_to analytics_machines_path, notice: note
 	end
 
+	def edit
+		@machine = Machine.find(params[:id])
+		@machines = Machine.all.sort_by{ |m| [m.manufacturer,m.name] }
+	end
+
+	def update
+		@machine = Machine.find(params[:id])
+
+		saved_ok = @machine.update_attributes(machine_params)
+		if saved_ok
+			note = "Saved OK!" 
+		else 
+			note = "Saving problem."
+		end		
+
+		redirect_to analytics_machines_path, notice: note
+	end
+
   private
 
     def machine_params
