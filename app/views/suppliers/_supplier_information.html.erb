@@ -15,9 +15,13 @@
 	<%= "<><>" %>
 	<%= link_to "Their supplier profile", supplier_profile_path(@supplier.name_for_link) if @supplier.name_for_link %>
 	<%= text_field_tag 'url_main', @supplier.url_main %>
+	<%= label_tag "Copyable path to supplier edit profile" %>
+	<%= "#{edit_supplier_url(@supplier)}" %>
+	<br>
 
 	<%= label_tag 'suggested_description', 'suggested_description (from supplier)' if @supplier.suggested_description %>
 	<%= @supplier.suggested_description %>
+	<br>
 	<%= label_tag 'description', 'description (public)' %>
 	<%= text_area_tag 'description', @supplier.description %>
 	
@@ -25,6 +29,7 @@
 
 	<%= label_tag 'source', 'source of supplier entry to database' %>
 	<%= @supplier.source %>
+	<br>
 
 	<%= label_tag 'claimed', 'Page claimed? By whom? (change from terminal)' %>
 	<%= @supplier.claimed %>
