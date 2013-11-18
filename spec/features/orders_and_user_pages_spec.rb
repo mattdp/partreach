@@ -5,6 +5,18 @@ require 'spec_helper'
 
 describe "Order and users" do
 
+	describe "lack of orders", type: :request do
+		let(:user) { FactoryGirl.create(:user) }
+		subject { page }
+
+		before do 
+			sign_in user
+			visit orders_path
+		end
+
+		it { should have_selector('p', text: 'No orders') }
+	end
+
 	#paralell processes to build these; somewhat brittle, but learned a bunch about factories doing it
 
 	# created_orders = FactoryGirl.create_list(:order, 2)
@@ -20,17 +32,5 @@ describe "Order and users" do
 	# 		created_orders[1].user.id != created_users[0].id
 	# 	end
 	# end
-
-	describe "lack of orders", type: :request do
-		let(:user) { FactoryGirl.create(:user) }
-		subject { page }
-
-		before do 
-			sign_in user
-			visit orders_path
-		end
-
-		it { should have_selector('p', text: 'No orders') }
-	end
 
 end
