@@ -13,6 +13,7 @@ FactoryGirl.define do
   	sequence(:quantity) { |n| n + 50 }
     material_message    "Made of iron and wine"
     drawing_units       "in."
+    sequence(:deadline) { |n| "#{n} o'clock"}
   end
 
   factory :supplier do |s|
