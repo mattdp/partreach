@@ -20,6 +20,23 @@ class BlastMailer < ActionMailer::Base
                             }
     end
   end
+
+  def buyer_and_lead_reachout_131120(target)
+    target_class = target.class.to_s
+    Event.add_event(target_class,target.id,"buyer_and_lead_reachout_131120_sent")
+    target_class == "User" and target.name.present? ? @name = target.name : @name = nil
+    subject = "NEED A DECENT TITLE"
+    binding.pry
+    mail(to: target.email,
+          from: "matt@supplybetter.com",
+          subject: subject) do |format|
+      format.html { render layout: "layouts/blast_mailer", 
+                    locals: { title: subject,
+                              supplier: nil 
+                            } 
+                  }
+    end
+  end
   
   #takes array of suppliers
   def supplier_profile_reachout_sender(suppliers,validate=true)    
