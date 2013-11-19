@@ -26,7 +26,6 @@ class BlastMailer < ActionMailer::Base
     Event.add_event(target_class,target.id,"buyer_and_lead_reachout_131120_sent")
     target_class == "User" and target.name.present? ? @name = target.name : @name = nil
     subject = "NEED A DECENT TITLE"
-    binding.pry
     mail(to: target.email,
           from: "matt@supplybetter.com",
           subject: subject) do |format|
@@ -38,10 +37,25 @@ class BlastMailer < ActionMailer::Base
     end
   end
   
+  #targets: array of models
+  #method: way of calling the single email sender for this mail
+  #event_to_check: what happening in Event should block this
+  def general_sender(targets,method,event_to_check,validate=true)
+    targets.each do |t|
+      if !validate or !Event.has_event?(t.class.to_s,t.id,event_to_check)
+        letter = BlastMailer.send(method,t)
+        letter.deliver
+      else
+        logger.debug "Not sending to #{t.class.to_s} #{t.id}, event shows it was sent already"
+      end
+    end
+    return "Sending attempted"
+  end
+
   #takes array of suppliers
   def supplier_profile_reachout_sender(suppliers,validate=true)    
     suppliers.each do |s|
-      if !validate or !s.has_event_of_request("profile_reachout_sent")
+      if !validate or !s.has_event?(s.class.to_s,s.id,"profile_reachout_sent")
         b = BlastMailer.supplier_profile_reachout(s)
         b.deliver
       else

@@ -17,4 +17,8 @@ class Event < ActiveRecord::Base
  		return event.save
   end
 
+  def self.has_event?(model,model_id,happening)
+    Event.where("model = ? and model_id = ? and happening = ?",model,model_id,happening).present?
+  end
+
 end

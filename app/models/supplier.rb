@@ -152,10 +152,6 @@ class Supplier < ActiveRecord::Base
     return structure.map { |key, values| values[:repeats] * values[:points] }.sum
   end
 
-  def has_event_of_request(request_name)
-    Ask.where("supplier_id = ? and request = ?",self.id,request_name).present?
-  end
-
   def self.pending_examination
     datadump_id = Tag.find_by_name("datadump").id
     return Combo.where("tag_id = ?", datadump_id).count
