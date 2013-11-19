@@ -205,6 +205,10 @@ p, ul, li, a, label, .order_basics {
   line-height: 20px;
 }
 
+label {
+  margin-top: 5px;
+}
+
 .testimonials {
   background: $wideAngleBackground;
   width: 75%;

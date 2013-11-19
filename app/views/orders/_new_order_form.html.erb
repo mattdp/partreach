@@ -59,17 +59,6 @@
     <%= text_area_tag 'material_message_field', nil, :rows => 3, :placeholder => '(ex: ABS, stainless steel, white durable nylon, UV curable resin, etc. If you\'re not sure, we can help you decide.)' %>
   </div>
 
-  <div>
-    <div class="pull-left half">
-      <%= label_tag 'zip_field', 'Postal Code' %>
-      <%= text_field_tag 'zip_field', nil, :placeholder => '(Needed for shipping estimates)' %>
-    </div>
-    <div class="pull-right half">
-      <%= label_tag 'country_field', 'Country' %>
-      <%= text_field_tag 'country_field', nil, :placeholder => '(Default: US)' %>
-    </div>
-  </div>
-
   <% if @priority == "speed" %>
   <div>
     <div class="pull-left half">
@@ -80,8 +69,19 @@
       <%= label_tag 'user_phone_field', 'Phone number of primary contact' %>
       <%= text_field_tag 'user_phone_field', nil, :placeholder => 'We call with questions on rush jobs.' %>
     </div>
-  </div> 
+  </div>
   <% end %>
+
+  <div>
+    <div class="pull-left half">
+      <%= label_tag 'zip_field', 'Postal Code' %>
+      <%= text_field_tag 'zip_field', nil, :placeholder => '(Needed for shipping estimates)' %>
+    </div>
+    <div class="pull-right half">
+      <%= label_tag 'country_field', 'Country' %>
+      <%= text_field_tag 'country_field', nil, :placeholder => '(Default: US)', class: "space-below" %>
+    </div>
+  </div>
 
   <div class="clear space-above">
     <h3>Any particular suppliers we should quote for you?</h3>
@@ -99,14 +99,14 @@
 
   <% if current_user.nil? %>
     <div class="two-signins">
-      <div class="half pull-left border-right">
+      <div class="half pull-left">
         <h3>Create account</h3>
         <%= label_tag 'user_name_field', 'Name' %>
         <%= text_field_tag 'user_name_field', nil, placeholder: 'Enter name here' %>
         <%= label_tag 'user_email_field', 'Email' %>
         <%= text_field_tag 'user_email_field', nil, placeholder: 'Enter email address here' %>
         <%= label_tag 'user_password_field', 'Choose password' %>
-        <%= password_field_tag 'user_password_field', nil, placeholder: 'Enter password here' %>
+        <%= password_field_tag 'user_password_field', nil, placeholder: 'Enter password here', class: "space-below" %>
       </div>
       <div class="half pull-right">
         <h3>Sign back in</h3>
