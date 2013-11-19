@@ -77,6 +77,16 @@ class User < ActiveRecord::Base
     return (object.email_valid and object.email_subscribed)
   end
 
+  #return array of emails
+  #DOES NOT have unsubscriptions or false emails taken into account, nor does the system have them
+  def self.emails_of_buyers_and_leads
+    emails = []
+    getter = Proc.new {|x| emails << x.email unless x.email.nil? or x.email == ""}
+    User.all.map &getter
+    Lead.all.map &getter
+    return emails.uniq
+  end 
+
   private
 
     def generate_token(column) #http://railscasts.com/episodes/274-remember-me-reset-password
