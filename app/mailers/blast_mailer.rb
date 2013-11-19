@@ -25,7 +25,7 @@ class BlastMailer < ActionMailer::Base
     target_class = target.class.to_s
     Event.add_event(target_class,target.id,"buyer_and_lead_reachout_131120_sent")
     target_class == "User" and target.name.present? ? @name = target.name : @name = nil
-    subject = "NEED A DECENT TITLE"
+    subject = "SupplyBetter Fall Update"
     mail(to: target.email,
           from: "matt@supplybetter.com",
           subject: subject) do |format|
