@@ -52,19 +52,6 @@ class BlastMailer < ActionMailer::Base
     return "Sending attempted"
   end
 
-  #takes array of suppliers
-  def supplier_profile_reachout_sender(suppliers,validate=true)    
-    suppliers.each do |s|
-      if !validate or !s.has_event?(s.class.to_s,s.id,"profile_reachout_sent")
-        b = BlastMailer.supplier_profile_reachout(s)
-        b.deliver
-      else
-        logger.debug "Not sending to #{s.name}, event shows it was sent already"
-      end
-    end
-    return "Sending attempted"
-  end
-
   def test_for_layout
     @title = "Test title"
     m = mail(to: "matt@supplybetter.com", from: "supplier-reachouts@supplybetter.com", subject:"test email!") do |format|
