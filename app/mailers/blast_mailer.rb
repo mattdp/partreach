@@ -24,7 +24,11 @@ class BlastMailer < ActionMailer::Base
   def buyer_and_lead_reachout_131120(target)
     target_class = target.class.to_s
     Event.add_event(target_class,target.id,"buyer_and_lead_reachout_131120_sent")
-    target_class == "User" and target.name.present? ? @name = target.name : @name = nil
+    @name = nil
+    if target_class == "User" and target.name.present? and match_data = /^([A-Z]{1}\w+)\s{1}[\w-]+$/.match(target.name)
+      @name = match_data[1]
+    end
+
     subject = "Better RFQ Flow and 3D Printing Machine Comparison"
 
     address = Mail::Address.new "matt@supplybetter.com"
