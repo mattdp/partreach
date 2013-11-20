@@ -112,9 +112,10 @@
 			<% @dialogues.each do |d| %>
 				<tr>
 					<td><%= link_to "Order #{d.order_id}: ", order_path(Order.find(d.order_id)) %></td>
-					<td><%= "opener sent" if d.opener_sent %></td>
-					<td><%= "bid placed" if d.bid? %></td>
-					<td><%= "won" if d.won %></td>
+					<td><%= "opener sent " if d.opener_sent %></td>
+					<td><%= "bid placed " if d.bid? %></td>
+					<td><%= "won " if d.won %></td>
+					<td><%= "knows outcome " if d.knows_outcome? %></td>
 				</tr>
 			<% end %>
 		</table>
