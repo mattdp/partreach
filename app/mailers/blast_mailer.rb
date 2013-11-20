@@ -25,9 +25,13 @@ class BlastMailer < ActionMailer::Base
     target_class = target.class.to_s
     Event.add_event(target_class,target.id,"buyer_and_lead_reachout_131120_sent")
     target_class == "User" and target.name.present? ? @name = target.name : @name = nil
-    subject = "SupplyBetter Fall Update"
+    subject = "Better RFQ Flow and 3D Printing Machine Comparison"
+
+    address = Mail::Address.new "matt@supplybetter.com"
+    address.display_name = "SupplyBetter"
+
     mail(to: target.email,
-          from: "matt@supplybetter.com",
+          from: address.format,
           subject: subject) do |format|
       format.html { render layout: "layouts/blast_mailer", 
                     locals: { title: subject,
