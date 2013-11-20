@@ -13,6 +13,12 @@
 				<p><strong>Drawing name: </strong><%= "#{@order.drawing_file_name}" %></p>
 			<% end %>
 
+			<p>
+				<strong>Stated experience:</strong><%= "#{@order.stated_experience}" %>
+				<strong>Stated priority:</strong><%= "#{@order.stated_priority}" %>
+				<strong>Stated method:</strong><%= "#{@order.stated_manufacturing}" %>
+			</p>
+
 			<p> <%= link_to "Add a dialogue", "/dialogues/new/#{@order.id}" %> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
 			<%= link_to "Add new supplier", new_supplier_path %>
 
