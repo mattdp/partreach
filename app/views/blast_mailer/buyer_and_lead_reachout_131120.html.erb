@@ -1,17 +1,15 @@
 <% if @name %>
   Hi <%= "#{@name}" %>,
-<% else %>
-  Hi,
+  <br>
 <% end %>
-<br>
 
 <p>The end of autumn is near and we want to let you know about the exciting projects we've been working on here at SupplyBetter.</p>
 
 <div style="width:460px; text-align: left; font-size: 14px; color: #333333; line-height:22px;margin:0 0 30px" align="left">
-  <strong>Better RFQ Flow</strong> - You asked and we listened. Our newest request for quote form allows you to prioritize speed, cost, or quality. <%= link_to "Submit a new request here.", order_questions_url, style: "color: #333;", target: "_blank" %>
+  <strong>Better RFQ Flow</strong> - You asked and we listened. Our Request For Quote form now allows you to prioritize speed, cost, or quality. <%= link_to "Submit a new request here.", order_questions_url, style: "color: #333;", target: "_blank" %>
 </div>
 <div style="width:460px; text-align: left; font-size: 14px; color: #333333; line-height:22px;margin:0 0 30px" align="left">
-  <strong>3D Printing Machine Comparison</strong> - In our latest blog post we explore how the differences between hobby and commercial 3D printers can affect your next project. <%= link_to "Read about it more here.", "https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html", style: "color: #333;", target: "_blank" %>
+  <strong>3D Printing Machine Comparison</strong> - In our latest blog post, we explore how the differences between hobby and commercial 3D printers can affect your next project. <%= link_to "Read more about it here.", "https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html", style: "color: #333;", target: "_blank" %>
 </div>
 
 <p>Know your options. Find the right supplier.</p>
