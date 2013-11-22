@@ -70,9 +70,9 @@ class User < ActiveRecord::Base
     UserMailer.supplier_intro_email(self,Supplier.find(supplier_id)).deliver
   end
 
-  def self.can_use_email?(email_address)
-    object = User.find_by_email(email_address)
-    object = Lead.find_by_email(email_address) if object.nil?
+  #assumes object has email, email_valid, email_subscribed
+  def self.can_use_email?(object)
+    object.find_by_email(email_address)
     return false if object.nil?
     return (object.email_valid and object.email_subscribed)
   end

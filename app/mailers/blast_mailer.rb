@@ -1,3 +1,7 @@
+###
+# FUTURE BLAST MAIL NEEDS TO TAKE LEAD AND USER EMAIL UNSUBS INTO ACCOUNT
+###
+
 class BlastMailer < ActionMailer::Base
 	default from: "noreply@supplybetter.com"
   include SessionsHelper
@@ -12,6 +16,7 @@ class BlastMailer < ActionMailer::Base
     Event.add_event("Supplier",supplier.id,"profile_reachout_sent")
     mail( to: supplier.rfq_contact.email, 
           from: "supplier-reachouts@supplybetter.com", 
+          cc: "partreach@gmail.com",
           subject:"Customers want to know more about #{supplier.name} on #{brand_name}!") do |format|
       format.html { render layout: "layouts/blast_mailer", 
                     locals: { title: "Customers want to know more about #{supplier.name} on #{brand_name}!", 
