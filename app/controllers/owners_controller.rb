@@ -19,4 +19,15 @@ class OwnersController < ApplicationController
 		redirect_to new_owner_path(supplier.id), notice: note
 	end
 
+	def destroy
+		supplier = Supplier.find(params[:supplier_id])
+		if saved_ok = supplier.remove_machines(params[:machine_id])
+			note = "Saved OK!" 
+		else 
+			note = "Saving problem."
+		end
+
+		redirect_to new_owner_path(supplier.id)
+	end
+
 end

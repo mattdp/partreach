@@ -35,6 +35,7 @@ Partreach::Application.routes.draw do
   get '/guides/:country/:state/:tags_string', to: 'guides#show', as: 'guide_cst'
   get '/guides/:name', to: 'guides#show', as: 'guide_name'
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'
+  match '/owners/destroy/:supplier_id/:machine_id', to: 'owners#destroy', via: :delete
   get '/questions', to: 'static_pages#questions', as: 'order_questions'
 
   get '/analytics', to: 'analytics#home', as: 'analytics_home'
