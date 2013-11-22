@@ -1,8 +1,10 @@
 <ul>
 	<% machines_quantity_hash.each do |k,v| %>
 		<li>
-			<%= "#{Machine.find(k).formatted_name}"%>
-			<%= " (#{pluralize(v,"machine")})" if v > 1 %>
+			<% machine = Machine.find(k) %>
+			<%= "#{machine.formatted_name} "%>
+			<%= " (#{pluralize(v,"machine")}) " if v > 1 %>
+			<%= link_to "Delete all", destroy_owner_path(supplier.id,machine.id), method: :delete %>
 		</li>
 	<% end %>
 </ul>
