@@ -29,7 +29,7 @@
 			<h3>Existing machines</h3>
 
 			<% if @machines_quantity_hash %>
-				<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier } %>
+				<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier, show_delete: true } %>
 			<% end %>
 
 			<h3>All machine IDs</h3>

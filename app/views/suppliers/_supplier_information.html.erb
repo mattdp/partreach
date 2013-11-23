@@ -88,7 +88,7 @@
 	<%= label_tag 'machines_in_database', 'Machines in the database & quantity (if above 1)' %>
 	<%# Duplication from supplier_profile %>
 	<% if @machines_quantity_hash %>
-		<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier } %>
+		<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier, show_delete: true } %>
 	<% end %>
 
 	<h3>Tag information</h3>

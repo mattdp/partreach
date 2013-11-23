@@ -4,7 +4,9 @@
 			<% machine = Machine.find(k) %>
 			<%= "#{machine.formatted_name} "%>
 			<%= " (#{pluralize(v,"machine")}) " if v > 1 %>
-			<%= link_to "Delete all", destroy_owner_path(supplier.id,machine.id), method: :delete %>
+			<% if show_delete %>
+				<%= link_to "Delete all", destroy_owner_path(supplier.id,machine.id), method: :delete %>
+			<% end %>
 		</li>
 	<% end %>
 </ul>

@@ -71,7 +71,7 @@
 									<% if @supplier.machines.nil? or @supplier.machines == [] %>
 										<%= render :partial => "profiles/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested", :s_id => @supplier.id, :u_id => @user_id} %>
 									<% else %>
-										<%= render :partial => "profiles/machine_listing", :locals => { :machines_quantity_hash => @machines_quantity_hash } %>
+										<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier, show_delete: false } %>
 									<% end %>
 								</div>
 							<% end %>
