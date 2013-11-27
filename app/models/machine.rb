@@ -17,7 +17,7 @@ class Machine < ActiveRecord::Base
 	belongs_to :manufacturer
 
 	validates :name, presence: true
-	validates :manufacturer, presence: true
+	validates_presence_of :manufacturer
 
 	def formatted_name
 		return "#{self.manufacturer.name} #{self.name}"
