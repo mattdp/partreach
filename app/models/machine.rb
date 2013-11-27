@@ -20,7 +20,7 @@ class Machine < ActiveRecord::Base
 	validates :manufacturer, presence: true
 
 	def formatted_name
-		return "#{self.manufacturer} #{self.name}"
+		return "#{self.manufacturer.name} #{self.name}"
 	end
 	
 end

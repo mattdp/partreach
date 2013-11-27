@@ -7,7 +7,7 @@
 	</tr>
 	<% machines.each do |m| %>
 		<tr>
-			<td><%= "#{m.manufacturer}" %></td>
+			<td><%= "#{m.manufacturer.name}" %></td>
 			<td><%= "#{m.name}" %></td>
 			<td><%= "#{m.id}" %></td>
 			<td><%= link_to "Edit", edit_machine_path(m) %></td>

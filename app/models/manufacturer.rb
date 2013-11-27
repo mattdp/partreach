@@ -11,5 +11,7 @@
 class Manufacturer < ActiveRecord::Base
 
 	has_many :machines
+
+	validates :name, presence: true, uniqueness: { case_sensitive: false }
 	
 end
