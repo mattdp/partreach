@@ -6,7 +6,7 @@
 
 			<h3>Edit machine</h3>
 
-			<%= render partial: "machines/machine_form", locals: {form_action: "update", machine: @machine, machines: @machines, manufacturer: @manufacturer} %>
+			<%= render partial: "machines/machine_form", locals: {form_action: "update", form_method: :put, machine: @machine, machines: @machines, manufacturer: @manufacturer} %>
 
 		</div>
 	</div>
