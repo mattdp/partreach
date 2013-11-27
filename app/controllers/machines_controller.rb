@@ -4,11 +4,14 @@ class MachinesController < ApplicationController
 	def new
 		@machine = Machine.new
 		@machines = Machine.all.sort_by{ |m| [m.manufacturer.name.downcase,m.name.downcase] }
+		@manufacturer = Manufacturer.new
 	end
 
 	def create
 		@machine = Machine.new(machine_params)
-		@machine.manufacturer_id = Manufacturer.create_or_reference_manufacturer(params[:manufacturer])
+		@machine.manufacturer_id = Manufacturer.create_or_reference_manufacturer(manufacturer_params).id
+
+		#binding.pry
 
 		saved_ok = @machine.save
 		if saved_ok
@@ -22,7 +25,8 @@ class MachinesController < ApplicationController
 
 	def edit
 		@machine = Machine.find(params[:id])
-		@machines = Machine.all.sort_by{ |m| [m.manufacturer,m.name] }
+		@manufacturer = @machine.manufacturer
+		@machines = Machine.all.sort_by{ |m| [m.manufacturer.name.downcase,m.name.downcase] }
 	end
 
 	def update
@@ -30,11 +34,10 @@ class MachinesController < ApplicationController
 		@manufacturer = @machine.manufacturer
 
 		saved_ok = @machine.update_attributes(machine_params)
-		@manufacturer.name = params[:manufacturer]
-		saved_ok = (@manufacturer.save and saved_ok)
+		saved_ok = (@manufacturer.update_attributes(manufacturer_params) and saved_ok)
 
 		if saved_ok
-			note = "Saved OK!" 
+			note = "Saved OK!"
 		else 
 			note = "Saving problem."
 		end		
@@ -49,7 +52,7 @@ class MachinesController < ApplicationController
     end
 
     def manufacturer_params
-    	params.require(:machine).permit(:manufacturer)
+    	params.require(:manufacturer).permit(:name)
     end
 
 end

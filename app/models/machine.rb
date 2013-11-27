@@ -17,6 +17,7 @@ class Machine < ActiveRecord::Base
 
 	validates :name, presence: true
 	validates_presence_of :manufacturer
+	validates_uniqueness_of :name, :scope => :manufacturer_id
 
 	def formatted_name
 		return "#{self.manufacturer.name} #{self.name}"

@@ -23,7 +23,7 @@ class AnalyticsController < ApplicationController
 	end
 
 	def machines
-		@machines = Machine.all.sort_by{ |m| [m.manufacturer,m.name] }
+		@machines = Machine.all.sort_by{ |m| [m.manufacturer.name.downcase,m.name.downcase] }
 	end
 
 	def metrics

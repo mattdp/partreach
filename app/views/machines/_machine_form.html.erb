@@ -1,12 +1,12 @@
-<%= form_for machine, :action => form_action do |f| %>
+<%= form_tag action: form_action, controller: "machines" do %>
 
 	<div class="almost-one-half fleft">
-		<%= f.label :manufacturer %>
-	 	<%= f.text_field :manufacturer %>
+		<%= label_tag "manufacturer[name]", "Manufacturer" %>
+	 	<%= text_field_tag "manufacturer[name]", @manufacturer.name %>
  	</div>
 	<div class="almost-one-half fleft"	>
-		<%= f.label :name %>
-	 	<%= f.text_field :name %>
+		<%= label_tag "machine[name]", "Machine" %>
+	 	<%= text_field_tag "machine[name]", @machine.name %>
  	</div>
 	<div class="clear">
 		<%= submit_tag "Create" %>
