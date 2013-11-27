@@ -4,6 +4,7 @@
 		<th>Name</th>
 		<th>ID #</th>
 		<th>Edit</th>
+		<th>Who has it</th>
 	</tr>
 	<% machines.each do |m| %>
 		<tr>
@@ -11,6 +12,7 @@
 			<td><%= "#{m.name}" %></td>
 			<td><%= "#{m.id}" %></td>
 			<td><%= link_to "Edit", edit_machine_path(m) %></td>
+			<td><%= link_to "See suppliers", suppliers_with_machine_path(m.id) %></td>
 		</tr>
 	<% end %>
 </table>

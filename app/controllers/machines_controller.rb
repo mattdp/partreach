@@ -45,6 +45,17 @@ class MachinesController < ApplicationController
 		redirect_to analytics_machines_path, notice: note
 	end
 
+	def suppliers_with_machine
+		@machine = Machine.find(params[:machine_id])
+		owners = Owner.where("machine_id = ?",params[:machine_id])
+		if owners.present?
+			@suppliers = owners.map{|o| Supplier.find(o.supplier_id)}
+		else
+			@suppliers = nil
+		end
+
+	end
+
   private
 
     def machine_params
