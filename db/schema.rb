@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131127195202) do
+ActiveRecord::Schema.define(version: 20131127220350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,7 +144,6 @@ ActiveRecord::Schema.define(version: 20131127195202) do
   add_index "locations", ["zip"], name: "index_locations_on_zip", unique: true, using: :btree
 
   create_table "machines", force: true do |t|
-    t.string   "manufacturer"
     t.string   "name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
