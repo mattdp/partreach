@@ -137,10 +137,3 @@ task :paragraphify_suppliers => :environment do
 		end
 	end
 end
-
-desc 'Create sample suppliers for database'
-task :populate_suppliers => :environment do
-	require 'active_record/fixtures'
-
-	ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/test/fixtures", "suppliers")
-end
