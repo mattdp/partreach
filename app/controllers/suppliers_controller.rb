@@ -49,7 +49,6 @@ class SuppliersController < ApplicationController
 			logger.debug "Cache miss: us_states_of_visible_profiles"
 			Address.us_states_of_visible_profiles 
 		end
-		binding.pry
 	end
 
 	def edit
