@@ -11,8 +11,6 @@ class MachinesController < ApplicationController
 		@machine = Machine.new(machine_params)
 		@machine.manufacturer_id = Manufacturer.create_or_reference_manufacturer(manufacturer_params).id
 
-		#binding.pry
-
 		saved_ok = @machine.save
 		if saved_ok
 			note = "Saved OK!" 
@@ -49,7 +47,8 @@ class MachinesController < ApplicationController
 		@machine = Machine.find(params[:machine_id])
 		owners = Owner.where("machine_id = ?",params[:machine_id])
 		if owners.present?
-			@suppliers = owners.map{|o| Supplier.find(o.supplier_id)}
+			ids = owners.map{|o| o.supplier_id}
+			@suppliers = ids.uniq.map{|id| Supplier.find(id)}
 		else
 			@suppliers = nil
 		end
