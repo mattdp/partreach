@@ -67,7 +67,7 @@ class SuppliersController < ApplicationController
 		@claimant = User.find_by_supplier_id(@supplier.id)
 		@machines_quantity_hash = @supplier.machines_quantity_hash
 		@dialogues = Dialogue.where("supplier_id = ?",@supplier.id)
-		@communications = Communication.where("supplier_id = ?",@supplier.id)
+		@communications = Communication.where("supplier_id = ?",@supplier.id).reverse
 		@billing_contact = @supplier.billing_contact
 		@contract_contact = @supplier.contract_contact
 		@rfq_contact = @supplier.rfq_contact
