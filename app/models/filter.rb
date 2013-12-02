@@ -8,7 +8,7 @@ class Filter
 			all[line[0]] = new(line[0],line[1],line[2],line[3])
 		end
 
-		us_states = Word.all_us_states_shortform
+		us_states = Geography.all_us_states_short_name
 		tags_and_custom_for_each_state = [
 			[["SLS"],[]],
 			[["3d_printing"],[]],

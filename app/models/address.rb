@@ -45,7 +45,7 @@ class Address < ActiveRecord::Base
     states = []
     suppliers = Supplier.visible_profiles
     suppliers.each do |s|
-      states << s.address.state.upcase if s.address and s.address.country == "US" and Word.is_in_family?(s.address.state,"us_states",:shortform)
+      states << s.address.state.upcase if s.address and s.address.country == "US" and Geography.is_in_level?(s.address.state,"state",:short_name)
     end
     return states.uniq.sort
   end

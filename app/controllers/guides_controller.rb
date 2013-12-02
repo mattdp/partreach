@@ -7,7 +7,7 @@ class GuidesController < ApplicationController
 			id_string = params[:name]
 		elsif (params[:country] and params[:country] == "unitedstates" and params[:state] and params[:tags_string])
 			country = "US"
-			state = Word.transform(:name_for_link,params[:state],:shortform)
+			state = Geography.transform(:name_for_link,params[:state],:short_name,"state")
 			id_string = Filter.name_formatter(country,state,params[:tags_string])
 		else
 			id_string = nil
@@ -18,9 +18,9 @@ class GuidesController < ApplicationController
 		if @filter
 
 			if @filter.limits[:states].present?
-				@location_phrase = Word.transform(:shortform,@filter.limits[:states][0],:longform)
+				@location_phrase = Geography.transform(:short_name,@filter.limits[:states][0],:long_name,"state")
 			else
-				@location_phrase = Word.transform(:shortform,@filter.limits[:countries][0],:longform) #won't work well for international regions
+				@location_phrase = Geography.transform(:short_name,@filter.limits[:countries][0],:long_name,"country") #won't work well for international regions
 			end
 
 			tag_name = nil
