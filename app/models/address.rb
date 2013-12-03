@@ -25,6 +25,7 @@ class Address < ActiveRecord::Base
 
   validates :place_id, presence: true
   validates :place_type, presence: true
+  #should point to something, even if that something is a blank
   validates_presence_of :country
   validates_presence_of :state
 
