@@ -29,8 +29,15 @@ FactoryGirl.define do
   end
 
   factory :address do |a|
-    country             "Outer Haven"
     place_type          "Supplier"
+    a.after(:build) do |address|
+      address.country ||= FactoryGirl.build(:geography, level: "country")
+      address.state ||= FactoryGirl.build(:geography, level: "state")
+    end
+  end
+
+  factory :geography do |g|
+    sequence(:name_for_link) { |n| "nfl#{n}"}
   end
 
   factory :billing_contact do |c|

@@ -114,7 +114,7 @@ class OrdersController < ApplicationController
       @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
     end
     if (!params[:zip_field].nil? or !params[:country_field].nil?) and did_user_work
-      Address.create_or_update_address(@user, { zip: params[:zip_field], country: params[country_field] } )
+      Address.create_or_update_address(@user, { zip: params[:zip_field], country: params[:country_field] } )
     end
     @order.supplier_message = params[:supplier_message_field]
     did_user_work ? did_order_save = @order.save : did_order_save = false
