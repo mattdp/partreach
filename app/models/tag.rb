@@ -71,7 +71,7 @@ class Tag < ActiveRecord::Base
     Supplier.find_each do |s|
       count_this = true
       if !country.nil?
-        count_this = false if s.address.nil? or s.address.country != country
+        count_this = false if s.address.nil? or s.address.country.short_name != country
       end
       tags.each do |t|
         count_this = false unless s.has_tag?(t.id)

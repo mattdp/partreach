@@ -29,14 +29,14 @@ task :update_all_suppliers_points => :environment do
 	end
 end
 
-desc 'expose all US suppliers with certain tag constraints'
+desc 'expose all US suppliers with certain tag constraints. not in scheduler.'
 task :us_suppliers_public => :environment do
 	haves = ["3d_printing"]
 	have_nots = ["datadump"] 
 	Supplier.find_each do |s|
 		s.profile_visible = false
 		#practicing blocks; yes, this should be more lines. meant to test if 'have' tags are on supplier and 'have_nots' aren't.
-		if s.address and s.address.country == "US" and !( 
+		if s.address and s.address.country.short_name == "US" and !( 
 			 haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false) or
 			 have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)
 			 )

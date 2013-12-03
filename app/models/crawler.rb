@@ -75,6 +75,7 @@ class Crawler
 		crawl_runner_output.each do |supplier_id, attributes|
 			supplier = Supplier.find(supplier_id)
 			address = supplier.address
+			#needs fixing for geo before this will operate correctly, since state is messed up
 			attributes.each do |attribute, value|
 				if value.present?
 					address_attributes.include?(attribute) ? model = address : model = supplier

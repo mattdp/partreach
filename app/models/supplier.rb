@@ -445,17 +445,17 @@ class Supplier < ActiveRecord::Base
   end
 
   def safe_country
-    return self.address.country if self.address.country.short_name.present?
+    return self.address.country.short_name if self.address.country.short_name.present?
     return "no-country"
   end
 
   def safe_state
-    return self.address.state if self.address.state.short_name.present?
+    return self.address.state.short_name if self.address.state.short_name.present?
     return ""
   end 
 
   def safe_zip
-    return self.address.zip if self.address.zip.short_name.present?
+    return self.address.zip if self.address.zip.present?
     return ""
   end  
 

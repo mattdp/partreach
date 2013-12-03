@@ -28,11 +28,11 @@ module Crawlers
 				
 				if !row[PB_ADDRESS].nil? and row[PB_ADDRESS].length > 0
 					a = Address.new
-					a.country = row[PB_COUNTRY_CODE]
 					a.notes = row[PB_ADDRESS]
 					a.place_id = s.id
 					a.place_type = "Supplier"
-					if a.save
+					if a.save and s.create_or_update_address({country: row[PB_COUNTRY_CODE]}
+)
 						puts "#{s.name}'s address saved successfully."
 					else
 						puts "Error saving #{s.name}'s address"

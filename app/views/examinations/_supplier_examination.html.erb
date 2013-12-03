@@ -1,7 +1,7 @@
 <% address = supplier.address %>
 <td class="under-examination">
 	<p><%= "Name: #{supplier.name}" %></p>
-	<p><%= "Address: #{address.country} #{address.state} #{address.zip}" if address %></p>
+	<p><%= "Address: #{address.country.short_name} #{address.state.short_name} #{address.zip}" if address %></p>
 	<p><%= link_to "Website", supplier.url_main %>
 </td>
 <td class="choice">
@@ -13,11 +13,11 @@
 		<%= label_tag "supplier_names[#{supplier.id}]", "New name:", :class => "fleft" %>
 		<%= text_field_tag "supplier_names[#{supplier.id}]", supplier.name %>
 		<%= label_tag "supplier_countries[#{supplier.id}]", "New country:", :class => "fleft" %>
-		<%= text_field_tag "supplier_countries[#{supplier.id}]", supplier.address ? supplier.address.country : "" %>
+		<%= text_field_tag "supplier_countries[#{supplier.id}]", supplier.address.country.short_name %>
 		<%= label_tag "supplier_states[#{supplier.id}]", "New state:", :class => "fleft" %>
-		<%= text_field_tag "supplier_states[#{supplier.id}]", supplier.address ? supplier.address.state : "" %>
+		<%= text_field_tag "supplier_states[#{supplier.id}]", supplier.address.state.short_name %>
 		<%= label_tag "supplier_zips[#{supplier.id}]", "New zip:", :class => "fleft" %>
-		<%= text_field_tag "supplier_zips[#{supplier.id}]", supplier.address ? supplier.address.zip : "" %>
+		<%= text_field_tag "supplier_zips[#{supplier.id}]", supplier.address.zip %>
 	<p class="clear">
 		<%= radio_button_tag "suppliers[#{supplier.id}]", "duplicate", false, :class => "fleft radio" %>	
 		<%= label_tag "suppliers[#{supplier.id}]", "Duplicate - remove", :class => "fleft" %>
