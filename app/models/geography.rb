@@ -16,8 +16,6 @@ class Geography < ActiveRecord::Base
 
 	#ideally, validate short_name unique within a level, but not important until internationalize
 	validates :level, presence: true
-	validates :short_name, presence: true
-	validates :long_name, presence: true
 	validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
 
 	#has a parent geography containing it, or nil if top level
@@ -28,33 +26,33 @@ class Geography < ActiveRecord::Base
 		return self.geography
 	end
 
-  def self.locate(text,symbol)
-  	Geography.all.detect {|geo| geo.send(symbol) == text}
+	def self.create_or_reference_geography(text,symbol,level)
+		geo = Geography.locate(text,symbol,level)
+		return geo if geo
+		create_hash = {}
+		create_hash[symbol] = text
+		create_hash[:level] = level
+		geo = Geography.new(create_hash) 
+		geo.save(validate: false)
+		return geo
+	end	
+
+  def self.locate(text,symbol,level)
+  	Geography.all.detect {|geo| geo.send(symbol) == text and geo.level == level}
   end
 
 	def self.proper_name_for_link(input)
 		return Supplier.proper_name_for_link(input)
 	end
 
-  def self.is_in_level?(text,level,symbol)
-  	return false if text.nil?
-  	geo = Geography.locate(text,symbol)
-  	return (geo and geo.level == level)
-  end
-
-  def self.locate(text,symbol)
-  	Geography.all.detect {|word| word.send(symbol) == text}
-  end
-
   def self.transform(from_symbol,input,to_symbol,level=nil)
-    geo = Geography.locate(input,from_symbol)
+    geo = Geography.locate(input,from_symbol,level)
     return nil if geo.nil?
-    return nil if (level and !Geography.is_in_level?(input,level,from_symbol))
     return geo.send(to_symbol)
   end
 
   def self.all_us_states_short_name
-  	if us = Geography.locate("United States",:long_name)
+  	if us = Geography.locate("United States",:long_name,"country")
   		Geography.where("level = 'state' and geography_id = ?",us.id).map{|g| g.short_name}
   	else
   		return nil
@@ -134,7 +132,7 @@ class Geography < ActiveRecord::Base
 		  ]
 
 		Geography.loader(countries)
-		parent_id = Geography.locate("United States",:long_name).id
+		parent_id = Geography.locate("United States",:long_name,"country").id
 		Geography.loader(us_states,parent_id) if parent_id
   
 	end

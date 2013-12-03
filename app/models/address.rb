@@ -45,7 +45,7 @@ class Address < ActiveRecord::Base
     states = []
     suppliers = Supplier.visible_profiles
     suppliers.each do |s|
-      states << s.address.state.upcase if s.address and s.address.country == "US" and Geography.is_in_level?(s.address.state,"state",:short_name)
+      states << s.address.state.upcase if s.address and s.address.country == "US" and Geography.locate(s.address.state,:short_name,"state")
     end
     return states.uniq.sort
   end
