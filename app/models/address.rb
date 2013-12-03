@@ -25,6 +25,8 @@ class Address < ActiveRecord::Base
 
   validates :place_id, presence: true
   validates :place_type, presence: true
+  validates_presence_of :country
+  validates_presence_of :state
 
   def readable
     return "#{self.street} #{self.city} #{self.state.long_name} #{self.zip} #{self.country.long_name}"
@@ -34,7 +36,7 @@ class Address < ActiveRecord::Base
   def self.find_supplier_ids_by_country_and_state(country,state)
     addresses = []
     Address.find_each do |a|
-      addresses << a if a.state.short_name == state and a.country.short_name == country
+      addresses << a if a.state.id == state.id and a.country.id == country.id
     end
     return [] if addresses == []
     suppliers = Supplier.find(addresses.map{|a| a.place_id})

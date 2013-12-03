@@ -248,7 +248,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def from_notes(field, options = {})
-    return false if self.address.nil? or self.address.country != "US" or self.address.notes.nil?
+    return false if self.address.nil? or self.address.country.short_name != "US" or self.address.notes.nil?
     if field == "zip"
       return false if self.address.zip and self.address.zip.length > 0
       matched = self.address.notes.match(/.*(\d{5})/)
@@ -256,7 +256,7 @@ class Supplier < ActiveRecord::Base
       puts "\n#{self.address.notes} ::::: #{matched[1]}" if options[:debug]
       return matched[1]
     elsif field == "state"
-      return false if self.address.state and self.address.state.length > 0
+      return false if self.address.state.short_name and self.address.state.short_name.length > 0
       matched = self.address.notes.match(/.* ([A-Z]{2}) /)
       return false if matched.nil?
       puts "\n#{self.address.notes} ::::: #{matched[1]}" if options[:debug]           
@@ -269,9 +269,9 @@ class Supplier < ActiveRecord::Base
     combos = Combo.where("tag_id = ?", tag_id).take(quantity)
     return [] if combos == []
     suppliers = Supplier.find(combos.map{|c| c.supplier_id})
-    suppliers = suppliers.delete_if{|s| s.address.country != country} if country
+    suppliers = suppliers.delete_if{|s| s.address.country.short_name != country} if country
     return [] if suppliers == []
-    suppliers = suppliers.delete_if{|s| s.address.state != state} if state    
+    suppliers = suppliers.delete_if{|s| s.address.state.short_name != state} if state    
     return suppliers
   end
 
@@ -374,8 +374,8 @@ class Supplier < ActiveRecord::Base
   def self.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries, states)
     return false unless supplier.tags.present?
     test_visibility = supplier.profile_visible
-    test_countries = (countries == [] or (supplier.address and countries.include?(supplier.address.country)))
-    test_states = (states == [] or (supplier.address and states.include?(supplier.address.state)))
+    test_countries = (countries == [] or (supplier.address and supplier.address.country and countries.include?(supplier.address.country.short_name)))
+    test_states = (states == [] or (supplier.address and supplier.address.state and states.include?(supplier.address.state.short_name)))
     test_and_style_have_nots = !(and_style_have_nots.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
     test_and_style_haves = (and_style_haves != [] and !and_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(false))
     test_or_style_haves = (and_style_haves == [] and or_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
@@ -404,11 +404,11 @@ class Supplier < ActiveRecord::Base
     if !(profiles.nil? or profiles == [])
       count = profiles.find_all {|supplier| !supplier.existence_questionable?}.count
       profiles.each do |s|  
-        country = s.address.country
-        state = s.address.state
+        country = s.address.country.short_name
+        state = s.address.state.short_name
         array_for_sorting = s.array_for_sorting
         chaos[country] = {} if chaos[country].nil?
-        if s.address.state.nil?
+        if state.nil?
           if chaos[country]["no_state"].nil?
             chaos[country]["no_state"] = [array_for_sorting]
           else
@@ -452,22 +452,22 @@ class Supplier < ActiveRecord::Base
   end
 
   def safe_country
-    return self.address.country if self.address and self.address.country.present?
+    return self.address.country if self.address.country.short_name.present?
     return "no-country"
   end
 
   def safe_state
-    return self.address.state if self.address and self.address.state.present?
+    return self.address.state if self.address.state.short_name.present?
     return ""
   end 
 
   def safe_zip
-    return self.address.zip if self.address and self.address.zip.present?
+    return self.address.zip if self.address.zip.short_name.present?
     return ""
   end  
 
   def safe_location_name
-    if self.address and self.address.country and self.address.country = "US"
+    if self.address.country.short_name == "US"
       l = Location.find_by_zip(self.address.zip) if self.address.zip.present?
       return l.location_name if !l.nil?
     end
@@ -476,7 +476,7 @@ class Supplier < ActiveRecord::Base
 
   def get_supporting_info
     datadump_id = Tag.find_by_name("datadump").id
-    if self.address.nil? or self.address.country != "US" or self.address.state.nil?
+    if self.address.nil? or self.address.country.short_name != "US" or self.address.state.short_name.nil?
       return self.supplier_names_by_first_character
     else
       suppliers = Address.find_supplier_ids_by_country_and_state(self.address.country,self.address.state)
