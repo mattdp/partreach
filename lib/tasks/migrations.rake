@@ -2,11 +2,12 @@ require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
 desc 'Use country and state information for addresses to point to or create Geos'
-task :swap_addresses_for_geographies => :environment do
+task :point_addresses_to_geographies => :environment do
 	Address.find_each do |address|
 		[:country,:state].each do |attribute|
-			geo = Geography.create_or_reference_geography(Address.send(attribute),:short_name,attribute.to_s)
-			#set relevant pointer in address to the thing
+			geo = Geography.create_or_reference_geography(address.attributes[attribute.to_s],:short_name,attribute.to_s)
+			address.send("#{attribute}_id=",geo.id)
+			address.save
 		end
 	end
 end

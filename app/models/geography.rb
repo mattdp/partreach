@@ -20,6 +20,8 @@ class Geography < ActiveRecord::Base
 
 	#has a parent geography containing it, or nil if top level
 	belongs_to :geography
+	#don't think this works right now
+	has_many :addresses
 
 	#since the syntax of a self-referential parent is confusing
 	def get_containing_geography

@@ -13,6 +13,8 @@
 #  place_type :string(255)
 #  country    :string(255)
 #  notes      :text
+#  country_id :integer
+#  state_id   :integer
 #
 
 class Address < ActiveRecord::Base
