@@ -52,4 +52,16 @@ class Address < ActiveRecord::Base
     return states.uniq.sort
   end
 
+  #country, state, zip only right now
+  def self.create_or_update_address(owner,options)
+    owner.address = Address.new unless owner.address
+    owner.address.zip = options[:zip] if options[:zip]
+    [:country,:state].each do |geo_symbol|
+      place_name = options[geo_symbol]
+      geo = Geography.create_or_reference_geography(place_name,:short_name,geo_symbol.to_s)
+      owner.address.send("#{geo_symbol}=",geo)
+    end
+    return owner.address.save
+  end
+
 end
