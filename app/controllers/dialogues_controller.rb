@@ -7,6 +7,7 @@ class DialoguesController < ApplicationController
 			Dialogue.dialogues_new_setup
 		end
 		@family_names_and_tags = Tag.family_names_and_tags
+		@countries = Geography.all_countries.map{|geo| geo.short_name}
 	end
 
 	def create

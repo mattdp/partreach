@@ -60,6 +60,10 @@ class Geography < ActiveRecord::Base
   	end
   end
 
+  def self.all_countries
+  	return Geography.where("level = 'country'")
+  end
+
 	def self.loader(array, parent=nil)
 		array.each do |a|
 			g = Geography.new({short_name: a[0], long_name: a[1], level: a[2], \

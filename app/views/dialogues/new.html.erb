@@ -39,7 +39,7 @@
 						<% counter = 0 %>
 						<tr>
 							<td><strong><%= "Country" %><strong></td>
-							<% ["no-country"].concat(Address.all_countries).each do |c| %>
+							<% ["no-country"].concat(@countries).each do |c| %>
 								<% if counter >= tag_columns %>
 									</tr><tr>
 									<% counter = 0 %>
