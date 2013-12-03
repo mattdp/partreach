@@ -27,12 +27,15 @@ class Address < ActiveRecord::Base
   validates :place_type, presence: true
 
   def readable
-    return "#{self.street} #{self.city} #{self.state} #{self.zip} #{self.country}"
+    return "#{self.street} #{self.city} #{self.state.long_name} #{self.zip} #{self.country.long_name}"
   end
 
+  #inefficient, but only used in reviews
   def self.find_supplier_ids_by_country_and_state(country,state)
-    addresses = Address.where("country = ? and state = ? and place_type = ?", \
-      country, state, "Supplier")
+    addresses = []
+    Address.find_each do |a|
+      addresses << a if a.state.short_name == state and a.country.short_name == country
+    end
     return [] if addresses == []
     suppliers = Supplier.find(addresses.map{|a| a.place_id})
   end
