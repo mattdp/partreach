@@ -18,6 +18,8 @@
 class Address < ActiveRecord::Base
 
   belongs_to :place, :polymorphic => true
+  belongs_to :country, class_name: 'Geography'
+  belongs_to :state, class_name: 'Geography'
 
   validates :place_id, presence: true
   validates :place_type, presence: true

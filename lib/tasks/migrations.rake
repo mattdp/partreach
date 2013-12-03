@@ -5,7 +5,7 @@ desc 'Use country and state information for addresses to point to or create Geos
 task :swap_addresses_for_geographies => :environment do
 	Address.find_each do |address|
 		[:country,:state].each do |attribute|
-			#look for create or locate, not sure what class it's in, model off that
+			geo = Geography.create_or_reference_geography(Address.send(attribute),:short_name,attribute.to_s)
 			#set relevant pointer in address to the thing
 		end
 	end

@@ -29,9 +29,8 @@ class Geography < ActiveRecord::Base
 	def self.create_or_reference_geography(text,symbol,level)
 		geo = Geography.locate(text,symbol,level)
 		return geo if geo
-		create_hash = {}
+		create_hash = {level: level}
 		create_hash[symbol] = text
-		create_hash[:level] = level
 		geo = Geography.new(create_hash) 
 		geo.save(validate: false)
 		return geo
