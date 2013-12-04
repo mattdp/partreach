@@ -52,17 +52,15 @@ class Address < ActiveRecord::Base
     return states.uniq.sort
   end
 
-  # #country, state, zip only right now
-  # def self.create_or_update_address(owner,options)
-  #   owner.address = Address.new unless owner.address
-  #   owner.address.zip = options[:zip] if options[:zip]
-  #   [:country,:state].each do |geo_symbol|
-  #     place_name = options[geo_symbol]
-  #     geo = Geography.create_or_reference_geography(place_name,:short_name,geo_symbol.to_s)
-  #     owner.address.send("#{geo_symbol}=",geo)
-  #   end
-  #   return owner.address.save
-  # end
+  #allows, from console, quick geo consolidation
+  def self.geo_merge_and_destroy(destroyed_id,remaining_id)
+    Address.find_each do |a|
+      a.country_id = remaining_id if a.country_id == destroyed_id
+      a.state_id = remaining_id if a.state_id == destroyed_id
+      a.save
+    end
+    Geography.find(destroyed_id).destroy
+  end
 
   #country, state, zip only right now
   def self.create_or_update_address(owner,options)
