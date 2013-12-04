@@ -28,6 +28,12 @@ class Geography < ActiveRecord::Base
 		return self.geography
 	end
 
+	def self.display_all
+		Geography.find_each do |g|
+			puts "#{g.id}\t#{g.level}\t#{g.short_name}\t#{g.long_name}"
+		end
+	end
+
 	def self.create_or_reference_geography(text,symbol,level)
 		geo = Geography.locate(text,symbol,level)
 		return geo if geo
