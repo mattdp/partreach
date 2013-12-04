@@ -87,6 +87,10 @@ class User < ActiveRecord::Base
     return emails.uniq
   end 
 
+  def create_or_update_address(options=nil)
+    Address.create_or_update_address(self,options)
+  end 
+
   private
 
     def generate_token(column) #http://railscasts.com/episodes/274-remember-me-reset-password

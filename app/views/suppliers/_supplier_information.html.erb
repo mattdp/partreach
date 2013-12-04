@@ -71,10 +71,10 @@
 	<%= @supplier.suggested_address %>
 
 	<%= label_tag 'country', 'country' %>
-	<%= text_field_tag 'country', @address.country %>
+	<%= text_field_tag 'country', @address.country.short_name %>
 
 	<%= label_tag 'state', 'state' %>
-	<%= text_field_tag 'state', @address.state %>
+	<%= text_field_tag 'state', @address.state.short_name %>
 
 	<%= label_tag 'zip', 'zip' %>
 	<%= text_field_tag 'zip', @address.zip %>

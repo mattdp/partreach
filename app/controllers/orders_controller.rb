@@ -79,14 +79,13 @@ class OrdersController < ApplicationController
         end
       #signin form not filled out, assuming a new user
       else
-        @user = User.create(name: params[:user_name_field], 
+        did_user_work = true if @user = User.create(name: params[:user_name_field], 
           email: params[:user_email_field], 
           password: params[:user_password_field], 
           password_confirmation: params[:user_password_field] 
           )
         sign_in @user
-        did_user_work = true
-      end
+      end 
     else # there is a current user, already signed in
       @user = current_user
       existed_already = true
@@ -114,7 +113,7 @@ class OrdersController < ApplicationController
       @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
     end
     if (!params[:zip_field].nil? or !params[:country_field].nil?) and did_user_work
-      Address.create_or_update_address(@user, { zip: params[:zip_field], country: params[:country_field] } )
+      @user.create_or_update_address({ zip: params[:zip_field], country: params[:country_field] })
     end
     @order.supplier_message = params[:supplier_message_field]
     did_user_work ? did_order_save = @order.save : did_order_save = false

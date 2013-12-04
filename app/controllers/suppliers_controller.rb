@@ -13,6 +13,8 @@ class SuppliersController < ApplicationController
 	def new
 		@supplier = Supplier.new
 		@address = Address.new
+		@address.country = Geography.new
+		@address.state = Geography.new
 		@family_names_and_tags = Tag.family_names_and_tags
 		@billing_contact = BillingContact.new
 		@contract_contact = ContractContact.new
