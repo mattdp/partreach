@@ -41,12 +41,19 @@ class StaticPagesController < ApplicationController
 	end
 
 	def be_a_supplier
-		@testimonial =
+		@testimonial_one =
 			{
 				person: "Chris Kopack",
 				title: "Owner",
 				company: "Parts Oven",
 				praise: "SupplyBetter helps me reach even more customers than ever before. Better yet, their website builds confidence with the clients making sure they are getting the most for their money. This means more repeat business, and higher overall satisfaction. The quote system is fast and worth every penny."
+			}
+		@testimonial_two = 
+			{
+				person: "Ian D. Finn",
+				title: "President",
+				company: "Finnovation Product Development LLC",
+				praise: "SupplyBetter has linked my company with several serious buyers of 3D Printing services. SupplyBetter allows me to focus my time on producing parts rather than locating buyers, thus making my work more efficient with less hassle."
 			}
 	end
 
