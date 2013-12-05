@@ -33,7 +33,7 @@ class AnalyticsController < ApplicationController
 			dates << potential_date
 			potential_date = potential_date + 7
 		end
-		@titles = ["Week", "Leads and Users", "RFQ Creates","Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network"]
+		@titles = ["Week", "Leads and Users", "RFQ Creates","Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network", "Quote value of orders"]
 		printout = [] #titles
 		dates.each do |date|
 			unit = []
@@ -44,6 +44,7 @@ class AnalyticsController < ApplicationController
 			unit << Review.where("created_at > ? AND created_at < ?", date, date + 7).count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", date, date + 7, "Supplier", "claimed_profile").count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", date, date + 7, "Supplier", "joined_network").count
+			unit << Order.where("created_at > ? AND created_at < ?", date, date + 7).sum{|o| o.quote_value}
 			printout << unit
 		end
 		@printout = printout

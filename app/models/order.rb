@@ -81,16 +81,12 @@ class Order < ActiveRecord::Base
     return answer
   end
 
-  #untested at all, got interrupted
-    #returns BigDecimals; look at order#show for how to display them well
-      # [] need to truncate
-      # [] need to truncate any averaging of these happening programmatically
   def quote_value
     qv = 0 # if no recommendations, quotes, or overrides
     dialogues = Dialogue.where("order_id = ? and total_cost > 0",self.id)
     if self.override_average_value
       qv = self.override_average_value #override in order for jobs where something was weird    
-    elsif (dialogues.present? and recs = dialogues.select{|d| d.recommended})
+    elsif (dialogues.present? and recs = dialogues.select{|d| d.recommended} and recs.present?)
       values = recs.map{|d| d.total_cost}
       qv = values.sum / values.size.to_f
     elsif dialogues.present?
