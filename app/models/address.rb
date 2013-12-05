@@ -5,13 +5,11 @@
 #  id         :integer          not null, primary key
 #  street     :string(255)
 #  city       :string(255)
-#  state      :string(255)
 #  zip        :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  place_id   :integer
 #  place_type :string(255)
-#  country    :string(255)
 #  notes      :text
 #  country_id :integer
 #  state_id   :integer
