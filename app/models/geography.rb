@@ -58,9 +58,9 @@ class Geography < ActiveRecord::Base
     return geo.send(to_symbol)
   end
 
-  def self.all_us_states_short_name
+  def self.all_us_states
   	if us = Geography.locate("United States",:long_name,"country")
-  		Geography.where("level = 'state' and geography_id = ?",us.id).map{|g| g.short_name}
+  		Geography.where("level = 'state' and geography_id = ?",us.id)
   	else
   		return nil
   	end
