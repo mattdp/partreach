@@ -3,42 +3,19 @@ class GuidesController < ApplicationController
 	#only works for all of country, state, tag being present and nicely formatted
 	def show
 
-		if params[:name]
-			id_string = params[:name]
-		elsif (params[:country] and params[:country] == "unitedstates" and params[:state] and params[:tags_string])
-			country = "US"
-			state = Geography.transform(:name_for_link,params[:state],:short_name,"state")
-			id_string = Filter.name_formatter(country,state,params[:tags_string])
-		else
-			id_string = nil
-		end
-
-		@filter = Filter.get(id_string)
+		@filter = Filter.find_by_name(params[:name])
 
 		if @filter
 
-			if @filter.limits[:states].present?
-				@location_phrase = Geography.transform(:short_name,@filter.limits[:states][0],:long_name,"state")
-			else
-				@location_phrase = Geography.transform(:short_name,@filter.limits[:countries][0],:long_name,"country") #won't work well for international regions
-			end
+			@location_phrase = @filter.geography.long_name
 
-			tag_name = nil
-			[:and_style_haves,:or_style_haves].each do |have|
-				tag_name = @filter.limits[have][0] if @filter.limits[have].length == 1
-			end
-			tag = Tag.find_by_name(tag_name) if tag_name.present?
+			tag = Tag.find(@filter.has_tag_id)
 
-			if tag
-				@tags_short = tag.readable
-				@tags_long = tag.note
-			else
-				@tags_short = @filter.tags_short
-				@tags_long = @filter.tags_long
-			end
+			@tags_short = tag.readable
+			@tags_long = tag.note
 
-			@visibles, @supplier_count = Rails.cache.fetch id_string, :expires_in => 25.hours do |key|
-				logger.debug "Cache miss: #{id_string}"
+			@visibles, @supplier_count = Rails.cache.fetch @filter.name, :expires_in => 25.hours do |key|
+				logger.debug "Cache miss: #{@filter.name}"
 				Supplier.visible_profiles_sorted(@filter)
 			end
 		end

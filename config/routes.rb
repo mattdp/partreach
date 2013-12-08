@@ -32,7 +32,6 @@ Partreach::Application.routes.draw do
   get '/submit_ask/', to: 'profiles#submit_ask'
   get '/terms', to: 'static_pages#terms'
   get '/privacy', to: 'static_pages#privacy'
-  get '/guides/:country/:state/:tags_string', to: 'guides#show', as: 'guide_cst'
   get '/guides/:name', to: 'guides#show', as: 'guide_name'
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'
   match '/owners/destroy/:supplier_id/:machine_id', to: 'owners#destroy', as: 'destroy_owner', via: :delete
