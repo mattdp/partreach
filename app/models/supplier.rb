@@ -360,30 +360,24 @@ class Supplier < ActiveRecord::Base
   #this will be slow, need to store it somewhere
   def self.visible_set_for_index(filter)
     return false if filter.nil?
-    limits = filter.limits
-    and_style_haves, or_style_haves, and_style_have_nots, countries, states = limits[:and_style_haves], limits[:or_style_haves], limits[:and_style_have_nots], limits[:countries], limits[:states]
     holder = []
     Supplier.find_each do |supplier|
-      if Supplier.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries, states)
+      if Supplier.index_validation(supplier, filter)
         holder << supplier
       end
     end
     return holder
   end
 
-  def self.index_validation(supplier, and_style_haves, or_style_haves, and_style_have_nots, countries, states)
+  def self.index_validation(supplier, filter)
     return false unless supplier.tags.present?
     test_visibility = supplier.profile_visible
-    test_countries = (countries == [] or (supplier.address and supplier.address.country and countries.include?(supplier.address.country.short_name)))
-    test_states = (states == [] or (supplier.address and supplier.address.state and states.include?(supplier.address.state.short_name)))
-    test_and_style_have_nots = !(and_style_have_nots.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
-    test_and_style_haves = (and_style_haves != [] and !and_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(false))
-    test_or_style_haves = (and_style_haves == [] and or_style_haves.map{ |h| supplier.has_tag?(Tag.find_by_name(h).id) }.include?(true))
+    geo = filter.geography
+    test_geography = (supplier.address.attributes["#{geo.level}_id"] == geo.id)
+    test_has_tag = supplier.has_tag?(filter.has_tag.id)
+    test_has_not_tag = !supplier.has_tag?(filter.has_not_tag.id)
 
-    requisites = (test_visibility and test_countries and test_states and test_and_style_have_nots)
-    eithers = (test_and_style_haves or test_or_style_haves)
-
-    return (requisites and eithers)
+    return (test_visibility and test_geography and test_has_tag and test_has_not tag)
   end
 
   def array_for_sorting

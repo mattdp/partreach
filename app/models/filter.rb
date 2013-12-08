@@ -17,6 +17,10 @@ class Filter < ActiveRecord::Base
   belongs_to :has_tag, class_name: 'Tag'
   belongs_to :has_not_tag, class_name: 'Tag'
 
+  validates :name, presence: true, uniqueness: {case_sensitive: false}
+  validates_presence_of :geography
+  validates_presence_of :has_tag
+
   #make sure to add US (country)
   def self.initial_generation
   	us_and_states = Geography.all_us_states.concat([Geography.locate("US",:short_name,"country")])
