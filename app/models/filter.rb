@@ -26,13 +26,19 @@ class Filter < ActiveRecord::Base
   	tag_names.each do |t_name|
   		has_tag = Tag.find_by_name(t_name)
   		us_and_states.each do |geography|
-  			Filter.create({geography_id: geography.id, has_tag_id: has_tag.id, has_not_tag_id: has_not_tag.id})
+  			f = Filter.new({geography_id: geography.id, has_tag_id: has_tag.id, has_not_tag_id: has_not_tag.id})
+  			f.name = f.name_formatter
+  			f.save
   		end
   	end
   end
 
 	def name_formatter
-		
+		geo = self.geography
+		phrase = "#{geo.name_for_link}-#{self.has_tag.name_for_link}"
+		containing_geo = geo.get_containing_geography
+		phrase = "#{containing_geo.name_for_link}-#{phrase}" if containing_geo
+		return phrase
 	end
 
 end
