@@ -22,7 +22,7 @@ class CommunicationsController < ApplicationController
 	private
 
 		def communication_params
-			params.permit(:means_of_interaction, :interaction_title, :notes, :supplier_id)
+			params.permit(:means_of_interaction, :interaction_title, :notes, :supplier_id, :user_id)
 		end
 
 end
