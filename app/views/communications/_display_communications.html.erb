@@ -2,7 +2,7 @@
 	<ul>
 	<% communications.each do |c| %>
 		<li>
-		<%= "#{c.created_at.strftime('%Y-%m-%d')}: #{c.means_of_interaction}/#{c.interaction_title} - #{c.notes}" %>
+		<%= "#{c.created_at.strftime('%Y-%m-%d')} [#{User.find(c.user_id).name if c.user_id}]: #{c.means_of_interaction}/#{c.interaction_title} - #{c.notes}" %>
 		</li>
 	<% end %>
 	</ul>
