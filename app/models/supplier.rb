@@ -377,7 +377,7 @@ class Supplier < ActiveRecord::Base
     test_has_tag = supplier.has_tag?(filter.has_tag.id)
     test_has_not_tag = !supplier.has_tag?(filter.has_not_tag.id)
 
-    return (test_visibility and test_geography and test_has_tag and test_has_not tag)
+    return (test_visibility and test_geography and test_has_tag and test_has_not_tag)
   end
 
   def array_for_sorting
@@ -417,7 +417,7 @@ class Supplier < ActiveRecord::Base
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
-        ufs = filter.up_front_states
+        ufs = ["no_state","CA","NY"]
         if ufs.present? 
           ufs.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
             order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } if chaos[country][upfront].present?

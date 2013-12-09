@@ -53,5 +53,8 @@ SitemapGenerator::Sitemap.create do
     add supplier_profile_path(s.name_for_link), changefreq: 'daily' if s.profile_visible
   end
 
+  Filter.find_each do |f|
+    add guide_name_path(f.name), changefreq: 'daily'
+  end
 
 end

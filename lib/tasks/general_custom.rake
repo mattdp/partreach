@@ -5,6 +5,7 @@ desc 'crawl a set of suppliers in the background'
 task :crawler_dispatcher => :environment do
 	scale_workers(1)
 	
+	#this isn't workable anymore, filters are different
 	limits = Filter.get("US-MI-3d_printing").limits
   suppliers = Supplier.quantity_by_tag_id("all",Tag.find_by_name(limits[:tag_name]).id,limits[:country],limits[:state])
 	
@@ -79,16 +80,15 @@ task :daily_cache_reset => :environment do
 	
 	to_reset = {
 		"us_states_of_visible_profiles" => 'Address.us_states_of_visible_profiles',
-		"dialogues_new_setup" => 'Dialogue.dialogues_new_setup',
-		"filter_all" => 'Filter.all'
+		"dialogues_new_setup" => 'Dialogue.dialogues_new_setup'
 	}
 
 	to_reset.each do |key,method_string|
 		Rails.cache.write(key,eval(method_string),:expires_in => expires_hours.hours)
 	end
 
-	Filter.all.each do |name,filter|
-		Rails.cache.write(name,Supplier.visible_profiles_sorted(filter),:expires_in => expires_hours.hours)
+	Filter.all.each do |filter|
+		Rails.cache.write(filter.name,Supplier.visible_profiles_sorted(filter),:expires_in => expires_hours.hours)
 	end
 
 end
