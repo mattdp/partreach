@@ -89,7 +89,7 @@ class Order < ActiveRecord::Base
     elsif (dialogues.present? and recs = dialogues.select{|d| d.recommended} and recs.present?)
       values = recs.map{|d| d.total_cost}
       qv = values.sum / values.size.to_f
-    elsif dialogues.present?
+    elsif dialogues.present? #should this be a median?
       values = dialogues.map{|d| d.total_cost}
       qv = values.sum / values.size.to_f
     end
