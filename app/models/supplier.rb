@@ -415,6 +415,7 @@ class Supplier < ActiveRecord::Base
         end
       end
 
+      puts chaos.keys
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
         ufs = ["no_state","CA","NY"]
