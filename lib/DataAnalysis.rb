@@ -41,7 +41,7 @@ module DataAnalysis
 				recommended +=1 if d.recommended
 			end
 		end
-		puts "#{won} won, #{all} total, #{won*0.0/all}% win rate, #{recommended*0.0/all} recommended rate" if all > 0 
+		puts "#{won} won, #{all} total, #{won*1.0/all}% win rate, #{recommended*1.0/all} recommended rate" if all > 0 
 	end
 
 end
