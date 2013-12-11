@@ -29,4 +29,19 @@ module DataAnalysis
 		puts op
 	end
 
+	def percent_quotes_won_by_paid_suppliers
+		supplier_ids = Supplier.all_signed.map{|s| s.id}
+		won = 0
+		all = 0
+		recommended = 0
+		Dialogue.find_each do |d|
+			if supplier_ids.include?(d.supplier_id)
+				all += 1
+				won += 1 if d.won
+				recommended +=1 if d.recommended
+			end
+		end
+		puts "#{won} won, #{all} total, #{won*0.0/all}% win rate, #{recommended*0.0/all} recommended rate" if all > 0 
+	end
+
 end
