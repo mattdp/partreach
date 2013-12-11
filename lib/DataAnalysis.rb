@@ -44,4 +44,17 @@ module DataAnalysis
 		puts "#{won} won, #{all} total, #{won*1.0/all}% win rate, #{recommended*1.0/all} recommended rate" if all > 0 
 	end
 
+	def how_many_suppliers_have_quoted
+		count = 0
+		Supplier.find_each do |supplier|
+			supplier.dialogues.each do |dialogue|
+				if dialogue.total_cost and dialogue.total_cost > 0
+					count += 1
+					break
+				end
+			end
+		end
+		return count
+	end
+
 end
