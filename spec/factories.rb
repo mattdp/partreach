@@ -28,6 +28,21 @@ FactoryGirl.define do
     end
   end
 
+  factory :tag do |t|
+    sequence(:name)           { |n| "Tag#{n}" }
+    sequence(:name_for_link)  { |n| "tag#{n}" }
+    sequence(:readable)       { |n| "Readable#{n}" }
+    family                    "generic"
+    exclusive                 false
+  end
+
+  #this is bad - need to replace has_tag with a real tag
+  factory :filter do |f|
+    association :geography
+    has_tag     1
+    sequence(:name)   { |n| "Filter#{n}" }
+  end
+
   factory :address do |a|
     place_type          "Supplier"
     a.after(:build) do |address|
@@ -46,13 +61,5 @@ FactoryGirl.define do
   end
   factory :rfq_contact do |c|
   end    
-
-  factory :tag do |t|
-    sequence(:name)           { |n| "Tag#{n}" }
-    sequence(:name_for_link)  { |n| "tag#{n}" }
-    sequence(:readable)       { |n| "Readable#{n}" }
-    family                    "generic"
-    exclusive                 false
-  end
 
 end
