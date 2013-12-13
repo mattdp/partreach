@@ -44,6 +44,7 @@ Partreach::Application.routes.draw do
   get '/analytics/emails', to: 'analytics#emails', as: 'analytics_emails'
   get '/analytics/metrics', to: 'analytics#metrics', as: 'analytics_metrics'
   get '/analytics/machines', to: 'analytics#machines', as: 'analytics_machines'
+  get '/analytics/phone', to: 'analytics#phone', as: 'analytics_phone'
 
   get '/examinations/:name', to: 'examinations#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"

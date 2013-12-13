@@ -24,6 +24,7 @@
 
 <% if @to_bother %>
     <h3>Suppliers we need to talk to</h3>
+    <p>There are <%= "#{@to_bother.count}" %> suppliers.</p>
     <ul>
         <% @to_bother.each do |supplier| %>
             <li>
