@@ -91,6 +91,7 @@ task :daily_cache_reset => :environment do
 	Filter.all.each do |filter|
 		puts "#{filter.name} being written"
 		Rails.cache.write(filter.name,Supplier.visible_profiles_sorted(filter),:expires_in => expires_hours.hours)
+		Rails.cache.write("#{filter.name}-adjacencies",filter.adjacencies)
 	end
 
 end

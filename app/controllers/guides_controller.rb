@@ -7,13 +7,17 @@ class GuidesController < ApplicationController
 
 		if @filter
 
-			@adjacencies = @filter.adjacencies
 			@location_phrase = @filter.geography.long_name
 
 			tag = Tag.find(@filter.has_tag_id)
 
 			@tags_short = tag.readable
 			@tags_long = tag.note
+
+			@adjacencies = Rails.cache.fetch "#{@filter.name}-adjacencies", :expires_in => 25.hours do |key|
+				logger.debug "Cache miss: #{@filter.name}-adjacencies"
+				@filter.adjacencies
+			end
 
 			@visibles, @supplier_count = Rails.cache.fetch @filter.name, :expires_in => 25.hours do |key|
 				logger.debug "Cache miss: #{@filter.name}"

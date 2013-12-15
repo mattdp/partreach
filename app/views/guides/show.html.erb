@@ -33,15 +33,6 @@
 					</div>
 
 					<%= render partial:"suppliers/supplier_list_key" %>
-					
-					<% if @adjacencies %>
-						<h3>Other useful links</h3>
-						<ul>
-							<% @adjacencies.each do |adj_filter| %>
-								<li><%= link_to "#{adj_filter.has_tag.readable} suppliers in #{adj_filter.geography.short_name}", guide_name_path(adj_filter.name) %></li>
-							<% end %>
-						</ul>
-					<% end %>
 
 					<div class="clear">
 						<% if @supplier_count > 0 %>
@@ -50,6 +41,17 @@
 							<h3 class="supplier-list-country"><%= "#{@tags_short} suppliers in #{@location_phrase}" %></h3>
 							<p>If you know of a supplier that should be in this category, <%= mail_to "suggest-edits@supplybetter.com", "let us know!", encode: "javascript", target: "_blank", subject: "Suggested addition to SupplyBetter database" %></p>
 						<% end %>	
+					</div>
+
+					<div class="clear">
+						<% if @adjacencies %>
+							<h3 class="supplier-list-country"><%= "Other relevant links" %></h3>
+							<ul>
+								<% @adjacencies.each do |adj_filter| %>
+									<li><%= link_to "#{adj_filter.has_tag.readable} suppliers in #{adj_filter.geography.short_name}", guide_name_path(adj_filter.name) %></li>
+								<% end %>
+							</ul>
+						<% end %>
 					</div>
 
 				</div>
