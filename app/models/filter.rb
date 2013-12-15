@@ -64,7 +64,7 @@ class Filter < ActiveRecord::Base
   #array of 0-n filters to display for horizontal linking
   def adjacencies
     same_geo_adjacencies_quantity_max = 5
-    return self.same_geo_adjacencies(same_geo_adjacencies_quantity_max).concat(self.same_tag_bigger_geo)
+    return self.same_tag_bigger_geo.concat(self.same_geo_adjacencies(same_geo_adjacencies_quantity_max))
   end
 
 end

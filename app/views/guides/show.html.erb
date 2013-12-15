@@ -34,6 +34,15 @@
 
 					<%= render partial:"suppliers/supplier_list_key" %>
 					
+					<% if @adjacencies %>
+						<h3>Other useful links</h3>
+						<ul>
+							<% @adjacencies.each do |adj_filter| %>
+								<li><%= link_to "#{adj_filter.has_tag.readable} suppliers in #{adj_filter.geography.short_name}", guide_name_path(adj_filter.name) %></li>
+							<% end %>
+						</ul>
+					<% end %>
+
 					<div class="clear">
 						<% if @supplier_count > 0 %>
 							<%= render partial: "suppliers/supplier_list", locals: { visibles: @visibles, columns: 1, header_text: "#{@tags_short} suppliers in #{@location_phrase}" } %>

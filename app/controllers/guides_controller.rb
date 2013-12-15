@@ -7,6 +7,7 @@ class GuidesController < ApplicationController
 
 		if @filter
 
+			@adjacencies = @filter.adjacencies
 			@location_phrase = @filter.geography.long_name
 
 			tag = Tag.find(@filter.has_tag_id)
