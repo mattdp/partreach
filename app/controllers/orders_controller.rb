@@ -267,7 +267,7 @@ class OrdersController < ApplicationController
     end
     
     def setup_textfields
-      textfields = [:material, :process_name, :process_time, :shipping_name, :notes, :currency]
+      textfields = [:material, :process_name, :process_time, :shipping_name, :notes, :currency, :internal_notes]
     end
 
     def setup_numberfields
