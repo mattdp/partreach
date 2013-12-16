@@ -27,6 +27,10 @@ class StaticPagesController < ApplicationController
 			}
 		]
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
+
+		@logo_locations = [	"http://www.engineering.cornell.edu/academics/undergraduate/special_programs/kessler_fellows/images/logo_3_2.jpg",
+												"http://static5.businessinsider.com/image/51e3f458eab8ea135800001d-960/wendys_new_logo_01.jpg",
+												"http://static4.wikia.nocookie.net/__cb20121128141533/logopedia/images/6/6f/Superman_logo.png"]
 	end
 
 	def getting_started
