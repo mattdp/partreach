@@ -8,6 +8,7 @@ class DialoguesController < ApplicationController
 		end
 		@family_names_and_tags = Tag.family_names_and_tags
 		@countries = Geography.all_countries.map{|geo| geo.short_name}
+		@us_states = Geography.all_us_states.map{|geo| geo.short_name}
 	end
 
 	def create
