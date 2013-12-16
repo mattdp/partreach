@@ -6,13 +6,13 @@ $(document).ready(function() {
 	});
 
 	//allow multitag searching
-	$(document).find('#tag_matrix').find('input').change(function() {
+	$(document).find('.tag_matrix').find('input').change(function() {
 		if($('#add-dialogues-radio').is(':checked')) {
 			$('#supplier_matrix').find('td').addClass('hidden');
 
 			//get a list of all checked boxes
 			var checkedBoxes = [];
-			$('#tag_matrix').find('input').each (function () {
+			$('.tag_matrix').find('input').each (function () {
 				if($(this).is(':checked')) {
 					checkedBoxes.push($(this).closest('td').find('p').text());
 				}
