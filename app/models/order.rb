@@ -42,12 +42,11 @@ class Order < ActiveRecord::Base
   validates :drawing_units, presence: true, length: {minimum: 1}
 
   def finished?
-    status = self.status
-    return true if Order.order_status_hash[status]
-    self.dialogues.each do |d|
-      return true if d.won
+    if Order.order_status_hash[self.status]
+      return true 
+    else
+      return false
     end
-    return false #0 dialogue, multiple unwon dialogues, and is_over nil cases
   end
 
   def self.incomplete_orders
