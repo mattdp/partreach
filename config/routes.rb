@@ -37,6 +37,7 @@ Partreach::Application.routes.draw do
   match '/owners/destroy/:supplier_id/:machine_id', to: 'owners#destroy', as: 'destroy_owner', via: :delete
   get '/questions', to: 'static_pages#questions', as: 'order_questions'
   get '/machines/suppliers_with_machine/:machine_id', to: 'machines#suppliers_with_machine', as: 'suppliers_with_machine'
+  get '/recruiting', to: 'static_pages#recruiting', as: 'recruiting'
 
   get '/analytics', to: 'analytics#home', as: 'analytics_home'
   get '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
