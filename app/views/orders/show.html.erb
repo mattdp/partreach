@@ -22,14 +22,11 @@
 			<table class="order_table" cellspacing="0">
 			  <tr class="order_table_header_row">
 			    <th>Name</th>
-			    <th class="little-field">Bid status</th>
-			    <th class="little-field">Total bid</th>
-			    <th>Time (days)</th>
-			    <th>Mat'l</th>
-			    <th>Process</th>
-			    <th class="little-field">Process cost</th>
-			    <th class="little-field">Shipping cost</th>
-			    <th class="big-field">Notes</th>
+
+			    <% OrderColumn.all.each do |name,details| %>
+			    	<th><%= "#{details[:header]}" %></th>
+			    <% end %>
+
 			    <th class="little-field">Selection</th>
 			  </tr>
 
@@ -51,14 +48,10 @@
 					<% end %>
 					</td>
 
-					<td class="center"><%= bid_status(d) %></td>
-					<td class="right"><%= currencyize(d.total_cost, d.currency) %></td>
-					<td class="center"><%= d.process_time %></td>
-					<td class="center"><%= d.material %></td>
-					<td class="center"><%= d.process_name %></td>
-					<td class="right"><%= currencyize(d.process_cost, d.currency) %></td>
-					<td class="right"><%= currencyize(d.shipping_cost, d.currency) %></td>
-					<td class="center" title="<%= notarize(d.shipping_name,d.notes) %>"><%= notarize(d.shipping_name,d.notes) %></td>
+					<% OrderColumn.all.each do |name,details| %>
+						<td class=<%= "#{details[:css_class]}" %>><%= eval("#{details[:code]}") %></td>
+					<% end %>
+
 					<td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
 					</tr>
 				<% end %>
