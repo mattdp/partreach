@@ -49,19 +49,18 @@ class OrderColumn
     return list
 	end
 
-  def self.get_columns(set="all")
-    column_set = OrderColumn.column_set(set)
+  def self.get_columns(set=:all)
+    map = OrderColumn.set_to_names_map
+    column_set = map[set]
     return OrderColumn.all.select{|k,v| column_set.include?(k)}
   end
 
-  def self.column_set(set="all")
-    if set == "few"
-      columns = [:shipping_cost,:notes]
-    else
-      columns = OrderColumn.all.keys
-    end
-
-    return columns
+  #broken out so that admin views can offer these as options
+  def self.set_to_names_map
+    hash = {}
+    hash[:all] = OrderColumn.all.keys
+    hash[:few] = [:shipping_cost,:notes]
+    return hash
   end
 
 end
