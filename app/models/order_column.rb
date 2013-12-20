@@ -49,10 +49,19 @@ class OrderColumn
     return list
 	end
 
-	# def initialize
-	# end
+  def self.get_columns(set="all")
+    column_set = OrderColumn.column_set(set)
+    return OrderColumn.all.select{|k,v| column_set.include?(k)}
+  end
 
-	# def self.get(name)
-	# end
+  def self.column_set(set="all")
+    if set == "few"
+      columns = [:shipping_cost,:notes]
+    else
+      columns = OrderColumn.all.keys
+    end
+
+    return columns
+  end
 
 end

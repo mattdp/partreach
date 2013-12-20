@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
     @user = User.find(@order.user_id)
     @sorted_dialogues = sort_dialogues(@order.visible_dialogues)
     track("order","viewed",@order.id)
+    @columns = OrderColumn.all
 
     respond_to do |format|
       format.html # show.html.erb

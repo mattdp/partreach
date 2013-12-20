@@ -23,7 +23,7 @@
 			  <tr class="order_table_header_row">
 			    <th>Name</th>
 
-			    <% OrderColumn.all.each do |name,details| %>
+			    <% @columns.each do |name,details| %>
 			    	<th><%= "#{details[:header]}" %></th>
 			    <% end %>
 
@@ -48,7 +48,7 @@
 					<% end %>
 					</td>
 
-					<% OrderColumn.all.each do |name,details| %>
+					<% @columns.each do |name,details| %>
 						<td class=<%= "#{details[:css_class]}" %>><%= eval("#{details[:code]}") %></td>
 					<% end %>
 
