@@ -22,14 +22,14 @@
 
 <div class="container">
 	<% if @logo_locations %>
-		<div class="row">
+		<div class="row features">
 			<h3 class="center">Buyers include</h3>
 			<ol>
 				<% @logo_locations.each do |logo_location| %>
-					<li><%= image_tag logo_location %></li>
+					<li><%= image_tag logo_location, :style => "width: 100%; border: none;" %></li>
 				<% end %>
 			</ol>
-			<h3 class="center">and many more.</h3>
+			<h3 class="center clear bit-of-space">and many more.</h3>
 		</div>
 	<% end %>
 	<div class="row">
