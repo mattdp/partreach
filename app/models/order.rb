@@ -26,6 +26,7 @@
 #  stated_manufacturing   :string(255)
 #  notes                  :text
 #  override_average_value :decimal(, )
+#  columns_shown          :string(255)
 #
 
 class Order < ActiveRecord::Base
@@ -40,14 +41,14 @@ class Order < ActiveRecord::Base
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
   validates :material_message, presence: true, length: {minimum: 2}
   validates :drawing_units, presence: true, length: {minimum: 1}
+  validates :columns_shown, presence: true
 
   def finished?
-    status = self.status
-    return true if Order.order_status_hash[status]
-    self.dialogues.each do |d|
-      return true if d.won
+    if Order.order_status_hash[self.status]
+      return true 
+    else
+      return false
     end
-    return false #0 dialogue, multiple unwon dialogues, and is_over nil cases
   end
 
   def self.incomplete_orders

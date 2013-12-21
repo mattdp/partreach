@@ -8,6 +8,7 @@ class DialoguesController < ApplicationController
 		end
 		@family_names_and_tags = Tag.family_names_and_tags
 		@countries = Geography.all_countries.map{|geo| geo.short_name}
+		@us_states = Geography.all_us_states.map{|geo| geo.short_name}
 	end
 
 	def create
@@ -58,6 +59,10 @@ class DialoguesController < ApplicationController
 			redir_to = "/dialogues/new"
 			redir_notice = "#{params[:form_use]} to suppliers."
 
+		elsif params[:form_use] == "refresh_cache"
+			Rails.cache.write("dialogues_new_setup",Dialogue.dialogues_new_setup,:expires_in => 25.hours)
+			redir_to = "/dialogues/new"
+			redir_notice = "Cache reset attempted."
 		else #should never happen
 			saved_ok = false 
 		end	

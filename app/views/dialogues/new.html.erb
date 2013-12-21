@@ -21,6 +21,8 @@
 					<%= label_tag "form_use", "Add tags", :class => "fleft" %>
 					<%= radio_button_tag "form_use", "remove_tag", false, :class => "fleft radio margin-left", :id => "remove-tags-radio" %>	
 					<%= label_tag "form_use", "Remove tags (doesn't work on country/state)", :class => "fleft" %>
+					<%= radio_button_tag "form_use", "refresh_cache", false, :class => "fleft radio margin-left", :id => "refresh-cache-radio" %>	
+					<%= label_tag "form_use", "Refresh cache for this page", :class => "fleft" %>					
 				</div>
 
 				<div class="clear">
@@ -44,18 +46,26 @@
 									</tr><tr>
 									<% counter = 0 %>
 								<% end %>
-								<td><%= check_box_tag "country_selection[]", c, false, class: "fleft", id: "#{c}" %>
+								<td><%= check_box_tag "country_selection[]", c, false, class: "fleft checkbox", id: "#{c}" %>
 								<p><%= "#{c}" %></p></td>
 								<% counter += 1 %>			
 							<% end %>
 						</tr>
 						<tr>
-							<td><strong><%= "State (2L: xx)" %><strong></td>
-							<td><%= text_field_tag 'state', nil %></td>
+							<td><strong><%= "US State" %><strong></td>
+							<% @us_states.each do |state| %>
+								<% if counter >= tag_columns %>
+									</tr><tr>
+									<% counter = 0 %>
+								<% end %>
+								<td><%= check_box_tag "state_selection[]", state, false, class: "fleft checkbox", id: "#{state}" %>
+								<p><%= "#{state}" %></p></td>
+								<% counter += 1 %>			
+							<% end %>
+						</tr>						
+						<tr>
 							<td><strong><%= "Postal code" %><strong></td>
 							<td><%= text_field_tag 'zip', nil %></td>
-						</tr>
-						<tr>
 							<td><strong><%= "Contact email" %><strong></td>
 							<td><%= text_field_tag 'email', nil %></td>
 							<td><strong><%= "Phone" %><strong></td>
@@ -68,7 +78,7 @@
 						<tr><td>
 						<% @structure.each do |supplier_hash| %>
 
-							<%= check_box_tag "supplier_selection[]", supplier_hash[:supplier].id, false, class: "fleft supplier-checkbox #{supplier_hash[:tag_names].join(" ")} #{supplier_hash[:safe_country]}" %>
+							<%= check_box_tag "supplier_selection[]", supplier_hash[:supplier].id, false, class: "fleft supplier-checkbox #{supplier_hash[:tag_names].join(" ")} #{supplier_hash[:safe_country]} #{supplier_hash[:safe_state]} " %>
 							<% if supplier_hash[:supplier].url_main.nil? %>
 								<%= "#{supplier_hash[:supplier].name}" %>
 							<% else %>

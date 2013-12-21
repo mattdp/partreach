@@ -26,6 +26,7 @@
 #  stated_manufacturing   :string(255)
 #  notes                  :text
 #  override_average_value :decimal(, )
+#  columns_shown          :string(255)
 #
 
 require 'spec_helper'

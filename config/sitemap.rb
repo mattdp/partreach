@@ -43,7 +43,6 @@ SitemapGenerator::Sitemap.create do
   add materials_path, changefreq: 'weekly'
   add terms_path, changefreq: 'weekly'
   add privacy_path, changefreq: 'weekly'
-  add cto_path, changefreq: 'weekly'
   add suppliers_path, changefreq: 'daily'
  
   add '/blog'
