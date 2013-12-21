@@ -23,6 +23,7 @@
 #  currency            :string(255)      default("dollars")
 #  recommended         :boolean          default(FALSE)
 #  informed            :boolean
+#  internal_notes      :text
 #
 
 class Dialogue < ActiveRecord::Base

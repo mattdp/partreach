@@ -23,7 +23,7 @@ class OrdersController < ApplicationController
     @user = User.find(@order.user_id)
     @sorted_dialogues = sort_dialogues(@order.visible_dialogues)
     track("order","viewed",@order.id)
-    @columns = OrderColumn.all
+    @columns = OrderColumn.get_columns(@order.columns_shown.to_sym)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -175,6 +175,7 @@ class OrdersController < ApplicationController
 
     @order.recommendation = params[:recommendation]
     @order.notes = params[:notes]
+    @order.columns_shown = params[:columns_shown]
     @order.next_steps = params[:next_steps]
     if params[:status].present?
       Event.add_event("Order",@order.id,"closed_successfully") if params[:status] == "Finished - closed" and @order.status != params[:status]

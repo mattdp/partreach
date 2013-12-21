@@ -112,6 +112,14 @@
 				<% end %>
 
 				<div class="clear">
+					<p>Columns to show</p>
+					<% OrderColumn.set_to_names_map.each do |set_name,set_columns| %>
+						<%= radio_button_tag "columns_shown", set_name, @order.columns_shown == set_name.to_s, :class => "fleft radio" %>
+						<%= label_tag "columns_shown_#{set_name}", set_name, :class => "fleft" %>
+					<% end %>
+				</div>
+
+				<div class="clear">
 					<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
 				</div>
 
