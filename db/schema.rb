@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131221014634) do
+ActiveRecord::Schema.define(version: 20131221020256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -201,7 +201,7 @@ ActiveRecord::Schema.define(version: 20131221014634) do
     t.string   "stated_manufacturing"
     t.text     "notes"
     t.decimal  "override_average_value"
-    t.string   "columns_shown"
+    t.string   "columns_shown",          default: "all"
   end
 
   create_table "owners", force: true do |t|

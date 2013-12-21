@@ -41,6 +41,7 @@ class Order < ActiveRecord::Base
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
   validates :material_message, presence: true, length: {minimum: 2}
   validates :drawing_units, presence: true, length: {minimum: 1}
+  validates :columns_shown, presence: true
 
   def finished?
     if Order.order_status_hash[self.status]

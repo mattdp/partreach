@@ -99,6 +99,7 @@ class OrdersController < ApplicationController
     else
       @order.errors.messages[:Sign_back_in] = ["with a valid email and password"]
     end
+    @order.columns_shown = "all"
     @order.quantity = params[:quantity_field]
     @order.drawing_file_name = params[:file]
     @order.drawing_units = params[:drawing_units_field]
