@@ -93,6 +93,7 @@
 							<td>
 								<strong><%= "#{@supplier.name}" %></strong>
 							</td>
+							<td><%= link_to "Initial email", dialogue_internal_email_path(d) %></td>
 							<td>
 								<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
 								<%= "\n#{@supplier.rfq_contact.email}" if @supplier.rfq_contact.email %>

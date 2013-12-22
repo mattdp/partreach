@@ -3,7 +3,47 @@
 <div class="container">
   <div class="row">
   	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
-  		<p>dasdf</p>
+
+  		<%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %>
+
+  		<p>-----BEGIN COPYABLE TEXT-----</p>
+
+  		<p>SUBJECT: <%= "SupplyBetter RFQ ##{@order.id} for #{Supplier.find(@dialogue.supplier_id).name}" %></p>
+
+  		<p>Hi,</p>
+
+			<p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>
+
+			<h2>What We Need</h2>
+
+			<p><strong>Process Cost:</strong></p>
+
+			<p><strong>Total Cost</strong> (including any shipping and taxes):</p>
+
+			<h2>Project Details</h2>
+
+			<p><strong>Part Files</strong>: [HERE IS THE LINK, NOT IMPLEMENTED] to the STL files for all parts that can be 3D printed. </p>
+
+			<p><strong>Process Requested</strong>: [SOMETHING ROB SELECTS/INPUTS, NOT IMPLEMENTED]</p>
+
+			<p><strong>Infill:</strong> [SOMETHING ROB SELECTS/INPUTS, NOT IMPLEMENTED]</p>
+
+			<p><strong>Drawing units</strong>: <%= "#{@order.drawing_units}" %></p>
+
+			<p><strong>Material</strong>: <%= "#{@order.material_message}" %></p>
+
+			<p><strong>Quantity</strong>: <%= "#{@order.quantity}" %></p>
+
+			<p><strong>Shipping Zipcode</strong>: [ZIPCODE, NOT IMPLEMENTED]</p>
+
+			<p><strong>Note from Client</strong>: <%= "#{@order.supplier_message}" %></p>
+
+			<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>
+
+			<p>-----END COPYABLE TEXT-----</p>
+
+			<%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %>
+
   	</div>
   </div>
 </div>

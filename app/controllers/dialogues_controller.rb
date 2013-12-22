@@ -79,6 +79,7 @@ class DialoguesController < ApplicationController
 
   def initial_email
   	@dialogue = Dialogue.find(params[:id])
+  	@order = @dialogue.order
   end
 
 end
