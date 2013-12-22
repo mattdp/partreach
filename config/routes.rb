@@ -26,6 +26,7 @@ Partreach::Application.routes.draw do
   match '/orders/update_dialogues', to: 'orders#update_dialogues', via: :post
   get '/orders/purchase/:order/:dialogue', to: 'orders#purchase'
   get '/dialogues/new/:id', to: 'dialogues#new'
+  get '/dialogues/initial_email/:id', to: 'dialogues#initial_email', as: 'dialogue_internal_email'  
   get '/profiles/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
   get 'suppliers/admin_edit/:name', to: 'suppliers#admin_edit', as: 'admin_edit'
   match 'suppliers/admin_update', to: 'suppliers#admin_update', as: 'admin_update', via: :post

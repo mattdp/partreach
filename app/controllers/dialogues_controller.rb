@@ -1,5 +1,5 @@
 class DialoguesController < ApplicationController
-	before_filter :admin_user, only: [:new, :create]
+	before_filter :admin_user, only: [:new, :create, :initial_email]
 
 	def new
 		@structure = Rails.cache.fetch "dialogues_new_setup", :expires_in => 25.hours do |key|
@@ -75,6 +75,10 @@ class DialoguesController < ApplicationController
 	      format.json { render json: @dialogue.errors.full_messages, status: 400 }
 	    end
 	  end
+  end
+
+  def initial_email
+  	@dialogue = Dialogue.find(params[:id])
   end
 
 end
