@@ -310,6 +310,10 @@ label {
   background: $headerFooterDark;
 }
 
+.logo-background {
+  background: white;
+}
+
 .btn-hero {
   background: #00aede image-url('btn-arrow.png') no-repeat 234px 50%;
   border: 0;
@@ -348,6 +352,21 @@ label {
   &:hover {
     color: #fff;
     text-decoration: none;
+  }
+}
+
+.logo-image {
+  width: 100%; 
+  border: none;
+  vertical-align: center;
+}
+
+#features-override {
+  padding: 10px 0;
+  ol {
+    li {
+      border: none;
+    }
   }
 }
 

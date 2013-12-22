@@ -2,36 +2,38 @@
 
 <div class="homepage-background">
 	<div class= "container hero">
-
-			<% provide(:title, "Comparison shopping for 3D printing") %>
-			<hgroup>
-				<h1>Comparison shopping for 3D printing.</h1>
-				<h2><em>Know your options.</em> Get cheaper parts.</h2>
-			</hgroup>
-			<%= render partial: "static_pages/testimonial", locals: {testimonial: @testimonial, alternate_colors: false} %>
-			<p class="center bit-of-space">
-				<%= link_to "Get Started", order_questions_path, class: "btn btn-xl supplybetter-blue" %>
-			</p>
-			<div class="center bit-of-space">
-				<%= link_to "Are you a supplier?", be_a_supplier_path, class: "sec-hero" %>
-				<%= link_to "Or wondering how to get started with 3D printing?", getting_started_path, class: "sec-hero" %>
-			</div>
-
+		<hgroup>
+			<h1>Comparison shopping for 3D printing.</h1>
+			<h2><em>Know your options.</em> Get cheaper parts.</h2>
+		</hgroup>
+		<%= render partial: "static_pages/testimonial", locals: {testimonial: @testimonial, alternate_colors: false} %>
+		<p class="center bit-of-space">
+			<%= link_to "Get Started", order_questions_path, class: "btn btn-xl supplybetter-blue" %>
+		</p>
+		<div class="center bit-of-space">
+			<%= link_to "Are you a supplier?", be_a_supplier_path, class: "sec-hero" %>
+			<%= link_to "Or wondering how to get started with 3D printing?", getting_started_path, class: "sec-hero" %>
+		</div>
 	</div>
 </div>
 
-<div class="container">
-	<% if @logo_locations %>
-		<div class="row features">
-			<h3 class="center">Buyers include</h3>
-			<ol>
-				<% @logo_locations.each do |logo_location| %>
-					<li><%= image_tag logo_location, :style => "width: 100%; border: none;" %></li>
-				<% end %>
-			</ol>
-			<h3 class="center clear bit-of-space">and many more.</h3>
+<% if @logo_locations %>
+	<div class="logo-background">
+		<div class="container">
+			<div class="row features" id="features-override">
+				<h3 class="center">Buyers include</h3>
+				<ol>
+					<% @logo_locations.each do |logo_location| %>
+						<li><%= image_tag logo_location, :class => "logo-image" %></li>
+					<% end %>
+				</ol>
+				<h3 class="center clear">and many more.</h3>
+			</div>
 		</div>
-	<% end %>
+	</div>
+<% end %>
+
+<div class="container">
 	<div class="row">
 		<div class="content features">
 			<ol>
