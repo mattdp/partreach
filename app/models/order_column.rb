@@ -4,7 +4,7 @@ class OrderColumn
 	def self.all
     
     list = {
-      supplier_name: {
+      bid_status: {
         header: "Bid status",
         code: "bid_status(d)",
         css_class: "center"
@@ -59,7 +59,9 @@ class OrderColumn
   def self.set_to_names_map
     hash = {}
     hash[:all] = OrderColumn.all.keys
-    hash[:few] = [:shipping_cost,:notes]
+    hash[:speed] = [:bid_status,:total_cost,:notes]
+    hash[:cost] = [:bid_status,:process_time,:process_cost,:shipping_cost,:total_cost,:notes]
+    hash[:quality] = [:bid_status,:process,:process_time,:notes]
     return hash
   end
 
