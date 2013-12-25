@@ -1,6 +1,15 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'Set all externals to have Supplier type and same id. One-time migration'
+task :set_externals_to_consumer => :environment do
+	External.find_each do |external|
+		external.consumer_id = external.supplier_id
+		external.consumer_type = "Supplier"
+		external.save
+	end
+end
+
 desc 'Use country and state information for addresses to point to or create Geos'
 task :point_addresses_to_geographies => :environment do
 	Address.find_each do |address|
