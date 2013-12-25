@@ -34,7 +34,7 @@ class Supplier < ActiveRecord::Base
   has_many :tags, :through => :combos
   has_many :owners, :dependent => :destroy
   has_many :machines, :through => :owners
-  has_many :externals, :dependent => :destroy
+  has_many :externals, :as => :consumer, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
   has_many :communications, :dependent => :destroy
 
@@ -336,7 +336,7 @@ class Supplier < ActiveRecord::Base
   end 
 
   def add_external(url)
-    e = External.new(supplier_id: self.id, url: url)
+    e = External.new(consumer_id: self.id, consumer_type: "Supplier", url: url)
     e.save
   end
 
