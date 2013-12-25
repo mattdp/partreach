@@ -12,9 +12,10 @@
 #
 
 class External < ActiveRecord::Base
-  has_one :supplier
+  belongs_to :consumer, polymorphic: true
 
-  validates :supplier_id, presence: true
+  validates :consumer_id, presence: true
+  validates :consumer_type, presence: true
   validates :url, presence: true, uniqueness: { case_sensitive: false } 
   validates_uniqueness_of :url, scope: :supplier_id
 end

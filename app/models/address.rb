@@ -17,7 +17,7 @@
 
 class Address < ActiveRecord::Base
 
-  belongs_to :place, :polymorphic => true
+  belongs_to :place, polymorphic: true
   belongs_to :country, class_name: 'Geography'
   belongs_to :state, class_name: 'Geography'
 
