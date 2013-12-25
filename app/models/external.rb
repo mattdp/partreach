@@ -2,11 +2,13 @@
 #
 # Table name: externals
 #
-#  id          :integer          not null, primary key
-#  supplier_id :integer
-#  url         :string(255)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :integer          not null, primary key
+#  supplier_id   :integer
+#  url           :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  consumer_id   :integer
+#  consumer_type :string(255)
 #
 
 class External < ActiveRecord::Base

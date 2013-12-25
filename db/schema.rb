@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131221020256) do
+ActiveRecord::Schema.define(version: 20131225170545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,8 +123,10 @@ ActiveRecord::Schema.define(version: 20131221020256) do
   create_table "externals", force: true do |t|
     t.integer  "supplier_id"
     t.string   "url"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "consumer_id"
+    t.string   "consumer_type"
   end
 
   create_table "filters", force: true do |t|
