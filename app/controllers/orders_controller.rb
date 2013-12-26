@@ -121,6 +121,8 @@ class OrdersController < ApplicationController
     did_user_work ? did_order_save = @order.save : did_order_save = false
     logger.debug "Order saving: #{did_order_save}"
 
+    OrderGroup.create({name: "Default",order_id: @order.id}) if did_order_save
+    
     respond_to do |format|
       if did_user_work and did_order_save
         track("order","created",@order.id)
