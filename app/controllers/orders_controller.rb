@@ -68,10 +68,10 @@ class OrdersController < ApplicationController
     did_user_work = false
     if current_user.nil?
       #they've filled out the signin form
-      if params[:signin_email_field] != "" and params[:signin_password_field] != ""
+      if params[:signin_email] != "" and params[:signin_password] != ""
         #how pass in email and password, get signed in user?
-        @user = User.find_by_email(params[:signin_email_field])
-        if @user && @user.authenticate(params[:signin_password_field])
+        @user = User.find_by_email(params[:signin_email])
+        if @user && @user.authenticate(params[:signin_password])
           sign_in @user
           did_user_work = true
         else
@@ -80,10 +80,10 @@ class OrdersController < ApplicationController
         end
       #signin form not filled out, assuming a new user
       else
-        did_user_work = true if @user = User.create(name: params[:user_name_field], 
-          email: params[:user_email_field], 
-          password: params[:user_password_field], 
-          password_confirmation: params[:user_password_field] 
+        did_user_work = true if @user = User.create(name: params[:user_name], 
+          email: params[:user_email], 
+          password: params[:user_password], 
+          password_confirmation: params[:user_password] 
           )
         sign_in @user
       end 
@@ -99,25 +99,20 @@ class OrdersController < ApplicationController
     else
       @order.errors.messages[:Sign_back_in] = ["with a valid email and password"]
     end
+    #
+    # put in something to build but not save the order_params
+    #
     @order.columns_shown = "all"
-    @order.quantity = params[:quantity_field]
     @order.drawing_file_name = params[:file]
-    @order.drawing_units = params[:drawing_units_field]
-    @order.name = params[:name_field]
-    @order.material_message = params[:material_message_field]
-    @order.suggested_suppliers = params[:suggested_suppliers_field]
-    @order.deadline = params[:deadline_field]
-    @order.stated_experience = params[:stated_experience_field]
-    @order.stated_priority = params[:stated_priority_field]
-    @order.stated_manufacturing = params[:stated_manufacturing_field]
-    @order.notes = "#{params[:user_phone_field]} is user contact number for rush order" if params[:user_phone_field].present?
-    if !params[:deadline].nil?
-      @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
+    @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
+
+    # remove if deadline works via order_params
+    #if !params[:deadline].nil?
+    #  @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
+    #end
+    if (!params[:zip].nil? or !params[:country].nil?) and did_user_work
+      @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
     end
-    if (!params[:zip_field].nil? or !params[:country_field].nil?) and did_user_work
-      @user.create_or_update_address({ zip: params[:zip_field], country: params[:country_field] })
-    end
-    @order.supplier_message = params[:supplier_message_field]
     did_user_work ? did_order_save = @order.save : did_order_save = false
     logger.debug "Order saving: #{did_order_save}"
 
@@ -245,6 +240,11 @@ class OrdersController < ApplicationController
   end
 
   private
+
+    def order_params
+      params.permit(:quantity,:drawing_units,:name,:material_message,:suggested_suppliers,\
+        :deadline,:stated_experience,:stated_priority,:stated_manufacturing,:supplier_message)
+    end
 
     def correct_user
       @orders = current_user.orders.find_by_id(params[:id])
