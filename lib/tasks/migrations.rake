@@ -1,6 +1,14 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'Set up order groups'
+task :order_group_setup
+	Order.find_each do |order|
+		Group.create({name: "Default", order_id: order.id}) if OrderGroup.find_by_order_id.nil?
+	end
+end
+
+
 desc 'Set all externals to have Supplier type and same id. One-time migration'
 task :set_externals_to_consumer => :environment do
 	External.find_each do |external|
