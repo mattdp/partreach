@@ -24,6 +24,7 @@
 #  recommended         :boolean          default(FALSE)
 #  informed            :boolean
 #  internal_notes      :text
+#  order_group_id      :integer
 #
 
 require 'spec_helper'

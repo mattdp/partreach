@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131226044828) do
+ActiveRecord::Schema.define(version: 20131226200903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 20131226044828) do
     t.boolean  "recommended",                                  default: false
     t.boolean  "informed"
     t.text     "internal_notes"
+    t.integer  "order_group_id"
   end
 
   add_index "dialogues", ["order_id"], name: "index_dialogues_on_order_id", using: :btree
