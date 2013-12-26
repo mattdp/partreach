@@ -110,7 +110,7 @@ class OrdersController < ApplicationController
     @order.columns_shown = "all"
     @order.drawing_file_name = params[:file]
     @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
-
+    @order.assign_attributes(order_params)
     # remove if deadline works via order_params
     #if !params[:deadline].nil?
     #  @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 

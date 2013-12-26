@@ -2,7 +2,7 @@ require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
 desc 'Set up order groups'
-task :order_group_setup
+task :order_group_setup => :environment do
 	Order.find_each do |order|
 		Group.create({name: "Default", order_id: order.id}) if OrderGroup.find_by_order_id.nil?
 	end

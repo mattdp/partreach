@@ -27,17 +27,17 @@ describe "User pages" do
 
     describe "with valid information" do
       before do
-        fill_in "material_message_field", with: "Ossium"
-        fill_in "quantity_field",       with: "100"
-        fill_in "drawing_units_field",        with: "mm"
+        fill_in "material_message", with: "Ossium"
+        fill_in "quantity",       with: "100"
+        fill_in "drawing_units",        with: "mm"
         find("#direct-upload-file").set "fake-the-upload.txt"
       end
 
       describe "for a new user" do
         before do 
-          fill_in "user_name_field",      with: @new_user.name
-          fill_in "user_email_field",     with: @new_user.email
-          fill_in "user_password_field",  with: @new_user.password
+          fill_in "user_name",      with: @new_user.name
+          fill_in "user_email",     with: @new_user.email
+          fill_in "user_password",  with: @new_user.password
         end
       
         it "should have at least some link visible" do
@@ -64,8 +64,8 @@ describe "User pages" do
 
       describe "for an existing user" do
         before do
-          fill_in "signin_email_field",     with: @saved_user.email
-          fill_in "signin_password_field",  with: @saved_user.password
+          fill_in "signin_email",     with: @saved_user.email
+          fill_in "signin_password",  with: @saved_user.password
         end
 
         #user getting created, since saves first, but page not progressing
