@@ -8,7 +8,6 @@
 #  response_received   :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  order_id            :integer
 #  supplier_id         :integer
 #  further_negotiation :boolean
 #  won                 :boolean

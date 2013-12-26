@@ -8,7 +8,6 @@
 #  response_received   :boolean
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  order_id            :integer
 #  supplier_id         :integer
 #  further_negotiation :boolean
 #  won                 :boolean
@@ -29,13 +28,13 @@
 
 class Dialogue < ActiveRecord::Base
 
-  belongs_to :order
   belongs_to :order_group
+  has_one :order, through: :order_group
   has_one :supplier
   has_one :user, :through => :order
 
   validates :supplier_id, :presence => true
-  validates :order_id, :presence => true
+  validates :order_group_id, :presence => true
 
   def knows_outcome?
   	return (self.informed or self.declined? or self.won?)

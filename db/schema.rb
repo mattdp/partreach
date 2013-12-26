@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131226200903) do
+ActiveRecord::Schema.define(version: 20131226223358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -92,7 +92,6 @@ ActiveRecord::Schema.define(version: 20131226200903) do
     t.boolean  "response_received"
     t.datetime "created_at",                                                       null: false
     t.datetime "updated_at",                                                       null: false
-    t.integer  "order_id"
     t.integer  "supplier_id"
     t.boolean  "further_negotiation"
     t.boolean  "won"
@@ -110,8 +109,6 @@ ActiveRecord::Schema.define(version: 20131226200903) do
     t.text     "internal_notes"
     t.integer  "order_group_id"
   end
-
-  add_index "dialogues", ["order_id"], name: "index_dialogues_on_order_id", using: :btree
 
   create_table "events", force: true do |t|
     t.string   "model"

@@ -46,6 +46,7 @@
 				<table>
 					<tr>
 						<th>d_id</th>
+						<th>og_name</th>
 						<th>Supplier</th>
 						<% [@checkboxes,@textfields,@numberfields].each do |set| %>
 							<% set.each do |h| %>
@@ -63,6 +64,7 @@
 							<tr>
 								<% @supplier = Supplier.find(d.supplier_id) %>
 								<td><%= "#{d.id}" %></td>
+								<td><%= "#{d.order_group.name}" %></td>
 								<td>
 									<strong><%= link_to "#{@supplier.name}", admin_edit_path(@supplier.name_for_link) %></strong>
 								</td>

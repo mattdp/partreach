@@ -19,10 +19,11 @@ class DialoguesController < ApplicationController
 		if params[:form_use] == "add_dialogues"
 
 			@order = Order.find(params[:order_id_field])
+			@order_group = OrderGroup.find_by_order_id(@order.id)
 
 			@supplier_ids.each do |s|
 				@dialogue = Dialogue.new
-				@dialogue.order_id = @order.id
+				@dialogue.order_group_id = @order_group.id
 				@dialogue.supplier_id = s.to_i
 				saved_ok = false unless @dialogue.save
 			end
