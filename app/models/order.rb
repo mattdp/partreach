@@ -36,6 +36,7 @@ class Order < ActiveRecord::Base
   
   belongs_to :user
   has_many :dialogues, dependent: :destroy
+  has_many :order_groups, dependent: :destroy
 
   validates :quantity, presence: true, numericality: {greater_than: 0}
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
