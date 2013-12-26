@@ -35,8 +35,8 @@ class Order < ActiveRecord::Base
   									:path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
   
   belongs_to :user
-  has_many :dialogues, dependent: :destroy
   has_many :order_groups, dependent: :destroy
+  has_many :dialogues, dependent: :destroy
 
   validates :quantity, presence: true, numericality: {greater_than: 0}
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}

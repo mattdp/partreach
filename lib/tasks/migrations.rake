@@ -6,8 +6,12 @@ task :order_group_setup => :environment do
 	Order.find_each do |order|
 		OrderGroup.create({name: "Default", order_id: order.id}) if OrderGroup.find_by_order_id(order.id).nil?
 	end
-end
 
+	Dialogue.find_each do |dialogue|
+		dialogue.order_group_id = OrderGroup.find_by_order_id(dialogue.order_id).id
+		dialogue.save
+	end
+end
 
 desc 'Set all externals to have Supplier type and same id. One-time migration'
 task :set_externals_to_consumer => :environment do
