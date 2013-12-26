@@ -63,6 +63,11 @@ class OrdersController < ApplicationController
 
   # POST /orders
   # POST /orders.json
+
+
+  #
+  # consider making the whole thing a transaction
+  # 
   def create
     existed_already = false
     did_user_work = false
