@@ -104,17 +104,10 @@ class OrdersController < ApplicationController
     else
       @order.errors.messages[:Sign_back_in] = ["with a valid email and password"]
     end
-    #
-    # put in something to build but not save the order_params
-    #
     @order.columns_shown = "all"
     @order.drawing_file_name = params[:file]
     @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
     @order.assign_attributes(order_params)
-    # remove if deadline works via order_params
-    #if !params[:deadline].nil?
-    #  @order.deadline = Date.new(params[:deadline][:year].to_i, params[:deadline][:month].to_i, params[:deadline][:day].to_i) 
-    #end
     if (!params[:zip].nil? or !params[:country].nil?) and did_user_work
       @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
     end
