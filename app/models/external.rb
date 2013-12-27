@@ -16,5 +16,5 @@ class External < ActiveRecord::Base
 
   validates :consumer_id, presence: true
   validates :consumer_type, presence: true
-  validates :url, presence: true, uniqueness: { case_sensitive: false }
+  validates :url, presence: true
 end
