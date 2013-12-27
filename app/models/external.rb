@@ -8,6 +8,7 @@
 #  updated_at    :datetime         not null
 #  consumer_id   :integer
 #  consumer_type :string(255)
+#  units         :string(255)
 #
 
 class External < ActiveRecord::Base
@@ -15,6 +16,5 @@ class External < ActiveRecord::Base
 
   validates :consumer_id, presence: true
   validates :consumer_type, presence: true
-  validates :url, presence: true, uniqueness: { case_sensitive: false } 
-  validates_uniqueness_of :url, scope: :supplier_id
+  validates :url, presence: true, uniqueness: { case_sensitive: false }
 end

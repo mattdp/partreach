@@ -1,6 +1,41 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'Migrate order information to parts and externals. Doesn\'t assume part or external exists. Assumes one order group/order'
+task :order_to_parts => :environment do 
+	OrderGroup.find_each do |order_group|
+		order = order_group.order
+
+		part = order_group.parts
+		if part == []
+			part = Part.new({order_group_id: order_group.id})
+			part.save validate: false
+		else
+			part = part[0]
+		end
+
+		external = part.external
+		#current problem line
+		external = External.new({consumer_id: part.id, consumer_type: "Part"}) if external.nil?
+
+		external.url = order.drawing_file_name
+		external.units = order.drawing_units
+		part.quantity = order.quantity
+
+		part_save = part.save
+		external_save = external.save
+		order_save = order.save
+		success = (part_save and external_save and order_save)
+
+		if success
+			puts "Order #{order.id} transferred successfully"
+		else
+			puts "Order #{order.id} DID NOT TRANSFER SUCCESSFULLY. Part: #{part_save} External: #{external_save} Order: #{order_save}"
+		end
+
+	end
+end
+
 desc 'Set up order groups'
 task :order_group_setup => :environment do
 	Order.find_each do |order|

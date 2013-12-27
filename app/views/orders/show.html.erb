@@ -19,43 +19,66 @@
 
 			<%= render 'layouts/order_basics' %>
 
-			<table class="order_table" cellspacing="0">
-			  <tr class="order_table_header_row">
-			    <th>Name</th>
+			<% if @order_groups and @order.dialogues.count > 0 %>
+				<% @order_groups.each do |order_group| %>
 
-			    <% @columns.each do |name,details| %>
-			    	<th><%= "#{details[:header]}" %></th>
-			    <% end %>
+					<h3 class="bit-of-space">
+						<%= "#{order_group.name}" %>
+						<%= " (#{order_group.process})" if order_group.process %>
+					</h3>
 
-			    <th class="little-field">Selection</th>
-			  </tr>
+					<table class="order_table" cellspacing="0">
+					  <tr class="order_table_header_row">
+					    <th>Name</th>
 
-				<% @sorted_dialogues.each do |d| %>
-					<% if d.recommended %>
-						<tr class="recommended">
-					<% else %>
-						<tr>
+					    <% @columns.each do |name,details| %>
+					    	<th><%= "#{details[:header]}" %></th>
+					    <% end %>
+
+					    <th class="little-field">Selection</th>
+					  </tr>
+
+						<% @sorted_dialogues.each do |d| %>
+							<% if d.recommended %>
+								<tr class="recommended">
+							<% else %>
+								<tr>
+							<% end %>
+
+							<% s = Supplier.find(d.supplier_id) %>
+							<td>
+							<% if s.profile_visible %>
+								<%= link_to "#{s.name}", supplier_profile_path(s.name_for_link) %>
+							<% elsif !s.url_main.nil? and s.url_main != "" %>
+								<%= link_to "#{s.name}", s.url_main %>
+							<% else %>
+								<%= s.name %>
+							<% end %>
+							</td>
+
+							<% @columns.each do |name,details| %>
+								<td class=<%= "#{details[:css_class]}" %>><%= eval("#{details[:code]}") %></td>
+							<% end %>
+
+							<td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
+							</tr>
+						<% end %>
+					</table>
+
+					<% if order_group.parts != [] %>
+						<p><strong>Parts included in this group:</strong></p>
+						<ul>
+							<% order_group.parts.each do |part| %>
+								<li><%= "#{part.name}, quantity: #{part.quantity}" %></li>
+							<% end %>
+						</ul>
 					<% end %>
 
-					<% s = Supplier.find(d.supplier_id) %>
-					<td>
-					<% if s.profile_visible %>
-						<%= link_to "#{s.name}", supplier_profile_path(s.name_for_link) %>
-					<% elsif !s.url_main.nil? and s.url_main != "" %>
-						<%= link_to "#{s.name}", s.url_main %>
-					<% else %>
-						<%= s.name %>
-					<% end %>
-					</td>
-
-					<% @columns.each do |name,details| %>
-						<td class=<%= "#{details[:css_class]}" %>><%= eval("#{details[:code]}") %></td>
-					<% end %>
-
-					<td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
-					</tr>
 				<% end %>
-			</table>
+			<% else %>
+				<br>
+				<p><strong>No quotes have been received yet! We will notify you as soon as suppliers respond.</strong></p>
+			<% end %>
 
 			<p class="back_to_home"><%= link_to 'Back to orders', orders_path %></p>
 

@@ -20,10 +20,15 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
+    @order_groups = @order.order_groups
     @user = User.find(@order.user_id)
     @sorted_dialogues = sort_dialogues(@order.visible_dialogues)
     track("order","viewed",@order.id)
-    @columns = OrderColumn.get_columns(@order.columns_shown.to_sym)
+    if @order.columns_shown
+      @columns = OrderColumn.get_columns(@order.columns_shown.to_sym)
+    else
+      @columns = OrderColumn.get_columns(:all)
+    end
 
     respond_to do |format|
       format.html # show.html.erb
