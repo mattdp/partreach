@@ -39,11 +39,17 @@ class Order < ActiveRecord::Base
   has_many :dialogues, through: :order_groups, dependent: :destroy
   has_many :parts, through: :order_groups, dependent: :destroy
 
-  validates :quantity, presence: true, numericality: {greater_than: 0}
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
   validates :material_message, presence: true, length: {minimum: 2}
-  validates :drawing_units, presence: true, length: {minimum: 1}
   validates :columns_shown, presence: true
+
+  def total_quantity
+    tq = 0
+    if parts = self.parts
+      tq = parts.inject(0) {|sum,part| part.quantity}
+    end
+    return tq
+  end
 
   def finished?
     if Order.order_status_hash[self.status]

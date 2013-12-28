@@ -34,7 +34,7 @@ require 'spec_helper'
 describe "Order" do
 	
 	before do
-		@order = Order.new(quantity: 151, material_message: "made of grapes")
+		@order = Order.new(material_message: "made of grapes")
 	end
 
 	subject { @order }
@@ -43,10 +43,5 @@ describe "Order" do
 		before { @order.user_id = nil }
 		it { should_not be_valid }
 	end
-
-	describe "quantity should not be negative" do
-		before { @order.quantity = -5 }
-		it { should_not be_valid }
-	end
-
+	
 end

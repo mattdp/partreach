@@ -9,10 +9,7 @@
 			<%= render "layouts/order_basics" %>
 
 			<p><strong>User email: </strong><%= "#{User.find(@order.user_id).email}" %></p>
-			<% if !@order.drawing_file_name.nil? and @order.drawing_file_name != "" %>
-				<p><strong>Drawing name: </strong><%= link_to "#{@order.drawing_file_name}", "#{@order.drawing_file_name}" %></p>
-			<% end %>
-			<% if !@order.drawing_file_name.nil? %>
+			<% if !@order.override_average_value.nil? %>
 				<p><strong>Override value for what quote was worth, for tracking (console change): </strong><%= @order.override_average_value %>
 			<% end %>
 

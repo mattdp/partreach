@@ -10,9 +10,7 @@ FactoryGirl.define do
 
   factory :order do |o|
     association :user
-  	sequence(:quantity) { |n| n + 50 }
     material_message    "Made of iron and wine"
-    drawing_units       "in."
     sequence(:deadline) { |n| "#{n} o'clock"}
   end
 

@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
     @order_groups = @order.order_groups
     @user = User.find(@order.user_id)
     @sorted_dialogues = sort_dialogues(@order.visible_dialogues)
+    @total_quantity = @order.total_quantity
     track("order","viewed",@order.id)
     if @order.columns_shown
       @columns = OrderColumn.get_columns(@order.columns_shown.to_sym)
@@ -110,7 +111,6 @@ class OrdersController < ApplicationController
       @order.errors.messages[:Sign_back_in] = ["with a valid email and password"]
     end
     @order.columns_shown = "all"
-    @order.drawing_file_name = params[:file]
     @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
     @order.assign_attributes(order_params)
     if (!params[:zip].nil? or !params[:country].nil?) and did_user_work
@@ -162,6 +162,8 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @user = User.find(@order.user_id)
     @dialogues = sort_dialogues(@order.dialogues)
+    @total_quantity = @order.total_quantity
+        
     @checkboxes = setup_checkboxes
     @textfields = setup_textfields
     @numberfields = setup_numberfields
@@ -252,8 +254,8 @@ class OrdersController < ApplicationController
   private
 
     def order_params
-      params.permit(:quantity,:drawing_units,:name,:material_message,:suggested_suppliers,\
-        :deadline,:stated_experience,:stated_priority,:stated_manufacturing,:supplier_message)
+      params.permit(:name,:material_message,:suggested_suppliers, :deadline, \
+        :stated_experience,:stated_priority,:stated_manufacturing,:supplier_message)
     end
 
     def correct_user

@@ -40,7 +40,7 @@
 
             <tr class="order_table_content_row">
               <td><%= order.name %></td>
-              <td class="right"><%= order.quantity %></td>
+              <td class="right"><%= order.total_quantity %></td>
               <td class="center">
                 <% if not(order.deadline.nil?) %>
                   <%= "Due by #{order.deadline.to_s}" %>

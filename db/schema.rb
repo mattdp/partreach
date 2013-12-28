@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131227200151) do
+ActiveRecord::Schema.define(version: 20131227225530) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -186,11 +186,9 @@ ActiveRecord::Schema.define(version: 20131227200151) do
   end
 
   create_table "orders", force: true do |t|
-    t.integer  "quantity"
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.integer  "user_id"
-    t.string   "drawing_file_name"
     t.string   "drawing_content_type"
     t.integer  "drawing_file_size"
     t.datetime "drawing_updated_at"
@@ -201,7 +199,6 @@ ActiveRecord::Schema.define(version: 20131227200151) do
     t.text     "material_message"
     t.text     "next_steps"
     t.text     "suggested_suppliers"
-    t.string   "drawing_units"
     t.string   "status",                 default: "Needs work"
     t.string   "next_action_date"
     t.string   "stated_experience"

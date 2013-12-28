@@ -3,15 +3,13 @@
 		<strong>Order name: </strong> <%= "#{@order.name}" %>
 		<br>
 	<% end %>
-	<span class="index_quantity"><strong>Quantity: </strong><%= "#{@order.quantity}" %></span>
+	<span class="index_quantity"><strong>Total quantity: </strong><%= "#{@total_quantity}" %></span>
 	<% if !@order.deadline.nil? %>
 		<span class="index_quantity"><strong>Deadline </strong><%= "#{@order.deadline}" %></span>
 	<% end %>
 	<% if !@user.address.nil? and @user.address.zip.length > 0 %>
 		<span class="index_quantity"><strong>Zip Code: </strong><%= "#{@user.address.zip}" %></span>
 	<% end %>
-	<strong>Units: </strong><%= "#{@order.drawing_units}" %>
-	<br>
 	<strong>Material requested: </strong><%= "#{@order.material_message}" %>
 	<br>
 	<% if !(@order.supplier_message.nil? or @order.supplier_message == "") %>

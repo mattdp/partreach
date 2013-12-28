@@ -13,7 +13,7 @@
 class OrderGroup < ActiveRecord::Base
 
 	belongs_to :order
-	has_many :parts
+	has_many :parts, dependent: :destroy
 	has_many :dialogues
 
   validates :name, presence: true

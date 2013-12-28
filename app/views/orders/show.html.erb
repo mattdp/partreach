@@ -24,7 +24,7 @@
 
 					<h3 class="bit-of-space">
 						<%= "#{order_group.name}" %>
-						<%= " (#{order_group.process})" if order_group.process %>
+						<%= " (Process: #{order_group.process})" if order_group.process %>
 					</h3>
 
 					<table class="order_table" cellspacing="0">
@@ -69,7 +69,11 @@
 						<p><strong>Parts included in this group:</strong></p>
 						<ul>
 							<% order_group.parts.each do |part| %>
-								<li><%= "#{part.name}, quantity: #{part.quantity}" %></li>
+								<% if part.name %>
+									<li><%= "#{part.name}, quantity: #{part.quantity}" %></li>
+								<% else %>
+									<li><%= "Quantity: #{part.quantity}" %></li>
+								<% end %>	
 							<% end %>
 						</ul>
 					<% end %>
