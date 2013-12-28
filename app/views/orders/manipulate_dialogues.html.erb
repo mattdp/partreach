@@ -37,15 +37,16 @@
 
 				<% @order_groups.each do |order_group| %>
 
-					<h3><%= "Group: '#{order_group.name}' Process: '#{order_group.process}'" %></h3>
+					<h3 class="bit-of-space"><%= "Group: '#{order_group.name}' Process: '#{order_group.process}'" %></h3>
+					<p>Movement between groups & addition of groups is currently console-only.</p>
 					<p><strong>Parts:</strong></p>
 					<ul>
 						<% order_group.parts.each do |part| %>
 							<% external = part.external %>
 							<li>
-								<%= "Quantity #{part.quantity} of '#{part.name}' (Units: #{external.units} " %>
+								<%= "Quantity #{part.quantity} of '#{part.name}' (Units: #{external.units}" %>
 								<%= link_to "Link to file", external.url %>
-								)
+								<%= ") [Part ID: #{part.id}]" %>
 							</li>
 						<% end %>
 					</ul>
