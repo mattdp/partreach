@@ -160,6 +160,7 @@ class OrdersController < ApplicationController
 
   def manipulate_dialogues
     @order = Order.find(params[:id])
+    @order_groups = @order.order_groups 
     @user = User.find(@order.user_id)
     @dialogues = sort_dialogues(@order.dialogues)
     @total_quantity = @order.total_quantity

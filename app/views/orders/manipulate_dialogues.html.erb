@@ -35,73 +35,88 @@
 				<%= label_tag "order notes", "Internal notes on order" %>
 				<%= text_area_tag "notes", @order.notes %>
 
-				<p>Ordering of checkboxes:</p>
-				<div><% @checkboxes.each do |c| %>
-					<%= "| #{c.to_s}" %>
-				<% end %></div>
+				<% @order_groups.each do |order_group| %>
 
-				<table>
-					<tr>
-						<th>d_id</th>
-						<th>og_name</th>
-						<th>Supplier</th>
-						<% [@checkboxes,@textfields,@numberfields].each do |set| %>
-							<% set.each do |h| %>
-								<th class="word-break">
-									<% if set == @checkboxes %>
-										<%= "" %>
-									<% else %>
-										<%= "#{h.to_s}" %>
-									<% end %>
-								</th>
-							<% end %>
+					<h3><%= "Group: '#{order_group.name}' Process: '#{order_group.process}'" %></h3>
+					<p><strong>Parts:</strong></p>
+					<ul>
+						<% order_group.parts.each do |part| %>
+							<% external = part.external %>
+							<li>
+								<%= "Quantity #{part.quantity} of '#{part.name}' (Units: #{external.units} " %>
+								<%= link_to "Link to file", external.url %>
+								)
+							</li>
 						<% end %>
-					</tr>
-						<% @dialogues.each do |d| %>
+					</ul>
+
+					<p>Ordering of checkboxes:</p>
+					<div><% @checkboxes.each do |c| %>
+						<%= "| #{c.to_s}" %>
+					<% end %></div>
+					<table>
+						<tr>
+							<th>d_id</th>
+							<th>og_name</th>
+							<th>Supplier</th>
+							<% [@checkboxes,@textfields,@numberfields].each do |set| %>
+								<% set.each do |h| %>
+									<th class="word-break">
+										<% if set == @checkboxes %>
+											<%= "" %>
+										<% else %>
+											<%= "#{h.to_s}" %>
+										<% end %>
+									</th>
+								<% end %>
+							<% end %>
+						</tr>
+							<% order_group.dialogues.each do |d| %>
+								<tr>
+									<% @supplier = Supplier.find(d.supplier_id) %>
+									<td><%= "#{d.id}" %></td>
+									<td><%= "#{d.order_group.name}" %></td>
+									<td>
+										<strong><%= link_to "#{@supplier.name}", admin_edit_path(@supplier.name_for_link) %></strong>
+									</td>
+									<% @checkboxes.each do |c| %>
+										<td class="center">
+											<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s], class: "checkbox" %>
+										</td>
+									<% end %>
+									<% @textfields.each do |t| %>
+										<td>
+											<%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
+										</td>
+									<% end %>
+									<% @numberfields.each do |n| %>
+										<td>
+											<%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
+										</td>
+									<% end %>
+								</tr>
+							<% end %>
+					</table>
+
+					<table>
+						<% order_group.dialogues.each do |d| %>
 							<tr>
 								<% @supplier = Supplier.find(d.supplier_id) %>
 								<td><%= "#{d.id}" %></td>
-								<td><%= "#{d.order_group.name}" %></td>
 								<td>
-									<strong><%= link_to "#{@supplier.name}", admin_edit_path(@supplier.name_for_link) %></strong>
+									<strong><%= "#{@supplier.name}" %></strong>
 								</td>
-								<% @checkboxes.each do |c| %>
-									<td class="center">
-										<%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s], class: "checkbox" %>
-									</td>
-								<% end %>
-								<% @textfields.each do |t| %>
-									<td>
-										<%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
-									</td>
-								<% end %>
-								<% @numberfields.each do |n| %>
-									<td>
-										<%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
-									</td>
-								<% end %>
+								<td><%= link_to "Initial email", dialogue_internal_email_path(d) %></td>
+								<td>
+									<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
+									<%= "\n#{@supplier.rfq_contact.email}" if @supplier.rfq_contact.email %>
+									<%= "\n#{@supplier.rfq_contact.phone}" if @supplier.rfq_contact.phone %>
+									<%= "\n#{@supplier.internally_hidden_preferences}" if @supplier.internally_hidden_preferences %>
+								</td>
 							</tr>
 						<% end %>
-				</table>
-
-				<table>
-					<% @dialogues.each do |d| %>
-						<tr>
-							<% @supplier = Supplier.find(d.supplier_id) %>
-							<td><%= "#{d.id}" %></td>
-							<td>
-								<strong><%= "#{@supplier.name}" %></strong>
-							</td>
-							<td><%= link_to "Initial email", dialogue_internal_email_path(d) %></td>
-							<td>
-								<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
-								<%= "\n#{@supplier.rfq_contact.email}" if @supplier.rfq_contact.email %>
-								<%= "\n#{@supplier.rfq_contact.phone}" if @supplier.rfq_contact.phone %>
-								<%= "\n#{@supplier.internally_hidden_preferences}" if @supplier.internally_hidden_preferences %>
-							</td>
-						</tr>
-					<% end %>
-				</table>
+					</table>
+				<% end %>
 
 				<p>Order status</p>
 				<% Order.order_status_hash.keys.each do |message| %>
