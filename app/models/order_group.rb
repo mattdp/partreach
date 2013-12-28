@@ -18,4 +18,15 @@ class OrderGroup < ActiveRecord::Base
 
   validates :name, presence: true
 
+  def self.switch_group_of_parts(to_group_id,part_array)
+  	part_array.each do |part|
+  		part.order_group_id = to_group_id
+  		if part.save
+  			puts "Part #{part.id} switched to group #{to_group_id}"
+  		else
+  			puts "Error switching part #{part.id}"
+  		end
+  	end
+	end
+
 end
