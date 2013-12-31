@@ -46,7 +46,7 @@
 							<li>
 								<%= "Quantity #{part.quantity} of '#{part.name}' (Units: #{external.units}" %>
 								<%= link_to "Link to file", external.url %>
-								<%= ") [Part ID: #{part.id}]" %>
+								<%= ") [Part ID: #{part.id}, BOM ID: #{part.bom_identifier}]" %>
 							</li>
 						<% end %>
 					</ul>
