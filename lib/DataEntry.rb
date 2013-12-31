@@ -53,6 +53,46 @@ module DataEntry
 		return answer
 	end
 
+	def add_complex_order(location,order_id)
+
+		order = Order.find(order_id)
+		if order.nil?
+			puts "Order not found. Exiting."
+			return false
+		end
+
+		cols = {
+			part_bom_identifier: 0,
+			order_group_name: 1,
+			part_name: 2,
+			part_quantity: 3,
+			drawing_link: 4,
+			drawing_units: 5
+		}
+
+		counter = 1
+		CSV.new(open(location)).each do |row|
+			if counter > 1
+				row_output = "Row #{row}"
+				
+				order_group = order.order_groups.select{|og| og.name == row[cols[:order_group_name]]}
+				if order_group.nil?
+					order_group = OrderGroup.create({name: row[cols[:order_group_name]], order_id: order.id})
+					row_output += ". New OG created: '#{row[cols[:order_group_name]]}'"
+				else
+					row_output += ". OG exists."
+				end
+
+				#pickup here with part-related edits
+
+				#external-related edits
+			end
+			counter += 1
+		end
+		puts "Adding of complex order attempted"
+		return true
+	end
+
 	TAG_NAME = 0
 	TAG_FAMILY = 1
 	TAG_READABLE = 2
