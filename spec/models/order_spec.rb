@@ -3,11 +3,9 @@
 # Table name: orders
 #
 #  id                     :integer          not null, primary key
-#  quantity               :integer
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  user_id                :integer
-#  drawing_file_name      :string(255)
 #  drawing_content_type   :string(255)
 #  drawing_file_size      :integer
 #  drawing_updated_at     :datetime
@@ -18,7 +16,6 @@
 #  material_message       :text
 #  next_steps             :text
 #  suggested_suppliers    :text
-#  drawing_units          :string(255)
 #  status                 :string(255)      default("Needs work")
 #  next_action_date       :string(255)
 #  stated_experience      :string(255)
