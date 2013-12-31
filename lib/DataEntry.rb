@@ -78,18 +78,58 @@ module DataEntry
 				order_group = order.order_groups.select{|og| og.name == row[cols[:order_group_name]]}
 				if order_group.nil?
 					order_group = OrderGroup.create({name: row[cols[:order_group_name]], order_id: order.id})
-					row_output += ". New OG created: '#{row[cols[:order_group_name]]}'"
+					if order_group
+						row_output += ". New OG created: '#{order_group.name}'"
+					else
+						row_output += ". FAILED to create order group. Aborting row."
+						next
+					end
 				else
-					row_output += ". OG exists."
+					row_output += ". OG exists"
 				end
 
-				#pickup here with part-related edits
+				parts = order_group.parts
+				part = parts.select{|part| part.name == row[cols[:part_name]]}
+				if part.nil?
+					part = Part.create({name: row[cols[:part_name]],
+															quantity: row[cols[:part_quantity]],
+															bom_identifier: row[cols[:part_bom_identifier]],
+															order_group_id: order_group.id
+														})
+					if part
+						row_output += ". New Part created: '#{part.name}'"
+					else
+						row_output += ". FAILED to create part. Aborting row."
+						next
+					end
+				else
+					row_output += ". Part exists. Skipping part creation"
+				end
 
-				#external-related edits
+				external = part.external
+				if external.nil?
+					external = External.create({url: row[cols[:drawing_link]],
+																			units: row[cols[:drawing_units]],
+																			consumer_id: part.id,
+																			consumer_type: "Part"
+																		})
+					if external
+						row_output += ". New External created: '#{external.drawing_link}'"
+					else
+						row_output += ". FAILED to create external. Aborting row."
+						next
+					end
+				else
+					row_output += ". External exists. Skipping external creation."
+				end
+
+				success_counter += 1
+
+				puts row_output
 			end
 			counter += 1
 		end
-		puts "Adding of complex order attempted"
+		puts "Adding of complex order attempted. #{success_counter} of #{counter-1} rows OK."
 		return true
 	end
 
