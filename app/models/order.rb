@@ -162,17 +162,20 @@ def add_complex_order(location)
     }
 
     counter = 1
+    success_counter = 0
+
     CSV.new(open(location)).each do |row|
       if counter > 1
         row_output = "Row #{row}"
         
-        order_group = order.order_groups.select{|og| og.name == row[cols[:order_group_name]]}
+        order_group = order.order_groups.select{|og| og.name == row[cols[:order_group_name]]}[0]
         if order_group.nil?
           order_group = OrderGroup.create({name: row[cols[:order_group_name]], order_id: order.id})
           if order_group
             row_output += ". New OG created: '#{order_group.name}'"
           else
             row_output += ". FAILED to create order group. Aborting row."
+            puts row_output
             next
           end
         else
@@ -180,7 +183,7 @@ def add_complex_order(location)
         end
 
         parts = order_group.parts
-        part = parts.select{|part| part.name == row[cols[:part_name]]}
+        part = parts.select{|part| part.name == row[cols[:part_name]]}[0]
         if part.nil?
           part = Part.create({name: row[cols[:part_name]],
                               quantity: row[cols[:part_quantity]],
@@ -191,6 +194,7 @@ def add_complex_order(location)
             row_output += ". New Part created: '#{part.name}'"
           else
             row_output += ". FAILED to create part. Aborting row."
+            puts row_output
             next
           end
         else
@@ -205,9 +209,10 @@ def add_complex_order(location)
                                       consumer_type: "Part"
                                     })
           if external
-            row_output += ". New External created: '#{external.drawing_link}'"
+            row_output += ". New External created: '#{external.url}'"
           else
             row_output += ". FAILED to create external. Aborting row."
+            puts row_output
             next
           end
         else
@@ -220,7 +225,8 @@ def add_complex_order(location)
       end
       counter += 1
     end
-    puts "Adding of complex order attempted. #{success_counter} of #{counter-1} rows OK."
+    #counter -1 for index start 1 and -1 for title row.
+    puts "Adding of complex order attempted. #{success_counter} of #{counter-2} rows OK."
     return true
   end
 
