@@ -169,56 +169,29 @@ def add_complex_order(location)
         row_output = "Row #{row}"
         
         order_group = order.order_groups.select{|og| og.name == row[cols[:order_group_name]]}[0]
-        if order_group.nil?
-          order_group = OrderGroup.create({name: row[cols[:order_group_name]], order_id: order.id})
-          if order_group
-            row_output += ". New OG created: '#{order_group.name}'"
-          else
-            row_output += ". FAILED to create order group. Aborting row."
-            puts row_output
-            next
-          end
-        else
-          row_output += ". OG exists"
-        end
+        next unless order_group = add_complex_order_helper("OrderGroup",order_group,\
+          "OrderGroup.create({name: #{row[cols[:order_group_name]]}, 
+                              order_id: #{order.id}
+                            })")
 
         parts = order_group.parts
         part = parts.select{|part| part.name == row[cols[:part_name]]}[0]
-        if part.nil?
-          part = Part.create({name: row[cols[:part_name]],
-                              quantity: row[cols[:part_quantity]],
-                              bom_identifier: row[cols[:part_bom_identifier]],
-                              order_group_id: order_group.id
-                            })
-          if part
-            row_output += ". New Part created: '#{part.name}'"
-          else
-            row_output += ". FAILED to create part. Aborting row."
-            puts row_output
-            next
-          end
-        else
-          row_output += ". Part exists. Skipping part creation"
-        end
+        next unless part = add_complex_order_helper("Part",part,\
+          "Part.create({name: #{row[cols[:part_name]]},
+                        quantity: #{row[cols[:part_quantity]]},
+                        bom_identifier: #{row[cols[:part_bom_identifier]]},
+                        order_group_id: #{order_group.id}
+                      })")
 
         external = part.external
-        if external.nil?
-          external = External.create({url: row[cols[:drawing_link]],
-                                      units: row[cols[:drawing_units]],
-                                      consumer_id: part.id,
-                                      consumer_type: "Part"
-                                    })
-          if external
-            row_output += ". New External created: '#{external.url}'"
-          else
-            row_output += ". FAILED to create external. Aborting row."
-            puts row_output
-            next
-          end
-        else
-          row_output += ". External exists. Skipping external creation."
-        end
-
+        next unless external = add_complex_order_helper("External",external,\
+          "External.create({url: #{row[cols[:drawing_link]]},
+                            units: #{row[cols[:drawing_units]]},
+                            consumer_id: #{part.id},
+                            consumer_type: 'Part'
+                          })"
+          )
+        
         success_counter += 1
 
         puts row_output
@@ -228,6 +201,23 @@ def add_complex_order(location)
     #counter -1 for index start 1 and -1 for title row.
     puts "Adding of complex order attempted. #{success_counter} of #{counter-2} rows OK."
     return true
+  end
+
+  #pass in what should be variable if it exists already
+  #return variable or nil (if should go to next)
+  def add_complex_order_helper(model_name,variable,create_code)
+    if variable.nil?
+      variable = create_code
+      if variable
+        print ". New #{model_name} created: '#{variable.id}'"
+      else
+        print "FAILED to create #{model_name}. Aborting row."
+        return false
+      end
+    else
+      print "#{model_name} exists"
+    end
+    return variable
   end
 
 end
