@@ -9,7 +9,7 @@ class LeadsController < ApplicationController
 
 		next_step = params[:next_step_field]
 
-		flash[:success] = "Thanks! We'll keep you posted."
+		flash[:notice] = "Thanks! We'll keep you posted."
 		redirect_to next_step
 	end
 
