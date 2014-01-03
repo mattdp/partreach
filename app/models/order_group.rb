@@ -29,4 +29,42 @@ class OrderGroup < ActiveRecord::Base
   	end
 	end
 
+  def visible_dialogues
+    visibles = []
+    self.dialogues.map{|d| visibles << d if d.opener_sent}
+    return visibles
+  end
+
+  def sort_visible_dialogues
+    # should be: 
+    # recommended, in nonzero low to high
+    # completed, in nonzero low to high
+    # declined, alphabetical
+    # pending, alphabetical
+    answer = []
+
+    recommended = []
+    completed = []
+    declined = []
+    pending = []
+
+    self.visible_dialogues.each do |d|
+      if d.recommended
+        recommended << d 
+      elsif d.bid?
+        completed << d
+      elsif d.declined?
+        declined << d
+      else
+        pending << d
+      end
+    end
+
+    [recommended, completed, declined, pending].each do |piece|
+      answer.concat piece.sort_by! { |m| Supplier.find(m.supplier_id).name.downcase }
+    end
+
+    return answer
+  end    
+
 end

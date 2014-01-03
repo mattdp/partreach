@@ -6,8 +6,6 @@
 
 			<%= form_tag :action => 'create', :controller => 'dialogues' do %>
 
-				<h3>Warning: this will not work correctly for multiple-group orders, which are under active development. Ask Matt what to do.</h3>
-
 				<div>
 					<%= text_field_tag 'order_id_field', params[:id], placeholder: "Order #" %>
 				</div>
@@ -25,6 +23,14 @@
 					<%= label_tag "form_use", "Remove tags (doesn't work on country/state)", :class => "fleft" %>
 					<%= radio_button_tag "form_use", "refresh_cache", false, :class => "fleft radio margin-left", :id => "refresh-cache-radio" %>	
 					<%= label_tag "form_use", "Refresh cache for this page", :class => "fleft" %>					
+				<div class="clear">
+					<p>Choose which order_group your instruction applies to:</p>
+					<% first = true %>
+					<% @order.order_groups.each do |order_group| %>
+						<%= radio_button_tag "order_group_use", "#{order_group.id}", first, :class => "fleft radio" %>
+						<%= label_tag "order_group_use", "#{order_group.name}", :class => "fleft" %>
+						<% first = false %>
+					<% end %>
 				</div>
 
 				<div class="clear">

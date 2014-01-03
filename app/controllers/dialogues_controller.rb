@@ -9,6 +9,7 @@ class DialoguesController < ApplicationController
 		@family_names_and_tags = Tag.family_names_and_tags
 		@countries = Geography.all_countries.map{|geo| geo.short_name}
 		@us_states = Geography.all_us_states.map{|geo| geo.short_name}
+		params[:id].present? ? @order = Order.find(params[:id]) : @order = nil
 	end
 
 	def create
@@ -19,7 +20,7 @@ class DialoguesController < ApplicationController
 		if params[:form_use] == "add_dialogues"
 
 			@order = Order.find(params[:order_id_field])
-			@order_group = OrderGroup.find_by_order_id(@order.id)
+			@order_group = OrderGroup.find(params[:order_group_use])
 
 			@supplier_ids.each do |s|
 				@dialogue = Dialogue.new

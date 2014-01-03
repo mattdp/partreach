@@ -22,7 +22,6 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_groups = @order.order_groups
     @user = User.find(@order.user_id)
-    @sorted_dialogues = sort_dialogues(@order.visible_dialogues)
     @total_quantity = @order.total_quantity
     track("order","viewed",@order.id)
     if @order.columns_shown
@@ -162,7 +161,6 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_groups = @order.order_groups 
     @user = User.find(@order.user_id)
-    @dialogues = sort_dialogues(@order.dialogues)
     @total_quantity = @order.total_quantity
         
     @checkboxes = setup_checkboxes
@@ -177,7 +175,7 @@ class OrdersController < ApplicationController
 
   def update_dialogues
     @order = Order.find(params[:id])
-    @dialogues = sort_dialogues(@order.dialogues)
+    @dialogues = @order.dialogues
     @checkboxes = setup_checkboxes
     @textfields = setup_textfields
     @numberfields = setup_numberfields
@@ -288,38 +286,6 @@ class OrdersController < ApplicationController
 
     def setup_numberfields
       numberfields = [:order_id, :supplier_id, :process_cost, :shipping_cost, :total_cost]
-    end
-
-    def sort_dialogues(all_dialogues)
-      # should be: 
-      # recommended, in nonzero low to high
-      # completed, in nonzero low to high
-      # declined, alphabetical
-      # pending, alphabetical
-      answer = []
-
-      recommended = []
-      completed = []
-      declined = []
-      pending = []
-
-      all_dialogues.each do |d|
-        if d.recommended
-          recommended << d 
-        elsif d.bid?
-          completed << d
-        elsif d.declined?
-          declined << d
-        else
-          pending << d
-        end
-      end
-
-      [recommended, completed, declined, pending].each do |piece|
-        answer.concat piece.sort_by! { |m| Supplier.find(m.supplier_id).name.downcase }
-      end
-
-      return answer
     end
 
   #private doesn't 'end'
