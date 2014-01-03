@@ -60,8 +60,8 @@ class OrderColumn
     hash = {}
     hash[:all] = OrderColumn.all.keys
     hash[:speed] = [:bid_status,:total_cost,:notes]
-    hash[:cost] = [:bid_status,:process_time,:process_cost,:shipping_cost,:total_cost,:notes]
-    hash[:quality] = [:bid_status,:process,:process_time,:notes]
+    hash[:cost] = [:bid_status,:total_cost,:process_time,:process_cost,:shipping_cost,:notes]
+    hash[:quality] = [:bid_status,:total_cost,:process,:process_time,:notes]
     return hash
   end
 
