@@ -166,39 +166,39 @@ def add_complex_order(location)
 
     CSV.new(open(location)).each do |row|
       if counter > 1
+
+        order = Order.find(self.id) #need to renew each time since order.order_groups doesn't otherwise update
+
         row_output = "Row #{row}"
         
-        order_group = order.order_groups.select{|og| og.name == row[cols[:order_group_name]]}[0]
+        order_group = order.order_groups.detect{|og| og.name == row[cols[:order_group_name]]}
+        binding.pry
         next unless order_group = add_complex_order_helper("OrderGroup",order_group,\
-          "OrderGroup.create({name: #{row[cols[:order_group_name]]}, 
-                              order_id: #{order.id}
-                            })")
+          "OrderGroup.create({name: '#{row[cols[:order_group_name]]}',\
+                              order_id: '#{order.id}'}\
+                            )")
 
         parts = order_group.parts
-        part = parts.select{|part| part.name == row[cols[:part_name]]}[0]
+        part = parts.detect{|part| part.name == row[cols[:part_name]]}
         next unless part = add_complex_order_helper("Part",part,\
-          "Part.create({name: #{row[cols[:part_name]]},
-                        quantity: #{row[cols[:part_quantity]]},
-                        bom_identifier: #{row[cols[:part_bom_identifier]]},
-                        order_group_id: #{order_group.id}
+          "Part.create({name: '#{row[cols[:part_name]]}',\
+                        quantity: '#{row[cols[:part_quantity]]}',\
+                        bom_identifier: '#{row[cols[:part_bom_identifier]]}',\
+                        order_group_id: '#{order_group.id}'\
                       })")
 
         external = part.external
         next unless external = add_complex_order_helper("External",external,\
-          "External.create({url: #{row[cols[:drawing_link]]},
-                            units: #{row[cols[:drawing_units]]},
-                            consumer_id: #{part.id},
-                            consumer_type: 'Part'
-                          })"
-          )
-        
+          "External.create({url: '#{row[cols[:drawing_link]]}',\
+                            units: '#{row[cols[:drawing_units]]}',\
+                            consumer_id: '#{part.id}',\
+                            consumer_type: 'Part'\
+                          })")
         success_counter += 1
-
-        puts row_output
       end
       counter += 1
     end
-    #counter -1 for index start 1 and -1 for title row.
+    #counter-2: -1 for index start 1 and -1 for title row.
     puts "Adding of complex order attempted. #{success_counter} of #{counter-2} rows OK."
     return true
   end
@@ -207,7 +207,7 @@ def add_complex_order(location)
   #return variable or nil (if should go to next)
   def add_complex_order_helper(model_name,variable,create_code)
     if variable.nil?
-      variable = create_code
+      variable = eval(create_code)
       if variable
         print ". New #{model_name} created: '#{variable.id}'"
       else
