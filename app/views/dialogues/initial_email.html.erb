@@ -8,7 +8,7 @@
 
   		<p>-----BEGIN COPYABLE TEXT-----</p>
 
-  		<p>SUBJECT: <%= "SupplyBetter RFQ ##{@order.id} for #{Supplier.find(@dialogue.supplier_id).name}" %></p>
+  		<p>SUBJECT: <%= "SupplyBetter RFQ ##{@order.id}1 for #{Supplier.find(@dialogue.supplier_id).name}" %></p>
 
   		<p>Hi,</p>
 
@@ -22,21 +22,27 @@
 
 			<h2>Project Details</h2>
 
-			<p><strong>Part Files</strong>: [HERE IS THE LINK, NOT IMPLEMENTED] to the STL files for all parts that can be 3D printed. </p>
+			<p><strong><%= "#{@dialogue.order_group.name}" %></strong></p>	
+			<ul>
+				<% @dialogue.order_group.parts.each do |part| %>
+					<li>
+						<%= "#{part.name}, quantity #{part.quantity}" %>
+						<%= " (Link: NEED THIS, drawing units: #{part.external.units})" if part.external %>
+					</li>
+				<% end %>
+			</ul>
 
-			<p><strong>Process Requested</strong>: [SOMETHING ROB SELECTS/INPUTS, NOT IMPLEMENTED]</p>
+			<p><strong>Process Requested:</strong> <%= "#{@dialogue.order_group.process}" %></p>
 
 			<p><strong>Infill:</strong> [SOMETHING ROB SELECTS/INPUTS, NOT IMPLEMENTED]</p>
 
-			<p><strong>Drawing units</strong>: <%= "#{@order.drawing_units}" %></p>
+			<p><strong>Material:</strong> <%= "#{@order.material_message}" %></p>
 
-			<p><strong>Material</strong>: <%= "#{@order.material_message}" %></p>
+			<p><strong>Shipping Zipcode:</strong> [ZIPCODE, NOT IMPLEMENTED]</p>
 
-			<p><strong>Quantity</strong>: <%= "#{@order.total_quantity}" %></p>
-
-			<p><strong>Shipping Zipcode</strong>: [ZIPCODE, NOT IMPLEMENTED]</p>
-
-			<p><strong>Note from Client</strong>: <%= "#{@order.supplier_message}" %></p>
+			<% if @order.supplier_message.present? %>
+				<p><strong>Note from Client:</strong> <%= "#{@order.supplier_message}" %></p>
+			<% end %>
 
 			<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>
 
