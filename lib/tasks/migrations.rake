@@ -1,6 +1,25 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'Migrate lead emails to contacts'
+task :leads_to_contacts => :environment do 
+	Lead.find_each do |lead|
+
+		lead.source = "manual"
+
+		contact = LeadContact.create({email: lead.email,
+																	contactable_id: lead.id,
+																	contactable_type: "Lead"})
+
+		if lead.save and contact
+			puts "Lead #{lead.id} migrated"
+		else
+			puts "FAILURE on lead #{lead.id}"
+		end
+
+	end
+end
+
 desc 'Migrate order information to parts and externals. Doesn\'t assume part or external exists. Assumes one order group/order'
 task :order_to_parts => :environment do 
 	OrderGroup.find_each do |order_group|
