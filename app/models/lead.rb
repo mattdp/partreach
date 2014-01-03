@@ -20,8 +20,4 @@ class Lead < ActiveRecord::Base
 
 	has_one :lead_contact, :as => :contactable, :dependent => :destroy
 
-	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
-  validates :email, presence: true, length: {minimum: 2}, \
-  					format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
 end
