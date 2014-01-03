@@ -24,7 +24,7 @@
 
 			<p><strong><%= "#{@dialogue.order_group.name}" %></strong></p>	
 			<ul>
-				<% @dialogue.order_group.parts.each do |part| %>
+				<% @order_group.parts.each do |part| %>
 					<li>
 						<%= "#{part.name}, quantity #{part.quantity}" %>
 						<%= " (Link: NEED THIS, drawing units: #{part.external.units})" if part.external %>
@@ -32,7 +32,11 @@
 				<% end %>
 			</ul>
 
-			<p><strong>Process Requested:</strong> <%= "#{@dialogue.order_group.process}" %></p>
+			<% if @order.deadline.present? %>
+				<p><strong>Deadline:</strong><%= "#{@order.deadline}" %></p>
+			<% end %>
+
+			<p><strong>Process Requested:</strong> <%= "#{@order_group.process}" %></p>
 
 			<p><strong>Infill:</strong> [SOMETHING ROB SELECTS/INPUTS, NOT IMPLEMENTED]</p>
 
