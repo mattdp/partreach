@@ -45,7 +45,7 @@ class Order < ActiveRecord::Base
   def total_quantity
     tq = 0
     if parts = self.parts
-      tq = parts.inject(0) {|sum,part| part.quantity}
+      tq = parts.inject(0) {|sum,part| sum + part.quantity}
     end
     return tq
   end
