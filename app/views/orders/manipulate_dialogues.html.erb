@@ -37,7 +37,10 @@
 
 				<% @order_groups.each do |order_group| %>
 
-					<h3 class="bit-of-space"><%= "Group: '#{order_group.name}' Process: '#{order_group.process}'" %></h3>
+					<h3 class="bit-of-space">
+						<%= "Group: '#{order_group.name}' " %>
+						<%#= "Process: '#{order_group.process}'" %>
+					</h3>
 					<p>Movement between groups & addition of groups is currently console-only.</p>
 					<p><strong>Parts:</strong></p>
 					<ul>
