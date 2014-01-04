@@ -18,5 +18,6 @@
 class Lead < ActiveRecord::Base
 
 	has_one :lead_contact, :as => :contactable, :dependent => :destroy
+  has_many :communications, as: :communicator, :dependent => :destroy
 
 end

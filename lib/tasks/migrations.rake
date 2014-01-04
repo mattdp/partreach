@@ -1,6 +1,15 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'Migrate communications to polymorphic; all are currently for suppliers'
+task :communications_to_poly => :environment do
+	Communication.find_each do |comm|
+		comm.communicator_id = comm.supplier_id
+		comm.communicator_type = "Supplier"
+		comm.save
+	end
+end
+
 desc 'Migrate lead emails to contacts'
 task :leads_to_contacts => :environment do 
 	Lead.find_each do |lead|

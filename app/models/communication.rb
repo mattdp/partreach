@@ -14,6 +14,7 @@
 
 class Communication < ActiveRecord::Base
 
+	belongs_to :communicator, polymorphic: true
 	belongs_to :supplier
 	belongs_to :user
 
