@@ -20,6 +20,7 @@ class LeadsController < ApplicationController
 
 	def edit
 		@lead = Lead.find(params[:id])
+		@communications = Communication.where("communicator_id = ? AND communicator_type = 'Lead'",@lead.id).reverse
 	end
 
 	def update
