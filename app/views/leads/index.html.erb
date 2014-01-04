@@ -17,7 +17,7 @@
 						<td><%= "#{lead.full_name}" %></td>
 						<td><%= "#{lead.next_contact_date}" %></td>
 						<td><%= "#{lead.next_contact_content}" %></td>
-						<td><%= link_to "View/edit", "#" %></td>
+						<td><%= link_to "View/edit", edit_lead_path(lead) %></td>
 					</tr>
 				<% end %>
 			</table>

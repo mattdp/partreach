@@ -19,6 +19,7 @@ class LeadsController < ApplicationController
 	end
 
 	def edit
+		@lead = Lead.find(params[:id])
 	end
 
 	def update
