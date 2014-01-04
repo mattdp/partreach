@@ -10,6 +10,8 @@
 #  created_at           :datetime
 #  updated_at           :datetime
 #  user_id              :integer
+#  communicator_id      :integer
+#  communicator_type    :string(255)
 #
 
 class Communication < ActiveRecord::Base
