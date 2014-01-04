@@ -7,7 +7,7 @@ Partreach::Application.routes.draw do
   resources :dialogues, only: [:new, :create]
   resources :users, only: [:edit, :update, :show] # no index, no destroy 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :leads, only: [:create]
+  resources :leads, only: [:create, :edit, :index, :update]
   resources :reviews, only: [:new, :create]
   resources :password_resets
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
