@@ -30,7 +30,7 @@ class Dialogue < ActiveRecord::Base
 
   belongs_to :order_group
   has_one :order, through: :order_group
-  has_one :supplier
+  belongs_to :supplier
   has_one :user, :through => :order
 
   validates :supplier_id, :presence => true
