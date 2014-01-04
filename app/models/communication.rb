@@ -6,7 +6,6 @@
 #  means_of_interaction :string(255)
 #  interaction_title    :string(255)
 #  notes                :text
-#  supplier_id          :integer
 #  created_at           :datetime
 #  updated_at           :datetime
 #  user_id              :integer
