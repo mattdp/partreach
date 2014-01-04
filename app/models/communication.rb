@@ -19,7 +19,8 @@ class Communication < ActiveRecord::Base
 	belongs_to :supplier
 	belongs_to :user
 
-	validates :supplier_id, presence: true
+	validates :communicator_id, presence: true
+	validates :communicator_type, presence: true
 	validates :means_of_interaction, presence: true
 
 end

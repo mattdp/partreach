@@ -7,7 +7,6 @@ class CommunicationsController < ApplicationController
 
 	def create
 		@communication = Communication.new(communication_params)
-		@supplier = Supplier.find(params[:supplier_id])
 
 		saved_ok = @communication.save
 		if saved_ok
@@ -16,13 +15,17 @@ class CommunicationsController < ApplicationController
 			note = "Communication saving problem."
 		end
 
-		redirect_to admin_edit_path(@supplier.name_for_link), notice: note
+		if @communication.communicator_type == "Supplier"
+			redirect_to admin_edit_path(Supplier.find(@communication.communicator_id).name_for_link), notice: note
+		else
+			redirect_to root, notice: "Error in redirection code. Investigate."
+		end
 	end
 
 	private
 
 		def communication_params
-			params.permit(:means_of_interaction, :interaction_title, :notes, :supplier_id, :user_id)
+			params.permit(:communicator_id, :communicator_type, :means_of_interaction, :interaction_title, :notes, :user_id)
 		end
 
 end
