@@ -4,10 +4,10 @@ include RakeHelper
 desc 'crawl a set of suppliers in the background'
 task :crawler_dispatcher => :environment do
 	states = Geography.all_us_states
+	scale_workers(1)
 	states.each do |state|
 		short_name = state.short_name
 		next if (short_name == "NY" or short_name == "NH" or short_name == "CA")
-		scale_workers(1)
 
 		geo_id = state.id
 		tag_id = Tag.find_by_name("3d_printing").id
