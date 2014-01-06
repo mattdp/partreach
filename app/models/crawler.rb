@@ -94,10 +94,12 @@ class Crawler
 			# 		model.send("#{attribute}=",value) unless model.send(attribute).present?
 			# 	end
 			# end
-			if (supplier.save and address.save and contact.save) 
-				$stdout.puts "All saves OK"
+			if (save_s = supplier.save and save_a = address.save and save_c = contact.save) 
+				$stdout.print "All saves OK: "
 			else
-				$stdout.puts "At least one saving error"
+				{save_s => "Supplier",save_a => "Address",save_c => "Contact"}.each do |value,model|
+					$stdout.print "Error saving #{model}" unless value
+				end
 			end
 			$stdout.puts "#{supplier.name} processed."
 		end
