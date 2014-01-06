@@ -10,20 +10,12 @@
 #  source               :string(255)      default("manual")
 #  next_contact_date    :date
 #  next_contact_content :string(255)
-#  company              :string(255)
-#  title                :string(255)
 #  notes                :text
-#  first_name           :string(255)
-#  last_name            :string(255)
 #
 
 class Lead < ActiveRecord::Base
 
 	has_one :lead_contact, :as => :contactable, :dependent => :destroy
   has_many :communications, as: :communicator, :dependent => :destroy
-
-  def full_name
-  	return "#{self.first_name} #{self.last_name}"
-  end
 
 end

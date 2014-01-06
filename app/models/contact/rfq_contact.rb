@@ -13,6 +13,10 @@
 #  contactable_type :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  first_name       :string(255)
+#  last_name        :string(255)
+#  title            :string(255)
+#  company          :string(255)
 #
 
 class RfqContact < Contact

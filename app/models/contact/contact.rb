@@ -13,6 +13,10 @@
 #  contactable_type :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  first_name       :string(255)
+#  last_name        :string(255)
+#  title            :string(255)
+#  company          :string(255)
 #
 
 class Contact < ActiveRecord::Base
@@ -39,5 +43,9 @@ class Contact < ActiveRecord::Base
 	    end
     end
 	end
+
+  def full_name
+  	return "#{self.first_name} #{self.last_name}"
+  end	
 
 end
