@@ -76,7 +76,6 @@ class Crawler
 		$stdout.puts(crawl_runner_output)
 		$stdout.puts("---END CRAWLER RAW OUTPUT---")
 
-		address_attributes = [:zip, :state]
 		crawl_runner_output.each do |supplier_id, attributes|
 			supplier = Supplier.find(supplier_id)
 			contact = supplier.rfq_contact
@@ -85,7 +84,7 @@ class Crawler
 			contact.email = attributes[:email] if attributes[:email].present?
 			contact.phone = attributes[:phone] if attributes[:phone].present?
 			address.zip = attributes[:zip] if attributes[:zip].present?
-			address.state_id = Geography.locate(attributes[:state],:short_name,"state") if attributes[:state].present? 
+			address.state_id = Geography.locate(attributes[:state],:short_name,"state").id if attributes[:state].present? 
 
 			# #needs fixing for geo before this will operate correctly, since state is messed up
 			# attributes.each do |attribute, value|
