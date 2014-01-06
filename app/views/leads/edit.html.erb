@@ -1,4 +1,4 @@
-<% provide(:title, "Lead edit: #{@lead.full_name}") %>
+<% provide(:title, "Lead edit: #{@lead.lead_contact.full_name}") %>
 
 <div class="container">
   <div class="row">
@@ -7,30 +7,32 @@
       <%= render :partial => "communications/new_communication", locals: {c_id: @lead.id, c_type: "Lead", user_id: current_user.id} %>
       <%= render :partial => "communications/display_communications", locals: {communications: @communications} %>
 
-  		<%= form_for @lead do |f| %>
+  		<%= form_tag lead_path(@lead.id), method: :patch do %>
 
-  		<% [:first_name,:last_name,:source,:company,:title,:next_contact_content].each do |text_field| %>
+        <% @text_field_setup.each do |model_name,symbols| %>
+          <% @model = instance_variable_get(model_name) %>
+          <% symbols.each do |symbol| %>
+      			<div class="field">
+    			    <%= label_tag symbol %>
+    			    <%= text_field_tag symbol, @model.send(symbol) %>
+    			  </div>
+    			 <% end %>
+        <% end %>
+
+    		<div class="field">
+  			  <%= label_tag :next_contact_date %>
+  			  <%= date_field_tag :next_contact_date, @lead.next_contact_date %>
+  			</div>
+
   			<div class="field">
-			    <%= f.label text_field %>
-			    <%= f.text_field text_field %>
+			    <%= label_tag :notes %>
+			    <%= text_area_tag :notes, @lead_contact.notes %>
 			  </div>
-			 <% end %>
 
-  		<div class="field">
-			  <%= f.label :next_contact_date %>
-			  <%= f.date_field :next_contact_date %>
-			</div>
+        <%= submit_tag "Save changes", class: "save-button" %>
 
-  		<% [:notes].each do |text_area| %>
-  			<div class="field">
-			    <%= f.label text_area %>
-			    <%= f.text_area text_area %>
-			  </div>
-			 <% end %>			 
+  		<% end %>			 
 
-  		<%= f.submit "Save changes", class: "save-button" %>
-
-  		<% end %>
   	</div>
   </div>
 </div>

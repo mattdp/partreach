@@ -20,12 +20,19 @@ class LeadsController < ApplicationController
 
 	def edit
 		@lead = Lead.find(params[:id])
+		@lead_contact = @lead.lead_contact
 		@communications = Communication.where("communicator_id = ? AND communicator_type = 'Lead'",@lead.id).reverse
+		@text_field_setup = {
+			"@lead" => [:source,:next_contact_content],
+			"@lead_contact" => [:name,:first_name,:last_name,:company,:title]
+		}
 	end
 
 	def update
 		@lead = Lead.find(params[:id])
 		@lead.update_attributes(lead_params)
+		@lead_contact = @lead.lead_contact
+		@lead_contact.update_attributes(lead_contact_params)
 
 		redirect_to edit_lead_path(@lead), notice: "Lead update attempted."
 	end
@@ -33,8 +40,11 @@ class LeadsController < ApplicationController
 	private
 
 		def lead_params
-			params.require(:lead).permit(	:first_name,:last_name,:source,:company,:title,:notes,\
-																		:next_contact_date, :next_contact_content)
+			params.permit(:source,:next_contact_date,:next_contact_content)
+		end
+
+		def lead_contact_params
+			params.permit(:first_name,:last_name,:name,:company,:title,:notes)
 		end
 
 end
