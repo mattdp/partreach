@@ -4,10 +4,13 @@ include RakeHelper
 desc 'crawl a set of suppliers in the background'
 task :crawler_dispatcher => :environment do
 	scale_workers(1)
-	
-	#this isn't workable anymore, filters are different
-	limits = Filter.get("US-MI-3d_printing").limits
-  suppliers = Supplier.quantity_by_tag_id("all",Tag.find_by_name(limits[:tag_name]).id,limits[:country],limits[:state])
+
+	#trying one state to diagnose potential problems
+	geo_id =	Geography.find_by_short_name("NH").id
+	tag_id = Tag.find_by_name("3d_printing").id
+
+	filter = Filter.where("has_tag_id = tag_id AND geography_id = geo_id") #assumed this is a state-level filter
+  suppliers = Supplier.quantity_by_tag_id("all",Tag.find(filter.has_tag_id),filter.geography.geography.short_name,filter.geography.short_name)
 	
 	Crawler.delay.crawl_master(suppliers) #shuts off the worker
 end
