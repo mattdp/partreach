@@ -9,8 +9,8 @@ task :crawler_dispatcher => :environment do
 	geo_id =	Geography.find_by_short_name("NH").id
 	tag_id = Tag.find_by_name("3d_printing").id
 
-	filter = Filter.where("has_tag_id = ? AND geography_id = ?",tag_id,geo_id) #assumed this is a state-level filter
-  suppliers = Supplier.quantity_by_tag_id("all",Tag.find(tag_id),filter.geography.geography.short_name,filter.geography.short_name)
+	filter = Filter.where("has_tag_id = ? AND geography_id = ?",tag_id,geo_id).first #assumed this is a state-level filter
+  suppliers = Supplier.quantity_by_tag_id("all",Tag.find(filter.has_tag_id),filter.geography.geography.short_name,filter.geography.short_name)
 	
 	Crawler.delay.crawl_master(suppliers) #shuts off the worker
 end
