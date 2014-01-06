@@ -71,19 +71,34 @@ class Crawler
 
 	#example output: {64810937=>{:phone=>"19623201665", :email=>nil, :zip=>"19624", :state=>nil}}
 	def self.crawl_saver(crawl_runner_output)
+
+		$stdout.puts("---CRAWLER RAW OUTPUT---")
+		$stdout.puts(crawl_runner_output)
+		$stdout.puts("---END CRAWLER RAW OUTPUT---")
+
 		address_attributes = [:zip, :state]
 		crawl_runner_output.each do |supplier_id, attributes|
 			supplier = Supplier.find(supplier_id)
+			contact = supplier.rfq_contact
 			address = supplier.address
-			#needs fixing for geo before this will operate correctly, since state is messed up
-			attributes.each do |attribute, value|
-				if value.present?
-					address_attributes.include?(attribute) ? model = address : model = supplier
-					model.send("#{attribute}=",value) unless model.send(attribute).present?
-				end
+
+			contact.email = attributes[:email] if attributes[:email].present?
+			contact.phone = attributes[:phone] if attributes[:phone].present?
+			address.zip = attributes[:zip] if attributes[:zip].present?
+			address.state_id = Geography.locate(attributes[:state],:short_name,"state") if attributes[:state].present? 
+
+			# #needs fixing for geo before this will operate correctly, since state is messed up
+			# attributes.each do |attribute, value|
+			# 	if value.present?
+			# 		address_attributes.include?(attribute) ? model = address : model = supplier
+			# 		model.send("#{attribute}=",value) unless model.send(attribute).present?
+			# 	end
+			# end
+			if (supplier.save and address.save and contact.save) 
+				$stdout.puts "All saves OK"
+			else
+				$stdout.puts "At least one saving error"
 			end
-			supplier.save
-			address.save
 			$stdout.puts "#{supplier.name} processed."
 		end
 	end
@@ -91,7 +106,7 @@ class Crawler
 	private 
 
 		def self.sleeper
-			sleep 5 + rand(3)
+			sleep (5 + rand(3))
 		end
 
 		def self.openable?(url,explored)
