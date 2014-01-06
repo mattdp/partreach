@@ -3,16 +3,20 @@ include RakeHelper
 
 desc 'crawl a set of suppliers in the background'
 task :crawler_dispatcher => :environment do
-	scale_workers(1)
+	states = Geography.all_us_states
+	states.each do |state|
+		short_name = state.short_name
+		next if (short_name == "NY" or short_name == "NH" or short_name == "CA")
+		scale_workers(1)
 
-	#trying one state to diagnose potential problems
-	geo_id =	Geography.find_by_short_name("NH").id
-	tag_id = Tag.find_by_name("3d_printing").id
+		geo_id = state.id
+		tag_id = Tag.find_by_name("3d_printing").id
 
-	filter = Filter.where("has_tag_id = ? AND geography_id = ?",tag_id,geo_id).first #assumed this is a state-level filter
-  suppliers = Supplier.quantity_by_tag_id("all",Tag.find(filter.has_tag_id),filter.geography.geography.short_name,filter.geography.short_name)
-	
-	Crawler.delay.crawl_master(suppliers) #shuts off the worker
+		filter = Filter.where("has_tag_id = ? AND geography_id = ?",tag_id,geo_id).first #assumed this is a state-level filter
+	  suppliers = Supplier.quantity_by_tag_id("all",Tag.find(filter.has_tag_id),filter.geography.geography.short_name,filter.geography.short_name)
+		
+		Crawler.delay.crawl_master(suppliers) #shuts off the worker
+	end
 end
 
 desc 'send daily update email'
