@@ -53,6 +53,25 @@ module DataEntry
 		return answer
 	end
 
+	STREAK_NAME = 0
+	STREAK_NOTES = 1
+	STREAK_EMAIL = 2
+
+	def streak_buyer_import(location)
+		counter = 0
+		CSV.new(open(location)).each do |row|
+			name = row[STREAK_NAME]
+			next if (!name.present? or name == "Name")
+			if Lead.create({name: name, notes: row[STREAK_NOTES], email: row[STREAK_EMAIL]})
+				puts "Lead for #{name} imported correctly."
+			else
+				puts "Error importing lead for #{name}"
+			end
+			counter += 1
+		end
+		return "Streak buyer upload attempted"
+	end
+
 	TAG_NAME = 0
 	TAG_FAMILY = 1
 	TAG_READABLE = 2
