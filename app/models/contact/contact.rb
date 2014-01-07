@@ -44,8 +44,12 @@ class Contact < ActiveRecord::Base
     end
 	end
 
-  def full_name
-  	return "#{self.first_name} #{self.last_name}"
+  def full_name_untrusted
+  	if (self.first_name.present? or self.last_name.present?)
+  		return "#{self.first_name} #{self.last_name}"
+  	else
+  		return "#{self.name}"
+  	end
   end	
 
 end

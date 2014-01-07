@@ -69,7 +69,7 @@ module DataEntry
 				puts "Error importing lead for #{name}"
 			end
 			counter += 1
-		end
+		ends
 		return "Streak buyer upload attempted"
 	end
 

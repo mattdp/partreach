@@ -27,7 +27,8 @@ class UserMailer < ActionMailer::Base
     }
     @incomplete_orders = Order.incomplete_orders
     @brand_name = brand_name
-    @to_bother = Supplier.next_contact_suppliers_sorted
+    @suppliers_to_bother = Supplier.next_contact_suppliers_sorted
+    @leads_to_bother = Lead.next_contact_leads_sorted
     @need_to_inform_suppliers_structure = Order.need_to_inform_suppliers_structure
     EMPLOYEES.each do |e|
       mail(to: e, subject: subject).deliver do |format|

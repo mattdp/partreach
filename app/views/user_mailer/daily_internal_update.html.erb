@@ -22,11 +22,23 @@
     </ul>
 <% end %>    
 
-<% if @to_bother %>
-    <h3>Suppliers we need to talk to</h3>
-    <p>There are <%= "#{@to_bother.count}" %> suppliers.</p>
+<% if @leads_to_bother %>
+    <h3>Leads we need to talk to</h3>
+    <p>There are <%= "#{@leads_to_bother.count}" %> leads.</p>
     <ul>
-        <% @to_bother.each do |supplier| %>
+        <% @leads_to_bother.each do |lead| %>
+            <li>
+                <%= link_to "#{lead.lead_contact.name} (#{lead.next_contact_date})", lead_url(lead.id) %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
+
+<% if @suppliers_to_bother %>
+    <h3>Suppliers we need to talk to</h3>
+    <p>There are <%= "#{@suppliers_to_bother.count}" %> suppliers.</p>
+    <ul>
+        <% @suppliers_to_bother.each do |supplier| %>
             <li>
                 <%= link_to "#{supplier.name} (#{supplier.next_contact_date})", admin_edit_url(supplier.name_for_link) %>
             </li>
