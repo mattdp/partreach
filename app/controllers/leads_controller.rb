@@ -24,7 +24,7 @@ class LeadsController < ApplicationController
 		@communications = Communication.where("communicator_id = ? AND communicator_type = 'Lead'",@lead.id).reverse
 		@text_field_setup = {
 			"@lead" => [:source,:next_contact_content],
-			"@lead_contact" => [:name,:first_name,:last_name,:company,:title]
+			"@lead_contact" => [:name,:first_name,:last_name,:company,:title,:linkedin_url]
 		}
 	end
 
@@ -44,7 +44,7 @@ class LeadsController < ApplicationController
 		end
 
 		def lead_contact_params
-			params.permit(:first_name,:last_name,:name,:company,:title,:notes)
+			params.permit(:first_name,:last_name,:name,:company,:title,:linkedin_url,:notes)
 		end
 
 end

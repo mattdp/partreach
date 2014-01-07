@@ -17,6 +17,7 @@
 #  last_name        :string(255)
 #  title            :string(255)
 #  company          :string(255)
+#  linkedin_url     :string(255)
 #
 
 class LeadContact < Contact
