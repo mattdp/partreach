@@ -6,7 +6,25 @@
 
 			<h3>Edit machine</h3>
 
-			<%= render partial: "machines/machine_form", locals: {form_action: "update", form_method: :put, machine: @machine, machines: @machines, manufacturer: @manufacturer} %>
+			<%= form_tag machine_path(@machine.id), method: :patch do %>
+
+				<div class="almost-one-half fleft">
+					<%= label_tag "manufacturer[name]", "Manufacturer" %>
+				 	<%= text_field_tag "manufacturer[name]", @manufacturer.name %>
+			 	</div>
+				<div class="almost-one-half fleft"	>
+					<%= label_tag "machine[name]", "Machine" %>
+				 	<%= text_field_tag "machine[name]", @machine.name %>
+			 	</div>
+				<div class="clear">
+					<%= submit_tag "Update" %>
+				</div>
+
+			<% end %>
+
+			<h3>All existing machines</h3>
+
+			<%= render :partial => 'analytics/machines_table', locals: {machines: @machines} %>
 
 		</div>
 	</div>
