@@ -7,22 +7,26 @@
   			<tr>
 	  			<th>ID #</th>
 					<th>Name</th>
-					<th>Email</th>
-					<th>Phone</th>
+					<th>Company</th>
 					<th>Next Date</th>
 					<th>Next Content</th>
 					<th>Edit</th>
+					<th>Email?</th>
+					<th>Phone?</th>	
+					<th>LinkedIn?</th>				
 				</tr>
   			<% @leads.each do |lead| %>
   				<% lc = lead.lead_contact %>
   				<tr>
 						<td><%= "#{lead.id}" %></td>
 						<td><%= "#{lc.full_name_untrusted}" %></td>
-						<td><%= "#{lc.email}" %></td>
-						<td><%= "#{lc.phone}" %></td>
+						<td><%= "#{lc.company}" %></td>
 						<td><%= "#{lead.next_contact_date}" %></td>
 						<td><%= "#{lead.next_contact_content}" %></td>
 						<td><%= link_to "View/edit", edit_lead_path(lead) %></td>
+						<td><%= "#{lc.email.present?}" %></td>
+						<td><%= "#{lc.phone.present?}" %></td>
+						<td><%= "#{lc.linkedin_url.present?}" %></td>
 					</tr>
 				<% end %>
 			</table>
