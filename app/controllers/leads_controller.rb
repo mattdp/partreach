@@ -23,8 +23,8 @@ class LeadsController < ApplicationController
 		@lead_contact = @lead.lead_contact
 		@communications = Communication.where("communicator_id = ? AND communicator_type = 'Lead'",@lead.id).reverse
 		@text_field_setup = {
-			"@lead" => [:source,:next_contact_content],
-			"@lead_contact" => [:name,:first_name,:last_name,:company,:title,:linkedin_url]
+			"@lead_contact" => [:phone,:email,:name,:first_name,:last_name,:company,:title,:linkedin_url],
+			"@lead" => [:source,:next_contact_content]
 		}
 	end
 
