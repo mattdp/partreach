@@ -62,7 +62,8 @@ module DataEntry
 		CSV.new(open(location)).each do |row|
 			name = row[STREAK_NAME]
 			next if (!name.present? or name == "Name")
-			if Lead.create({name: name, notes: row[STREAK_NOTES], email: row[STREAK_EMAIL]})
+			if lead = Lead.create({source: "Streak"}) and LeadContact.create({name: name, notes: row[STREAK_NOTES], \
+								email: row[STREAK_EMAIL], contactable_id: lead.id, contactable_type: "Lead"})
 				puts "Lead for #{name} imported correctly."
 			else
 				puts "Error importing lead for #{name}"
