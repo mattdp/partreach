@@ -276,7 +276,8 @@ class Supplier < ActiveRecord::Base
   end
 
   def add_communication(interaction_title,means_of_interaction="email")
-    c = Communication.new({ supplier_id: self.id,
+    c = Communication.new({ communicator_id: self.id,
+                            communicator_type: "Supplier",
                             means_of_interaction: means_of_interaction,
                             interaction_title: interaction_title
                           })
