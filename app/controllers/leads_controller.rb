@@ -44,7 +44,7 @@ class LeadsController < ApplicationController
 		end
 
 		def lead_contact_params
-			params.permit(:first_name,:last_name,:name,:company,:title,:linkedin_url,:notes)
+			params.permit(:phone,:email,:first_name,:last_name,:name,:company,:title,:linkedin_url,:notes)
 		end
 
 end
