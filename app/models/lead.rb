@@ -11,25 +11,23 @@
 #  next_contact_date    :date
 #  next_contact_content :string(255)
 #  notes                :text
+#  priority             :string(255)
 #
 
 class Lead < ActiveRecord::Base
 
 	has_one :lead_contact, :as => :contactable, :dependent => :destroy
   has_many :communications, as: :communicator, :dependent => :destroy
-
-  def self.next_contact_leads_sorted(only_after_today=true)
-    if only_after_today
-      where_clause = "next_contact_date IS NOT NULL AND next_contact_date <= '#{Date.today.to_s}'"
+ 
+  def self.sorted(all=true,only_after_today=true)
+    if all
+      leads = Lead.all
     else
       where_clause = "next_contact_date IS NOT NULL"
+      where_clause += " AND next_contact_date <= '#{Date.today.to_s}'" if only_after_today
+      leads = Lead.where(where_clause)
     end
-
-    return Lead.where(where_clause).order("next_contact_date ASC")
-  end
-
-  def self.all_sorted
-  	Lead.next_contact_leads_sorted(false).concat(Lead.where("next_contact_date IS NULL"))
+    return leads.order(:priority,:next_contact_date)
   end
 
 end

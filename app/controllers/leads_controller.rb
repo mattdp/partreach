@@ -15,7 +15,7 @@ class LeadsController < ApplicationController
 	end
 
 	def index
-		@leads = Lead.all_sorted
+		@leads = Lead.sorted(true)
 	end
 
 	def edit
@@ -40,7 +40,7 @@ class LeadsController < ApplicationController
 	private
 
 		def lead_params
-			params.permit(:source,:next_contact_date,:next_contact_content)
+			params.permit(:source,:next_contact_date,:next_contact_content,:priority)
 		end
 
 		def lead_contact_params

@@ -5,15 +5,16 @@
   	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
   		<table class="order_table">
   			<tr>
-	  			<th>ID #</th>
+	  			<th>ID</th>
 					<th>Name</th>
 					<th>Company</th>
+					<th>Priority</th>
 					<th>Next Date</th>
 					<th>Next Content</th>
 					<th>Edit</th>
 					<th>Email?</th>
 					<th>Phone?</th>	
-					<th>LinkedIn?</th>				
+					<th>LI?</th>				
 				</tr>
   			<% @leads.each do |lead| %>
   				<% lc = lead.lead_contact %>
@@ -21,6 +22,7 @@
 						<td><%= "#{lead.id}" %></td>
 						<td><%= "#{lc.full_name_untrusted}" %></td>
 						<td><%= "#{lc.company}" %></td>
+						<td><%= "#{lead.priority}" %></td>
 						<td><%= "#{lead.next_contact_date}" %></td>
 						<td><%= "#{lead.next_contact_content}" %></td>
 						<td><%= link_to "View/edit", edit_lead_path(lead) %></td>

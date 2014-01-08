@@ -31,7 +31,16 @@
 			    <%= text_area_tag :notes, @lead_contact.notes %>
 			  </div>
 
-        <%= submit_tag "Save changes", class: "save-button" %>
+        <div>
+          <% ["1) High","2) Medium","3) Low"].each do |priority_text| %>
+            <%= radio_button_tag "priority", "#{priority_text}", @lead.priority == priority_text, :class => "fleft radio", :id => "add-dialogues-radio" %>
+            <%= label_tag "priority", "#{priority_text}", :class => "fleft" %>
+          <% end %>
+        </div>
+
+        <div class="clear">
+          <%= submit_tag "Save changes", class: "save-button" %>
+        </div>
 
   		<% end %>			 
 
