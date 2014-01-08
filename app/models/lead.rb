@@ -28,4 +28,8 @@ class Lead < ActiveRecord::Base
     return Lead.where(where_clause).order("next_contact_date ASC")
   end
 
+  def self.all_sorted
+  	Lead.next_contact_leads_sorted(false).concat(Lead.where("next_contact_date IS NULL"))
+  end
+
 end

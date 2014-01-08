@@ -15,7 +15,7 @@ class LeadsController < ApplicationController
 	end
 
 	def index
-		@leads = Lead.all
+		@leads = Lead.all_sorted
 	end
 
 	def edit
