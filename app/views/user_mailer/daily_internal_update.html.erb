@@ -28,7 +28,7 @@
     <ul>
         <% @leads_to_bother.each do |lead| %>
             <li>
-                <%= link_to "#{lead.lead_contact.name} (#{lead.next_contact_date})", lead_url(lead.id) %>
+                <%= link_to "#{lead.lead_contact.full_name_untrusted} (#{lead.next_contact_date})", edit_lead_url(lead.id) %>
             </li>
         <% end %>
     </ul>
