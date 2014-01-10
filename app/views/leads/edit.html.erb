@@ -10,7 +10,7 @@
       <%= render :partial => "communications/display_communications", locals: {communications: @communications} %>
 
       <% if @user %>
-        <h3>Lead is linked to site user</h3>
+        <h3>Lead is linked to site user, ID <%= "#{@user.id}" %></h3>
         <p><%= "Name: #{@user.name}" %></p>
         <p><%= "Email: #{@user.email}" %></p>
         <p><%= "Phone: #{@user.phone}" %></p>
