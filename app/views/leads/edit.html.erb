@@ -18,7 +18,7 @@
         <p>Orders:</p>
         <ul>
           <% @user.orders.each do |order| %>
-            <li><%= link_to "#{order.id}" %><%= ": #{order.status}" %></li>
+            <li><%= link_to "#{order.id}", order_path(order) %><%= " (#{order.created_at.to_date}) #{order.status}" %></li>
           <% end %>
         </ul>
       <% else %>
