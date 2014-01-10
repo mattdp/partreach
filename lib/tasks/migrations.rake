@@ -11,7 +11,7 @@ task :leads_for_users => :environment do
 			LeadContact.create({contactable_id: lead.id, contactable_type: "Lead"})
 			puts "Lead created for user #{user.id}"
 		when 1
-			lead = lead_contacts[0].lead
+			lead = lead_contacts[0].contactable
 			lead.user_id = user.id
 			lead.save
 			puts "Lead found for user #{user.id}"
