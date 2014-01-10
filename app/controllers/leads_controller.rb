@@ -21,6 +21,7 @@ class LeadsController < ApplicationController
 	def edit
 		@lead = Lead.find(params[:id])
 		@lead_contact = @lead.lead_contact
+		@user = @lead.user
 		@communications = Communication.where("communicator_id = ? AND communicator_type = 'Lead'",@lead.id).reverse
 		@text_field_setup = {
 			"@lead_contact" => [:phone,:email,:name,:first_name,:last_name,:company,:title,:linkedin_url],

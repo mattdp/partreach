@@ -9,6 +9,22 @@
       <%= render :partial => "communications/new_communication", locals: {c_id: @lead.id, c_type: "Lead", user_id: current_user.id} %>
       <%= render :partial => "communications/display_communications", locals: {communications: @communications} %>
 
+      <% if @user %>
+        <h3>Lead is linked to site user</h3>
+        <p><%= "Name: #{@user.name}" %></p>
+        <p><%= "Email: #{@user.email}" %></p>
+        <p><%= "Phone: #{@user.phone}" %></p>
+        <p><%= @user.supplier_id.present? ? "Attached to #{Supplier.find(@user.supplier_id).name}" : "Not attached to supplier" %></p>
+        <p>Orders:</p>
+        <ul>
+          <% @user.orders.each do |order| %>
+            <li><%= link_to "#{order.id}" %><%= ": #{order.status}" %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <h3>Lead is not linked to site user</h3>
+      <% end %>
+
   		<%= form_tag lead_path(@lead.id), method: :patch do %>
 
         <% @text_field_setup.each do |model_name,symbols| %>
