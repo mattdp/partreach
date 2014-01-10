@@ -12,6 +12,8 @@
 					<th>Next Date</th>
 					<th>Next Content</th>
 					<th>Edit</th>
+					<th>User?</th>
+					<th>Orders</th>
 					<th>Email?</th>
 					<th>Phone?</th>	
 					<th>LI?</th>				
@@ -26,6 +28,8 @@
 						<td><%= "#{lead.next_contact_date}" %></td>
 						<td><%= "#{lead.next_contact_content}" %></td>
 						<td><%= link_to "View/edit", edit_lead_path(lead) %></td>
+						<td><%= "#{lead.user_id.present?}" %></td>
+						<td><%= lead.user.present? ? "#{lead.user.orders.count}" : "0" %>
 						<td><%= "#{lc.email.present?}" %></td>
 						<td><%= "#{lc.phone.present?}" %></td>
 						<td><%= "#{lc.linkedin_url.present?}" %></td>
