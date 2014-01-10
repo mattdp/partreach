@@ -95,6 +95,7 @@ class OrdersController < ApplicationController
           password: params[:user_password], 
           password_confirmation: params[:user_password] 
           )
+        @user.auto_create_lead
         sign_in @user
       end 
     else # there is a current user, already signed in

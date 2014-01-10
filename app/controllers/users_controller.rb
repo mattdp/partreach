@@ -37,6 +37,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      @user.auto_create_lead
       sign_in @user
       UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to #{brand_name}!"

@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_one :address, :as => :place, :dependent => :destroy
   has_one :supplier
+  has_one :lead
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
@@ -46,6 +47,7 @@ class User < ActiveRecord::Base
     user.email = email
     user.password_digest = SecureRandom.urlsafe_base64 #have something in there so it can save
     user.save(validate: false)
+    user.auto_create_lead
 
     supplier = Supplier.find(supplier_id)
     supplier.claim_profile(user.id)
@@ -75,6 +77,12 @@ class User < ActiveRecord::Base
     object.find_by_email(email_address)
     return false if object.nil?
     return (object.email_valid and object.email_subscribed)
+  end
+
+  def auto_create_lead
+    lead = Lead.create({user_id: self.id, source: "auto_from_user_creation"})
+    lc = LeadContact.create({contactable_id: lead.id, contactable_type: "Lead"})
+    return (lead and lc)
   end
 
   #return array of emails

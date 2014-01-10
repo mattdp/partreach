@@ -1,6 +1,26 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'Create leads for all existing users'
+task :leads_for_users => :environment do
+	User.find_each do |user|
+		lead_contacts = LeadContact.where("email = ?",user.email)
+		case lead_contacts.length
+		when 0
+			lead = Lead.create({user_id: user.id, source: "auto_from_user_creation"})
+			LeadContact.create({contactable_id: lead.id, contactable_type: "Lead"})
+			puts "Lead created for user #{user.id}"
+		when 1
+			lead = lead_contacts[0].lead
+			lead.user_id = user.id
+			lead.save
+			puts "Lead found for user #{user.id}"
+		else
+			puts "OVERLAP - multiple leads found for user #{user.id}, email #{user.email}"
+		end
+	end
+end
+
 desc 'Migrate communications to polymorphic; all are currently for suppliers'
 task :communications_to_poly => :environment do
 	Communication.find_each do |comm|

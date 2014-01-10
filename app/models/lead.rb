@@ -12,10 +12,12 @@
 #  next_contact_content :string(255)
 #  notes                :text
 #  priority             :string(255)
+#  user_id              :integer
 #
 
 class Lead < ActiveRecord::Base
 
+  belongs_to :user
 	has_one :lead_contact, :as => :contactable, :dependent => :destroy
   has_many :communications, as: :communicator, :dependent => :destroy
  
