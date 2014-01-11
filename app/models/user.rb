@@ -29,13 +29,11 @@ class User < ActiveRecord::Base
   has_one :address, :as => :place, :dependent => :destroy
   has_one :supplier
   has_one :lead
+  has_one :user_contact, :as => :contactable, :dependent => :destroy
 
-  before_save { |user| user.email = email.downcase }
   before_save :create_remember_token
 
   validates :name, presence: true, length: { maximum: 40 }
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-  validates	:email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   validates :supplier_id, uniqueness: true, allow_nil: true

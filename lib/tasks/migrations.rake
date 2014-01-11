@@ -1,6 +1,18 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'Override lead contacts with user information, when present'
+task :user_contact_override => :environment do
+	User.find_each do |user|
+		lc = user.lead.lead_contact
+		lc.email = user.email if user.email.present?
+		lc.name = user.name if user.name.present?
+		lc.phone = user.phone if user.phone.present?
+		lc.save ? op = "#{user.id} saved ok." : op = "#{user.id} SAVE FAILURE."
+		puts op
+	end
+end
+
 desc 'Create leads for all existing users'
 task :leads_for_users => :environment do
 	User.find_each do |user|
