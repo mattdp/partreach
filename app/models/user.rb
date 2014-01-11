@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   validates :supplier_id, uniqueness: true, allow_nil: true
+  validates_presence_of :lead
 
   #can cause some serious overlap problems if abused
   def self.create_and_link_to_supplier(name,email,supplier_id)

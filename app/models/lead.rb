@@ -21,6 +21,8 @@ class Lead < ActiveRecord::Base
 	has_one :lead_contact, :as => :contactable, :dependent => :destroy
   has_many :communications, as: :communicator, :dependent => :destroy
  
+  validates_presence_of :lead_contact
+
   def self.sorted(all=true,only_after_today=true)
     if all
       leads = Lead.all
