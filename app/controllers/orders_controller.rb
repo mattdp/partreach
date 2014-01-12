@@ -90,12 +90,11 @@ class OrdersController < ApplicationController
         end
       #signin form not filled out, assuming a new user
       else
-        did_user_work = true if @user = User.create(name: params[:user_name], 
-          email: params[:user_email], 
+        did_user_work = true if @user = User.create(
           password: params[:user_password], 
           password_confirmation: params[:user_password] 
           )
-        @user.auto_create_lead
+        Lead.create_or_update_lead({name: params[:user_name], email: params[:user_email]},@user.id)
         sign_in @user
       end 
     else # there is a current user, already signed in

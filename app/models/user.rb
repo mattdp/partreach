@@ -42,11 +42,9 @@ class User < ActiveRecord::Base
   #can cause some serious overlap problems if abused
   def self.create_and_link_to_supplier(name,email,supplier_id)
     user = User.new
-    user.name = name
-    user.email = email
     user.password_digest = SecureRandom.urlsafe_base64 #have something in there so it can save
     user.save(validate: false)
-    user.auto_create_lead
+    Lead.create_or_update_lead({name: name, email: email}, user.id})
 
     supplier = Supplier.find(supplier_id)
     supplier.claim_profile(user.id)
@@ -76,12 +74,6 @@ class User < ActiveRecord::Base
     object.find_by_email(email_address)
     return false if object.nil?
     return (object.email_valid and object.email_subscribed)
-  end
-
-  def auto_create_lead
-    lead = Lead.create({user_id: self.id, source: "auto_from_user_creation"})
-    lc = LeadContact.create({contactable_id: lead.id, contactable_type: "Lead"})
-    return (lead and lc)
   end
 
   #return array of emails

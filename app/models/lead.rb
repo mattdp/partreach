@@ -21,8 +21,6 @@ class Lead < ActiveRecord::Base
 	has_one :lead_contact, :as => :contactable, :dependent => :destroy
   has_many :communications, as: :communicator, :dependent => :destroy
  
-  validates_presence_of :lead_contact
-
   def self.sorted(all=true,only_after_today=true)
     if all
       leads = Lead.all
@@ -32,6 +30,24 @@ class Lead < ActiveRecord::Base
       leads = Lead.where(where_clause)
     end
     return leads.order(:priority,:next_contact_date)
+  end
+
+  #supports :source, :name, :email, :phone
+  def self.create_or_update_lead(parameters,user_id=nil)
+    lead = nil
+    if parameters[:email]
+      lcs = LeadContact.where("email = ?", parameters[:email])
+      lead = lcs[0].contactable if lcs.length > 0
+    end
+    if lead.nil?
+      lead = Lead.create
+      lc = LeadContact.create({contactable_id: lead.id, contactable_type: "Lead"})
+    end
+
+    lead.update_attributes({source: parameters[:source], user_id: user_id})
+    lc = lead.lead_contact
+    lc.update_attributes({name: parameters[:name], email: parameters[:email], phone: parameters[:phone]})
+    return lead
   end
 
 end

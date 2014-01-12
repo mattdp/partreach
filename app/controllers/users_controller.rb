@@ -37,7 +37,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      @user.auto_create_lead
+      Lead.create_or_update_lead({name: params[:user][:name], email: params[:user][:email]},@user.id)
       sign_in @user
       UserMailer.welcome_email(@user).deliver
       flash[:success] = "Welcome to #{brand_name}!"
@@ -83,7 +83,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:name,:email,:password,:password_confirmation)
+      params.require(:user).permit(:password,:password_confirmation)
     end
 
 end
