@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
   def send_password_reset #http://railscasts.com/episodes/274-remember-me-reset-password
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
-    self.save!(:validate => false)
+    self.save!(validate: false)
     Event.add_event("User",self.id,"requested_password_reset")
     UserMailer.password_reset(self).deliver
   end
@@ -67,23 +67,6 @@ class User < ActiveRecord::Base
     Event.add_event("Supplier",self.id,"sent_account_intro_email")
     UserMailer.supplier_intro_email(self,Supplier.find(supplier_id)).deliver
   end
-
-  #assumes object has email, email_valid, email_subscribed
-  def self.can_use_email?(object)
-    object.find_by_email(email_address)
-    return false if object.nil?
-    return (object.email_valid and object.email_subscribed)
-  end
-
-  #return array of emails
-  #DOES NOT have unsubscriptions or false emails taken into account, nor does the system have them
-  def self.emails_of_buyers_and_leads
-    emails = []
-    getter = Proc.new {|x| emails << x.email unless x.email.nil? or x.email == ""}
-    User.all.map &getter
-    Lead.all.map &getter
-    return emails.uniq
-  end 
 
   def create_or_update_address(options=nil)
     Address.create_or_update_address(self,options)
