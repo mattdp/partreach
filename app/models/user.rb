@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
   has_one :address, :as => :place, :dependent => :destroy
   has_one :supplier
   has_one :lead
-  has_one :user_contact, :as => :contactable, :dependent => :destroy
 
   before_save :create_remember_token
 
@@ -44,7 +43,7 @@ class User < ActiveRecord::Base
     user = User.new
     user.password_digest = SecureRandom.urlsafe_base64 #have something in there so it can save
     user.save(validate: false)
-    Lead.create_or_update_lead({name: name, email: email}, user.id})
+    Lead.create_or_update_lead({name: name, email: email}, user.id)
 
     supplier = Supplier.find(supplier_id)
     supplier.claim_profile(user.id)

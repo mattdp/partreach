@@ -80,8 +80,10 @@ class OrdersController < ApplicationController
       #they've filled out the signin form
       if params[:signin_email] != "" and params[:signin_password] != ""
         #how pass in email and password, get signed in user?
-        @user = User.find_by_email(params[:signin_email])
-        if @user && @user.authenticate(params[:signin_password])
+        if (@lead_contact = LeadContact.find_by_email(params[:signin_email]) \
+            and @user = @lead_contact.contactable.user \
+            and @user.authenticate(params[:signin_password])
+            )
           sign_in @user
           did_user_work = true
         else

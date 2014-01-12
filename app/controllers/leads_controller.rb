@@ -2,11 +2,7 @@ class LeadsController < ApplicationController
 	before_filter :admin_user, only: [:edit, :index, :update]
 
 	def create
-		@lead = Lead.create
-		@lead_contact = LeadContact.create({email: params[:email_field],
-																				contactable_id: @lead.id,
-																				contactable_type: "Lead"
-																				})
+		@lead = Lead.create_or_update_lead({email: params[:email_field]})
 
 		next_step = params[:next_step_field]
 

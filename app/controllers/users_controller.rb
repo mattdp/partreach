@@ -29,31 +29,22 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    @lead_contact = @user.lead.lead_contact
   end
 
-  # POST /users
-  # POST /users.json
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      Lead.create_or_update_lead({name: params[:user][:name], email: params[:user][:email]},@user.id)
-      sign_in @user
-      UserMailer.welcome_email(@user).deliver
-      flash[:success] = "Welcome to #{brand_name}!"
-      redirect_to order_questions_path
-    else
-      render 'new'
-    end
-  end
+  # create omitted - no direct way as of now
 
   # PUT /users/1
   # PUT /users/1.json
   def update
     @user = User.find(params[:id])
+    @lead_contact = @user.lead.lead_contact
+
+    saved_ok = @lead_contact.update_attributes(lead_contact_params)
+    saved_ok = (saved_ok and @user.update_attributes(user_params)) if params[:password].present?
 
     respond_to do |format|
-      if @user.update_attributes(user_params)
+      if saved_ok
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -83,7 +74,11 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:password,:password_confirmation)
+      params.permit(:password,:password_confirmation)
+    end
+
+    def lead_contact_params
+      params.permit(:name,:email)
     end
 
 end
