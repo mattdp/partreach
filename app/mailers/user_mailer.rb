@@ -44,7 +44,7 @@ class UserMailer < ActionMailer::Base
   	@user = user
     @brand_name = brand_name
     subject = "Welcome to #{brand_name}!"
-  	mail(to: @user.email, subject: subject) do |format|
+  	mail(to: @user.lead.lead_contact.email, subject: subject) do |format|
       format.html { render layout: "layouts/blast_mailer", 
                     locals: { title: subject, 
                               supplier: nil} 
@@ -65,7 +65,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @brand_name = brand_name
     subject = "Password reset requested"
-    mail(to: @user.email, subject: subject) do |format|
+    mail(to: @user.lead.lead_contact.email, subject: subject) do |format|
       format.html { render layout: "layouts/blast_mailer", 
                     locals: { title: subject, 
                               supplier: nil} 
@@ -79,7 +79,7 @@ class UserMailer < ActionMailer::Base
     @brand_name = brand_name
     @supplier = supplier
     subject = "Your new #{brand_name} account"
-    mail(to: @user.email, subject: subject) do |format|
+    mail(to: @user.lead.lead_contact.email, subject: subject) do |format|
       format.html { render layout: "layouts/blast_mailer", 
                     locals: { title: subject, 
                               supplier: supplier} 

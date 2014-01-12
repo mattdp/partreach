@@ -96,7 +96,8 @@ class OrdersController < ApplicationController
           password: params[:user_password], 
           password_confirmation: params[:user_password] 
           )
-        Lead.create_or_update_lead({name: params[:user_name], email: params[:user_email]},@user.id)
+        Lead.create_or_update_lead({name: params[:user_name], email: params[:user_email], phone: params[:user_phone]}, \
+                                    @user.id)
         sign_in @user
       end 
     else # there is a current user, already signed in
@@ -131,7 +132,7 @@ class OrdersController < ApplicationController
       if did_user_work and did_order_save
         track("order","created",@order.id)
         track("order","created_by_repeat_user",@order.id) if existed_already
-        note = "#{brand_name}: Order created by #{current_user.email}, order number #{@order.id}. Go get quotes!"
+        note = "#{brand_name}: Order created by #{current_user.lead.lead_contact.email}, order number #{@order.id}. Go get quotes!"
         if Rails.env.production?
           text_notification(note) 
           UserMailer.email_internal_team("Order created",note)
