@@ -22,13 +22,7 @@
   				<% lc = lead.lead_contact %>
   				<tr>
 						<td><%= "#{lead.id}" %></td>
-						<td>
-							<% if lead.user.present? and !lc.full_name_untrusted.present? %>
-								<%= "#{lead.user.name}" %>
-							<% else %>
-								<%= "#{lc.full_name_untrusted}" %>
-							<% end %>
-						</td>
+						<td><%= "#{lc.full_name_untrusted}" %></td>
 						<td><%= "#{lc.company}" %></td>
 						<td><%= "#{lead.priority}" %></td>
 						<td><%= "#{lead.next_contact_date}" %></td>

@@ -164,6 +164,7 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_groups = @order.order_groups 
     @user = User.find(@order.user_id)
+    @lead_contact = @user.lead.lead_contact
     @total_quantity = @order.total_quantity
         
     @checkboxes = setup_checkboxes

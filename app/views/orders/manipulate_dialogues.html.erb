@@ -4,11 +4,11 @@
   <div class="row">
   	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-			<h1><%= "Changes to Order \##{@order.id} (User #{User.find(@order.user_id).name})"  %></h1>	
+			<h1><%= "Changes to Order \##{@order.id} (User #{@lead_contact.full_name_untrusted})"  %></h1>	
 
 			<%= render "layouts/order_basics" %>
 
-			<p><strong>User email: </strong><%= "#{User.find(@order.user_id).email}" %></p>
+			<p><strong>User email: </strong><%= "#{@lead_contact.email}" %></p>
 			<% if !@order.override_average_value.nil? %>
 				<p><strong>Override value for what quote was worth, for tracking (console change): </strong><%= @order.override_average_value %>
 			<% end %>

@@ -11,9 +11,9 @@
 
       <% if @user %>
         <h3>Lead is linked to site user, ID <%= "#{@user.id}" %></h3>
-        <p><%= "Name: #{@user.name}" %></p>
-        <p><%= "Email: #{@user.email}" %></p>
-        <p><%= "Phone: #{@user.phone}" %></p>
+        <p><%= "Name: #{@lead_contact.name}" %></p>
+        <p><%= "Email: #{@lead_contact.email}" %></p>
+        <p><%= "Phone: #{@lead_contact.phone}" %></p>
         <p><%= @user.supplier_id.present? ? "Attached to #{Supplier.find(@user.supplier_id).name}" : "Not attached to supplier" %></p>
         <p>Orders:</p>
         <ul>

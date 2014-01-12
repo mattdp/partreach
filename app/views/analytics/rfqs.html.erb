@@ -24,7 +24,7 @@
 					<tr>
 						<td><%= link_to o.id, manipulate_path(o) %></td>
 						<td><%= o.created_at.strftime("%Y-%m-%d") %></td>
-						<td><%= User.find(o.user_id).email if o.user_id %></td>
+						<td><%= User.find(o.user_id).lead.lead_contact.email if o.user_id %></td>
 						<td><%= o.dialogues.count %></td>
 						<td><%= o.status %></td>
 						<td><%= o.next_action_date %></td>
