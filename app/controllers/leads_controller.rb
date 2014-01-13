@@ -1,6 +1,12 @@
 class LeadsController < ApplicationController
 	before_filter :admin_user, only: [:edit, :index, :update]
 
+	def new
+		@lead = Lead.new
+		@lead_contact = LeadContact.new
+		@text_field_setup = text_field_setup
+	end
+
 	def create
 		@lead = Lead.create_or_update_lead({email: params[:email_field]})
 
@@ -19,10 +25,7 @@ class LeadsController < ApplicationController
 		@lead_contact = @lead.lead_contact
 		@user = @lead.user
 		@communications = Communication.where("communicator_id = ? AND communicator_type = 'Lead'",@lead.id).reverse
-		@text_field_setup = {
-			"@lead_contact" => [:phone,:email,:name,:first_name,:last_name,:company,:title,:linkedin_url],
-			"@lead" => [:source,:next_contact_content]
-		}
+		@text_field_setup = text_field_setup
 	end
 
 	def update
@@ -35,6 +38,13 @@ class LeadsController < ApplicationController
 	end
 
 	private
+
+		def text_field_setup
+			return {
+			"@lead_contact" => [:phone,:email,:name,:first_name,:last_name,:company,:title,:linkedin_url],
+			"@lead" => [:source,:next_contact_content]
+			}
+		end
 
 		def lead_params
 			params.permit(:source,:next_contact_date,:next_contact_content,:priority)
