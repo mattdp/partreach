@@ -1,0 +1,30 @@
+<% text_field_setup.each do |model_name,symbols| %>
+  <% mod = instance_variable_get(model_name) %>
+  <% symbols.each do |symbol| %>
+		<div class="field">
+	    <%= label_tag symbol %>
+	    <%= text_field_tag symbol, mod.send(symbol) %>
+	  </div>
+	 <% end %>
+<% end %>
+
+<div class="field">
+  <%= label_tag :next_contact_date %>
+  <%= date_field_tag :next_contact_date, lead.next_contact_date %>
+</div>
+
+<div class="field">
+  <%= label_tag :notes %>
+  <%= text_area_tag :notes, lead_contact.notes %>
+</div>
+
+<div>
+  <% ["1) High","2) Medium","3) Low"].each do |priority_text| %>
+    <%= radio_button_tag "priority", "#{priority_text}", lead.priority == priority_text, :class => "fleft radio", :id => "add-dialogues-radio" %>
+    <%= label_tag "priority", "#{priority_text}", :class => "fleft" %>
+  <% end %>
+</div>
+
+<div class="clear">
+  <%= submit_tag "Save changes", class: "save-button" %>
+</div>
