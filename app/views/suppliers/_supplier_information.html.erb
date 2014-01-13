@@ -33,7 +33,9 @@
 
 	<%= label_tag 'claimed', 'Page claimed? By whom? (change from terminal)' %>
 	<%= @supplier.claimed %>
-	<%= " - #{@claimant.name} (#{@claimant.email})" if @claimant %>
+	<% if (@claimant and lc = @claimant.lead.lead_contact) %>
+		<%= " - #{lc.name} (#{lc.email})"  %>
+	<% end %>
 
 	<div>
 		<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, class: "fleft checkbox" %>
