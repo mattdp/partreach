@@ -1,5 +1,5 @@
 class LeadsController < ApplicationController
-	before_filter :admin_user, only: [:edit, :index, :update]
+	before_filter :admin_user, only: [:new, :edit, :index, :update]
 
 	def new
 		@lead = Lead.new
@@ -14,6 +14,13 @@ class LeadsController < ApplicationController
 
 		flash[:notice] = "Thanks! We'll keep you posted."
 		redirect_to next_step
+	end
+
+	def admin_create
+		@lead = Lead.create(lead_params)
+		@lead.lead_contact = LeadContact.create(lead_contact_params)
+
+		redirect_to edit_lead_path(@lead), notice: "Lead update attempted."
 	end
 
 	def index

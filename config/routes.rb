@@ -7,7 +7,7 @@ Partreach::Application.routes.draw do
   resources :dialogues, only: [:new, :create]
   resources :users, only: [:edit, :update, :show] # no index, no destroy 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :leads, only: [:create, :edit, :index, :update]
+  resources :leads, only: [:new, :create, :edit, :index, :update]
   resources :reviews, only: [:new, :create]
   resources :password_resets
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
@@ -39,6 +39,7 @@ Partreach::Application.routes.draw do
   get '/questions', to: 'static_pages#questions', as: 'order_questions'
   get '/machines/suppliers_with_machine/:machine_id', to: 'machines#suppliers_with_machine', as: 'suppliers_with_machine'
   get '/recruiting', to: 'static_pages#recruiting', as: 'recruiting'
+  match '/leads/admin_create', to: 'leads#admin_create', as: 'admin_create_lead', via: :post
 
   get '/analytics', to: 'analytics#home', as: 'analytics_home'
   get '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
