@@ -32,7 +32,6 @@ class User < ActiveRecord::Base
 
   before_save :create_remember_token
 
-  validates :name, presence: true, length: { maximum: 40 }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
   validates :supplier_id, uniqueness: true, allow_nil: true
