@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113015451) do
+ActiveRecord::Schema.define(version: 20140113020750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -157,8 +157,6 @@ ActiveRecord::Schema.define(version: 20140113015451) do
   create_table "leads", force: true do |t|
     t.datetime "created_at",                              null: false
     t.datetime "updated_at",                              null: false
-    t.boolean  "email_valid",          default: true
-    t.boolean  "email_subscribed",     default: true
     t.string   "source",               default: "manual"
     t.date     "next_contact_date"
     t.string   "next_contact_content"
@@ -312,8 +310,6 @@ ActiveRecord::Schema.define(version: 20140113015451) do
     t.string   "remember_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
-    t.boolean  "email_valid",            default: true
-    t.boolean  "email_subscribed",       default: true
     t.boolean  "examiner",               default: false
     t.integer  "supplier_id"
   end

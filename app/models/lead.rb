@@ -5,8 +5,6 @@
 #  id                   :integer          not null, primary key
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
-#  email_valid          :boolean          default(TRUE)
-#  email_subscribed     :boolean          default(TRUE)
 #  source               :string(255)      default("manual")
 #  next_contact_date    :date
 #  next_contact_content :string(255)
