@@ -22,7 +22,7 @@ class PasswordResetsController < ApplicationController
   def update
   	@user = User.find_by_password_reset_token!(params[:id])
   	if @user.password_reset_sent_at < HOURS_ALLOWED.hours.ago
-  		redirect_to new_password_reset_path, :alert => "Password reset has expired (Each reset is good for #{hours_allowed} hours). Try again."
+  		redirect_to new_password_reset_path, :alert => "Password reset has expired (Each reset is good for #{HOURS_ALLOWED} hours). Contact support@supplybetter.com to get another reset link."
   	elsif @user.update_attributes(password_reset_params)
       sign_in @user
   		redirect_to orders_path, :notice => "Password has been set. You are now logged in."

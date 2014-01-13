@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_one :address, :as => :place, :dependent => :destroy
   has_one :supplier
-  has_one :lead
+  has_one :lead, dependent: :destroy
 
   before_save :create_remember_token
 
