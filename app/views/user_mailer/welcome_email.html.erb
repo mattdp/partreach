@@ -1,7 +1,7 @@
-<h1>Welcome to <%= "#{@brand_name}, #{@user.name}" %>!</h1>
+<h1>Welcome to <%= "#{@brand_name}, #{@user.lead.lead_contact.name}" %>!</h1>
 <p>
   You have successfully signed up to <%= "#{@brand_name}" %>
-  using the email address: <%= @user.email %>.<br/>
+  using the email address: <%= @user.lead.lead_contact.email %>.<br/>
 </p>
 <p>
   To login to the site, <%= link_to "follow this link", orders_url, only_path: false, target: "_blank", style: "color: #333;" %>.

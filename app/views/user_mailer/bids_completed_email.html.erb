@@ -6,7 +6,7 @@
   <body>
     <h1>Your quotes have arrived!</h1>
     <p>
-      Hi, <%= @user.name %>. You've now received <%= pluralize(bids_received(@order), "bid") %> for <%= @order.name %>; you should <%=link_to @url, "come pick a supplier for your work!" %><br/>
+      Hi, <%= @user.lead.lead_contact.name %>. You've now received <%= pluralize(bids_received(@order), "bid") %> for <%= @order.name %>; you should <%=link_to @url, "come pick a supplier for your work!" %><br/>
     </p>
   </body>
 </html>
