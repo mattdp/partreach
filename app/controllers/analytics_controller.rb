@@ -31,7 +31,7 @@ class AnalyticsController < ApplicationController
 
 	def metrics
 		interval = :months
-		tracking_start_date = Date.new(2013,3,2)
+		tracking_start_date = Date.new(2013,8,3)
 		dates = []
 
 		if interval == :months
