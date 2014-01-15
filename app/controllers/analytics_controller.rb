@@ -38,9 +38,9 @@ class AnalyticsController < ApplicationController
 			#list of months, including one to two beyond the current one
 			dates = ((tracking_start_date)..(Date.today+31)).map{|d| Date.new(d.year, d.month, 1) }.uniq
 		elsif interval == :weeks
-			while potential_date < Date.today
-				dates << potential_date
-				potential_date = potential_date + 7
+			while tracking_start_date < (Date.today + 7)
+				dates << tracking_start_date
+				tracking_start_date += 7
 			end
 		end
 
