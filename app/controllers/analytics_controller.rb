@@ -57,7 +57,7 @@ class AnalyticsController < ApplicationController
 			unit << Review.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "claimed_profile").count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "joined_network").count
-			unit << Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).sum{|o| o.quote_value}
+			unit << Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).sum{|o| o.quote_value}.to_s
 			printout << unit
 			index += 1
 		end
