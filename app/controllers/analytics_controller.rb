@@ -30,25 +30,36 @@ class AnalyticsController < ApplicationController
 	end
 
 	def metrics
-		potential_date = Date.new(2013,3,2)
+		interval = :months
+		tracking_start_date = Date.new(2013,3,2)
 		dates = []
-		while potential_date < Date.today
-			dates << potential_date
-			potential_date = potential_date + 7
+
+		if interval == :months
+			#list of months, including one to two beyond the current one
+			dates = ((tracking_start_date)..(Date.today+31)).map{|d| Date.new(d.year, d.month, 1) }.uniq
+		elsif interval == :weeks
+			while potential_date < Date.today
+				dates << potential_date
+				potential_date = potential_date + 7
+			end
 		end
-		@titles = ["Week", "Leads and Users", "RFQ Creates","Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network", "Quote value of orders"]
+
+		@titles = [interval.to_s, "Leads and Users", "RFQ Creates","Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network", "Quote value of orders"]
 		printout = [] #titles
-		dates.each do |date|
+		index = 0
+		#-2 since using dates[index] and dates[index+1]
+		while index <= dates.length - 2		
 			unit = []
-			unit << date
-			unit << Lead.where("created_at > ? AND created_at < ?", date, date + 7).count + User.where("created_at > ? AND created_at < ?", date, date + 7).count
-			unit << Order.where("created_at > ? AND created_at < ?", date, date + 7).count
-			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", date, date + 7, "Order", "closed_successfully").count
-			unit << Review.where("created_at > ? AND created_at < ?", date, date + 7).count
-			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", date, date + 7, "Supplier", "claimed_profile").count
-			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", date, date + 7, "Supplier", "joined_network").count
-			unit << Order.where("created_at > ? AND created_at < ?", date, date + 7).sum{|o| o.quote_value}
+			unit << dates[index]
+			unit << Lead.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count + User.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
+			unit << Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
+			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
+			unit << Review.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
+			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "claimed_profile").count
+			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "joined_network").count
+			unit << Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).sum{|o| o.quote_value}
 			printout << unit
+			index += 1
 		end
 		@printout = printout
 	end
