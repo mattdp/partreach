@@ -44,24 +44,27 @@ class AnalyticsController < ApplicationController
 			end
 		end
 
-		@titles = [interval.to_s, "Leads and Users", "RFQ Creates","Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network", "Quote value of orders"]
+		@titles = [interval.to_s,"Quote value of orders", "RFQ Creates", "Buyers touched by RFQs", "Suppliers touched by RFQs", "Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network", "Leads and Users"]
 		printout = [] #titles
 		index = 0
 		#-2 since using dates[index] and dates[index+1]
 		while index <= dates.length - 2		
 			unit = []
+			created_orders = Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
 			unit << dates[index]
-			unit << Lead.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count + User.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
-			unit << Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
+			unit << created_orders.sum{|o| o.quote_value}.to_s
+			unit << created_orders.count
+			unit << created_orders.map{|o| o.user_id}.uniq.count
+			unit << created_orders.map{|o| o.dialogues}.flatten.map{|d| d.supplier_id}.uniq.count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
 			unit << Review.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "claimed_profile").count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "joined_network").count
-			unit << Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).sum{|o| o.quote_value}.to_s
+			unit << Lead.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count + User.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
 			printout << unit
 			index += 1
 		end
-		@printout = printout
+		@printout = printout.reverse
 	end
 
 end
