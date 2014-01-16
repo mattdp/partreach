@@ -8,17 +8,7 @@
 
 			<%= form_tag machines_path do %>
 
-				<div class="almost-one-half fleft">
-					<%= label_tag "manufacturer[name]", "Manufacturer" %>
-				 	<%= text_field_tag "manufacturer[name]", @manufacturer.name %>
-			 	</div>
-				<div class="almost-one-half fleft"	>
-					<%= label_tag "machine[name]", "Machine" %>
-				 	<%= text_field_tag "machine[name]", @machine.name %>
-			 	</div>
-				<div class="clear">
-					<%= submit_tag "Create" %>
-				</div>
+				<%= render partial: 'machines/machine_form_content', locals: {machine: @machine, manufacturer: @manufacturer} %>
 
 			<% end %>
 
