@@ -2,11 +2,16 @@
 #
 # Table name: machines
 #
-#  id              :integer          not null, primary key
-#  name            :string(255)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  manufacturer_id :integer
+#  id                 :integer          not null, primary key
+#  name               :string(255)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  manufacturer_id    :integer
+#  bv_height          :decimal(6, 2)
+#  bv_width           :decimal(6, 2)
+#  bv_length          :decimal(6, 2)
+#  materials_possible :text
+#  z_height           :string(255)
 #
 
 class Machine < ActiveRecord::Base

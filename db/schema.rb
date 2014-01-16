@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140113020750) do
+ActiveRecord::Schema.define(version: 20140116182412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -177,9 +177,14 @@ ActiveRecord::Schema.define(version: 20140113020750) do
 
   create_table "machines", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.integer  "manufacturer_id"
+    t.decimal  "bv_height",          precision: 6, scale: 2
+    t.decimal  "bv_width",           precision: 6, scale: 2
+    t.decimal  "bv_length",          precision: 6, scale: 2
+    t.text     "materials_possible"
+    t.string   "z_height"
   end
 
   create_table "manufacturers", force: true do |t|
