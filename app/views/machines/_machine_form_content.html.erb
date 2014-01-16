@@ -7,5 +7,12 @@
  	<%= text_field_tag "machine[name]", machine.name %>
 	</div>
 <div class="clear">
+	<%= label_tag "machine[bv_length]", "BV length" %>
+ 	<%= text_field_tag "machine[bv_length]", machine.bv_length %>
+	<%= label_tag "machine[bv_width]", "BV width" %>
+ 	<%= text_field_tag "machine[bv_width]", machine.bv_width %>
+	<%= label_tag "machine[bv_height]", "BV height" %>
+ 	<%= text_field_tag "machine[bv_height]", machine.bv_height %> 	 	
+<div class="clear">
 	<%= submit_tag "Update" %>
 </div>

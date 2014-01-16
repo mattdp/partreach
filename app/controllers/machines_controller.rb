@@ -58,7 +58,7 @@ class MachinesController < ApplicationController
   private
 
     def machine_params
-      params.require(:machine).permit(:name)
+      params.require(:machine).permit(:name,:bv_height,:bv_width,:bv_length)
     end
 
     def manufacturer_params
