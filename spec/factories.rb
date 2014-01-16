@@ -4,14 +4,14 @@ FactoryGirl.define do
     password_confirmation "foobar"
     supplier_id           nil
     admin                 false
-    u.after(:build) do |lead|
-      FactoryGirl.build(:lead, user_id: u.id)
+    u.after(:create) do |lead|
+      FactoryGirl.create(:lead, user_id: u.id)
     end
   end
 
   factory :lead do |l|
     l.after(:build) do |contact|
-      FactoryGirl.build(:contact, type: "LeadContact",\
+      FactoryGirl.create(:contact, type: "LeadContact",\
         contactable_id: l.id, contactable_type: "Lead")
     end
   end

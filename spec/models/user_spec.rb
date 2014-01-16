@@ -20,8 +20,7 @@ require 'spec_helper'
 describe "User" do
 
   before do
-    @user = User.new(name: "Example User", email: "user@example.com", 
-                     password: "foobar", password_confirmation: "foobar")
+    @user = User.new(password: "foobar", password_confirmation: "foobar")
   end
 
   subject { @user }
@@ -33,17 +32,12 @@ describe "User" do
   it { should be_valid }
 
   describe "when name is not present" do
-    before { @user.name = " " }
+    before { @user.lead.lead_contact.name = " " }
     it { should_not be_valid }
   end
 
   describe "when email is not present" do
-    before { @user.email = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when name is too long" do
-    before { @user.name = "a" * 41 }
+    before { @user.lead.lead_contact.email = " " }
     it { should_not be_valid }
   end
 
