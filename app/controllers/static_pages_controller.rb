@@ -24,6 +24,12 @@ class StaticPagesController < ApplicationController
 				title: "Industrial Designer",
 				company: "Independent",
 				praise: "I am an industrial designer working on medical products for the low resource market across Asia. Dealing with SupplyBetter was very smooth and professional. I personally spoke with Robert, who guided me through the options, and then they connected us with the prototyping house that best suited the particular project. I feel SupplyBetter went the extra mile with a special attention to service."
+			},
+			{
+				person: "Brian",
+				title: "Owner",
+				company: "Synáspora",
+				praise: "I'm brand new to 3D printing and needed help printing a prototype for a new product idea of mine. SupplyBetter was the perfect place for me. I got personal service and assistance in choosing the right material. Highly recommended!"
 			}
 		]
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
