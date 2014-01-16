@@ -1,11 +1,24 @@
 FactoryGirl.define do
-  factory :user do
-    sequence(:name)   { |n| "Personis#{n}" }
-    sequence(:email)  { |n| "personis#{n}@example.com" }   
+  factory :user do |u|
     password              "foobar"
     password_confirmation "foobar"
     supplier_id           nil
     admin                 false
+    u.after(:build) do |lead|
+      FactoryGirl.build(:lead, user_id: u.id)
+    end
+  end
+
+  factory :lead do |l|
+    l.after(:build) do |contact|
+      FactoryGirl.build(:contact, type: "LeadContact",\
+        contactable_id: l.id, contactable_type: "Lead")
+    end
+  end
+
+  factory :contact do 
+    sequence(:name)   { |n| "Name#{n}" }
+    sequence(:email)   { |n| "Email#{n}@fake.spam.com" }
   end
 
   factory :order do |o|
