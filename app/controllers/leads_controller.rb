@@ -8,7 +8,7 @@ class LeadsController < ApplicationController
 	end
 
 	def create
-		@lead = Lead.create_or_update_lead({email: params[:email_field]})
+		@lead = Lead.create_or_update_lead({email: params[:email_field], source: "email_collector"})
 
 		next_step = params[:next_step_field]
 
