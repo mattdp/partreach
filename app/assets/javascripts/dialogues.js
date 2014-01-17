@@ -14,7 +14,7 @@ $(document).ready(function() {
 			var checkedBoxes = [];
 			$('.tag_matrix').find('input').each (function () {
 				if($(this).is(':checked')) {
-					checkedBoxes.push($(this).closest('td').find('p').text());
+					checkedBoxes.push($(this).attr('id'));
 				}
 			});
 
