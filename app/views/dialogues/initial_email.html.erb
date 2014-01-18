@@ -16,13 +16,15 @@
 
 			<p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>
 
-			<h2>What We Need</h2>
+			<h3>What We Need</h3>
+			<br>
 
 			<p><strong>Process Cost:</strong></p>
 
 			<p><strong>Total Cost</strong> (including any shipping and taxes):</p>
 
-			<h2>Project Details</h2>
+			<h3>Project Details</h3>
+			<br>
 
 			<p><strong><%= "#{@dialogue.order_group.name}" %></strong></p>	
 			<ul>
@@ -36,7 +38,7 @@
 			</ul>
 
 			<% if @order.deadline.present? %>
-				<p><strong>Deadline:</strong><%= "#{@order.deadline}" %></p>
+				<p><strong>Deadline:</strong> <%= "#{@order.deadline}" %></p>
 			<% end %>
 
 			<p><strong>Process Requested:</strong> <%= "#{@order_group.process}" %></p>
