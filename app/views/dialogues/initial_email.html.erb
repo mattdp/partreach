@@ -7,9 +7,9 @@
 
   		<p><%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %></p>
 
-  		<p>Name of RFQ contact: 
-	  		<% if @contact.name %>
-	  			<%= "#{@contact.name}" %>
+  		<p>First name of RFQ contact: 
+	  		<% if @contact.first_name %>
+	  			<%= "#{@contact.first_name} (full name: #{@contact.full_name_untrusted})" %>
 	  		<% else %>
 	  			<%= link_to "First name not in database. Click to enter it.", admin_edit_path(@supplier.name_for_link) %>
 	  		<% end %>
@@ -17,7 +17,7 @@
 
   		<p>-----BEGIN COPYABLE TEXT-----</p>
 
-  		<p>SUBJECT: <%= "SupplyBetter RFQ ##{@order.id}1 for #{@supplier.name}" %></p>
+  		<p>SUBJECT: <%= text_field_tag "dummy_for_copy", "SupplyBetter RFQ ##{@order.id}1 for #{@supplier.name}" %>
 
   		<% if @contact.first_name %>
   			<p>Hi <%= "#{@contact.first_name}" %>,</p>
