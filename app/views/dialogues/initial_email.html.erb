@@ -7,13 +7,23 @@
 
   		<p><%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %></p>
 
-  		<p>Name of RFQ contact: <strong><%= "#{@dialogue.supplier.rfq_contact.name}" %></strong></p>
+  		<p>Name of RFQ contact: 
+	  		<% if @contact.name %>
+	  			<%= "#{@contact.name}" %>
+	  		<% else %>
+	  			<%= link_to "First name not in database. Click to enter it.", admin_edit_path(@supplier.name_for_link) %>
+	  		<% end %>
+  		</p>
 
   		<p>-----BEGIN COPYABLE TEXT-----</p>
 
-  		<p>SUBJECT: <%= "SupplyBetter RFQ ##{@order.id}1 for #{Supplier.find(@dialogue.supplier_id).name}" %></p>
+  		<p>SUBJECT: <%= "SupplyBetter RFQ ##{@order.id}1 for #{@supplier.name}" %></p>
 
-  		<p>Hi there,</p>
+  		<% if @contact.first_name %>
+  			<p>Hi <%= "#{@contact.first_name}" %>,</p>
+  		<% else %>
+  			<p>Hi there,</p>
+  		<% end %>
 
 			<p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>
 

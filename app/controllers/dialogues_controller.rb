@@ -81,6 +81,8 @@ class DialoguesController < ApplicationController
 
   def initial_email
   	@dialogue = Dialogue.find(params[:id])
+  	@supplier = @dialogue.supplier
+  	@contact = @supplier.rfq_contact
   	@order = @dialogue.order
   	@order_group = @dialogue.order_group
   end
