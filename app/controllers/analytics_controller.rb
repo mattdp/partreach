@@ -55,12 +55,12 @@ class AnalyticsController < ApplicationController
 			unit << created_orders.sum{|o| o.quote_value}.to_s
 			unit << created_orders.count
 			unit << created_orders.map{|o| o.user_id}.uniq.count
-			unit << created_orders.map{|o| o.dialogues}.flatten.map{|d| d.supplier_id}.uniq.count
+			unit << created_orders.map{|o| o.dialogues}.flatten.select{|d| d.opener_sent}.map{|d| d.supplier_id}.uniq.count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
 			unit << Review.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "claimed_profile").count
 			unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "joined_network").count
-			unit << Lead.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count + User.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
+			unit << LeadContact.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
 			printout << unit
 			index += 1
 		end
