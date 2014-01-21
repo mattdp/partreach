@@ -59,7 +59,7 @@ class OrderColumn
   def self.set_to_names_map
     hash = {}
     hash[:all] = OrderColumn.all.keys
-    hash[:speed] = [:bid_status,:total_cost,:notes]
+    hash[:speed] = [:bid_status,:total_cost,:process_time,:notes]
     hash[:cost] = [:bid_status,:total_cost,:process_time,:process_cost,:shipping_cost,:notes]
     hash[:quality] = [:bid_status,:total_cost,:process,:process_time,:notes]
     return hash
