@@ -24,7 +24,7 @@ class Filter < ActiveRecord::Base
   #make sure to add US (country)
   def self.initial_generation
   	us_and_states = Geography.all_us_states.concat([Geography.locate("US",:short_name,"country")])
-  	tag_names = ["SLS","SLA","FDM","FFF","3d_printing","custom_machining"]
+  	tag_names = ["SLS","SLA","FDM","FFF","3d_printing","cnc_machining"]
 
   	has_not_tag = Tag.find_by_name("datadump")
   	tag_names.each do |t_name|

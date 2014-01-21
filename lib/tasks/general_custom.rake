@@ -60,7 +60,7 @@ task :tag_tree => :environment do
 
 	automatics = {
 		"3d_printing" => ["SLS","FDM","SLA","Polyjet","ZPrinter","metal_printing","DMLS","FFF"],
-		"custom_machining" => ["5_axis_machining"],
+		"cnc_machining" => ["5_axis_machining"],
 		"metal_printing" => ["DMLS"]
 	}
 
