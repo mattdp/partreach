@@ -35,8 +35,8 @@ Partreach::Application.routes.draw do
 
   get '/machines/suppliers_with_machine/:machine_id', to: 'machines#suppliers_with_machine', as: 'suppliers_with_machine'
 
-  get '/manufacturers/:manufacturer_name/:machine_name', to: 'profiles#machine_profile', as: 'machine_profile'
   get '/manufacturers/:manufacturer_name', to: 'profiles#manufacturer_profile', as: 'manufacturer_profile'
+  get '/manufacturers/:manufacturer_name/:machine_name', to: 'profiles#machine_profile', as: 'machine_profile'
   get '/profiles/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
   get '/submit_ask/', to: 'profiles#submit_ask'
   

@@ -7,8 +7,9 @@ module ProfilesHelper
 	def allowed_to_see?(model)
 		return false if model.nil?
 		return true if model.profile_visible
-		return true if !model.profile_visible and current_user.admin?
-		(return true if !model.profile_visible and current_user.supplier_id == supplier.id) if model.class.to_s == "Supplier"
+		return false if current_user.nil?
+		return true if current_user.admin?
+		(return true if current_user.supplier_id == supplier.id) if model.class.to_s == "Supplier"
 		return false
 	end
 

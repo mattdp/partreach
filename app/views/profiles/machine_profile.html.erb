@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
+  		<div class="supplier-profile">
+				<% if !@allowed %>
+					<% provide(:title, "Profile not found") %>
+					<% meta_description "Profile not found" %>
+					<h3 class="center bit-of-space">This is not a valid URL to find a machine profile</h3>
+					<p>It's possible we haven't released a profile for this machine yet, or perhaps you typed in a bad address.</p>
+					<p>Help expand our database by
+						<%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for adding a machine" %></p>
+					<p>Want to head to the <%= link_to "home page", root_path %> instead?</p>
+				<% else %>
+					<% provide(:title, "#{@manufacturer.name} - Manufacturer Profile") %>
+					<h3 class="center bit-of-space"><%= "Manufacturer profile for #{@manufacturer.name}" %></h3>
+					<% machines_count = @machines.count %>
+					<p><%= "We currently have #{pluralize(machines_count,'machine')} catalogued for #{@manufacturer.name}." %></p>
+						<p>
+							<%= "Please note that the manufacturer and machine profiles are in beta, and are not yet comprehensive." if @beta %>
+							Help expand our database by 
+							<%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for #{@manufacturer.name}" %>
+						</p>
+					</p>
+					<p>If you need to find a supplier with this machine, let us know!</p>
+					<%= link_to "Find machine", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
+					<% if machines_count > 0 %>
+						<p>Or, browse machines for <%= "#{@manufacturer.name}" %>:</p>
+						<ul>
+							<% @machines.each do |machine| %>
+								<li><%= link_to "#{machine.name}", machine_profile_path(manufacturer_name: @manufacturer.name_for_link, machine_name: machine.name_for_link) %></li>
+							<% end %>
+						</ul>
+					<% end %>
+				<% end %>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -6,8 +6,12 @@
 				<% if !@allowed %>
 					<% provide(:title, "Profile not found") %>
 					<% meta_description "Profile not found" %>
-					<h1 class="center">This is not a valid URL to find a supplier profile</h3>
+					<h3 class="center bit-of-space">This is not a valid URL to find a supplier profile</h3>
 					<p>It's possible we haven't released a profile for this supplier yet, or perhaps you typed in a bad address.</p>
+
+					<p>Help expand our database by
+						<%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for adding a supplier" %></p>
+
 					<p>Want to head to the <%= link_to "home page", root_path %> instead?</p>
 				<% else %>
 					<% provide(:title, "#{@supplier.name} - Supplier Profile") %>
