@@ -56,4 +56,12 @@ SitemapGenerator::Sitemap.create do
     add guide_name_path(f.name), changefreq: 'daily'
   end
 
+  Machine.find_each do |m|
+    add machine_profile_path(m.name_for_link), changefreq: 'daily' if m.profile_visible
+  end
+
+  Manufacturer.find_each do |m|
+    add manufacturer_profile_path(m.name_for_link), changefreq: 'daily' if m.profile_visible
+  end  
+
 end

@@ -20,6 +20,7 @@
 
 				<% else %>
 					<% provide(:title, "#{@machine.name} - Machine Profile") %>
+					<% meta_description "#{@machine.formatted_name} machine profile - find suppliers who own this machine using SupplyBetter" %>
 					
 					<h3 class="center bit-of-space"><%= "Machine profile for #{@machine.formatted_name}" %></h3>
 
@@ -34,7 +35,7 @@
 					<p>If you need to find a supplier with this machine, let us know!</p>
 					<%= link_to "Find supplier", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
 
-					<p>Alternately, check out all machines by <%= link_to "#{@manufacturer.name}", manufacturer_profile_path(@manufacturer.name_for_link) %>, or head to the <%= link_to "home page", root_path %>.
+					<p>Alternately, check out <%= link_to "all machines by #{@manufacturer.name}", manufacturer_profile_path(@manufacturer.name_for_link) %>, or <%= link_to "head to the home page", root_path %>.
 				<% end %>
 			</div>
 

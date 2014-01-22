@@ -20,6 +20,7 @@
 					<p>Want to head to the <%= link_to "home page", root_path %> instead?</p>
 				<% else %>
 					<% provide(:title, "#{@manufacturer.name} - Manufacturer Profile") %>
+					<% meta_description "#{@manufacturer.name} manufacturer profile - find suppliers who own machines from this manufacturer using SupplyBetter" %>
 
 					<h3 class="center bit-of-space"><%= "Manufacturer profile for #{@manufacturer.name}" %></h3>
 
