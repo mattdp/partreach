@@ -4,11 +4,12 @@ module ProfilesHelper
 		return "No #{tab_reference} yet!"
 	end
 
-	def allowed_to_see_supplier_profile?(supplier)
-		return false if supplier.nil?
-		return true if supplier.profile_visible
-		return false if !supplier.profile_visible and current_user.nil?
-		return true if !supplier.profile_visible and (current_user.admin? or current_user.supplier_id == supplier.id)
+	def allowed_to_see?(model)
+		return false if model.nil?
+		return true if model.profile_visible
+		return true if !model.profile_visible and current_user.admin?
+		(return true if !model.profile_visible and current_user.supplier_id == supplier.id) if model.class.to_s == "Supplier"
+		return false
 	end
 
 	def meta_for_supplier(supplier)

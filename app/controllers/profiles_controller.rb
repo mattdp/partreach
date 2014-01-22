@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
 		current_user.nil? ? @user_id = 0 : @user_id = current_user.id
 
 		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
-		@allowed = allowed_to_see_supplier_profile?(@supplier)
+		@allowed = allowed_to_see?(@supplier)
 		if @allowed
 			@tags = @supplier.visible_tags if @supplier
 			@machines_quantity_hash = @supplier.machines_quantity_hash
@@ -25,11 +25,30 @@ class ProfilesController < ApplicationController
 		end
 	end
 
+	def machine_profile
+		@beta = is_beta?
+		@manufacturer = Manufacturer.find_by_name_for_link(params[:manufacturer_name])
+		@machine = @manufacturer.machines.detect{|m| m.name_for_link == params[:machine_name]}
+		@allowed = allowed_to_see?(@machine)
+	end
+
+	def manufacturer_profile
+		@beta = is_beta?
+		@manufacturer = Manufacturer.find_by_name_for_link(params[:manufacturer_name])
+		@allowed = allowed_to_see?(@manufacturer)
+	end
+
 	def submit_ask
 		a = Ask.new(supplier_id: params[:supplier_id], request: params[:request], user_id: params[:user_id])
 		a.save
 		@supplier = Supplier.find(params[:supplier_id])
 		redirect_to supplier_profile_url(@supplier.name_for_link), notice: 'Suggestion received. Thanks!'
 	end
+
+	private
+
+		def is_beta?
+			true
+		end
 
 end

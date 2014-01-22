@@ -45,9 +45,6 @@ class MachinesController < ApplicationController
 		redirect_to analytics_machines_path, notice: note
 	end
 
-	def show
-	end
-
 	def suppliers_with_machine
 		@machine = Machine.find(params[:machine_id])
 		owners = Owner.where("machine_id = ?",params[:machine_id])

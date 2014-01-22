@@ -33,11 +33,10 @@ Partreach::Application.routes.draw do
 
   match '/leads/admin_create', to: 'leads#admin_create', as: 'admin_create_lead', via: :post
 
-  get '/manufacturers/:manufacturer_name/:machine_name', to: 'machines#show', as: 'show_machine'
   get '/machines/suppliers_with_machine/:machine_id', to: 'machines#suppliers_with_machine', as: 'suppliers_with_machine'
 
-  get '/manufacturers/:manufacturer_name', to: 'manufacturers#show', as: 'manufacturer'
-
+  get '/manufacturers/:manufacturer_name/:machine_name', to: 'profiles#machine_profile', as: 'machine_profile'
+  get '/manufacturers/:manufacturer_name', to: 'profiles#manufacturer_profile', as: 'manufacturer_profile'
   get '/profiles/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
   get '/submit_ask/', to: 'profiles#submit_ask'
   
