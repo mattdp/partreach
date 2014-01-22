@@ -1,6 +1,20 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'make machines and manufacturers visible, and set their name_for_link'
+task :m_and_m_visible => :environment do
+	Machine.find_each do |m|
+		m.name_for_link = Machine.proper_name_for_link(m.name)
+		m.profile_visible = true
+		m.save
+	end
+	Manufacturer.find_each do |m|
+		m.name_for_link = Manufacturer.proper_name_for_link(m.name)
+		m.profile_visible = true
+		m.save
+	end	
+end
+
 desc 'Override lead contacts with user information, when present'
 task :user_contact_override => :environment do
 	User.find_each do |user|

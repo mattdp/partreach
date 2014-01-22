@@ -12,6 +12,8 @@
 #  bv_length          :decimal(6, 2)
 #  materials_possible :text
 #  z_height           :string(255)
+#  profile_visible    :boolean          default(TRUE)
+#  name_for_link      :string(255)
 #
 
 class Machine < ActiveRecord::Base
@@ -26,6 +28,10 @@ class Machine < ActiveRecord::Base
 
 	def formatted_name
 		return "#{self.manufacturer.name} #{self.name}"
+	end
+
+	def self.proper_name_for_link(name)
+		Supplier.proper_name_for_link(name)
 	end
 	
 end

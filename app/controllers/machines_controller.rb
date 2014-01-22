@@ -10,6 +10,7 @@ class MachinesController < ApplicationController
 	def create
 		@machine = Machine.new(machine_params)
 		@machine.manufacturer_id = Manufacturer.create_or_reference_manufacturer(manufacturer_params).id
+		@machine.name_for_link = Machine.proper_name_for_link(@machine.name)
 
 		saved_ok = @machine.save
 		if saved_ok
