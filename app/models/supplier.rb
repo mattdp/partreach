@@ -492,4 +492,14 @@ class Supplier < ActiveRecord::Base
     return Supplier.where(where_clause).order("next_contact_date ASC")
   end
 
+  def self.with_machine(machine_id)
+    owners = Owner.where("machine_id = ?",machine_id)
+    if owners.present?
+      ids = owners.map{|o| o.supplier_id}
+      @suppliers = ids.uniq.map{|id| Supplier.find(id)}
+    else
+      @suppliers = nil
+    end
+  end
+
 end

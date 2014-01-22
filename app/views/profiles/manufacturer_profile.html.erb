@@ -15,7 +15,7 @@
 						<%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for adding a manufacturer" %></p>
 
 					<p>If you need to find a supplier with machines from this manufacturer, let us know!</p>
-					<%= link_to "Find machine", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
+					<%= link_to "Find supplier", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
 
 					<p>Want to head to the <%= link_to "home page", root_path %> instead?</p>
 				<% else %>
@@ -35,17 +35,17 @@
 
 					<p>If you need to find a supplier with machines from this manufacturer, let us know!</p>
 
-					<%= link_to "Find machine", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
+					<%= link_to "Find supplier", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
 
 					<% if machines_count > 0 %>
-						<p>Or, browse machines for <%= "#{@manufacturer.name}" %>:</p>
+						<p>Alternately, <%= link_to "head to the home page", root_path %>, or browse machines made by <%= "#{@manufacturer.name}" %>:</p>
 						<ul>
 							<% @machines.each do |machine| %>
-								<li><%= link_to "#{machine.name}", machine_profile_path(manufacturer_name: @manufacturer.name_for_link, machine_name: machine.name_for_link) %></li>
+								<li><%= link_to "#{machine.formatted_name}", machine_profile_path(manufacturer_name: @manufacturer.name_for_link, machine_name: machine.name_for_link) %></li>
 							<% end %>
 						</ul>
 					<% end %>
-					
+
 				<% end %>
 			</div>
 

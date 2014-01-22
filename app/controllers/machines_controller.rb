@@ -47,14 +47,7 @@ class MachinesController < ApplicationController
 
 	def suppliers_with_machine
 		@machine = Machine.find(params[:machine_id])
-		owners = Owner.where("machine_id = ?",params[:machine_id])
-		if owners.present?
-			ids = owners.map{|o| o.supplier_id}
-			@suppliers = ids.uniq.map{|id| Supplier.find(id)}
-		else
-			@suppliers = nil
-		end
-
+		@suppliers = Supplier.with_machine(params[:machine_id])
 	end
 
   private

@@ -27,10 +27,11 @@ class ProfilesController < ApplicationController
 
 	def machine_profile
 		@beta = is_beta?
-		@manufacturer = Manufacturer.find_by_name_for_link(params[:manufacturer_name])
-		@machine = @allowed = nil
-		if @manufacturer
-			@machine = @manufacturer.machines.detect{|m| m.name_for_link == params[:machine_name]}
+		@machine = Machine.find_by_name_for_link(params[:machine_name])
+		@suppliers = Supplier.with_machine(@machine.id)
+		@manufacturer = @allowed = nil
+		if @machine
+			@manufacturer = @machine.manufacturer
 			@allowed = allowed_to_see?(@machine)
 		end
 	end
