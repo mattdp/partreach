@@ -1,5 +1,6 @@
 class MachinesController < ApplicationController
-	before_filter :admin_user
+	#should be all but show
+	before_filter :admin_user, only: [:new, :create, :edit, :update]
 
 	def new
 		@machine = Machine.new
@@ -42,6 +43,9 @@ class MachinesController < ApplicationController
 		end		
 
 		redirect_to analytics_machines_path, notice: note
+	end
+
+	def show
 	end
 
 	def suppliers_with_machine

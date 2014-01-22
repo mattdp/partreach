@@ -40,6 +40,8 @@ Partreach::Application.routes.draw do
   get '/machines/suppliers_with_machine/:machine_id', to: 'machines#suppliers_with_machine', as: 'suppliers_with_machine'
   get '/recruiting', to: 'static_pages#recruiting', as: 'recruiting'
   match '/leads/admin_create', to: 'leads#admin_create', as: 'admin_create_lead', via: :post
+  get '/manufacturers/:manufacturer_name/:machine_name', to: 'machines#show', as: 'show_machine'
+  get '/manufacturers/:manufacturer_name', to: 'manufacturers#show', as: 'manufacturer'
 
   get '/analytics', to: 'analytics#home', as: 'analytics_home'
   get '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
