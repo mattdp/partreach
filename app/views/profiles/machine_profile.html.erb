@@ -27,7 +27,7 @@
 					<% @suppliers.present? ? suppliers_count = @suppliers.count : suppliers_count = 0%>
 					<p><%= "We currently have #{pluralize(suppliers_count,'supplier')} in our database who own a #{@machine.formatted_name}." %></p>
 						<p>
-							<%= "Please note that the manufacturer and machine profiles are in beta, and are not yet comprehensive." if @beta %>
+							<%= "Please note that the manufacturer and machine profiles are in beta, and are not yet comprehensive - we are hard at work to figure out which machines each supplier has." if @beta %>
 							Help expand our database by 
 							<%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for #{@machine.formatted_name}" %>
 						</p>
