@@ -9,6 +9,7 @@
   		<table class="order_table">
   			<tr>
 	  			<th>ID</th>
+	  			<th>Next?</th>
 					<th>Name</th>
 					<th>Company</th>
 					<th>Priority</th>
@@ -27,6 +28,7 @@
   				<% supplier_link = (lead.user.present? and lead.user.supplier_id.present?) %>
   				<tr <%= "class=supplier_link-row" if supplier_link %>>
 						<td><%= "#{lead.id}" %></td>
+						<td><%= "#{lead.next_contactor}" %></td>
 						<td><%= "#{lc.full_name_untrusted}" %></td>
 						<td><%= "#{lc.company}" %></td>
 						<td><%= "#{lead.priority}" %></td>
