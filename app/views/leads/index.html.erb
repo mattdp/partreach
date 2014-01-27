@@ -19,11 +19,13 @@
 					<th>Orders</th>
 					<th>Email?</th>
 					<th>Phone?</th>	
-					<th>LI?</th>				
+					<th>LI?</th>
+					<th>Supplier?</th>				
 				</tr>
   			<% @leads.each do |lead| %>
   				<% lc = lead.lead_contact %>
-  				<tr>
+  				<% supplier_link = (lead.user.present? and lead.user.supplier_id.present?) %>
+  				<tr <%= "class=supplier_link-row" if supplier_link %>>
 						<td><%= "#{lead.id}" %></td>
 						<td><%= "#{lc.full_name_untrusted}" %></td>
 						<td><%= "#{lc.company}" %></td>
@@ -36,6 +38,7 @@
 						<td><%= "#{lc.email.present?}" %></td>
 						<td><%= "#{lc.phone.present?}" %></td>
 						<td><%= "#{lc.linkedin_url.present?}" %></td>
+						<td><%= "#{supplier_link}" %></td>
 					</tr>
 				<% end %>
 			</table>
