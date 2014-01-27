@@ -1,6 +1,6 @@
 <%= form_for @order_group do |f| %>
 
-	<%= hidden_field_tag "order_group[order_id]", params[:order_id] %>
+	<%= hidden_field_tag "order_group[order_id]", params[:order_id] if @order_group.order_id.nil?%>
 
 	<div class="field">
 	  <%= f.label :name %>

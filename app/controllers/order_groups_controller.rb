@@ -16,6 +16,15 @@ class OrderGroupsController < ApplicationController
 		@order_group = OrderGroup.find(params[:id])
 	end
 
+	def update
+		@order_group = OrderGroup.find(params[:id])
+		@order = @order_group.order
+
+		@order_group.update_attributes(order_group_params)		
+
+		redirect_to manipulate_path(@order.id), notice: 'Order group update attempted.'		
+	end
+
 	private
 
 		def order_group_params
