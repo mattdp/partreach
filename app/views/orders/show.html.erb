@@ -24,7 +24,7 @@
 
 					<h3 class="bit-of-space">
 						<%= "#{order_group.name}" %>
-						<%#= " (Process: #{order_group.process})" if order_group.process %>
+						<%= " (Process: #{order_group.process}, Material: #{order_group.material})" if (order_group.process and order_group.material) %>
 					</h3>
 
 					<% visibles = order_group.sort_visible_dialogues %>

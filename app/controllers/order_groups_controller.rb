@@ -28,7 +28,7 @@ class OrderGroupsController < ApplicationController
 	private
 
 		def order_group_params
-			params.require(:order_group).permit(:name,:process,:order_id)
+			params.require(:order_group).permit(:name,:process,:material,:order_id)
 		end
 
 end

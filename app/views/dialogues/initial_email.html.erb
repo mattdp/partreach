@@ -37,7 +37,11 @@
 			<h3>Project Details</h3>
 			<br>
 
-			<p><strong><%= "#{@dialogue.order_group.name}" %></strong></p>	
+			<% if @order.deadline.present? %>
+				<p><strong>Deadline:</strong> <%= "#{@order.deadline}" %></p>
+			<% end %>
+
+			<p><strong><%= "#{@order_group.name} (Process: #{@order_group.process}, Material: #{@order_group.material})" %></strong></p>	
 			<ul>
 				<% @order_group.parts.each do |part| %>
 					<li>
@@ -48,21 +52,15 @@
 				<% end %>
 			</ul>
 
-			<% if @order.deadline.present? %>
-				<p><strong>Deadline:</strong> <%= "#{@order.deadline}" %></p>
-			<% end %>
+			<p><strong>Shipping Zipcode:</strong></p>
 
-			<p><strong>Process Requested:</strong> <%= "#{@order_group.process}" %></p>
+			<p><strong>Infill:</strong></p>
 
-			<p><strong>Infill:</strong> [SOMETHING ROB SELECTS/INPUTS, NOT IMPLEMENTED]</p>
+			<p><strong>Build Orientation:</strong></p>
 
-			<p><strong>Material:</strong> <%= "#{@order.material_message}" %></p>
+			<p><strong>Note from Client:</strong> <%= "#{@order.supplier_message}" %></p>
 
-			<p><strong>Shipping Zipcode:</strong> [ZIPCODE, NOT IMPLEMENTED]</p>
-
-			<% if @order.supplier_message.present? %>
-				<p><strong>Note from Client:</strong> <%= "#{@order.supplier_message}" %></p>
-			<% end %>
+			<p><strong>Notes about Client:</strong></p>
 
 			<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>
 

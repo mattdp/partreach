@@ -8,6 +8,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  process    :string(255)
+#  material   :string(255)
 #
 
 class OrderGroup < ActiveRecord::Base
