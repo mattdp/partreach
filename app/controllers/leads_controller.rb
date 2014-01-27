@@ -49,12 +49,12 @@ class LeadsController < ApplicationController
 		def text_field_setup
 			return {
 			"@lead_contact" => [:phone,:email,:name,:first_name,:last_name,:company,:title,:linkedin_url],
-			"@lead" => [:source,:next_contact_content]
+			"@lead" => [:source,:next_contactor,:next_contact_content]
 			}
 		end
 
 		def lead_params
-			params.permit(:source,:next_contact_date,:next_contact_content,:priority)
+			params.permit(:source,:next_contact_date,:next_contact_content,:next_contactor,:priority)
 		end
 
 		def lead_contact_params
