@@ -41,9 +41,10 @@
 
 					<h3 class="bit-of-space">
 						<%= "Group: '#{order_group.name}' " %>
-						<%#= "Process: '#{order_group.process}'" %>
+						<%= "Process: '#{order_group.process}'" %>
+						<%= link_to "Edit order group", edit_order_group_path(order_group) %>
 					</h3>
-					<p>Movement between groups & addition of groups is currently console-only.</p>
+					<p>Movement between groups is currently console-only.</p>
 					<p><strong>Parts:</strong></p>
 					<ul>
 						<% order_group.parts.each do |part| %>

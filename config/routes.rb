@@ -37,7 +37,7 @@ Partreach::Application.routes.draw do
   match '/orders/update_dialogues', to: 'orders#update_dialogues', via: :post
   get '/orders/purchase/:order/:dialogue', to: 'orders#purchase'
 
-  resources :order_groups, only: [:new, :create]
+  resources :order_groups, only: [:new, :create, :edit, :update]
 
   resources :owners, only: [:create]
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'

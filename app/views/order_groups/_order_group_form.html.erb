@@ -1,0 +1,17 @@
+<%= form_for @order_group do |f| %>
+
+	<%= hidden_field_tag "order_group[order_id]", params[:order_id] %>
+
+	<div class="field">
+	  <%= f.label :name %>
+	  <%= f.text_field :name %>
+	</div>
+
+	<div class="field">
+	  <%= f.label :process %>
+	  <%= f.text_field :process %>
+	</div>
+
+	<div class="actions"><%= f.submit "Save Order Group", class: "save-button" %></div>
+
+<% end %>

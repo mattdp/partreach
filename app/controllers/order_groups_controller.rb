@@ -12,6 +12,10 @@ class OrderGroupsController < ApplicationController
 		redirect_to manipulate_path(@order.id), notice: 'Order group create attempted.'
 	end
 
+	def edit
+		@order_group = OrderGroup.find(params[:id])
+	end
+
 	private
 
 		def order_group_params
