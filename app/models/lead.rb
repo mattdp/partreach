@@ -11,6 +11,7 @@
 #  notes                :text
 #  priority             :string(255)
 #  user_id              :integer
+#  next_contactor       :string(255)
 #
 
 class Lead < ActiveRecord::Base
