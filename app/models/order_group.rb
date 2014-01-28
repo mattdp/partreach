@@ -21,18 +21,18 @@ class OrderGroup < ActiveRecord::Base
   validates :name, presence: true
 
   def email_snippet_generator
-    snippet = "<p><strong>#{self.name} (Process: #{self.process}, Material: #{self.material})</strong></p>"
-    snippet += "<ul>"
+    snippet = "<p><strong>#{self.name} (Process: #{self.process}, Material: #{self.material})</strong></p>\n"
+    snippet += "<ul>\n"
     self.parts.each do |part|
       external = part.external
-      snippet += "<li>#{part.name}, quantity #{part.quantity}"
+      snippet += "<li>\n#{part.name}, quantity #{part.quantity}"
       if external
         snippet += " (<a href=#{external.url}>Link to drawing</a>"
-        snippet += ", drawing units: #{external.units})"
+        snippet += ", drawing units: #{external.units})\n"
       end
-      snippet += "</li>"
+      snippet += "</li>\n"
     end
-    snippet += "</ul>"
+    snippet += "</ul>\n"
     return snippet
   end
 

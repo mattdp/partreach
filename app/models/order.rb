@@ -222,19 +222,15 @@ def add_complex_order(location)
   end
 
   def email_snippet_generator
-    snippet = "
-      <p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>
-
+    snippet = 
+      "<p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>
       <h3>What We Need</h3>
       <br>
-
       <p><strong>Process Cost:</strong></p>
-
       <p><strong>Total Cost</strong> (including any shipping and taxes):</p>
-
       <h3>Project Details</h3>
-      <br>"
-    snippet += "<p><strong>Deadline:</strong>#{self.deadline}</p>" if self.deadline.present?
+      <br>\n"
+    snippet += "<p><strong>Deadline:</strong> #{self.deadline}</p>\n" if self.deadline.present?
     snippet += "
       <p><strong>Shipping Zipcode:</strong> #{self.user.address.zip}</p>
 
