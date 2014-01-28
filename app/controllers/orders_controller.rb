@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :show, :destroy, :manipulate_dialogues]
   before_filter :correct_user, only: [:show, :destroy]
-  before_filter :admin_user, only: [:manipulate_dialogues, :update_dialogues]
+  before_filter :admin_user, only: [:manipulate_dialogues, :update_dialogues, :initial_email_edit, :initial_email_update]
 
   # GET /orders
   # GET /orders.json
@@ -166,6 +166,15 @@ class OrdersController < ApplicationController
 
   def initial_email_update
     @order = Order.find(params[:id])
+    @order.update_attributes(order_params)
+
+    params["order_group_email_snippets"].each do |id,text|
+      order_group = OrderGroup.find(id)
+      order_group.email_snippet = text
+      order_group.save
+    end
+
+    redirect_to manipulate_path(@order), notice: "Master email saves attempted."
   end
 
   def manipulate_dialogues
@@ -266,7 +275,8 @@ class OrdersController < ApplicationController
 
     def order_params
       params.permit(:name,:material_message,:suggested_suppliers, :deadline, \
-        :stated_experience,:stated_priority,:stated_manufacturing,:supplier_message)
+        :stated_experience,:stated_priority,:stated_manufacturing,:supplier_message,
+        :email_snippet)
     end
 
     def correct_user

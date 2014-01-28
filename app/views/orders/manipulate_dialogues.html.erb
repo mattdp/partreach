@@ -106,6 +106,8 @@
 							<% end %>
 					</table>
 
+					<strong><%= link_to "Edit master emails", initial_email_edit_path(@order) %></strong>
+
 					<table>
 						<% order_group.dialogues.each do |d| %>
 							<tr>
