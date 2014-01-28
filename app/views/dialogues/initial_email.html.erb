@@ -17,52 +17,8 @@
 
   		<p>-----BEGIN COPYABLE TEXT-----</p>
 
-  		<p>SUBJECT: <%= text_field_tag "dummy_for_copy", "SupplyBetter RFQ ##{@order.id}1 for #{@supplier.name}" %>
-
-  		<% if @contact.first_name %>
-  			<p>Hi <%= "#{@contact.first_name}" %>,</p>
-  		<% else %>
-  			<p>Hi there,</p>
-  		<% end %>
-
-			<p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>
-
-			<h3>What We Need</h3>
-			<br>
-
-			<p><strong>Process Cost:</strong></p>
-
-			<p><strong>Total Cost</strong> (including any shipping and taxes):</p>
-
-			<h3>Project Details</h3>
-			<br>
-
-			<% if @order.deadline.present? %>
-				<p><strong>Deadline:</strong> <%= "#{@order.deadline}" %></p>
-			<% end %>
-
-			<p><strong><%= "#{@order_group.name} (Process: #{@order_group.process}, Material: #{@order_group.material})" %></strong></p>	
-			<ul>
-				<% @order_group.parts.each do |part| %>
-					<li>
-						<%= "#{part.name}, quantity #{part.quantity}" %>
-						<% external = part.external %>
-						<span>(<%= link_to "Link to drawing", external.url %>, drawing units: <%= "#{external.units})" if external %>
-					</li>
-				<% end %>
-			</ul>
-
-			<p><strong>Shipping Zipcode:</strong> <%= "#{@order.user.address.zip}" %></p>
-
-			<p><strong>Infill:</strong></p>
-
-			<p><strong>Build Orientation:</strong></p>
-
-			<p><strong>Note from Client:</strong> <%= "#{@order.supplier_message}" %></p>
-
-			<p><strong>Notes about Client:</strong></p>
-
-			<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>
+  		<%= raw @subject %>
+  		<%= raw @body %>
 
 			<p>-----END COPYABLE TEXT-----</p>
 

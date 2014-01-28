@@ -81,6 +81,11 @@ class Dialogue < ActiveRecord::Base
 
     contact.first_name.present? ? returnee[:body] = "<p>Hi #{@contact.first_name},</p>" : returnee[:body] = "<p>Hi there,</p>"
 
+    returnee[:body] += order.email_snippet_generator
+    returnee[:body] += order_group.email_snippet_generator
+
+    returnee[:body] += "<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>"
+
     return returnee
   end
 

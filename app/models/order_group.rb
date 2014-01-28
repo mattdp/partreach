@@ -20,6 +20,22 @@ class OrderGroup < ActiveRecord::Base
 
   validates :name, presence: true
 
+  def email_snippet_generator
+    snippet = "<p><strong>#{self.name} (Process: #{self.process}, Material: #{self.material})</strong></p>"
+    snippet += "<ul>"
+    self.parts.each do |part|
+      external = part.external
+      snippet += "<li>#{part.name}, quantity #{part.quantity}"
+      if external
+        snippet += " (<a href=#{external.url}>Link to drawing</a>"
+        snippet += ", drawing units: #{external.units})"
+      end
+      snippet += "</li>"
+    end
+    snippet += "</ul>"
+    return snippet
+  end
+
   def self.switch_group_of_parts(to_group_id,part_array)
   	part_array.each do |part|
   		part.order_group_id = to_group_id
