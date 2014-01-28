@@ -36,8 +36,8 @@ Partreach::Application.routes.draw do
   get '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
   match '/orders/update_dialogues', to: 'orders#update_dialogues', via: :post
   get '/orders/purchase/:order/:dialogue', to: 'orders#purchase'
-  get '/orders/initial_email_edit/:id', to: 'orders#initial_email_edit'
-  match '/orders/initial_email_update', to: 'orders#initial_email_update', via: :post
+  get '/orders/initial_email_edit/:id', to: 'orders#initial_email_edit', as: 'initial_email_edit'
+  match '/orders/initial_email_update', to: 'orders#initial_email_update', as: 'initial_email_update', via: :post
 
   resources :order_groups, only: [:new, :create, :edit, :update]
 

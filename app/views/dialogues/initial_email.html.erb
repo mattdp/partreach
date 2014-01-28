@@ -7,6 +7,8 @@
 
   		<p><%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %></p>
 
+  		<p><%= link_to "Edit master email for this order", initial_email_edit_path(@order) %></p>
+
   		<p>First name of RFQ contact: 
 	  		<% if @contact.first_name %>
 	  			<%= "#{@contact.first_name} (full name: #{@contact.full_name_untrusted})" %>
