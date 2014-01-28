@@ -19,8 +19,8 @@
 
   		<p>-----BEGIN COPYABLE TEXT-----</p>
 
-  		<%= raw @subject %>
-  		<%= raw @body %>
+      <%= text_field_tag "dummy_subject", "#{raw @subject}" %>
+  		<%= raw "#{@body}" %>
 
 			<p>-----END COPYABLE TEXT-----</p>
 
