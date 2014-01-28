@@ -160,6 +160,14 @@ class OrdersController < ApplicationController
     end
   end
 
+  def initial_email_edit
+    @order = Order.find(params[:id])
+  end
+
+  def initial_email_update
+    @order = Order.find(params[:id])
+  end
+
   def manipulate_dialogues
     @order = Order.find(params[:id])
     @order_groups = @order.order_groups 

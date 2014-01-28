@@ -2,13 +2,14 @@
 #
 # Table name: order_groups
 #
-#  id         :integer          not null, primary key
-#  order_id   :integer
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  process    :string(255)
-#  material   :string(255)
+#  id            :integer          not null, primary key
+#  order_id      :integer
+#  name          :string(255)
+#  created_at    :datetime
+#  updated_at    :datetime
+#  process       :string(255)
+#  material      :string(255)
+#  email_snippet :text
 #
 
 class OrderGroup < ActiveRecord::Base

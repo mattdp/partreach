@@ -24,6 +24,7 @@
 #  notes                  :text
 #  override_average_value :decimal(, )
 #  columns_shown          :string(255)      default("all")
+#  email_snippet          :text
 #
 
 require 'csv'

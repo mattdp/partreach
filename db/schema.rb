@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127192810) do
+ActiveRecord::Schema.define(version: 20140128200810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -205,6 +205,7 @@ ActiveRecord::Schema.define(version: 20140127192810) do
     t.datetime "updated_at"
     t.string   "process"
     t.string   "material"
+    t.text     "email_snippet"
   end
 
   create_table "orders", force: true do |t|
@@ -229,6 +230,7 @@ ActiveRecord::Schema.define(version: 20140127192810) do
     t.text     "notes"
     t.decimal  "override_average_value"
     t.string   "columns_shown",          default: "all"
+    t.text     "email_snippet"
   end
 
   create_table "owners", force: true do |t|
