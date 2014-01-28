@@ -69,4 +69,19 @@ class Dialogue < ActiveRecord::Base
     return structure
   end
 
+  #return {subject, body} of email. subject is text, body is html
+  def initial_email_generator
+    order = self.order
+    order_group = self.order_group
+    supplier = self.supplier
+    contact = supplier.rfq_contact
+
+    returnee = {}
+    returnee[:subject] = "SupplyBetter RFQ ##{order.id}1 for #{supplier.name}"
+
+    contact.first_name.present? ? returnee[:body] = "<p>Hi #{@contact.first_name},</p>" : returnee[:body] = "<p>Hi there,</p>"
+
+    return returnee
+  end
+
 end
