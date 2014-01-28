@@ -1,3 +1,17 @@
+
+
+$(document).ready(function() {
+  $('.generate-email-button').click(function() {
+    event.preventDefault();
+    var html = $(this).attr('data-html');
+    $(this).closest('div').children('textarea').val(html);
+  });
+
+  $('.all-generate-email-button').click(function () {
+    $('.generate-email-button').trigger('click');
+  });
+});
+
 $(function() {
   var $directUpload = $('#direct-upload');
   $directUpload.fileupload({

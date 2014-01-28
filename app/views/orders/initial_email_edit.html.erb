@@ -6,14 +6,22 @@
 
   	<h3 class="bit-of-space"><%="Master email edit page for order #{@order.id}"%></h3>
 
+  	<%= link_to "Generate defaults for all fields", "#", class: "all-generate-email-button" %> 
+
   	<%= form_tag :action => 'initial_email_update', :controller => 'orders' do %>
 
-  		<%= label_tag :order_email_snippet, "Order email snippet" %>
-  		<%= text_area_tag :order_email_snippet, @order.email_snippet_generator, rows: 20 %>
+  		<div>
+	  		<%= label_tag :order_email_snippet, "Order email snippet" %>
+	  		<%= link_to "Regenerate default text", "#", class: "generate-email-button", data: {html: @order.email_snippet_generator} %> 
+	  		<%= text_area_tag :order_email_snippet, @order.email_snippet_generator, rows: 20 %>
+	  	</div>
 
   		<% @order.order_groups.each do |order_group| %>
-  			<%= label_tag "#{order_group.id}", "#{order_group.name} (Process: #{order_group.process}, Material: #{order_group.material})" %>
-  			<%= text_area_tag "#{order_group.id}", order_group.email_snippet_generator, rows: 10 %>
+  			<div>
+	  			<%= label_tag "#{order_group.id}", "#{order_group.name} (Process: #{order_group.process}, Material: #{order_group.material})" %>
+	  			<%= link_to "Regenerate default text", "#", class: "generate-email-button", data: {html: order_group.email_snippet_generator} %> 
+	  			<%= text_area_tag "#{order_group.id}", order_group.email_snippet_generator, rows: 10 %>
+	  		</div>
   		<% end %>
 
   		<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
