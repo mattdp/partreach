@@ -22,7 +22,6 @@ gem 'analytics-ruby', '<1.0' #https://segment.io/libraries/ruby
 gem 'delayed_job_active_record', '4.0.0'
 gem 'nokogiri', '1.6.0'
 gem 'domainatrix', '0.0.11'
-gem 'mailgunner', '1.3.0'
 
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'
