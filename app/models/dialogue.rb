@@ -80,9 +80,9 @@ class Dialogue < ActiveRecord::Base
 
     contact.first_name.present? ? returnee[:body] = "<p>Hi #{@contact.first_name},</p>" : returnee[:body] = "<p>Hi there,</p>"
 
-    returnee[:body] += order.email_snippet
+    returnee[:body] += order.email_snippet if order.email_snippet.present?
     order.dialogues.select{|d| d.supplier_id == supplier.id}.each do |dialogue|
-      returnee[:body] += dialogue.order_group.email_snippet
+      returnee[:body] += dialogue.order_group.email_snippet if dialogue.order_group.email_snippet.present?
     end
 
     returnee[:body] += "<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>"
