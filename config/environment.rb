@@ -4,12 +4,12 @@ require File.expand_path('../application', __FILE__)
 # Initialize the rails application
 Partreach::Application.initialize!
 
+ActionMailer::Base.delivery_method = :smtp
 ActionMailer::Base.smtp_settings = {
-  :user_name => "supplybetter",
-  :password => ENV['SB_MAILER_PASSWORD'],
-  :domain => "www.supplybetter.com",
-  :address => "smtp.sendgrid.net",
+	:authentication => :plain,
+	:address => "smtp.mailgun.org",
   :port => 587,
-  :authentication => :plain,
-  :enable_starttls_auto => true
+  :domain => "supplybetter.com",
+  :user_name => "postmaster@supplybetter.com",
+  :password => ENV['SB_MAILER_PASSWORD']
 }
