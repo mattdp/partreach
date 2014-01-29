@@ -72,7 +72,6 @@ class Dialogue < ActiveRecord::Base
   #return {subject, body} of email. subject is text, body is html
   def initial_email_generator
     order = self.order
-    order_group = self.order_group
     supplier = self.supplier
     contact = supplier.rfq_contact
 
@@ -82,7 +81,9 @@ class Dialogue < ActiveRecord::Base
     contact.first_name.present? ? returnee[:body] = "<p>Hi #{@contact.first_name},</p>" : returnee[:body] = "<p>Hi there,</p>"
 
     returnee[:body] += order.email_snippet
-    returnee[:body] += order_group.email_snippet
+    order.dialogues.select{|d| d.supplier_id == supplier.id}.each do |dialogue|
+      returnee[:body] += dialogue.order_group.email_snippet
+    end
 
     returnee[:body] += "<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>"
 
