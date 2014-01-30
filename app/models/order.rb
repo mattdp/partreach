@@ -227,25 +227,23 @@ def add_complex_order(location)
       <h3>What We Need</h3>
       <br>
       <p><strong>Total Cost</strong> (including any shipping and taxes):</p>"
-    if self.priority == "cost"
+    if self.stated_priority == "speed"
       snippet += "<p><strong>Estimated delivery date:</strong></p><p><strong>Deadline for client to place order to hit that delivery date:</strong></p>"
     else
       snippet += "<p><strong>Lead Time:</strong></p>"
     end
     snippet += "<h3>Project Details</h3><br>\n"
 
-    snippet += "<p><strong>Priority:</strong> "
-    case self.priority
+    #omits speed, since that's covered in other fields
+    case self.stated_priority
     when "cost"
-      snippet += "Cost is the main concern here. This is not a rush order.</p>"
+      snippet += "<p><strong>Priority:</strong> Cost is the main concern here. This is not a rush order.</p>"
     when "quality"
-      snippet += "Quality is the main concern here with this project. See the note from client for details on what exactly they're looking for.</p>"
-    else
-      snippet += "</p>"
+      snippet += "<p><strong>Priority:</strong> Quality is the main concern here with this project. See the note from client for details on what exactly they're looking for.</p>"
     end
     
     snippet += "<p><strong>Deadline:</strong> "
-    if self.priority == "cost"
+    if self.stated_priority == "speed"
       snippet += "ASAP. Client is willing to pay rush order costs to hit a deadline of #{self.deadline}, see note below.</p>"
     else
       snippet += "#{self.deadline}</p>\n" if self.deadline.present?
