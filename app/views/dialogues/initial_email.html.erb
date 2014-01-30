@@ -17,14 +17,12 @@
 	  		<% end %>
   		</p>
 
+      <p>Email of RFQ contact: <%= @contact.email %></p>
+
   		<p>-----BEGIN COPYABLE TEXT-----</p>
 
       <%= text_field_tag "dummy_subject", "#{raw @subject}" %>
   		<%= raw "#{@body}" %>
-
-			<p>-----END COPYABLE TEXT-----</p>
-
-			<%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %>
 
   	</div>
   </div>

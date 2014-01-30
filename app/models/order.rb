@@ -226,11 +226,31 @@ def add_complex_order(location)
       "<p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>
       <h3>What We Need</h3>
       <br>
-      <p><strong>Process Cost:</strong></p>
-      <p><strong>Total Cost</strong> (including any shipping and taxes):</p>
-      <h3>Project Details</h3>
-      <br>\n"
-    snippet += "<p><strong>Deadline:</strong> #{self.deadline}</p>\n" if self.deadline.present?
+      <p><strong>Total Cost</strong> (including any shipping and taxes):</p>"
+    if self.priority == "cost"
+      snippet += "<p><strong>Estimated delivery date:</strong></p><p><strong>Deadline for client to place order to hit that delivery date:</strong></p>"
+    else
+      snippet += "<p><strong>Lead Time:</strong></p>"
+    end
+    snippet += "<h3>Project Details</h3><br>\n"
+
+    snippet += "<p><strong>Priority:</strong> "
+    case self.priority
+    when "cost"
+      snippet += "Cost is the main concern here. This is not a rush order.</p>"
+    when "quality"
+      snippet += "Quality is the main concern here with this project. See the note from client for details on what exactly they're looking for.</p>"
+    else
+      snippet += "</p>"
+    end
+    
+    snippet += "<p><strong>Deadline:</strong> "
+    if self.priority == "cost"
+      snippet += "ASAP. Client is willing to pay rush order costs to hit a deadline of #{self.deadline}, see note below.</p>"
+    else
+      snippet += "#{self.deadline}</p>\n" if self.deadline.present?
+    end
+
     snippet += "
       <p><strong>Shipping Zipcode:</strong> #{self.user.address.zip}</p>
 

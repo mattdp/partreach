@@ -85,7 +85,9 @@ class Dialogue < ActiveRecord::Base
       returnee[:body] += dialogue.order_group.email_snippet if dialogue.order_group.email_snippet.present?
     end
 
-    returnee[:body] += "<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>"
+    returnee[:body] += 
+      "<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>
+      <p>Cheers,</p>"
 
     return returnee
   end
