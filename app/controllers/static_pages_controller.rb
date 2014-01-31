@@ -36,7 +36,8 @@ class StaticPagesController < ApplicationController
 
 		@logo_locations = [	"https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-white_background.png",
 												"https://s3.amazonaws.com/supplybetter_buyer_logos/131221-five_and_dime_logo.png",
-												"https://s3.amazonaws.com/supplybetter_buyer_logos/131221-mtts_logo.png"]
+												"https://s3.amazonaws.com/supplybetter_buyer_logos/131221-mtts_logo.png",
+												"https://s3.amazonaws.com/supplybetter_buyer_logos/140130-cruise_logo.png"]
 	end
 
 	def getting_started
