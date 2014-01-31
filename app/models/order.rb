@@ -221,6 +221,10 @@ def add_complex_order(location)
     return variable
   end
 
+  def self.group_text_substitution
+    return "<[$groups$]>"
+  end
+
   def email_snippet_generator
     snippet = 
       "<p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>
@@ -249,6 +253,8 @@ def add_complex_order(location)
       snippet += "#{self.deadline}</p>\n" if self.deadline.present?
     end
 
+    snippet += Order.group_text_substitution #special characters, to be replaced by group information
+
     snippet += "
       <p><strong>Shipping Zipcode:</strong> #{self.user.address.zip}</p>
 
@@ -256,7 +262,7 @@ def add_complex_order(location)
 
       <p><strong>Build Orientation:</strong></p>
 
-      <p><strong>Note from Client:</strong> #{self.supplier_message}</p>
+      <p><strong>Note from Client:</strong> <i>#{self.supplier_message}</i></p>
 
       <p><strong>Notes about Client:</strong></p>"
 
