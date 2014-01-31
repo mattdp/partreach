@@ -17,11 +17,7 @@
 					<th>Next Content</th>
 					<th>Edit</th>
 					<th>User?</th>
-					<th>Orders</th>
-					<th>Email?</th>
-					<th>Phone?</th>	
-					<th>LI?</th>
-					<th>Supplier?</th>				
+					<th>Orders</th>	
 				</tr>
   			<% @leads.each do |lead| %>
   				<% lc = lead.lead_contact %>
@@ -37,10 +33,6 @@
 						<td><%= link_to "View/edit", edit_lead_path(lead) %></td>
 						<td><%= "#{lead.user_id.present?}" %></td>
 						<td><%= lead.user.present? ? "#{lead.user.orders.count}" : "0" %>
-						<td><%= "#{lc.email.present?}" %></td>
-						<td><%= "#{lc.phone.present?}" %></td>
-						<td><%= "#{lc.linkedin_url.present?}" %></td>
-						<td><%= "#{supplier_link}" %></td>
 					</tr>
 				<% end %>
 			</table>
