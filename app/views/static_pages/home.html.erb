@@ -24,17 +24,17 @@
 				<h3 class="center">Buyers include</h3>
 				<ol>
 					<% @logo_locations_top.each do |logo_location| %>
-						<li><%= image_tag logo_location, :class => "logo-image" %></li>
+						<li><%= image_tag logo_location, :class => "logo-image col-sm-offset-8" %></li>
 					<% end %>
 				</ol>
 			</div>
-			<div class="row features features-override">
+			<div class="row features">
 				<ol>
 					<% @logo_locations_bottom.each do |logo_location| %>
-						<li><%= image_tag logo_location, :class => "logo-image" %></li>
+						<li><%= image_tag logo_location, :class => "logo-image col-sm-offset-8" %></li>
 					<% end %>
 				</ol>
-				<h3 class="center clear">and many more.</h3>
+				<h3 class="center clear bit-of-space">and many more.</h3>
 			</div>
 		</div>
 	</div>
