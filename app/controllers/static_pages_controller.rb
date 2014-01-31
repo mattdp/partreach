@@ -30,6 +30,12 @@ class StaticPagesController < ApplicationController
 				title: "Owner",
 				company: "Synáspora",
 				praise: "I'm brand new to 3D printing and needed help printing a prototype for a new product idea of mine. SupplyBetter was the perfect place for me. I got personal service and assistance in choosing the right material. Highly recommended!"
+			},
+			{
+				person: "Kyle",
+				title: "Founder",
+				company: "Cruise Automation",
+				praise: "When I needed some 3d scanning work done in a pinch, SupplyBetter was incredible.  They hooked me up with a great local company that went above and beyond the call of duty to deliver a set of quality 3d scans on-time and on-budget.  I'll definitely be using SupplyBetter again!"
 			}
 		]
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
