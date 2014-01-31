@@ -22,7 +22,8 @@
 			<% if @order_groups and @order.dialogues.count > 0 %>
 
 				<% if @recommended.present? and @order_groups.length > 1 %>
-					<h3 class="bit-of-space">Summary: recommendations across all processes</h3>
+					<h3 class="bit-of-space">Summary: recommendations across all part groupings</h3>
+					<%= render partial: "orders/show_order_table", locals: {rows: @recommended, columns: @columns} %>
 				<% end %>
 
 				<% @order_groups.each do |order_group| %>

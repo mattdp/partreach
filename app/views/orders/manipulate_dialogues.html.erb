@@ -51,8 +51,12 @@
 						<% order_group.parts.each do |part| %>
 							<% external = part.external %>
 							<li>
-								<%= "Quantity #{part.quantity} of '#{part.name}' (Units: #{external.units}" %>
-								<%= link_to "Link to file", external.url %>
+								<% if external %>
+									<%= "Quantity #{part.quantity} of '#{part.name}' (Units: #{external.units}" %>
+									<%= link_to "Link to file", external.url %>
+								<% else %>
+									<%= "WARNING - PART HAS NO EXTERNAL LINK. TROUBLESHOOT." %>
+								<% end %>
 								<%= ") [Part ID: #{part.id}, BOM ID: #{part.bom_identifier}]" %>
 							</li>
 						<% end %>
