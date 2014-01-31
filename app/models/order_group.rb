@@ -16,7 +16,7 @@ class OrderGroup < ActiveRecord::Base
 
 	belongs_to :order
 	has_many :parts, dependent: :destroy
-	has_many :dialogues
+	has_many :dialogues, dependent: :destroy
 
   validates :name, presence: true
 

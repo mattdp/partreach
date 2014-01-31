@@ -19,7 +19,7 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def daily_internal_update()
+  def daily_internal_update
     subject = "#{Date.today.strftime('%Y-%m-%d')} update on SupplyBetter metrics"
     @pending = {
       "reviews" => Review.pending_examination,
