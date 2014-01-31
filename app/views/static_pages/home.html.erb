@@ -17,13 +17,20 @@
 	</div>
 </div>
 
-<% if @logo_locations %>
+<% if (@logo_locations_top and @logo_locations_bottom) %>
 	<div class="logo-background">
 		<div class="container">
-			<div class="row features" id="features-override">
+			<div class="row features features-override">
 				<h3 class="center">Buyers include</h3>
 				<ol>
-					<% @logo_locations.each do |logo_location| %>
+					<% @logo_locations_top.each do |logo_location| %>
+						<li><%= image_tag logo_location, :class => "logo-image" %></li>
+					<% end %>
+				</ol>
+			</div>
+			<div class="row features features-override">
+				<ol>
+					<% @logo_locations_bottom.each do |logo_location| %>
 						<li><%= image_tag logo_location, :class => "logo-image" %></li>
 					<% end %>
 				</ol>

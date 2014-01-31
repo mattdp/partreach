@@ -34,10 +34,11 @@ class StaticPagesController < ApplicationController
 		]
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
 
-		@logo_locations = [	"https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-white_background.png",
-												"https://s3.amazonaws.com/supplybetter_buyer_logos/131221-five_and_dime_logo.png",
-												"https://s3.amazonaws.com/supplybetter_buyer_logos/131221-mtts_logo.png",
-												"https://s3.amazonaws.com/supplybetter_buyer_logos/140130-cruise_logo.png"]
+		@logo_locations_top = ["https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-white_background.png",
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/131221-five_and_dime_logo.png"]
+
+		@logo_locations_bottom = ["https://s3.amazonaws.com/supplybetter_buyer_logos/131221-mtts_logo.png",
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/140130-cruise_logo.png"]
 	end
 
 	def getting_started
