@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
     @order_groups = @order.order_groups
     @user = User.find(@order.user_id)
     @total_quantity = @order.total_quantity
+    @recommended = @dialogues.select{|d| d.recommended?} if @dialogues = @order.dialogues
     track("order","viewed",@order.id)
     if @order.columns_shown
       @columns = OrderColumn.get_columns(@order.columns_shown.to_sym)

@@ -20,6 +20,11 @@
 			<%= render 'layouts/order_basics' %>
 
 			<% if @order_groups and @order.dialogues.count > 0 %>
+
+				<% if @recommended.present? and @order_groups.length > 1 %>
+					<h3 class="bit-of-space">Summary: recommendations across all processes</h3>
+				<% end %>
+
 				<% @order_groups.each do |order_group| %>
 
 					<h3 class="bit-of-space">
