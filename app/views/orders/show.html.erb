@@ -20,6 +20,12 @@
 			<%= render 'layouts/order_basics' %>
 
 			<% if @order_groups and @order.dialogues.count > 0 %>
+
+				<% if @recommended.present? and @order_groups.length > 1 %>
+					<h3 class="bit-of-space">Summary: recommendations across all part groupings</h3>
+					<%= render partial: "orders/show_order_table", locals: {rows: @recommended, columns: @columns} %>
+				<% end %>
+
 				<% @order_groups.each do |order_group| %>
 
 					<h3 class="bit-of-space">
@@ -29,43 +35,7 @@
 
 					<% visibles = order_group.sort_visible_dialogues %>
 					<% if visibles.present? %>
-						<table class="order_table" cellspacing="0">
-						  <tr class="order_table_header_row">
-						    <th>Name</th>
-
-						    <% @columns.each do |name,details| %>
-						    	<th><%= "#{details[:header]}" %></th>
-						    <% end %>
-
-						    <th class="little-field">Selection</th>
-						  </tr>
-
-							<% visibles.each do |d| %>
-								<% if d.recommended %>
-									<tr class="recommended">
-								<% else %>
-									<tr>
-								<% end %>
-
-								<% s = Supplier.find(d.supplier_id) %>
-								<td>
-								<% if s.profile_visible %>
-									<%= link_to "#{s.name}", supplier_profile_path(s.name_for_link) %>
-								<% elsif !s.url_main.nil? and s.url_main != "" %>
-									<%= link_to "#{s.name}", s.url_main %>
-								<% else %>
-									<%= s.name %>
-								<% end %>
-								</td>
-
-								<% @columns.each do |name,details| %>
-									<td class=<%= "#{details[:css_class]}" %>><%= eval("#{details[:code]}") %></td>
-								<% end %>
-
-								<td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
-								</tr>
-							<% end %>
-						</table>
+						<%= render partial: "orders/show_order_table", locals: {rows: visibles, columns: @columns} %>
 					<% else %>
 						<p>No quotes have been received for this group of parts yet! We will notify you as soon as suppliers respond.</p>
 					<% end %>
