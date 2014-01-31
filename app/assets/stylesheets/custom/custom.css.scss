@@ -374,14 +374,17 @@ label {
   vertical-align: center;
 }
 
-.features-override {
-  padding: 10px 0;
+#features-override {
+  div {
+    padding: 10px 0px 0px 0px;  
+  }
   ol {
     li {
       border: none;
     }
   }
 }
+
 
 .features {
   padding: 10px 0 130px;

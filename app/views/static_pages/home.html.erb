@@ -19,8 +19,8 @@
 
 <% if (@logo_locations_top and @logo_locations_bottom) %>
 	<div class="logo-background">
-		<div class="container">
-			<div class="row features features-override">
+		<div class="container" id="features-override">
+			<div class="row features">
 				<h3 class="center">Buyers include</h3>
 				<ol>
 					<% @logo_locations_top.each do |logo_location| %>
