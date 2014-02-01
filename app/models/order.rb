@@ -43,6 +43,10 @@ class Order < ActiveRecord::Base
   validates :material_message, presence: true, length: {minimum: 2}
   validates :columns_shown, presence: true
 
+  def alphabetical_unique_supplier_names
+    return self.dialogues.map{|d| d.supplier_id}.uniq.map{|id| Supplier.find(id).name}.sort
+  end
+
   def total_quantity
     tq = 0
     if parts = self.parts
