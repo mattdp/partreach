@@ -78,7 +78,7 @@ class Dialogue < ActiveRecord::Base
     returnee = {}
     returnee[:subject] = "SupplyBetter RFQ ##{order.id}1 for #{supplier.name}"
 
-    contact.first_name.present? ? returnee[:body] = "<p>Hi #{@contact.first_name},</p>" : returnee[:body] = "<p>Hi there,</p>"
+    contact.first_name.present? ? returnee[:body] = "<p>Hi #{contact.first_name},</p>" : returnee[:body] = "<p>Hi there,</p>"
 
     returnee[:body] += order.email_snippet if order.email_snippet.present?
 
