@@ -36,13 +36,13 @@ class OrderGroup < ActiveRecord::Base
     return snippet
   end
 
-  def self.switch_group_of_parts(to_group_id,part_array)
-  	part_array.each do |part|
-  		part.order_group_id = to_group_id
-  		if part.save
-  			puts "Part #{part.id} switched to group #{to_group_id}"
+  def self.switch_group(to_group_id,model_array)
+  	model_array.each do |model|
+  		model.order_group_id = to_group_id
+  		if model.save
+  			puts "#{model.class.to_s} #{model.id} switched to group #{to_group_id}"
   		else
-  			puts "Error switching part #{part.id}"
+  			puts "Error switching #{model.class.to_s} #{model.id}"
   		end
   	end
 	end
