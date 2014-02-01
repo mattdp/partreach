@@ -3,7 +3,7 @@ class SupplierMailer < ActionMailer::Base
           bcc: "partreach@gmail.com"
   include SessionsHelper
 
-  def email_supplier(dialogue)
+  def initial_supplier_email(dialogue)
     @supplier = dialogue.supplier
     @contact = supplier.rfq_contact
 
@@ -12,10 +12,9 @@ class SupplierMailer < ActionMailer::Base
     @body = content[:body]
 
     mail(to: @contact.email, subject: @subject).deliver do |format|
-      #   format.html { render layout: "layouts/blast_mailer", 
-      #               locals: { title: subject, 
-      #                         supplier: nil} 
-      #                       }
+      format.html { render layout: "layouts/blast_mailer", 
+                    locals: { title: @subject} 
+                  }
     end
   end
 
