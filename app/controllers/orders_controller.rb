@@ -225,7 +225,7 @@ class OrdersController < ApplicationController
               field_value = d_params["#{field.to_s}_field"]
               if !field_value.nil?
                 case field
-                when :order_id, :supplier_id
+                when :order_group_id, :supplier_id
                   if field_value != ""
                     d[field.to_s] = field_value.to_i
                   end
@@ -308,7 +308,7 @@ class OrdersController < ApplicationController
     end
 
     def setup_numberfields
-      numberfields = [:order_id, :supplier_id, :process_cost, :shipping_cost, :total_cost]
+      numberfields = [:order_group_id, :supplier_id, :process_cost, :shipping_cost, :total_cost]
     end
 
   #private doesn't 'end'
