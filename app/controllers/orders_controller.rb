@@ -20,7 +20,7 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
-    @order_groups = @order.order_groups
+    @order_groups = @order.order_groups.order("created_at")
     @user = User.find(@order.user_id)
     @total_quantity = @order.total_quantity
     @recommended = @dialogues.select{|d| (d.recommended? and d.opener_sent)} if @dialogues = @order.dialogues
@@ -175,12 +175,12 @@ class OrdersController < ApplicationController
       order_group.save
     end
 
-    redirect_to manipulate_path(@order), notice: "Master email saves attempted."
+    redirect_to initial_email_edit_path(@order), notice: "Master email saves attempted."
   end
 
   def manipulate_dialogues
     @order = Order.find(params[:id])
-    @order_groups = @order.order_groups 
+    @order_groups = @order.order_groups.order("created_at") 
     @user = User.find(@order.user_id)
     @lead_contact = @user.lead.lead_contact
     @total_quantity = @order.total_quantity
