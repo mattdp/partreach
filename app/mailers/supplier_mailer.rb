@@ -12,8 +12,8 @@ class SupplierMailer < ActionMailer::Base
     @body = content[:body]
 
     mail(to: @contact.email, subject: @subject).deliver do |format|
-      format.html { render layout: "layouts/blast_mailer", 
-                    locals: { title: @subject} 
+      format.html { render layout: "layouts/supplier_mailer", 
+                    locals: { title: @subject, supplier: @supplier} 
                   }
     end
   end

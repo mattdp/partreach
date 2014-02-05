@@ -9,7 +9,7 @@
 
   		<p><%= link_to "Edit master email for this order", initial_email_edit_path(@order) %></p>
 
-      <p><%= link_to "SEND initial email - no confirmation!", dialogue_send_initial_email_path(@dialogue), method: :post %></p>
+      <p><%= link_to "SEND initial email - no confirmation! (pretty format)", dialogue_send_initial_email_path(@dialogue), method: :post %></p>
 
   		<p>First name of RFQ contact: 
 	  		<% if @contact.first_name %>

@@ -91,7 +91,8 @@ class Dialogue < ActiveRecord::Base
 
     returnee[:body] += 
       "<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>
-      <p>Cheers,</p>"
+      <p>Cheers,</p>
+      <p>Rob</p>"
 
     return returnee
   end
