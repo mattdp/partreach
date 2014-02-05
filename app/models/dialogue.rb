@@ -96,4 +96,9 @@ class Dialogue < ActiveRecord::Base
     return returnee
   end
 
+  def send_initial_email
+    SupplierMailer.initial_supplier_email(self)
+    self.update_attributes({initial_select: true, opener_sent: true})  
+  end
+  
 end

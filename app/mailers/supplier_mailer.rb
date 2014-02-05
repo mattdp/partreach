@@ -5,7 +5,7 @@ class SupplierMailer < ActionMailer::Base
 
   def initial_supplier_email(dialogue)
     @supplier = dialogue.supplier
-    @contact = supplier.rfq_contact
+    @contact = @supplier.rfq_contact
 
     content = dialogue.initial_email_generator
     @subject = content[:subject]
