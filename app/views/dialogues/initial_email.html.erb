@@ -11,6 +11,8 @@
 
       <p><%= link_to "SEND initial email - no confirmation! (pretty format)", dialogue_send_initial_email_path(@dialogue), method: :post %></p>
 
+      <p><%= link_to "SEND generic bidding closed email - no confirmation! (pretty format)", dialogue_send_generic_quote_ended_email_path(@dialogue), method: :post %></p>
+
   		<p>First name of RFQ contact: 
 	  		<% if @contact.first_name %>
 	  			<%= "#{@contact.first_name} (full name: #{@contact.full_name_untrusted})" %>

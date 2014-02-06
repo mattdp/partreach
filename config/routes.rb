@@ -16,6 +16,7 @@ Partreach::Application.routes.draw do
   get '/dialogues/new/:id', to: 'dialogues#new'
   get '/dialogues/initial_email/:id', to: 'dialogues#initial_email', as: 'dialogue_internal_email'
   match '/dialogues/send_initial_email/:id', to: 'dialogues#send_initial_email', as: 'dialogue_send_initial_email', via: :post
+  match '/dialogues/generic_quote_ended_email/:id', to: 'dialogues#send_generic_quote_ended_email', as: 'dialogue_send_generic_quote_ended_email', via: :post
 
   get '/examinations/:name', to: 'examinations#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"

@@ -18,4 +18,17 @@ class SupplierMailer < ActionMailer::Base
     end
   end
 
+  def generic_quote_ended_email(dialogue)
+    @supplier = dialogue.supplier
+    @contact = @supplier.rfq_contact
+
+    content = dialogue.generic_quote_ended_email_generator
+    @subject = content[:subject]
+    @body = content[:body]
+
+    mail(to: @contact.email, subject: @subject).deliver do |format|
+      format.html { render layout: "layouts/supplier_mailer" }
+    end
+  end
+
 end

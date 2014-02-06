@@ -1,5 +1,5 @@
 class DialoguesController < ApplicationController
-	before_filter :admin_user, only: [:new, :create, :initial_email, :send_initial_email]
+	before_filter :admin_user, only: [:new, :create, :initial_email, :send_initial_email, :send_generic_quote_ended_email]
 
 	def new
 		@structure = Rails.cache.fetch "dialogues_new_setup", :expires_in => 25.hours do |key|
@@ -96,6 +96,15 @@ class DialoguesController < ApplicationController
   	@order = @dialogue.order_group.order
 
   	@dialogue.send_initial_email
+
+  	redirect_to manipulate_path(@order), notice: "Email send attempted."
+  end
+
+  def send_generic_quote_ended_email
+  	@dialogue = Dialogue.find(params[:id])
+  	@order = @dialogue.order_group.order
+
+  	@dialogue.send_generic_quote_ended_email
 
   	redirect_to manipulate_path(@order), notice: "Email send attempted."
   end
