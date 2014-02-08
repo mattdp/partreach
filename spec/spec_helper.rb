@@ -10,6 +10,19 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
 
+  #https://github.com/bmabey/database_cleaner
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  # not sure i need this for now, since mostly interested in between-run errors
+  # config.around(:each) do |example|
+  #   DatabaseCleaner.cleaning do
+  #     example.run
+  #   end
+  # end  
+
   config.filter_run_excluding :broken => true
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
