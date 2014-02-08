@@ -35,7 +35,7 @@ FactoryGirl.define do
     sequence(:name)           { |n| "Supplier#{n}" }
     sequence(:name_for_link)  { |n| "supplier#{n}" }
     profile_visible           true
-    address { create(:address, place_id: s.id, place_type: "Supplier") }
+    address
     billing_contact
     contract_contact
     rfq_contact

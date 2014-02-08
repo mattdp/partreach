@@ -21,8 +21,8 @@ class Address < ActiveRecord::Base
   belongs_to :country, class_name: 'Geography'
   belongs_to :state, class_name: 'Geography'
 
-  validates :place_id, presence: true
-  validates :place_type, presence: true
+  #validates :place_id, presence: true
+  #validates :place_type, presence: true
   #should point to something, even if that something is a blank
   validates_presence_of :country
   validates_presence_of :state
