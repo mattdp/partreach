@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "Order creation" do
-	background do
+	before :each do
 		@existing_user = FactoryGirl.create(:user)
 		@visible_supplier = FactoryGirl.create(:supplier)
 	end
@@ -14,21 +14,22 @@ feature "Order creation" do
 	end
 
 	#might be something about clearing email queue when done, railscast on testing?
-	scenario "Person should be able to create order, saving user and order, we should get an email about it", broken: true do
+	scenario "Person should be able to create order, saving user and order, we should get an email about it", \
+	broken: true do
 		visit new_order_path
 
-		fill_in "quantity_field", with: 5
-		fill_in "material_message_field", with: "testonium"
-		fill_in "drawing_units_field", with: "mm"
-		fill_in "user_name_field", with: "Gerald Ford"
-		fill_in "user_email_field", with: "gford@fake.com"
-		fill_in "user_password_field", with: "potuss"
+		fill_in "quantity", with: 5
+		fill_in "material_message", with: "testonium"
+		fill_in "drawing_units", with: "mm"
+		fill_in "user_name", with: "Gerald Ford"
+		fill_in "user_email", with: "gford@fake.com"
+		fill_in "user_password", with: "potuss"
 		page.click_button "Create order"
 		
 		#PICK UP AND DEBUG HERE
 
 		#order should be created
-		save_and_open_page
+		#save_and_open_page
 		page.should have_content "Details of quote request"
 
 		#user should be saved

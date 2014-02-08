@@ -13,8 +13,8 @@ FactoryGirl.define do
   end
 
   factory :contact, class: 'Contact' do |c|
-    sequence(:name)   { |n| "Name#{n}" }
-    sequence(:email)   { |n| "Email#{n}@fake.spam.com" }
+    sequence(:name)   { |n| "name#{n}" }
+    sequence(:email)   { |n| "email#{n}@fake.spam.com" }
   end
   factory :lead_contact, parent: :contact, class: "LeadContact" do |c|  
   end
@@ -25,11 +25,11 @@ FactoryGirl.define do
   factory :rfq_contact, parent: :contact, class: "RfqContact" do |c|  
   end 
 
-  # factory :order do |o|
-  #   association :user
-  #   material_message    "Made of iron and wine"
-  #   sequence(:deadline) { |n| "#{n} o'clock"}
-  # end
+  factory :order do |o|
+    material_message    "Made of iron and wine"
+    sequence(:deadline) { |n| "#{n} o'clock"}
+    user
+  end
 
   factory :supplier do |s|
     sequence(:name)           { |n| "Supplier#{n}" }
