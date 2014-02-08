@@ -49,12 +49,11 @@ FactoryGirl.define do
     exclusive                 false
   end
 
-  # #this is bad - need to replace has_tag with a real tag
-  # factory :filter do |f|
-  #   association :geography
-  #   has_tag     1
-  #   sequence(:name)   { |n| "Filter#{n}" }
-  # end
+  #has_tag always must be provided
+  factory :filter do |f|
+    sequence(:name)   { |n| "Filter#{n}" }
+    geography
+  end
 
   factory :geography do |g|
     level     "state"

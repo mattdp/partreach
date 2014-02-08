@@ -8,7 +8,8 @@ describe "Supplier-related pages" do
 
 		before(:each) do
 			@supplier = FactoryGirl.create(:supplier)
-			@filter = FactoryGirl.create(:filter,name: "unitedstates-3dprinting")
+			@tag = FactoryGirl.create(:tag)
+			@filter = FactoryGirl.create(:filter,name: "unitedstates-3dprinting",has_tag: @tag)
 			visit suppliers_path
 		end
 
