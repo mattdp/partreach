@@ -12,7 +12,7 @@ describe "Supplier-related pages" do
 			visit suppliers_path
 		end
 
-		it "should load correctly", broken: true do
+		it "should load correctly" do
 			should have_link("Home")
 		end
 	end
