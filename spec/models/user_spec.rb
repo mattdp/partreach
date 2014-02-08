@@ -19,7 +19,7 @@ require 'spec_helper'
 
 describe "User" do
 
-  before do
+  before :each do
     @user = FactoryGirl.create(:user)
     @lead_contact = @user.lead.lead_contact
   end

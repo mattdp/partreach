@@ -18,7 +18,7 @@ require 'spec_helper'
 
 describe "Tag" do
 
-	before(:each) do 
+	before :each do 
 		@supplier = FactoryGirl.create(:supplier)
 		@same_family_tag = FactoryGirl.create(:tag)
 		@other_family_tag = FactoryGirl.create(:tag, family: "other")
