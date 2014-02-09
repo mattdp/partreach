@@ -85,6 +85,7 @@ class DialoguesController < ApplicationController
   	@supplier = @dialogue.supplier
   	@order = @dialogue.order
   	@contact = @supplier.rfq_contact
+  	@order_groups = @order.dialogues.select{|d| d.supplier_id == @supplier.id}.map{|d| d.order_group}
 
   	content = @dialogue.initial_email_generator
   	@subject = content[:subject]
