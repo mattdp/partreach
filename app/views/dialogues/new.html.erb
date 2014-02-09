@@ -24,10 +24,10 @@
 					<%= radio_button_tag "form_use", "refresh_cache", false, :class => "fleft radio margin-left", :id => "refresh-cache-radio" %>	
 					<%= label_tag "form_use", "Refresh cache for this page", :class => "fleft" %>					
 				<div class="clear">
-					<p>Choose which order_group your instruction applies to:</p>
+					<p>Choose which order_group or groups your instruction applies to:</p>
 					<% first = true %>
 					<% @order.order_groups.each do |order_group| %>
-						<%= radio_button_tag "order_group_use", "#{order_group.id}", first, :class => "fleft radio" %>
+						<%= check_box_tag "order_group_use[]", "#{order_group.id}", first, :class => "fleft radio" %>
 						<%= label_tag "order_group_use", "#{order_group.name}", :class => "fleft" %>
 						<% first = false %>
 					<% end %>

@@ -20,13 +20,16 @@ class DialoguesController < ApplicationController
 		if params[:form_use] == "add_dialogues"
 
 			@order = Order.find(params[:order_id_field])
-			@order_group = OrderGroup.find(params[:order_group_use])
 
-			@supplier_ids.each do |s|
-				@dialogue = Dialogue.new
-				@dialogue.order_group_id = @order_group.id
-				@dialogue.supplier_id = s.to_i
-				saved_ok = false unless @dialogue.save
+			params[:order_group_use].each do |order_group_id|
+				@order_group = OrderGroup.find(order_group_id)
+
+				@supplier_ids.each do |s|
+					@dialogue = Dialogue.new
+					@dialogue.order_group_id = @order_group.id
+					@dialogue.supplier_id = s.to_i
+					saved_ok = false unless @dialogue.save
+				end
 			end
 
 			redir_to = "/manipulate/#{@order.id}"
