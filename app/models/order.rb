@@ -232,14 +232,13 @@ def add_complex_order(location)
   def email_snippet_generator
     snippet = 
       "<p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>
-      <h3>What We Need</h3>
-      <p><strong>Total Cost</strong> (including any shipping and taxes):</p>"
+      <u><h3>What We Need</h3></u><p><strong>Total Cost</strong> (including any shipping and taxes):</p>"
     if self.stated_priority == "speed"
       snippet += "<p><strong>Estimated delivery date:</strong></p><p><strong>Deadline for client to place order to hit that delivery date:</strong></p>"
     else
       snippet += "<p><strong>Lead Time:</strong></p>"
     end
-    snippet += "<h3>Project Details</h3>"
+    snippet += "<u><h3>Project Details</h3></u>"
 
     #omits speed, since that's covered in other fields
     case self.stated_priority

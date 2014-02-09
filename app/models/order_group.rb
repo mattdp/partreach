@@ -21,7 +21,7 @@ class OrderGroup < ActiveRecord::Base
   validates :name, presence: true
 
   def email_snippet_generator
-    snippet = "<p><strong>#{self.name} (Process: #{self.process}, Material: #{self.material})</strong></p>\n"
+    snippet = "<p><u><strong>#{self.name} (Process: #{self.process}, Material: #{self.material})</strong></u></p>\n"
     snippet += "<ul>\n"
     self.parts.each do |part|
       external = part.external
