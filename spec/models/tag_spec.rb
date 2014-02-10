@@ -40,5 +40,12 @@ describe "Tag" do
 			@supplier.has_tag?(@other_family_tag.id).should be_true
 		end
 	end
+
+	describe "double tags" do
+		before { @supplier.add_tag(@adding_exclusive_tag.id) }
+		it "should return false when attempting to re-add a tag" do
+			@supplier.add_tag(@adding_exclusive_tag.id).should be_false
+		end
+	end
 	
 end
