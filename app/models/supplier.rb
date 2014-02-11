@@ -350,6 +350,15 @@ class Supplier < ActiveRecord::Base
     return answer
   end
 
+  def internal_tags
+    return nil if self.tags.nil?
+    answer = []
+    self.tags.each do |t|
+      answer << t if !t.visible
+    end
+    return answer
+  end  
+
   def self.visible_profiles
     Supplier.where('profile_visible = true')
   end
