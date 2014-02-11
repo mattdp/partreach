@@ -1,6 +1,19 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'modify supplier tags based on their history in the app'
+task :supplier_tagger => :environment do
+	
+	#toggle recent vs all for comments
+
+	dialogues = Dialogue.all
+	#dialogues = Dialogue.where("updated_at > ?",Date.today-7.days)
+	
+	dialogues.find_each do |d|
+		d.autotagger
+	end
+end
+
 desc 'crawl a set of suppliers in the background'
 task :crawler_dispatcher => :environment do
 	states = Geography.all_us_states
@@ -15,7 +28,7 @@ task :crawler_dispatcher => :environment do
 		filter = Filter.where("has_tag_id = ? AND geography_id = ?",tag_id,geo_id).first #assumed this is a state-level filter
 	  suppliers = Supplier.quantity_by_tag_id("all",Tag.find(filter.has_tag_id),filter.geography.geography.short_name,filter.geography.short_name)
 		
-		Crawler.delay.crawl_master(suppliers) #shuts off the worker
+		Crawler.delay.crawl_master(suppliers)
 	end
 end
 

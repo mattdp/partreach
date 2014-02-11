@@ -52,6 +52,24 @@ class Dialogue < ActiveRecord::Base
     return (self.opener_sent and !self.knows_outcome?)
   end
 
+  def autotagger
+    supplier = self.supplier
+    if self.opener_sent
+      supplier.remove_tags(Tag.find_by_name('b0_none_sent'))
+    end
+    if self.won
+      tag_deal ||= Tag.find_by_name('b3_at_least_one_deal')
+      supplier.add_tag(tag_deal.id)
+    end
+    if self.response_received
+      tag_deal ||= Tag.find_by_name('b3_at_least_one_deal')
+      supplier.add_tag(Tag.find_by_name('b2_quoted_no_deal').id) unless supplier.has_tag?(tag_deal.id)
+
+      tag_oob ||= Tag.find_by_name('e0_out_of_business')
+      supplier.add_tag(Tag.find_by_name('e3_existence_confirmed').id) unless supplier.has_tag?(tag_oob.id)
+    end
+  end
+
   #return array of hashes, each containing the needed information on suppliers, for caching purposes
   def self.dialogues_new_setup
     structure = []
