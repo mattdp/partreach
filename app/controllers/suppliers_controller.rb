@@ -104,7 +104,7 @@ class SuppliersController < ApplicationController
 		
 		UserMailer.email_internal_team(
 			"Supplier profile edit: #{@supplier.name}",
-			"They changed their suggested description, machines, services, or preferences."
+			"They changed their suggested description, machines, services, or preferences. #{admin_edit_url(@supplier.name_for_link)}"
 			)
 		track("supplier","submitted_profile_edits",@supplier.id)
 
