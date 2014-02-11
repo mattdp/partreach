@@ -6,8 +6,8 @@ task :supplier_tagger => :environment do
 	
 	#toggle recent vs all for comments
 
-	dialogues = Dialogue.all
-	#dialogues = Dialogue.where("updated_at > ?",Date.today-7.days)
+	#dialogues = Dialogue.all
+	dialogues = Dialogue.where("updated_at > ?",Date.today-7.days)
 	
 	dialogues.find_each do |d|
 		d.autotagger
