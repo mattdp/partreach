@@ -118,14 +118,16 @@
 								<% @supplier = Supplier.find(d.supplier_id) %>
 								<td><%= "#{d.id}" %></td>
 								<td>
-									<strong><%= "#{@supplier.name}" %></strong>
+									<strong><%= "#{@supplier.name[0,6]}" %></strong>
 								</td>
-								<td><%= link_to "Initial email", dialogue_internal_email_path(d) %></td>
+								<td><%= "#{@supplier.address.state.short_name},#{@supplier.address.country.short_name}" %></td>
+								<td><%= link_to "Email", dialogue_internal_email_path(d) %></td>
 								<td>
 									<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
 									<%= "\n#{@supplier.rfq_contact.email}" if @supplier.rfq_contact.email %>
 									<%= "\n#{@supplier.rfq_contact.phone}" if @supplier.rfq_contact.phone %>
 									<%= "\n#{@supplier.internally_hidden_preferences}" if @supplier.internally_hidden_preferences %>
+									<%= d.internal_notes if d.internal_notes.present? %>
 								</td>
 							</tr>
 						<% end %>
