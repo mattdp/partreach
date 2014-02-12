@@ -119,7 +119,7 @@ class Dialogue < ActiveRecord::Base
     returnee[:body] += 
       "<p>As always, feel free to let me know if you have any questions, and thank you for looking into this project.</p>
       <p>Cheers,</p>
-      <p>Rob</p>"
+      <p>Robert Martinez<br>Co-Founder & VP Eng.<br><a href='http://www.supplybetter.com'>SupplyBetter</a><br>W: 5022766224</p>"
 
     return returnee
   end
@@ -136,7 +136,7 @@ class Dialogue < ActiveRecord::Base
 
     returnee[:body] += "<p>Just following up to let you know the bidding for this project is closed. The client has chosen a quote from a different supplier. I appreciate your looking into this project and look forward to sending you business again.</p>"
     returnee[:body] += "<p>Best,</p>"
-    returnee[:body] += "<p>Rob</p>"
+    returnee[:body] += "<p>Robert Martinez<br>Co-Founder & VP Eng.<br><a href='http://www.supplybetter.com'>SupplyBetter</a><br>W: 5022766224</p>"
 
     return returnee
   end
