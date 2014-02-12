@@ -66,7 +66,7 @@ class DialoguesController < ApplicationController
 
 		elsif params[:form_use] == "refresh_cache"
 			Rails.cache.write("dialogues_new_setup",Dialogue.dialogues_new_setup,:expires_in => 25.hours)
-			redir_to = "/dialogues/new"
+			redir_to = "/dialogues/new/#{@order.id}"
 			redir_notice = "Cache reset attempted."
 		else #should never happen
 			saved_ok = false 
