@@ -112,7 +112,7 @@ class Dialogue < ActiveRecord::Base
       returnee[:body] += "<p>You're a SupplyBetter network member, and we work to bring you buyers that fit your goals. If you choose to bid, SupplyBetter will invoice you for 1% of the quote value. We will pass this bid along to the customer, and if they select you, we'll put you directly in touch so you can take conversation from there.</p>"
     #probably doesn't know what we do
     elsif !(supplier.has_tag?(Tag.find_by_name('b2_quoted_no_deal').id) or supplier.has_tag?(Tag.find_by_name('b3_at_least_one_deal').id))
-      returnee[:body] += "<p>Your company, #{supplier.name}, was a match for a SupplyBetter customer searching for manufacturing services. Please let me know if you would like to learn more about <a href='supplybetter.com'>SupplyBetter</a> or how this process works.</p>"
+      returnee[:body] += "<p>Your company, #{supplier.name}, was a match for a SupplyBetter customer searching for manufacturing services. Please let me know if you would like to learn more about <a href='http://www.supplybetter.com'>SupplyBetter</a> or how this process works.</p>"
     end
       
     returnee[:body] += 
