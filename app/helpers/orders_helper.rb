@@ -19,6 +19,8 @@ module OrdersHelper
 			"Declined to bid"
 		elsif dl.bid?
 			"Completed"
+		elsif dl.supplier_working
+			"Waiting for supplier"
 		else
 			"Pending"
 		end

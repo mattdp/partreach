@@ -24,6 +24,7 @@
 #  informed            :boolean
 #  internal_notes      :text
 #  order_group_id      :integer
+#  supplier_working    :boolean
 #
 
 class Dialogue < ActiveRecord::Base
