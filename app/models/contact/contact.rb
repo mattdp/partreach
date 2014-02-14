@@ -55,4 +55,15 @@ class Contact < ActiveRecord::Base
   	end
   end	
 
+  #return string highlighing issues in lead_contacts where duplication may be happening
+  #if useful, make into list of the objects, so can link based on the return
+  def self.duplicate_detector
+    tests = ["name","first_name,last_name","linkedin_url"]
+    returnee = ""
+    tests.each do |test|
+      returnee += "#{test}: #{Contact.group(test).count("id").select{|k,v| v > 1}.to_s}"
+    end
+    return returnee
+  end
+
 end

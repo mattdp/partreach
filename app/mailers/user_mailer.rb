@@ -30,6 +30,7 @@ class UserMailer < ActionMailer::Base
     @suppliers_to_bother = Supplier.next_contact_suppliers_sorted
     @leads_to_bother = Lead.sorted(false)
     @need_to_inform_suppliers_structure = Order.need_to_inform_suppliers_structure
+    @duplicates_detected = Contact.duplicate_detector
     EMPLOYEES.each do |e|
       mail(to: e, subject: subject).deliver do |format|
         format.html { render layout: "layouts/blast_mailer", 

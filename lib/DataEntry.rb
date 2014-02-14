@@ -73,6 +73,28 @@ module DataEntry
 		return "Streak buyer upload attempted"
 	end
 
+	PRINTER_MANUFACTURER = 0
+	PRINTER_MODEL = 1
+	PRINTER_LINK = 2
+
+	def printer_import(location)
+		counter = 0
+		CSV.new(open(location)).each do |row|
+			#next if (!name.present? or name == "Name")
+			#if lead = Lead.create({source: "Streak"}) and LeadContact.create({name: name, notes: row[STREAK_NOTES], \
+			#					email: row[STREAK_EMAIL], contactable_id: lead.id, contactable_type: "Lead"})
+			if (manufacturer = Manufacturer.create_or_reference_manufacturer(name: row[PRINTER_MANUFACTURER])
+				and machine = Machine.new) #PICK UP HERE
+				puts "#{row[PRINTER_MANUFACTURER]} #{row[PRINTER_MODEL]} imported correctly."
+			else
+				puts "Error importing machcine for #{row[PRINTER_MANUFACTURER]} #{row[PRINTER_MODEL]}"
+			end
+			counter += 1
+		ends
+		return "Machine upload attempted"
+	end
+	end
+
 	TAG_NAME = 0
 	TAG_FAMILY = 1
 	TAG_READABLE = 2

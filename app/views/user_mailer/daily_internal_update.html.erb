@@ -1,5 +1,11 @@
 <h1>Daily update on SupplyBetter metrics</h1>
 <h2>Things to move towards 0</h2>
+
+<% if @duplicates_detected.present? %>  
+    <h3>Duplicates detected - v0, output for MDP</h3>
+    <p>@duplicates_detected</p>
+<% end %>
+
 <% if @pending.values.any?{ |x| x > 0 } %>  
     <h3>Pending examination</h3>
     <p><%= link_to "The analytics page has links to the queues", "http://www.#{@brand_name}.com#{analytics_home_path}" %></p>
