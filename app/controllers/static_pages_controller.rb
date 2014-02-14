@@ -36,15 +36,24 @@ class StaticPagesController < ApplicationController
 				title: "Founder",
 				company: "Cruise Automation",
 				praise: "When I needed some 3d scanning work done in a pinch, SupplyBetter was incredible.  They hooked me up with a great local company that went above and beyond the call of duty to deliver a set of quality 3d scans on-time and on-budget.  I'll definitely be using SupplyBetter again!"
+			},
+			{ person: "Ryan",
+				title: "Mechanical Engineer",
+				company: "Frog Design",
+				praise: "Across rapid prototyping jobs both large and small, Supply Better has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality expectations. Even more importantly, they’ve enabled us to complete large prototyping jobs in less time, so that we can focus more on good design and less on procuring parts."
 			}
 		]
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
 
 		@logo_locations_top = ["https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-white_background.png",
-			"https://s3.amazonaws.com/supplybetter_buyer_logos/131221-five_and_dime_logo.png"]
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/140213-frog_design_logo.png",
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/140213-velo_labs_logo.png"
+			]
 
 		@logo_locations_bottom = ["https://s3.amazonaws.com/supplybetter_buyer_logos/131221-mtts_logo.png",
-			"https://s3.amazonaws.com/supplybetter_buyer_logos/140130-cruise_logo.png"]
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/140130-cruise_logo.png",
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/131221-five_and_dime_logo.png"
+			]
 	end
 
 	def getting_started
