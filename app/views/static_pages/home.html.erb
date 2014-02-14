@@ -22,16 +22,22 @@
 		<div class="container" id="features-override">
 			<div class="row features">
 				<h3 class="center">Buyers include</h3>
+				<% width_class = "logo-image-width col-sm-offset-1" %>
+				<% height_class = "logo-image-height col-sm-offset-1" %>
 				<ol>
 					<% @logo_locations_top.each do |logo_location| %>
-						<li><%= image_tag logo_location, :class => "logo-image col-sm-offset-8" %></li>
+						<% if logo_location == "https://s3.amazonaws.com/supplybetter_buyer_logos/140213-frog_design_logo.png" %>
+							<li><%= image_tag logo_location, :class => height_class %></li>
+						<% else %>
+							<li><%= image_tag logo_location, :class => width_class %></li>
+						<% end %>
 					<% end %>
 				</ol>
 			</div>
 			<div class="row features">
 				<ol>
 					<% @logo_locations_bottom.each do |logo_location| %>
-						<li><%= image_tag logo_location, :class => "logo-image col-sm-offset-8" %></li>
+						<li><%= image_tag logo_location, :class => width_class %></li>
 					<% end %>
 				</ol>
 				<h3 class="center clear bit-of-space">and many more.</h3>

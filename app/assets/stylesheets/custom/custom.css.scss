@@ -374,10 +374,16 @@ label {
   }
 }
 
-.logo-image {
+.logo-image-width {
   width: 100%; 
   border: none;
   vertical-align: center;
+}
+
+.logo-image-height {
+  height: 134px;
+  border: none;
+  vertical-align: center;  
 }
 
 #features-override {
