@@ -3,7 +3,7 @@
 
 <% if @duplicates_detected.present? %>  
     <h3>Duplicates detected - v0, output for MDP</h3>
-    <p>@duplicates_detected</p>
+    <p><%= "#{@duplicates_detected}" %></p>
 <% end %>
 
 <% if @pending.values.any?{ |x| x > 0 } %>  
