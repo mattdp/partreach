@@ -18,6 +18,33 @@ module DataEntry
 		return "Load attempted"
 	end
 
+	MEETUP_NAME = 1
+	MEETUP_FIRSTNAME = 2
+	MEETUP_LASTNAME = 3
+	MEETUP_LOCATION = 4
+	MEETUP_INTRO = 5
+	MEETUP_INTERESTED = 6
+	MEETUP_LINKEDIN = 7
+	MEETUP_EMAIL = 9
+
+	def meetup_task_import(location)
+		counter = 0
+		CSV.new(open(location)).each do |row|
+			counter += 1
+			last_name = row[MEETUP_LASTNAME]
+			next unless (last_name.present? and counter > 1)
+			if lead = Lead.create({source: "Meetup task 2/14"}) and LeadContact.create({name: row[MEETUP_NAME], \
+					first_name: row[MEETUP_FIRSTNAME], last_name: last_name, linkedin_url: row[MEETUP_LINKEDIN], \
+					notes: "From task - Location: #{row[MEETUP_LOCATION]} | Intro: #{row[MEETUP_INTRO]} | Interested in: #{row[MEETUP_INTERESTED]}", \
+					email: row[MEETUP_EMAIL], contactable_id: lead.id, contactable_type: "Lead"})
+				puts "Lead for #{last_name} imported correctly."
+			else
+				puts "Error importing lead for #{last_name}"
+			end
+		end
+		return "Meetup lead upload attempted"
+	end
+
 	# CURRENT USE - csv_to_hashes(filepath) on local machine, result = <output> on heroku,
 	# call hashes_to_saved_changes(result) on heroku
 
@@ -69,7 +96,7 @@ module DataEntry
 				puts "Error importing lead for #{name}"
 			end
 			counter += 1
-		ends
+		end
 		return "Streak buyer upload attempted"
 	end
 
@@ -83,8 +110,7 @@ module DataEntry
 			#next if (!name.present? or name == "Name")
 			#if lead = Lead.create({source: "Streak"}) and LeadContact.create({name: name, notes: row[STREAK_NOTES], \
 			#					email: row[STREAK_EMAIL], contactable_id: lead.id, contactable_type: "Lead"})
-			if (manufacturer = Manufacturer.create_or_reference_manufacturer(name: row[PRINTER_MANUFACTURER])
-				and machine = Machine.new) #PICK UP HERE
+			if (manufacturer = Manufacturer.create_or_reference_manufacturer(name: row[PRINTER_MANUFACTURER]) and machine = Machine.new) #PICK UP HERE
 				puts "#{row[PRINTER_MANUFACTURER]} #{row[PRINTER_MODEL]} imported correctly."
 			else
 				puts "Error importing machcine for #{row[PRINTER_MANUFACTURER]} #{row[PRINTER_MODEL]}"
