@@ -48,7 +48,7 @@
 							<h3 class="supplier-list-country"><%= "Other relevant links" %></h3>
 							<ul>
 								<% @adjacencies.each do |adj_filter| %>
-									<li><%#= link_to "#{adj_filter.has_tag.readable} suppliers in #{adj_filter.geography.short_name}", guide_name_path(adj_filter.name) %></li>
+									<li><%= link_to "#{adj_filter.has_tag.readable} suppliers in #{adj_filter.geography.short_name}", "/guides/#{adj_filter.name.gsub(/[-]/,'/')}" %></li>
 								<% end %>
 							</ul>
 						<% end %>

@@ -52,10 +52,9 @@ SitemapGenerator::Sitemap.create do
     add supplier_profile_path(s.name_for_link), changefreq: 'daily' if s.profile_visible
   end
 
-  # COMMENTED UNTIL NEW ROUTE STRUCTURE IN PLACE. THIS SHOULD NEVER MAKE PRODUCTION.
-  # Filter.find_each do |f|
-  #   add guide_name_path(f.name), changefreq: 'daily'
-  # end
+  Filter.find_each do |f|
+    add "/guides/#{f.name.gsub(/[-]/,'/')}", changefreq: 'daily'
+  end
 
   Machine.find_each do |m|
     add machine_profile_path(m.name_for_link), changefreq: 'daily' if m.profile_visible
