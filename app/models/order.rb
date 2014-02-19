@@ -177,7 +177,6 @@ def add_complex_order(location)
         row_output = "Row #{row}"
         
         order_group = order.order_groups.detect{|og| og.name == row[cols[:order_group_name]]}
-        binding.pry
         next unless order_group = add_complex_order_helper("OrderGroup",order_group,\
           "OrderGroup.create({name: '#{row[cols[:order_group_name]]}',\
                               order_id: '#{order.id}'}\

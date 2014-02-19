@@ -26,7 +26,6 @@ Partreach::Application.routes.draw do
   get '/guides/:name', to: redirect {|params, req| 
     cst = params[:name].match(/(\w+)-(\w+)-(\w+)/)
     ct = params[:name].match(/(\w+)-(\w+)/)
-    binding.pry
     if cst.present?
       "/guides/#{cst[1]}/#{cst[2]}/#{cst[3]}"
     elsif ct.present?
