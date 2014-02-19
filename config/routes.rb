@@ -21,7 +21,9 @@ Partreach::Application.routes.draw do
   get '/examinations/:name', to: 'examinations#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"
 
-  get '/guides/:name', to: 'guides#show', as: 'guide_name'
+  get '/guides/:country/:state/:tag', to: 'guides#show', as: 'guide_cst'
+  get '/guides/:country/:tag', to: 'guides#show', as: 'guide_ct'
+  get '/guides/:name', to: 'guides#show', as: 'guide_name' # TO REDIRECT
 
   resources :leads, only: [:new, :create, :edit, :index, :update]
   match '/leads/admin_create', to: 'leads#admin_create', as: 'admin_create_lead', via: :post

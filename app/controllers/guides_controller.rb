@@ -1,9 +1,14 @@
 class GuidesController < ApplicationController
 
-	#only works for all of country, state, tag being present and nicely formatted
 	def show
 
-		@filter = Filter.find_by_name(params[:name])
+		if params[:state] # either in country-state-tag or country-tag format
+			@filter = Filter.find_by_name("#{params[:country]}-#{params[:state]}-#{params[:tag]}")
+		elsif params[:country]
+			@filter = Filter.find_by_name("#{params[:country]}-#{params[:tag]}")
+		else
+			@filter = Filter.find_by_name("#{params[:name]}") #to delete once new scheme working
+		end
 
 		if @filter
 
