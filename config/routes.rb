@@ -23,7 +23,18 @@ Partreach::Application.routes.draw do
 
   get '/guides/:country/:state/:tag', to: 'guides#show', as: 'guide_cst'
   get '/guides/:country/:tag', to: 'guides#show', as: 'guide_ct'
-  get '/guides/:name', to: 'guides#show', as: 'guide_name' # TO REDIRECT
+  get '/guides/:name', to: redirect {|params, req| 
+    cst = params[:name].match(/(\w+)-(\w+)-(\w+)/)
+    ct = params[:name].match(/(\w+)-(\w+)/)
+    binding.pry
+    if cst.present?
+      "/guides/#{cst[1]}/#{cst[2]}/#{cst[3]}"
+    elsif ct.present?
+      "/guides/#{ct[1]}/#{ct[2]}"
+    else
+      "/guides/unknown_address"
+    end
+    }
 
   resources :leads, only: [:new, :create, :edit, :index, :update]
   match '/leads/admin_create', to: 'leads#admin_create', as: 'admin_create_lead', via: :post
