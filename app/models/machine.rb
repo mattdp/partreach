@@ -35,6 +35,10 @@ class Machine < ActiveRecord::Base
 		Supplier.proper_name_for_link(name)
 	end
 
+	def self.name_cleaner(name)
+		return name.tr("®™","").strip
+	end
+
 	def create_or_change_external(url)
 		external = self.external
 		external = External.new(consumer_type: "Machine", consumer_id: self.id) if external.nil?
@@ -44,7 +48,7 @@ class Machine < ActiveRecord::Base
 
 	#need to include the rest of the parameters
 	def self.create_or_reference_machine(machine_params)
-		name = machine_params[:name]
+		name = Machine.name_cleaner(machine_params[:name])
 		manufacturer_id = machine_params[:manufacturer_id]
 		machine = Machine.where("name = ? and manufacturer_id = ?",name, manufacturer_id)
 		if machine.present?
