@@ -10,6 +10,7 @@
 		<th>Materials</th>
 		<th>Edit</th>
 		<th>Who has it</th>
+		<th>External</th>
 	</tr>
 	<% machines.each do |m| %>
 		<tr>
@@ -23,6 +24,7 @@
 			<td><%= "#{m.materials_possible}" %></td>
 			<td><%= link_to "Edit", edit_machine_path(m) %></td>
 			<td><%= link_to "See suppliers", suppliers_with_machine_path(m.id) %></td>
+			<td><%= link_to "External link", m.external.url if m.external and m.external.url.present? %></td>
 		</tr>
 	<% end %>
 </table>
