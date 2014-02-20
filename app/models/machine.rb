@@ -1,5 +1,3 @@
-# encoding: utf-8
-
 # == Schema Information
 #
 # Table name: machines
@@ -38,7 +36,8 @@ class Machine < ActiveRecord::Base
 	end
 
 	def self.name_cleaner(name)
-		return name.tr("®™","").strip
+		#return name.tr("®™","").strip - character encoding errors
+		return name.strip
 	end
 
 	def create_or_change_external(url)
