@@ -195,6 +195,12 @@ class OrdersController < ApplicationController
     end
   end 
 
+  def manipulate_parts
+    @order = Order.find(params[:id])
+    @order_groups = @order.order_groups.order("created_at")
+    @total_quantity = @order.total_quantity
+  end
+
   def update_dialogues
     @order = Order.find(params[:id])
     @dialogues = @order.dialogues

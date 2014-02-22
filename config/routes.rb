@@ -48,6 +48,7 @@ Partreach::Application.routes.draw do
   
   resources :orders, only: [:index, :show, :new, :create, :destroy]
   get '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
+  get '/parts/:id', to: 'orders#manipulate_parts', as: 'manipulate_parts'
   match '/orders/update_dialogues', to: 'orders#update_dialogues', via: :post
   get '/orders/purchase/:order/:dialogue', to: 'orders#purchase'
   get '/orders/initial_email_edit/:id', to: 'orders#initial_email_edit', as: 'initial_email_edit'
