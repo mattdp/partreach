@@ -12,6 +12,7 @@ class SuppliersController < ApplicationController
 
 	def new
 		@supplier = Supplier.new
+		@checked_tags = new_supplier_tags
 		@address = Address.new
 		@address.country = Geography.new
 		@address.state = Geography.new
@@ -65,6 +66,7 @@ class SuppliersController < ApplicationController
 	def admin_edit
 		@supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
 		@tags = @supplier.tags
+		@checked_tags = @tags
 		@internal_tags = @supplier.internal_tags
 		@address = @supplier.address
 		@family_names_and_tags = Tag.family_names_and_tags
@@ -112,6 +114,14 @@ class SuppliersController < ApplicationController
 	end
 
 	private
+
+		def new_supplier_tags
+			[
+				Tag.find_by_name("b0_none_sent"),
+				Tag.find_by_name("n1_no_contact"),
+				Tag.find_by_name("e2_existence_unknown")
+			]
+		end
 
 		def admin_params
 			params.permit(:name, :name_for_link, :url_main, :url_materials, :description, \
