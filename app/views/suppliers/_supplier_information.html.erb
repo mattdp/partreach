@@ -38,7 +38,7 @@
 	<% end %>
 
 	<div>
-		<%= check_box_tag 'profile_visible', 1, @supplier.profile_visible, class: "fleft checkbox" %>
+		<%= check_box_tag 'profile_visible', 1, (@supplier.profile_visible or form_action == "create") , class: "fleft checkbox" %>
 		<%= label_tag 'profile_visible', 'profile_visible', class: "fleft" %>
 	</div>
 
