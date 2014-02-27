@@ -40,7 +40,7 @@ class StaticPagesController < ApplicationController
 			{ person: "Ryan",
 				title: "Mechanical Engineer",
 				company: "Frog Design",
-				praise: "Across rapid prototyping jobs both large and small, Supply Better has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality expectations. Even more importantly, they’ve enabled us to complete large prototyping jobs in less time, so that we can focus more on good design and less on procuring parts."
+				praise: "Across rapid prototyping jobs both large and small, SupplyBetter has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality expectations. Even more importantly, they’ve enabled us to complete large prototyping jobs in less time, so that we can focus more on good design and less on procuring parts."
 			}
 		]
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
