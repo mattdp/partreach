@@ -66,7 +66,7 @@ class Address < ActiveRecord::Base
     if address.nil?
       address = Address.new({place_id: owner.id, place_type: owner.class.to_s})
       address.country = Geography.create_or_reference_geography(nil,:short_name,"country")
-      address.state = Geography.create_or_reference_geography(nil,:short_name,"country")
+      address.state = Geography.create_or_reference_geography(nil,:short_name,"state")
       address.save
       owner.address = address
     end

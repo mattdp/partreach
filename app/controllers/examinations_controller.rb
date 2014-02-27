@@ -52,6 +52,18 @@ class ExaminationsController < ApplicationController
 					review.save
 				end
 			end
+		elsif params[:model_examined] == "contact_information"
+			note = "Contact information for suppliers submitted"
+			if params[:suppliers]
+				params[:suppliers].each do |s_id, v|
+					supplier = Supplier.find(s_id)
+					supplier.create_or_update_address({ country: v["country"], 
+																		state: v["state"],
+																		zip: v["zip"]
+																	})
+					supplier.rfq_contact.update_attributes({email: v["email"], phone: v["phone"]})
+				end
+			end
 		end 
 
 		redirect_to setup_examinations_path(params[:model_examined]), notice: note
