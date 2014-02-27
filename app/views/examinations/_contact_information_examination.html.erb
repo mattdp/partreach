@@ -1,0 +1,19 @@
+<% supplier = contact_information %>
+<% address = supplier.address %>
+<% contact = supplier.rfq_contact %>
+<td>
+	<p><%= "Name: #{supplier.name}" %></p>
+	<p><%= link_to supplier.url_main %></p>
+</td>
+<td>
+	<% ["email","phone"].each do |attribute| %>
+		<%= label_tag "#{supplier.id}[#{attribute}]", "#{attribute.titleize} for requesting quotes" %>
+		<%= text_field_tag "#{supplier.id}[#{attribute}]", contact.send(attribute).present? ? contact.send(attribute) : "" %>
+	<% end %>
+	<% ["country","state"].each do |attribute| %>
+		<%= label_tag "#{supplier.id}[#{attribute}]", "#{attribute.titleize} of location" %>
+		<%= text_field_tag "#{supplier.id}[#{attribute}]", address.send(attribute).present? ? address.send(attribute) : "" %>
+	<% end %>	
+	<%= label_tag "#{supplier.id}[zip]", "Zip code (for US suppliers only)" %>
+	<%= text_field_tag "#{supplier.id}[zip]", address.zip.present? ? address.zip : "" %>
+</td>

@@ -292,6 +292,9 @@ class Supplier < ActiveRecord::Base
     potential_return = Address.where("state_id = ? AND place_type = 'Supplier'", geo.id)
     return potential_return.take(max_quantity).map{|address| address.place} if potential_return.present?
 
+    potential_return = Address.where("zip IS NULL OR zip = ''")
+    return potential_return.take(max_quantity).map{|address| address.place} if potential_return.present?
+
     return []
   end
 
