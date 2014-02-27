@@ -76,6 +76,7 @@ Partreach::Application.routes.draw do
   get '/procurement', to: 'static_pages#procurement'
   get '/materials', to: 'static_pages#materials'
   get '/be_a_supplier', to: 'static_pages#be_a_supplier'
+  get '/testimonials', to: 'static_pages#testimonials'
   get '/terms', to: 'static_pages#terms'
   get '/privacy', to: 'static_pages#privacy'  
   get '/questions', to: 'static_pages#questions', as: 'order_questions'

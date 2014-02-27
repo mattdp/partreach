@@ -87,6 +87,9 @@ class StaticPagesController < ApplicationController
 	def terms
 	end
 
+	def testimonials
+	end
+
 	def privacy
 	end
 
