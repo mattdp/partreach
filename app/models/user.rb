@@ -33,16 +33,26 @@ class User < ActiveRecord::Base
 
   #can cause some serious overlap problems if abused
   def self.create_and_link_to_supplier(name,email,supplier_id)
-    user = User.new
-    user.password_digest = SecureRandom.urlsafe_base64 #have something in there so it can save
-    user.save(validate: false)
-    Lead.create_or_update_lead({name: name, email: email}, user.id)
+    user = User.create_with_dummy_password(name,email)
 
     supplier = Supplier.find(supplier_id)
     supplier.claim_profile(user.id)
     supplier.add_communication("create_and_link_to_supplier")
 
     user.send_supplier_intro_email(supplier_id)
+  end
+
+  def self.create_and_send_password_reset(name,email)
+    user = User.create_with_dummy_password(name,email)
+    user.send_password_reset
+  end
+
+  def self.create_with_dummy_password(name,email)
+    user = User.new
+    user.password_digest = SecureRandom.urlsafe_base64 #have something in there so it can save
+    user.save(validate: false)
+    Lead.create_or_update_lead({name: name, email: email}, user.id)
+    return user
   end
 
   def send_password_reset #http://railscasts.com/episodes/274-remember-me-reset-password
