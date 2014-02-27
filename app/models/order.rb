@@ -272,17 +272,8 @@ def add_complex_order(location)
 
   def self.metrics(interval,tracking_start_date)
     output = {}
-    dates = []
 
-    if interval == :months
-      #list of months, including one to two beyond the current one
-      dates = ((tracking_start_date)..(Date.today+31)).map{|d| Date.new(d.year, d.month, 1) }.uniq
-    elsif interval == :weeks
-      while tracking_start_date < (Date.today + 7)
-        dates << tracking_start_date
-        tracking_start_date += 7
-      end
-    end
+    dates = Order.date_ranges(interval,tracking_start_date)
 
     output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Creates", "Buyers touched by RFQs", "Suppliers touched by RFQs", "Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network", "Leads and Users"]
 
@@ -308,6 +299,36 @@ def add_complex_order(location)
     output[:printout] = printout.reverse
 
     return output
+  end
+
+  def self.invoicing_helper
+    dates = Order.date_ranges(:months,Date.today-60)
+
+    output = []
+    index = 0
+    #-2 since using dates[index] and dates[index+1]
+    while index <= dates.length - 2
+      output << {title: dates[index].strftime("%B %Y")}
+      index += 1
+    end
+    #output[:orders_for_month] = []
+
+    return output
+  end
+
+  def self.date_ranges(interval,tracking_start_date) 
+
+    if interval == :months
+      #list of months, including one to two beyond the current one
+      dates = ((tracking_start_date)..(Date.today+31)).map{|d| Date.new(d.year, d.month, 1) }.uniq
+    elsif interval == :weeks
+      while tracking_start_date < (Date.today + 7)
+        dates << tracking_start_date
+        tracking_start_date += 7
+      end
+    end
+
+    return dates
   end
 
 end
