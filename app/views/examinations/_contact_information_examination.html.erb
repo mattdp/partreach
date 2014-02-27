@@ -3,7 +3,7 @@
 <% contact = supplier.rfq_contact %>
 <td>
 	<p><%= "Name: #{supplier.name}" %></p>
-	<p><%= link_to supplier.url_main %></p>
+	<p><%= link_to "#{supplier.url_main}", "#{supplier.url_main}" %></p>
 </td>
 <td>
 	<% ["email","phone"].each do |attribute| %>
