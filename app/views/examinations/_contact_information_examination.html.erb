@@ -8,10 +8,13 @@
 <td>
 	<% ["email","phone"].each do |attribute| %>
 		<%= label_tag "#{supplier.id}[#{attribute}]", "#{attribute.titleize} for requesting quotes" %>
+		<%= "No spaces or hyphens('-'), add '+'' and country code to front if outside US (examples: '+209784352203', '6104323942')" if attribute == "phone" %>
 		<%= text_field_tag "#{supplier.id}[#{attribute}]", contact.send(attribute).present? ? contact.send(attribute) : "" %>
 	<% end %>
 	<% ["country","state"].each do |attribute| %>
 		<%= label_tag "#{supplier.id}[#{attribute}]", "#{attribute.titleize} of location" %>
+		<%= link_to "Use this list of 2-letter country abbreviations.", "https://en.wikipedia.org/wiki/ISO_3166-1" if attribute == "country" %>
+		<%= link_to "US only. Use this list of 2-letter state abbreviations.", "http://www.50states.com/abbreviations.htm" if attribute == "state" %>
 		<%= text_field_tag "#{supplier.id}[#{attribute}]", (geography = address.send(attribute) and geography.present? and geography.short_name.present?) ? address.send(attribute).short_name : "" %>
 	<% end %>	
 	<%= label_tag "#{supplier.id}[zip]", "Zip code (for US suppliers only)" %>
