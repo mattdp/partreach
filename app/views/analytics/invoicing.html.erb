@@ -6,12 +6,20 @@
 
 			<p><strong>Urgent:</strong> note that this is not smart about when suppliers signed up as paid members. If a supplier signed up in March 2013, and quoted in February 2013, this will flag them for the pre-signup paid quote. It is meant to be used as a current-month helper.</p>
 
-			<p>Only potentially paid bids are highlighted in the undordered lists</p>
+			<p>Only potentially paid bids are highlighted in the undordered lists.</p>
 
 			<% @titles_and_orders.each do |blob| %>
 				<p><strong><%= blob[:title] %></strong></p>
 				<% blob[:orders_for_month].each do |order| %>
 					<p><%= link_to "#{order.id}", order_path(order) %></p>
+						<ul>
+							<% order.dialogues.each do |dialogue| %>
+								<% supplier = dialogue.supplier %>
+								<% if supplier.is_in_network? %>
+									<li><%= "#{supplier.name}: #{dialogue.total_cost}" %></li>
+								<% end %>
+							<% end %>
+						</ul>
 				<% end %>
 			<% end %>
 
