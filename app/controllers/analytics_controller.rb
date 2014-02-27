@@ -25,6 +25,9 @@ class AnalyticsController < ApplicationController
 	def phone
 	end
 
+	def invoicing
+	end
+
 	def machines
 		@machines = Machine.all.sort_by{ |m| [m.manufacturer.name.downcase,m.name.downcase] }
 	end

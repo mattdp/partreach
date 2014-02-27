@@ -6,6 +6,7 @@ Partreach::Application.routes.draw do
   get '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
   get '/analytics/suppliers', to: 'analytics#suppliers', as: 'analytics_suppliers'
   get '/analytics/emails', to: 'analytics#emails', as: 'analytics_emails'
+  get '/analytics/invoicing', to: 'analytics#invoicing', as: 'analytics_invoicing'
   get '/analytics/metrics', to: 'analytics#metrics', as: 'analytics_metrics'
   get '/analytics/machines', to: 'analytics#machines', as: 'analytics_machines'
   get '/analytics/phone', to: 'analytics#phone', as: 'analytics_phone'
