@@ -12,7 +12,7 @@
 	<% end %>
 	<% ["country","state"].each do |attribute| %>
 		<%= label_tag "#{supplier.id}[#{attribute}]", "#{attribute.titleize} of location" %>
-		<%= text_field_tag "#{supplier.id}[#{attribute}]", address.send(attribute).present? ? address.send(attribute) : "" %>
+		<%= text_field_tag "#{supplier.id}[#{attribute}]", (geography = address.send(attribute) and geography.present? and geography.short_name.present?) ? address.send(attribute).short_name : "" %>
 	<% end %>	
 	<%= label_tag "#{supplier.id}[zip]", "Zip code (for US suppliers only)" %>
 	<%= text_field_tag "#{supplier.id}[zip]", address.zip.present? ? address.zip : "" %>
