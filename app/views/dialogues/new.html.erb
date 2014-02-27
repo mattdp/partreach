@@ -22,7 +22,13 @@
 					<%= radio_button_tag "form_use", "remove_tag", false, :class => "fleft radio margin-left", :id => "remove-tags-radio" %>	
 					<%= label_tag "form_use", "Remove tags (doesn't work on country/state)", :class => "fleft" %>
 					<%= radio_button_tag "form_use", "refresh_cache", false, :class => "fleft radio margin-left", :id => "refresh-cache-radio" %>	
-					<%= label_tag "form_use", "Refresh cache for this page", :class => "fleft" %>					
+					<%= label_tag "form_use", "Refresh cache for this page", :class => "fleft" %>		
+				</div>
+
+				<div>
+					<%= submit_tag "Create dialogue", :disable_with => "Saving..." %>
+				</div>
+
 				<div class="clear">
 					<p>Choose which order_group or groups your instruction applies to:</p>
 					<% first = true %>
