@@ -2,12 +2,16 @@ class ExaminationsController < ApplicationController
 	before_filter :examiner_user
 
 	def setup_examinations
-		if params[:name] == "reviews"
+		case params[:name] 
+		when "reviews"
 			@name = "review"
 			@questionables = Review.quantity_for_examination(20)
-		else
+		when "suppliers"
 			@name = "supplier"
 			@questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
+		when "contact_information"
+			@name = "contact_information"
+			@questionables = Supplier.missing_contact_information(20)
 		end
 	end
 

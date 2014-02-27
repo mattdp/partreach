@@ -275,6 +275,26 @@ class Supplier < ActiveRecord::Base
     return suppliers
   end
 
+  # return suppliers missing state, zip, email, or phone
+  def self.missing_contact_information(max_quantity)
+
+    potential_return = RfqContact.where("email IS NULL OR email = ''")
+    return potential_return.take(max_quantity).map{|contact| contact.contactable} if potential_return.present?
+
+    potential_return = RfqContact.where("phone IS NULL OR phone = ''")
+    return potential_return.take(max_quantity).map{|contact| contact.contactable} if potential_return.present?
+
+    geo = Geography.where("level = 'countryy' AND short_name = ''")[0]
+    potential_return = Address.where("country_id = ? AND place_type = 'Supplier'",geo.id)
+    return potential_return.take(max_quantity).map{|address| address.place} if potential_return.present?
+
+    geo = Geography.where("level = 'statee' AND short_name = ''")[0]
+    potential_return = Address.where("state_id = ? AND place_type = 'Supplier'", geo.id)
+    return potential_return.take(max_quantity).map{|address| address.place} if potential_return.present?
+
+    return []
+  end
+
   def add_communication(interaction_title,means_of_interaction="email")
     c = Communication.new({ communicator_id: self.id,
                             communicator_type: "Supplier",
