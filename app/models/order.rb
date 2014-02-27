@@ -308,12 +308,14 @@ def add_complex_order(location)
     index = 0
     #-2 since using dates[index] and dates[index+1]
     while index <= dates.length - 2
-      output << {title: dates[index].strftime("%B %Y")}
+      output << {
+        title: dates[index].strftime("%B %Y"),
+        orders_for_month: Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
+      }
       index += 1
     end
-    #output[:orders_for_month] = []
 
-    return output
+    return output.reverse
   end
 
   def self.date_ranges(interval,tracking_start_date) 

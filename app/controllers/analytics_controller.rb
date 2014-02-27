@@ -26,6 +26,7 @@ class AnalyticsController < ApplicationController
 	end
 
 	def invoicing
+		@titles_and_orders = Order.invoicing_helper
 	end
 
 	def machines
