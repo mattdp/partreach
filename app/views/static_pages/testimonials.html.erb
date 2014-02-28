@@ -12,7 +12,9 @@
 			<% @testimonials.each do |testimonial| %>
 				<tr>
 					<td>
+						<%= "<a href='#{testimonial[:link]}'>".html_safe if testimonial[:link].present? %>
 						<%= image_tag "http://placekitten.com/g/250/150" %>
+						<%= "</a>".html_safe if testimonial[:link].present? %>
 					</td>
 					<td class="padding-left">
 						<p class="left"><%= "#{testimonial[:praise]}" %></p>
