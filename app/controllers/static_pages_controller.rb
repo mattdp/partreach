@@ -67,22 +67,22 @@ class StaticPagesController < ApplicationController
 		def testimonial_array
 			[
 				{
-					person: "Jack Al-Kahwati",
+					person: "Jack",
 					title: "CEO",
 					company: "Velo Labs",
 					praise: "Robert and his team have an amazing service for hardware companies.  Finding a supplier for prototyping at cost and schedule is no longer an issue with SupplyBetter.  They had answers for all my questions and even went to the trouble of finding out more answers by talking to supplier on my behalf. Their services exceeded my expectations."
 				},
 				{
-					person: "Leandro Margulis",
+					person: "Leandro",
 					title: "Founder",
 					company: "TrazeTag",
 					praise: "SupplyBetter is a great way of finding suppliers. Submitting an RFQ was easy and comparing quotes from suppliers was straightforward. They helped me with the first iteration of my new product, and I will definitely be using them again."
 				},
 				{
-					person: "Karl Boucher",
+					person: "Karl",
 					title: "Owner",
 					company: "Five And Dime LLC",
-					praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able so simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price.  I’m more productive as well since I spend more time designing instead of running a desktop 3D printer.  I’ve used SupplyBetter for prototyping injection molded parts as well as for direct digital manufacture parts and have been very pleased with the results."
+					praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able so simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price."
 				},
 				{
 					person: "Michael",
