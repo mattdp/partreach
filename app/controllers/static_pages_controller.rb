@@ -70,47 +70,55 @@ class StaticPagesController < ApplicationController
 					person: "Jack",
 					title: "CEO",
 					company: "Velo Labs",
+					link: "http://www.velo-labs.com/",
 					praise: "Robert and his team have an amazing service for hardware companies.  Finding a supplier for prototyping at cost and schedule is no longer an issue with SupplyBetter.  They had answers for all my questions and even went to the trouble of finding out more answers by talking to supplier on my behalf. Their services exceeded my expectations."
 				},
 				{
 					person: "Leandro",
 					title: "Founder",
 					company: "TrazeTag",
+					link: "http://www.trazetag.com/",
 					praise: "SupplyBetter is a great way of finding suppliers. Submitting an RFQ was easy and comparing quotes from suppliers was straightforward. They helped me with the first iteration of my new product, and I will definitely be using them again."
 				},
 				{
 					person: "Karl",
 					title: "Owner",
 					company: "Five And Dime LLC",
+					link: "",
 					praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able so simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price."
 				},
 				{
 					person: "Michael",
 					title: "Industrial Designer",
 					company: "Independent",
+					link: "",
 					praise: "I am an industrial designer working on medical products for the low resource market across Asia. Dealing with SupplyBetter was very smooth and professional. I personally spoke with Robert, who guided me through the options, and then they connected us with the prototyping house that best suited the particular project. I feel SupplyBetter went the extra mile with a special attention to service."
 				},
 				{
 					person: "Brian",
 					title: "Owner",
 					company: "Synáspora",
+					link: "",					
 					praise: "I'm brand new to 3D printing and needed help printing a prototype for a new product idea of mine. SupplyBetter was the perfect place for me. I got personal service and assistance in choosing the right material. Highly recommended!"
 				},
 				{
 					person: "Kyle",
 					title: "Founder",
 					company: "Cruise Automation",
+					link: "http://signup.getcruise.com/",	
 					praise: "When I needed some 3d scanning work done in a pinch, SupplyBetter was incredible.  They hooked me up with a great local company that went above and beyond the call of duty to deliver a set of quality 3d scans on-time and on-budget.  I'll definitely be using SupplyBetter again!"
 				},
 				{ person: "Ryan",
 					title: "Mechanical Engineer",
 					company: "Frog Design",
+					link: "http://www.frogdesign.com/",
 					praise: "Across rapid prototyping jobs both large and small, SupplyBetter has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality expectations. Even more importantly, they’ve enabled us to complete large prototyping jobs in less time, so that we can focus more on good design and less on procuring parts."
 				},
 				{
 					person: "Jesse",
 					title: "Marketing Coordinator",
 					company: "ZT Systems",
+					link: "http://ztsystems.com/",
 					praise: "SupplyBetter provided an invaluable service in helping us reduce the inherent complexities of a growing industry. By setting out pricing structures in a simple, clear format, SupplyBetter curated the experience and made it a real pleasure."
 				}
 			]

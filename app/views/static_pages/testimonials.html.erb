@@ -16,7 +16,14 @@
 					</td>
 					<td class="padding-left">
 						<p class="left"><%= "#{testimonial[:praise]}" %></p>
-						<p class="right"><%= "-#{testimonial[:person]}, #{testimonial[:title]}, #{testimonial[:company]}" %></p>
+						<p class="right">
+							<%= "-#{testimonial[:person]}, #{testimonial[:title]}, "%>
+							<% if testimonial[:link].present? %>
+								<%= link_to "#{testimonial[:company]}", testimonial[:link] %>
+							<% else %>
+								<%= "#{testimonial[:company]}" %>
+							<% end %>
+						</p>
 					</td>
 				</tr>
 			<% end %>
