@@ -25,6 +25,7 @@
 #  internal_notes      :text
 #  order_group_id      :integer
 #  supplier_working    :boolean
+#  email_snippet       :text
 #
 
 class Dialogue < ActiveRecord::Base

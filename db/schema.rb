@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140212010636) do
+ActiveRecord::Schema.define(version: 20140228234437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140212010636) do
     t.text     "internal_notes"
     t.integer  "order_group_id"
     t.boolean  "supplier_working"
+    t.text     "email_snippet"
   end
 
   create_table "events", force: true do |t|
