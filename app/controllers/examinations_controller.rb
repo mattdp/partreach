@@ -2,12 +2,16 @@ class ExaminationsController < ApplicationController
 	before_filter :examiner_user
 
 	def setup_examinations
-		if params[:name] == "reviews"
+		case params[:name] 
+		when "reviews"
 			@name = "review"
 			@questionables = Review.quantity_for_examination(20)
-		else
+		when "suppliers"
 			@name = "supplier"
 			@questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
+		when "contact_information"
+			@name = "contact_information"
+			@questionables = Supplier.missing_contact_information(10)
 		end
 	end
 
@@ -46,6 +50,18 @@ class ExaminationsController < ApplicationController
 						note = "At least one review had an incorrect display/no_display value"
 					end
 					review.save
+				end
+			end
+		elsif params[:model_examined] == "contact_information"
+			note = "Contact information for suppliers submitted"
+			if params[:suppliers]
+				params[:suppliers].each do |s_id, v|
+					supplier = Supplier.find(s_id)
+					supplier.create_or_update_address({ country: v["country"], 
+																		state: v["state"],
+																		zip: v["zip"]
+																	})
+					supplier.rfq_contact.update_attributes({email: v["email"], phone: v["phone"]})
 				end
 			end
 		end 
