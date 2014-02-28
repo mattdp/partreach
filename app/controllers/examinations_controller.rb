@@ -11,7 +11,7 @@ class ExaminationsController < ApplicationController
 			@questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
 		when "contact_information"
 			@name = "contact_information"
-			@questionables = Supplier.missing_contact_information(20)
+			@questionables = Supplier.missing_contact_information(10)
 		end
 	end
 
