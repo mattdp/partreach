@@ -1,54 +1,6 @@
 class StaticPagesController < ApplicationController
 	def home
-		@testimonials = [
-			{
-				person: "Jack Al-Kahwati",
-				title: "CEO",
-				company: "Velo Labs",
-				praise: "Robert and his team have an amazing service for hardware companies.  Finding a supplier for prototyping at cost and schedule is no longer an issue with SupplyBetter.  They had answers for all my questions and even went to the trouble of finding out more answers by talking to supplier on my behalf. Their services exceeded my expectations."
-			},
-			{
-				person: "Leandro Margulis",
-				title: "Founder",
-				company: "TrazeTag",
-				praise: "SupplyBetter is a great way of finding suppliers. Submitting an RFQ was easy and comparing quotes from suppliers was straightforward. They helped me with the first iteration of my new product, and I will definitely be using them again."
-			},
-			{
-				person: "Karl Boucher",
-				title: "Owner",
-				company: "Five And Dime LLC",
-				praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able so simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price.  I’m more productive as well since I spend more time designing instead of running a desktop 3D printer.  I’ve used SupplyBetter for prototyping injection molded parts as well as for direct digital manufacture parts and have been very pleased with the results."
-			},
-			{
-				person: "Michael",
-				title: "Industrial Designer",
-				company: "Independent",
-				praise: "I am an industrial designer working on medical products for the low resource market across Asia. Dealing with SupplyBetter was very smooth and professional. I personally spoke with Robert, who guided me through the options, and then they connected us with the prototyping house that best suited the particular project. I feel SupplyBetter went the extra mile with a special attention to service."
-			},
-			{
-				person: "Brian",
-				title: "Owner",
-				company: "Synáspora",
-				praise: "I'm brand new to 3D printing and needed help printing a prototype for a new product idea of mine. SupplyBetter was the perfect place for me. I got personal service and assistance in choosing the right material. Highly recommended!"
-			},
-			{
-				person: "Kyle",
-				title: "Founder",
-				company: "Cruise Automation",
-				praise: "When I needed some 3d scanning work done in a pinch, SupplyBetter was incredible.  They hooked me up with a great local company that went above and beyond the call of duty to deliver a set of quality 3d scans on-time and on-budget.  I'll definitely be using SupplyBetter again!"
-			},
-			{ person: "Ryan",
-				title: "Mechanical Engineer",
-				company: "Frog Design",
-				praise: "Across rapid prototyping jobs both large and small, SupplyBetter has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality expectations. Even more importantly, they’ve enabled us to complete large prototyping jobs in less time, so that we can focus more on good design and less on procuring parts."
-			},
-			{
-				person: "Jesse",
-				title: "Marketing Coordinator",
-				company: "ZT Systems",
-				praise: "SupplyBetter provided an invaluable service in helping us reduce the inherent complexities of a growing industry. By setting out pricing structures in a simple, clear format, SupplyBetter curated the experience and made it a real pleasure."
-			}
-		]
+		@testimonials = testimonial_array
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
 
 		@logo_locations_top = ["https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-white_background.png",
@@ -94,6 +46,7 @@ class StaticPagesController < ApplicationController
 	end
 
 	def testimonials
+		@testimonials = testimonial_array
 	end
 
 	def privacy
@@ -108,5 +61,59 @@ class StaticPagesController < ApplicationController
 				{process: "Polyjet", material: "Proprietary materials that range from soft rubber to brittle acrylic", looking_for: ["Great accuracy", "Multiple materials"], downsides: ["Poor for end-use parts"], example: ["A 'looks-like' prototype of a new toothbrush design"]}
 				]
 	end
+
+	private
+
+		def testimonial_array
+			[
+				{
+					person: "Jack Al-Kahwati",
+					title: "CEO",
+					company: "Velo Labs",
+					praise: "Robert and his team have an amazing service for hardware companies.  Finding a supplier for prototyping at cost and schedule is no longer an issue with SupplyBetter.  They had answers for all my questions and even went to the trouble of finding out more answers by talking to supplier on my behalf. Their services exceeded my expectations."
+				},
+				{
+					person: "Leandro Margulis",
+					title: "Founder",
+					company: "TrazeTag",
+					praise: "SupplyBetter is a great way of finding suppliers. Submitting an RFQ was easy and comparing quotes from suppliers was straightforward. They helped me with the first iteration of my new product, and I will definitely be using them again."
+				},
+				{
+					person: "Karl Boucher",
+					title: "Owner",
+					company: "Five And Dime LLC",
+					praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able so simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price.  I’m more productive as well since I spend more time designing instead of running a desktop 3D printer.  I’ve used SupplyBetter for prototyping injection molded parts as well as for direct digital manufacture parts and have been very pleased with the results."
+				},
+				{
+					person: "Michael",
+					title: "Industrial Designer",
+					company: "Independent",
+					praise: "I am an industrial designer working on medical products for the low resource market across Asia. Dealing with SupplyBetter was very smooth and professional. I personally spoke with Robert, who guided me through the options, and then they connected us with the prototyping house that best suited the particular project. I feel SupplyBetter went the extra mile with a special attention to service."
+				},
+				{
+					person: "Brian",
+					title: "Owner",
+					company: "Synáspora",
+					praise: "I'm brand new to 3D printing and needed help printing a prototype for a new product idea of mine. SupplyBetter was the perfect place for me. I got personal service and assistance in choosing the right material. Highly recommended!"
+				},
+				{
+					person: "Kyle",
+					title: "Founder",
+					company: "Cruise Automation",
+					praise: "When I needed some 3d scanning work done in a pinch, SupplyBetter was incredible.  They hooked me up with a great local company that went above and beyond the call of duty to deliver a set of quality 3d scans on-time and on-budget.  I'll definitely be using SupplyBetter again!"
+				},
+				{ person: "Ryan",
+					title: "Mechanical Engineer",
+					company: "Frog Design",
+					praise: "Across rapid prototyping jobs both large and small, SupplyBetter has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality expectations. Even more importantly, they’ve enabled us to complete large prototyping jobs in less time, so that we can focus more on good design and less on procuring parts."
+				},
+				{
+					person: "Jesse",
+					title: "Marketing Coordinator",
+					company: "ZT Systems",
+					praise: "SupplyBetter provided an invaluable service in helping us reduce the inherent complexities of a growing industry. By setting out pricing structures in a simple, clear format, SupplyBetter curated the experience and made it a real pleasure."
+				}
+			]
+		end
 	  
 end
