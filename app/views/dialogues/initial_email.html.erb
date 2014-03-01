@@ -20,6 +20,14 @@
         <% end %>
       </ul>
 
+      <%= form_tag :action => "update_email_snippet", :controller => "dialogues" do %>
+        <%= hidden_field_tag :id, @dialogue.id %>
+        <%= label_tag :email_snippet, "Personalize email (goes at top, need to save it before sending):" %>
+        <%= text_area_tag :email_snippet, @dialogue.email_snippet %>
+        <%= submit_tag "Create", class: "save-button" %>
+      <% end %>
+
+
   		<p>First name of RFQ contact: 
 	  		<% if @contact.first_name %>
 	  			<%= "#{@contact.first_name} (full name: #{@contact.full_name_untrusted})" %>
