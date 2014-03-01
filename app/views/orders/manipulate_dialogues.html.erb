@@ -122,7 +122,7 @@
 									<strong><%= "#{@supplier.name[0,6]}" %></strong>
 								</td>
 								<td><%= "#{@supplier.address.state.short_name},#{@supplier.address.country.short_name}" %></td>
-								<td><%= link_to "Email", dialogue_internal_email_path(d) %></td>
+								<td><%= link_to "Email", dialogue_initial_email_path(d) %></td>
 								<td>
 									<strong><%= "Note for this order: #{d.internal_notes}" if d.internal_notes.present? %></strong>
 									<%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>

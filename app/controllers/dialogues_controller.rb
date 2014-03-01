@@ -96,6 +96,15 @@ class DialoguesController < ApplicationController
   	@body = content[:body]
   end
 
+  def update_email_snippet
+  	@dialogue = Dialogue.find(params[:id])
+
+  	@dialogue.email_snippet = params[:email_snippet]
+  	@dialogue.save
+
+  	redirect_to dialogue_initial_email_path(@dialogue)
+  end
+
   def send_initial_email
   	@dialogue = Dialogue.find(params[:id])
   	@order = @dialogue.order_group.order

@@ -15,7 +15,8 @@ Partreach::Application.routes.draw do
 
   resources :dialogues, only: [:new, :create]
   get '/dialogues/new/:id', to: 'dialogues#new'
-  get '/dialogues/initial_email/:id', to: 'dialogues#initial_email', as: 'dialogue_internal_email'
+  get '/dialogues/initial_email/:id', to: 'dialogues#initial_email', as: 'dialogue_initial_email'
+  match '/dialogues/update_email_snippet', to: 'dialogues#update_email_snippet', as: 'dialogue_update_email_snippet', via: :post
   match '/dialogues/send_initial_email/:id', to: 'dialogues#send_initial_email', as: 'dialogue_send_initial_email', via: :post
   match '/dialogues/generic_quote_ended_email/:id', to: 'dialogues#send_generic_quote_ended_email', as: 'dialogue_send_generic_quote_ended_email', via: :post
 

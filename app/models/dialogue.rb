@@ -25,6 +25,7 @@
 #  internal_notes      :text
 #  order_group_id      :integer
 #  supplier_working    :boolean
+#  email_snippet       :text
 #
 
 class Dialogue < ActiveRecord::Base
@@ -99,6 +100,12 @@ class Dialogue < ActiveRecord::Base
 
     contact.first_name.present? ? returnee[:body] = "<p>Hi #{contact.first_name},</p>" : returnee[:body] = "<p>Hi there,</p>"
 
+    if self.email_snippet.present?
+      returnee[:body] += "#{self.email_snippet}<p>If you are interested, please return a quote with the following:</p>" 
+    else
+      returnee[:body] += "<p>There is a SupplyBetter customer who has submitted an RFQ for the following project. If you are interested, please return a quote with the following:</p>"
+    end
+    
     returnee[:body] += order.email_snippet if order.email_snippet.present?
 
     parts_information = ""
