@@ -12,16 +12,16 @@
 			<% @testimonials.each do |testimonial| %>
 				<tr>
 					<td>
-						<%= "<a href='#{testimonial[:link]}'>".html_safe if testimonial[:link].present? %>
-						<%= image_tag "https://s3.amazonaws.com/supplybetter_buyer_logos/transparent-placeholder_logo-01.png" %>
-						<%= "</a>".html_safe if testimonial[:link].present? %>
+						<%= "<a href='#{testimonial[:site_url]}'>".html_safe if testimonial[:site_url].present? %>
+						<%= image_tag testimonial[:logo] %>
+						<%= "</a>".html_safe if testimonial[:site_url].present? %>
 					</td>
 					<td class="padding-left">
 						<p class="left"><%= "#{testimonial[:praise]}" %></p>
 						<p class="right">
 							<%= "-#{testimonial[:person]}, #{testimonial[:title]}, "%>
-							<% if testimonial[:link].present? %>
-								<%= link_to "#{testimonial[:company]}", testimonial[:link] %>
+							<% if testimonial[:site_url].present? %>
+								<%= link_to "#{testimonial[:company]}", testimonial[:site_url] %>
 							<% else %>
 								<%= "#{testimonial[:company]}" %>
 							<% end %>

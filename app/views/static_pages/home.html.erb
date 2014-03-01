@@ -7,6 +7,9 @@
 			<h2><em>Know your options.</em> Get cheaper parts.</h2>
 		</hgroup>
 		<%= render partial: "static_pages/testimonial", locals: {testimonial: @testimonial, alternate_colors: false} %>
+		<div class="center bit-of-space">
+			<%= link_to "We have many more testimonials. Take a look.", testimonials_path, class: "sec-hero" %>
+		</div>
 		<p class="center bit-of-space">
 			<%= link_to "Get Started", order_questions_path, class: "btn btn-xl supplybetter-blue" %>
 		</p>
