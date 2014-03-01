@@ -3,14 +3,14 @@ class StaticPagesController < ApplicationController
 		@testimonials = testimonial_array
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
 
-		@logo_locations_top = ["https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-white_background.png",
-			"https://s3.amazonaws.com/supplybetter_buyer_logos/140213-frog_design_logo.png",
-			"https://s3.amazonaws.com/supplybetter_buyer_logos/140213-velo_labs_logo.png"
+		@logo_locations_top = ["https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-logo.png",
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/frog_design-logo.png",
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/velo_labs-logo.png"
 			]
 
-		@logo_locations_bottom = ["https://s3.amazonaws.com/supplybetter_buyer_logos/131221-mtts_logo.png",
-			"https://s3.amazonaws.com/supplybetter_buyer_logos/140130-cruise_logo.png",
-			"https://s3.amazonaws.com/supplybetter_buyer_logos/131221-five_and_dime_logo.png"
+		@logo_locations_bottom = ["https://s3.amazonaws.com/supplybetter_buyer_logos/mtts-logo.png",
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/cruise_automation-logo.png",
+			"https://s3.amazonaws.com/supplybetter_buyer_logos/five_and_dime_manufacturing-logo.png"
 			]
 	end
 

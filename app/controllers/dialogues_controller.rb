@@ -1,5 +1,5 @@
 class DialoguesController < ApplicationController
-	before_filter :admin_user, only: [:new, :create, :initial_email, :send_initial_email, :send_generic_quote_ended_email]
+	before_filter :admin_user, only: [:new, :create, :initial_email, :send_initial_email, :send_generic_quote_ended_email, :update_email_snippet]
 
 	def new
 		@structure = Rails.cache.fetch "dialogues_new_setup", :expires_in => 25.hours do |key|
