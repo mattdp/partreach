@@ -3,6 +3,7 @@ layout: post
 author: Rob
 title: Shapeways vs. SupplyBetter
 published: true
+meta_description: Understanding the differences of using Shapeways vs. SupplyBetter for 3D printing is a great first step for sourcing your next 3D printing prototype.
 ---
 <img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/raspberry_pi_case.jpg" atl="Example of how to use 3D printing using the FFF printing method for a custom hardware enclosure: shapeways vs. supplybetter." width="49%">
 <img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/3395305728_1b1119b5e9_b.jpg" alt="Example of how to use SLS 3D printing for a custom themed lamp: shapeways vs. supplybetter" width="49%">
