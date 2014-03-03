@@ -118,7 +118,7 @@ class StaticPagesController < ApplicationController
 					title: "Founder",
 					company: "TrazeTag",
 					site_url: "http://www.trazetag.com/",
-					logo: "",
+					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/transparent_placeholder-logo.png",
 					praise: "SupplyBetter is a great way of finding suppliers. Submitting an RFQ was easy and comparing quotes from suppliers was straightforward. They helped me with the first iteration of my new product, and I will definitely be using them again."
 				},				
 				{
@@ -126,7 +126,7 @@ class StaticPagesController < ApplicationController
 					title: "Owner",
 					company: "Synáspora",
 					site_url: "",					
-					logo: "",
+					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/transparent_placeholder-logo.png",
 					praise: "I'm brand new to 3D printing and needed help printing a prototype for a new product idea of mine. SupplyBetter was the perfect place for me. I got personal service and assistance in choosing the right material. Highly recommended!"
 				}
 			]
