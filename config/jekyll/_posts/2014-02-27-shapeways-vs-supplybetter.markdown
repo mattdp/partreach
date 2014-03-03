@@ -5,8 +5,8 @@ title: Shapeways vs. SupplyBetter
 published: true
 meta_description: Understanding the differences of using Shapeways vs. SupplyBetter for 3D printing is a great first step for sourcing your next 3D printing prototype.
 ---
-<img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/raspberry_pi_case.jpg" alt="Example of how to use 3D printing using the FFF printing method for a custom hardware enclosure: shapeways vs. supplybetter." width="49%">
-<img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/3395305728_1b1119b5e9_b.jpg" alt="Example of how to use SLS 3D printing for a custom themed lamp: shapeways vs. supplybetter" width="49%">
+<a href="https://www.flickr.com/photos/rileyporter/10372004816/"><img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/raspberry_pi_case.jpg"  alt="Example of how to use 3D printing using the FFF printing method for a custom hardware enclosure: shapeways vs. supplybetter." width="49%"></a>
+<a href="https://www.flickr.com/photos/fluidforms/sets/72157616076676394"><img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/3395305728_1b1119b5e9_b.jpg" alt="Example of how to use SLS 3D printing for a custom themed lamp: shapeways vs. supplybetter" width="49%"></a>
 <div class="footer">
 	(left) Custom <a target= "_blank" href="https://www.flickr.com/photos/rileyporter/10372004816/">3D printed enclosure</a> for the popular Raspberry Pi computer (<a target= "_blank" href="http://www.thingiverse.com/thing:159057">check out the model on Thingiverse</a>). (right) The Selective Laser Sintering 3D printing process just after the build has completed. Once the excess nylon powder has been removed, an earth-themed lamp will remain (<a target= "_blank" href="https://www.flickr.com/photos/fluidforms/sets/72157616076676394">see the complete piece here</a>). This is an example of the 3D printing method most commonly used by Shapeways. Both images under <a target= "_blank" href="https://creativecommons.org/licenses/by/2.0/deed.en"> CC 2.0</a>. 
 </div>
