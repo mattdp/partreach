@@ -306,15 +306,6 @@ ActiveRecord::Schema.define(version: 20140212010636) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
-  create_table "uploads", force: true do |t|
-    t.string   "upload_file_name"
-    t.string   "upload_content_type"
-    t.integer  "upload_file_size"
-    t.datetime "upload_updated_at"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
   create_table "users", force: true do |t|
     t.boolean  "admin",                  default: false
     t.datetime "created_at",                             null: false
