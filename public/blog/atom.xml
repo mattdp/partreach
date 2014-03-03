@@ -4,12 +4,110 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2013-12-09T11:53:01-08:00</updated>
+ <updated>2014-03-03T11:45:54-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>Shapeways vs. SupplyBetter</title>
+   <link href="YOUR_URL/shapeways-vs-supplybetter.html"/>
+   <updated>2014-02-27T00:00:00-08:00</updated>
+   <id>BLOG_URL/shapeways-vs-supplybetter</id>
+   <content type="html">&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/raspberry_pi_case.jpg&quot; width=&quot;49%&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/3395305728_1b1119b5e9_b.jpg&quot; width=&quot;49%&quot;&gt;&lt;/p&gt;
+
+&lt;div class=&quot;footer&quot;&gt;
+    (left) Custom &lt;a target= &quot;_blank&quot; href=&quot;https://www.flickr.com/photos/rileyporter/10372004816/&quot;&gt;3D printed enclosure&lt;/a&gt; for the popular Raspberry Pi computer (&lt;a target= &quot;_blank&quot; href=&quot;http://www.thingiverse.com/thing:159057&quot;&gt;check out the model on Thingiverse&lt;/a&gt;). (right) The Selective Laser Sintering 3D printing process just after the build has completed. Once the excess nylon powder has been removed, an earth-themed lamp will remain (&lt;a target= &quot;_blank&quot; href=&quot;https://www.flickr.com/photos/fluidforms/sets/72157616076676394&quot;&gt;see the complete piece here&lt;/a&gt;). This is an example of the 3D printing method most commonly used by Shapeways. Both images under &lt;a target= &quot;_blank&quot; href=&quot;https://creativecommons.org/licenses/by/2.0/deed.en&quot;&gt; CC 2.0&lt;/a&gt;. 
+&lt;/div&gt;
+
+
+&lt;p&gt;At SupplyBetter, we often get asked if an online service bureau like Shapeways is the right fit for their 3D printing project or if an offline 3D printing shop is the best route to go. Since we&#39;re building the largest 3D printing and rapid prototyping supplier network in the US, this post is intended to help clarify the strengths of going with each type of shop for getting your 3D model printed.&lt;/p&gt;
+
+&lt;h3 class=&quot;left&quot;&gt;How Does Shapeways Work?&lt;/h3&gt;
+
+
+&lt;p&gt;Since 2012 Shapeways has been the premier marketplace for 3D printing &lt;a target= &quot;_blank&quot; href=&quot;http://www.forbes.com/sites/joshwolfe/2012/06/19/3d-printing-shapeways-and-the-future-of-personal-products/&quot;&gt;(1)&lt;/a&gt;. Right alongside the desktop 3D printing revolution &lt;a target= &quot;_blank&quot; href=&quot;https://www.sciencenews.org/article/3-d-printing-revolution&quot;&gt;(2)&lt;/a&gt;, their marketplace has lowered the barrier for designers to get their models printed and has made strides in educating the public on what additive manufacturing can accomplish &lt;a target= &quot;_blank&quot; href=&quot;https://www.shapeways.com/tutorials?li=nav&quot;&gt;(3)&lt;/a&gt;. By allowing designers from any background to share their creations through the Shapeways storefront, Shapeways can provide on-demand manufacturing for designs purchased through their site. The more people who come to Shapeways to purchase designs, the more their machines can be utilized to capacity. Shapeways is optimized to provide low cost 3D printing to consumers when their machines run with the entire build volume used &lt;a target= &quot;_blank&quot; href=&quot;https://www.shapeways.com/tutorials/designing_mechanical_parts_for_3d_printing&quot;&gt;(4)&lt;/a&gt;, so for someone looking to manufacturing their product this presents important tradeoffs to consider.&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;Note: Every company is a little different in their strengths and weaknesses, so treat these lists as a generalized framework when deciding which kind of shop might be best for your project. &lt;/i&gt;&lt;/p&gt;
+
+&lt;h3 class=&quot;left&quot;&gt;Tradeoffs working with an online service bureau&lt;/h3&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Low cost to manufacture (in both single quantities and in bulk)&lt;/li&gt;
+&lt;li&gt;Instant price quoting&lt;/li&gt;
+&lt;li&gt;If a product is available through a service bureau’s storefront there&#39;s no need to maintain product inventory&lt;/li&gt;
+&lt;li&gt;Long lead times (~10 days process time at the time of publishing for SLS nylon)&lt;/li&gt;
+&lt;li&gt;No supplier relationship&lt;/li&gt;
+&lt;li&gt;No flexibility on quality or post-processing (like dyeing and painting)&lt;/li&gt;
+&lt;li&gt;Little flexibility on IP concerns&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;When someone comes to SupplyBetter who is new to 3D printing and is looking to print quantity 1 of their design with their main priority being being low cost , chances are high we&#39;ll recommend them to Shapeways. However, if a hardware company needs quantity 20 of a custom nylon bracket to be in their hands within 3 days we&#39;ll have to search elsewhere (this was a recent SupplyBetter customer). Fortunately, there are &lt;a target= &quot;_blank&quot; href=&quot;https://www.supplybetter.com/guides/unitedstates/3dprinting&quot;&gt;hundreds of commercial-level 3D printing and rapid prototyping shops&lt;/a&gt; all across the US.&lt;/p&gt;
+
+&lt;h3 class=&quot;left&quot;&gt;Tradeoffs working with an offline or local shop&lt;/h3&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Fast turnaround times&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Design for manufacturing advice&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Flexibility with quality and post processing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Personal relationship with the supplier&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Ability to comply with non-disclosure agreements and certifications&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Long term contracts (for ongoing demand)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Higher cost (relative to online service bureaus)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;ul&gt;
+&lt;li&gt;Slower time to price quote&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Many of these service bureaus have been around for decades and have strengths and weaknesses of their own. Our job at SupplyBetter is to understand the nuances of each company in order to best match a project to the right businesses. Flexibility with quality and post processing, handling IP sensitive designs, and building a relationship with a supplier are all factors that are particularly appealing to companies who may find themselves prototyping on a regular basis. Further, if a customer is looking for design for manufacturing assistance on their project, reaching out directly to an offline service bureau can be an invaluable resource &lt;a target= &quot;_blank&quot; href=&quot;http://3dprintingindustry.com/2014/02/11/learned-3d-print-drag-queen-dont/&quot;&gt;(6)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 class=&quot;left&quot;&gt;Conclusion&lt;/h3&gt;
+
+
+&lt;p&gt;Of course, choosing the right service bureau to prototype a design is indeed just a small section of the long path to developing a hardware product. However, understanding when one should use a large online store versus a smaller offline shop can be essential to making sure that a new product develops at the right pace. We&#39;ve made it our mission to help make manufacturing decisions clear and are excited to see how 3D printing continues to impact the prototyping industry.&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
+
+&lt;p&gt;Still have questions? Feel free to &lt;a href=&quot;http://www.supplybetter.com/orders/questions&quot; target=&quot;_blank&quot;&gt;submit an RFQ&lt;/a&gt; if you would like us to match you with the right suppliers for your project.&lt;/p&gt;
+
+&lt;div class=&quot;footer&quot;&gt;
+    Thank you to Ian Finn of &lt;a target= &quot;_blank&quot; href=&quot;http://www.finnovationpd.com/&quot;&gt;Finnovation PD&lt;/a&gt; and Brandon Pomeroy of &lt;a target= &quot;_blank&quot; href=&quot;http://intentional3d.com/&quot;&gt;intentional3D&lt;/a&gt; for reading drafts of this post.  
+
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>When to choose hobby vs. commercial level 3D printers - Materials</title>
