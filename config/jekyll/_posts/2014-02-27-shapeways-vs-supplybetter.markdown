@@ -21,26 +21,30 @@ Since 2012 Shapeways has been the premier marketplace for 3D printing <a target=
 
 <h3 class="left">Tradeoffs working with an online service bureau</h3>
 
-+ Low cost to manufacture (in both single quantities and in bulk)
-+ Instant price quoting
-+ If a product is available through a service bureau’s storefront there's no need to maintain product inventory
-- Long lead times (~10 days process time at the time of publishing for SLS nylon)
-- No supplier relationship
-- No flexibility on quality or post-processing (like dyeing and painting)
-- Little flexibility on IP concerns
+<ul style="list-style: none;">
+	<li>+ Low cost to manufacture (in both single quantities and in bulk)</li>
+	<li>+ Instant price quoting</li>
+	<li>+ If a product is available through a service bureau’s storefront there's no need to maintain product inventory</li>
+	<li>- Long lead times (~10 days process time at the time of publishing for SLS nylon)</li>
+	<li>- No supplier relationship</li>
+	<li>- No flexibility on quality or post-processing (like dyeing and painting)</li>
+	<li>- Little flexibility on IP concerns</li>
+</ul>
 
 When someone comes to SupplyBetter who is new to 3D printing and is looking to print quantity 1 of their design with their main priority being being low cost , chances are high we'll recommend them to Shapeways. However, if a hardware company needs quantity 20 of a custom nylon bracket to be in their hands within 3 days we'll have to search elsewhere (this was a recent SupplyBetter customer). Fortunately, there are <a target= "_blank" href="https://www.supplybetter.com/guides/unitedstates/3dprinting">hundreds of commercial-level 3D printing and rapid prototyping shops</a> all across the US. 
 
 <h3 class="left">Tradeoffs working with an offline or local shop</h3>
 
-+ Fast turnaround times
-+ Design for manufacturing advice
-+ Flexibility with quality and post processing 
-+ Personal relationship with the supplier
-+ Ability to comply with non-disclosure agreements and certifications
-+ Long term contracts (for ongoing demand)
-- Higher cost (relative to online service bureaus)
-- Slower time to price quote
+<ul style="list-style: none;">
+	<li>+ Fast turnaround times</li>
+	<li>+ Design for manufacturing advice</li>
+	<li>+ Flexibility with quality and post processing </li>
+	<li>+ Personal relationship with the supplier</li>
+	<li>+ Ability to comply with non-disclosure agreements and certifications</li>
+	<li>+ Long term contracts (for ongoing demand)</li>
+	<li>- Higher cost (relative to online service bureaus)</li>
+	<li>- Slower time to price quote</li>
+</ul>
 
 Many of these service bureaus have been around for decades and have strengths and weaknesses of their own. Our job at SupplyBetter is to understand the nuances of each company in order to best match a project to the right businesses. Flexibility with quality and post processing, handling IP sensitive designs, and building a relationship with a supplier are all factors that are particularly appealing to companies who may find themselves prototyping on a regular basis. Further, if a customer is looking for design for manufacturing assistance on their project, reaching out directly to an offline service bureau can be an invaluable resource <a target= "_blank" href="http://3dprintingindustry.com/2014/02/11/learned-3d-print-drag-queen-dont/">(6)</a>. 
 

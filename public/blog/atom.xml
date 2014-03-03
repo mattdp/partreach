@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-03-03T11:45:54-08:00</updated>
+ <updated>2014-03-03T15:07:32-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -36,14 +36,16 @@
 &lt;h3 class=&quot;left&quot;&gt;Tradeoffs working with an online service bureau&lt;/h3&gt;
 
 
-&lt;ul&gt;
-&lt;li&gt;Low cost to manufacture (in both single quantities and in bulk)&lt;/li&gt;
-&lt;li&gt;Instant price quoting&lt;/li&gt;
-&lt;li&gt;If a product is available through a service bureau’s storefront there&#39;s no need to maintain product inventory&lt;/li&gt;
-&lt;li&gt;Long lead times (~10 days process time at the time of publishing for SLS nylon)&lt;/li&gt;
-&lt;li&gt;No supplier relationship&lt;/li&gt;
-&lt;li&gt;No flexibility on quality or post-processing (like dyeing and painting)&lt;/li&gt;
-&lt;li&gt;Little flexibility on IP concerns&lt;/li&gt;
+
+
+&lt;ul style=&quot;list-style: none;&quot;&gt;
+    &lt;li&gt;+ Low cost to manufacture (in both single quantities and in bulk)&lt;/li&gt;
+    &lt;li&gt;+ Instant price quoting&lt;/li&gt;
+    &lt;li&gt;+ If a product is available through a service bureau’s storefront there&#39;s no need to maintain product inventory&lt;/li&gt;
+    &lt;li&gt;- Long lead times (~10 days process time at the time of publishing for SLS nylon)&lt;/li&gt;
+    &lt;li&gt;- No supplier relationship&lt;/li&gt;
+    &lt;li&gt;- No flexibility on quality or post-processing (like dyeing and painting)&lt;/li&gt;
+    &lt;li&gt;- Little flexibility on IP concerns&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -52,39 +54,17 @@
 &lt;h3 class=&quot;left&quot;&gt;Tradeoffs working with an offline or local shop&lt;/h3&gt;
 
 
-&lt;ul&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;Fast turnaround times&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;Design for manufacturing advice&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;Flexibility with quality and post processing&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;Personal relationship with the supplier&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;Ability to comply with non-disclosure agreements and certifications&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;Long term contracts (for ongoing demand)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;Higher cost (relative to online service bureaus)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;ul&gt;
-&lt;li&gt;Slower time to price quote&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+
+
+&lt;ul style=&quot;list-style: none;&quot;&gt;
+    &lt;li&gt;+ Fast turnaround times&lt;/li&gt;
+    &lt;li&gt;+ Design for manufacturing advice&lt;/li&gt;
+    &lt;li&gt;+ Flexibility with quality and post processing &lt;/li&gt;
+    &lt;li&gt;+ Personal relationship with the supplier&lt;/li&gt;
+    &lt;li&gt;+ Ability to comply with non-disclosure agreements and certifications&lt;/li&gt;
+    &lt;li&gt;+ Long term contracts (for ongoing demand)&lt;/li&gt;
+    &lt;li&gt;- Higher cost (relative to online service bureaus)&lt;/li&gt;
+    &lt;li&gt;- Slower time to price quote&lt;/li&gt;
 &lt;/ul&gt;
 
 
