@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-03-03T15:21:00-08:00</updated>
+ <updated>2014-03-03T15:29:43-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -16,8 +16,8 @@
    <link href="YOUR_URL/shapeways-vs-supplybetter.html"/>
    <updated>2014-02-27T00:00:00-08:00</updated>
    <id>BLOG_URL/shapeways-vs-supplybetter</id>
-   <content type="html">&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/raspberry_pi_case.jpg&quot; width=&quot;49%&quot;&gt;
-&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/3395305728_1b1119b5e9_b.jpg&quot; width=&quot;49%&quot;&gt;&lt;/p&gt;
+   <content type="html">&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/raspberry_pi_case.jpg&quot; atl=&quot;Example of how to use 3D printing using the FFF printing method for a custom hardware enclosure: shapeways vs. supplybetter.&quot; width=&quot;49%&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/3395305728_1b1119b5e9_b.jpg&quot; alt=&quot;Example of how to use SLS 3D printing for a custom themed lamp: shapeways vs. supplybetter&quot; width=&quot;49%&quot;&gt;&lt;/p&gt;
 
 &lt;div class=&quot;footer&quot;&gt;
     (left) Custom &lt;a target= &quot;_blank&quot; href=&quot;https://www.flickr.com/photos/rileyporter/10372004816/&quot;&gt;3D printed enclosure&lt;/a&gt; for the popular Raspberry Pi computer (&lt;a target= &quot;_blank&quot; href=&quot;http://www.thingiverse.com/thing:159057&quot;&gt;check out the model on Thingiverse&lt;/a&gt;). (right) The Selective Laser Sintering 3D printing process just after the build has completed. Once the excess nylon powder has been removed, an earth-themed lamp will remain (&lt;a target= &quot;_blank&quot; href=&quot;https://www.flickr.com/photos/fluidforms/sets/72157616076676394&quot;&gt;see the complete piece here&lt;/a&gt;). This is an example of the 3D printing method most commonly used by Shapeways. Both images under &lt;a target= &quot;_blank&quot; href=&quot;https://creativecommons.org/licenses/by/2.0/deed.en&quot;&gt; CC 2.0&lt;/a&gt;. 
