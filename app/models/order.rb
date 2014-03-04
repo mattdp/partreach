@@ -332,4 +332,12 @@ def add_complex_order(location)
     return dates
   end
 
+  def dialogue_partition
+    partition = {}
+    partition[:won] = dialogues.select{|d| d.won}
+    partition[:placed_bid] = dialogues.select{|d| d.response_received and d.total_cost and d.total_cost > 0}
+    partition[:no_response_or_refused] = dialogues.reject{|d| partition[:won].include?(d) or partition[:placed_bid].include?(d)}
+    return partition
+  end
+
 end
