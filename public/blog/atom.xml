@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-03-03T15:38:55-08:00</updated>
+ <updated>2014-03-03T16:08:10-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -14,7 +14,7 @@
  <entry>
    <title>Shapeways vs. SupplyBetter</title>
    <link href="YOUR_URL/shapeways-vs-supplybetter.html"/>
-   <updated>2014-02-27T00:00:00-08:00</updated>
+   <updated>2014-03-04T00:00:00-08:00</updated>
    <id>BLOG_URL/shapeways-vs-supplybetter</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/rileyporter/10372004816/&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/raspberry_pi_case.jpg&quot;  alt=&quot;Example of how to use 3D printing using the FFF printing method for a custom hardware enclosure: shapeways vs. supplybetter.&quot; width=&quot;49%&quot;&gt;&lt;/a&gt;
 &lt;a href=&quot;https://www.flickr.com/photos/fluidforms/sets/72157616076676394&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/3395305728_1b1119b5e9_b.jpg&quot; alt=&quot;Example of how to use SLS 3D printing for a custom themed lamp: shapeways vs. supplybetter&quot; width=&quot;49%&quot;&gt;&lt;/a&gt;&lt;/p&gt;
