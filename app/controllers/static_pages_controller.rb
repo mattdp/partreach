@@ -79,7 +79,7 @@ class StaticPagesController < ApplicationController
 					company: "Velo Labs",
 					site_url: "http://www.velo-labs.com/",
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/velo_labs-logo.png",
-					praise: "Robert and his team have an amazing service for hardware companies.  Finding a supplier for prototyping at cost and schedule is no longer an issue with SupplyBetter.  They had answers for all my questions and even went to the trouble of finding out more answers by talking to supplier on my behalf. Their services exceeded my expectations."
+					praise: "Robert and his team have an amazing service for hardware companies.  Finding a supplier for prototyping at cost and schedule is no longer an issue with SupplyBetter.  They had answers for all my questions and even went to the trouble of finding out more answers by talking to suppliers on my behalf. Their services exceeded my expectations."
 				},
 				{
 					person: "Kyle",
@@ -103,7 +103,7 @@ class StaticPagesController < ApplicationController
 					company: "Five And Dime LLC",
 					site_url: "",
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/five_and_dime_manufacturing-logo.png",
-					praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able so simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price."
+					praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able to simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price."
 				},
 				{
 					person: "Michael",
