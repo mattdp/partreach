@@ -32,7 +32,7 @@ Since 2012 Shapeways has been the premier marketplace for 3D printing <a target=
 	<li>- Little flexibility on IP concerns</li>
 </ul>
 
-When someone comes to SupplyBetter who is new to 3D printing and is looking to print quantity 1 of their design with their main priority being being low cost , chances are high we'll recommend them to Shapeways. However, if a hardware company needs quantity 20 of a custom nylon bracket to be in their hands within 3 days we'll have to search elsewhere (this was a recent SupplyBetter customer). Fortunately, there are <a target= "_blank" href="https://www.supplybetter.com/guides/unitedstates/3dprinting">hundreds of commercial-level 3D printing and rapid prototyping shops</a> all across the US. 
+When someone comes to SupplyBetter who is new to 3D printing and is looking to print quantity 1 of their design with their main priority being low cost , chances are high we'll recommend them to Shapeways. However, if a hardware company needs quantity 20 of a custom nylon bracket to be in their hands within 3 days we'll have to search elsewhere (this was a recent SupplyBetter customer). Fortunately, there are <a target= "_blank" href="https://www.supplybetter.com/guides/unitedstates/3dprinting">hundreds of commercial-level 3D printing and rapid prototyping shops</a> all across the US. 
 
 <h3 class="left">Tradeoffs working with an offline or local shop</h3>
 
