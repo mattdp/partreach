@@ -17,7 +17,7 @@
 	 		<%= label_tag :user_id, "Matt", :class => "fleft" %>
  		</div>
  		<div>
- 			<% id = LeadContact.find_by_email("robert.david.martinez@gmail.com").contactable.user.id %>
+ 			<% id = LeadContact.find_by_email("rob@supplybetter.com").contactable.user.id %>
  			<%= radio_button_tag :user_id, id, current_user.id == id, :class => "fleft radio margin-left" %> 	
 	 		<%= label_tag :user_id, "Rob", :class => "fleft" %>
 	 	</div>
