@@ -73,6 +73,13 @@ class StaticPagesController < ApplicationController
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/frog_design-logo.png",
 					praise: "Across rapid prototyping jobs both large and small, SupplyBetter has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality expectations. Even more importantly, they’ve enabled us to complete large prototyping jobs in less time, so that we can focus more on good design and less on procuring parts."
 				},		
+				{ person: "David Rogan",
+					title: "CEO",
+					company: "Anybots Inc.",
+					site_url: "http://www.anybots.com/",
+					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-logo.png",
+					praise: "We're a robotics company that needs to quickly prove new ideas and rapidly iterate on new products. SupplyBetter has saved us money, time, and stress by helping source our prototype parts. They've found us quality suppliers who can hit our deadlines and budget, letting our mechanical engineers focus on the matters critical to designing our next hardware iteration. Their service is great, we count on them as extended team members, my team uses them all the time, and I am sure Anybots will be using SupplyBetter for a long time to come."
+				},	
 				{
 					person: "Jack",
 					title: "CEO",
