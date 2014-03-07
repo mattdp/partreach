@@ -47,9 +47,10 @@ class User < ActiveRecord::Base
     user.send_password_reset
   end
 
-  def self.create_with_dummy_password(name,email)
+  def self.create_with_dummy_password(name,email,admin=false)
     user = User.new
     user.password_digest = SecureRandom.urlsafe_base64 #have something in there so it can save
+    user.admin = admin
     user.save(validate: false)
     Lead.create_or_update_lead({name: name, email: email}, user.id)
     return user
