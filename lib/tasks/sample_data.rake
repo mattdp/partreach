@@ -4,7 +4,7 @@
 desc "Provide basic sample data so site has some examples"
 task populate: :environment do
 	User.create_with_dummy_password("Matt","mdpfwds@gmail.com",true)
-	User.create_with_dummy_password("Matt","rob@supplybetter.com",true)
+	User.create_with_dummy_password("Rob","rob@supplybetter.com",true)
 	User.create_with_dummy_password("Nonadmin","nobody@fake.spam.biz")
 
 	tag_3dp = Tag.find_by_name("3d_printing")
@@ -24,7 +24,6 @@ task populate: :environment do
 		zip: "19087"
 		})
 	Contact.create_or_update_contacts(supplier,{})
-	binding.pry
 	supplier.save
 	supplier.add_tag(tag_3dp.id)
 	supplier.add_tag(10)
