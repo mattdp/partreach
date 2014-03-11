@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.widget
 //= require bootstrap
 //= require s3_direct_upload
 //= require_tree .
