@@ -16,27 +16,11 @@
 
 <p>Upload drawing (max size: 64 MB)</p>
 
-<form id='direct-upload' action="https://partreach_initial_bucket.s3.amazonaws.com" method="post" enctype="multipart/form-data">
-  <input type='hidden' name='key' />
-  <input type='hidden' name='AWSAccessKeyId' value='AKIAIUO3BIWNATMYNELQ' />
-  <input type='hidden' name='acl' value='public-read' />
-  <input type='hidden' name='policy' />
-  <input type='hidden' name='signature' />
-  <input type='hidden' name='success_action_status' value='201' />
-  <input type='file' name='file' id='uploader' class='file-upload' />
-  <div class='progress progress-striped active'>
-    <div class='bar'></div>
-  </div>
-  <div id="direct-upload-success">
-    Upload succeeded.
-  </div>
-  <div id="direct-upload-failure">
-    Upload failed.
-  </div>
-</form>
+<p>CODE REMOVED</p>
 
 <%= form_tag '/orders.json', id: 'new-order', method: :post, 'data-remote' => true do %>
 
+  <%#= refers back to the file uploader %>
   <input type="hidden" name="file" value="" id="direct-upload-file">
 
   <%= hidden_field_tag "stated_experience", @experience %>
