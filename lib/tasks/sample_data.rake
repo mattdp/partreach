@@ -3,9 +3,9 @@
 
 desc "Provide basic sample data so site has some examples"
 task populate: :environment do
-	# User.create_with_dummy_password("Matt","mdpfwds@gmail.com",true)
-	# User.create_with_dummy_password("Matt","rob@supplybetter.com",true)
-	# User.create_with_dummy_password("Nonadmin","nobody@fake.spam.biz")
+	User.create_with_dummy_password("Matt","mdpfwds@gmail.com",true)
+	User.create_with_dummy_password("Matt","rob@supplybetter.com",true)
+	User.create_with_dummy_password("Nonadmin","nobody@fake.spam.biz")
 
 	tag_3dp = Tag.find_by_name("3d_printing")
 	manufacturer = Manufacturer.create_or_reference_manufacturer({name: "Platysys"})
