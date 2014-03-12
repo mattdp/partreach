@@ -31,7 +31,7 @@ class LeadsController < ApplicationController
 		@lead = Lead.find(params[:id])
 		@lead_contact = @lead.lead_contact
 		@user = @lead.user
-		@communications = Communication.where("communicator_id = ? AND communicator_type = 'Lead'",@lead.id).reverse
+		@communications = Communication.get_ordered("Lead",@lead.id)
 		@text_field_setup = text_field_setup
 	end
 

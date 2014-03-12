@@ -23,4 +23,8 @@ class Communication < ActiveRecord::Base
 	validates :communicator_type, presence: true
 	validates :means_of_interaction, presence: true
 
+	def self.get_ordered(model,id)
+		Communication.where("communicator_id = ? AND communicator_type = '#{model}'",id).sort_by{ |c| c.created_at }.reverse
+	end
+
 end
