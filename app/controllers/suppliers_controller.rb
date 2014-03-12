@@ -73,7 +73,7 @@ class SuppliersController < ApplicationController
 		@claimant = User.find_by_supplier_id(@supplier.id)
 		@machines_quantity_hash = @supplier.machines_quantity_hash
 		@dialogues = Dialogue.where("supplier_id = ?",@supplier.id).order("created_at desc")
-		@communications = Communication.get_ordered("Lead",@lead.id)
+		@communications = Communication.get_ordered("Supplier",@supplier.id)
 		@billing_contact = @supplier.billing_contact
 		@contract_contact = @supplier.contract_contact
 		@rfq_contact = @supplier.rfq_contact
