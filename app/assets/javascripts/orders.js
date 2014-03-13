@@ -11,13 +11,17 @@ $(document).ready(function() {
 
   $("#s3-uploader").S3Uploader();
 
+
+  var myFavoriteVariable;
+
   $('#s3-uploader').bind('s3_uploads_start', function() {
 		$.ajax({
 		    url : "/order_groups/create_default",
 		    type: "POST",
 		    success: function(data, textStatus, jqXHR)
 		    {
-		      alert( "order_group id returned: " + data );
+		    	myFavoriteVariable = data;
+		      // alert( "order_group id returned: " + data );
 		    },
 		    error: function (jqXHR, textStatus, errorThrown)
 		    {
@@ -26,17 +30,15 @@ $(document).ready(function() {
 		});
   });
 
-  $('#s3-uploader').bind('s3_upload_complete', function(content) {
-  	alert(content)
-  	alert(content.url);
-  	// alert("starting function fired by s3_upload_complete");
+  $('#s3-uploader').bind('s3_upload_complete', function(e, content) {
+  	alert(myFavoriteVariable);
 		$.ajax({
 		    url : "/parts/create_with_external",
 		    type: "POST",
-				data: { url: content.url, name: content.filename },
+				data: { 'order_group_id': myFavoriteVariable, 'url': content.url, 'filename': content.filename },
 		    success: function(data, textStatus, jqXHR)
 		    {
-		      alert( "returned from /parts/create_with_external " );
+		      // alert( "returned from /parts/create_with_external " );
 		    },
 		    error: function (jqXHR, textStatus, errorThrown)
 		    {
