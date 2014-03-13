@@ -16,7 +16,9 @@
 
 <p>Upload drawing (max size: 64 MB)</p>
 
-<p>CODE REMOVED</p>
+<%= s3_uploader_form id: "s3-uploader" do %>
+  <%= file_field_tag :file, multiple: true %>
+<% end %>
 
 <%= form_tag '/orders.json', id: 'new-order', method: :post, 'data-remote' => true do %>
 

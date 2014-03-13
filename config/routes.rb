@@ -57,12 +57,17 @@ Partreach::Application.routes.draw do
   match '/orders/initial_email_update', to: 'orders#initial_email_update', as: 'initial_email_update', via: :post
 
   resources :order_groups, only: [:new, :create, :edit, :update]
+  match "/order_groups/create_default", to: 'order_groups#create_default', via: :post, as: 'create_default'
 
   resources :owners, only: [:create]
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'
   match '/owners/destroy/:supplier_id/:machine_id', to: 'owners#destroy', as: 'destroy_owner', via: :delete
 
   resources :password_resets
+
+  match '/parts/create_with_external', to: 'parts#create_with_external', via: :post, as: 'create_with_external'
+
+  resources :parts, only: [:create]
 
   resources :reviews, only: [:new, :create]
 
