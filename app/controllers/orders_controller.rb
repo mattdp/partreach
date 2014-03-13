@@ -123,10 +123,9 @@ class OrdersController < ApplicationController
     logger.debug "Order saving: #{did_order_save}"
 
     if did_order_save
-      logger.debug "Order group saving: #{order_group = OrderGroup.create({name: "Default",order_id: @order.id})}"
-      logger.debug "Part saving: #{part = Part.create({order_group_id: order_group.id, quantity: params[:quantity]})}"
-      logger.debug "External saving: #{external = External.create({url: params[:file], units: params[:drawing_units], \
-        consumer_id: part.id, consumer_type: "Part" })}"
+      order_group = OrderGroup.find(params['order_group_id'])
+      order_group.order = @order
+      order_group.save
     end
     
     respond_to do |format|
