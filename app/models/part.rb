@@ -17,6 +17,6 @@ class Part < ActiveRecord::Base
   belongs_to :order_group
   has_one :order, through: :order_group
 
-  validates :quantity, presence: true, numericality: true
+  validates :quantity, numericality: true
 
 end

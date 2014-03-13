@@ -5,6 +5,11 @@ class OrderGroupsController < ApplicationController
 		@order_group = OrderGroup.new
 	end
 
+	def create_default
+		order_group = OrderGroup.create({name: "Default"})
+		render json: order_group.id
+	end
+
 	def create
 		@order_group = OrderGroup.create(order_group_params)
 		@order = @order_group.order
