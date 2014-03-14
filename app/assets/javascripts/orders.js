@@ -30,20 +30,24 @@ $(document).ready(function() {
   });
 
   $('#s3-uploader').bind('s3_upload_complete', function(e, content) {
-  	alert(orderGroupId);
 		$.ajax({
 	    url : "/parts/create_with_external",
 	    type: "POST",
 			data: { 'order_group_id': orderGroupId, 'url': content.url, 'filename': content.filename },
 	    success: function(data, textStatus, jqXHR)
 	    {
-	      // alert( "returned from /parts/create_with_external " );
+	    	//
 	    },
 	    error: function (jqXHR, textStatus, errorThrown)
 	    {
 	 			//"s3_upload_complete says: so sad..."
 	    }
 		});
+  });
+
+  //all uploads, not just one. I keep missing the 's' without this comment
+  $('#s3-uploader').bind('s3_uploads_complete', function(e, content) {
+  	alert( "Uploading complete. Feel free to choose more files if necessary." );
   });
 
 });
