@@ -3,8 +3,8 @@
 # Table name: orders
 #
 #  id                     :integer          not null, primary key
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  created_at             :datetime
+#  updated_at             :datetime
 #  user_id                :integer
 #  drawing_content_type   :string(255)
 #  drawing_file_size      :integer
@@ -25,6 +25,8 @@
 #  override_average_value :decimal(, )
 #  columns_shown          :string(255)      default("all")
 #  email_snippet          :text
+#  stated_quantity        :integer
+#  units                  :string(255)
 #
 
 require 'csv'

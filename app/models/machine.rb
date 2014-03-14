@@ -4,8 +4,8 @@
 #
 #  id                 :integer          not null, primary key
 #  name               :string(255)
-#  created_at         :datetime         not null
-#  updated_at         :datetime         not null
+#  created_at         :datetime
+#  updated_at         :datetime
 #  manufacturer_id    :integer
 #  bv_height          :decimal(6, 2)
 #  bv_width           :decimal(6, 2)

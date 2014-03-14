@@ -4,8 +4,8 @@
 #
 #  id            :integer          not null, primary key
 #  url           :string(255)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  created_at    :datetime
+#  updated_at    :datetime
 #  consumer_id   :integer
 #  consumer_type :string(255)
 #  units         :string(255)
