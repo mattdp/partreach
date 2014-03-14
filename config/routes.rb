@@ -75,8 +75,6 @@ Partreach::Application.routes.draw do
   get '/signin', to: 'sessions#new', as: 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  resources :signed_urls, only: :index
-
   get '/signup', to: 'static_pages#questions' 
   get '/getting_started', to: 'static_pages#getting_started'
   get '/procurement', to: 'static_pages#procurement'
