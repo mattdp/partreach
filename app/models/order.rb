@@ -256,8 +256,9 @@ def add_complex_order(location)
 
     snippet += Order.group_text_substitution #special characters, to be replaced by group information
 
-    snippet += "
-      <p><strong>Shipping Zipcode:</strong> #{self.user.address.zip}</p>
+    snippet += "<p><strong>Shipping Zipcode:</strong>"
+    snippet += " #{self.user.address.zip}" if (self.user and self.user.address and self.user.address.zip)
+    snippet += "</p>""
 
       <p><strong>Infill:</strong></p>
 
