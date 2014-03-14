@@ -48,6 +48,7 @@ class Order < ActiveRecord::Base
   end
 
   def total_quantity
+    return self.stated_quantity if self.stated_quantity
     tq = 0
     if parts = self.parts.select{ |p| p.quantity.present? and p.quantity > 0 }
       tq = parts.inject(0) {|sum,part| sum + part.quantity}

@@ -284,8 +284,8 @@ class OrdersController < ApplicationController
 
     def order_params
       params.permit(:name,:material_message,:suggested_suppliers, :deadline, \
-        :stated_experience,:stated_priority,:stated_manufacturing,:supplier_message,
-        :email_snippet)
+        :stated_experience,:stated_priority,:stated_manufacturing,:supplier_message, \
+        :email_snippet, :stated_quantity, :units)
     end
 
     def correct_user

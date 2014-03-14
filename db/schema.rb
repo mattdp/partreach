@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228234437) do
+ActiveRecord::Schema.define(version: 20140314180346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -233,6 +233,8 @@ ActiveRecord::Schema.define(version: 20140228234437) do
     t.decimal  "override_average_value"
     t.string   "columns_shown",          default: "all"
     t.text     "email_snippet"
+    t.integer  "stated_quantity"
+    t.string   "units"
   end
 
   create_table "owners", force: true do |t|

@@ -31,15 +31,16 @@
   <%= hidden_field_tag "stated_priority", @priority %>
   <%= hidden_field_tag "stated_manufacturing", @manufacturing %>
 
-  <p class="detail-text"> 3D model preferred. If you have photos or sketches, we can help you find a designer to make the model.</p> 
+  <p class="detail-text"> 3D model preferred, and multiple files accepted. If you have photos or sketches, we can help you find a designer to make the model.</p> 
 
     <div class="pull-left half">
-      <%= label_tag 'quantity', 'Quantity' %>
-      <%= text_field_tag 'quantity', nil, :class => 'left-half' %>
+      <%= label_tag 'stated_quantity', 'Quantity' %>
+      <%= text_field_tag 'stated_quantity', nil, :class => 'left-half' %>
+      <p class="detail-text">If you upload multiple parts, please put total quantity.</p> 
     </div>
     <div class="pull-right half">
-      <%= label_tag 'drawing_units', 'Drawing units' %>
-      <%= text_field_tag 'drawing_units', nil, :placeholder => '(mm./in.)', :class => 'right-half' %>
+      <%= label_tag 'units', 'Drawing units' %>
+      <%= text_field_tag 'units', nil, :placeholder => '(mm./in.)', :class => 'right-half' %>
     </div>
 
   <div class="clear">
