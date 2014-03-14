@@ -20,10 +20,9 @@
   <%= file_field_tag :file, multiple: true %>
 <% end %>
 
-<%= form_tag '/orders.json', id: 'new-order', method: :post, 'data-remote' => true do %>
+<%= form_tag order_path(@order), id: 'new-order' do %>
 
-  <%#= refers back to the file uploader %>
-  <input type="hidden" name="file" value="" id="direct-upload-file">
+  <%= hidden_field_tag "order_group_id" %>
 
   <%= hidden_field_tag "stated_experience", @experience %>
   <%= hidden_field_tag "stated_priority", @priority %>
