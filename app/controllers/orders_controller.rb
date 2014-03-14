@@ -60,6 +60,9 @@ class OrdersController < ApplicationController
     end
 
     @order = Order.new
+    #goal: for naming the folder of part files on S3, be close though not exact to what next order will be - it helps to have a rough order for manual troubleshooting
+    #programmatic links to the files won't have the race conditions this creates 
+    @approximate_next_order_id = Order.order("created_at desc").limit(1)[0].id
 
     respond_to do |format|
       format.html # new.html.erb
