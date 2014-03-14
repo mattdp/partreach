@@ -1,5 +1,5 @@
 class OrderGroupsController < ApplicationController
-	before_filter :admin_user
+	before_filter :admin_user, only: [:new, :create, :edit, :update]
 
 	def new
 		@order_group = OrderGroup.new

@@ -135,6 +135,7 @@ class OrdersController < ApplicationController
       if did_user_work and did_order_save
         track("order","created",@order.id)
         track("order","created_by_repeat_user",@order.id) if existed_already
+        binding.pry
         note = "#{brand_name}: Order created by #{current_user.lead.lead_contact.email}, order number #{@order.id}. Go get quotes!"
         if Rails.env.production?
           text_notification(note) 
