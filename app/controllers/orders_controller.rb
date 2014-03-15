@@ -2,6 +2,7 @@ class OrdersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :show, :destroy, :manipulate_dialogues]
   before_filter :correct_user, only: [:show, :destroy]
   before_filter :admin_user, only: [:manipulate_dialogues, :update_dialogues, :initial_email_edit, :initial_email_update]
+  include UrlHelper
 
   # GET /orders
   # GET /orders.json
