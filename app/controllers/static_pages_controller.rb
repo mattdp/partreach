@@ -121,6 +121,14 @@ class StaticPagesController < ApplicationController
 					praise: "I am an industrial designer working on medical products for the low resource market across Asia. Dealing with SupplyBetter was very smooth and professional. I personally spoke with Robert, who guided me through the options, and then they connected us with the prototyping house that best suited the particular project. I feel SupplyBetter went the extra mile with a special attention to service."
 				},
 				{
+					person: "Jason",
+					title: "Mechanical Engineer",
+					company: "Matternet",
+					site_url: "http://matternet.us",
+					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/transparent_placeholder-logo.png",
+					praise: "The guys at SupplyBetter really know what they're doing.  We had an impossible timeline, and were able to be matched with a supplier in under one hour and subsequently had a part cut for us within the following 24. We do our best to avoid instantaneous demand, but it's a great feeling knowing the guys at SupplyBetter are there to see us through. We'd definitely work with them again."
+				},
+				{
 					person: "Leandro",
 					title: "Founder",
 					company: "TrazeTag",
