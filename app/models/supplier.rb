@@ -428,8 +428,9 @@ class Supplier < ActiveRecord::Base
     order = ActiveSupport::OrderedHash.new
     chaos = {}
 
-    if !(profiles.nil? or profiles == [])
-      count = profiles.find_all {|supplier| !supplier.existence_questionable?}.count
+    if !(profiles.nil? or profiles == [] or profiles == false)
+      countable = profiles.find_all {|supplier| !supplier.existence_questionable?}
+      count = countable.count
       profiles.each do |s|  
         country = s.address.country.short_name
         state = s.address.state.short_name

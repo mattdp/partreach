@@ -33,12 +33,11 @@ class SuppliersController < ApplicationController
 		saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
 
 		if saved_ok
-			note = "Saved OK!" 
+			redirect_to admin_edit_path(@supplier.name_for_link), notice: "Saved OK!" 
 		else 
-			note = "Saving problem."
+			redirect_to new_supplier_path(@supplier.name_for_link), notice: "Saving problem."
 		end
 
-		redirect_to admin_edit_path(@supplier.name_for_link), notice: note
 	end
 
 	#note that using "key" instead of the us_3d... caused failure
