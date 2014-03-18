@@ -6,10 +6,6 @@
 		<%= label_tag :means_of_interaction %>
 	 	<%= text_field_tag :means_of_interaction, nil, class: "input_field" %>
  	</div>
-	<div class="one-fourth fleft">
-		<%= label_tag :interaction_title %>
-	 	<%= text_field_tag :interaction_title, nil, class: "input_field" %>
- 	</div>
  	<div>
  		<div>
  			<% id = LeadContact.find_by_email("mdpfwds@gmail.com").contactable.user.id %>
