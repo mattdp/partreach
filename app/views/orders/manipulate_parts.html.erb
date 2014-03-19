@@ -7,7 +7,8 @@
   		<p><%= link_to "Order show", order_path(@order) %></p>
   		<p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
   		<h3 class="center">View and edit parts for order <%= "#{@order.id}" %></h3>
-  		<table>
+		<%= form_tag :action => 'update_parts', :controller => 'orders' do %>
+  		  <table>
 				<tr>
 					<th>Part id</th>
 					<th>Part name</th>
@@ -27,6 +28,11 @@
 	  			<% end %>
 	  		<% end %>
 		  </table>
+
+		  <div class="clear">
+			<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
+		  </div>
+		<% end %>	
   	</div>
   </div>
 </div>

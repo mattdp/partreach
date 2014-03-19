@@ -199,12 +199,6 @@ class OrdersController < ApplicationController
     end
   end 
 
-  def manipulate_parts
-    @order = Order.find(params[:id])
-    @order_groups = @order.order_groups.order("created_at")
-    @total_quantity = @order.total_quantity
-  end
-
   def update_dialogues
     @order = Order.find(params[:id])
     @dialogues = @order.dialogues
@@ -264,6 +258,77 @@ class OrdersController < ApplicationController
         format.html { render action: "manipulate_dialogues" }
         format.json { render json: @order.errors.full_messages, status: 400 }
       end
+    end
+  end
+
+#*******************************************************************************
+# allow manipulation of order_group_id and quantity from orders#manipulate parts
+  def manipulate_parts
+    @order = Order.find(params[:id])
+    @order_groups = @order.order_groups.order("created_at")
+    @total_quantity = @order.total_quantity
+  end
+
+  def update_parts
+    p "yo - here I am"
+    # @order = Order.find(params[:id])
+    # @dialogues = @order.dialogues
+    # @checkboxes = setup_checkboxes
+    # @textfields = setup_textfields
+    # @numberfields = setup_numberfields
+
+    # @order.recommendation = params[:recommendation]
+    # @order.notes = params[:notes]
+    # @order.columns_shown = params[:columns_shown]
+    # @order.next_steps = params[:next_steps]
+    # if params[:status].present?
+    #   Event.add_event("Order",@order.id,"closed_successfully") if params[:status] == "Finished - closed" and @order.status != params[:status]
+    #   @order.status = params[:status] 
+    # end
+    # @order.next_action_date = params[:next_action_date]
+    # @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
+    # @dialogues.each do |d|
+    #   if !params[d.id.to_s].nil?
+    #     d_params = params[d.id.to_s]
+        
+    #     [@checkboxes, @textfields, @numberfields].each do |set|
+    #       set.each do |field|
+    #         if set == @checkboxes
+    #           d_params[field.to_s].nil? ? d[field.to_s] = false : d[field.to_s] = true
+    #         else
+
+    #           field_value = d_params["#{field.to_s}_field"]
+    #           if !field_value.nil?
+    #             case field
+    #             when :order_group_id, :supplier_id
+    #               if field_value != ""
+    #                 d[field.to_s] = field_value.to_i
+    #               end
+    #             when :process_cost, :shipping_cost, :total_cost
+    #               if field_value != ""
+    #                 d[field.to_s] = BigDecimal.new(field_value)
+    #               end
+    #             else
+    #               field_value == "" ? d[field.to_s] = nil : d[field.to_s] = field_value
+    #             end
+    #           end
+
+    #         end
+    #       end
+    #     end
+
+    #   end
+    #   d.save
+    # end
+
+    respond_to do |format|
+      # if true
+        format.html { redirect_to @order, notice: 'Order manipulated.' }
+        format.json { head :no_content}
+      # else
+      #   format.html { render action: "manipulate_parts" }
+      #   format.json { render json: @order.errors.full_messages, status: 400 }
+      # end
     end
   end
 
