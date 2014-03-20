@@ -275,10 +275,7 @@ class OrdersController < ApplicationController
       parts = ordergroupinfo["part"]
       parts.each do |partid, partinfo|
         part = Part.find(partid)
-        p part
-        p partinfo
         part.update(partinfo)
-        # p "partid=#{partid}, order_group_id=#{partinfo['order_group_id']}, quantity=#{partinfo['quantity']}"
       end
     end
 
