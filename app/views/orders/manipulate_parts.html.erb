@@ -7,25 +7,32 @@
   		<p><%= link_to "Order show", order_path(@order) %></p>
   		<p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
   		<h3 class="center">View and edit parts for order <%= "#{@order.id}" %></h3>
-		<%= form_tag :action => 'update_parts', :controller => 'orders' do %>
+		<%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |o| %>
+		  <%= hidden_field_tag "id", @order.id %>
   		  <table>
 				<tr>
 					<th>Part id</th>
 					<th>Part name</th>
-					<th>Order Group</th>
+					<th>Order Group id</th>
+					<th>Order Group name</th>
 					<th>Quantity</th>
 					<th>Part file</th>
 				</tr>
 	  		<% @order_groups.each do |order_group| %>
+		      <%= o.fields_for order_group, index: order_group.id do |order_group_form| %>
 	  			<% order_group.parts.each do |part| %>
+	  			  <%= order_group_form.fields_for part, index: part.id do |part_form| %>
 	  				<tr>
 	  					<td><%= "#{part.id}" %></td>
 	  					<td><%= "#{part.name}" %></td>
+	  					<td><%= part_form.text_field :order_group_id %></td>
 	  					<td><%= "#{order_group.name}" %></td>
-	  					<td><%= "#{part.quantity}" %></td>
+	  					<td><%= part_form.text_field :quantity %></td>
 	  					<td><%= link_to "Part file", "#{part.external.url}" if (part.external and part.external.url.present?) %></td>
 	  				</tr>
+	  			  <% end %>
 	  			<% end %>
+              <% end %>
 	  		<% end %>
 		  </table>
 
