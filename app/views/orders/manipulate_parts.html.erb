@@ -10,10 +10,10 @@
 		<%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |o| %>
 		  <%= hidden_field_tag "id", @order.id %>
   		  <table>
-	  	  <% @order_groups.each do |order_group| %>
+	  	  <% @order_groups.sort.each do |order_group| %>
 		    <%= o.fields_for order_group, index: order_group.id do |order_group_form| %>
 			<tr>
-				<td><h4><%= link_to "#{order_group.id}. #{order_group.name}", edit_order_group_path(order_group) %> <%= "Order Group" %></h4></td>
+				<td><h4><%= link_to "#{order_group.id}. #{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
 			</tr>
 			<tr>
 				<th>Part id</th>
@@ -22,14 +22,19 @@
 				<th>Quantity</th>
 				<th>Part file</th>
 			</tr>
-	  			<% order_group.parts.each do |part| %>
+	  			<% order_group.parts.sort.each do |part| %>
 	  			  <%= order_group_form.fields_for part, index: part.id do |part_form| %>
 	  				<tr>
 	  					<td><%= "#{part.id}" %></td>
 	  					<td><%= "#{part.name}" %></td>
 	  					<td><%= part_form.text_field :order_group_id %></td>
 	  					<td><%= part_form.text_field :quantity %></td>
-	  					<td><%= link_to "Part file", "#{part.external.url}" if (part.external and part.external.url.present?) %></td>
+	  					<% if (external = part.external) %>
+	  					  <%= part_form.fields_for external, index: external.id do |external_form| %>
+	  					    <td class="center"><%= link_to "(view)", "#{external.url}" %></td>
+	  					    <td><%= external_form.text_field :url %></td>
+	  					  <% end %>
+	  					<% end %>
 	  				</tr>
 	  			  <% end %>
 	  			<% end %>

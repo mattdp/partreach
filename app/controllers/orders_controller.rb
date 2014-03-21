@@ -269,13 +269,20 @@ class OrdersController < ApplicationController
 
   def update_parts
     @order = Order.find(params[:id])
-
+    
     order_groups = params["order"]["order_group"]
-    order_groups.each do |ordergroupid, ordergroupinfo|
-      parts = ordergroupinfo["part"]
-      parts.each do |partid, partinfo|
-        part = Part.find(partid)
-        part.update(partinfo)
+    order_groups.each do |order_group_id, order_group_params|
+      parts = order_group_params["part"]
+      parts.each do |part_id, part_params|
+        externals = part_params.delete("external")
+        part = Part.find(part_id)
+        part.update(part_params)
+        if (externals)
+          externals.each do |external_id, external_params|
+            external = External.find(external_id)
+            external.update(external_params)
+          end
+        end
       end
     end
 
