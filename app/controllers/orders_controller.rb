@@ -56,13 +56,13 @@ class OrdersController < ApplicationController
           value = option_details[:summary]
           instance_variable_set("@#{summary_var}",questions[summary_var])
         end
-      end 
+      end
       instance_variable_set("@#{summary_var}_summary_wording",value)
     end
 
     @order = Order.new
     #goal: for naming the folder of part files on S3, be close though not exact to what next order will be - it helps to have a rough order for manual troubleshooting
-    #programmatic links to the files won't have the race conditions this creates 
+    #programmatic links to the files won't have the race conditions this creates
     @approximate_next_order_id = Order.order("created_at desc").limit(1)[0].id + 1
 
     respond_to do |format|
@@ -77,7 +77,7 @@ class OrdersController < ApplicationController
 
   #
   # consider making the whole thing a transaction
-  # 
+  #
   def create
     existed_already = false
     did_user_work = false
@@ -98,13 +98,13 @@ class OrdersController < ApplicationController
       #signin form not filled out, assuming a new user
       else
         did_user_work = true if @user = User.create(
-          password: params[:user_password], 
-          password_confirmation: params[:user_password] 
+          password: params[:user_password],
+          password_confirmation: params[:user_password]
           )
         Lead.create_or_update_lead({name: params[:user_name], email: params[:user_email], phone: params[:user_phone]}, \
                                     @user.id)
         sign_in @user
-      end 
+      end
     else # there is a current user, already signed in
       @user = current_user
       existed_already = true
@@ -131,22 +131,21 @@ class OrdersController < ApplicationController
       order_group.order = @order
       order_group.save
     end
-    
+
     respond_to do |format|
       if did_user_work and did_order_save
         track("order","created",@order.id)
         track("order","created_by_repeat_user",@order.id) if existed_already
-        binding.pry
         note = "#{brand_name}: Order created by #{current_user.lead.lead_contact.email}, order number #{@order.id}. Go get quotes!"
         if Rails.env.production?
-          text_notification(note) 
+          text_notification(note)
           UserMailer.email_internal_team("Order created",note)
         end
         format.html { redirect_to order_path(@order), notice: "Order successfully created. We'll be in touch by email soon to confirm!" }
         #this line is somehow needed in a way I don't understand
         format.json { render json: @order, status: :created, location: @order }
       else
-        logger.debug "ERRORS: #{@order.errors.full_messages}" 
+        logger.debug "ERRORS: #{@order.errors.full_messages}"
         format.html { render action: "new" }
         format.json { render json: @order.errors.full_messages, status: 400 }
       end
@@ -184,11 +183,11 @@ class OrdersController < ApplicationController
 
   def manipulate_dialogues
     @order = Order.find(params[:id])
-    @order_groups = @order.order_groups.order("created_at") 
+    @order_groups = @order.order_groups.order("created_at")
     @user = User.find(@order.user_id)
     @lead_contact = @user.lead.lead_contact
     @total_quantity = @order.total_quantity
-        
+
     @checkboxes = setup_checkboxes
     @textfields = setup_textfields
     @numberfields = setup_numberfields
@@ -197,7 +196,7 @@ class OrdersController < ApplicationController
       format.html # manipulate_dialogues.html.erb
       format.json { render json: @order }
     end
-  end 
+  end
 
   def manipulate_parts
     @order = Order.find(params[:id])
@@ -218,14 +217,14 @@ class OrdersController < ApplicationController
     @order.next_steps = params[:next_steps]
     if params[:status].present?
       Event.add_event("Order",@order.id,"closed_successfully") if params[:status] == "Finished - closed" and @order.status != params[:status]
-      @order.status = params[:status] 
+      @order.status = params[:status]
     end
     @order.next_action_date = params[:next_action_date]
     @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
     @dialogues.each do |d|
       if !params[d.id.to_s].nil?
         d_params = params[d.id.to_s]
-        
+
         [@checkboxes, @textfields, @numberfields].each do |set|
           set.each do |field|
             if set == @checkboxes
@@ -297,7 +296,7 @@ class OrdersController < ApplicationController
 
     def text_notification(message_text)
       phone_numbers = ["+14152382438","+16033205765"] #matt, rob
-    
+
       account_sid = 'AC019c83da8ef75c162b430e909464f5a4'
       auth_token = ENV['SB_TWILIO_AUTH_TOKEN']
       @client = Twilio::REST::Client.new account_sid, auth_token
@@ -307,12 +306,12 @@ class OrdersController < ApplicationController
         :to => p,
         :from => "+14154198194")
       end
-    end 
+    end
 
     def setup_checkboxes
       checkboxes = [:initial_select, :opener_sent, :supplier_working, :response_received, :informed, :won, :recommended]
     end
-    
+
     def setup_textfields
       textfields = [:material, :process_name, :process_time, :shipping_name, :notes, :currency, :internal_notes]
     end
