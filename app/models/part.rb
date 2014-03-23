@@ -14,6 +14,7 @@
 class Part < ActiveRecord::Base
 
   has_one :external, :as => :consumer, :dependent => :destroy
+  accepts_nested_attributes_for :external
   belongs_to :order_group
   has_one :order, through: :order_group
 

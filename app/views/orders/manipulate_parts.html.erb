@@ -7,11 +7,11 @@
   		<p><%= link_to "Manipulate dialogues", manipulate_path(@order) %> - edit order group names here.</p>
   		<p><%= link_to "Order show", order_path(@order) %></p>
   		<p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
-		<%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |o| %>
+		<%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |order_form| %>
 		  <%= hidden_field_tag "id", @order.id %>
+		  
   		  <table>
 	  	  <% @order_groups.sort.each do |order_group| %>
-		    <%= o.fields_for order_group, index: order_group.id do |order_group_form| %>
 			<tr>
 				<td><h4><%= link_to "#{order_group.id}. #{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
 			</tr>
@@ -23,24 +23,23 @@
 				<th>Part file</th>
 			</tr>
 	  			<% order_group.parts.sort.each do |part| %>
-	  			  <%= order_group_form.fields_for part, index: part.id do |part_form| %>
+	  			  <%= order_form.fields_for part, index: part.id do |part_fields| %>
 	  				<tr>
 	  					<td><%= "#{part.id}" %></td>
 	  					<td><%= "#{part.name}" %></td>
-	  					<td><%= part_form.text_field :order_group_id %></td>
-	  					<td><%= part_form.text_field :quantity %></td>
+	  					<td><%= part_fields.text_field :order_group_id %></td>
+	  					<td><%= part_fields.text_field :quantity %></td>
 	  					<% if (external = part.external) %>
-	  					  <%= part_form.fields_for external, index: external.id do |external_form| %>
+	  					<%= part_fields.fields_for :external, index: external.id do |external_fields| %>
 	  					    <td class="center"><%= link_to "(view)", "#{external.url}" %></td>
-	  					    <td><%= external_form.text_field :url %></td>
+	  					    <td><%= external_fields.text_field :url %></td>
 	  					  <% end %>
 	  					<% end %>
 	  				</tr>
 	  			  <% end %>
 	  			<% end %>
-            <% end %>
 	  	  <% end %>
-              </table>
+          </table>
 
 		  <div class="clear">
 			<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
