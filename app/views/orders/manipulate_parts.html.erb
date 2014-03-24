@@ -9,11 +9,11 @@
   		<p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
 		<%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |order_form| %>
 		  <%= hidden_field_tag "id", @order.id %>
-		  
+
   		  <table>
 	  	  <% @order_groups.sort.each do |order_group| %>
 			<tr>
-				<td><h4><%= link_to "#{order_group.id}. #{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
+				<td><h4><%= link_to "#{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
 			</tr>
 			<tr>
 				<th>Part id</th>
@@ -27,7 +27,7 @@
 	  				<tr>
 	  					<td><%= "#{part.id}" %></td>
 	  					<td><%= "#{part.name}" %></td>
-	  					<td><%= part_fields.text_field :order_group_id %></td>
+	  					<td><%= part_fields.collection_select(:order_group_id, @order_groups, :id, :name) %></td>
 	  					<td><%= part_fields.text_field :quantity %></td>
 	  					<% if (external = part.external) %>
 	  					<%= part_fields.fields_for :external, index: external.id do |external_fields| %>
