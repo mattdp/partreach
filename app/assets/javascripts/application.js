@@ -14,4 +14,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require s3_direct_upload
+//= require jquery.validate
+//= require additional-methods
 //= require_tree .

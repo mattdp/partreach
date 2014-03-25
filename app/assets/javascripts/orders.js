@@ -50,4 +50,41 @@ $(document).ready(function() {
   	alert( "Uploading complete. Feel free to choose more files if necessary." );
   });
 
+  // run client-side validations (using jquery.validate)
+  $("#new-order").validate({
+        rules: {
+            stated_quantity: {
+                required: true
+            },
+            units: {
+                required: true
+            },
+            material_message: {
+                required: true
+            },
+            user_email: {
+                require_from_group: [2, ".signup-signin-group"]
+            },
+            user_password: {
+                require_from_group: [2, ".signup-signin-group"]
+            },
+            signin_email: {
+                require_from_group: [2, ".signup-signin-group"]
+            },
+            signin_password: {
+                require_from_group: [2, ".signup-signin-group"]
+            }
+        },
+        groups: {
+            signup_signin: "user_email user_password signin_email signin_password"
+        },
+        messages: {
+            "user_email": "Please enter email and password",
+            "user_password": "Please enter email and password",
+            "signin_email": "Please enter email and password",
+            "signin_password": "Please enter email and password",
+        },        
+        errorClass: "signup_signin_errors"
+    });
+
 });
