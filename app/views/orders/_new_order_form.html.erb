@@ -90,12 +90,12 @@
     <div class="two-signins">
       <div class="half pull-left">
         <h3>Create account</h3>
-        <%= label_tag 'user_name', 'Name' %>
-        <%= text_field_tag 'user_name', nil, placeholder: 'Enter name here' %>
         <%= label_tag 'user_email', 'Email' %>
         <%= text_field_tag 'user_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group' %>
         <%= label_tag 'user_password', 'Choose password' %>
         <%= password_field_tag 'user_password', nil, placeholder: 'Enter password here', class: "signup-signin-group space-below" %>
+        <%= label_tag 'user_name', 'Name' %>
+        <%= text_field_tag 'user_name', nil, placeholder: 'Enter name here' %>
       </div>
       <div class="half pull-right">
         <h3>Sign back in</h3>

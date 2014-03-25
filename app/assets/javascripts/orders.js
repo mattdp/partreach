@@ -61,8 +61,30 @@ $(document).ready(function() {
             },
             material_message: {
                 required: true
+            },
+            user_email: {
+                require_from_group: [2, ".signup-signin-group"]
+            },
+            user_password: {
+                require_from_group: [2, ".signup-signin-group"]
+            },
+            signin_email: {
+                require_from_group: [2, ".signup-signin-group"]
+            },
+            signin_password: {
+                require_from_group: [2, ".signup-signin-group"]
             }
-        }
+        },
+        groups: {
+            signup_signin: "user_email user_password signin_email signin_password"
+        },
+        messages: {
+            "user_email": "Please enter email and password",
+            "user_password": "Please enter email and password",
+            "signin_email": "Please enter email and password",
+            "signin_password": "Please enter email and password",
+        },        
+        errorClass: "signup_signin_errors"
     });
 
 });
