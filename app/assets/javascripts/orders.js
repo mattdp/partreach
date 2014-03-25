@@ -50,4 +50,19 @@ $(document).ready(function() {
   	alert( "Uploading complete. Feel free to choose more files if necessary." );
   });
 
+  // run client-side validations (using jquery.validate)
+  $("#new-order").validate({
+        rules: {
+            stated_quantity: {
+                required: true
+            },
+            units: {
+                required: true
+            },
+            material_message: {
+                required: true
+            }
+        }
+    });
+
 });
