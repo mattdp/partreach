@@ -52,7 +52,7 @@ Partreach::Application.routes.draw do
   get '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
   get '/parts/:id', to: 'orders#manipulate_parts', as: 'manipulate_parts'
   match '/orders/update_dialogues', to: 'orders#update_dialogues', via: :post
-  match '/orders/update_parts', to: 'orders#update_parts', via: :post
+  match '/orders/update_parts', to: 'orders#update_parts', via: :patch
   get '/orders/purchase/:order/:dialogue', to: 'orders#purchase'
   get '/orders/initial_email_edit/:id', to: 'orders#initial_email_edit', as: 'initial_email_edit'
   match '/orders/initial_email_update', to: 'orders#initial_email_update', as: 'initial_email_update', via: :post

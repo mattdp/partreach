@@ -3,31 +3,43 @@
 <div class="container">
   <div class="row">
   	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+  		<h1 class="center">View and edit parts for order <%= "#{@order.id}" %></h1>
   		<p><%= link_to "Manipulate dialogues", manipulate_path(@order) %> - edit order group names here.</p>
   		<p><%= link_to "Order show", order_path(@order) %></p>
   		<p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
-  		<h3 class="center">View and edit parts for order <%= "#{@order.id}" %></h3>
-		<%= form_tag :action => 'update_parts', :controller => 'orders' do %>
+		<%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |order_form| %>
+		  <%= hidden_field_tag "id", @order.id %>
+
   		  <table>
-				<tr>
-					<th>Part id</th>
-					<th>Part name</th>
-					<th>Order Group</th>
-					<th>Quantity</th>
-					<th>Part file</th>
-				</tr>
-	  		<% @order_groups.each do |order_group| %>
-	  			<% order_group.parts.each do |part| %>
+	  	  <% @order_groups.sort.each do |order_group| %>
+			<tr>
+				<td><h4><%= link_to "#{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
+			</tr>
+			<tr>
+				<th>Part id</th>
+				<th>Part name</th>
+				<th>Order Group id</th>
+				<th>Quantity</th>
+				<th>Part file</th>
+			</tr>
+	  			<% order_group.parts.sort.each do |part| %>
+	  			  <%= order_form.fields_for part, index: part.id do |part_fields| %>
 	  				<tr>
 	  					<td><%= "#{part.id}" %></td>
 	  					<td><%= "#{part.name}" %></td>
-	  					<td><%= "#{order_group.name}" %></td>
-	  					<td><%= "#{part.quantity}" %></td>
-	  					<td><%= link_to "Part file", "#{part.external.url}" if (part.external and part.external.url.present?) %></td>
+	  					<td><%= part_fields.collection_select(:order_group_id, @order_groups, :id, :name) %></td>
+	  					<td><%= part_fields.text_field :quantity %></td>
+	  					<% if (external = part.external) %>
+	  					<%= part_fields.fields_for :external, index: external.id do |external_fields| %>
+	  					    <td class="center"><%= link_to "(view)", "#{external.url}" %></td>
+	  					    <td><%= external_fields.text_field :url %></td>
+	  					  <% end %>
+	  					<% end %>
 	  				</tr>
+	  			  <% end %>
 	  			<% end %>
-	  		<% end %>
-		  </table>
+	  	  <% end %>
+          </table>
 
 		  <div class="clear">
 			<%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
