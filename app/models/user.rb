@@ -76,6 +76,10 @@ class User < ActiveRecord::Base
     Address.create_or_update_address(self,options)
   end 
 
+  def self.admins
+    User.select{|u| u.admin}
+  end
+
   private
 
     def generate_token(column) #http://railscasts.com/episodes/274-remember-me-reset-password
