@@ -43,16 +43,21 @@ module DataEntry
 			elsif linkedin_url = row[cols[:linkedin_url]] and LeadContact.find_by_linkedin_url(linkedin_url)
 				puts "Lead with this LinkedIn URL already exists, skipping. (#{linkedin_url})"
 			else
-				if lead = Lead.create({source: "LinkedIn task 3/31"}) and LeadContact.create({ \
-					first_name: row[cols[:first_name]], last_name: row[cols[:last_name]], \
-					company: row[cols[:company]], title: row[cols[:title]], \
-					email: row[cols[:email]], linkedin_url: row[cols[:linkedin_url]], \
-					notes: "From task - Location: #{row[cols[:location]]}", \
-					contactable_id: lead.id, contactable_type: "Lead"})
-				puts "Lead for #{indicator} imported correctly."
+				
+				create_hash = {}
+				attributes = [:first_name, :last_name, :company, :title, :email, :linkedin_url]
+				attributes.each do |attribute|
+					create_hash[attribute] = row[cols[attribute]]
+				end
+				create_hash[:notes] = "From task - Location: #{row[cols[:location]]}"
+				create_hash[:contactable_type] = "Lead"
+
+				if lead = Lead.create({source: "LinkedIn task 3/31"}) and create_hash[:contactable_id] = lead.id and LeadContact.create(create_hash)
+					puts "Lead for #{indicator} imported correctly."
 				else
 					puts "Error importing lead for #{indicator}."
 				end
+
 			end
 		end
 		return "Upload attempted."
