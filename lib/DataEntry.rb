@@ -25,6 +25,7 @@ module DataEntry
 		cols = {
 			first_name: 1,
 			last_name: 2,
+			location: 3,
 			company: 4,
 			title: 5,
 			linkedin_url: 6,
@@ -42,14 +43,16 @@ module DataEntry
 			elsif linkedin_url = row[cols[:linkedin_url]] and LeadContact.find_by_linkedin_url(linkedin_url)
 				puts "Lead with this LinkedIn URL already exists, skipping. (#{linkedin_url})"
 			else
-				puts "New lead, processing."
-			# if lead = Lead.create({source: "Meetup task 2/14"}) and LeadContact.create({name: row[MEETUP_NAME], \
-			# 		first_name: row[MEETUP_FIRSTNAME], last_name: last_name, linkedin_url: row[MEETUP_LINKEDIN], \
-			# 		notes: "From task - Location: #{row[MEETUP_LOCATION]} | Intro: #{row[MEETUP_INTRO]} | Interested in: #{row[MEETUP_INTERESTED]}", \
-			# 		email: row[MEETUP_EMAIL], contactable_id: lead.id, contactable_type: "Lead"})
-			# 	puts "Lead for #{last_name} imported correctly."
-			# else
-			# 	puts "Error importing lead for #{last_name}"
+				if lead = Lead.create({source: "LinkedIn task 3/31"}) and LeadContact.create({ \
+					first_name: row[cols[:first_name]], last_name: row[cols[:last_name]], \
+					company: row[cols[:company]], title: row[cols[:title]], \
+					email: row[cols[:email]], linkedin_url: row[cols[:linkedin_url]], \
+					notes: "From task - Location: #{row[cols[:location]]}", \
+					contactable_id: lead.id, contactable_type: "Lead"})
+				puts "Lead for #{indicator} imported correctly."
+				else
+					puts "Error importing lead for #{indicator}."
+				end
 			end
 		end
 		return "Upload attempted."
