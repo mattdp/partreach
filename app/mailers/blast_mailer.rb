@@ -48,15 +48,20 @@ class BlastMailer < ActionMailer::Base
                   }
     end
   end
-  
-  #targets: array of models
+
+  #targets: array of models that communications can attach to
   #method: way of calling the single email sender for this mail
-  #event_to_check: what happening in Event should block this
-  def general_sender(targets,method,event_to_check,validate=true)
+  #communication_to_check: interaction_title of communication to avoid mailing to
+  def general_sender(targets,method,communication_to_check,validate=true)
     targets.each do |t|
-      if !validate or !Event.has_event?(t.class.to_s,t.id,event_to_check)
+      if !validate or !Communication.has_communication?(t,method.to_s)
         letter = BlastMailer.send(method,t)
         letter.deliver
+        Communication.create({
+          interaction_title: method.to_s,
+          communicator_type: t.class.to_s,
+          communicator_id: t.id
+          })
       else
         logger.debug "Not sending to #{t.class.to_s} #{t.id}, event shows it was sent already"
       end
