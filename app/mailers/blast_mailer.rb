@@ -68,6 +68,20 @@ class BlastMailer < ActionMailer::Base
     return "Sending attempted"
   end
 
+  def cold_meche_reachout_april2014(contact)
+    mail(to: contact.email, subject: "cold meche test") do |format|
+      format.html { render layout: "layouts/blast_mailer", locals: {title: "test title"}}
+    end
+  end
+
+  #should make a general 'targeter' method once building the second one
+  def cold_meche_reachout_april2014_targeter(max_targets,source="linkedin_task_april2014",communication_name="cold_meche_reachout_april2014")
+    leads = Lead.where("source = ?",source)
+    leads = leads.select{|l| !Communication.has_communication?(l,communication_name)}
+    leads = leads.take(max_targets)
+    return leads.map{|l| l.lead_contact}
+  end
+
   def test_for_layout
     @title = "Test title"
     m = mail(to: "matt@supplybetter.com", from: "supplier-reachouts@supplybetter.com", subject:"test email!") do |format|
