@@ -160,3 +160,18 @@ task :paragraphify_suppliers => :environment do
 		end
 	end
 end
+
+
+require 'web_search.rb'
+
+desc "perform search via Google CSE"
+task :search_google => :environment do
+	query = ENV["query"]
+	file = ENV["file"]
+
+	if (query)
+		WebSearch.search_google(query, file)
+	else
+		puts 'Usage: rake search_google query="search terms" file=path/to/output_file.csv'
+	end
+end
