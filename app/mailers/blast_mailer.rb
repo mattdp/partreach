@@ -49,21 +49,20 @@ class BlastMailer < ActionMailer::Base
     end
   end
 
-  #targets: array of models that communications can attach to
+  #targets: array of contacts, whose communicators are models that communications can attach to
   #method: way of calling the single email sender for this mail
-  #communication_to_check: interaction_title of communication to avoid mailing to
-  def general_sender(targets,method,communication_to_check,validate=true)
-    targets.each do |t|
-      if !validate or !Communication.has_communication?(t,method.to_s)
-        letter = BlastMailer.send(method,t)
+  def general_sender(contacts,method,validate=true)
+    contacts.each do |contact|
+      if !validate or (communicator = contact.communicator and Communication.has_communication?(communicator,method.to_s))
+        letter = BlastMailer.send(method,contact)
         letter.deliver
         Communication.create({
           interaction_title: method.to_s,
-          communicator_type: t.class.to_s,
-          communicator_id: t.id
+          communicator_type: communicator.class.to_s,
+          communicator_id: communicator.id
           })
       else
-        logger.debug "Not sending to #{t.class.to_s} #{t.id}, event shows it was sent already"
+        logger.debug "Not sending to #{communicator.class.to_s} #{communicator.id}, communication shows it was sent already"
       end
     end
     return "Sending attempted"
