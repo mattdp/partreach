@@ -1,19 +1,24 @@
 class WebSearch
 	require 'csv'
 
-	def self.search_google(query, output_file=nil)
+	def self.search_google(query, output_file=nil, opts = {})
 		output_file ||= "#{query}.csv"
+ 	  opts[:start] ||= 1
 
 		CSV.open(output_file, "wb") do |csv|
-		  csv << ["query", "position", "title", "url"]
+		  csv << ["query", "position", "title", "url", "snippet"]
+		  position = 0
+	    begin
+	      page = GoogleCustomSearchApi.search(query,opts)
+	      break if page["error"]
+				print "."
+				page["items"].each do |item|
+				  position += 1
+				  csv << [query, position, item["title"], item["link"], item["snippet"]]
+				end
+	    end while opts[:start] = page.queries.nextPage.first.startIndex
 
-			results = GoogleCustomSearchApi.search(query)
-
-			results["items"].each_with_index do |item, index|
-			  csv << [query, index+1, item["title"], item["link"]]
-			end
 		end
-
 	end
 
 end

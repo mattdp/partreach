@@ -168,10 +168,14 @@ desc "perform search via Google CSE"
 task :search_google => :environment do
 	query = ENV["query"]
 	file = ENV["file"]
+	opts = {}
+	opts[:num] = ENV["num"]
+	opts[:start] = ENV["start"]
 
 	if (query)
-		WebSearch.search_google(query, file)
+		WebSearch.search_google(query, file, opts)
 	else
 		puts 'Usage: rake search_google query="search terms" file=path/to/output_file.csv'
+		# puts 'Usage: rake search_google query="search terms" file=path/to/output_file.csv num=max_number_of_results start=starting_with'
 	end
 end
