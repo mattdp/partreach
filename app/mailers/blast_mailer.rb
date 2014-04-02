@@ -49,20 +49,20 @@ class BlastMailer < ActionMailer::Base
     end
   end
 
-  #targets: array of contacts, whose communicators are models that communications can attach to
+  #targets: array of contacts, whose contactables are models that communications can attach to
   #method: way of calling the single email sender for this mail
   def general_sender(contacts,method,validate=true)
     contacts.each do |contact|
-      if !validate or (communicator = contact.communicator and Communication.has_communication?(communicator,method.to_s))
+      if !validate or (contactable = contact.contactable and !Communication.has_communication?(contactable,method.to_s))
         letter = BlastMailer.send(method,contact)
         letter.deliver
         Communication.create({
           interaction_title: method.to_s,
-          communicator_type: communicator.class.to_s,
-          communicator_id: communicator.id
+          communicator_type: contactable.class.to_s,
+          communicator_id: contactable.id
           })
       else
-        logger.debug "Not sending to #{communicator.class.to_s} #{communicator.id}, communication shows it was sent already"
+        logger.debug "Not sending to #{contactable.class.to_s} #{contactable.id}, communication shows it was sent already"
       end
     end
     return "Sending attempted"
@@ -70,16 +70,8 @@ class BlastMailer < ActionMailer::Base
 
   def cold_meche_reachout_april2014(contact)
     mail(to: contact.email, subject: "cold meche test") do |format|
-      format.html { render layout: "layouts/blast_mailer", locals: {title: "test title"}}
+      format.html { render layout: "layouts/blast_mailer", locals: {title: "test title", supplier: nil} }
     end
-  end
-
-  #should make a general 'targeter' method once building the second one
-  def cold_meche_reachout_april2014_targeter(max_targets,source="linkedin_task_april2014",communication_name="cold_meche_reachout_april2014")
-    leads = Lead.where("source = ?",source)
-    leads = leads.select{|l| !Communication.has_communication?(l,communication_name)}
-    leads = leads.take(max_targets)
-    return leads.map{|l| l.lead_contact}
   end
 
   def test_for_layout
