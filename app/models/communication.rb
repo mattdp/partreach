@@ -27,4 +27,10 @@ class Communication < ActiveRecord::Base
 		Communication.where("communicator_id = ? AND communicator_type = '#{model}'",id).sort_by{ |c| c.created_at }.reverse
 	end
 
+	def self.has_communication?(model,interaction_title)
+		if model and comms = model.communications and comms.present?
+			return comms.any?{|c| c.interaction_title == interaction_title}
+		end
+	end
+
 end
