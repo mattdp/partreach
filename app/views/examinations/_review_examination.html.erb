@@ -1,7 +1,10 @@
-<% user = User.find(review.user_id) if review.user_id %>
+<% if review.user_id and (user = User.find(review.user_id)) %>
+	<% submitter = user.lead.lead_contact %>
+<% end %>
+
 <td class="under-examination">
 	<p><%= "ID: #{review.id}" %></p>
-	<p><%= "Submitter: #{lc.name} (#{lc.email})" if (user and lc = user.lead.lead_contact %></p>
+	<p><%= "Submitter: #{submitter.name} (#{submitter.email})" if submitter %></p>
 </td>
 <td class="choice">
 	<p class="clear">
