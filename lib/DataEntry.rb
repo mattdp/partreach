@@ -52,9 +52,14 @@ module DataEntry
 				create_hash[:notes] = "From task - Location: #{row[cols[:location]]}"
 				create_hash[:contactable_type] = "Lead"
 
-				if lead = Lead.create({source: "LinkedIn task 3/31"}) and create_hash[:contactable_id] = lead.id and LeadContact.create(create_hash)
-					puts "Lead for #{indicator} imported correctly."
-				else
+				begin
+					Lead.transaction do
+						lead = Lead.create!({source: "LinkedIn task 3/31"})
+						create_hash[:contactable_id] = lead.id
+						LeadContact.create!(create_hash)
+						puts "Lead for #{indicator} imported correctly."
+					end
+				rescue
 					puts "Error importing lead for #{indicator}."
 				end
 
