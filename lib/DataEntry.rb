@@ -20,6 +20,49 @@ module DataEntry
 		return "Load attempted"
 	end
 
+	def march2014_linkedin_import(location)
+
+		cols = {
+			first_name: 1,
+			last_name: 2,
+			location: 3,
+			company: 4,
+			title: 5,
+			linkedin_url: 6,
+			email: 7
+		}
+		counter = 0
+
+		CSV.new(open(location)).each do |row|
+			counter += 1
+			indicator = row[cols[:linkedin_url]]
+			next unless (indicator.present? and counter > 1)
+
+			if email = row[cols[:email]] and LeadContact.find_by_email(email)
+				puts "Lead with this email already exists, skipping. (#{email})"
+			elsif linkedin_url = row[cols[:linkedin_url]] and LeadContact.find_by_linkedin_url(linkedin_url)
+				puts "Lead with this LinkedIn URL already exists, skipping. (#{linkedin_url})"
+			else
+				
+				create_hash = {}
+				attributes = [:first_name, :last_name, :company, :title, :email, :linkedin_url]
+				attributes.each do |attribute|
+					create_hash[attribute] = row[cols[attribute]]
+				end
+				create_hash[:notes] = "From task - Location: #{row[cols[:location]]}"
+				create_hash[:contactable_type] = "Lead"
+
+				if lead = Lead.create({source: "LinkedIn task 3/31"}) and create_hash[:contactable_id] = lead.id and LeadContact.create(create_hash)
+					puts "Lead for #{indicator} imported correctly."
+				else
+					puts "Error importing lead for #{indicator}."
+				end
+
+			end
+		end
+		return "Upload attempted."
+	end
+
 	MEETUP_NAME = 1
 	MEETUP_FIRSTNAME = 2
 	MEETUP_LASTNAME = 3
