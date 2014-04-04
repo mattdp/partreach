@@ -271,7 +271,7 @@ DEPENDENCIES
   factory_girl_rails (= 4.2.1)
   faker (= 1.2.0)
   fog (= 1.15.0)
-  google_custom_search_api
+  google_custom_search_api (= 1.0.0)
   heroku-api (= 0.3.15)
   jquery-rails (= 3.0.4)
   launchy (= 2.4.0)
