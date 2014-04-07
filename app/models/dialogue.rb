@@ -29,6 +29,7 @@
 #
 
 class Dialogue < ActiveRecord::Base
+  include FormatHelper
 
   belongs_to :order_group
   has_one :order, through: :order_group
@@ -134,15 +135,74 @@ class Dialogue < ActiveRecord::Base
   def generic_quote_ended_email_generator
     order = self.order
     supplier = self.supplier
+    in_network_supplier = supplier.is_in_network?
     contact = supplier.rfq_contact
 
+    order_group = self.order_group
+    bidset = order_group.build_bidset
+    bids = bidset.bids_sorted_by_price!
+
     returnee = {}
+
     returnee[:subject] = "SupplyBetter RFQ ##{order.id}1 for #{supplier.name}"
 
-    contact.first_name.present? ? returnee[:body] = "<p>Hi #{contact.first_name},</p>" : returnee[:body] = "<p>Hi,</p>"
+    returnee[:body] = ""
 
-    returnee[:body] += "<p>Just following up to let you know the bidding for this project is closed. The client has chosen a quote from a different supplier. I appreciate your looking into this project and look forward to sending you business again.</p>"
-    returnee[:body] += "<p>Best,</p>"
+    returnee[:body] << "<p>"
+    returnee[:body] << "Hi"
+    returnee[:body] << " #{contact.first_name}" if contact.first_name.present?
+    returnee[:body] << ","
+    returnee[:body] << "</p>"
+
+    returnee[:body] << "<p>Just following up to let you know the bidding for this project is closed. The client has chosen a quote from a different supplier. I appreciate your looking into this project and look forward to sending you business again.</p>"
+
+    unless in_network_supplier
+      returnee[:body] << "<p>"
+      returnee[:body] << 'Want to learn more about this project? <a href="https://www.supplybetter.com/be_a_supplier" target="_blank">Sign up now</a> to see how your quote competed against other suppliers.'
+      returnee[:body] << "</p>"
+    end
+
+    returnee[:body] << "<p>"
+    returnee[:body] << "Summary of RFQ ##{order.id}1* - #{order_group.name} (#{order_group.process} #{order_group.material})"
+    returnee[:body] << "</p>"
+
+    returnee[:body] << "<p>"
+    returnee[:body] << "Priority of buyer: #{order.stated_priority}"
+    returnee[:body] << "</p>"
+
+    if bidset.count > 0
+      returnee[:body] << "<p>"
+      bids.each do |bid|
+        if in_network_supplier
+          returnee[:body] << currencyize(bid.total_cost, bid.currency)
+        else
+          returnee[:body] << "$---.--"
+        end
+        returnee[:body] << " (this was your bid)" if bid.supplier == supplier
+        returnee[:body] << " (this was the winning bid)" if bid.won
+        returnee[:body] << "<br>"
+      end
+      returnee[:body] << "</p>"
+
+      returnee[:body] << "<p>"
+      returnee[:body] << "Total # of Bids: #{bidset.count}"
+      returnee[:body] << "<br>"
+      if bidset.common_currency
+        returnee[:body] << "Average bid: "
+        if in_network_supplier
+          returnee[:body] << currencyize(bidset.average_cost, bidset.common_currency)
+        else
+          returnee[:body] << "$---.--"
+        end
+      end
+      returnee[:body] << "</p>"
+
+      returnee[:body] << "<p>"
+      returnee[:body] << "* We impose a maximum of 5 bids to keep the quoting process fair for suppliers. All bids include shipping and fees."
+      returnee[:body] << "</p>"
+    end
+
+    returnee[:body] += "<p>Cheers,</p>"
     returnee[:body] += "<p>Robert Martinez<br>Co-Founder & VP Eng.<br><a href='http://www.supplybetter.com'>SupplyBetter</a><br>W: 5022766224</p>"
 
     return returnee
