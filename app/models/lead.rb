@@ -49,4 +49,12 @@ class Lead < ActiveRecord::Base
     return lead
   end
 
+  #should make a general 'targeter' method once building the second one
+  def self.cold_meche_reachout_april2014_targeter(max_targets,source="linkedin_task_april2014",communication_name="cold_meche_reachout_april2014")
+    leads = Lead.where("source = ?",source)
+    leads = leads.select{|l| !Communication.has_communication?(l,communication_name)}
+    leads = leads.take(max_targets)
+    return leads.map{|l| l.lead_contact}
+  end
+
 end

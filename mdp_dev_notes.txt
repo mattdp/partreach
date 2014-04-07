@@ -1,13 +1,15 @@
-. git push heroku yourbranch:master - pushing a remote branch to heroku
+adapt general sender to take communications
 
-first set of supplier email sendouts, highly nonscientific
-	"Tuscany3D LLC"=>[4, 6, 5]
-	"Northwest Rapid Manufacturing"=>[2, 1, 1]
-	"Empire Prototype"=>[3, 6, 4]
-	"Brightop Inc."=>[2, 7, 3]
-	"Intrinsic3D"=>[1, 2, 5]
-	"Design Alternatives"=>[1, 0, 1]
+should have a method purely to find the targets, then use the general sender to dispatch them
 
-logging
+#targets - list of lead_contacts w/o comm
+general_event_sender(targets,,nil,false)
 
-	--tail for constant log stream
+make into a communication sender
+
+
+complexity since need to test Lead and add communications to it, but get email from leadcontact
+
+think should have relevant classes implementing a contact method, taking to contact directly.
+could instead have a method mapping models to getting their contact. 
+ask james.

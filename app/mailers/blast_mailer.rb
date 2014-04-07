@@ -48,20 +48,30 @@ class BlastMailer < ActionMailer::Base
                   }
     end
   end
-  
-  #targets: array of models
+
+  #targets: array of contacts, whose contactables are models that communications can attach to
   #method: way of calling the single email sender for this mail
-  #event_to_check: what happening in Event should block this
-  def general_sender(targets,method,event_to_check,validate=true)
-    targets.each do |t|
-      if !validate or !Event.has_event?(t.class.to_s,t.id,event_to_check)
-        letter = BlastMailer.send(method,t)
+  def general_sender(contacts,method,validate=true)
+    contacts.each do |contact|
+      if !validate or (contactable = contact.contactable and !Communication.has_communication?(contactable,method.to_s))
+        letter = BlastMailer.send(method,contact)
         letter.deliver
+        Communication.create({
+          interaction_title: method.to_s,
+          communicator_type: contactable.class.to_s,
+          communicator_id: contactable.id
+          })
       else
-        logger.debug "Not sending to #{t.class.to_s} #{t.id}, event shows it was sent already"
+        logger.debug "Not sending to #{contactable.class.to_s} #{contactable.id}, communication shows it was sent already"
       end
     end
     return "Sending attempted"
+  end
+
+  def cold_meche_reachout_april2014(contact)
+    mail(to: contact.email, subject: "cold meche test") do |format|
+      format.html { render layout: "layouts/blast_mailer", locals: {title: "test title", supplier: nil} }
+    end
   end
 
   def test_for_layout
