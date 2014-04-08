@@ -6,6 +6,10 @@ FactoryGirl.define do
     supplier_id           nil
     admin                 false
     lead
+
+    factory :admin_user do
+      admin   true
+    end
   end
 
   factory :lead do |l|
@@ -63,6 +67,9 @@ FactoryGirl.define do
   factory :address do |a|
     country { create(:geography, level: "country") }
     state { create(:geography, level: "state") }
+  end
+
+  factory :review do |r|
   end
 
 end
