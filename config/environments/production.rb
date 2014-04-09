@@ -47,6 +47,16 @@ Partreach::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
+  # configure outbound email for Mailgun
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "supplybetter.com",
+    :user_name => "postmaster@supplybetter.com",
+    :password => ENV['SB_MAILER_PASSWORD']
+  }
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false
