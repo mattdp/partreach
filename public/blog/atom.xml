@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-04-10T15:36:49-07:00</updated>
+ <updated>2014-04-10T16:15:17-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -23,12 +23,12 @@
 &lt;h2&gt;Plastic and Non-Metal 3D Printing&lt;/h2&gt;
 
 
-&lt;h3&gt;&lt;strong&gt;FDM&lt;/strong&gt; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Fused_deposition_modeling&quot;&gt;Fused Deposition Modeling&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;FDM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot;&gt;Fused Deposition Modeling&lt;/a&gt;)&lt;/h3&gt;
 
 
 &lt;div&gt;
     &lt;p&gt;Best video example that describes the process: the fortus 900mc promotional video. Just look at how large that part is. It’s massive.&lt;/p&gt; 
-    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
     &lt;p&gt;Use case: Large custom brackets that need to perform well mechanically (in either prototype or production).&lt;/p&gt;
 
 &lt;/div&gt;
@@ -36,39 +36,39 @@
 
 
 
-&lt;h3&gt;&lt;strong&gt;FFF&lt;/strong&gt; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Fused_deposition_modeling&quot;&gt;Fused Filament Fabriation&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;FFF&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot;&gt;Fused Filament Fabriation&lt;/a&gt;)&lt;/h3&gt;
 
 
 &lt;div&gt;
     &lt;p&gt;Best video example (process is exactly the same as FDM, but one a different machine): this is a beautiful timelapse of an Ultimaker machine in action.&lt;/p&gt;
-    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/9pMjY7AmdBE&amp;hl=en_US&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/9pMjY7AmdBE&amp;hl=en_US&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/9pMjY7AmdBE&amp;hl=en_US&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/9pMjY7AmdBE&amp;hl=en_US&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
     &lt;p&gt;Use case: One-off single use low cost parts&lt;/p&gt;
-    &lt;p&gt;Note: if you checked out the wikipedia link for FFF, you&#39;ll see that it links to the same page as FDM. This can be confusing for a lot of people, so be sure to check out our post covering some of the &lt;a href=&quot;https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot;&gt;important differences between FDM vs. FFF&lt;/a&gt;.&lt;/p&gt;
+    &lt;p&gt;Note: if you checked out the wikipedia link for FFF, you&#39;ll see that it links to the same page as FDM. This can be confusing for a lot of people, so be sure to check out our post covering some of the &lt;a href=&quot;httpss://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot;&gt;important differences between FDM vs. FFF&lt;/a&gt;.&lt;/p&gt;
 &lt;/div&gt;
 
 
 
 
-&lt;h3&gt;&lt;strong&gt;SLS&lt;/strong&gt; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Selective_laser_sintering&quot;&gt;Selective Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;SLS&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Selective_laser_sintering&quot;&gt;Selective Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
 
 
 &lt;div&gt;
     &lt;p&gt;Shapeways promotional video from 2010 succintly showing the different steps involved in SLS 3D printing:&lt;/p&gt;
-    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/aBNGnfoGGfQ&amp;hl=en_US&amp;end=92&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/aBNGnfoGGfQ&amp;hl=en_US&amp;end=92&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
-    &lt;p&gt;3D Systems promotionla video highlighting the &lt;a href=&quot;https://www.youtube.com/v/gLxve3ZOmvc&amp;start=117&amp;end=197&quot;&gt;post processing techniques used for SLS&lt;/a&gt; in producing engineering-grade parts&lt;/p&gt;
-    &lt;p&gt;As you can see, Shapeways is probably a good place to get SLS 3D printing done for some cases, but not all. In this post, we cover the major differences between using &lt;a href=&quot;https://www.supplybetter.com/blog/shapeways-vs-supplybetter.html&quot;&gt;Shapeways versus other shops&lt;/a&gt; we can help you find using SupplyBetter. 
+    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/aBNGnfoGGfQ&amp;hl=en_US&amp;end=92&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/aBNGnfoGGfQ&amp;hl=en_US&amp;end=92&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+    &lt;p&gt;3D Systems promotionla video highlighting the &lt;a href=&quot;httpss://www.youtube.com/v/gLxve3ZOmvc&amp;start=117&amp;end=197&quot;&gt;post processing techniques used for SLS&lt;/a&gt; in producing engineering-grade parts&lt;/p&gt;
+    &lt;p&gt;As you can see, Shapeways is probably a good place to get SLS 3D printing done for some cases, but not all. In this post, we cover the major differences between using &lt;a href=&quot;httpss://www.supplybetter.com/blog/shapeways-vs-supplybetter.html&quot;&gt;Shapeways versus other shops&lt;/a&gt; we can help you find using SupplyBetter. 
 &lt;/div&gt;
 
 
 
 
-&lt;h3&gt;&lt;strong&gt;SLA&lt;/strong&gt; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Stereolithography&quot;&gt;Stereolithography&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;SLA&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Stereolithography&quot;&gt;Stereolithography&lt;/a&gt;)&lt;/h3&gt;
 
 
 &lt;div&gt;
     &lt;p&gt;Video showing the complete SLA process, including post processing:&lt;/p&gt; 
-    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/ky87zxNy1oo&amp;hl=en_US&amp;start=35&amp;end=140&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/ky87zxNy1oo&amp;hl=en_US&amp;start=35&amp;end=140&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
-    &lt;p&gt;Hilariously serious 3D Systems promotional video &lt;a href=&quot;http://www.youtube.com/v/iceiNb_1E0I&amp;hl=en_US&amp;start=19&quot;&gt;describing the SLA process&lt;/a&gt; very well.&lt;/p&gt;
+    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/ky87zxNy1oo&amp;hl=en_US&amp;start=35&amp;end=140&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/ky87zxNy1oo&amp;hl=en_US&amp;start=35&amp;end=140&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+    &lt;p&gt;Hilariously serious 3D Systems promotional video &lt;a href=&quot;https://www.youtube.com/v/iceiNb_1E0I&amp;hl=en_US&amp;start=19&quot;&gt;describing the SLA process&lt;/a&gt; very well.&lt;/p&gt;
 &lt;/div&gt;
 
 
@@ -79,30 +79,30 @@
 
 &lt;div&gt;
     &lt;p&gt;Objet promotional video by Stratasys demoing a Polyjet machine:&lt;/p&gt;
-    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
-    &lt;p&gt;Obligatory video of &lt;a href=&quot;https://www.youtube.com/watch?v=sC-AHm6dS44#t=61&quot;&gt;huge 3D printed wrench&lt;/a&gt; printed on a polyjet machine&lt;/p&gt;
+    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+    &lt;p&gt;Obligatory video of &lt;a href=&quot;httpss://www.youtube.com/watch?v=sC-AHm6dS44#t=61&quot;&gt;huge 3D printed wrench&lt;/a&gt; printed on a polyjet machine&lt;/p&gt;
 &lt;/div&gt;
 
 
 
 
-&lt;h3&gt;&lt;strong&gt;Sandstone&lt;/strong&gt; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Powder_bed_and_inkjet_head_3D_printing&quot;&gt;Binder Jetting&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;Sandstone&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Powder_bed_and_inkjet_head_3D_printing&quot;&gt;Binder Jetting&lt;/a&gt;)&lt;/h3&gt;
 
 
 &lt;div&gt;
     &lt;p&gt;Shapeways promotional video demoing the process:&lt;/p&gt;
-    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;
 
 
 &lt;hr /&gt;
 
-&lt;h3&gt;&lt;strong&gt;LOM&lt;/strong&gt; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Laminated_object_manufacturing&quot;&gt;Laminated object manufacturing&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;LOM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Laminated_object_manufacturing&quot;&gt;Laminated object manufacturing&lt;/a&gt;)&lt;/h3&gt;
 
 
 &lt;div&gt;
     &lt;p&gt;Useful promotional video giving a great overview of the process:&lt;/p&gt;
-    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/s2h1k0cpgzQ&amp;hl=en_US&amp;start=41&amp;end=109&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/s2h1k0cpgzQ&amp;hl=en_US&amp;start=41&amp;end=109&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/s2h1k0cpgzQ&amp;hl=en_US&amp;start=41&amp;end=109&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/s2h1k0cpgzQ&amp;hl=en_US&amp;start=41&amp;end=109&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;
 
 
@@ -114,7 +114,7 @@
 &lt;h3&gt;Binder Jet + Alloy wicking&lt;/h3&gt;
 
 
-&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/i6Px6RSL9Ac&amp;hl=en_US&amp;start=40&amp;end=285&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/i6Px6RSL9Ac&amp;hl=en_US&amp;start=40&amp;end=285&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/i6Px6RSL9Ac&amp;hl=en_US&amp;start=40&amp;end=285&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/i6Px6RSL9Ac&amp;hl=en_US&amp;start=40&amp;end=285&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 
 
 
@@ -122,15 +122,15 @@
 &lt;h3&gt;Binder Jet + Sand Casting&lt;/h3&gt;
 
 
-&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/S6OZXdRoogY&amp;hl=en_US&amp;start=18&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/S6OZXdRoogY&amp;hl=en_US&amp;start=18&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/S6OZXdRoogY&amp;hl=en_US&amp;start=18&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/S6OZXdRoogY&amp;hl=en_US&amp;start=18&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 
 
 
 
-&lt;h3&gt;&lt;strong&gt;DMLS&lt;/strong&gt; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Direct_metal_laser_sintering&quot;&gt;Direct Metal Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;DMLS&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Direct_metal_laser_sintering&quot;&gt;Direct Metal Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
 
 
-&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/DW-2xaIDtMk&amp;hl=en_US&amp;start=9&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/DW-2xaIDtMk&amp;hl=en_US&amp;start=9&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/DW-2xaIDtMk&amp;hl=en_US&amp;start=9&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/DW-2xaIDtMk&amp;hl=en_US&amp;start=9&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 
 
 
@@ -138,10 +138,10 @@
 &lt;p&gt;&lt;strong&gt;More exotic methods:&lt;/strong&gt;&lt;/p&gt;
 
 
-&lt;h3&gt;&lt;strong&gt;EBM&lt;/strong&gt; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Electron-beam_melting&quot;&gt;Electron Beam Melting&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;EBM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Electron-beam_melting&quot;&gt;Electron Beam Melting&lt;/a&gt;)&lt;/h3&gt;
 
 
-&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/E7--ZWPVVdQ&amp;hl=en_US&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/E7--ZWPVVdQ&amp;hl=en_US&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/E7--ZWPVVdQ&amp;hl=en_US&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/E7--ZWPVVdQ&amp;hl=en_US&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 
 
 
@@ -149,17 +149,17 @@
 &lt;p&gt;Let’s get crazy:&lt;/p&gt;
 
 
-&lt;h3&gt;&lt;strong&gt;EBDM&lt;/strong&gt; &lt;a href=&quot;http://en.wikipedia.org/wiki/Electron_beam_direct_manufacturing&quot;&gt;(Electron Beam Direct Manufacturing&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;EBDM&lt;/strong&gt; &lt;a href=&quot;https://en.wikipedia.org/wiki/Electron_beam_direct_manufacturing&quot;&gt;(Electron Beam Direct Manufacturing&lt;/a&gt;)&lt;/h3&gt;
 
 
-&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;http://www.youtube.com/v/A10XEZvkgbY&amp;hl=en_US&amp;start=49&amp;end=76&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;http://www.youtube.com/v/A10XEZvkgbY&amp;hl=en_US&amp;start=49&amp;end=76&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+&lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/A10XEZvkgbY&amp;hl=en_US&amp;start=49&amp;end=76&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/A10XEZvkgbY&amp;hl=en_US&amp;start=49&amp;end=76&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 
 &lt;p&gt;Rob&lt;/p&gt;
 
-&lt;p&gt;Still have questions? Feel free to &lt;a href=&quot;http://www.supplybetter.com/orders/questions&quot; target=&quot;_blank&quot;&gt;submit an RFQ&lt;/a&gt; if you would like us to match you with the right suppliers for your project.&lt;/p&gt;
+&lt;p&gt;Still have questions? Feel free to &lt;a href=&quot;https://www.supplybetter.com/orders/questions&quot; target=&quot;_blank&quot;&gt;submit an RFQ&lt;/a&gt; if you would like us to match you with the right suppliers for your project.&lt;/p&gt;
 
 &lt;div class=&quot;footer&quot;&gt;
     Thank you to [ADD PEOPLE HERE] for reading drafts of this post.  
