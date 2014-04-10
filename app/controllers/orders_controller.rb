@@ -81,6 +81,8 @@ class OrdersController < ApplicationController
   def create
     existed_already = false
     did_user_work = false
+    @order = Order.new
+    did_order_save = false
     if current_user.nil?
       #they've filled out the signin form
       if params[:signin_email] != "" and params[:signin_password] != ""
@@ -97,13 +99,18 @@ class OrdersController < ApplicationController
         end
       #signin form not filled out, assuming a new user
       else
-        did_user_work = true if @user = User.create(
+        @user = User.new(
           password: params[:user_password],
           password_confirmation: params[:user_password]
           )
-        Lead.create_or_update_lead({name: params[:user_name], email: params[:user_email], phone: params[:user_phone]}, \
-                                    @user.id)
-        sign_in @user
+        if @user.save
+          sign_in @user
+          did_user_work = true
+          Lead.create_or_update_lead(
+            {name: params[:user_name], email: params[:user_email], phone: params[:user_phone]},
+            @user.id
+          )
+        end
       end
     else # there is a current user, already signed in
       @user = current_user
@@ -111,25 +118,25 @@ class OrdersController < ApplicationController
       did_user_work = true
     end
 
-    @order = Order.new
     if did_user_work
       @order.user_id = current_user.id
+
+      @order.columns_shown = "all"
+      @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
+      @order.assign_attributes(order_params)
+      if (!params[:zip].nil? or !params[:country].nil?)
+        @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
+      end
+
+      did_order_save = @order.save
+      logger.debug "Order saving: #{did_order_save}"
+      if did_order_save
+        order_group = OrderGroup.find(params['order_group_id'])
+        order_group.order = @order
+        order_group.save
+      end
     else
       @order.errors.messages[:Sign_back_in] = ["with a valid email and password"]
-    end
-    @order.columns_shown = "all"
-    @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
-    @order.assign_attributes(order_params)
-    if (!params[:zip].nil? or !params[:country].nil?) and did_user_work
-      @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
-    end
-    did_user_work ? did_order_save = @order.save : did_order_save = false
-    logger.debug "Order saving: #{did_order_save}"
-
-    if did_order_save
-      order_group = OrderGroup.find(params['order_group_id'])
-      order_group.order = @order
-      order_group.save
     end
 
     respond_to do |format|
