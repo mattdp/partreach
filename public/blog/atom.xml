@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-04-10T18:39:21-07:00</updated>
+ <updated>2014-04-11T10:10:06-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -27,39 +27,39 @@
 &lt;p&gt;&lt;p&gt;&lt;strong&gt;Disclaimer 2:&lt;/strong&gt;Most of these videos are promotional videos for the companies that make the 3D printers themselves. We&#39;ve done our best to cut out all the fluff and give you just the interesting bits, but there may be occasional blatant marketing phrases and/or hilariously tacky background music. You&#39;ve been warned.&lt;/p&gt;
 
 &lt;p&gt;&lt;h2&gt;Plastic and Non-Metal 3D Printing&lt;/h2&gt;
-&lt;h3&gt;&lt;strong&gt;FDM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot;&gt;Fused Deposition Modeling&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;FDM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot; target=&quot;_blank&quot;&gt;Fused Deposition Modeling&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
     &lt;p&gt;Promotional video of the Fortus 900mc by Stratasys. Notice how the large build volume liberal use of support material allows for huge end-use parts. Best use case: Large custom brackets that need to perform well mechanically for either prototype or production applications.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h3&gt;&lt;strong&gt;FFF&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot;&gt;Fused Filament Fabrication&lt;/a&gt;)&lt;/h3&gt;
+&lt;p&gt;&lt;h3&gt;&lt;strong&gt;FFF&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot; target=&quot;_blank&quot;&gt;Fused Filament Fabrication&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;The best video example we found is this beautiful time-lapse of an Ultimaker FFF machine in action. You&#39;ll see that it links to the same page as FDM. This can be confusing for a lot of people, so be sure to check out our post covering some of the &lt;a href=&quot;httpss://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot;&gt;important differences between FDM vs. FFF&lt;/a&gt;. Best use case: one-off, single use low cost parts.&lt;/p&gt;
+    &lt;p&gt;The best video example we found is this beautiful time-lapse of an Ultimaker FFF machine in action. You&#39;ll see that it links to the same page as FDM. This can be confusing for a lot of people, so be sure to check out our post covering some of the &lt;a href=&quot;httpss://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;important differences between FDM vs. FFF&lt;/a&gt;. Best use case: one-off, single use low cost parts.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/9pMjY7AmdBE&amp;hl=en_US&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/9pMjY7AmdBE&amp;hl=en_US&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h3&gt;&lt;strong&gt;SLS&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Selective_laser_sintering&quot;&gt;Selective Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
+&lt;p&gt;&lt;h3&gt;&lt;strong&gt;SLS&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Selective_laser_sintering&quot; target=&quot;_blank&quot;&gt;Selective Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;Shapeways promotional video from 2010 succinctly showing the different steps involved in SLS 3D printing. What&#39;s important to notice here is that after the printing process is complete the parts need to be allowed to cool for a few hours before the excess powder can be removed. Chances are if you&#39;re aware of 3D printing you&#39;ve heard of online service bureaus like Shapeways, and in a previous post we cover &lt;a href=&quot;httpss://www.supplybetter.com/blog/shapeways-vs-supplybetter.html&quot;&gt;the major differences between using Shapeways versus other shops&lt;/a&gt; we can help you find using SupplyBetter.&lt;/p&gt;
+    &lt;p&gt;Shapeways promotional video from 2010 succinctly showing the different steps involved in SLS 3D printing. What&#39;s important to notice here is that after the printing process is complete the parts need to be allowed to cool for a few hours before the excess powder can be removed. Chances are if you&#39;re aware of 3D printing you&#39;ve heard of online service bureaus like Shapeways, and in a previous post we cover &lt;a href=&quot;httpss://www.supplybetter.com/blog/shapeways-vs-supplybetter.html&quot; target=&quot;_blank&quot;&gt;the major differences between using Shapeways versus other shops&lt;/a&gt; we can help you find using SupplyBetter.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/aBNGnfoGGfQ&amp;hl=en_US&amp;end=92&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/aBNGnfoGGfQ&amp;hl=en_US&amp;end=92&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
-    &lt;p&gt;Here&#39;s another promotional video highlighting the &lt;a href=&quot;httpss://www.youtube.com/v/gLxve3ZOmvc&amp;start=117&amp;end=197&quot;&gt;post processing techniques used for SLS&lt;/a&gt; in producing engineering-grade parts by 3D Systems.&lt;/p&gt;
+    &lt;p&gt;Here&#39;s another promotional video highlighting the &lt;a href=&quot;httpss://www.youtube.com/v/gLxve3ZOmvc&amp;start=117&amp;end=197&quot; target=&quot;_blank&quot;&gt;post processing techniques used for SLS&lt;/a&gt; in producing engineering-grade parts by 3D Systems.&lt;/p&gt;
 &lt;/div&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h3&gt;&lt;strong&gt;SLA&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Stereolithography&quot;&gt;Stereolithography&lt;/a&gt;)&lt;/h3&gt;
+&lt;p&gt;&lt;h3&gt;&lt;strong&gt;SLA&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Stereolithography&quot; target=&quot;_blank&quot;&gt;Stereolithography&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;This promotional video from Materialise shows the complete SLA process, including post processing. In particular, notice the huge build volume and relatively smooth surface finish. These two features of SLA make it a favorite printing process for model makers since it&#39;s much easier to finish the parts. There&#39;s no sound, so check out this hilariously serious 3D Systems promotional &lt;a href=&quot;https://www.youtube.com/v/iceiNb_1E0I&amp;hl=en_US&amp;start=19&quot;&gt;video describing the SLA process&lt;/a&gt; for a quick overview.&lt;/p&gt;
+    &lt;p&gt;This promotional video from Materialise shows the complete SLA process, including post processing. In particular, notice the huge build volume and relatively smooth surface finish. These two features of SLA make it a favorite printing process for model makers since it&#39;s much easier to finish the parts. There&#39;s no sound, so check out this hilariously serious 3D Systems promotional &lt;a href=&quot;https://www.youtube.com/v/iceiNb_1E0I&amp;hl=en_US&amp;start=19&quot; target=&quot;_blank&quot;&gt;video describing the SLA process&lt;/a&gt; for a quick overview.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/ky87zxNy1oo&amp;hl=en_US&amp;start=35&amp;end=140&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/ky87zxNy1oo&amp;hl=en_US&amp;start=35&amp;end=140&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h3&gt;&lt;strong&gt;Polyjet&lt;/strong&gt; (Ink Jetting)&lt;/h3&gt;
 &lt;div&gt;
     &lt;p&gt;Objet promotional video by Stratasys showing off their Polyjet machine. What&#39;s interesting here is that they are printing these iPhone cases using different materials: VeroWhitePlus and VeroBlackPlus for the part plus support material. This allows the machine to print discreetly different parts at the same time while also allowing the machine to mix the materials together before they cure under UV light (which is where the gray-colored gears come from in the video)&lt;/p&gt;
-    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
-    &lt;p&gt;Bonus video of a &lt;a href=&quot;httpss://www.youtube.com/watch?v=sC-AHm6dS44#t=61&quot;&gt;huge 3D printed wrench&lt;/a&gt; printed on a polyjet machine&lt;/p&gt;
+    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&amp;end=244&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+    &lt;p&gt;Bonus video of a &lt;a href=&quot;https://www.youtube.com/watch?v=sC-AHm6dS44#t=61&quot; target=&quot;_blank&quot;&gt;huge 3D printed wrench&lt;/a&gt; printed on a polyjet machine&lt;/p&gt;
 &lt;/div&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h3&gt;&lt;strong&gt;Sandstone&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Powder_bed_and_inkjet_head_3D_printing&quot;&gt;Binder Jetting&lt;/a&gt;)&lt;/h3&gt;
+&lt;p&gt;&lt;h3&gt;&lt;strong&gt;Sandstone&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Powder_bed_and_inkjet_head_3D_printing&quot; target=&quot;_blank&quot;&gt;Binder Jetting&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
     &lt;p&gt;Shapeways promotional video demoing the process. Notice how after the print is complete they need to use glue make the print stronger. They take advantage of the fact that the prints are very porous when they come out of the printer, which means that the glue can effectively seep throughout the part to make the piece stronger.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
@@ -67,7 +67,7 @@
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;h3&gt;&lt;strong&gt;LOM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Laminated_object_manufacturing&quot;&gt;Laminated object manufacturing&lt;/a&gt;)&lt;/h3&gt;
+&lt;p&gt;&lt;h3&gt;&lt;strong&gt;LOM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Laminated_object_manufacturing&quot; target=&quot;_blank&quot;&gt;Laminated object manufacturing&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
     &lt;p&gt;Useful promotional video from an MCor sales rep giving a great overview of the process. Notice how similar the results are to 3D printing in sandstone: both finished parts are full color and non-structural.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/s2h1k0cpgzQ&amp;hl=en_US&amp;start=41&amp;end=109&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/s2h1k0cpgzQ&amp;hl=en_US&amp;start=41&amp;end=109&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
@@ -86,21 +86,21 @@
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/S6OZXdRoogY&amp;hl=en_US&amp;start=18&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/S6OZXdRoogY&amp;hl=en_US&amp;start=18&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h3&gt;&lt;strong&gt;DMLS&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Direct_metal_laser_sintering&quot;&gt;Direct Metal Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
+&lt;p&gt;&lt;h3&gt;&lt;strong&gt;DMLS&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Direct_metal_laser_sintering&quot; target=&quot;_blank&quot;&gt;Direct Metal Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
     &lt;p&gt;Best way to think of DMLS is that it&#39;s exactly like SLS (shown above) except it can do metal and is a lot more expensive. Other than that, they&#39;re pretty much the same.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/DW-2xaIDtMk&amp;hl=en_US&amp;start=9&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/DW-2xaIDtMk&amp;hl=en_US&amp;start=9&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;p&gt;&lt;strong&gt;More exotic methods:&lt;/strong&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong&gt;EBM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Electron-beam_melting&quot;&gt;Electron Beam Melting&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;EBM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Electron-beam_melting&quot; target=&quot;_blank&quot;&gt;Electron Beam Melting&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
     &lt;p&gt; Want to 3D print titanium parts? This is what you&#39;re likely going to use. It&#39;s very similar to DMLS, but needs more power and a more controlled build environment.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/E7--ZWPVVdQ&amp;hl=en_US&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/E7--ZWPVVdQ&amp;hl=en_US&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;p&gt;&lt;strong&gt;Let’s get crazy:&lt;/strong&gt;&lt;/p&gt;
-&lt;h3&gt;&lt;strong&gt;EBDM&lt;/strong&gt; &lt;a href=&quot;https://en.wikipedia.org/wiki/Electron_beam_direct_manufacturing&quot;&gt;(Electron Beam Direct Manufacturing&lt;/a&gt;)&lt;/h3&gt;
+&lt;h3&gt;&lt;strong&gt;EBDM&lt;/strong&gt; &lt;a href=&quot;https://en.wikipedia.org/wiki/Electron_beam_direct_manufacturing&quot; target=&quot;_blank&quot;&gt;(Electron Beam Direct Manufacturing&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
     &lt;p&gt;Think of this 3D printing process like &quot;CNC welding&quot;. This machine lays down line after line, and in the video you can see what basically looks like thick messy metal glue gun beads. After the print, the parts are then machined to their final geometry, which helps save on material cost (for when using exotic materials). Added bonus, because this is basically CNC welding, you can repair/alter existing parts by just welding directly onto the piece. &lt;/p&gt;
 &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/A10XEZvkgbY&amp;hl=en_US&amp;start=49&amp;end=76&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/A10XEZvkgbY&amp;hl=en_US&amp;start=49&amp;end=76&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
@@ -116,6 +116,12 @@
     Thank you to [ADD PEOPLE HERE] for reading drafts of this post.&lt;/p&gt;
 
 &lt;p&gt;&lt;/div&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;!--
+    #use an example STL file and get a quote for reference - huge ethos boost
+    #track the total time for all video watching - &quot;become an expert in 3d printing under 25 minutes&quot;
+        #(53+49+90+20+34+105+127+156+49+68+245+232+45+110+27)/60
+--&gt;&lt;/p&gt;
 </content>
  </entry>
  
