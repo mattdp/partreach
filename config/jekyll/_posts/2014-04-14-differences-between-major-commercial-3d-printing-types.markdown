@@ -50,7 +50,6 @@ meta_description: Understanding the differences of using Shapeways vs. SupplyBet
 	<object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/hHxp9Ail6MY&hl=en_US&start=71&end=120"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/hHxp9Ail6MY&hl=en_US&start=71&end=120" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
 </div>
 
----
 <h3><strong>LOM</strong> (<a href="https://en.wikipedia.org/wiki/Laminated_object_manufacturing" target="_blank">Laminated object manufacturing</a>)</h3>
 <div>
 	<p>Useful promotional video from an MCor sales rep giving a great overview of the process. Notice how similar the results are to 3D printing in sandstone: both finished parts are full color and non-structural.</p>
@@ -103,7 +102,10 @@ Still have questions? Feel free to <a href="https://www.supplybetter.com/orders/
 </div>
 
 <!-- 
-	#use an example STL file and get a quote for reference - huge ethos boost
-	#track the total time for all video watching - "become an expert in 3d printing under 25 minutes"
+	[]use an example STL file and get a quote for reference - huge ethos boost
+	[]track the total time for all video watching - "become an expert in 3d printing under 25 minutes"
+	12m30 for each section
 		#(53+49+90+20+34+105+127+156+49+68+245+232+45+110+27)/60
+		#53, 49, 92, 105, 127, 49, 68 - just the non-metal embedded videos
+	[] try out post in different browsers
 -->
