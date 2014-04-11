@@ -57,4 +57,25 @@ module DataAnalysis
 		return count
 	end
 
+	def repeat_business
+
+		orders_by_user_id = {}
+		Order.find_each do |order|
+			user_id = order.user_id
+			orders_already_logged = orders_by_user_id[user_id]
+			if orders_already_logged.present?
+				orders_by_user_id[user_id] += orders_already_logged
+			else
+				orders_by_user_id[user_id] = 1
+			end
+		end
+
+		all_count = Order.all.count
+		all_solo = orders_by_user_id.map{|key,val| val.present? && val.size == 1}.count
+		all_repeat = all_count - all_solo
+
+		puts "#{all_count} total orders, #{all_repeat} (#{all_repeat.to_f/all_count*100}%) from buyers with more than one order."
+
+	end
+
 end
