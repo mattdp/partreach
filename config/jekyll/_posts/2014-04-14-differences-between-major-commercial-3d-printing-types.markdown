@@ -65,18 +65,30 @@ meta_description: Understanding the differences of using Shapeways vs. SupplyBet
 </div>
 
 <h3>Binder Jet + Sand Casting</h3>
-<object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/S6OZXdRoogY&hl=en_US&start=18"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/S6OZXdRoogY&hl=en_US&start=18" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
+<div>
+	<p>What's awesome about this video is it shows how the 3D printing method used in the Sandstone example (which makes structurally weak parts) can also be used to make engine blocks. This video demonstrates a manufacturing process known as sand casting, which can be used to make large solid metal objects. Ford is using 3D printing here presumably to prototyping new designs for engine blocks before they move to getting tooling made for production.</p>
+	<object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/S6OZXdRoogY&hl=en_US&start=18"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/S6OZXdRoogY&hl=en_US&start=18" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
+</div>
 
 <h3><strong>DMLS</strong> (<a href="https://en.wikipedia.org/wiki/Direct_metal_laser_sintering">Direct Metal Laser Sintering</a>)</h3>
-<object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/DW-2xaIDtMk&hl=en_US&start=9"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/DW-2xaIDtMk&hl=en_US&start=9" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
+<div>
+	<p>Best way to think of DMLS is that it's exactly like SLS (shown above) except it can do metal and is a lot more expensive. Other than that, they're pretty much the same.</p>
+	<object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/DW-2xaIDtMk&hl=en_US&start=9"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/DW-2xaIDtMk&hl=en_US&start=9" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
+</div>
 
 <p><strong>More exotic methods:</strong></p>
 <h3><strong>EBM</strong> (<a href="https://en.wikipedia.org/wiki/Electron-beam_melting">Electron Beam Melting</a>)</h3>
-<object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/E7--ZWPVVdQ&hl=en_US"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/E7--ZWPVVdQ&hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
+<div>
+	<p> Want to 3D print titanium parts? This is what you're likely going to use. It's very similar to DMLS, but needs more power and a more controlled build environment.</p> 
+	<object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/E7--ZWPVVdQ&hl=en_US"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/E7--ZWPVVdQ&hl=en_US" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
+</div>
 
 <p><strong>Let’s get crazy:</strong></p>
 <h3><strong>EBDM</strong> <a href="https://en.wikipedia.org/wiki/Electron_beam_direct_manufacturing">(Electron Beam Direct Manufacturing</a>)</h3>
+<div>
+	<p>Think of this 3D printing process like "CNC welding". This machine lays down line after line, and in the video you can see what basically looks like thick messy metal glue gun beads. After the print, the parts are then machined to their final geometry, which helps save on material cost (for when using exotic materials). Added bonus, because this is basically CNC welding, you can repair/alter existing parts by just welding directly onto the piece. </p>
 <object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/A10XEZvkgbY&hl=en_US&start=49&end=76"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/A10XEZvkgbY&hl=en_US&start=49&end=76" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
+</div>
 
 Cheers,
 
