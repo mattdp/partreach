@@ -52,7 +52,7 @@ meta_description: Understanding the differences of using Shapeways vs. SupplyBet
 
 <h3><strong>LOM</strong> (<a href="https://en.wikipedia.org/wiki/Laminated_object_manufacturing" target="_blank">Laminated object manufacturing</a>)</h3>
 <div>
-	<p>Here's a useful promotional video from an MCor sales rep giving a great overview of 3D printing with paper. Notice how similar the results are to 3D printing in sandstone: both finished parts are full color and non-structural. Staples actually <a href="http://www.engadget.com/2014/04/10/staples-is-launching-an-in-store-3d-printing-service/" target="_blank">recently announced<a> that these machines are going to start showing up in their stores for on-demand printing. </p>
+	<p>Here's a useful promotional video from an MCor sales rep giving a great overview of 3D printing with paper. Notice how similar the results are to 3D printing in sandstone: both finished parts are full color and non-structural. Staples actually <a href="http://www.engadget.com/2014/04/10/staples-is-launching-an-in-store-3d-printing-service/" target="_blank">recently announced</a> that these machines are going to start showing up in their stores for on-demand printing. </p>
 	<object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/s2h1k0cpgzQ&hl=en_US&start=41&end=109"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/s2h1k0cpgzQ&hl=en_US&start=41&end=109" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
 </div>
 

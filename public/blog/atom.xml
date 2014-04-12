@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-04-11T12:52:53-07:00</updated>
+ <updated>2014-04-11T18:55:20-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -16,38 +16,34 @@
    <link href="YOUR_URL/differences-between-major-commercial-3d-printing-types.html"/>
    <updated>2014-04-14T00:00:00-07:00</updated>
    <id>BLOG_URL/differences-between-major-commercial-3d-printing-types</id>
-   <content type="html">
-
-
-
-&lt;p&gt;A common request we get from customers is to separate the signal from the noise with regards to which 3D printing methods are actually accessible to people looking to get their parts made. Here’s a quick practical overview highlighting the different commercial 3D printing technologies on the market that you can use right now. I don’t know what you were hoping to accomplish in the next 25 minutes, but if it was becoming an expert in commercial 3D printing, then you’re in the right place. Enjoy!&lt;/p&gt;
+   <content type="html">&lt;p&gt;A common request we get from customers is to separate the signal from the noise with regards to which 3D printing methods are actually accessible to people looking to get their parts made. Here’s a quick practical overview highlighting the different commercial 3D printing technologies on the market that you can use right now. Enjoy!&lt;/p&gt;
 
 
 
 
-&lt;p&gt;&lt;strong&gt;Disclaimer 1:&lt;/strong&gt; We’ve decided to included hobbyist 3D printers (aka Fused Filament Fabrication) for comparison and because there are &lt;a href=&quot;httpss://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;many practical applications&lt;/a&gt; for why you’d want to use it for prototyping over FDM. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer 1:&lt;/strong&gt; We’ve decided to included hobbyist 3D printers (aka Fused Filament Fabrication) for comparison and because there are &lt;a href=&quot;https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;many practical applications&lt;/a&gt; for why you’d want to use it for prototyping over FDM. &lt;/p&gt;
 
 
-&lt;p&gt;&lt;p&gt;&lt;strong&gt;Disclaimer 2:&lt;/strong&gt; Most of these videos are promotional videos for the companies that make the 3D printers themselves. We&#39;ve done our best to cut out all the fluff and give you just the interesting bits, but there may be occasional blatant marketing phrases and/or hilariously tacky background music. You&#39;ve been warned.&lt;/p&gt;
+&lt;p&gt;&lt;p&gt;&lt;strong&gt;Disclaimer 2:&lt;/strong&gt; Most of these videos are promotional videos for the companies that make the 3D printers themselves. We&#39;ve done our best to cut out all the fluff and give you just the interesting bits.&lt;/p&gt;
 
 &lt;p&gt;&lt;h2&gt;Plastic and Non-Metal 3D Printing&lt;/h2&gt;
 &lt;h3&gt;&lt;strong&gt;FDM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot; target=&quot;_blank&quot;&gt;Fused Deposition Modeling&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;Promotional video of the Fortus 900mc by Stratasys. Notice how the large build volume liberal use of support material allows for huge end-use parts. Best use case: Large custom brackets that need to perform well mechanically for either prototype or production applications.&lt;/p&gt;
+    &lt;p&gt;A great example of FDM&#39;s capabilities is found in the middle of this promotional video of the Fortus 900mc by Stratasys. Notice how the large build volume and liberal use of support material allows for huge end-use parts. &lt;strong&gt;Best use case:&lt;/strong&gt; Large custom brackets that need to perform well mechanically for either prototype or production applications.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h3&gt;&lt;strong&gt;FFF&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot; target=&quot;_blank&quot;&gt;Fused Filament Fabrication&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;The best video example we found is this beautiful time-lapse of an Ultimaker FFF machine in action. You&#39;ll see that it links to the same page as FDM. This can be confusing for a lot of people, so be sure to check out our post covering some of the &lt;a href=&quot;httpss://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;important differences between FDM vs. FFF&lt;/a&gt;. Best use case: one-off, single use low cost parts.&lt;/p&gt;
+    &lt;p&gt;The best video example we found is this beautiful time-lapse of an Ultimaker FFF machine in action. You&#39;ll see that it links to the same page as FDM. This can be confusing for a lot of people, so be sure to check out our post covering some of the &lt;a href=&quot;https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;important differences between FDM vs. FFF&lt;/a&gt;. &lt;strong&gt;Best use case:&lt;/strong&gt; one-off, single use low cost parts.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/9pMjY7AmdBE&amp;hl=en_US&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/9pMjY7AmdBE&amp;hl=en_US&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h3&gt;&lt;strong&gt;SLS&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Selective_laser_sintering&quot; target=&quot;_blank&quot;&gt;Selective Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;Shapeways promotional video from 2010 succinctly showing the different steps involved in SLS 3D printing. What&#39;s important to notice here is that after the printing process is complete the parts need to be allowed to cool for a few hours before the excess powder can be removed. Chances are if you&#39;re aware of 3D printing you&#39;ve heard of online service bureaus like Shapeways, and in a previous post we cover &lt;a href=&quot;httpss://www.supplybetter.com/blog/shapeways-vs-supplybetter.html&quot; target=&quot;_blank&quot;&gt;the major differences between using Shapeways versus other shops&lt;/a&gt; we can help you find using SupplyBetter.&lt;/p&gt;
+    &lt;p&gt;In 2010 Shapeways released a promotional video that succinctly demonstrates the different steps involved in SLS 3D printing. What&#39;s important to notice here is that after the printing process is complete the parts need to be allowed to cool for a few hours before the excess powder can be removed. Chances are if you&#39;re aware of 3D printing you&#39;ve heard of online service bureaus like Shapeways, and in a previous post we cover &lt;a href=&quot;https://www.supplybetter.com/blog/shapeways-vs-supplybetter.html&quot; target=&quot;_blank&quot;&gt;the major differences between using Shapeways versus other shops&lt;/a&gt; we can help you find using SupplyBetter.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/aBNGnfoGGfQ&amp;hl=en_US&amp;end=92&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/aBNGnfoGGfQ&amp;hl=en_US&amp;end=92&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
-    &lt;p&gt;Here&#39;s another promotional video highlighting the &lt;a href=&quot;httpss://www.youtube.com/v/gLxve3ZOmvc&amp;start=117&amp;end=197&quot; target=&quot;_blank&quot;&gt;post processing techniques used for SLS&lt;/a&gt; in producing engineering-grade parts by 3D Systems.&lt;/p&gt;
+    &lt;p&gt;Here&#39;s another promotional video highlighting the &lt;a href=&quot;https://www.youtube.com/v/gLxve3ZOmvc&amp;start=117&amp;end=197&quot; target=&quot;_blank&quot;&gt;post processing techniques used for SLS&lt;/a&gt; in producing engineering-grade parts by 3D Systems.&lt;/p&gt;
 &lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h3&gt;&lt;strong&gt;SLA&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Stereolithography&quot; target=&quot;_blank&quot;&gt;Stereolithography&lt;/a&gt;)&lt;/h3&gt;
@@ -58,20 +54,20 @@
 
 &lt;p&gt;&lt;h3&gt;&lt;strong&gt;Polyjet&lt;/strong&gt; (Ink Jetting)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;Objet promotional video by Stratasys showing off their Polyjet machine. What&#39;s interesting here is that they are printing these iPhone cases using different materials: VeroWhitePlus and VeroBlackPlus for the part plus support material. This allows the machine to print discreetly different parts at the same time while also allowing the machine to mix the materials together before they cure under UV light (which is where the gray-colored gears come from in the video)&lt;/p&gt;
+    &lt;p&gt;Here&#39;s another promotional video by Stratasys showing off their Objet Polyjet machine. What&#39;s interesting here is that they are printing these iPhone cases using different materials: VeroWhitePlus and VeroBlackPlus for the part plus support material. This allows the machine to print discreetly different parts at the same time while also allowing the machine to mix the materials together before they cure under UV light (which is where the gray-colored gears come from in the video)&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/67cev_zcXJw&amp;hl=en_US&amp;start=117&amp;end=244&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
     &lt;p&gt;Bonus video of a &lt;a href=&quot;https://www.youtube.com/watch?v=sC-AHm6dS44#t=61&quot; target=&quot;_blank&quot;&gt;huge 3D printed wrench&lt;/a&gt; printed on a polyjet machine&lt;/p&gt;
 &lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h3&gt;&lt;strong&gt;Sandstone&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Powder_bed_and_inkjet_head_3D_printing&quot; target=&quot;_blank&quot;&gt;Binder Jetting&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;Shapeways promotional video demoing the process. Notice how after the print is complete they need to use glue make the print stronger. They take advantage of the fact that the prints are very porous when they come out of the printer, which means that the glue can effectively seep throughout the part to make the piece stronger.&lt;/p&gt;
+    &lt;p&gt;Shapeways has this useful promotional video demoing the binder jetting process on sandstone. Notice how after the print is complete they need to use glue make the print stronger. They take advantage of the fact that the prints are very porous when they come out of the printer, which means that the glue can effectively seep throughout the part to make the piece stronger.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h3&gt;&lt;strong&gt;LOM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Laminated_object_manufacturing&quot; target=&quot;_blank&quot;&gt;Laminated object manufacturing&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;Useful promotional video from an MCor sales rep giving a great overview of the process. Notice how similar the results are to 3D printing in sandstone: both finished parts are full color and non-structural.&lt;/p&gt;
+    &lt;p&gt;Here&#39;s a useful promotional video from an MCor sales rep giving a great overview of 3D printing with paper. Notice how similar the results are to 3D printing in sandstone: both finished parts are full color and non-structural. Staples actually &lt;a href=&quot;http://www.engadget.com/2014/04/10/staples-is-launching-an-in-store-3d-printing-service/&quot; target=&quot;_blank&quot;&gt;recently announced&lt;/a&gt; that these machines are going to start showing up in their stores for on-demand printing. &lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/s2h1k0cpgzQ&amp;hl=en_US&amp;start=41&amp;end=109&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/s2h1k0cpgzQ&amp;hl=en_US&amp;start=41&amp;end=109&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
@@ -90,7 +86,7 @@
 
 &lt;p&gt;&lt;h3&gt;&lt;strong&gt;DMLS&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Direct_metal_laser_sintering&quot; target=&quot;_blank&quot;&gt;Direct Metal Laser Sintering&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
-    &lt;p&gt;Best way to think of DMLS is that it&#39;s exactly like SLS (shown above) except it can do metal and is a lot more expensive. Other than that, they&#39;re pretty much the same.&lt;/p&gt;
+    &lt;p&gt;The best way to think of DMLS is that it&#39;s exactly like SLS (shown above) except it can do metal and is a lot more expensive. Other than that, they&#39;re pretty much the same.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/DW-2xaIDtMk&amp;hl=en_US&amp;start=9&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/DW-2xaIDtMk&amp;hl=en_US&amp;start=9&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
 
@@ -126,6 +122,15 @@
         #(53+49+90+20+34+105+127+156+49+68+245+232+45+110+27)/60
         #53, 49, 92, 105, 127, 49, 68 - just the non-metal embedded videos
     [] try out post in different browsers
+    James feedback
+    [] more commentary about pros cons - do something to bring it home
+    [x] get rid of bashing of videos
+    [x] fix intro to be authoritative
+    [x] make sure all the links works
+    Matt feedback
+    [x] &quot;large build volume AND liberal use of support material&quot;
+    [x] bolding for use cases
+    [] Make each section&#39;s opening sentence a full sentence
 --&gt;&lt;/p&gt;
 </content>
  </entry>
