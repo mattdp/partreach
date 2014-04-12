@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-04-11T10:10:06-07:00</updated>
+ <updated>2014-04-11T12:52:53-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -16,15 +16,19 @@
    <link href="YOUR_URL/differences-between-major-commercial-3d-printing-types.html"/>
    <updated>2014-04-14T00:00:00-07:00</updated>
    <id>BLOG_URL/differences-between-major-commercial-3d-printing-types</id>
-   <content type="html">&lt;p&gt;A common request we get from customers is to explain all the different options there are when it comes to 3D printing. Here’s a quick overview highlighting the different commercial 3D printers on the market right now. I don’t know what you were hoping to accomplish in the next 30 minutes, but if it was becoming an expert in commercial 3D printing, then you’re in the right place. Enjoy!&lt;/p&gt;
+   <content type="html">
+
+
+
+&lt;p&gt;A common request we get from customers is to separate the signal from the noise with regards to which 3D printing methods are actually accessible to people looking to get their parts made. Here’s a quick practical overview highlighting the different commercial 3D printing technologies on the market that you can use right now. I don’t know what you were hoping to accomplish in the next 25 minutes, but if it was becoming an expert in commercial 3D printing, then you’re in the right place. Enjoy!&lt;/p&gt;
 
 
 
 
-&lt;p&gt;&lt;strong&gt;Disclaimer 1:&lt;/strong&gt; We’ve decided to included hobbyist 3D printers (aka Fused Filament Fabrication) for comparison and because there are many practical applications for why you’d want to use it for prototyping over FDM. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer 1:&lt;/strong&gt; We’ve decided to included hobbyist 3D printers (aka Fused Filament Fabrication) for comparison and because there are &lt;a href=&quot;httpss://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;many practical applications&lt;/a&gt; for why you’d want to use it for prototyping over FDM. &lt;/p&gt;
 
 
-&lt;p&gt;&lt;p&gt;&lt;strong&gt;Disclaimer 2:&lt;/strong&gt;Most of these videos are promotional videos for the companies that make the 3D printers themselves. We&#39;ve done our best to cut out all the fluff and give you just the interesting bits, but there may be occasional blatant marketing phrases and/or hilariously tacky background music. You&#39;ve been warned.&lt;/p&gt;
+&lt;p&gt;&lt;p&gt;&lt;strong&gt;Disclaimer 2:&lt;/strong&gt; Most of these videos are promotional videos for the companies that make the 3D printers themselves. We&#39;ve done our best to cut out all the fluff and give you just the interesting bits, but there may be occasional blatant marketing phrases and/or hilariously tacky background music. You&#39;ve been warned.&lt;/p&gt;
 
 &lt;p&gt;&lt;h2&gt;Plastic and Non-Metal 3D Printing&lt;/h2&gt;
 &lt;h3&gt;&lt;strong&gt;FDM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot; target=&quot;_blank&quot;&gt;Fused Deposition Modeling&lt;/a&gt;)&lt;/h3&gt;
@@ -64,8 +68,6 @@
     &lt;p&gt;Shapeways promotional video demoing the process. Notice how after the print is complete they need to use glue make the print stronger. They take advantage of the fact that the prints are very porous when they come out of the printer, which means that the glue can effectively seep throughout the part to make the piece stronger.&lt;/p&gt;
     &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/hHxp9Ail6MY&amp;hl=en_US&amp;start=71&amp;end=120&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
 &lt;/div&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
 
 &lt;p&gt;&lt;h3&gt;&lt;strong&gt;LOM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Laminated_object_manufacturing&quot; target=&quot;_blank&quot;&gt;Laminated object manufacturing&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
@@ -118,9 +120,12 @@
 &lt;p&gt;&lt;/div&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;!--
-    #use an example STL file and get a quote for reference - huge ethos boost
-    #track the total time for all video watching - &quot;become an expert in 3d printing under 25 minutes&quot;
+    []use an example STL file and get a quote for reference - huge ethos boost
+    []track the total time for all video watching - &quot;become an expert in 3d printing under 25 minutes&quot;
+    12m30 for each section
         #(53+49+90+20+34+105+127+156+49+68+245+232+45+110+27)/60
+        #53, 49, 92, 105, 127, 49, 68 - just the non-metal embedded videos
+    [] try out post in different browsers
 --&gt;&lt;/p&gt;
 </content>
  </entry>
