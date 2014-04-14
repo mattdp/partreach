@@ -150,6 +150,6 @@ meta_description: Understanding the differences of using Shapeways vs. SupplyBet
 <p>Feel free to <a href="https://www.supplybetter.com/orders/questions" target="_blank">submit an RFQ</a> if you would like us to match you with the right suppliers for your project. </p>
 
 <div class="footer">
-    Thanks to Matt Du Pont, James Bond, David Martinez, Benjie Holson, and Aaron Mandale for reading drafts of this post.  
+    Thanks to Matt Du Pont, James Bond, David Martinez, Benjie Holson, Aaron Mandale, Nicholas Christie, and Will Kasten for reading drafts of this post.  
 
 </div>
