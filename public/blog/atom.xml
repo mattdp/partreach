@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-04-14T10:42:47-07:00</updated>
+ <updated>2014-04-14T13:11:25-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -16,7 +16,7 @@
    <link href="YOUR_URL/differences-between-major-commercial-3d-printing-types.html"/>
    <updated>2014-04-14T00:00:00-07:00</updated>
    <id>BLOG_URL/differences-between-major-commercial-3d-printing-types</id>
-   <content type="html">&lt;p&gt;Customers both new and experienced often ask us for an overview of 3D printing technologies. Luckily, understanding which 3D printing methods are useful right now for making parts happens to be our specialty. Here is a practical overview highlighting the different commercial 3D printing technologies currently accessible on the market. Enjoy!&lt;/p&gt;
+   <content type="html">&lt;p&gt;Customers both new and experienced often ask us for an overview of 3D printing technologies. Luckily, our specialty is helping people understand which 3D printing methods are useful right now for making parts. Here is a practical overview highlighting the different commercial 3D printing technologies currently accessible on the market. Enjoy!&lt;/p&gt;
 
 
 

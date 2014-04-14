@@ -6,7 +6,7 @@ published: true
 meta_description: Understanding the differences of using Shapeways vs. SupplyBetter for 3D printing is a great first step for sourcing your next 3D printing prototype.
 ---
 
-<p>Customers both new and experienced often ask us for an overview of 3D printing technologies. Luckily, understanding which 3D printing methods are useful right now for making parts happens to be our specialty. Here is a practical overview highlighting the different commercial 3D printing technologies currently accessible on the market. Enjoy!</p>
+<p>Customers both new and experienced often ask us for an overview of 3D printing technologies. Luckily, our specialty is helping people understand which 3D printing methods are useful right now for making parts. Here is a practical overview highlighting the different commercial 3D printing technologies currently accessible on the market. Enjoy!</p>
 
 <p><strong>Disclaimer 1:</strong> We included hobbyist 3D printers (aka Fused Filament Fabrication) for comparison because there are <a href="https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html" target="_blank">many practical applications</a> for why you might want to use it for prototyping over FDM. </p>
 <p><strong>Disclaimer 2:</strong> Most of these videos are promotional videos for the companies that make the 3D printers themselves. We did our best to cut out all the fluff and give you just the interesting bits. 
