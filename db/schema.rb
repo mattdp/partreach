@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140408223344) do
+ActiveRecord::Schema.define(version: 20140416155514) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -268,6 +268,14 @@ ActiveRecord::Schema.define(version: 20140408223344) do
     t.boolean  "displayable"
     t.integer  "supplier_id"
   end
+
+  create_table "search_exclusions", force: true do |t|
+    t.string   "domain"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "search_exclusions", ["domain"], name: "index_search_exclusions_on_domain", using: :btree
 
   create_table "suppliers", force: true do |t|
     t.string   "name"
