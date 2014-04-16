@@ -8,15 +8,14 @@ meta_description: Understanding the differences of using Shapeways vs. SupplyBet
 
 <p>Customers, both new and experienced, often ask us for an overview of 3D printing technologies. Luckily, our specialty is helping people understand which 3D printing methods are useful right now for making parts. Here is a practical overview highlighting the different commercial 3D printing technologies currently accessible on the market. Enjoy!</p>
 
-<p><strong>Disclaimer 1:</strong> We included hobbyist 3D printers (aka Fused Filament Fabrication) for comparison because there are <a href="https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html" target="_blank">many practical applications</a> for using this method for prototyping over FDM. </p>
-<p><strong>Disclaimer 2:</strong> Most of these videos are promotional videos for the companies that make the 3D printers themselves. We did our best to cut out all the fluff and give you just the interesting bits. 
+<p><strong>Note:</strong> Most of these videos are promotional videos for the companies that make the 3D printers themselves. We did our best to cut out all the fluff and give you just the interesting bits. 
 
 <h2>Plastic and Non-Metal 3D Printing</h2>
 <h3><strong>FDM</strong> (<a href="https://en.wikipedia.org/wiki/Fused_deposition_modeling" target="_blank">Fused Deposition Modeling</a>)</h3>
 <div>
 	<p>There is a great example of FDM's capabilities in the middle of this promotional video of the Fortus 900mc by Stratasys. Notice how the large build volume and liberal use of support material allows for huge end-use parts.</p> 
 	<object width="640" height="385"><param name="movie" value="https://www.youtube.com/v/W5h2d7Vyj6s&hl=en_US&start=131&end=184"></param><param name="allowscriptaccess" value="always"></param><embed src="https://www.youtube.com/v/W5h2d7Vyj6s&hl=en_US&start=131&end=184" type="application/x-shockwave-flash" allowscriptaccess="always" width="640" height="385"></embed></object>
-	<p><strong>Best use case:</strong> Large custom brackets that need good mechanical strength for either prototype or production applications. Also, any parts that have large closed voids are well suited to this method.</p>
+	<p><strong>Best use case:</strong> Large custom brackets that need good mechanical strength for either prototype or production applications. Also, parts that have large closed voids are well suited to this method.</p>
 	<p><strong>Biggest disadvantage:</strong> Mechanical strength is highly dependent on build orientation. Specifically, the z-axis has a lower tensile strength than the x or y axis.</p>
 	<p><strong>How common is this method?</strong> Very common. This is one of our most requested 3D printing options.</p>
 	<p><strong>Alternatives to consider:</strong> If you're looking for cheaper parts that are not as strong then FFF may be a good choice. If you're looking for more flexible parts or a matte surface finish then SLS is a great alternative to consider.</p>
