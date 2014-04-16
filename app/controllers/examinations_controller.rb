@@ -9,6 +9,9 @@ class ExaminationsController < ApplicationController
 		when "suppliers"
 			@name = "supplier"
 			@questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
+		when "supplier_search_results"
+			@name = "supplier_search_result"
+			@questionables = WebSearchResults.quantity_for_examination(20)
 		when "contact_information"
 			@name = "contact_information"
 			@questionables = Supplier.missing_contact_information(10)
