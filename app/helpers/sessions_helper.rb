@@ -41,15 +41,15 @@ module SessionsHelper
   end
 
   def admin_user
-    redirect_to(root_path) unless (current_user.present? && current_user.admin?)
+    redirect_to(root_path) unless (current_user && current_user.admin?)
   end
 
   def examiner_user
-    redirect_to(root_path) unless (current_user.present? && (current_user.admin? || current_user.examiner?))
+    redirect_to(root_path) unless (current_user && (current_user.admin? || current_user.examiner?))
   end
 
   def correct_supplier_for_user
-    redirect_to(root_path) unless (current_user.present? && (current_user.admin? || (current_user.supplier_id && current_user.supplier_id == params[:id].to_i)))
+    redirect_to(root_path) unless (current_user && (current_user.admin? || (current_user.supplier_id && current_user.supplier_id == params[:id].to_i)))
   end
 
   def brand_name
