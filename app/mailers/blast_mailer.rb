@@ -75,9 +75,10 @@ class BlastMailer < ActionMailer::Base
   end
 
   def blog_post_april1614(contact)
+    @title = "The major 3D printing types available right now, explained"
     @salutation = contact.salutation
-    mail(to: contact.email, subject: "test subject") do |format|
-      format.html { render layout: "layouts/blast_mailer", locals: {title: "The major 3D printing types available right now, explained", supplier: nil} }
+    mail(to: contact.email, subject: @title) do |format|
+      format.html { render layout: "layouts/blast_mailer", locals: {title: @title, supplier: nil} }
     end
   end
 
