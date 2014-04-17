@@ -1,0 +1,36 @@
+<td class="choice">
+	<p class="clear">
+		<%= label_tag "domain[#{supplier_search_result.id}]", "Site Domain:", :class => "fleft" %>
+		<%= text_field_tag "domain[#{supplier_search_result.id}]", supplier_search_result.domain %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "supplier_search_results[#{supplier_search_result.id}]", "add_supplier", false, :class => "fleft radio" %>	
+		<%= label_tag "supplier_search_results[#{supplier_search_result.id}]", "Add as new Supplier", :class => "fleft" %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "supplier_search_results[#{supplier_search_result.id}]", "not_supplier", false, :class => "fleft radio" %>
+		<%= label_tag "supplier_search_results[#{supplier_search_result.id}]", "Exclude - not a Supplier", :class => "fleft" %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "supplier_search_results[#{supplier_search_result.id}]", "remove", false, :class => "fleft radio" %>
+		<%= label_tag "supplier_search_results[#{supplier_search_result.id}]", "Remove from current review set", :class => "fleft" %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "supplier_search_results[#{supplier_search_result.id}]", "later", false, :class => "fleft radio" %>
+		<%= label_tag "supplier_search_results[#{supplier_search_result.id}]", "Keep / review later", :class => "fleft" %>
+	</p>
+</td>
+<td class="supporting-info">
+	<p class="clear">
+		Title: <%= supplier_search_result.title %>
+	</p>
+	<p class="clear">
+		Snippet: <%= supplier_search_result.snippet %>
+	</p>
+	<p class="clear">
+		Search Results Position: <%= supplier_search_result.position %>
+	</p>
+	<p class="clear">
+		Search Link: <%= supplier_search_result.link %>
+	</p>
+</td>
