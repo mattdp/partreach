@@ -4,8 +4,9 @@
 		<%= text_field_tag "domain[#{supplier_search_result.id}]", supplier_search_result.domain %>
 	</p>
 	<p class="clear">
+		<% placeholder_name = Domainatrix.parse(supplier_search_result.domain).domain.capitalize %>
 		<%= label_tag "name[#{supplier_search_result.id}]", "Name:", :class => "fleft" %>
-		<%= text_field_tag "name[#{supplier_search_result.id}]", supplier_search_result.domain %>
+		<%= text_field_tag "name[#{supplier_search_result.id}]", placeholder_name %>
 	</p>
 	<p class="clear">
 		<%= radio_button_tag "choices[#{supplier_search_result.id}]", "add_supplier", false, :class => "fleft radio" %>
