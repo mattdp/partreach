@@ -9,7 +9,7 @@ class ExaminationsController < ApplicationController
 		when "suppliers"
 			@name = "supplier"
 			@questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
-		when "supplier_search_results"
+		when "supplier_search_result"
 			@name = "supplier_search_result"
 			@questionables = WebSearchResults.quantity_for_examination(20)
 		when "contact_information"
@@ -39,6 +39,25 @@ class ExaminationsController < ApplicationController
 				end
 			end
 			note = "Suppliers submitted"
+		elsif params[:model_examined] == "supplier_search_result"
+			note = "Supplier search results submitted"
+			if params[:choices]
+				params[:choices].each do |sr_id,v|
+					search_results = WebSearchResults.find(sr_id)
+					if v == "add_supplier"
+						Supplier.create_new_with_default_dependent_objects(
+							name: params[:name][sr_id], url_main: params[:domain][sr_id], profile_visible: false)
+						search_results.destroy # should delete all matching domains
+					elsif v == "not_supplier"
+						SearchExclusion.create(:domain => params[:domain][sr_id])
+						search_results.destroy # should delete all matching domains
+					elsif v == "drop"
+						search_results.destroy
+					# elsif v == "later"
+						# nothing to do here
+					end
+				end
+			end
 		elsif params[:model_examined] == "review"
 			note = "Reviews submitted"
 			if params[:reviews]

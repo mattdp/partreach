@@ -4,20 +4,24 @@
 		<%= text_field_tag "domain[#{supplier_search_result.id}]", supplier_search_result.domain %>
 	</p>
 	<p class="clear">
-		<%= radio_button_tag "supplier_search_results[#{supplier_search_result.id}]", "add_supplier", false, :class => "fleft radio" %>	
-		<%= label_tag "supplier_search_results[#{supplier_search_result.id}]", "Add as new Supplier", :class => "fleft" %>
+		<%= label_tag "name[#{supplier_search_result.id}]", "Name:", :class => "fleft" %>
+		<%= text_field_tag "name[#{supplier_search_result.id}]", supplier_search_result.domain %>
 	</p>
 	<p class="clear">
-		<%= radio_button_tag "supplier_search_results[#{supplier_search_result.id}]", "not_supplier", false, :class => "fleft radio" %>
-		<%= label_tag "supplier_search_results[#{supplier_search_result.id}]", "Exclude - not a Supplier", :class => "fleft" %>
+		<%= radio_button_tag "choices[#{supplier_search_result.id}]", "add_supplier", false, :class => "fleft radio" %>
+		<%= label_tag "choices[#{supplier_search_result.id}]", "Add as new Supplier", :class => "fleft" %>
 	</p>
 	<p class="clear">
-		<%= radio_button_tag "supplier_search_results[#{supplier_search_result.id}]", "remove", false, :class => "fleft radio" %>
-		<%= label_tag "supplier_search_results[#{supplier_search_result.id}]", "Remove from current review set", :class => "fleft" %>
+		<%= radio_button_tag "choices[#{supplier_search_result.id}]", "not_supplier", false, :class => "fleft radio" %>
+		<%= label_tag "choices[#{supplier_search_result.id}]", "Exclude domain - not a supplier", :class => "fleft" %>
 	</p>
 	<p class="clear">
-		<%= radio_button_tag "supplier_search_results[#{supplier_search_result.id}]", "later", false, :class => "fleft radio" %>
-		<%= label_tag "supplier_search_results[#{supplier_search_result.id}]", "Keep / review later", :class => "fleft" %>
+		<%= radio_button_tag "choices[#{supplier_search_result.id}]", "drop", false, :class => "fleft radio" %>
+		<%= label_tag "choices[#{supplier_search_result.id}]", "Unknown / drop from review queue", :class => "fleft" %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "choices[#{supplier_search_result.id}]", "later", false, :class => "fleft radio" %>
+		<%= label_tag "choices[#{supplier_search_result.id}]", "Keep in queue / review later", :class => "fleft" %>
 	</p>
 </td>
 <td class="supporting-info">
