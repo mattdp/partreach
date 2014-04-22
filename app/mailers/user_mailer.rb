@@ -3,9 +3,10 @@ class UserMailer < ActionMailer::Base
           bcc: "partreach@gmail.com"
   include SessionsHelper
 
-  MATT = "matt@supplybetter.com"
+  MATT =  "matt@supplybetter.com"
   ROB =   "rob@supplybetter.com"
-  EMPLOYEES = [MATT,ROB]
+  JAMES = "james@supplybetter.com"
+  EMPLOYEES = [MATT,ROB,JAMES]
 
   def email_internal_team(subject, note)
     @note = note
