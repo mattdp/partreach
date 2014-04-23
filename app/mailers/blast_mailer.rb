@@ -57,6 +57,7 @@ class BlastMailer < ActionMailer::Base
         letter = BlastMailer.send(method,contact)
         letter.deliver
         Communication.create({
+          means_of_interaction: 'email',
           interaction_title: method.to_s,
           communicator_type: contactable.class.to_s,
           communicator_id: contactable.id
