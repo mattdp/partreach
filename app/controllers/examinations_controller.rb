@@ -11,7 +11,7 @@ class ExaminationsController < ApplicationController
 			@questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
 		when "supplier_search_result"
 			@name = "supplier_search_result"
-			@questionables = WebSearchResults.quantity_for_examination(20)
+			@questionables = WebSearchResult.quantity_for_examination(20)
 		when "contact_information"
 			@name = "contact_information"
 			@questionables = Supplier.missing_contact_information(10)
@@ -46,12 +46,12 @@ class ExaminationsController < ApplicationController
 					if v == "add_supplier"
 						Supplier.create_new_with_default_dependent_objects(
 							name: params[:name][sr_id], url_main: params[:domain][sr_id], profile_visible: false)
-						WebSearchResults.delete_all(["domain = (SELECT domain FROM web_search_results WHERE id = ?)", sr_id])
+						WebSearchResult.delete_all(["domain = (SELECT domain FROM web_search_results WHERE id = ?)", sr_id])
 					elsif v == "not_supplier"
 						SearchExclusion.create(:domain => params[:domain][sr_id])
-						WebSearchResults.delete_all(["domain = (SELECT domain FROM web_search_results WHERE id = ?)", sr_id])
+						WebSearchResult.delete_all(["domain = (SELECT domain FROM web_search_results WHERE id = ?)", sr_id])
 					elsif v == "drop"
-						WebSearchResults.delete(sr_id)
+						WebSearchResult.delete(sr_id)
 					# elsif v == "later"
 						# don't take any action now; leave row for later review
 					end

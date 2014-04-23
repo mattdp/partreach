@@ -19,7 +19,7 @@ class WebSearch
       page["items"].each do |item|
         url = Domainatrix.parse(item["link"])
         domain = "#{url.domain}.#{url.public_suffix}"
-        WebSearchResults.create!(
+        WebSearchResult.create!(
           :query => query,
           :position => position,
           :domain => domain,
