@@ -43,18 +43,17 @@ class ExaminationsController < ApplicationController
 			note = "Supplier search results submitted"
 			if params[:choices]
 				params[:choices].each do |sr_id,v|
-					search_results = WebSearchResults.find(sr_id)
 					if v == "add_supplier"
 						Supplier.create_new_with_default_dependent_objects(
 							name: params[:name][sr_id], url_main: params[:domain][sr_id], profile_visible: false)
-						search_results.destroy # should delete all matching domains
+						WebSearchResults.delete_all(["domain = (SELECT domain FROM web_search_results WHERE id = ?)", sr_id])
 					elsif v == "not_supplier"
 						SearchExclusion.create(:domain => params[:domain][sr_id])
-						search_results.destroy # should delete all matching domains
+						WebSearchResults.delete_all(["domain = (SELECT domain FROM web_search_results WHERE id = ?)", sr_id])
 					elsif v == "drop"
-						search_results.destroy
+						WebSearchResults.delete(sr_id)
 					# elsif v == "later"
-						# nothing to do here
+						# don't take any action now; leave row for later review
 					end
 				end
 			end
