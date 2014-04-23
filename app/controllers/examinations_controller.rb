@@ -42,18 +42,18 @@ class ExaminationsController < ApplicationController
 		elsif params[:model_examined] == "supplier_search_result"
 			note = "Supplier search results submitted"
 			if params[:choices]
-				params[:choices].each do |sr_id,v|
-					if v == "add_supplier"
+				params[:choices].each do |wsr_id, choice|
+					if choice == "add_supplier"
 						Supplier.create_new_with_default_dependent_objects(
-							name: params[:name][sr_id], url_main: params[:domain][sr_id], profile_visible: false)
-						WebSearchResult.delete_all(["domain = (SELECT domain FROM web_search_results WHERE id = ?)", sr_id])
-					elsif v == "not_supplier"
-						SearchExclusion.create(:domain => params[:domain][sr_id])
-						WebSearchResult.delete_all(["domain = (SELECT domain FROM web_search_results WHERE id = ?)", sr_id])
-					elsif v == "drop"
-						WebSearchResult.delete(sr_id)
-					# elsif v == "later"
-						# don't take any action now; leave row for later review
+							name: params[:name][wsr_id], url_main: params[:url_main][wsr_id], profile_visible: false)
+						WebSearchResult.delete_all_with_matching_domain(wsr_id)
+					elsif choice == "not_supplier"
+						SearchExclusion.create(:domain => params[:domain][wsr_id])
+						WebSearchResult.delete_all_with_matching_domain(wsr_id)
+					elsif choice == "drop"
+						WebSearchResult.delete(wsr_id)
+					# elsif choice == "later"
+						# don't take any action now; leave search result item for later review
 					end
 				end
 			end

@@ -8,4 +8,10 @@ class WebSearchResult < ActiveRecord::Base
     end
   end
 
+  def self.delete_all_with_matching_domain(id)
+	if (item = WebSearchResult.find(id))
+		WebSearchResult.delete_all(["domain = ?)", item.domain])
+	end
+  end
+
 end

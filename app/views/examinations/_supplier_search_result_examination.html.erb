@@ -1,7 +1,7 @@
 <td class="choice">
 	<p class="clear">
-		<%= label_tag "domain[#{supplier_search_result.id}]", "Site Domain:", :class => "fleft" %>
-		<%= text_field_tag "domain[#{supplier_search_result.id}]", supplier_search_result.domain %>
+		<%= label_tag "url_main[#{supplier_search_result.id}]", "Website:", :class => "fleft" %>
+		<%= text_field_tag "url_main[#{supplier_search_result.id}]", supplier_search_result.domain %>
 	</p>
 	<p class="clear">
 		<% placeholder_name = Domainatrix.parse(supplier_search_result.domain).domain.capitalize %>
