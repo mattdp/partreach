@@ -8,9 +8,12 @@ class WebSearchResult < ActiveRecord::Base
     end
   end
 
+  scope :matches_exclusions, -> { where("domain IN (SELECT domain FROM search_exclusions)") }
+  scope :matches_suppliers, -> { joins("JOIN suppliers s ON s.url_main LIKE '%' || domain || '%'") }
+
   def self.delete_all_with_matching_domain(id)
 	if (item = WebSearchResult.find(id))
-		WebSearchResult.delete_all(["domain = ?)", item.domain])
+		WebSearchResult.delete_all(["domain = ?", item.domain])
 	end
   end
 

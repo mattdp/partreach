@@ -1,7 +1,17 @@
 class WebSearch
 
-  def self.search_google(query, output_file=nil, opts = {})
-    output_file ||= "#{query}.csv"
+  def self.search_google(query, opts = {})
+    WebSearch.search_loop(query, opts)
+
+    # delete results with domains matching existing suppliers
+    WebSearchResult.matches_suppliers.delete_all
+    # delete results with domains that have been flagged as not suppliers
+    WebSearchResult.matches_exclusions.delete_all
+  end
+
+  private   
+
+  def self.search_loop(query, opts)
     position = (opts[:start] ? opts[:start].to_i : 1)
     num = opts[:num].to_i
     results_count = 0
