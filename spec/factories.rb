@@ -72,4 +72,9 @@ FactoryGirl.define do
   factory :review do |r|
   end
 
+  factory :web_search_result do |wsr|
+  end
+
+  factory :search_exclusion do |se|
+  end
 end
