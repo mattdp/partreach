@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+
 	var classList = 0;
 	var summary = "";
 
@@ -18,4 +18,9 @@ $(document).ready(function() {
 			}
 		});
 	});
+
+	$('.chosen-select').chosen(
+		{
+			disable_search_threshold: 20
+		});
 });
