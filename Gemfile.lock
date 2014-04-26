@@ -42,6 +42,9 @@ GEM
       rdiscount
     bootstrap-sass (3.0.2.1)
       sass (~> 3.2)
+    bourbon (3.2.1)
+      sass (~> 3.2)
+      thor
     bugsnag (1.6.1)
       httparty (>= 0.6, < 1.0)
       multi_json (~> 1.0)
@@ -145,6 +148,9 @@ GEM
     multi_json (1.8.2)
     multi_xml (0.5.5)
     multipart-post (1.2.0)
+    neat (1.5.0)
+      bourbon (>= 2.1)
+      sass (>= 3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -261,6 +267,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   bloggy (= 0.2.2)
   bootstrap-sass (= 3.0.2.1)
+  bourbon
   bugsnag (= 1.6.1)
   capybara (= 2.1.0)
   coffee-rails (~> 4.0.0)
@@ -276,6 +283,7 @@ DEPENDENCIES
   jquery-rails (= 3.0.4)
   launchy (= 2.4.0)
   memcachier (= 0.0.2)
+  neat
   newrelic_rpm (= 3.6.6.147)
   nokogiri (= 1.6.0)
   paperclip (= 3.5.1)
