@@ -1,0 +1,33 @@
+.triplets {
+  @include media($tablet) {
+    @include outer-container();
+
+    .col {
+      float: left;
+      padding: 0 20px;
+      width: 33%;
+    }
+  }
+}
+
+.twins {
+  @include media($tablet) {
+    @include outer-container();
+
+    .col {
+      float: left;
+      padding: 0 20px;
+      width: 50%;
+    }
+  }
+}
+
+.ta-c {
+  text-align: center;
+}
+
+.p-0 {
+  @include media($tablet) {
+    padding: 0 !important;
+  }
+}

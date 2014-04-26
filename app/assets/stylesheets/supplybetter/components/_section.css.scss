@@ -1,0 +1,36 @@
+.section {
+  padding: 80px 20px;
+}
+
+.section--gray {
+  background: $light-gray;
+}
+
+.section--aligned {
+  .section-headline, p {
+    text-align: center;
+  }
+
+  @include media($tablet) {
+    .section-headline, p {
+      max-width: 66%;
+      padding-left: 80px;
+      text-align: left;
+    }
+  }
+
+  p {
+    line-height: 1.6em;
+  }
+}
+
+.section-headline {
+  font-size: em(28);
+  font-weight: 100;
+  margin: 0;
+  text-align: center;
+
+  @include media($tablet) {
+    font-size: em(48);
+  }
+}

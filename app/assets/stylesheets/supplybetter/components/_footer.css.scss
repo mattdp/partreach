@@ -1,0 +1,94 @@
+.footer {
+  background-color: $sb-blue;
+  padding: 40px 0;
+
+  h3, p, a, input {
+    color: $white;
+  }
+
+  h3 {
+    margin: 0;
+    padding-top: 9px;
+    padding-left: 40px;
+
+    @include media($tablet) {
+      padding-left: 0;
+    }
+  }
+
+  p {
+    margin-top: 0;
+    padding-top: 8px;
+    opacity: .75;
+    padding-left: 40px;
+
+    @include media($tablet) {
+      padding-left: 0;
+    }
+  }
+
+  .email-form {
+    display: inline-block;
+    padding-top: 42px;
+    position: relative;
+    padding-left: 40px;
+
+    @include media($tablet) {
+      padding-left: 0;
+    }
+
+    input {
+      background: #51c9e9;
+      border: 1px solid $white;
+      border-radius: $border-radius;
+      outline: 0;
+      padding: 9px 12px;
+
+      @include placeholder {
+        color: $white;
+        opacity: .4;
+      }
+    }
+
+    [type="text"]{
+      padding-right: 53px;
+    }
+
+    [type="submit"]{
+      @include transition(all 200ms ease);
+      background: image_url('arrow-right@2x.png') no-repeat center;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+      background-size: 50%;
+      height: 36px;
+      right: 4px;
+      bottom: 3px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      text-indent: 300%;
+      white-space: nowrap;
+      width: 36px;
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+}
+
+.footer-links, .footer-links--sub {
+  list-style: none;
+  padding-bottom: 8px;
+
+  li {
+    display: inline-block;
+    padding-right: 18px;
+    padding-bottom: 6px;
+  }
+}
+
+.footer-links--sub {
+  opacity: .75;
+}

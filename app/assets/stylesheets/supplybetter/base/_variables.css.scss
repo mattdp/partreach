@@ -1,0 +1,59 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+//  Global Variables
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
+// Grid - Neat overrides
+///////////////////////////////////////////////////////////////////////////////
+
+$column: golden-ratio(1em, 3); // Column width
+$gutter: golden-ratio(1em, 1); // Gutter between each two columns
+$grid-columns: 12; // Total number of columns in the grid
+$max-width: em(1440); // Max-width of the outer container
+$visual-grid: true; // Display the base grid
+$visual-grid-color: red;
+// Show grid behind content (back) or overlay it over the content (front)
+$visual-grid-index: front;
+
+@import "neat-helpers";
+
+$mobile: new-breakpoint(min-width 480px 4);
+$tablet: new-breakpoint(min-width 768px 8);
+$desk: new-breakpoint(min-width 1024px 8);
+
+$border-radius: 3px;
+
+
+// Color
+///////////////////////////////////////////////////////////////////////////////
+
+$sb-blue: #14b8e2;
+$light-blue: a9e3f3;
+$blue: #17B8E2;
+$dark-gray: #404041;
+$med-gray: #787878;
+$light-gray: #F8F8F8;
+$orange: #F76F07;
+$white: #fff;
+
+$light-red: #FBE3E4;
+$light-yellow: #FFF6BF;
+$light-green: #E6EFC2;
+
+// Border color
+$base-border-color: $light-gray;
+
+// Flash Colors
+$error-color: $light-red;
+$notice-color: $light-yellow;
+$success-color: $light-green;
+
+// Typography
+///////////////////////////////////////////////////////////////////////////////
+$sans-serif: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$serif: 'Merriweather', $georgia;
+
+$base-font-family: $sans-serif;
+$header-font-family: $base-font-family;
