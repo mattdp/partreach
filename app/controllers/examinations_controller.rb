@@ -3,10 +3,10 @@ class ExaminationsController < ApplicationController
 
 	def setup_examinations
 		case params[:name] 
-		when "reviews"
+		when "review"
 			@name = "review"
 			@questionables = Review.quantity_for_examination(20)
-		when "suppliers"
+		when "supplier"
 			@name = "supplier"
 			@questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
 		when "supplier_search_result"
