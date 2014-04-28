@@ -55,6 +55,11 @@ class Contact < ActiveRecord::Base
   	end
   end	
 
+  def salutation
+    return "Hi #{self.first_name}," if self.first_name.present?
+    return "Hi,"
+  end
+
   #return string highlighing issues in lead_contacts where duplication may be happening
   #if useful, make into list of the objects, so can link based on the return
   def self.duplicate_detector

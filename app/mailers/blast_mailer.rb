@@ -57,6 +57,7 @@ class BlastMailer < ActionMailer::Base
         letter = BlastMailer.send(method,contact)
         letter.deliver
         Communication.create({
+          means_of_interaction: 'email',
           interaction_title: method.to_s,
           communicator_type: contactable.class.to_s,
           communicator_id: contactable.id
@@ -74,10 +75,18 @@ class BlastMailer < ActionMailer::Base
     end
   end
 
+  def blog_post_april1614(contact)
+    @title = "The 13 most common 3D printing methods explained"
+    @salutation = contact.salutation
+    mail(to: contact.email, subject: @title) do |format|
+      format.html { render layout: "layouts/blast_mailer", locals: {title: @title, supplier: nil} }
+    end
+  end
+
   def test_for_layout
     @title = "Test title"
     m = mail(to: "matt@supplybetter.com", from: "supplier-reachouts@supplybetter.com", subject:"test email!") do |format|
-      format.html { render layout: "layouts/blast_mailer", locals: {title: "Test title", supplier: nil} }
+      format.html { render layout: "layouts/blast_mailer", locals: {title: "test test test is best", supplier: nil} }
     end
   end
 

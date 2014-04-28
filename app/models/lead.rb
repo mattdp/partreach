@@ -57,4 +57,19 @@ class Lead < ActiveRecord::Base
     return leads.map{|l| l.lead_contact}
   end
 
+  #goal is all users, supplier contacts (not sales), people who added email via site
+  def self.blog_post_reachout_april2014_targeter(max_targets=nil)
+    user_lead_contacts = Lead.where("user_id IS NOT NULL").map{|lead| lead.lead_contact}
+    supplier_contacts = User.where("supplier_id IS NOT NULL").map{|user| user.lead.lead_contact}
+    email_form_leads = Lead.where("source = 'email_collector'").map{|lead| lead.lead_contact}
+    collected_leads = user_lead_contacts.concat(supplier_contacts).concat(email_form_leads)
+
+    # if email addresses are wanted, rather than Contacts:
+    # collected_emails = collected_leads.compact \
+    #                                   .select{ |contact| contact.email_valid && contact.email_subscribed } \
+    #                                   .map{|contact| contact.email} \
+    #                                   .uniq
+    # max_targets.nil? ? collected_emails : collected_emails.take(max_targets)
+  end
+
 end
