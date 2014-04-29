@@ -157,6 +157,20 @@ class Supplier < ActiveRecord::Base
     return Combo.where("tag_id = ?", datadump_id).count
   end
 
+  def self.create_new_with_default_dependent_objects(params)
+    new_supplier = Supplier.new(params)
+    new_supplier.name_for_link = proper_name_for_link(new_supplier.name)
+    new_supplier.create_or_update_address
+    new_supplier.billing_contact = BillingContact.new
+    new_supplier.contract_contact = ContractContact.new
+    new_supplier.rfq_contact = RfqContact.new
+    new_supplier.save
+    Tag.tag_set(:new_supplier,:id).each do |id|
+      new_supplier.add_tag(id)
+    end
+    new_supplier
+  end
+
   def update_tags(submitted_tag_ids)
     saved_ok = true
     
@@ -468,7 +482,7 @@ class Supplier < ActiveRecord::Base
 
   end
 
-  def create_or_update_address(options=nil)
+  def create_or_update_address(options={})
     Address.create_or_update_address(self,options)
   end
 
