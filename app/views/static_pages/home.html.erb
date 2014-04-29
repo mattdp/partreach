@@ -124,94 +124,10 @@
 				  <%= form_tag :action => 'create', :controller => 'leads' do %>
 				    <input type="hidden" name="next_step_field" value="/">
 		  			<%= text_field_tag 'email_field', nil, :placeholder => "sam.joss@supplybetter.com", class: "email-input", :id => "email-submit-field" %>
-		  			<%= submit_tag "Sign up", :disable_with => "Submitting", class: "email-button", :id => "email-submit-button" %>
+		  			<%= submit_tag "Sign up", data: { disable_with: 'Submitting...' }, class: "email-button", :id => "email-submit-button" %>
 	  			<% end %>
 				</div>
 			</div>
 		</div>
 	</div>
 </footer>
-
-
-
-
-<!-- <div class="homepage-background">
-	<div class= "container hero">
-		<hgroup>
-			<h1>Comparison shopping for 3D printing.</h1>
-			<h2><em>Know your options.</em> Get cheaper parts.</h2>
-		</hgroup>
-		<%= render partial: "static_pages/testimonial", locals: {testimonial: @testimonial, alternate_colors: false} %>
-		<div class="center bit-of-space">
-			<%= link_to "We have many more testimonials. Take a look.", testimonials_path, class: "sec-hero" %>
-		</div>
-		<p class="center bit-of-space">
-			<%= link_to "Get Started", order_questions_path, class: "btn btn-xl supplybetter-blue" %>
-		</p>
-		<div class="center bit-of-space">
-			<%= link_to "Are you a supplier?", be_a_supplier_path, class: "sec-hero" %>
-			<%= link_to "Or wondering how to get started with 3D printing?", getting_started_path, class: "sec-hero" %>
-		</div>
-	</div>
-</div>
-
-<% if (@logo_locations_top and @logo_locations_bottom) %>
-	<div class="logo-background">
-		<div class="container" id="features-override">
-			<div class="row features">
-				<h3 class="center">Buyers include</h3>
-				<% width_class = "logo-image-width col-sm-offset-1" %>
-				<ol>
-					<% @logo_locations_top.each do |logo_location| %>
-						<li><%= image_tag logo_location, :class => width_class %></li>
-					<% end %>
-				</ol>
-			</div>
-			<div class="row features">
-				<ol>
-					<% @logo_locations_bottom.each do |logo_location| %>
-						<li><%= image_tag logo_location, :class => width_class %></li>
-					<% end %>
-				</ol>
-				<h3 class="center clear bit-of-space">and many more.</h3>
-			</div>
-		</div>
-	</div>
-<% end %>
-
-<div class="container">
-	<div class="row">
-		<div class="content features">
-			<ol>
-				<li>
-					<h3>Fill out a <%= link_to "quote request", order_questions_path, :class => "h3link" %>.</h3>
-					<%= image_tag "features-request.png" %>
-					<p>Give us quantity, a drawing, and the application, and we're ready to start.</p>
-				</li>
-				<li>
-					<h3>We reach out to <%= link_to "suppliers", suppliers_path, :class => "h3link" %>.</h3>
-					<%= image_tag "features-suppliers.png" %>
-					<p>We select the best suppliers based on what you care about, whether that be cost, quality, process, or geography.</p>
-				</li>
-				<li>
-					<h3>You pick the best quote.</h3>
-					<%= image_tag "features-quote.png" %>
-					<p>Pick the quote that fits your needs best. No obligation to buy.</p>
-				</li>
-			</ol>
-		</div>
-	</div>
-	<% if current_user.nil? %>
-		<div class="row">
-		  <%= form_tag :action => 'create', :controller => 'leads' do %>
-
-		    <input type="hidden" name="next_step_field" value="/">
-		    <div class="clear cta">
-		    	<%= render 'layouts/email_collector' %>
-		    </div>
-	  	<% end %>
-	  </div>
-	<% end %>
-</div>
-
- -->
