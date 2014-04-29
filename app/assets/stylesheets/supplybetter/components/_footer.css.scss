@@ -28,8 +28,7 @@
   }
 
   .email-form {
-    display: inline-block;
-    padding-top: 42px;
+    padding-top: 20px;
     position: relative;
     padding-left: 40px;
 
@@ -43,6 +42,7 @@
       border-radius: $border-radius;
       outline: 0;
       padding: 9px 12px;
+      width: 100%;
 
       @include placeholder {
         color: $white;
@@ -80,7 +80,8 @@
 
 .footer-links, .footer-links--sub {
   list-style: none;
-  padding-bottom: 8px;
+  margin: 0;
+  padding: 16px 0 0px;
 
   li {
     display: inline-block;
@@ -90,5 +91,5 @@
 }
 
 .footer-links--sub {
-  opacity: .75;
+  opacity: .55;
 }

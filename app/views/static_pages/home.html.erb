@@ -60,12 +60,13 @@
 				<h3>You upload your design and project&nbsp;details.</h3>
 				<%= link_to "Fill out a quote now", order_questions_path, :class => "arrow-link" %>
 			</div>
-			<div class="col">
+			<div class="col wide">
+				<%= image_tag "home-selection-icon.svg", :alt => "We select a supplier" %>
 				<h3>We match you with suppliers who exactly fit your&nbsp;job.</h3>
 			</div>
 			<div class="col">
-				<%= image_tag "home-best-icon.svg", :alt => "Upload your project documents" %>
-				<h3> You pick the quote you like best,&nbsp;free.</h3>
+				<%= image_tag "home-best-icon.svg", :alt => "You choose the option that best fits your needs" %>
+				<h3>You pick the quote you like <span>best,&nbsp;free.</span></h3>
 				<%= link_to "See what our customers say", testimonials_path, :class => "arrow-link" %>
 			</div>
 		</div>
@@ -91,15 +92,15 @@
 				— <cite>Ryan, Mechanical Engineer, <a href="http://www.frogdesign.com/">Frog Design</a></cite>
 			</footer>
 		</blockquote>
-		<%= link_to "Read our customers’ stories", testimonials_path, class: "button--blue centered-border" %>
+		<%= link_to "Read our customers’ stories", testimonials_path, class: "button--blue centered-border arrow-link" %>
 		<div class="customer-logos">
-
+			<%= image_tag "customer-logos@2x.png", :alt => "You choose the option that best fits your needs" %>
 		</div>
 	</section>
 </main>
 <footer class="footer">
-	<div class="twins">
-		<div class="col">
+	<div class="twins--40-60">
+		<div class="col-40">
 	  	<ul class="footer-links">
 	  		<li><%= link_to "Home", root_path %></li>
 	  		<li><%= link_to "Getting started", getting_started_path %></li>
@@ -113,7 +114,7 @@
 	      <li><%= link_to "Terms", terms_path %></li>
 	  	</ul>
 		</div>
-		<div class="col twins p-0">
+		<div class="col-60 twins p-0">
 			<div class="col p-0">
 				<h3>Not ready for a quote?</h3>
 				<p>We’ll keep you updated in the&nbsp;meantime.</p>
