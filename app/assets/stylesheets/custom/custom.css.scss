@@ -43,7 +43,7 @@ body {
   font-weight: 300;
   height: 100%;
   padding: 0;
-  background: $wideAngleBackground;  
+  background: $wideAngleBackground;
 }
 
 section {
@@ -56,7 +56,7 @@ textarea {
 
 h1, h2, h3, h4 {
   font-family: "Open Sans", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-} 
+}
 
 .email-font {
   color: black;
@@ -128,6 +128,7 @@ h1, h2, h3, h4 {
 
 .main-area-contrast {
   background: $mainAreaBackground;
+  padding-bottom: 80px;
 }
 
 .word-break {
@@ -262,15 +263,15 @@ label {
 
 .nav {
   color: $textMidGrey;
-  -webkit-border-radius: 0; 
-     -moz-border-radius: 0; 
+  -webkit-border-radius: 0;
+     -moz-border-radius: 0;
           border-radius: 0;
   li {
     padding: 5px 0px;
     a {
       color: $textMidGrey;
       &:hover {
-        background: transparent;        
+        background: transparent;
         color: #fff;
       }
     }
@@ -382,7 +383,7 @@ label {
 }
 
 .logo-image-width {
-  width: 100%; 
+  width: 100%;
   border: none;
   vertical-align: center;
 }
@@ -390,12 +391,12 @@ label {
 .logo-image-height {
   height: 134px;
   border: none;
-  vertical-align: center;  
+  vertical-align: center;
 }
 
 #features-override {
   div {
-    padding: 10px 0px 0px 0px;  
+    padding: 10px 0px 0px 0px;
   }
   ol {
     li {
@@ -830,7 +831,7 @@ input.radio {
   width:auto;
   margin-right: 5px;
 }
-  
+
 input.checkbox {
   width: auto;
 }
@@ -883,11 +884,22 @@ input.checkbox {
 }
 
 /* question table */
+.questions {
+  [type="radio"] {
+    margin-top: 9px;
+  }
+
+  .option-detail {
+    padding-left: 18px;
+  }
+}
+
 .equal-column-spacing {
   table-layout: fixed;
-  width: 100%;
-  border: 5px solid $headerFooterDark;
-  border-collapse: collapse;  
+  margin: 80px auto 30px;
+  width: 90%;
+  border: 1px solid #ddd;
+  border-collapse: collapse;
 }
 
 .page-number {
@@ -898,9 +910,9 @@ input.checkbox {
 
 .equal-column-cell {
   vertical-align: top;
-  border-left: 10px solid $headerFooterDark;
-  border-right: 10px solid $headerFooterDark;
-  padding-left: 2px;  
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  padding: 0 24px;
 }
 
 .main-header {
@@ -917,10 +929,10 @@ input.checkbox {
 }
 
 .summary {
-  background: $headerFooterDark;
-  color: $textMidGrey;
+  color: #666;
   border-collapse: collapse;
-  padding: 0px 5px;  
+  padding: 0px 5px;
+  text-align: center;
 
   .summary-header {
     font-weight: bold;
