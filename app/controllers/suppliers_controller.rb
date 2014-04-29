@@ -12,7 +12,7 @@ class SuppliersController < ApplicationController
 
 	def new
 		@supplier = Supplier.new
-		@checked_tags = new_supplier_tags
+		@checked_tags = Tag.tag_set(:new_supplier,:object)
 		@address = Address.new
 		@address.country = Geography.new
 		@address.state = Geography.new
@@ -113,14 +113,6 @@ class SuppliersController < ApplicationController
 	end
 
 	private
-
-		def new_supplier_tags
-			[
-				Tag.find_by_name("b0_none_sent"),
-				Tag.find_by_name("n1_no_contact"),
-				Tag.find_by_name("e2_existence_unknown")
-			]
-		end
 
 		def admin_params
 			params.permit(:name, :name_for_link, :url_main, :url_materials, :description, \

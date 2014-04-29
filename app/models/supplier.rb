@@ -165,18 +165,10 @@ class Supplier < ActiveRecord::Base
     new_supplier.contract_contact = ContractContact.new
     new_supplier.rfq_contact = RfqContact.new
     new_supplier.save
-    new_supplier_tags.each do |id|
+    Tag.tag_set(:new_supplier,:id).each do |id|
       new_supplier.add_tag(id)
     end
     new_supplier
-  end
-
-  def self.new_supplier_tags
-    [
-      Tag.find_by_name("b0_none_sent").id,
-      Tag.find_by_name("n1_no_contact").id,
-      Tag.find_by_name("e2_existence_unknown").id
-    ]
   end
 
   def update_tags(submitted_tag_ids)
