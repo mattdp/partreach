@@ -1,5 +1,3 @@
-require 'web_search.rb'
-
 desc "perform search via Google CSE"
 task :search_google => :environment do
 	query = ENV["query"]
@@ -8,7 +6,7 @@ task :search_google => :environment do
 	opts[:start] = ENV["start"] if ENV["start"]
 
 	if (query)
-		WebSearch.search_google(query, opts)
+		WebSearchResult.search_google(query, opts)
 	else
 		puts 'Usage: rake search_google query="search terms" [OPTIONS]'
 		puts 'OPTIONS:'
