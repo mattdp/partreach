@@ -3,12 +3,15 @@ class ExaminationsController < ApplicationController
 
 	def setup_examinations
 		case params[:name] 
-		when "reviews"
+		when "review"
 			@name = "review"
 			@questionables = Review.quantity_for_examination(20)
-		when "suppliers"
+		when "supplier"
 			@name = "supplier"
 			@questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
+		when "supplier_search_result"
+			@name = "supplier_search_result"
+			@questionables = WebSearchResult.quantity_for_examination(20)
 		when "contact_information"
 			@name = "contact_information"
 			@questionables = Supplier.missing_contact_information(10)
@@ -36,6 +39,24 @@ class ExaminationsController < ApplicationController
 				end
 			end
 			note = "Suppliers submitted"
+		elsif params[:model_examined] == "supplier_search_result"
+			note = "Supplier search results submitted"
+			if params[:choices]
+				params[:choices].each do |wsr_id, choice|
+					if choice == "add_supplier"
+						Supplier.create_new_with_default_dependent_objects(
+							name: params[:name][wsr_id], url_main: params[:url_main][wsr_id], profile_visible: false)
+						WebSearchResult.delete_all_with_matching_domain(wsr_id)
+					elsif choice == "not_supplier"
+						SearchExclusion.create(:domain => params[:domain][wsr_id])
+						WebSearchResult.delete_all_with_matching_domain(wsr_id)
+					elsif choice == "drop"
+						WebSearchResult.delete(wsr_id)
+					# elsif choice == "later"
+						# don't take any action now; leave search result item for later review
+					end
+				end
+			end
 		elsif params[:model_examined] == "review"
 			note = "Reviews submitted"
 			if params[:reviews]

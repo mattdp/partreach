@@ -1,0 +1,42 @@
+<td class="choice">
+	<p class="clear">
+		<%= label_tag "url_main[#{supplier_search_result.id}]", "Website:", :class => "fleft" %>
+		<%= text_field_tag "url_main[#{supplier_search_result.id}]", supplier_search_result.domain %>
+		<%= hidden_field_tag "domain[#{supplier_search_result.id}]", supplier_search_result.domain %>
+	</p>
+	<p class="clear">
+		<% placeholder_name = Domainatrix.parse(supplier_search_result.domain).domain.capitalize %>
+		<%= label_tag "name[#{supplier_search_result.id}]", "Name:", :class => "fleft" %>
+		<%= text_field_tag "name[#{supplier_search_result.id}]", placeholder_name %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "choices[#{supplier_search_result.id}]", "add_supplier", false, :class => "fleft radio" %>
+		<%= label_tag "choices[#{supplier_search_result.id}]", "Add as new Supplier", :class => "fleft" %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "choices[#{supplier_search_result.id}]", "not_supplier", false, :class => "fleft radio" %>
+		<%= label_tag "choices[#{supplier_search_result.id}]", "Exclude domain - not a supplier", :class => "fleft" %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "choices[#{supplier_search_result.id}]", "drop", false, :class => "fleft radio" %>
+		<%= label_tag "choices[#{supplier_search_result.id}]", "Unknown / drop from review queue", :class => "fleft" %>
+	</p>
+	<p class="clear">
+		<%= radio_button_tag "choices[#{supplier_search_result.id}]", "later", false, :class => "fleft radio" %>
+		<%= label_tag "choices[#{supplier_search_result.id}]", "Keep in queue / review later", :class => "fleft" %>
+	</p>
+</td>
+<td class="supporting-info">
+	<p class="clear">
+		Title: <%= supplier_search_result.title %>
+	</p>
+	<p class="clear">
+		Snippet: <%= supplier_search_result.snippet %>
+	</p>
+	<p class="clear">
+		Search Link: <%= supplier_search_result.link %>
+	</p>
+	<p class="clear">
+		Search Terms: "<%= supplier_search_result.query %>"
+	</p>
+</td>

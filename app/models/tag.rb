@@ -26,7 +26,8 @@ class Tag < ActiveRecord::Base
   def self.tag_set(category,attribute)
     sets = {
       risky: %w(e0_out_of_business e1_existence_doubtful),
-      network: %w(n6_signedAndNDAd n5_signed_only)
+      network: %w(n6_signedAndNDAd n5_signed_only),
+      new_supplier: %w(b0_none_sent n1_no_contact e2_existence_unknown)
     }
     if attribute == :name
       return sets[category]
