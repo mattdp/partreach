@@ -27,27 +27,23 @@
 			Just tell us what you’re looking for.
 		</h2>
 		<div class="start-quote">
-			<p>
-				I am
-				<select class="chosen-select select-one">
-					<option value="rookie">still learning</option>
-					<option value="experienced" selected="selected">experienced</option>
-				</select>
-				,   I care most about
-				<select class="chosen-select select-two">
-					<option value="speed">speed</option>
-					<option value="quality" selected="selected">quality</option>
-					<option value="cost">cost</option>
-				</select>
-				, and think 3D printing
-				<select class="chosen-select">
-					<option value="printing" selected="selected">should be</option>
-					<option value="other">shouldn’t be</option>
-					<option value="unknown">might be</option>
-				</select>
-				the&nbsp;method.
-			</p>
-			<%= link_to "Continue", order_questions_path, class: "button--blue arrow-link" %>
+			<%#= get, since passing params to orders_new, without a state change in the database %>
+			<%= form_tag new_order_path, method: :get do %>
+				<%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
+				<p>
+					I am
+					<% options_array = [ ["still learning", "rookie"], ["experienced", "experienced"] ] %>
+					<%= select_tag("questions[experience]", options_for_select(options_array, "experienced"), class: "chosen-select select-one") %>
+					, I care most about
+					<% options_array = [ ["speed", "speed"], ["quality", "quality"], ["cost", "cost"] ] %>
+					<%= select_tag("questions[priority]", options_for_select(options_array, "quality"), class: "chosen-select select-two") %>
+					, and think 3D printing
+					<% options_array = [ ["should be", "printing"], ["shouldn’t be", "other"], ["might be", "unknown"] ] %>
+					<%= select_tag("questions[manufacturing]", options_for_select(options_array, "printing"), class: "chosen-select") %>
+					the&nbsp;method.
+				</p>
+				<%= submit_tag "Continue", :disable_with => "Processing...", id: "create_button", class: "button--blue arrow-link" %>
+			<% end %>
 		</div>
 	</section>
 	<section class="section">
