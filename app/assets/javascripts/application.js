@@ -15,5 +15,6 @@
 //= require bootstrap
 //= require s3_direct_upload
 //= require jquery.validate
+//= require chosen.jquery.min
 //= require additional-methods
 //= require_tree .

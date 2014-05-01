@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="199px" height="198px" viewBox="0 0 199 198" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.0.1 (7597) - http://www.bohemiancoding.com/sketch -->
+    <title>Best Fit</title>
+    <description>Created with Sketch.</description>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Artboard-1" sketch:type="MSArtboardGroup" transform="translate(-2214.000000, -2565.000000)" stroke-linecap="round" stroke-width="8" stroke-linejoin="round">
+            <g id="Homepage---Desktop" sketch:type="MSLayerGroup" transform="translate(0.000000, -1.000000)">
+                <g id="Process" transform="translate(161.000000, 2260.000000)" sketch:type="MSShapeGroup">
+                    <g id="Best-Fit" transform="translate(1748.000000, 310.000000)">
+                        <g transform="translate(309.000000, 0.000000)">
+                            <path d="M8.72893965,155.978196 L35.6446982,55.0333756 L62.5604568,155.978196" id="Stroke-7549" stroke="#D8D8D8"></path>
+                            <path d="M-6.9271664e-09,60 L183.68137,0" id="Stroke-7545" stroke="#F86F07"></path>
+                            <path d="M96,31.5740662 L96,58.492685" id="Stroke-7546" stroke="#F86F07"></path>
+                            <path d="M129.849853,115.978196 L156.765612,15.0333756 L183.68137,115.978196" id="Stroke-7547" stroke="#17B8E2"></path>
+                            <path d="M69.2893965,155.978196 C69.2893965,174.562137 54.2233006,189.626469 35.6446982,189.626469 C17.0627314,189.626469 2,174.562137 2,155.978196 L69.2893965,155.978196 L69.2893965,155.978196 Z" id="Stroke-7550" stroke="#D8D8D8"></path>
+                            <path d="M156.765612,149.626469 C138.183645,149.626469 123.120914,134.562137 123.120914,115.978196 L190.41031,115.978196 C190.41031,134.562137 175.344214,149.626469 156.765612,149.626469 Z" id="Stroke-7548" stroke="#17B8E2"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,47 @@
+body {
+  font-family: $sans-serif;
+}
+
+p {
+  color: $dark-gray;
+  font-family: $serif;
+  font-weight: 100;
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+h3 {
+  font-size: em(17);
+
+  @include media($tablet) {
+    font-size: em(22);
+  }
+}
+
+h1, h2, h3, h4 {
+  color: $dark-gray;
+}
+
+.wrapper {
+  @include outer-container;
+}
+
+.arrow-link {
+  &:after {
+    @include transition(left 100ms linear);
+
+    display: inline-block;
+    content: "»";
+    font-family: $sans-serif;
+    padding-left: 6px;
+    position: relative;
+    left: 0;
+  }
+
+  &:hover:after {
+    left: 2px;
+  }
+}

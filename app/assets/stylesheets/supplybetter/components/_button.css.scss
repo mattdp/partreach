@@ -1,0 +1,34 @@
+%button {
+  @include transition(all 300ms ease);
+
+  background: transparent;
+  border-radius: $border-radius;
+  display: inline-block;
+  height: 70px;
+  line-height: 68px;
+  padding: 0 60px;
+  white-space: nowrap;
+}
+
+.button--blue {
+  @extend %button;
+  border: 1px solid $blue;
+  color: $blue;
+
+  &:hover {
+    background: rgba(20, 184, 226, .2);
+    border-color: darken($blue, 5%);
+    color: darken($blue, 5%);
+  }
+}
+
+.button--white {
+  @extend %button;
+  border: 1px solid $white;
+  color: $white;
+
+  &:hover {
+    background: rgba(255, 255, 255, .25);
+    color: $white;
+  }
+}

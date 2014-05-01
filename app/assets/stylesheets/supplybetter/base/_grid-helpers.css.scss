@@ -1,0 +1,51 @@
+.triplets {
+  @include media($tablet) {
+    @include outer-container();
+
+    .col {
+      float: left;
+      padding: 0 20px;
+      width: 33%;
+    }
+  }
+}
+
+.twins {
+  @include media($tablet) {
+    @include outer-container();
+
+    .col {
+      float: left;
+      padding: 0 20px;
+      width: 50%;
+    }
+  }
+}
+
+.twins--40-60, .twins--60-40 {
+  @include media($tablet) {
+    @include outer-container();
+
+    .col-60 {
+      float: left;
+      padding: 0 20px;
+      width: 60%;
+    }
+
+    .col-40 {
+      float: left;
+      padding: 0 20px;
+      width: 40%;
+    }
+  }
+}
+
+.ta-c {
+  text-align: center;
+}
+
+.p-0 {
+  @include media($tablet) {
+    padding: 0 !important;
+  }
+}

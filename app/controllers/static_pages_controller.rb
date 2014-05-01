@@ -1,5 +1,7 @@
 class StaticPagesController < ApplicationController
 	def home
+		render :layout => "home"
+
 		@testimonials = testimonial_array
 		@testimonial = @testimonials[rand(0..@testimonials.length-1)]
 
@@ -33,7 +35,7 @@ class StaticPagesController < ApplicationController
 				company: "Parts Oven",
 				praise: "SupplyBetter helps me reach even more customers than ever before. Better yet, their website builds confidence with the clients making sure they are getting the most for their money. This means more repeat business, and higher overall satisfaction. The quote system is fast and worth every penny."
 			}
-		@testimonial_two = 
+		@testimonial_two =
 			{
 				person: "Ian D. Finn",
 				title: "President",
@@ -72,14 +74,14 @@ class StaticPagesController < ApplicationController
 					site_url: "http://www.frogdesign.com/",
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/frog_design-logo.png",
 					praise: "Across rapid prototyping jobs both large and small, SupplyBetter has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality expectations. Even more importantly, they’ve enabled us to complete large prototyping jobs in less time, so that we can focus more on good design and less on procuring parts."
-				},		
+				},
 				{ person: "David",
 					title: "CEO",
 					company: "Anybots Inc.",
 					site_url: "http://www.anybots.com/",
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-logo.png",
 					praise: "We're a robotics company that needs to quickly prove new ideas and rapidly iterate on new products. SupplyBetter has saved us money, time, and stress by helping source our prototype parts. They've found us quality suppliers who can hit our deadlines and budget, letting our mechanical engineers focus on the matters critical to designing our next hardware iteration. Their service is great, we count on them as extended team members, my team uses them all the time, and I am sure Anybots will be using SupplyBetter for a long time to come."
-				},	
+				},
 				{
 					person: "Jack",
 					title: "CEO",
@@ -92,10 +94,10 @@ class StaticPagesController < ApplicationController
 					person: "Kyle",
 					title: "Founder",
 					company: "Cruise Automation",
-					site_url: "http://signup.getcruise.com/",	
+					site_url: "http://signup.getcruise.com/",
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/cruise_automation-logo.png",
 					praise: "When I needed some 3d scanning work done in a pinch, SupplyBetter was incredible.  They hooked me up with a great local company that went above and beyond the call of duty to deliver a set of quality 3d scans on-time and on-budget.  I'll definitely be using SupplyBetter again!"
-				},	
+				},
 				{
 					person: "Jesse",
 					title: "Marketing Coordinator",
@@ -103,7 +105,7 @@ class StaticPagesController < ApplicationController
 					site_url: "http://ztsystems.com/",
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/zt_systems-logo.png",
 					praise: "SupplyBetter provided an invaluable service in helping us reduce the inherent complexities of a growing industry. By setting out pricing structures in a simple, clear format, SupplyBetter curated the experience and made it a real pleasure."
-				},									
+				},
 				{
 					person: "Michael",
 					title: "Industrial Designer",
@@ -135,16 +137,16 @@ class StaticPagesController < ApplicationController
 					site_url: "http://www.trazetag.com/",
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/transparent_placeholder-logo.png",
 					praise: "SupplyBetter is a great way of finding suppliers. Submitting an RFQ was easy and comparing quotes from suppliers was straightforward. They helped me with the first iteration of my new product, and I will definitely be using them again."
-				},				
+				},
 				{
 					person: "Brian",
 					title: "Owner",
 					company: "Synáspora",
-					site_url: "",					
+					site_url: "",
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/transparent_placeholder-logo.png",
 					praise: "I'm brand new to 3D printing and needed help printing a prototype for a new product idea of mine. SupplyBetter was the perfect place for me. I got personal service and assistance in choosing the right material. Highly recommended!"
 				}
 			]
 		end
-	  
+
 end
