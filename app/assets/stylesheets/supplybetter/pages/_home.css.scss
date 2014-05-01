@@ -139,7 +139,7 @@
         background: image_url('arrow-down@2x.png') no-repeat right center;
         color: $orange;
 
-        @include background-size(20px 11px);
+        background-size: 20px 11px;
       }
 
       @include media($tablet) {
