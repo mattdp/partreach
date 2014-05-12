@@ -43,6 +43,7 @@ SitemapGenerator::Sitemap.create do
   add materials_path, changefreq: 'weekly'
   add terms_path, changefreq: 'weekly'
   add privacy_path, changefreq: 'weekly'
+  add suppliers_path, changefreq: 'daily'
   add us_3dprinting_path, changefreq: 'daily'
   add testimonials_path, changefreq: 'weekly'
  
