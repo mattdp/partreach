@@ -41,7 +41,7 @@ class SuppliersController < ApplicationController
 	end
 
 	#note that using "key" instead of the us_3d... caused failure
-	def index
+	def us_3dprinting
 		filter_name = "unitedstates-3dprinting"
 		@visibles, @supplier_count = Rails.cache.fetch filter_name, :expires_in => 25.hours do |key|
 			logger.debug "Cache miss: #{filter_name}"
@@ -110,6 +110,87 @@ class SuppliersController < ApplicationController
 		track("supplier","submitted_profile_edits",@supplier.id)
 
 		redirect_to edit_supplier_path(@supplier), notice: "Suggestions received! We'll be in touch once they're reviewed."
+	end
+
+
+	########################################
+	# supplier directory hierarchy, for SEO:
+	########################################
+
+	# top-level directory - list of countries
+	def index
+		# connection = ActiveRecord::Base.connection
+		# @countries = connection.select_all("SELECT COUNT(*) AS count, short_name, long_name, geographies.name_for_link FROM geographies INNER JOIN addresses ON addresses.country_id=geographies.id INNER JOIN suppliers ON addresses.place_id = suppliers.id AND addresses.place_type = 'Supplier' WHERE (suppliers.profile_visible = true) GROUP BY short_name, long_name, geographies.name_for_link HAVING count(*) >= 10 ORDER BY COUNT(*) DESC").rows
+
+		# for now, hard-code for unitedstates only
+		@countries = Geography.where(name_for_link: 'unitedstates')
+	end
+
+	# list of states (in the United States; in general, first-level administrative subdivisions within country)
+	def state_index
+		# @country = Geography.find_by_name_for_link(params[:country])
+		# for now, hard-code for unitedstates only
+		@country = Geography.find_by_name_for_link('unitedstates')
+
+		connection = ActiveRecord::Base.connection
+		sql = "SELECT COUNT(*) AS count, g1.short_name, g1.long_name, g1.name_for_link FROM geographies g1 INNER JOIN addresses ON addresses.state_id=g1.id INNER JOIN geographies g2 ON addresses.country_id=g2.id INNER JOIN suppliers ON addresses.place_id = suppliers.id AND addresses.place_type = 'Supplier' WHERE g2.name_for_link='#{@country.name_for_link}' AND suppliers.profile_visible = true GROUP BY g1.short_name, g1.long_name, g1.name_for_link ORDER BY g1.long_name"
+		rows = connection.select_all(sql).rows
+
+		@states_array = []
+		rows.each do |row|
+			# @columns=["count", "short_name", "long_name", "name_for_link"]
+			long_name = row[2]
+			name_for_link = row[3]
+			@states_array << [ long_name, tag_index_path(@country.name_for_link, name_for_link) ]
+		end
+	end
+
+	# list of tags within "state"
+	# for now, process-family tags only
+	def tag_index
+		# @country = Geography.find_by_name_for_link(params[:country])
+		# for now, hard-code for unitedstates only
+		@country = Geography.find_by_name_for_link('unitedstates')
+		@state = Geography.find_by_name_for_link(params[:state])
+		
+		# Filters only include (a subset of) process tags
+		@processes_array = []
+		Filter.where("name like '#{@country.name_for_link}-#{@state.name_for_link}-%'").each do |f|
+			process_name = f.name.gsub("#{@country.name_for_link}-#{@state.name_for_link}-", "")
+			path = profile_index_path(@country.name_for_link, @state.name_for_link, "process/#{process_name}")
+			@processes_array << [ process_name, path ]
+		end
+	end
+
+	# list of supplier profiles for given geography & tags
+	def profile_index
+		tags_hash = Hash[[params["tags"].split("/")]]
+		# for now, only handle process tag
+		process = tags_hash["process"]
+
+		if params[:state] == 'all'
+			@filter = Filter.find_by_name("#{params[:country]}-#{process}")
+		else
+			@filter = Filter.find_by_name("#{params[:country]}-#{params[:state]}-#{process}")
+		end
+			
+		if @filter
+			@location_phrase = @filter.geography.long_name
+
+			tag = Tag.find(@filter.has_tag_id)
+			@tags_short = tag.readable
+			@tags_long = tag.note
+
+			@adjacencies = Rails.cache.fetch "#{@filter.name}-adjacencies", :expires_in => 25.hours do |key|
+				logger.debug "Cache miss: #{@filter.name}-adjacencies"
+				@filter.adjacencies
+			end
+
+			@visibles, @supplier_count = Rails.cache.fetch @filter.name, :expires_in => 25.hours do |key|
+				logger.debug "Cache miss: #{@filter.name}"
+				Supplier.visible_profiles_sorted(@filter)
+			end
+		end
 	end
 
 	private

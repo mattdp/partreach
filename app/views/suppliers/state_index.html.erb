@@ -1,0 +1,13 @@
+<p>
+	<%= link_to "Directory", suppliers_path %>
+	>
+	<%= @country.long_name %>
+</p>
+
+<ul>
+	<% @states_array.each do |state_link| %>
+    <li>
+    	<%= link_to state_link[0], state_link[1] %>
+    </li>
+	<% end %>
+</ul>

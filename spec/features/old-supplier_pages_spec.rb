@@ -10,7 +10,7 @@ describe "Supplier-related pages" do
 			@supplier = FactoryGirl.create(:supplier)
 			@tag = FactoryGirl.create(:tag)
 			@filter = FactoryGirl.create(:filter,name: "unitedstates-3dprinting",has_tag: @tag)
-			visit suppliers_path
+			visit us_3dprinting_path
 		end
 
 		it "should load correctly" do

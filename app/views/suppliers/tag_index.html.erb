@@ -1,0 +1,14 @@
+<p>
+	<%= link_to "Directory", suppliers_path %>
+	> 
+	<%= link_to @country.long_name, state_index_path(@country.name_for_link) %>
+	> 
+	<%= @state.long_name %>
+</p>
+
+<ul>
+	<% @processes_array.each do |process_link| %>
+    <li>
+		<%= link_to process_link[0], process_link[1] %>
+	<% end %>
+</ul>
