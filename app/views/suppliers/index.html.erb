@@ -1,7 +1,22 @@
-<ul>
-	<% @countries.each do |country| %>
-    <li>
-    	<%= link_to country.long_name, state_index_path(country.name_for_link) %>
-    </li>
-	<% end %>
-</ul>
+<% provide(:title, "Supplier Directory") %>
+<% meta_description "600+ catalogued 3D printing suppliers with descriptions, machines, and reviews" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
+			<h4><p>
+				<bold>Supplier Directory</bold>
+			</p></h4>
+
+			<ul>
+				<% @countries.each do |country| %>
+			    <li>
+					<%= link_to country.long_name, state_index_path(country.name_for_link) %>
+			    </li>
+				<% end %>
+			</ul>
+
+		</div>
+	</div>
+</div>

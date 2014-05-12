@@ -164,6 +164,8 @@ class SuppliersController < ApplicationController
 
 	# list of supplier profiles for given geography & tags
 	def profile_index
+		@country = Geography.find_by_name_for_link(params[:country])
+		@state = Geography.find_by_name_for_link(params[:state])
 		tags_hash = Hash[[params["tags"].split("/")]]
 		# for now, only handle process tag
 		process = tags_hash["process"]
