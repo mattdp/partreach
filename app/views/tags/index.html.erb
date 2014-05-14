@@ -6,7 +6,9 @@
   		<%= link_to "Create new tag", new_tag_path %>
   		<table>
 	  		<% @tags.each do |tag| %>
-	  			<%= tag.readable %>
+          <tr>
+            <td><%= tag.readable %></td>
+	  			  <td><%= link_to "Edit", edit_tag_path(tag) %></td>
 	  		<% end %>
   		</table>
   	</div>

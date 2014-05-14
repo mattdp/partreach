@@ -11,16 +11,20 @@ class TagsController < ApplicationController
   	@tag = Tag.new
 		@tag.name_for_link = Tag.proper_name_for_link(params[:name])
 		@tag.update_attributes(tag_params)
+
+		redirect_to tags_path, notice: "Tag save attempted."
   end
 
   def edit
-  	@tag = Tad.find(params[:id])
+  	@tag = Tag.find(params[:id])
   end
 
   def update
-  	@tag = Tad.find(params[:id])
+  	@tag = Tag.find(params[:id])
  		@tag.name_for_link = Tag.proper_name_for_link(params[:name]) 	
   	@tag.update_attributes(tag_params)
+
+  	redirect_to tags_path, notice: "Tag save attempted."
   end
 
   def index
