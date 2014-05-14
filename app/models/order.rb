@@ -305,17 +305,31 @@ def add_complex_order(location)
   end
 
   def self.invoicing_helper
-    dates = Order.date_ranges(:months,Date.today-60)
+    dates = Order.date_ranges(:months,Date.today-360)
 
     output = []
     index = 0
     #-2 since using dates[index] and dates[index+1]
-    while index <= dates.length - 2
+
+    while (index <= dates.length - 2)
+
+      orders_for_month = Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
+      
+      total_possible_revenue = 0
+
+      orders_for_month.each do |order|
+        order.dialogues.each do |dialogue|
+          total_possible_revenue += dialogue.total_cost if (dialogue.total_cost and dialogue.total_cost > 0 && dialogue.supplier.is_in_network?)
+        end
+      end
+
       output << {
-        title: dates[index].strftime("%B %Y"),
-        orders_for_month: Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
+          title: dates[index].strftime("%B %Y"),
+          orders_for_month: orders_for_month,
+          total_possible_revenue: total_possible_revenue
       }
       index += 1
+
     end
 
     return output.reverse
