@@ -25,6 +25,15 @@ class ProfilesController < ApplicationController
 		end
 	end
 
+	def supplier_profile_redirect
+		supplier = Supplier.find_by_name_for_link('saturnmachineinc'.downcase)
+		redirect_to supplier_geo_profile_path(
+			supplier.address.country.name_for_link,
+			supplier.address.state.name_for_link,
+			supplier.name_for_link),
+			:status => :moved_permanently
+	end
+
 	def machine_profile
 		@beta = is_beta?
 		@machine = Machine.find_by_name_for_link(params[:machine_name])
