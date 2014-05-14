@@ -319,7 +319,7 @@ def add_complex_order(location)
 
       orders_for_month.each do |order|
         order.dialogues.each do |dialogue|
-          total_possible_revenue += dialogue.total_cost if (dialogue.total_cost and dialogue.total_cost > 0 && dialogue.supplier.is_in_network?)
+          total_possible_revenue += dialogue.total_cost if (dialogue.total_cost && dialogue.total_cost > 0 && dialogue.supplier.is_in_network?)
         end
       end
 
