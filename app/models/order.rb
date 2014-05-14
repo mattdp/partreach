@@ -316,6 +316,7 @@ def add_complex_order(location)
       orders_for_month = Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
       
       total_possible_revenue = 0
+      bid_fee = 0.01
 
       orders_for_month.each do |order|
         order.dialogues.each do |dialogue|
@@ -326,7 +327,7 @@ def add_complex_order(location)
       output << {
           title: dates[index].strftime("%B %Y"),
           orders_for_month: orders_for_month,
-          total_possible_revenue: total_possible_revenue
+          total_possible_revenue: total_possible_revenue * bid_fee
       }
       index += 1
 
