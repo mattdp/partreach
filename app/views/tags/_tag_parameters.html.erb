@@ -12,9 +12,17 @@
 	<%= label_tag :note %>
 	<%= text_area_tag :note, tag.note %>
 
-	<%= label_tag :visible, tag.visible %>
+	<%= label_tag :visible %>
+	<%= label_tag :visible, "True" %>
+	<%= radio_button_tag :visible, true, tag.visible %>
+	<%= label_tag :visible, "False" %>
+	<%= radio_button_tag :visible, false, !tag.visible %>
 
-	<%= label_tag :exclusive, tag.exclusive %>
+	<%= label_tag :exclusive %>
+	<%= label_tag :exclusive, "True" %>
+	<%= radio_button_tag :exclusive, true, tag.exclusive %>
+	<%= label_tag :exclusive, "False" %>
+	<%= radio_button_tag :exclusive, false, !tag.exclusive %>
 
 	<%= submit_tag "Submit", class: "save-button" %>
 

@@ -9,7 +9,8 @@ class TagsController < ApplicationController
 
   def create
   	@tag = Tag.new
-  	#handle name for link  	
+		@tag.name_for_link = Tag.proper_name_for_link(params[:name])
+		@tag.update_attributes(tag_params)
   end
 
   def edit
@@ -18,11 +19,12 @@ class TagsController < ApplicationController
 
   def update
   	@tag = Tad.find(params[:id])
-  	#handle name for link
+ 		@tag.name_for_link = Tag.proper_name_for_link(params[:name]) 	
+  	@tag.update_attributes(tag_params)
   end
 
   def index
-  	tags = Tag.all
+  	@tags = Tag.all
   end
 
   private
