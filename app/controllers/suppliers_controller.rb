@@ -99,9 +99,9 @@ class SuppliersController < ApplicationController
 	end
 
 
-	########################################
-	# supplier directory hierarchy, for SEO:
-	########################################
+	############################################
+	# supplier directory landing pages, for SEO:
+	############################################
 
 	# top-level directory - list of countries
 	def index
@@ -119,7 +119,7 @@ class SuppliersController < ApplicationController
 		@country = Geography.find_by_name_for_link('unitedstates')
 
 		connection = ActiveRecord::Base.connection
-		sql = "SELECT COUNT(*) AS count, g1.short_name, g1.long_name, g1.name_for_link FROM geographies g1 INNER JOIN geographies g2 ON g1.geography_id=g2.id INNER JOIN addresses ON addresses.state_id=g1.id INNER JOIN suppliers ON addresses.place_id = suppliers.id AND addresses.place_type = 'Supplier' WHERE g2.name_for_link='#{@country.name_for_link}' AND suppliers.profile_visible = true GROUP BY g1.short_name, g1.long_name, g1.name_for_link ORDER BY g1.long_name"
+		sql = "SELECT COUNT(*) AS count, g1.short_name, g1.long_name, g1.name_for_link FROM geographies g1 JOIN geographies g2 ON g1.geography_id=g2.id JOIN addresses ON addresses.state_id=g1.id JOIN suppliers ON addresses.place_id = suppliers.id AND addresses.place_type = 'Supplier' WHERE g2.name_for_link='#{@country.name_for_link}' AND suppliers.profile_visible = true GROUP BY g1.short_name, g1.long_name, g1.name_for_link ORDER BY g1.long_name"
 		rows = connection.select_all(sql).rows
 
 		@states_array = []
