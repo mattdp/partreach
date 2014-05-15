@@ -23,15 +23,15 @@ Partreach::Application.routes.draw do
   get '/examinations/:name', to: 'examinations#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"
 
-  get '/guides/:country/:state/:tag', to: redirect("/suppliers/%{country}/%{state}/process/%{tag}")
-  get '/guides/:country/:tag', to: redirect("/suppliers/%{country}/all/process/%{tag}")
+  get '/guides/:country/:state/:tag', to: redirect("/suppliers/%{country}/%{state}/%{tag}")
+  get '/guides/:country/:tag', to: redirect("/suppliers/%{country}/all/%{tag}")
   get '/guides/:name', to: redirect {|params, req| 
     cst = params[:name].match(/(\w+)-(\w+)-(\w+)/)
     ct = params[:name].match(/(\w+)-(\w+)/)
     if cst.present?
-      "/suppliers/#{cst[1]}/#{cst[2]}/process/#{cst[3]}"
+      "/suppliers/#{cst[1]}/#{cst[2]}/#{cst[3]}"
     elsif ct.present?
-      "/suppliers/#{ct[1]}/all/process/#{ct[2]}"
+      "/suppliers/#{ct[1]}/all/#{ct[2]}"
     else
       "/suppliers/#{params[:name]}"
     end
@@ -88,7 +88,6 @@ Partreach::Application.routes.draw do
   get '/recruiting', to: 'static_pages#recruiting', as: 'recruiting'
 
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
-  get 'suppliers/3d-printing-services', to: 'suppliers#us_3dprinting', as: 'us_3dprinting'
   get 'suppliers/admin_edit/:name', to: 'suppliers#admin_edit', as: 'admin_edit'
   match 'suppliers/admin_update', to: 'suppliers#admin_update', as: 'admin_update', via: :post
   get 'suppliers/:country', to: 'suppliers#state_index', as: 'state_index'
