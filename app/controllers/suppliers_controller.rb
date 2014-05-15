@@ -221,6 +221,8 @@ class SuppliersController < ApplicationController
 			@meta = @meta.present? ? @meta : "#{@supplier.name} - Supplier profile"
 		end
 
+		@return_path = request.env["HTTP_REFERER"]
+
 		render "profile"
 	end
 

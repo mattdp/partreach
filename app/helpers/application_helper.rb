@@ -12,4 +12,8 @@ module ApplicationHelper
     end
   end
 
+  def us_3dprinting_path
+    lookup_path("unitedstates", "all", "3dprinting")
+  end
+
 end
