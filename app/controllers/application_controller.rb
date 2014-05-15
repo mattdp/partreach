@@ -2,12 +2,15 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include SessionsHelper
 
+#http://stackoverflow.com/questions/128450/best-practices-for-reusing-code-between-controllers-in-ruby-on-rails/130821#130821
+
+
 	#http://stackoverflow.com/questions/1183506/make-blank-params-nil
   def clean_params
   	@clean_params ||= HashWithIndifferentAccess.new.merge blank_to_nil( params )
 	end
 
-	def blank_to_nil(hash)
+  def blank_to_nil(hash)
 	  hash.inject({}){|h,(k,v)|
 	    h.merge(
 	      k => case v
@@ -20,9 +23,9 @@ class ApplicationController < ActionController::Base
 	      end
 	    )
 	  }
-	end
+  end
 
-	def andlist(clauses)
+  def andlist(clauses)
     case clauses.length
     when 0
       return ""
@@ -34,6 +37,15 @@ class ApplicationController < ActionController::Base
       clauses[clauses.length-1] = "and " + clauses[clauses.length-1]
       return clauses.join ", "
     end
+  end
+
+  def allowed_to_see?(model)
+    return false if model.nil?
+    return true if model.profile_visible
+    return false if current_user.nil?
+    return true if current_user.admin?
+    (return true if current_user.supplier_id == supplier.id) if model.class.to_s == "Supplier"
+    return false
   end
 
 end

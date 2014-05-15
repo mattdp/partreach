@@ -45,7 +45,7 @@ Partreach::Application.routes.draw do
 
   get '/manufacturers/:manufacturer_name', to: 'profiles#manufacturer_profile', as: 'manufacturer_profile'
   get '/manufacturers/:manufacturer_name/:machine_name', to: 'profiles#machine_profile', as: 'machine_profile'
-  get '/profiles/:name', to: 'profiles#supplier_profile_redirect', as: 'supplier_profile'
+  get '/profiles/:supplier_name', to: 'profiles#supplier_profile_redirect', as: 'supplier_profile'
   get '/submit_ask/', to: 'profiles#submit_ask'
   
   resources :orders, only: [:index, :show, :new, :create, :destroy]
@@ -93,8 +93,7 @@ Partreach::Application.routes.draw do
   match 'suppliers/admin_update', to: 'suppliers#admin_update', as: 'admin_update', via: :post
   get 'suppliers/:country', to: 'suppliers#state_index', as: 'state_index'
   get 'suppliers/:country/:state', to: 'suppliers#tag_index', as: 'tag_index'
-  get 'suppliers/:country/:state/profile/:name', to: 'profiles#supplier_profile', as: 'supplier_geo_profile'
-  get 'suppliers/:country/:state/*tags', to: 'suppliers#profile_index', as: 'profile_index'
+  get 'suppliers/:country/:state/:term', to: 'suppliers#lookup', as: 'lookup'
 
   resources :users, only: [:edit, :update, :show] # no index, no destroy 
 

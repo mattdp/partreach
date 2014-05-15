@@ -157,24 +157,40 @@ class SuppliersController < ApplicationController
 		@processes_array = []
 		Filter.where("name like '#{@country.name_for_link}-#{@state.name_for_link}-%'").each do |f|
 			process_name = f.name.gsub("#{@country.name_for_link}-#{@state.name_for_link}-", "")
-			path = profile_index_path(@country.name_for_link, @state.name_for_link, "process/#{process_name}")
-			@processes_array << [ process_name, path ]
+			supplier_index_path = lookup_path(@country.name_for_link, @state.name_for_link, process_name)
+			@processes_array << [ process_name, supplier_index_path ]
 		end
 	end
 
-	# list of supplier profiles for given geography & tags
-	def profile_index
+	# list of suppliers for specified process -OR- profile for specified supplier
+	def lookup
+		lookup_term = params[:term].downcase
+		@supplier = Supplier.find_by_name_for_link(lookup_term)
+		if @supplier
+			# display profile for specified supplier
+			profile
+		else
+			if params[:state] == 'all'
+				@filter = Filter.find_by_name("#{params[:country]}-#{lookup_term}")
+			else
+				@filter = Filter.find_by_name("#{params[:country]}-#{params[:state]}-#{lookup_term}")
+			end
+
+			if @filter
+				# display list of suppliers for specified process
+				supplier_index
+			else
+				# no matching supplier or process found for given lookup term
+				# assume lookup_term was for a supplier, display "not found"
+				profile
+			end
+		end
+	end
+
+	# list of supplier profiles within geography for given process
+	def supplier_index
 		@country = Geography.find_by_name_for_link(params[:country])
 		@state = Geography.find_by_name_for_link(params[:state])
-		tags_hash = Hash[[params["tags"].split("/")]]
-		# for now, only handle process tag
-		process = tags_hash["process"]
-
-		if params[:state] == 'all'
-			@filter = Filter.find_by_name("#{params[:country]}-#{process}")
-		else
-			@filter = Filter.find_by_name("#{params[:country]}-#{params[:state]}-#{process}")
-		end
 			
 		if @filter
 			@location_phrase = @filter.geography.long_name
@@ -193,6 +209,33 @@ class SuppliersController < ApplicationController
 				Supplier.visible_profiles_sorted(@filter)
 			end
 		end
+
+		render "supplier_index"
+	end
+
+	def profile
+		# toggle if certain parts of the profile are visible
+		@machines_toggle = true
+		@reviews_toggle = true
+		@photos_toggle = false
+
+		current_user.nil? ? @user_id = 0 : @user_id = current_user.id
+
+		@allowed = allowed_to_see?(@supplier)
+		if @allowed
+			@tags = @supplier.visible_tags if @supplier
+			@machines_quantity_hash = @supplier.machines_quantity_hash
+			@num_machines = @machines_quantity_hash.sum{|k,v| v}
+			@num_reviews = @supplier.visible_reviews.count
+
+			@meta = ""
+			@meta += "Tags for #{@supplier.name} include " + andlist(@tags.take(3).map{ |t| "\"#{t.readable}\""}) + ". " if @tags.present?
+			profile_factors = andlist(meta_for_supplier(@supplier))
+			@meta += "The #{@supplier.name} profile has " + andlist(meta_for_supplier(@supplier)) + ". " if profile_factors.present?
+			@meta = @meta.present? ? @meta : "#{@supplier.name} - Supplier profile"
+		end
+
+		render "profile"
 	end
 
 	private
@@ -215,5 +258,14 @@ class SuppliersController < ApplicationController
 		def address_params
 			params.permit(:country, :state, :zip)
 		end
+
+	def meta_for_supplier(supplier)
+    #http://stackoverflow.com/questions/6806473/rails-3-is-there-a-way-to-use-pluralize-inside-a-model-seems-to-only-work-in
+		potential_includes = []
+		potential_includes << "a custom description" if supplier.description.present?
+		potential_includes << "machines listed" if supplier.owners.present?
+		potential_includes << "reviews from previous buyers" if supplier.reviews.present?
+		return potential_includes
+	end
 
 end
