@@ -86,4 +86,8 @@ class Tag < ActiveRecord::Base
     self.readable.nil? ? self.name : self.readable
   end
 
+  def self.proper_name_for_link(name)
+    Supplier.proper_name_for_link(name)
+  end
+
 end

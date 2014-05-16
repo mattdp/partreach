@@ -91,6 +91,8 @@ Partreach::Application.routes.draw do
   get 'suppliers/admin_edit/:name', to: 'suppliers#admin_edit', as: 'admin_edit'
   match 'suppliers/admin_update', to: 'suppliers#admin_update', as: 'admin_update', via: :post
 
+  resources :tags, only: [:new, :create, :edit, :update, :index]
+
   resources :users, only: [:edit, :update, :show] # no index, no destroy 
 
 end
