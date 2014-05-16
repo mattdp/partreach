@@ -60,7 +60,7 @@ SitemapGenerator::Sitemap.create do
   country_names.each do |country_name|
     country = Geography.find_by_name_for_link(country_name)
     # country-level landing page - list of "states" within country
-    add state_index_path(country.name_for_link)
+    add state_index_path(country.name_for_link), changefreq: 'daily'
   end
 
   # process tags within country-state (plus all states) landing pages
@@ -69,10 +69,10 @@ SitemapGenerator::Sitemap.create do
     ct = f.name.match(/(\w+)-(\w+)/)
     if cst.present?
       # country-state-process landing page
-      add lookup_path(cst[1], cst[2], cst[3])
+      add lookup_path(cst[1], cst[2], cst[3]), changefreq: 'daily'
     elsif ct.present?
       # country-process landing page
-      add lookup_path(ct[1], 'all', ct[2])
+      add lookup_path(ct[1], 'all', ct[2]), changefreq: 'daily'
     end
   end
 
@@ -84,7 +84,7 @@ SitemapGenerator::Sitemap.create do
         JOIN geographies state ON addresses.state_id=state.id \
         WHERE country.name_for_link='unitedstates' AND suppliers.profile_visible = true"
   ActiveRecord::Base.connection.select_all(sql).rows.each do |row|
-    add lookup_path(row[0], row[1], row[2])
+    add lookup_path(row[0], row[1], row[2]), changefreq: 'daily'
   end
 
   Machine.find_each do |m|
