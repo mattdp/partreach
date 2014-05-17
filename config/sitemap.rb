@@ -77,10 +77,8 @@ SitemapGenerator::Sitemap.create do
   end
 
   # Supplier profiles
-  suppliers =
-    Supplier.includes([{ address: :country }, { address: :state }]).
-    where("geographies.name_for_link='unitedstates' AND suppliers.profile_visible = true").
-    references(:geographies)
+  suppliers = Supplier.includes([{ address: :country }, { address: :state }]).
+    where({profile_visible: true, geographies: {name_for_link: 'unitedstates'} }).references(:geographies)
   suppliers.each do |s|
     add lookup_path(s.name_for_link, s.address.country.name_for_link, s.address.state.name_for_link),
       changefreq: 'daily'
@@ -88,8 +86,7 @@ SitemapGenerator::Sitemap.create do
 
   # Manufacturer and Machine profiles
   manufacturers = Manufacturer.includes(:machines).
-    where("manufacturers.profile_visible = true AND machines.profile_visible = true").
-    references(:machines)
+    where({profile_visible: true, machines: {profile_visible: true} }).references(:machines)
   manufacturers.each do |mfr|
     add manufacturer_profile_path(mfr.name_for_link), changefreq: 'daily'
     mfr.machines.each do |machine|
