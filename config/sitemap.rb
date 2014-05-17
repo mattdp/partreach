@@ -77,14 +77,13 @@ SitemapGenerator::Sitemap.create do
   end
 
   # Supplier profiles
-  sql = "SELECT country.name_for_link, state.name_for_link, suppliers.name_for_link \
-        FROM suppliers \
-        JOIN addresses ON addresses.place_id = suppliers.id AND addresses.place_type = 'Supplier' \
-        JOIN geographies country ON addresses.country_id=country.id \
-        JOIN geographies state ON addresses.state_id=state.id \
-        WHERE country.name_for_link='unitedstates' AND suppliers.profile_visible = true"
-  ActiveRecord::Base.connection.select_all(sql).rows.each do |row|
-    add lookup_path(row[0], row[1], row[2]), changefreq: 'daily'
+  suppliers =
+    Supplier.includes([{ address: :country }, { address: :state }]).
+    where("geographies.name_for_link='unitedstates' AND suppliers.profile_visible = true").
+    references(:geographies)
+  suppliers.each do |s|
+    add lookup_path(s.name_for_link, s.address.country.name_for_link, s.address.state.name_for_link),
+      changefreq: 'daily'
   end
 
   Manufacturer.includes(:machines).references(:machines).each do |manufacturer|
