@@ -86,10 +86,14 @@ SitemapGenerator::Sitemap.create do
       changefreq: 'daily'
   end
 
-  Manufacturer.includes(:machines).references(:machines).each do |manufacturer|
-    add manufacturer_profile_path(manufacturer.name_for_link), changefreq: 'daily' if manufacturer.profile_visible
-    manufacturer.machines.each do |machine|
-      add machine_profile_path(manufacturer.name_for_link, machine.name_for_link), changefreq: 'daily' if machine.profile_visible
+  # Manufacturer and Machine profiles
+  manufacturers = Manufacturer.includes(:machines).
+    where("manufacturers.profile_visible = true AND machines.profile_visible = true").
+    references(:machines)
+  manufacturers.each do |mfr|
+    add manufacturer_profile_path(mfr.name_for_link), changefreq: 'daily'
+    mfr.machines.each do |machine|
+      add machine_profile_path(mfr.name_for_link, machine.name_for_link), changefreq: 'daily'
     end
   end
 
