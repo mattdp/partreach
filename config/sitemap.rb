@@ -87,12 +87,11 @@ SitemapGenerator::Sitemap.create do
     add lookup_path(row[0], row[1], row[2]), changefreq: 'daily'
   end
 
-  Machine.find_each do |m|
-    add machine_profile_path(m.name_for_link), changefreq: 'daily' if m.profile_visible
+  Manufacturer.includes(:machines).references(:machines).each do |manufacturer|
+    add manufacturer_profile_path(manufacturer.name_for_link), changefreq: 'daily' if manufacturer.profile_visible
+    manufacturer.machines.each do |machine|
+      add machine_profile_path(manufacturer.name_for_link, machine.name_for_link), changefreq: 'daily' if machine.profile_visible
+    end
   end
-
-  Manufacturer.find_each do |m|
-    add manufacturer_profile_path(m.name_for_link), changefreq: 'daily' if m.profile_visible
-  end  
 
 end
