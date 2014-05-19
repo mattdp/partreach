@@ -142,7 +142,7 @@ class SuppliersController < ApplicationController
 		# Filters only include (a subset of) process tags
 		@processes_array = []
 		Filter.where("name like '#{@country.name_for_link}-#{@state.name_for_link}-%'").each do |f|
-			process_name = f.name.gsub("#{@country.name_for_link}-#{@state.name_for_link}-", "")
+			process_name = Tag.find_by_name_for_link(f.name.gsub("#{@country.name_for_link}-#{@state.name_for_link}-", "")).readable
 			supplier_index_path = lookup_path(@country.name_for_link, @state.name_for_link, process_name)
 			@processes_array << [ process_name, supplier_index_path ]
 		end
