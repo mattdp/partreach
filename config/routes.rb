@@ -23,17 +23,17 @@ Partreach::Application.routes.draw do
   get '/examinations/:name', to: 'examinations#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"
 
-  get '/guides/:country/:state/:tag', to: 'guides#show', as: 'guide_cst'
-  get '/guides/:country/:tag', to: 'guides#show', as: 'guide_ct'
+  get '/guides/:country/:state/:tag', to: redirect("/suppliers/%{country}/%{state}/%{tag}")
+  get '/guides/:country/:tag', to: redirect("/suppliers/%{country}/all/%{tag}")
   get '/guides/:name', to: redirect {|params, req| 
     cst = params[:name].match(/(\w+)-(\w+)-(\w+)/)
     ct = params[:name].match(/(\w+)-(\w+)/)
     if cst.present?
-      "/guides/#{cst[1]}/#{cst[2]}/#{cst[3]}"
+      "/suppliers/#{cst[1]}/#{cst[2]}/#{cst[3]}"
     elsif ct.present?
-      "/guides/#{ct[1]}/#{ct[2]}"
+      "/suppliers/#{ct[1]}/all/#{ct[2]}"
     else
-      "/guides/unknown_address"
+      "/suppliers/#{params[:name]}"
     end
     }
 
@@ -45,7 +45,7 @@ Partreach::Application.routes.draw do
 
   get '/manufacturers/:manufacturer_name', to: 'profiles#manufacturer_profile', as: 'manufacturer_profile'
   get '/manufacturers/:manufacturer_name/:machine_name', to: 'profiles#machine_profile', as: 'machine_profile'
-  get '/profiles/:name', to: 'profiles#supplier_profile', as: 'supplier_profile'
+  get '/profiles/:supplier_name', to: 'profiles#supplier_profile_redirect', as: 'supplier_profile'
   get '/submit_ask/', to: 'profiles#submit_ask'
   
   resources :orders, only: [:index, :show, :new, :create, :destroy]
@@ -90,6 +90,9 @@ Partreach::Application.routes.draw do
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
   get 'suppliers/admin_edit/:name', to: 'suppliers#admin_edit', as: 'admin_edit'
   match 'suppliers/admin_update', to: 'suppliers#admin_update', as: 'admin_update', via: :post
+  get 'suppliers/:country', to: 'suppliers#state_index', as: 'state_index'
+  get 'suppliers/:country/:state', to: 'suppliers#tag_index', as: 'tag_index'
+  get 'suppliers/:country/:state/:term', to: 'suppliers#lookup', as: 'lookup'
 
   resources :tags, only: [:new, :create, :edit, :update, :index]
 

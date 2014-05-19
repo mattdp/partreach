@@ -1,0 +1,25 @@
+<% provide(:title, "Supplier Directory > #{@country.long_name} > #{@state.long_name}") %>
+<% meta_description "600+ catalogued 3D printing suppliers with descriptions, machines, and reviews" %>
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
+			<h4><p>
+				<%= link_to "Directory", suppliers_path %>
+				>
+				<%= link_to @country.long_name, state_index_path(@country.name_for_link) %>
+				>
+				<bold><%= @state.long_name %></bold>
+			</p></h4>
+
+			<ul>
+				<% @processes_array.each do |process_link| %>
+			    <li>
+					<%= link_to process_link[0], process_link[1] %>
+				<% end %>
+			</ul>
+
+		</div>
+	</div>
+</div>

@@ -1,9 +1,10 @@
+<% profile_path = lookup_path(@country.name_for_link, (@state ? @state.name_for_link : 'all'), supplier.name_for_link) %>
 <% if claimed %>
-	<%= link_to supplier.name, supplier_profile_path(supplier.name_for_link), class: "claimed", title: "Supplier has claimed their profile" %>
+	<%= link_to supplier.name, profile_path, class: "claimed", title: "Supplier has claimed their profile" %>
 <% elsif out_of_business %>
-	<%= link_to supplier.name, supplier_profile_path(supplier.name_for_link), class: "out-of-business", title: "May be out of business" %>
+	<%= link_to supplier.name, profile_path, class: "out-of-business", title: "May be out of business" %>
 <% else %>
-	<%= link_to supplier.name, supplier_profile_path(supplier.name_for_link) %>
+	<%= link_to supplier.name, profile_path %>
 <% end %>
 <% if !out_of_business %>
 	<%= image_tag "paper_icon.svg", :class => "supplier-index-indicator", :title => "This supplier has a description" if !(supplier.description.nil? or supplier.description == "") %>
