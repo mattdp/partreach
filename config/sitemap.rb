@@ -79,8 +79,10 @@ SitemapGenerator::Sitemap.create do
   # Supplier profiles
   suppliers = Supplier.includes([{ address: :country }, { address: :state }]).
     where({profile_visible: true, geographies: {name_for_link: 'unitedstates'} }).references(:geographies)
-  suppliers.each do |s|
-    add lookup_path(s.name_for_link, s.address.country.name_for_link, s.address.state.name_for_link),
+  suppliers.each do |supplier|
+    country_name_for_link = supplier.address.country.name_for_link
+    state_name_for_link = supplier.address.state.name_for_link ||= 'all'
+    add lookup_path(country_name_for_link, state_name_for_link, supplier.name_for_link),
       changefreq: 'daily'
   end
 
