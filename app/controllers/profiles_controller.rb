@@ -2,10 +2,9 @@ class ProfilesController < ApplicationController
 
 	def supplier_profile_redirect
 		supplier = Supplier.find_by_name_for_link(params[:supplier_name].downcase)
-		redirect_to lookup_path(
-			supplier.address.country.name_for_link,
-			supplier.address.state.name_for_link,
-			supplier.name_for_link),
+		country_name_for_link = supplier.address.country.name_for_link
+		state_name_for_link = supplier.address.state.name_for_link ||= 'all'
+		redirect_to lookup_path(country_name_for_link, state_name_for_link, supplier.name_for_link),
 			:status => :moved_permanently
 	end
 
