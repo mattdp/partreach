@@ -96,7 +96,7 @@
 							<% if supplier_hash[:supplier].url_main.nil? %>
 								<%= "#{supplier_hash[:supplier].name}" %>
 							<% else %>
-								<%= link_to supplier_hash[:supplier].name, supplier_hash[:supplier].url_main %>
+								<%= link_to supplier_hash[:supplier].name, external_url(supplier_hash[:supplier].url_main), target: "_blank" %>
 							<% end %>
 							<%= " [#{supplier_hash[:tag_names].join(',')}] <#{supplier_hash[:safe_country]}:#{supplier_hash[:safe_state]}:#{supplier_hash[:safe_zip]}> #{supplier_hash[:supplier].internally_hidden_preferences}" %>
 
