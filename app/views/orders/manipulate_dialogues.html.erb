@@ -84,7 +84,7 @@
 								<% end %>
 							<% end %>
 						</tr>
-							<% order_group.dialogues.each do |d| %>
+							<% order_group.alphabetical_dialogues.each do |d| %>
 								<tr>
 									<% @supplier = Supplier.find(d.supplier_id) %>
 									<td><%= "#{d.id}" %></td>
@@ -114,7 +114,7 @@
 					<strong><%= link_to "Edit master emails", initial_email_edit_path(@order) %></strong>
 
 					<table>
-						<% order_group.dialogues.each do |d| %>
+						<% order_group.alphabetical_dialogues.each do |d| %>
 							<tr class="horizontal-lines">
 								<% @supplier = Supplier.find(d.supplier_id) %>
 								<td><%= "#{d.id}" %></td>
