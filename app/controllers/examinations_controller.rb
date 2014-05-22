@@ -48,7 +48,7 @@ class ExaminationsController < ApplicationController
 							name: params[:name][wsr_id], url_main: params[:url_main][wsr_id], profile_visible: false)
 						WebSearchResult.delete_all_with_matching_domain(wsr_id)
 					elsif choice == "not_supplier"
-						SearchExclusion.create(:domain => params[:domain][wsr_id])
+						SearchExclusion.create({:domain => WebSearchResult.domain_for_id(wsr_id)})
 						WebSearchResult.delete_all_with_matching_domain(wsr_id)
 					elsif choice == "drop"
 						WebSearchResult.delete(wsr_id)
