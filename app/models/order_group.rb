@@ -53,6 +53,12 @@ class OrderGroup < ActiveRecord::Base
     return visibles
   end
 
+  def alphabetical_dialogues
+    dialogues = self.dialogues
+    return nil unless dialogues
+    return dialogues.sort_by{|dialogue| Supplier.find(dialogue.supplier_id).name.downcase}
+  end
+
   def sort_visible_dialogues
     # should be: 
     # recommended, in nonzero low to high

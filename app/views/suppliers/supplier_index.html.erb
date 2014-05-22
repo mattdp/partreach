@@ -7,9 +7,11 @@
 				>
 				<%= link_to @country.long_name, state_index_path(@country.name_for_link) %>
 				>
-				<% state_long_name = @state ? @state.long_name : 'All' %>
-				<% state_name_for_link = @state ? @state.name_for_link : 'all' %>
-				<%= link_to state_long_name, tag_index_path(@country.name_for_link, state_name_for_link) %>
+				<% if @state %>
+					<%= link_to @state.long_name, tag_index_path(@country.name_for_link, @state.name_for_link) %>
+				<% else %>
+					All
+				<% end %>
 				>
 				<bold><%= @tags_short %></bold>
 			</p></h4>
