@@ -5,6 +5,8 @@ class ProfilesController < ApplicationController
 		if supplier
 			country_name_for_link = supplier.address.country.name_for_link
 			state_name_for_link = supplier.address.state.name_for_link ||= 'all'
+		end
+		if supplier && country_name_for_link # extra check for nil name_for_link pending geographies data scrubbing
 			redirect_to lookup_path(country_name_for_link, state_name_for_link, supplier.name_for_link),
 				:status => :moved_permanently
 		else
