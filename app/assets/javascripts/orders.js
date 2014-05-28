@@ -36,7 +36,7 @@ $(document).ready(function() {
 			data: { 'order_group_id': orderGroupId, 'url': content.url, 'filename': content.filename },
 	    success: function(data, textStatus, jqXHR)
 	    {
-        $('#uploaded_file_list').append( "<li>" + data.filename + "</li>" );
+        $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
 	    },
 	    error: function (jqXHR, textStatus, errorThrown)
 	    {
