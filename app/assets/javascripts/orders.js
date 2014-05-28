@@ -21,7 +21,7 @@ $(document).ready(function() {
 	    {
 	    	orderGroupId = data;
 	    	$('#order_group_id').val(orderGroupId)
-	    },
+  	  },
 	    error: function (jqXHR, textStatus, errorThrown)
 	    {
 	 			// "s3_uploads_start says: so sad..."
@@ -36,7 +36,7 @@ $(document).ready(function() {
 			data: { 'order_group_id': orderGroupId, 'url': content.url, 'filename': content.filename },
 	    success: function(data, textStatus, jqXHR)
 	    {
-	    	//
+        $('#uploaded_file_list').append( "<li>" + data.filename + "</li>" );
 	    },
 	    error: function (jqXHR, textStatus, errorThrown)
 	    {
@@ -45,7 +45,7 @@ $(document).ready(function() {
 		});
   });
 
-  //all uploads, not just one. I keep missing the 's' without this comment
+  // after all uploads
   $('#s3-uploader').bind('s3_uploads_complete', function(e, content) {
   	alert( "Uploading complete. Feel free to choose more files if necessary." );
   });

@@ -15,13 +15,18 @@
 </div>
 
 <p>Upload drawing (max size: 100 MB)</p>
-
 <%= s3_uploader_form  id: "s3-uploader", 
                       max_file_size: 100.megabytes,
                       key_starts_with: "externals/",
                       key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
-  <%= file_field_tag :file, multiple: true %>
-<% end %>
+                        <%= file_field_tag :file, multiple: true %>
+                      <% end %>
+<div>
+  <label>Uploaded files:</label>
+  <ul id='uploaded_file_list'></ul>
+</div>
+<p class="detail-text"> 3D model preferred, and multiple files accepted. If you have photos or sketches, we can help you find a designer to make the model.</p> 
+
 
 <%= form_tag order_path(@order), id: 'new-order' do %>
 
@@ -30,8 +35,6 @@
   <%= hidden_field_tag "stated_experience", @experience %>
   <%= hidden_field_tag "stated_priority", @priority %>
   <%= hidden_field_tag "stated_manufacturing", @manufacturing %>
-
-  <p class="detail-text"> 3D model preferred, and multiple files accepted. If you have photos or sketches, we can help you find a designer to make the model.</p> 
 
     <div class="pull-left half">
       <%= label_tag 'stated_quantity', 'Quantity' %>
