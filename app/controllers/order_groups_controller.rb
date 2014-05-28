@@ -7,7 +7,7 @@ class OrderGroupsController < ApplicationController
 
 	def create_default
 		order_group = OrderGroup.create({name: "Default"})
-		render json: order_group.id
+		render json: { order_group_id: order_group.id }
 	end
 
 	def create

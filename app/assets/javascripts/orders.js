@@ -14,19 +14,21 @@ $(document).ready(function() {
   var orderGroupId;
 
   $('#s3-uploader').bind('s3_uploads_start', function() {
-		$.ajax({
-	    url : "/order_groups/create_default",
-	    type: "POST",
-	    success: function(data, textStatus, jqXHR)
-	    {
-	    	orderGroupId = data;
-	    	$('#order_group_id').val(orderGroupId)
-  	  },
-	    error: function (jqXHR, textStatus, errorThrown)
-	    {
-	 			// "s3_uploads_start says: so sad..."
-	    }
-		});
+    if ( $('#order_group_id')[0].value.length == 0 ) {
+  		$.ajax({
+  	    url : "/order_groups/create_default",
+  	    type: "POST",
+  	    success: function(data, textStatus, jqXHR)
+  	    {
+          orderGroupId = data.order_group_id;
+  	    	$('#order_group_id').val(orderGroupId)
+    	  },
+  	    error: function (jqXHR, textStatus, errorThrown)
+  	    {
+  	 			// "s3_uploads_start says: so sad..."
+  	    }
+  		});
+    }
   });
 
   $('#s3-uploader').bind('s3_upload_complete', function(e, content) {
