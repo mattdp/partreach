@@ -54,7 +54,11 @@ $(document).ready(function() {
 
   // run client-side validations (using jquery.validate)
   $("#new-order").validate({
+        ignore: [],
         rules: {
+            order_group_id: {
+              required: true
+            },
             stated_quantity: {
                 required: true
             },
@@ -81,11 +85,12 @@ $(document).ready(function() {
             signup_signin: "user_email user_password signin_email signin_password"
         },
         messages: {
+            "order_group_id": "Please upload at least one file",
             "user_email": "Please enter email and password",
             "user_password": "Please enter email and password",
             "signin_email": "Please enter email and password",
             "signin_password": "Please enter email and password",
-        },        
+        },
         errorClass: "signup_signin_errors"
     });
 
