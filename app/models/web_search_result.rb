@@ -1,5 +1,7 @@
 class WebSearchResult < ActiveRecord::Base
 
+  belongs_to :web_search_term
+
   def self.quantity_for_examination(quantity)
     if quantity == 'all'
       return WebSearchResult.all
@@ -22,23 +24,32 @@ class WebSearchResult < ActiveRecord::Base
   end
 
   def self.search_google(query, opts = {})
-    WebSearchResult.search_loop(query, opts)
+    num = opts[:num].to_i
+    wst = WebSearchTerm.create!(
+      :query => query,
+      :priority => 5,
+      :run_date => DateTime.now,
+      :num_requested => num
+      )
+
+    WebSearchResult.search_loop(wst, num, opts)
 
     # delete results with domains matching existing suppliers
     WebSearchResult.matches_suppliers.delete_all
     # delete results with domains that have been flagged as not suppliers
     WebSearchResult.matches_exclusions.delete_all
+
+    wst.update!(net_new_results: wst.web_search_results.count)
   end
 
   private
 
-  def self.search_loop(query, opts)
+  def self.search_loop(wst, num, opts)
     position = (opts[:start] ? opts[:start].to_i : 1)
-    num = opts[:num].to_i
     results_count = 0
 
     loop do
-      page = GoogleCustomSearchApi.search(query,opts)
+      page = GoogleCustomSearchApi.search(wst.query, opts)
       
       if page["error"] # end when Google returns error due to max results exceeded
         print "\n" # terminate progress indicator dots with newline
@@ -50,8 +61,7 @@ class WebSearchResult < ActiveRecord::Base
       page["items"].each do |item|
         url = Domainatrix.parse(item["link"])
         domain = "#{url.domain}.#{url.public_suffix}"
-        WebSearchResult.create!(
-          :query => query,
+        wst.web_search_results.create!(
           :position => position,
           :domain => domain,
           :link => item["link"],
