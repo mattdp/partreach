@@ -1,6 +1,6 @@
 class WebSearchResult < ActiveRecord::Base
 
-  belongs_to :web_search_term
+  belongs_to :web_search_item
 
   def self.quantity_for_examination(quantity)
     if quantity == 'all'
@@ -23,54 +23,51 @@ class WebSearchResult < ActiveRecord::Base
     WebSearchResult.delete_all(["domain = ?", WebSearchResult.domain_for_id])
   end
 
-  def self.search_google(query, opts = {})
-    num = opts[:num].to_i
-    wst = WebSearchTerm.create!(
-      :query => query,
-      :priority => 5,
-      :run_date => DateTime.now,
-      :num_requested => num
-      )
-
-    WebSearchResult.search_loop(wst, num, opts)
+  def self.search_google(item)
+    WebSearchResult.search_loop(item)
 
     # delete results with domains matching existing suppliers
     WebSearchResult.matches_suppliers.delete_all
     # delete results with domains that have been flagged as not suppliers
     WebSearchResult.matches_exclusions.delete_all
 
-    wst.update!(net_new_results: wst.web_search_results.count)
+    item.update!(run_date: DateTime.now, net_new_results: item.web_search_results.count)
   end
 
   private
 
-  def self.search_loop(wst, num, opts)
-    position = (opts[:start] ? opts[:start].to_i : 1)
+  def self.search_loop(item)
+    position = 1
     results_count = 0
-
+    opts = { start: 1 }
     loop do
-      page = GoogleCustomSearchApi.search(wst.query, opts)
+      print '.' # show progress
+      if item.num_requested && (item.num_requested - results_count < 10)
+        opts[:num] = item.num_requested - results_count
+      end
+      page = GoogleCustomSearchApi.search(item.query, opts)
       
-      if page["error"] # end when Google returns error due to max results exceeded
+      # NOTE: Google CSE currently has limit of 100 results per query
+      if page["error"]
         print "\n" # terminate progress indicator dots with newline
         return
       end
 
-      print '.' # show progress
-
-      page["items"].each do |item|
-        url = Domainatrix.parse(item["link"])
-        domain = "#{url.domain}.#{url.public_suffix}"
-        wst.web_search_results.create!(
+      page["items"].each do |search_result|
+        url = Domainatrix.parse(search_result["link"])
+        item.web_search_results.create!(
           :position => position,
-          :domain => domain,
-          :link => item["link"],
-          :title => item["title"],
-          :snippet => item["snippet"]
+          :domain => "#{url.domain}.#{url.public_suffix}",
+          :link => search_result["link"],
+          :title => search_result["title"],
+          :snippet => search_result["snippet"]
           )
         position += 1
         results_count += 1
-        return if opts[:num] && (results_count >= num)
+        if item.num_requested && (results_count >= item.num_requested)
+          print "\n" # terminate progress indicator dots with newline
+          return
+        end
       end
 
       opts[:start] = page.queries.nextPage.first.startIndex

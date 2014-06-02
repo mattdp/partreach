@@ -1,6 +1,6 @@
-class CreateWebSearchTerms < ActiveRecord::Migration
+class CreateWebSearchItems < ActiveRecord::Migration
   def change
-    create_table :web_search_terms do |t|
+    create_table :web_search_items do |t|
       t.string :query
       t.integer :priority
       t.datetime :run_date
@@ -11,9 +11,9 @@ class CreateWebSearchTerms < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :web_search_terms, :id
+    add_index :web_search_items, :id
 
     remove_column :web_search_results, :query, :string
-    add_reference :web_search_results, :web_search_term
+    add_reference :web_search_results, :web_search_item
   end
 end

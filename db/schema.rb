@@ -329,20 +329,7 @@ ActiveRecord::Schema.define(version: 20140530004031) do
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
-  create_table "web_search_results", force: true do |t|
-    t.string   "position"
-    t.string   "domain"
-    t.string   "link"
-    t.string   "title"
-    t.string   "snippet"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "web_search_term_id"
-  end
-
-  add_index "web_search_results", ["domain"], name: "index_web_search_results_on_domain", using: :btree
-
-  create_table "web_search_terms", force: true do |t|
+  create_table "web_search_items", force: true do |t|
     t.string   "query"
     t.integer  "priority"
     t.datetime "run_date"
@@ -353,6 +340,19 @@ ActiveRecord::Schema.define(version: 20140530004031) do
     t.datetime "updated_at"
   end
 
-  add_index "web_search_terms", ["id"], name: "index_web_search_terms_on_id", using: :btree
+  add_index "web_search_items", ["id"], name: "index_web_search_items_on_id", using: :btree
+
+  create_table "web_search_results", force: true do |t|
+    t.string   "position"
+    t.string   "domain"
+    t.string   "link"
+    t.string   "title"
+    t.string   "snippet"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "web_search_item_id"
+  end
+
+  add_index "web_search_results", ["domain"], name: "index_web_search_results_on_domain", using: :btree
 
 end
