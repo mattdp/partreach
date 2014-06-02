@@ -20,6 +20,10 @@ class OrderGroup < ActiveRecord::Base
 
   validates :name, presence: true
 
+  def self.create_default
+    OrderGroup.create!({name: "Default"})
+  end
+
   def email_snippet_generator
     snippet = "<p><u><strong>#{self.name} (Process: #{self.process}, Material: #{self.material})</strong></u></p>\n"
     snippet += "<ul>\n"
