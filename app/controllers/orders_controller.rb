@@ -65,6 +65,8 @@ class OrdersController < ApplicationController
     #programmatic links to the files won't have the race conditions this creates
     @approximate_next_order_id = Order.order("created_at desc").limit(1)[0].id + 1
 
+    @order_group = OrderGroup.create_default
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
@@ -323,7 +325,7 @@ class OrdersController < ApplicationController
     end
 
     def text_notification(message_text)
-      phone_numbers = ["+14152382438","+16033205765"] #matt, rob
+      phone_numbers = ["+14152382438","+16033205765","+12038852107"] #matt, rob, yossi
 
       account_sid = 'AC019c83da8ef75c162b430e909464f5a4'
       auth_token = ENV['SB_TWILIO_AUTH_TOKEN']
