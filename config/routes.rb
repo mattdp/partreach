@@ -58,7 +58,6 @@ Partreach::Application.routes.draw do
   match '/orders/initial_email_update', to: 'orders#initial_email_update', as: 'initial_email_update', via: :post
 
   resources :order_groups, only: [:new, :create, :edit, :update]
-  match "/order_groups/create_default", to: 'order_groups#create_default', via: :post, as: 'create_default'
 
   resources :owners, only: [:create]
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'

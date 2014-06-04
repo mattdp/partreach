@@ -65,6 +65,8 @@ class OrdersController < ApplicationController
     #programmatic links to the files won't have the race conditions this creates
     @approximate_next_order_id = Order.order("created_at desc").limit(1)[0].id + 1
 
+    @order_group = OrderGroup.create_default
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @order }
