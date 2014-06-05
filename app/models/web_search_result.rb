@@ -16,12 +16,12 @@ class WebSearchResult < ActiveRecord::Base
 
   def self.domain_for_id(id)
     item = WebSearchResult.find_by(id: id)
-    item.domain
+    item.domain if item
   end
 
   def self.delete_all_with_matching_domain(id)
-    item = WebSearchResult.find_by(id: id)
-    WebSearchResult.delete_all(["domain = ?", WebSearchResult.domain_for_id])
+    domain = WebSearchResult.domain_for_id(id)
+    WebSearchResult.delete_all(["domain = ?", domain]) if domain
   end
 
   def self.search_google(item)
