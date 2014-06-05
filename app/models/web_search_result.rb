@@ -4,12 +4,13 @@ class WebSearchResult < ActiveRecord::Base
 
   def self.quantity_for_examination(quantity)
     if quantity == 'all'
-      return WebSearchResult.all
+      return WebSearchResult.in_priority_order.take(all)
     else
-      return WebSearchResult.take(quantity)
+      return WebSearchResult.in_priority_order.take(quantity)
     end
   end
 
+  scope :in_priority_order, -> { includes(:web_search_item).order('web_search_items.priority desc, web_search_results.created_at desc') }
   scope :matches_exclusions, -> { where("domain IN (SELECT domain FROM search_exclusions)") }
   scope :matches_suppliers, -> { joins("JOIN suppliers s ON s.url_main LIKE '%' || domain || '%'") }
 
