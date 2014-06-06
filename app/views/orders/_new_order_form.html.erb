@@ -21,6 +21,13 @@
                       key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
                         <%= file_field_tag :file, multiple: true %>
                       <% end %>
+<script id="template-upload" type="text/x-tmpl">
+<div id="file-{%=o.unique_id%}" class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>
+
 <div>
   <label>Uploaded files:</label>
   <ul id='uploaded_file_list'></ul>
@@ -29,8 +36,9 @@
 
 
 <%= form_tag order_path(@order), id: 'new-order' do %>
+  <div><%= hidden_field_tag "files_uploaded" %></div>
 
-  <div><%= hidden_field_tag "order_group_id", @order_group.id %></div>
+  <%= hidden_field_tag "order_group_id", @order_group.id %>
 
   <%= hidden_field_tag "stated_experience", @experience %>
   <%= hidden_field_tag "stated_priority", @priority %>
