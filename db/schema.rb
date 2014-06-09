@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530004031) do
+ActiveRecord::Schema.define(version: 20140609140032) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -345,9 +345,9 @@ ActiveRecord::Schema.define(version: 20140530004031) do
   create_table "web_search_results", force: true do |t|
     t.string   "position"
     t.string   "domain"
-    t.string   "link"
+    t.text     "link"
     t.string   "title"
-    t.string   "snippet"
+    t.text     "snippet"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "web_search_item_id"
