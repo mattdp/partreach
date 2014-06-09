@@ -107,14 +107,6 @@ class StaticPagesController < ApplicationController
 					praise: "SupplyBetter provided an invaluable service in helping us reduce the inherent complexities of a growing industry. By setting out pricing structures in a simple, clear format, SupplyBetter curated the experience and made it a real pleasure."
 				},
 				{
-					person: "Michael",
-					title: "Industrial Designer",
-					company: "MTTS - Medical Technology Transfer and Services",
-					site_url: "",
-					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/mtts-logo.png",
-					praise: "I am an industrial designer working on medical products for the low resource market across Asia. Dealing with SupplyBetter was very smooth and professional. I personally spoke with Robert, who guided me through the options, and then they connected us with the prototyping house that best suited the particular project. I feel SupplyBetter went the extra mile with a special attention to service."
-				},
-				{
 					person: "Jason",
 					title: "Mechanical Engineer",
 					company: "Matternet",
@@ -123,12 +115,28 @@ class StaticPagesController < ApplicationController
 					praise: "The guys at SupplyBetter really know what they're doing.  We had an impossible timeline, and were able to be matched with a supplier in under one hour and subsequently had a part cut for us within the following 24. We do our best to avoid instantaneous demand, but it's a great feeling knowing the guys at SupplyBetter are there to see us through. We'd definitely work with them again."
 				},
 				{
+					person: "Steven",
+					title: "President & CEO",
+					company: "Freebord Manufacturing",
+					site_url: "http://freebord.com/",
+					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/freebord-logo.png",
+					praise: "We wanted to use 3D printing to iterate on the design of our next skateboard and SupplyBetter was the perfect solution for us. Their mechanical engineer quickly helped us figure out which metal 3D printing method would work best and got us quotes back in just a few hours. We're impressed with the quality of SupplyBetter's service and are looking forward to working with them again."
+				},
+				{
 					person: "Karl",
 					title: "Owner",
 					company: "Five And Dime LLC",
 					site_url: "",
 					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/five_and_dime_manufacturing-logo.png",
 					praise: "SupplyBetter is my choice for 3D printed parts.  I’ve been making prototype parts via FDM and stereolithography since 2003.  Particular parts need higher levels of accuracy and or different methods of construction to validate designs.  Being able to simply send my part files to SupplyBetter and get quotes in a variety of materials and processes, ensures that I get the best parts at the most reasonable price."
+				},
+				{
+					person: "Michael",
+					title: "Industrial Designer",
+					company: "MTTS - Medical Technology Transfer and Services",
+					site_url: "",
+					logo: "https://s3.amazonaws.com/supplybetter_buyer_logos/mtts-logo.png",
+					praise: "I am an industrial designer working on medical products for the low resource market across Asia. Dealing with SupplyBetter was very smooth and professional. I personally spoke with Robert, who guided me through the options, and then they connected us with the prototyping house that best suited the particular project. I feel SupplyBetter went the extra mile with a special attention to service."
 				},
 				{
 					person: "Leandro",
