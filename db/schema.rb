@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609140032) do
+ActiveRecord::Schema.define(version: 20140611131439) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -300,6 +300,24 @@ ActiveRecord::Schema.define(version: 20140609140032) do
     t.string   "next_contact_content"
   end
 
+  create_table "tag_groups", force: true do |t|
+    t.string   "group_name",                 null: false
+    t.boolean  "exclusive",  default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tag_groups", ["group_name"], name: "index_tag_groups_on_group_name", unique: true, using: :btree
+
+  create_table "taggables", force: true do |t|
+    t.string   "type_name",    null: false
+    t.integer  "tag_group_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggables", ["type_name", "tag_group_id"], name: "index_taggables_on_type_name_and_tag_group_id", unique: true, using: :btree
+
   create_table "tags", force: true do |t|
     t.string   "name"
     t.string   "family"
@@ -310,9 +328,11 @@ ActiveRecord::Schema.define(version: 20140609140032) do
     t.boolean  "visible",       default: true
     t.string   "readable"
     t.string   "name_for_link"
+    t.integer  "tag_group_id"
   end
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
+  add_index "tags", ["tag_group_id"], name: "index_tags_on_tag_group_id", using: :btree
 
   create_table "users", force: true do |t|
     t.boolean  "admin",                  default: false
