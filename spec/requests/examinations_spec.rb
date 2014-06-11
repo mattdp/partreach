@@ -9,14 +9,14 @@ describe "/examinations requests" do
     post sessions_path, { :session => { :email => @admin.lead.lead_contact.email, :password => @admin.password } }
   end
 
-  describe "reviews" do
+  describe "Review Examinations" do
 
     before do
       @review = FactoryGirl.create :review
     end
 
     it "displays the Review Examination page" do
-      get "/examinations/reviews"
+      get "/examinations/review"
       response.should render_template(:setup_examinations)
       response.body.should include "review"
       p response.body
