@@ -62,6 +62,13 @@ FactoryGirl.define do
   factory :geography do |g|
     level     "state"
     sequence(:name_for_link) { |n| "nfl#{n}"}
+
+    factory :united_states do
+      level 'country'
+      name_for_link 'unitedstates'
+      long_name 'United States'
+      short_name 'US'
+    end
   end
 
   factory :address do |a|

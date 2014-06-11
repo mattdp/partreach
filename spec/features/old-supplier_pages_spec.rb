@@ -7,13 +7,13 @@ describe "Supplier-related pages" do
 	describe "Supplier index" do
 
 		before(:each) do
-			@supplier = FactoryGirl.create(:supplier)
-			@tag = FactoryGirl.create(:tag)
-			@filter = FactoryGirl.create(:filter,name: "unitedstates-3dprinting",has_tag: @tag)
-			visit lookup_path("unitedstates", "all", "3dprinting")
+			FactoryGirl.create(:supplier)
+			FactoryGirl.create(:filter,name: "unitedstates-3dprinting", has_tag: FactoryGirl.create(:tag))
+			FactoryGirl.create(:united_states)
 		end
 
 		it "should load correctly" do
+			visit lookup_path("unitedstates", "all", "3dprinting")
 			should have_link("Home")
 		end
 	end
@@ -31,16 +31,16 @@ describe "Supplier-related pages" do
 	describe "Supplier editing pages" do
 
 		before(:each) do
-      @supplier = FactoryGirl.create(:supplier)
-      @non_supplier_linked_user = FactoryGirl.create(:user)
-      @supplier_linked_user = FactoryGirl.create(:user, :supplier_id => @supplier.id)
-    end
+			@supplier = FactoryGirl.create(:supplier)
+			@non_supplier_linked_user = FactoryGirl.create(:user)
+			@supplier_linked_user = FactoryGirl.create(:user, :supplier_id => @supplier.id)
+		end
 
 		describe "supplier-linked users", :broken => true do
 			before do
-    		sign_in @supplier_linked_user
-    		visit orders_path
-    	end
+				sign_in @supplier_linked_user
+				visit orders_path
+			end
 
 			it "should have the option to edit supplier profiles" do
 				should have_link("edit the supplier profile")
@@ -49,9 +49,9 @@ describe "Supplier-related pages" do
 
 		describe "non supplier-linked users", type: :request do
 			before do
-    		sign_in @non_supplier_linked_user
-    		visit orders_path
-    	end
+				sign_in @non_supplier_linked_user
+				visit orders_path
+			end
 
 			it "should not have the option to edit supplier profiles" do
 				should_not have_link("edit the supplier profile")
