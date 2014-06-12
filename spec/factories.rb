@@ -45,11 +45,14 @@ FactoryGirl.define do
     rfq_contact
   end
 
+  factory :tag_group do |tg|
+    sequence(:group_name)  { |n| "tag_group#{n}" }
+  end
+
   factory :tag do |t|
     sequence(:name)           { |n| "Tag#{n}" }
     sequence(:name_for_link)  { |n| "tag#{n}" }
     sequence(:readable)       { |n| "Readable#{n}" }
-    family                    "generic"
     exclusive                 false
   end
 

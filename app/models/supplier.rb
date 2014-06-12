@@ -327,7 +327,7 @@ class Supplier < ActiveRecord::Base
     match = Combo.where("supplier_id = ? AND tag_id = ?", self.id, tag_id)
     return false unless match == [] 
     c = Combo.new(supplier_id: self.id, tag_id: tag_id)
-    Combo.destroy_family_tags(self.id,tag_id) if t.exclusive and !t.family.nil?
+    Combo.destroy_family_tags(self.id,tag_id) if t.tag_group.exclusive
     to_return = c.save
     Event.add_event("Supplier",self.id,"joined_network") if c.save and Tag.tag_set(:network,:name).include?(t.name)
     return to_return
