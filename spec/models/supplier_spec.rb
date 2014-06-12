@@ -1,22 +1,6 @@
-# == Schema Information
-#
-# Table name: tags
-#
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  family        :string(255)
-#  note          :text
-#  created_at    :datetime
-#  updated_at    :datetime
-#  exclusive     :boolean          default(FALSE)
-#  visible       :boolean          default(TRUE)
-#  readable      :string(255)
-#  name_for_link :string(255)
-#
-
 require 'spec_helper'
 
-describe "Tag" do
+describe "Supplier" do
 
 	before :each do 
 		@supplier = FactoryGirl.create(:supplier)
