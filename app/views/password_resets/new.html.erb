@@ -3,20 +3,20 @@
 
 <div class="container">
   <div class="row">
-  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-			<h1>Password Reset Request</h1>
+      <h1>Password Reset Request</h1>
 
-			<%= form_tag password_resets_path, :method => :post do %>
-			  <div class="field">
-			    <%= label_tag :email %>
-			    <%= text_field_tag :email, params[:email] %>
-			  </div>
-			  <div class="actions">
-			  	<%= submit_tag "Send Request", class: "save-button" %>
-			  </div>
-			<% end %>
+      <%= form_tag password_resets_path, :method => :post do %>
+        <div class="field">
+          <%= label_tag :email %>
+          <%= text_field_tag :email, params[:email] %>
+        </div>
+        <div class="actions">
+          <%= submit_tag "Send Request", class: "save-button" %>
+        </div>
+      <% end %>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

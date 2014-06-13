@@ -2,120 +2,120 @@
 
 <div class="container">
   <div class="row">
-  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-			<%= form_tag :action => 'create', :controller => 'dialogues' do %>
+      <%= form_tag :action => 'create', :controller => 'dialogues' do %>
 
-				<div>
-					<%= text_field_tag 'order_id_field', params[:id], placeholder: "Order #" %>
-				</div>
+        <div>
+          <%= text_field_tag 'order_id_field', params[:id], placeholder: "Order #" %>
+        </div>
 
-				<div>
-					<p>Assume without tags: existence unconfirmed, no contact, no quotes, manual quoting</p>
-				</div>
+        <div>
+          <p>Assume without tags: existence unconfirmed, no contact, no quotes, manual quoting</p>
+        </div>
 
-				<div>
-					<%= radio_button_tag "form_use", "add_dialogues", true, :class => "fleft radio", :id => "add-dialogues-radio" %>
-					<%= label_tag "form_use", "Add dialogues", :class => "fleft" %>
-					<%= radio_button_tag "form_use", "add_tag", false, :class => "fleft radio margin-left", :id => "add-tags-radio" %>	
-					<%= label_tag "form_use", "Add tags", :class => "fleft" %>
-					<%= radio_button_tag "form_use", "remove_tag", false, :class => "fleft radio margin-left", :id => "remove-tags-radio" %>	
-					<%= label_tag "form_use", "Remove tags (doesn't work on country/state)", :class => "fleft" %>
-					<%= radio_button_tag "form_use", "refresh_cache", false, :class => "fleft radio margin-left", :id => "refresh-cache-radio" %>	
-					<%= label_tag "form_use", "Refresh cache for this page", :class => "fleft" %>		
-				</div>
+        <div>
+          <%= radio_button_tag "form_use", "add_dialogues", true, :class => "fleft radio", :id => "add-dialogues-radio" %>
+          <%= label_tag "form_use", "Add dialogues", :class => "fleft" %>
+          <%= radio_button_tag "form_use", "add_tag", false, :class => "fleft radio margin-left", :id => "add-tags-radio" %>  
+          <%= label_tag "form_use", "Add tags", :class => "fleft" %>
+          <%= radio_button_tag "form_use", "remove_tag", false, :class => "fleft radio margin-left", :id => "remove-tags-radio" %>  
+          <%= label_tag "form_use", "Remove tags (doesn't work on country/state)", :class => "fleft" %>
+          <%= radio_button_tag "form_use", "refresh_cache", false, :class => "fleft radio margin-left", :id => "refresh-cache-radio" %> 
+          <%= label_tag "form_use", "Refresh cache for this page", :class => "fleft" %>   
+        </div>
 
-				<div>
-					<%= submit_tag "Create dialogue", :disable_with => "Saving..." %>
-				</div>
+        <div>
+          <%= submit_tag "Create dialogue", :disable_with => "Saving..." %>
+        </div>
 
-				<div class="clear">
-					<p>Choose which order_group or groups your instruction applies to:</p>
-					<% first = true %>
-					<% @order.order_groups.each do |order_group| %>
-						<%= check_box_tag "order_group_use[]", "#{order_group.id}", first, :class => "fleft radio" %>
-						<%= label_tag "order_group_use", "#{order_group.name}", :class => "fleft" %>
-						<% first = false %>
-					<% end %>
-				</div>
+        <div class="clear">
+          <p>Choose which order_group or groups your instruction applies to:</p>
+          <% first = true %>
+          <% @order.order_groups.each do |order_group| %>
+            <%= check_box_tag "order_group_use[]", "#{order_group.id}", first, :class => "fleft radio" %>
+            <%= label_tag "order_group_use", "#{order_group.name}", :class => "fleft" %>
+            <% first = false %>
+          <% end %>
+        </div>
 
-				<div class="clear">
-					<%= link_to "Select all visible suppliers", "#", :class => "btn", :id => "all-suppliers" %>
-				</div>
+        <div class="clear">
+          <%= link_to "Select all visible suppliers", "#", :class => "btn", :id => "all-suppliers" %>
+        </div>
 
-				<%= link_to "Add new supplier", new_supplier_path %>
+        <%= link_to "Add new supplier", new_supplier_path %>
 
-				<div>
-					<% supplier_columns = 0 %>
-					<% tag_columns = 6 %>
+        <div>
+          <% supplier_columns = 0 %>
+          <% tag_columns = 6 %>
 
-					<%= render partial: "/suppliers/tag_matrix", locals: {tag_columns: tag_columns, family_names_and_tags: @family_names_and_tags, existing_tags: []} %>
+          <%= render partial: "/suppliers/tag_matrix", locals: {tag_columns: tag_columns, family_names_and_tags: @family_names_and_tags, existing_tags: []} %>
 
-					<table class="tag_matrix">
-						<% counter = 0 %>
-						<tr>
-							<td><strong><%= "Country" %><strong></td>
-							<% ["no-country"].concat(@countries).each do |c| %>
-								<% if counter >= tag_columns %>
-									</tr><tr>
-									<% counter = 0 %>
-								<% end %>
-								<td><%= check_box_tag "country_selection[]", c, false, class: "fleft checkbox", id: "country-#{c}" %>
-								<p><%= "#{c}" %></p></td>
-								<% counter += 1 %>			
-							<% end %>
-						</tr>
-						<tr>
-							<td><strong><%= "US State" %><strong></td>
-							<% @us_states.each do |state| %>
-								<% if counter >= tag_columns %>
-									</tr><tr>
-									<% counter = 0 %>
-								<% end %>
-								<td><%= check_box_tag "state_selection[]", state, false, class: "fleft checkbox", id: "state-#{state}" %>
-								<p><%= "#{state}" %></p></td>
-								<% counter += 1 %>			
-							<% end %>
-						</tr>						
-						<tr>
-							<td><strong><%= "Postal code" %><strong></td>
-							<td><%= text_field_tag 'zip', nil %></td>
-							<td><strong><%= "Contact email" %><strong></td>
-							<td><%= text_field_tag 'email', nil %></td>
-							<td><strong><%= "Phone" %><strong></td>
-							<td><%= text_field_tag 'phone', nil %></td>
-						</tr>
-					</table>
+          <table class="tag_matrix">
+            <% counter = 0 %>
+            <tr>
+              <td><strong><%= "Country" %><strong></td>
+              <% ["no-country"].concat(@countries).each do |c| %>
+                <% if counter >= tag_columns %>
+                  </tr><tr>
+                  <% counter = 0 %>
+                <% end %>
+                <td><%= check_box_tag "country_selection[]", c, false, class: "fleft checkbox", id: "country-#{c}" %>
+                <p><%= "#{c}" %></p></td>
+                <% counter += 1 %>      
+              <% end %>
+            </tr>
+            <tr>
+              <td><strong><%= "US State" %><strong></td>
+              <% @us_states.each do |state| %>
+                <% if counter >= tag_columns %>
+                  </tr><tr>
+                  <% counter = 0 %>
+                <% end %>
+                <td><%= check_box_tag "state_selection[]", state, false, class: "fleft checkbox", id: "state-#{state}" %>
+                <p><%= "#{state}" %></p></td>
+                <% counter += 1 %>      
+              <% end %>
+            </tr>           
+            <tr>
+              <td><strong><%= "Postal code" %><strong></td>
+              <td><%= text_field_tag 'zip', nil %></td>
+              <td><strong><%= "Contact email" %><strong></td>
+              <td><%= text_field_tag 'email', nil %></td>
+              <td><strong><%= "Phone" %><strong></td>
+              <td><%= text_field_tag 'phone', nil %></td>
+            </tr>
+          </table>
 
-					<% counter = 0 %>
-					<table id="supplier_matrix"> 
-						<tr><td>
-						<% @structure.each do |supplier_hash| %>
+          <% counter = 0 %>
+          <table id="supplier_matrix"> 
+            <tr><td>
+            <% @structure.each do |supplier_hash| %>
 
-							<%= check_box_tag "supplier_selection[]", supplier_hash[:supplier].id, false, class: "fleft supplier-checkbox #{supplier_hash[:tag_names].join(" ")} country-#{supplier_hash[:safe_country]} state-#{supplier_hash[:safe_state]} " %>
-							<% if supplier_hash[:supplier].url_main.nil? %>
-								<%= "#{supplier_hash[:supplier].name}" %>
-							<% else %>
-								<%= link_to supplier_hash[:supplier].name, external_url(supplier_hash[:supplier].url_main), target: "_blank" %>
-							<% end %>
-							<%= " [#{supplier_hash[:tag_names].join(',')}] <#{supplier_hash[:safe_country]}:#{supplier_hash[:safe_state]}:#{supplier_hash[:safe_zip]}> #{supplier_hash[:supplier].internally_hidden_preferences}" %>
+              <%= check_box_tag "supplier_selection[]", supplier_hash[:supplier].id, false, class: "fleft supplier-checkbox #{supplier_hash[:tag_names].join(" ")} country-#{supplier_hash[:safe_country]} state-#{supplier_hash[:safe_state]} " %>
+              <% if supplier_hash[:supplier].url_main.nil? %>
+                <%= "#{supplier_hash[:supplier].name}" %>
+              <% else %>
+                <%= link_to supplier_hash[:supplier].name, external_url(supplier_hash[:supplier].url_main), target: "_blank" %>
+              <% end %>
+              <%= " [#{supplier_hash[:tag_names].join(',')}] <#{supplier_hash[:safe_country]}:#{supplier_hash[:safe_state]}:#{supplier_hash[:safe_zip]}> #{supplier_hash[:supplier].internally_hidden_preferences}" %>
 
-							<% if counter >= supplier_columns %>
-								</td></tr><tr><td>
-								<% counter = 0 %>
-							<% else %>
-								</td><td>
-								<% counter += 1 %>
-							<% end %>
-						<% end %>
+              <% if counter >= supplier_columns %>
+                </td></tr><tr><td>
+                <% counter = 0 %>
+              <% else %>
+                </td><td>
+                <% counter += 1 %>
+              <% end %>
+            <% end %>
 
-					</td></tr></table>
+          </td></tr></table>
 
-					<%= submit_tag "Create dialogue", :disable_with => "Saving..." %>
-				</div>
+          <%= submit_tag "Create dialogue", :disable_with => "Saving..." %>
+        </div>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>
 
 

@@ -13,27 +13,27 @@
 <%= text_area_tag :note, tag.note %>
 
 <div>
-	<div><%= label_tag :visible %></div>
-	<div class="one-fourth fleft">
-		<%= label_tag :visible, "True" %>
-		<%= radio_button_tag :visible, true, tag.visible %>
-	</div>
-	<div class="one-fourth fleft">
-		<%= label_tag :visible, "False" %>
-		<%= radio_button_tag :visible, false, !tag.visible %>
-	</div>
+  <div><%= label_tag :visible %></div>
+  <div class="one-fourth fleft">
+    <%= label_tag :visible, "True" %>
+    <%= radio_button_tag :visible, true, tag.visible %>
+  </div>
+  <div class="one-fourth fleft">
+    <%= label_tag :visible, "False" %>
+    <%= radio_button_tag :visible, false, !tag.visible %>
+  </div>
 </div>
 
 <div class="clear">
-	<div><%= label_tag :exclusive %></div>
-	<div class="one-fourth fleft">
-		<%= label_tag :exclusive, "True" %>
-		<%= radio_button_tag :exclusive, true, tag.exclusive %>
-	</div>
-	<div class="one-fourth fleft">
-		<%= label_tag :exclusive, "False" %>
-		<%= radio_button_tag :exclusive, false, !tag.exclusive %>
-	</div>
+  <div><%= label_tag :exclusive %></div>
+  <div class="one-fourth fleft">
+    <%= label_tag :exclusive, "True" %>
+    <%= radio_button_tag :exclusive, true, tag.exclusive %>
+  </div>
+  <div class="one-fourth fleft">
+    <%= label_tag :exclusive, "False" %>
+    <%= radio_button_tag :exclusive, false, !tag.exclusive %>
+  </div>
 </div>
 
 <%= submit_tag "Submit", class: "save-button" %>

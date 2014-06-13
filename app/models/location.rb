@@ -12,8 +12,8 @@
 
 class Location < ActiveRecord::Base
 
-	validates :country, presence: true
-	validates :zip, presence: true
-	validates :location_name, presence: true
+  validates :country, presence: true
+  validates :zip, presence: true
+  validates :location_name, presence: true
 
 end

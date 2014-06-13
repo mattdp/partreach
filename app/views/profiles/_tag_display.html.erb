@@ -1,15 +1,15 @@
 <% counter = 0 %>
 <% if tags %>
-	<p>
-		<% tags.each do |t| %>
-			<% t.note.nil? ? title_text = "" : title_text = t.note %>
-				<% class_text = "tag" %>
-				<% class_text = "tag inverse-colors" if !t.visible %>
-				<span class="<%= "#{class_text}" %>" title="<%= "#{title_text}" %>"><%= "#{t.user_readable}" %></span>
-			<% counter += 1 %>
-			<% if counter % row_end == 0 %>
-				<br>
-			<% end %>
-		<% end %>
-	</p>
+  <p>
+    <% tags.each do |t| %>
+      <% t.note.nil? ? title_text = "" : title_text = t.note %>
+        <% class_text = "tag" %>
+        <% class_text = "tag inverse-colors" if !t.visible %>
+        <span class="<%= "#{class_text}" %>" title="<%= "#{title_text}" %>"><%= "#{t.user_readable}" %></span>
+      <% counter += 1 %>
+      <% if counter % row_end == 0 %>
+        <br>
+      <% end %>
+    <% end %>
+  </p>
 <% end %>

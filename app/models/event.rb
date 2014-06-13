@@ -13,8 +13,8 @@
 class Event < ActiveRecord::Base
 
   def self.add_event(model,model_id,happening)
-  	event = Event.new(model: model, model_id: model_id, happening: happening)
- 		return event.save
+    event = Event.new(model: model, model_id: model_id, happening: happening)
+    return event.save
   end
 
   def self.has_event?(model,model_id,happening)

@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-	  <title><%= yield(:title) %> | <%= "#{brand_name}" %></title>
+  <head>
+    <title><%= yield(:title) %> | <%= "#{brand_name}" %></title>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-	  <%= javascript_include_tag "application" %>
-	  <%= csrf_meta_tags %>
-	  <meta name="google-site-verification" content="xsEb-S9JoWbJsphstmoBu_x0vxGQLUr3FT6oNTyPcww" />
-	  <meta name="description" content="<%= meta_description %>" />
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	  <%= render 'layouts/shim' %>
-	  <%= render 'layouts/segmentio' %>
-	</head>
-	<body>
-		<%= render 'layouts/header' %>
-  	<% flash.each do |key, value| %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+    <meta name="google-site-verification" content="xsEb-S9JoWbJsphstmoBu_x0vxGQLUr3FT6oNTyPcww" />
+    <meta name="description" content="<%= meta_description %>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%= render 'layouts/shim' %>
+    <%= render 'layouts/segmentio' %>
+  </head>
+  <body>
+    <%= render 'layouts/header' %>
+    <% flash.each do |key, value| %>
       <div class="alert alert-<%= key == :notice ? "success" : "danger" %>">
-      	<%= value %>
-      	<a class="close" data-dismiss="alert">&#215;</a>
+        <%= value %>
+        <a class="close" data-dismiss="alert">&#215;</a>
       </div>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
-	</body>
+  </body>
 </html>

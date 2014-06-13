@@ -1,4 +1,4 @@
-	# == Schema Information
+  # == Schema Information
 #
 # Table name: contacts
 #
@@ -23,5 +23,5 @@
 #
 
 class BillingContact < Contact
-	
+  
 end

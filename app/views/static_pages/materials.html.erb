@@ -3,85 +3,85 @@
 
 <div class="container">
   <div class="row">
-  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-			<h1 id="materials-header">How do I choose the right material?</h1>
+      <h1 id="materials-header">How do I choose the right material?</h1>
 
-			<div>
-			
-				<p><strong>How to Use This Table:</strong> Depending on your application, one process (with its given range of materials) may work better than the others. In our experience, this table of the four most common 3D printing methods has at least helped us with our initial choices, so treat this as a starting point.</p>
+      <div>
+      
+        <p><strong>How to Use This Table:</strong> Depending on your application, one process (with its given range of materials) may work better than the others. In our experience, this table of the four most common 3D printing methods has at least helped us with our initial choices, so treat this as a starting point.</p>
 
-				<p>This table is not an exhaustive comparison of materials and processes for 3D printing, but hopefully provides some useful insight. </p>
-			</div>
+        <p>This table is not an exhaustive comparison of materials and processes for 3D printing, but hopefully provides some useful insight. </p>
+      </div>
 
-			<div>
-				<table id="materials-table" class="table-center">
-					<tr>
-						<th>I want...</th>
-						<th>Process</th>
-						<th>Materials</th>
-						<th>Downside(s)</th>	
-						<th>Example</th>
-					
-					</tr>
-					<% @data_by_process.each do |h| %>
-						<tr>
-							<td>
-								<ul>
-									<% h[:looking_for].each do |bullet| %>
-										<li><%= "#{bullet}" %></li>
-									<% end %>
-								</ul>
-							</td>
-							<td><p><%= "#{h[:process]}" %></p></td>
-							<td><p><%= "#{h[:material]}" %></p></td>
-							<td>
-								<ul>
-									<% h[:downsides].each do |bullet| %>
-										<li><%= "#{bullet}" %></li>
-									<% end %>
-								</ul>
-							</td>
-							<td>
-								<ul>
-									<% h[:example].each do |bullet| %>
-										<li><%= "#{bullet}" %></li>
-									<% end %>
-								</ul>
-							</td>
-						</tr>
-					<% end %> 
-				</table>
-			</div>
+      <div>
+        <table id="materials-table" class="table-center">
+          <tr>
+            <th>I want...</th>
+            <th>Process</th>
+            <th>Materials</th>
+            <th>Downside(s)</th>  
+            <th>Example</th>
+          
+          </tr>
+          <% @data_by_process.each do |h| %>
+            <tr>
+              <td>
+                <ul>
+                  <% h[:looking_for].each do |bullet| %>
+                    <li><%= "#{bullet}" %></li>
+                  <% end %>
+                </ul>
+              </td>
+              <td><p><%= "#{h[:process]}" %></p></td>
+              <td><p><%= "#{h[:material]}" %></p></td>
+              <td>
+                <ul>
+                  <% h[:downsides].each do |bullet| %>
+                    <li><%= "#{bullet}" %></li>
+                  <% end %>
+                </ul>
+              </td>
+              <td>
+                <ul>
+                  <% h[:example].each do |bullet| %>
+                    <li><%= "#{bullet}" %></li>
+                  <% end %>
+                </ul>
+              </td>
+            </tr>
+          <% end %> 
+        </table>
+      </div>
 
-			<div>
-				<p><strong>Still Feeling Lost?</strong> We can recommend material for you when you chat with us or <strong><%= link_to "request a quote", order_questions_path %></strong>.</p>
-			</div>
+      <div>
+        <p><strong>Still Feeling Lost?</strong> We can recommend material for you when you chat with us or <strong><%= link_to "request a quote", order_questions_path %></strong>.</p>
+      </div>
 
-			<div>
-				<h1 class="h1-midpage">Materials Reference</h1>
+      <div>
+        <h1 class="h1-midpage">Materials Reference</h1>
 
-				<p><strong>In-depth material explanations from various suppliers</strong></p>
+        <p><strong>In-depth material explanations from various suppliers</strong></p>
 
-				<ul>
-					<li><%= link_to "Shapeways", "http://www.shapeways.com/materials", target: "_blank"%></li>
-					<li><%= link_to "Ponoko", "http://www.ponoko.com/make-and-sell/materials", target: "_blank"%></li>
-					<li><%= link_to "Sculpteo", "http://www.sculpteo.com/en/materials/", target: "_blank"%></li>
-					<li><%= link_to "i.materialise", "http://i.materialise.com/materials/compare?materialID=035F4772-DA8A-400B-8BE4-2DD344B28DDB", target: "_blank" %></li>
-					<li><%= link_to "RedEye OnDemand", "https://www.redeyeondemand.com/Materials_FDM_Thermoplastics.aspx", target: "_blank"%></li>
-					<li><%= link_to "3DProParts", "http://www.3dproparts.com/technologies/3d-printing", target: "_blank"%></li>
-					<li><%= link_to "ZoomRP", "https://www.zoomrp.com/products.aspx", target: "_blank"%></li>
-					<li><%= link_to "PartSnap", "https://www.partsnap.com/3d-printing/", target: "_blank"%></li>
-				</ul>
+        <ul>
+          <li><%= link_to "Shapeways", "http://www.shapeways.com/materials", target: "_blank"%></li>
+          <li><%= link_to "Ponoko", "http://www.ponoko.com/make-and-sell/materials", target: "_blank"%></li>
+          <li><%= link_to "Sculpteo", "http://www.sculpteo.com/en/materials/", target: "_blank"%></li>
+          <li><%= link_to "i.materialise", "http://i.materialise.com/materials/compare?materialID=035F4772-DA8A-400B-8BE4-2DD344B28DDB", target: "_blank" %></li>
+          <li><%= link_to "RedEye OnDemand", "https://www.redeyeondemand.com/Materials_FDM_Thermoplastics.aspx", target: "_blank"%></li>
+          <li><%= link_to "3DProParts", "http://www.3dproparts.com/technologies/3d-printing", target: "_blank"%></li>
+          <li><%= link_to "ZoomRP", "https://www.zoomrp.com/products.aspx", target: "_blank"%></li>
+          <li><%= link_to "PartSnap", "https://www.partsnap.com/3d-printing/", target: "_blank"%></li>
+        </ul>
 
-				<h1 class="h1-midpage">Great! What now?</h1>
+        <h1 class="h1-midpage">Great! What now?</h1>
 
-				<h3 class="center">Use <%= link_to "#{brand_name}", order_questions_path, :class => "h3link"%> to find the best place to print it! <%= link_to "(Order here)", order_questions_path, :class => "h3link" %></h3>
-				<h3 class="center">Get a variety of quotes to save money and get your parts faster.</h3>
+        <h3 class="center">Use <%= link_to "#{brand_name}", order_questions_path, :class => "h3link"%> to find the best place to print it! <%= link_to "(Order here)", order_questions_path, :class => "h3link" %></h3>
+        <h3 class="center">Get a variety of quotes to save money and get your parts faster.</h3>
 
-				<p class="back_to_home"><%= link_to "Back to home", root_path %></p>
-			</div>
+        <p class="back_to_home"><%= link_to "Back to home", root_path %></p>
+      </div>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

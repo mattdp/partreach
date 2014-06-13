@@ -11,7 +11,7 @@
 
 class Owner < ActiveRecord::Base
 
-	belongs_to :supplier
-	belongs_to :machine
+  belongs_to :supplier
+  belongs_to :machine
 
 end

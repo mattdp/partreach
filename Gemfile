@@ -34,25 +34,25 @@ gem 'bourbon'
 gem 'neat'
 
 group :development, :test do
- 	gem 'rspec-rails', '2.14.0'
- 	gem 'shoulda-matchers', '2.3.0'
- 	gem 'pry', '0.9.12.2'
-	gem 'pry-rails', '0.3.2'
-	gem 'pry-nav', '0.2.3'
+  gem 'rspec-rails', '2.14.0'
+  gem 'shoulda-matchers', '2.3.0'
+  gem 'pry', '0.9.12.2'
+  gem 'pry-rails', '0.3.2'
+  gem 'pry-nav', '0.2.3'
 end
 
 group :development do
-	gem 'annotate', '2.5.0'
+  gem 'annotate', '2.5.0'
 end
 
 group :test do
-	gem 'capybara', '2.1.0'
-	gem 'launchy', '2.4.0'
-	gem 'factory_girl_rails', '4.2.1'
-	gem 'database_cleaner', '1.2.0'
+  gem 'capybara', '2.1.0'
+  gem 'launchy', '2.4.0'
+  gem 'factory_girl_rails', '4.2.1'
+  gem 'database_cleaner', '1.2.0'
 end
 
 group :production, :staging do
-	gem 'rails_12factor', '0.0.2'
-	gem 'heroku-api', '0.3.15'
+  gem 'rails_12factor', '0.0.2'
+  gem 'heroku-api', '0.3.15'
 end
