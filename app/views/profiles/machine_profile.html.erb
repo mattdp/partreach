@@ -1,44 +1,44 @@
 <div class="container">
   <div class="row">
-  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-  		<div class="supplier-profile">
-				<% if !@allowed %>
-					<% provide(:title, "Profile not found") %>
-					<% meta_description "Profile not found" %>
+      <div class="supplier-profile">
+        <% if !@allowed %>
+          <% provide(:title, "Profile not found") %>
+          <% meta_description "Profile not found" %>
 
-					<h3 class="center bit-of-space">This is not a valid URL to find a machine profile</h3>
+          <h3 class="center bit-of-space">This is not a valid URL to find a machine profile</h3>
 
-					<p>It's possible we haven't released a profile for this machine yet, or perhaps you typed in a bad address.</p>
+          <p>It's possible we haven't released a profile for this machine yet, or perhaps you typed in a bad address.</p>
 
-					<p>Help expand our database by
-						<%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for adding a machine" %></p>
+          <p>Help expand our database by
+            <%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for adding a machine" %></p>
 
-					<%= link_to "Find supplier", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
+          <%= link_to "Find supplier", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
 
-					<p>Want to head to the <%= link_to "home page", root_path %> instead?</p>
+          <p>Want to head to the <%= link_to "home page", root_path %> instead?</p>
 
-				<% else %>
-					<% provide(:title, "#{@machine.name} - Machine Profile") %>
-					<% meta_description "#{@machine.formatted_name} machine profile - find suppliers who own this machine using SupplyBetter" %>
-					
-					<h3 class="center bit-of-space"><%= "Machine profile for #{@machine.formatted_name}" %></h3>
+        <% else %>
+          <% provide(:title, "#{@machine.name} - Machine Profile") %>
+          <% meta_description "#{@machine.formatted_name} machine profile - find suppliers who own this machine using SupplyBetter" %>
+          
+          <h3 class="center bit-of-space"><%= "Machine profile for #{@machine.formatted_name}" %></h3>
 
-					<% @suppliers.present? ? suppliers_count = @suppliers.count : suppliers_count = 0%>
-					<p><%= "We currently have #{pluralize(suppliers_count,'supplier')} in our database who own a #{@machine.formatted_name}." %></p>
-						<p>
-							<%= "Please note that the manufacturer and machine profiles are in beta, and are not yet comprehensive - we are hard at work to figure out which machines each supplier has." if @beta %>
-							Help expand our database by 
-							<%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for #{@machine.formatted_name}" %>
-						</p>
-					</p>
-					<p>If you need to find a supplier with this machine, let us know!</p>
-					<%= link_to "Find supplier", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
+          <% @suppliers.present? ? suppliers_count = @suppliers.count : suppliers_count = 0%>
+          <p><%= "We currently have #{pluralize(suppliers_count,'supplier')} in our database who own a #{@machine.formatted_name}." %></p>
+            <p>
+              <%= "Please note that the manufacturer and machine profiles are in beta, and are not yet comprehensive - we are hard at work to figure out which machines each supplier has." if @beta %>
+              Help expand our database by 
+              <%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for #{@machine.formatted_name}" %>
+            </p>
+          </p>
+          <p>If you need to find a supplier with this machine, let us know!</p>
+          <%= link_to "Find supplier", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
 
-					<p>Alternately, check out <%= link_to "all machines by #{@manufacturer.name}", manufacturer_profile_path(@manufacturer.name_for_link) %>, or <%= link_to "head to the home page", root_path %>.
-				<% end %>
-			</div>
+          <p>Alternately, check out <%= link_to "all machines by #{@manufacturer.name}", manufacturer_profile_path(@manufacturer.name_for_link) %>, or <%= link_to "head to the home page", root_path %>.
+        <% end %>
+      </div>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

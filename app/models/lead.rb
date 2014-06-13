@@ -17,7 +17,7 @@
 class Lead < ActiveRecord::Base
 
   belongs_to :user
-	has_one :lead_contact, :as => :contactable, :dependent => :destroy
+  has_one :lead_contact, :as => :contactable, :dependent => :destroy
   has_many :communications, as: :communicator, :dependent => :destroy
  
   def self.sorted(all=true,only_after_today=true)

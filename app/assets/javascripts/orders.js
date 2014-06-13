@@ -33,44 +33,44 @@ $(document).ready(function() {
 
   // run client-side validations (using jquery.validate)
   $("#new-order").validate({
-        ignore: [],
-        rules: {
-            files_uploaded: {
-                required: true
-            },
-            stated_quantity: {
-                required: true
-            },
-            units: {
-                required: true
-            },
-            material_message: {
-                required: true
-            },
-            user_email: {
-                require_from_group: [2, ".signup-signin-group"]
-            },
-            user_password: {
-                require_from_group: [2, ".signup-signin-group"]
-            },
-            signin_email: {
-                require_from_group: [2, ".signup-signin-group"]
-            },
-            signin_password: {
-                require_from_group: [2, ".signup-signin-group"]
-            }
-        },
-        groups: {
-            signup_signin: "user_email user_password signin_email signin_password"
-        },
-        messages: {
-            "files_uploaded": "Please upload at least one file",
-            "user_email": "Please enter email and password",
-            "user_password": "Please enter email and password",
-            "signin_email": "Please enter email and password",
-            "signin_password": "Please enter email and password",
-        },
-        errorClass: "signup_signin_errors"
-    });
+    ignore: [],
+    rules: {
+      files_uploaded: {
+        required: true
+      },
+      stated_quantity: {
+        required: true
+      },
+      units: {
+        required: true
+      },
+      material_message: {
+        required: true
+      },
+      user_email: {
+        require_from_group: [2, ".signup-signin-group"]
+      },
+      user_password: {
+        require_from_group: [2, ".signup-signin-group"]
+      },
+      signin_email: {
+        require_from_group: [2, ".signup-signin-group"]
+      },
+      signin_password: {
+        require_from_group: [2, ".signup-signin-group"]
+      }
+    },
+    groups: {
+      signup_signin: "user_email user_password signin_email signin_password"
+    },
+    messages: {
+      "files_uploaded": "Please upload at least one file",
+      "user_email": "Please enter email and password",
+      "user_password": "Please enter email and password",
+      "signin_email": "Please enter email and password",
+      "signin_password": "Please enter email and password",
+    },
+    errorClass: "signup_signin_errors"
+  });
 
 });

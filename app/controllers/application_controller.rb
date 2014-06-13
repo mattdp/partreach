@@ -5,24 +5,24 @@ class ApplicationController < ActionController::Base
 #http://stackoverflow.com/questions/128450/best-practices-for-reusing-code-between-controllers-in-ruby-on-rails/130821#130821
 
 
-	#http://stackoverflow.com/questions/1183506/make-blank-params-nil
+  #http://stackoverflow.com/questions/1183506/make-blank-params-nil
   def clean_params
-  	@clean_params ||= HashWithIndifferentAccess.new.merge blank_to_nil( params )
-	end
+    @clean_params ||= HashWithIndifferentAccess.new.merge blank_to_nil( params )
+  end
 
   def blank_to_nil(hash)
-	  hash.inject({}){|h,(k,v)|
-	    h.merge(
-	      k => case v
-	      when Hash
-	      	blank_to_nil v
-	      when Array
-	      	v.map{|e| e.is_a?( Hash ) ? blank_to_nil(e) : e}
-	      else 
-	      	v == "" ? nil : v
-	      end
-	    )
-	  }
+    hash.inject({}){|h,(k,v)|
+      h.merge(
+        k => case v
+        when Hash
+          blank_to_nil v
+        when Array
+          v.map{|e| e.is_a?( Hash ) ? blank_to_nil(e) : e}
+        else 
+          v == "" ? nil : v
+        end
+      )
+    }
   end
 
   def andlist(clauses)

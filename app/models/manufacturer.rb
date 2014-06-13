@@ -12,24 +12,24 @@
 
 class Manufacturer < ActiveRecord::Base
 
-	has_many :machines, dependent: :destroy
+  has_many :machines, dependent: :destroy
 
-	validates :name, presence: true, uniqueness: { case_sensitive: false }
-	
-	def self.create_or_reference_manufacturer(manufacturer_params)
-		name = manufacturer_params[:name]
-		manufacturer = Manufacturer.where("name = ?",name)
-		if manufacturer.present?
-			return manufacturer[0]
-		else
-			new_man = Manufacturer.create({name: name, name_for_link: Manufacturer.proper_name_for_link(name)})
-			return new_man if new_man
-			return nil
-		end
-	end
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  
+  def self.create_or_reference_manufacturer(manufacturer_params)
+    name = manufacturer_params[:name]
+    manufacturer = Manufacturer.where("name = ?",name)
+    if manufacturer.present?
+      return manufacturer[0]
+    else
+      new_man = Manufacturer.create({name: name, name_for_link: Manufacturer.proper_name_for_link(name)})
+      return new_man if new_man
+      return nil
+    end
+  end
 
-	def self.proper_name_for_link(name)
-		Supplier.proper_name_for_link(name)
-	end	
+  def self.proper_name_for_link(name)
+    Supplier.proper_name_for_link(name)
+  end 
 
 end

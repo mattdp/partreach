@@ -1,26 +1,26 @@
 <% if review.user_id and (user = User.find(review.user_id)) %>
-	<% submitter = user.lead.lead_contact %>
+  <% submitter = user.lead.lead_contact %>
 <% end %>
 
 <td class="under-examination">
-	<p><%= "ID: #{review.id}" %></p>
-	<p><%= "Submitter: #{submitter.name} (#{submitter.email})" if submitter %></p>
+  <p><%= "ID: #{review.id}" %></p>
+  <p><%= "Submitter: #{submitter.name} (#{submitter.email})" if submitter %></p>
 </td>
 <td class="choice">
-	<p class="clear">
-		<%= radio_button_tag "reviews[#{review.id}]", "no_display", false, :class => "fleft radio" %>	
-		<%= label_tag "reviews[#{review.id}]", "Don't use", :class => "fleft" %>
-	</p>
-	<p class="clear">
-		<%= radio_button_tag "reviews[#{review.id}]", "display", false, :class => "fleft radio" %>
-		<%= label_tag "reviews[#{review.id}]", "Do use", :class => "fleft" %>
-	</p>
-	<p class="clear">
-		<%= label_tag "review_supplier_id[#{review.id}]", "Supplier ID to link to", :class => "fleft" %>
-		<%= text_field_tag "review_supplier_id[#{review.id}]", review.supplier_id ? review.supplier_id : "" %>
-	</p>
+  <p class="clear">
+    <%= radio_button_tag "reviews[#{review.id}]", "no_display", false, :class => "fleft radio" %> 
+    <%= label_tag "reviews[#{review.id}]", "Don't use", :class => "fleft" %>
+  </p>
+  <p class="clear">
+    <%= radio_button_tag "reviews[#{review.id}]", "display", false, :class => "fleft radio" %>
+    <%= label_tag "reviews[#{review.id}]", "Do use", :class => "fleft" %>
+  </p>
+  <p class="clear">
+    <%= label_tag "review_supplier_id[#{review.id}]", "Supplier ID to link to", :class => "fleft" %>
+    <%= text_field_tag "review_supplier_id[#{review.id}]", review.supplier_id ? review.supplier_id : "" %>
+  </p>
 </td>
 <td class="supporting-info">
-	<strong>Company: </strong><%= review.company %>
-	<%= render partial: "profiles/review_listing", locals: {review: review} %>
+  <strong>Company: </strong><%= review.company %>
+  <%= render partial: "profiles/review_listing", locals: {review: review} %>
 </td>

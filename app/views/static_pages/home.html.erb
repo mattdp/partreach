@@ -2,129 +2,129 @@
 <% content_for :body_class, "home" %>
 
 <main class="main">
-	<div class="hero">
-		<div class="hero-branding">
-			<h1 class="logo">
-				<a href="/">
-					<%= image_tag "supplybetter-logo-white.svg", :alt => "SupplyBetter" %>
-				</a>
-			</h1>
-			<h2 class="hero-headline">
-				Know your options.
-			</h2>
-			<%= link_to "Sign into your account", signin_path, class: "arrow-link" %>
-		</div>
-		<div class="hero-cta">
-			<p class="hero-subheadline">
-				<span class="subheadline-text">A new way to turn CAD models into physical&nbsp;parts.</span>
-				<span>Get matched to the right suppliers by an experienced engineer in&nbsp;minutes.</span>
-				<span><%= link_to "Let’s get started", order_questions_path, class: "button--white arrow-link" %></span>
-			</p>
-		</div>
-	</div>
-	<section class="section section--gray">
-		<h2 class="section-headline">
-			Just tell us what you’re looking for.
-		</h2>
-		<div class="start-quote">
-			<%#= get, since passing params to orders_new, without a state change in the database %>
-			<%= form_tag new_order_path, method: :get do %>
-				<%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
-				<p>
-					I am
-					<% options_array = [ ["still learning", "rookie"], ["experienced", "experienced"] ] %>
-					<%= select_tag("questions[experience]", options_for_select(options_array, "experienced"), class: "chosen-select select-one") %>
-					, I care most about
-					<% options_array = [ ["speed", "speed"], ["quality", "quality"], ["cost", "cost"] ] %>
-					<%= select_tag("questions[priority]", options_for_select(options_array, "quality"), class: "chosen-select select-two") %>
-					, and think 3D printing
-					<% options_array = [ ["should be", "printing"], ["shouldn’t be", "other"], ["might be", "unknown"] ] %>
-					<%= select_tag("questions[manufacturing]", options_for_select(options_array, "printing"), class: "chosen-select") %>
-					the&nbsp;method.
-				</p>
-				<%= submit_tag "Continue »", :disable_with => "Processing...",class: "button--blue" %>
-			<% end %>
-		</div>
-	</section>
-	<section class="section">
-		<h2 class="section-headline">
-			How does SupplyBetter work?
-		</h2>
-		<div class="triplets">
-			<div class="col">
-				<%= image_tag "home-quote-icon.svg", :alt => "Upload your project documents" %>
-				<h3>You upload your design and project&nbsp;details.</h3>
-				<%= link_to "Fill out a quote now", order_questions_path, :class => "arrow-link" %>
-			</div>
-			<div class="col wide">
-				<%= image_tag "home-selection-icon.svg", :alt => "We select a supplier" %>
-				<h3>We match you with suppliers who exactly fit your&nbsp;job.</h3>
-			</div>
-			<div class="col">
-				<%= image_tag "home-best-icon.svg", :alt => "You choose the option that best fits your needs" %>
-				<h3>You pick the quote you like <span>best,&nbsp;free.</span></h3>
-				<%= link_to "See what our customers say", testimonials_path, :class => "arrow-link" %>
-			</div>
-		</div>
-	</section>
-	<section class="section section--gray section--aligned matching">
-		<div class="wrapper">
-			<h2 class="section-headline">
-				We match you with the exact right suppliers.
-			</h2>
-			<p>
-				We use every detail of your project, including build volume, material requirements,
-				geographic preferences, IP sensitivity, DFM needs, and timeline, to match you with
-				the supplier that's best for your&nbsp;project.
-			</p>
-			<p>
-				Are you a supplier looking to grow your business? <a href="/be_a_supplier" class="arrow-link">Join our Supplier Network</a>
-			</p>
-		</div>
-	</section>
-	<section class="section ta-c">
-		<blockquote class="big-quote">Across rapid prototyping jobs both large and small, SupplyBetter has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality&nbsp;expectations.
-			<footer>
-				— <cite>Ryan, Mechanical Engineer, <a href="http://www.frogdesign.com/">Frog Design</a></cite>
-			</footer>
-		</blockquote>
-		<%= link_to "Read our customers’ stories", testimonials_path, class: "button--blue centered-border arrow-link" %>
-		<div class="customer-logos">
-			<%= image_tag "customer-logos@2x.png", :alt => "You choose the option that best fits your needs" %>
-		</div>
-	</section>
+  <div class="hero">
+    <div class="hero-branding">
+      <h1 class="logo">
+        <a href="/">
+          <%= image_tag "supplybetter-logo-white.svg", :alt => "SupplyBetter" %>
+        </a>
+      </h1>
+      <h2 class="hero-headline">
+        Know your options.
+      </h2>
+      <%= link_to "Sign into your account", signin_path, class: "arrow-link" %>
+    </div>
+    <div class="hero-cta">
+      <p class="hero-subheadline">
+        <span class="subheadline-text">A new way to turn CAD models into physical&nbsp;parts.</span>
+        <span>Get matched to the right suppliers by an experienced engineer in&nbsp;minutes.</span>
+        <span><%= link_to "Let’s get started", order_questions_path, class: "button--white arrow-link" %></span>
+      </p>
+    </div>
+  </div>
+  <section class="section section--gray">
+    <h2 class="section-headline">
+      Just tell us what you’re looking for.
+    </h2>
+    <div class="start-quote">
+      <%#= get, since passing params to orders_new, without a state change in the database %>
+      <%= form_tag new_order_path, method: :get do %>
+        <%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
+        <p>
+          I am
+          <% options_array = [ ["still learning", "rookie"], ["experienced", "experienced"] ] %>
+          <%= select_tag("questions[experience]", options_for_select(options_array, "experienced"), class: "chosen-select select-one") %>
+          , I care most about
+          <% options_array = [ ["speed", "speed"], ["quality", "quality"], ["cost", "cost"] ] %>
+          <%= select_tag("questions[priority]", options_for_select(options_array, "quality"), class: "chosen-select select-two") %>
+          , and think 3D printing
+          <% options_array = [ ["should be", "printing"], ["shouldn’t be", "other"], ["might be", "unknown"] ] %>
+          <%= select_tag("questions[manufacturing]", options_for_select(options_array, "printing"), class: "chosen-select") %>
+          the&nbsp;method.
+        </p>
+        <%= submit_tag "Continue »", :disable_with => "Processing...",class: "button--blue" %>
+      <% end %>
+    </div>
+  </section>
+  <section class="section">
+    <h2 class="section-headline">
+      How does SupplyBetter work?
+    </h2>
+    <div class="triplets">
+      <div class="col">
+        <%= image_tag "home-quote-icon.svg", :alt => "Upload your project documents" %>
+        <h3>You upload your design and project&nbsp;details.</h3>
+        <%= link_to "Fill out a quote now", order_questions_path, :class => "arrow-link" %>
+      </div>
+      <div class="col wide">
+        <%= image_tag "home-selection-icon.svg", :alt => "We select a supplier" %>
+        <h3>We match you with suppliers who exactly fit your&nbsp;job.</h3>
+      </div>
+      <div class="col">
+        <%= image_tag "home-best-icon.svg", :alt => "You choose the option that best fits your needs" %>
+        <h3>You pick the quote you like <span>best,&nbsp;free.</span></h3>
+        <%= link_to "See what our customers say", testimonials_path, :class => "arrow-link" %>
+      </div>
+    </div>
+  </section>
+  <section class="section section--gray section--aligned matching">
+    <div class="wrapper">
+      <h2 class="section-headline">
+        We match you with the exact right suppliers.
+      </h2>
+      <p>
+        We use every detail of your project, including build volume, material requirements,
+        geographic preferences, IP sensitivity, DFM needs, and timeline, to match you with
+        the supplier that's best for your&nbsp;project.
+      </p>
+      <p>
+        Are you a supplier looking to grow your business? <a href="/be_a_supplier" class="arrow-link">Join our Supplier Network</a>
+      </p>
+    </div>
+  </section>
+  <section class="section ta-c">
+    <blockquote class="big-quote">Across rapid prototyping jobs both large and small, SupplyBetter has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality&nbsp;expectations.
+      <footer>
+        — <cite>Ryan, Mechanical Engineer, <a href="http://www.frogdesign.com/">Frog Design</a></cite>
+      </footer>
+    </blockquote>
+    <%= link_to "Read our customers’ stories", testimonials_path, class: "button--blue centered-border arrow-link" %>
+    <div class="customer-logos">
+      <%= image_tag "customer-logos@2x.png", :alt => "You choose the option that best fits your needs" %>
+    </div>
+  </section>
 </main>
 <footer class="footer">
-	<div class="twins--40-60">
-		<div class="col-40">
-	  	<ul class="footer-links">
-	  		<li><%= link_to "Home", root_path %></li>
-	  		<li><%= link_to "Getting started", getting_started_path %></li>
-	      <li><%= link_to "Blog", "/blog" %></li>
-	  		<li><%= link_to "Materials", materials_path %></li>
-	      <li><%= link_to "Suppliers", us_3dprinting_path %>
-	  	</ul>
-	    <ul class="footer-links--sub">
-	      <li><%= link_to "© 2014 SupplyBetter, Inc.", root_path %></li>
-	      <li><%= link_to "Privacy", privacy_path %></li>
-	      <li><%= link_to "Terms", terms_path %></li>
-	      <li><%= link_to "Directory", suppliers_path %></li>
-	  	</ul>
-		</div>
-		<div class="col-60 twins p-0">
-			<div class="col p-0">
-				<h3>Not ready for a quote?</h3>
-				<p>We’ll keep you updated in the&nbsp;meantime.</p>
-			</div>
-			<div class="col">
-		    <div class="email-form">
-				  <%= form_tag :action => 'create', :controller => 'leads' do %>
-				    <input type="hidden" name="next_step_field" value="/">
-		  			<%= text_field_tag 'email_field', nil, :placeholder => "sam.joss@supplybetter.com", class: "email-input", :id => "email-submit-field" %>
-		  			<%= submit_tag "Sign up", data: { disable_with: 'Submitting...' }, class: "email-button", :id => "email-submit-button" %>
-	  			<% end %>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="twins--40-60">
+    <div class="col-40">
+      <ul class="footer-links">
+        <li><%= link_to "Home", root_path %></li>
+        <li><%= link_to "Getting started", getting_started_path %></li>
+        <li><%= link_to "Blog", "/blog" %></li>
+        <li><%= link_to "Materials", materials_path %></li>
+        <li><%= link_to "Suppliers", us_3dprinting_path %>
+      </ul>
+      <ul class="footer-links--sub">
+        <li><%= link_to "© 2014 SupplyBetter, Inc.", root_path %></li>
+        <li><%= link_to "Privacy", privacy_path %></li>
+        <li><%= link_to "Terms", terms_path %></li>
+        <li><%= link_to "Directory", suppliers_path %></li>
+      </ul>
+    </div>
+    <div class="col-60 twins p-0">
+      <div class="col p-0">
+        <h3>Not ready for a quote?</h3>
+        <p>We’ll keep you updated in the&nbsp;meantime.</p>
+      </div>
+      <div class="col">
+        <div class="email-form">
+          <%= form_tag :action => 'create', :controller => 'leads' do %>
+            <input type="hidden" name="next_step_field" value="/">
+            <%= text_field_tag 'email_field', nil, :placeholder => "sam.joss@supplybetter.com", class: "email-input", :id => "email-submit-field" %>
+            <%= submit_tag "Sign up", data: { disable_with: 'Submitting...' }, class: "email-button", :id => "email-submit-button" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </footer>

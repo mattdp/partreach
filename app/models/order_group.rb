@@ -14,9 +14,9 @@
 
 class OrderGroup < ActiveRecord::Base
 
-	belongs_to :order
-	has_many :parts, dependent: :destroy
-	has_many :dialogues, dependent: :destroy
+  belongs_to :order
+  has_many :parts, dependent: :destroy
+  has_many :dialogues, dependent: :destroy
 
   validates :name, presence: true
 
@@ -41,15 +41,15 @@ class OrderGroup < ActiveRecord::Base
   end
 
   def self.switch_group(to_group_id,model_array)
-  	model_array.each do |model|
-  		model.order_group_id = to_group_id
-  		if model.save
-  			puts "#{model.class.to_s} #{model.id} switched to group #{to_group_id}"
-  		else
-  			puts "Error switching #{model.class.to_s} #{model.id}"
-  		end
-  	end
-	end
+    model_array.each do |model|
+      model.order_group_id = to_group_id
+      if model.save
+        puts "#{model.class.to_s} #{model.id} switched to group #{to_group_id}"
+      else
+        puts "Error switching #{model.class.to_s} #{model.id}"
+      end
+    end
+  end
 
   def visible_dialogues
     visibles = []

@@ -4,36 +4,36 @@
     <th>Name</th>
 
     <% columns.each do |name,details| %>
-    	<th><%= "#{details[:header]}" %></th>
+      <th><%= "#{details[:header]}" %></th>
     <% end %>
 
     <th class="little-field">Selection</th>
   </tr>
 
-	<% rows.each do |d| %>
-		<% if d.recommended %>
-			<tr class="recommended">
-		<% else %>
-			<tr>
-		<% end %>
+  <% rows.each do |d| %>
+    <% if d.recommended %>
+      <tr class="recommended">
+    <% else %>
+      <tr>
+    <% end %>
 
-		<% s = Supplier.find(d.supplier_id) %>
-		<td>
-		<% if s.profile_visible %>
-			<%= link_to "#{s.name}", supplier_profile_path(s.name_for_link) %>
-		<% elsif !s.url_main.nil? and s.url_main != "" %>
-			<%= link_to "#{s.name}", s.url_main %>
-		<% else %>
-			<%= s.name %>
-		<% end %>
-		</td>
+    <% s = Supplier.find(d.supplier_id) %>
+    <td>
+    <% if s.profile_visible %>
+      <%= link_to "#{s.name}", supplier_profile_path(s.name_for_link) %>
+    <% elsif !s.url_main.nil? and s.url_main != "" %>
+      <%= link_to "#{s.name}", s.url_main %>
+    <% else %>
+      <%= s.name %>
+    <% end %>
+    </td>
 
-		<% @columns.each do |name,details| %>
-			<td class=<%= "#{details[:css_class]}" %>><%= eval("#{details[:code]}") %></td>
-		<% end %>
+    <% @columns.each do |name,details| %>
+      <td class=<%= "#{details[:css_class]}" %>><%= eval("#{details[:code]}") %></td>
+    <% end %>
 
-		<td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
-		</tr>
-	<% end %>
-	
+    <td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
+    </tr>
+  <% end %>
+  
 </table>

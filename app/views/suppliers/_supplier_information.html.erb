@@ -1,127 +1,127 @@
 <%= form_tag :action => form_action, :controller => 'suppliers' do %>
 
-	<%= hidden_field_tag 'id', "#{@supplier.id}" %>
+  <%= hidden_field_tag 'id', "#{@supplier.id}" %>
 
-	<%= link_to "Back to suppliers list", us_3dprinting_path if @supplier.name.present? %>
+  <%= link_to "Back to suppliers list", us_3dprinting_path if @supplier.name.present? %>
 
-	<h3>Externally-facing supplier information</h3>
+  <h3>Externally-facing supplier information</h3>
 
-	<%= label_tag 'name', 'name' %>
-	<%= text_field_tag 'name', @supplier.name %>
+  <%= label_tag 'name', 'name' %>
+  <%= text_field_tag 'name', @supplier.name %>
 
-	<%= label_tag 'url_main', 'url_main', class: "fleft" %>
-	<%= "<><>" %>
-	<%= link_to "Clickable link to their webpage", @supplier.url_main if @supplier.url_main.present? %>
-	<%= "<><>" %>
-	<%= link_to "Their supplier profile", supplier_profile_path(@supplier.name_for_link) if @supplier.name_for_link %>
-	<%= text_field_tag 'url_main', @supplier.url_main %>
-	<%= label_tag "Copyable path to supplier edit profile" %>
-	<%= "#{edit_supplier_url(@supplier)}" %>
-	<br>
+  <%= label_tag 'url_main', 'url_main', class: "fleft" %>
+  <%= "<><>" %>
+  <%= link_to "Clickable link to their webpage", @supplier.url_main if @supplier.url_main.present? %>
+  <%= "<><>" %>
+  <%= link_to "Their supplier profile", supplier_profile_path(@supplier.name_for_link) if @supplier.name_for_link %>
+  <%= text_field_tag 'url_main', @supplier.url_main %>
+  <%= label_tag "Copyable path to supplier edit profile" %>
+  <%= "#{edit_supplier_url(@supplier)}" %>
+  <br>
 
-	<%= label_tag 'suggested_description', 'suggested_description (from supplier)' if @supplier.suggested_description %>
-	<%= @supplier.suggested_description %>
-	<br>
-	<%= label_tag 'description', 'description (public)' %>
-	<%= text_area_tag 'description', @supplier.description %>
-	
-	<h3>Internally-facing supplier information</h3>
+  <%= label_tag 'suggested_description', 'suggested_description (from supplier)' if @supplier.suggested_description %>
+  <%= @supplier.suggested_description %>
+  <br>
+  <%= label_tag 'description', 'description (public)' %>
+  <%= text_area_tag 'description', @supplier.description %>
+  
+  <h3>Internally-facing supplier information</h3>
 
-	<%= label_tag 'source', 'source of supplier entry to database' %>
-	<%= @supplier.source %>
-	<br>
+  <%= label_tag 'source', 'source of supplier entry to database' %>
+  <%= @supplier.source %>
+  <br>
 
-	<%= label_tag 'claimed', 'Page claimed? By whom? (change from terminal)' %>
-	<%= @supplier.claimed %>
-	<% if (@claimant and lc = @claimant.lead.lead_contact) %>
-		<%= " - #{lc.name} (#{lc.email})"  %>
-	<% end %>
+  <%= label_tag 'claimed', 'Page claimed? By whom? (change from terminal)' %>
+  <%= @supplier.claimed %>
+  <% if (@claimant and lc = @claimant.lead.lead_contact) %>
+    <%= " - #{lc.name} (#{lc.email})"  %>
+  <% end %>
 
-	<div>
-		<%= check_box_tag 'profile_visible', 1, (@supplier.profile_visible or form_action == "create") , class: "fleft checkbox" %>
-		<%= label_tag 'profile_visible', 'profile_visible', class: "fleft" %>
-	</div>
+  <div>
+    <%= check_box_tag 'profile_visible', 1, (@supplier.profile_visible or form_action == "create") , class: "fleft checkbox" %>
+    <%= label_tag 'profile_visible', 'profile_visible', class: "fleft" %>
+  </div>
 
-	<div class="clear">
-		<%= label_tag 'suggested_preferences', 'suggested_preferences (from supplier)' if @suggested_preferences %>
-		<%= @supplier.suggested_preferences %>
-	</div>
+  <div class="clear">
+    <%= label_tag 'suggested_preferences', 'suggested_preferences (from supplier)' if @suggested_preferences %>
+    <%= @supplier.suggested_preferences %>
+  </div>
 
-	<%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %>
-	<%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
+  <%= label_tag 'internally_hidden_preferences', 'internally_hidden_preferences (private)' %>
+  <%= text_area_tag 'internally_hidden_preferences', @supplier.internally_hidden_preferences %>
 
-	<%= label_tag 'next_contact_date', 'next_contact_date' %>
-	<%= date_field_tag 'next_contact_date', @supplier.next_contact_date %>
+  <%= label_tag 'next_contact_date', 'next_contact_date' %>
+  <%= date_field_tag 'next_contact_date', @supplier.next_contact_date %>
 
-	<%= label_tag 'next_contact_content', 'next_contact_content' %>
-	<%= text_field_tag 'next_contact_content', @supplier.next_contact_content %>
+  <%= label_tag 'next_contact_content', 'next_contact_content' %>
+  <%= text_field_tag 'next_contact_content', @supplier.next_contact_content %>
 
-	<h3>Contact information</h3>
+  <h3>Contact information</h3>
 
-	<h4>RFQ contact</h4>
-	<%= render partial: "suppliers/contact_information", locals: {contact: @rfq_contact, contact_type: "rfq_contact"} %>
+  <h4>RFQ contact</h4>
+  <%= render partial: "suppliers/contact_information", locals: {contact: @rfq_contact, contact_type: "rfq_contact"} %>
 
-	<h4>Billing contact</h4>
-	<%= render partial: "suppliers/contact_information", locals: {contact: @billing_contact, contact_type: "billing_contact"} %>
+  <h4>Billing contact</h4>
+  <%= render partial: "suppliers/contact_information", locals: {contact: @billing_contact, contact_type: "billing_contact"} %>
 
-	<h4>Contract contact</h4>
-	<%= render partial: "suppliers/contact_information", locals: {contact: @contract_contact, contact_type: "contract_contact"} %>
+  <h4>Contract contact</h4>
+  <%= render partial: "suppliers/contact_information", locals: {contact: @contract_contact, contact_type: "contract_contact"} %>
 
-	<h3>Address information</h3>
+  <h3>Address information</h3>
 
-	<%= label_tag 'suggested_address', 'suggested_address (from supplier)' if @suggested_address %>
-	<%= @supplier.suggested_address %>
+  <%= label_tag 'suggested_address', 'suggested_address (from supplier)' if @suggested_address %>
+  <%= @supplier.suggested_address %>
 
-	<%= label_tag 'country', 'country' %>
-	<%= text_field_tag 'country', @address.country.short_name %>
+  <%= label_tag 'country', 'country' %>
+  <%= text_field_tag 'country', @address.country.short_name %>
 
-	<%= label_tag 'state', 'state' %>
-	<%= text_field_tag 'state', @address.state.short_name %>
+  <%= label_tag 'state', 'state' %>
+  <%= text_field_tag 'state', @address.state.short_name %>
 
-	<%= label_tag 'zip', 'zip' %>
-	<%= text_field_tag 'zip', @address.zip %>
+  <%= label_tag 'zip', 'zip' %>
+  <%= text_field_tag 'zip', @address.zip %>
 
-	<h3>Machine information</h3>
+  <h3>Machine information</h3>
 
-	<%= label_tag 'suggested_machines', 'suggested_machines (from supplier)' if @supplier.suggested_machines %>
-	<%= @supplier.suggested_machines %>
+  <%= label_tag 'suggested_machines', 'suggested_machines (from supplier)' if @supplier.suggested_machines %>
+  <%= @supplier.suggested_machines %>
 
-	<%= link_to "Add machines for this supplier", new_owner_path(@supplier.id) %>
-	<%= label_tag 'machines_in_database', 'Machines in the database & quantity (if above 1)' %>
-	<%# Duplication from supplier_profile %>
-	<% if @machines_quantity_hash %>
-		<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier, show_delete: true } %>
-	<% end %>
+  <%= link_to "Add machines for this supplier", new_owner_path(@supplier.id) %>
+  <%= label_tag 'machines_in_database', 'Machines in the database & quantity (if above 1)' %>
+  <%# Duplication from supplier_profile %>
+  <% if @machines_quantity_hash %>
+    <%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier, show_delete: true } %>
+  <% end %>
 
-	<h3>Tag information</h3>
+  <h3>Tag information</h3>
 
-	<%= label_tag 'suggested_services', 'suggested_services (from supplier)' if @supplier.suggested_services %>
-	<%= @supplier.suggested_services %>
+  <%= label_tag 'suggested_services', 'suggested_services (from supplier)' if @supplier.suggested_services %>
+  <%= @supplier.suggested_services %>
 
-	<div class="supplier-profile">
-		<%= label_tag 'display_tag_information', 'Display current tag information (white backgrounds only visible to admin)' %>
-		<%= render :partial => "/profiles/tag_display", locals: {tags: @tags, row_end: 8} %>
-	</div>
+  <div class="supplier-profile">
+    <%= label_tag 'display_tag_information', 'Display current tag information (white backgrounds only visible to admin)' %>
+    <%= render :partial => "/profiles/tag_display", locals: {tags: @tags, row_end: 8} %>
+  </div>
 
-	<%= label_tag 'change_tag_information', 'Change tag information' %>
-	<% tag_columns = 5 %>
-	<%= render :partial => "/suppliers/tag_matrix", locals: {tag_columns: tag_columns, family_names_and_tags: @family_names_and_tags, existing_tags: @checked_tags } %>
+  <%= label_tag 'change_tag_information', 'Change tag information' %>
+  <% tag_columns = 5 %>
+  <%= render :partial => "/suppliers/tag_matrix", locals: {tag_columns: tag_columns, family_names_and_tags: @family_names_and_tags, existing_tags: @checked_tags } %>
 
-	<h3>Dialogue information</h3>
+  <h3>Dialogue information</h3>
 
-	<% if @dialogues %>
-		<table>
-			<% @dialogues.each do |d| %>
-				<tr>
-					<td><%= link_to "Order #{d.order.id}: ", order_path(d.order.id) %></td>
-					<td><%= "opener sent " if d.opener_sent %></td>
-					<td><%= "bid placed " if d.bid? %></td>
-					<td><%= "won " if d.won %></td>
-					<td><%= "knows outcome " if d.knows_outcome? %></td>
-				</tr>
-			<% end %>
-		</table>
-	<% end %>
+  <% if @dialogues %>
+    <table>
+      <% @dialogues.each do |d| %>
+        <tr>
+          <td><%= link_to "Order #{d.order.id}: ", order_path(d.order.id) %></td>
+          <td><%= "opener sent " if d.opener_sent %></td>
+          <td><%= "bid placed " if d.bid? %></td>
+          <td><%= "won " if d.won %></td>
+          <td><%= "knows outcome " if d.knows_outcome? %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
 
-	<%= submit_tag "Submit", :disable_with => "Submitting...", :id => "create_button" %>
+  <%= submit_tag "Submit", :disable_with => "Submitting...", :id => "create_button" %>
 <% end %>

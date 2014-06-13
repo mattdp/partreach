@@ -2,17 +2,17 @@
 
 <div class="container">
   <div class="row">
-  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-			<h2 class="center dark">
-				<%= "#{@supplier.name} - admin_edit" %>
-			</h2>
+      <h2 class="center dark">
+        <%= "#{@supplier.name} - admin_edit" %>
+      </h2>
 
-			<%= render :partial => "communications/new_communication", locals: {c_id: @supplier.id, c_type: "Supplier", user_id: current_user.id} %>
-			<%= render :partial => "/profiles/tag_display", locals: {tags: @internal_tags, row_end: 8} %>
-			<%= render :partial => "communications/display_communications", locals: {communications: @communications} %>	
-			<%= render :partial => "suppliers/supplier_information", locals: {form_action: "admin_update"} %>
+      <%= render :partial => "communications/new_communication", locals: {c_id: @supplier.id, c_type: "Supplier", user_id: current_user.id} %>
+      <%= render :partial => "/profiles/tag_display", locals: {tags: @internal_tags, row_end: 8} %>
+      <%= render :partial => "communications/display_communications", locals: {communications: @communications} %>  
+      <%= render :partial => "suppliers/supplier_information", locals: {form_action: "admin_update"} %>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

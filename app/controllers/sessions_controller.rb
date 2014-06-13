@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
 
-	def new
-	end
+  def new
+  end
 
-	def create
+  def create
     lead_contact = LeadContact.find_by_email(params[:session][:email].downcase)
     if (lead_contact and user = lead_contact.contactable.user and user.authenticate(params[:session][:password]))
       sign_in user
@@ -12,11 +12,11 @@ class SessionsController < ApplicationController
       flash.now[:danger] = 'Invalid email/password combination'
       render 'new'
     end
-	end
+  end
 
-	def destroy
+  def destroy
     sign_out
     redirect_to root_url
-	end
+  end
 
 end

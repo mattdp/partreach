@@ -1,11 +1,11 @@
 <% text_field_setup.each do |model_name,symbols| %>
   <% mod = instance_variable_get(model_name) %>
   <% symbols.each do |symbol| %>
-		<div class="field">
-	    <%= label_tag symbol %>
-	    <%= text_field_tag symbol, mod.send(symbol) %>
-	  </div>
-	 <% end %>
+    <div class="field">
+      <%= label_tag symbol %>
+      <%= text_field_tag symbol, mod.send(symbol) %>
+    </div>
+   <% end %>
 <% end %>
 
 <div class="field">

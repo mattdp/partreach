@@ -39,15 +39,15 @@ class Dialogue < ActiveRecord::Base
   validates :order_group_id, :presence => true
 
   def knows_outcome?
-  	return (self.informed or self.declined? or self.won?)
+    return (self.informed or self.declined? or self.won?)
   end
 
   def declined?
-  	return (self.response_received and (self.total_cost.nil? or self.total_cost == 0))
+    return (self.response_received and (self.total_cost.nil? or self.total_cost == 0))
   end
 
   def bid?
-  	return (self.response_received and self.total_cost.present? and self.total_cost > 0)
+    return (self.response_received and self.total_cost.present? and self.total_cost > 0)
   end
 
   def should_be_informed?

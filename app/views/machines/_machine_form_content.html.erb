@@ -1,33 +1,33 @@
 <div class="almost-one-half fleft">
-	<%= label_tag "manufacturer[name]", "Manufacturer" %>
- 	<%= text_field_tag "manufacturer[name]", manufacturer.name %>
+  <%= label_tag "manufacturer[name]", "Manufacturer" %>
+  <%= text_field_tag "manufacturer[name]", manufacturer.name %>
 </div>
-<div class="almost-one-half fleft"	>
-	<%= label_tag "machine[name]", "Machine" %>
- 	<%= text_field_tag "machine[name]", machine.name %>
+<div class="almost-one-half fleft"  >
+  <%= label_tag "machine[name]", "Machine" %>
+  <%= text_field_tag "machine[name]", machine.name %>
 </div>
 <div class="clear">
-	<div class="one-fourth fleft">
-	<%= label_tag "machine[bv_length]", "BV length" %>
- 	<%= text_field_tag "machine[bv_length]", machine.bv_length %>
- 	</div>
-	<div class="one-fourth fleft">
-	<%= label_tag "machine[bv_width]", "BV width" %>
- 	<%= text_field_tag "machine[bv_width]", machine.bv_width %>
- 	</div>
-	<div class="one-fourth fleft">
-	<%= label_tag "machine[bv_height]", "BV height" %>
- 	<%= text_field_tag "machine[bv_height]", machine.bv_height %>
- 	</div>
+  <div class="one-fourth fleft">
+  <%= label_tag "machine[bv_length]", "BV length" %>
+  <%= text_field_tag "machine[bv_length]", machine.bv_length %>
+  </div>
+  <div class="one-fourth fleft">
+  <%= label_tag "machine[bv_width]", "BV width" %>
+  <%= text_field_tag "machine[bv_width]", machine.bv_width %>
+  </div>
+  <div class="one-fourth fleft">
+  <%= label_tag "machine[bv_height]", "BV height" %>
+  <%= text_field_tag "machine[bv_height]", machine.bv_height %>
+  </div>
 </div>
-<div class="almost-one-half fleft"	>
-	<%= label_tag "machine[z_height]", "Z-height" %>
- 	<%= text_field_tag "machine[z_height]", machine.z_height %>
+<div class="almost-one-half fleft"  >
+  <%= label_tag "machine[z_height]", "Z-height" %>
+  <%= text_field_tag "machine[z_height]", machine.z_height %>
 </div>
-<div class="almost-one-half fleft"	>
-	<%= label_tag "machine[materials_possible]", "Materials possible (use commas, no spaces btwn materials)" %>
- 	<%= text_area_tag "machine[materials_possible]", machine.materials_possible %>
-</div>	
+<div class="almost-one-half fleft"  >
+  <%= label_tag "machine[materials_possible]", "Materials possible (use commas, no spaces btwn materials)" %>
+  <%= text_area_tag "machine[materials_possible]", machine.materials_possible %>
+</div>  
 <div class="clear">
-	<%= submit_tag "Update" %>
+  <%= submit_tag "Update" %>
 </div>
