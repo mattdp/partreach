@@ -16,6 +16,7 @@
 
 class Tag < ActiveRecord::Base
 
+  belongs_to :tag_group
   has_many :combos
   has_many :suppliers, :through => :combos
  
@@ -42,14 +43,6 @@ class Tag < ActiveRecord::Base
 
   def self.proper_name_for_link(readable)
     Supplier.proper_name_for_link(readable)
-  end
-
-  def self.return_family_ids(family)
-  	answer = []
-  	Tag.find_each do |t|
-  		answer << t.id if t.family == family
-  	end
-  	return answer
   end
 
   #return hash of {family1:[tag1,tag2],family2:[tag3:tag4]}

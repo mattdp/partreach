@@ -16,12 +16,4 @@ class Combo < ActiveRecord::Base
 
   validates_uniqueness_of :supplier_id, scope: :tag_id
 
-  def self.destroy_family_tags(supplier_id, tag_id)
-  	family = Tag.find(tag_id).family
-  	removees = Tag.return_family_ids(family)
-  	Combo.find_each do |c|
-  		c.destroy if c.supplier_id == supplier_id and removees.include?(c.tag_id)
-  	end
-  end
-
 end

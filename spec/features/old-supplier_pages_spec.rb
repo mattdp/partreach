@@ -8,7 +8,8 @@ describe "Supplier-related pages" do
 
 		before(:each) do
 			FactoryGirl.create(:supplier)
-			FactoryGirl.create(:filter,name: "unitedstates-3dprinting", has_tag: FactoryGirl.create(:tag))
+			some_tag = FactoryGirl.create(:tag, tag_group: FactoryGirl.create(:tag_group))
+			FactoryGirl.create(:filter, name: "unitedstates-3dprinting", has_tag: some_tag)
 			FactoryGirl.create(:united_states)
 		end
 

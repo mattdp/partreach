@@ -322,15 +322,16 @@ class Supplier < ActiveRecord::Base
   end
 
   def add_tag(tag_id)
-    t = Tag.find_by_id(tag_id)    
-    return false if t.nil?    
-    match = Combo.where("supplier_id = ? AND tag_id = ?", self.id, tag_id)
-    return false unless match == [] 
-    c = Combo.new(supplier_id: self.id, tag_id: tag_id)
-    Combo.destroy_family_tags(self.id,tag_id) if t.exclusive and !t.family.nil?
-    to_return = c.save
-    Event.add_event("Supplier",self.id,"joined_network") if c.save and Tag.tag_set(:network,:name).include?(t.name)
-    return to_return
+    tag = Tag.find_by_id(tag_id)
+    return false if Combo.find_by(supplier: self, tag: tag)
+    if tag.tag_group.exclusive
+      self.tags.each do |t|
+        self.tags.destroy(t) if t.tag_group_id == tag.tag_group_id
+      end
+    end
+    self.tags << tag
+    Event.add_event("Supplier",self.id,"joined_network")if Tag.tag_set(:network,:name).include?(tag.name)
+    return true
   end
 
   def remove_tags(tag_id)
