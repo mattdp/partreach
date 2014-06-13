@@ -45,14 +45,6 @@ class Tag < ActiveRecord::Base
     Supplier.proper_name_for_link(readable)
   end
 
-  def self.return_family_ids(tag_group_id)
-  	answer = []
-  	Tag.find_each do |t|
-  		answer << t.id if t.tag_group_id == tag_group_id
-  	end
-  	return answer
-  end
-
   #return hash of {family1:[tag1,tag2],family2:[tag3:tag4]}
   def self.family_names_and_tags
     answers = {}

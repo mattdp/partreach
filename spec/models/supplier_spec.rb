@@ -20,10 +20,10 @@ describe "Supplier" do
 
 	describe "exclusive tags" do
 		before { @supplier.add_tag(@tag1b.id) }
-		it "should delete other tags in its family when added" do
+		it "should delete other tags in its tag_group when added" do
 			@supplier.has_tag?(@tag1a.id).should be_false
 		end
-		it "should retain other tags not in its family when added" do
+		it "should retain other tags not in its tag_group when added" do
 			@supplier.has_tag?(@tag2.id).should be_true
 		end
 	end
