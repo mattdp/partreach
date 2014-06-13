@@ -33,8 +33,8 @@ require 'csv'
 
 class Order < ActiveRecord::Base
   has_attached_file :drawing,
-  									:url => "/:attachment/:id/:style/:basename.:extension",
-  									:path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
+                    :url => "/:attachment/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
   
   belongs_to :user
   has_many :order_groups, dependent: :destroy

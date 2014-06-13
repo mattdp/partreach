@@ -2,63 +2,63 @@
 
 <div class="container">
   <div class="row">
-  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-			<h1><%= "Editing Profile for #{@supplier.name}" %></h1>
-			<div class="bit-of-space">
-				<p>Editing your profile, which gives buyers better information and more reason to pick your business, is totally free and comes with no obligation.</p>
-				<p><%= " If you join our network, we will route more business your way, and each time you choose to bid on a lead SupplyBetter will charge you 1% of the bid and give you the potential client's contact information." if !@supplier.is_in_network? %></p>
-				<p><% if @supplier.is_in_network? %>
-					<%= link_to "See your profile as it looks to buyers right now.", supplier_profile_path(@supplier.name_for_link) %>
-				<% else %>
-					<%= link_to "Learn about joining our network", be_a_supplier_path %> or <%= link_to "see your profile as it looks right now.", supplier_profile_path(@supplier.name_for_link) %>
-				<% end %></p>
-			</div>
-			<%= render partial: "suppliers/points_table", locals: {supplier: @supplier, point_structure: @point_structure, on_edit_page: true} %>
-			<div>
-	      <%= form_tag supplier_path(@supplier), method: :put do %>
-					<br>
-					<%= label_tag 'suggested_url_main', "What is the web address of your homepage, if we don't have it already? This information is public." %>
-					<%= text_field_tag 'suggested_url_main', @supplier.suggested_url_main %>
-					<% if !@supplier.url_main.nil?%>
-						<p>Current URL: <%= "#{@supplier.url_main}" %></p>
-					<% end %>
-					<br>
-					<%= label_tag 'suggested_address', "What is the physical address of your primary production site, if we don't have it already? This information is public." %>
-					<%= text_area_tag 'suggested_address', @supplier.suggested_address %>
-					<% if @supplier.address %>
-						<p>Current address: <%= "#{@supplier.address.readable}" %></p>
-					<% end %>
-					<br>
-					<%= label_tag 'suggested_description', 'Suggest additions or changes to supplier description. This information is public.' %>
-					<%= text_area_tag 'suggested_description', @supplier.suggested_description %>
-					<p>Current description (will not change until reviewed by SupplyBetter): <%= raw(@supplier.description) if !@supplier.description.nil?%></p>
-					<br>
-					<%= label_tag 'suggested_machines', 'Suggest additions or changes to machine data. Please give us exact names of machines - we will use their capabilities, build envelopes, etc. to match you with jobs. This information is public.' %>
-					<%= text_area_tag 'suggested_machines', @supplier.suggested_machines %>
-					<p>Current machines (will not change until reviewed by SupplyBetter):
-	    			<% @machines_quantity_hash.each do |k,v| %>
-							<li>
-								<%= "#{Machine.find(k).formatted_name}"%>
-								<%= " (#{pluralize(v,"machine")})" if v > 1 %>
-							</li>
-						<% end %>
-					</p>
-					<br>
-					<%= label_tag 'suggested_services', "What sort of services do you perform? This could range from 'FDM 3D printing' to 'impression die forging' to 'reverse engineering'. We will take this explanation and tag your company for future searches. This information is public." %>
-					<%= text_area_tag 'suggested_services', @supplier.suggested_services %>
-					<% if @tags != [] %>
-						<p>Current tags: <%= "#{@tags.map{|t| t.readable}.join(", ")}" %></p>
-					<% end %>
-					<br>
-					<%= label_tag 'suggested_preferences', "Suggest additions or changes to preference data: do you prefer working in certain materials, to deal only with companies, or to avoid orders under certain quantities? If you have preferences about your ideal customer, that can help us send you better leads. This information is private." %>
-					<%= text_area_tag 'suggested_preferences', @supplier.suggested_preferences %>
-					<br>
+      <h1><%= "Editing Profile for #{@supplier.name}" %></h1>
+      <div class="bit-of-space">
+        <p>Editing your profile, which gives buyers better information and more reason to pick your business, is totally free and comes with no obligation.</p>
+        <p><%= " If you join our network, we will route more business your way, and each time you choose to bid on a lead SupplyBetter will charge you 1% of the bid and give you the potential client's contact information." if !@supplier.is_in_network? %></p>
+        <p><% if @supplier.is_in_network? %>
+          <%= link_to "See your profile as it looks to buyers right now.", supplier_profile_path(@supplier.name_for_link) %>
+        <% else %>
+          <%= link_to "Learn about joining our network", be_a_supplier_path %> or <%= link_to "see your profile as it looks right now.", supplier_profile_path(@supplier.name_for_link) %>
+        <% end %></p>
+      </div>
+      <%= render partial: "suppliers/points_table", locals: {supplier: @supplier, point_structure: @point_structure, on_edit_page: true} %>
+      <div>
+        <%= form_tag supplier_path(@supplier), method: :put do %>
+          <br>
+          <%= label_tag 'suggested_url_main', "What is the web address of your homepage, if we don't have it already? This information is public." %>
+          <%= text_field_tag 'suggested_url_main', @supplier.suggested_url_main %>
+          <% if !@supplier.url_main.nil?%>
+            <p>Current URL: <%= "#{@supplier.url_main}" %></p>
+          <% end %>
+          <br>
+          <%= label_tag 'suggested_address', "What is the physical address of your primary production site, if we don't have it already? This information is public." %>
+          <%= text_area_tag 'suggested_address', @supplier.suggested_address %>
+          <% if @supplier.address %>
+            <p>Current address: <%= "#{@supplier.address.readable}" %></p>
+          <% end %>
+          <br>
+          <%= label_tag 'suggested_description', 'Suggest additions or changes to supplier description. This information is public.' %>
+          <%= text_area_tag 'suggested_description', @supplier.suggested_description %>
+          <p>Current description (will not change until reviewed by SupplyBetter): <%= raw(@supplier.description) if !@supplier.description.nil?%></p>
+          <br>
+          <%= label_tag 'suggested_machines', 'Suggest additions or changes to machine data. Please give us exact names of machines - we will use their capabilities, build envelopes, etc. to match you with jobs. This information is public.' %>
+          <%= text_area_tag 'suggested_machines', @supplier.suggested_machines %>
+          <p>Current machines (will not change until reviewed by SupplyBetter):
+            <% @machines_quantity_hash.each do |k,v| %>
+              <li>
+                <%= "#{Machine.find(k).formatted_name}"%>
+                <%= " (#{pluralize(v,"machine")})" if v > 1 %>
+              </li>
+            <% end %>
+          </p>
+          <br>
+          <%= label_tag 'suggested_services', "What sort of services do you perform? This could range from 'FDM 3D printing' to 'impression die forging' to 'reverse engineering'. We will take this explanation and tag your company for future searches. This information is public." %>
+          <%= text_area_tag 'suggested_services', @supplier.suggested_services %>
+          <% if @tags != [] %>
+            <p>Current tags: <%= "#{@tags.map{|t| t.readable}.join(", ")}" %></p>
+          <% end %>
+          <br>
+          <%= label_tag 'suggested_preferences', "Suggest additions or changes to preference data: do you prefer working in certain materials, to deal only with companies, or to avoid orders under certain quantities? If you have preferences about your ideal customer, that can help us send you better leads. This information is private." %>
+          <%= text_area_tag 'suggested_preferences', @supplier.suggested_preferences %>
+          <br>
 
-					<%= submit_tag "Suggest edits", :disable_with => "Creating...", :id => "create_button" %>
-				<% end %>    
-	    </div>
+          <%= submit_tag "Suggest edits", :disable_with => "Creating...", :id => "create_button" %>
+        <% end %>    
+      </div>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

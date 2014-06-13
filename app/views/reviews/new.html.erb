@@ -3,89 +3,89 @@
 
 <div class="container">
   <div class="row">
-  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-			<%= form_tag :action => 'create', :controller => 'reviews' do %>
+      <%= form_tag :action => 'create', :controller => 'reviews' do %>
 
-				<% if @review.errors.any? %>
-			    <div class="error_explanation">
-			      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
-			      <ul>
-			        <% @review.errors.full_messages.each do |msg| %>
-			          <li><%= msg %></li>
-			        <% end %>
-			      </ul>
-			    </div>
-			  <% end %>
+        <% if @review.errors.any? %>
+          <div class="error_explanation">
+            <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+            <ul>
+              <% @review.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-			  <h1 class="center">Supplier review</h1>
+        <h1 class="center">Supplier review</h1>
 
-			  <p><strong>These reviews will be anonymized.</strong> Your company name and part design will not be shared.</p>
+        <p><strong>These reviews will be anonymized.</strong> Your company name and part design will not be shared.</p>
 
-				<div class="almost-one-half fleft">
-					<%= label_tag 'company', 'Which supplier are you reviewing?' %>
-					<%= text_field_tag 'company', nil %>
-				</div>
+        <div class="almost-one-half fleft">
+          <%= label_tag 'company', 'Which supplier are you reviewing?' %>
+          <%= text_field_tag 'company', nil %>
+        </div>
 
-				<div class="almost-one-half padding-left fleft">
-					<%= label_tag 'process', 'What manufacturing process did they use?' %>
-					<%= text_field_tag 'process', nil %>
-				</div>
+        <div class="almost-one-half padding-left fleft">
+          <%= label_tag 'process', 'What manufacturing process did they use?' %>
+          <%= text_field_tag 'process', nil %>
+        </div>
 
-				<div class="clear">
-					<%= label_tag 'part_type', 'What sort of part did you have made?' %>
-					<%= text_field_tag 'part_type', nil %>
-				</div>
+        <div class="clear">
+          <%= label_tag 'part_type', 'What sort of part did you have made?' %>
+          <%= text_field_tag 'part_type', nil %>
+        </div>
 
-				<div>
-					<div>
-						<%= label_tag 'would_recommend', 'Would you work with this supplier again?' %>
-					</div>
+        <div>
+          <div>
+            <%= label_tag 'would_recommend', 'Would you work with this supplier again?' %>
+          </div>
 
-					<div class="one-fourth fleft">
-						<%= radio_button_tag 'would_recommend', true, false, class: "fleft center radio" %>
-						<%= label_tag 'would_recommend', 'Yes', class: "fleft" %>
-					</div>
+          <div class="one-fourth fleft">
+            <%= radio_button_tag 'would_recommend', true, false, class: "fleft center radio" %>
+            <%= label_tag 'would_recommend', 'Yes', class: "fleft" %>
+          </div>
 
-					<div class="one-fourth fleft">
-						<%= radio_button_tag 'would_recommend', true, false, class: "fleft center padding-left radio" %>
-						<%= label_tag 'would_recommend', 'No', class: "fleft" %>
-					</div>
+          <div class="one-fourth fleft">
+            <%= radio_button_tag 'would_recommend', true, false, class: "fleft center padding-left radio" %>
+            <%= label_tag 'would_recommend', 'No', class: "fleft" %>
+          </div>
 
-				</div>
+        </div>
 
-				<div class="clear">
-					<%= label_tag "Please rate the following from 1 to 5 (5 highest):" %>
-					<table class="clear review-table">
-						<tr>
-							<td class="numeric-input"><%= text_field_tag 'quality', nil  %></td>
-							<td class="overall-category"><%= label_tag 'quality', 'Quality' %></td>
-							<td class="explanation"><span class="italics">How well did the part(s) come out? If there was more than one part produced, how good or bad was the consistency between parts?</span></td>
-						</tr>
-						<tr>
-							<td class="numeric-input"><%= text_field_tag 'adaptability', nil %></td>
-							<td class="overall-category"><%= label_tag 'adaptability', 'Adaptability' %></td>
-							<td class="explanation"><span class="italics">Was the supplier able to answer your questions in a timely fashion? Were there any issues that had to be worked through, and was the supplier helpful in reaching a solution?</span></td>
-						</tr>		
-						<tr>
-							<td class="numeric-input"><%= text_field_tag 'delivery', nil %></td>
-							<td class="overall-category"><%= label_tag 'delivery', 'Delivery' %></td>
-							<td class="explanation"><span class="italics">Was the order processed and shipped on time? Did the package arrive on time? When you received the package, were the parts packed properly to avoid damage?</span></td>
-						</tr>
-					</table>
-				</div>
+        <div class="clear">
+          <%= label_tag "Please rate the following from 1 to 5 (5 highest):" %>
+          <table class="clear review-table">
+            <tr>
+              <td class="numeric-input"><%= text_field_tag 'quality', nil  %></td>
+              <td class="overall-category"><%= label_tag 'quality', 'Quality' %></td>
+              <td class="explanation"><span class="italics">How well did the part(s) come out? If there was more than one part produced, how good or bad was the consistency between parts?</span></td>
+            </tr>
+            <tr>
+              <td class="numeric-input"><%= text_field_tag 'adaptability', nil %></td>
+              <td class="overall-category"><%= label_tag 'adaptability', 'Adaptability' %></td>
+              <td class="explanation"><span class="italics">Was the supplier able to answer your questions in a timely fashion? Were there any issues that had to be worked through, and was the supplier helpful in reaching a solution?</span></td>
+            </tr>   
+            <tr>
+              <td class="numeric-input"><%= text_field_tag 'delivery', nil %></td>
+              <td class="overall-category"><%= label_tag 'delivery', 'Delivery' %></td>
+              <td class="explanation"><span class="italics">Was the order processed and shipped on time? Did the package arrive on time? When you received the package, were the parts packed properly to avoid damage?</span></td>
+            </tr>
+          </table>
+        </div>
 
-				<div class="clear">
-					<%= label_tag 'did_well', 'What did the supplier do well?' %>
-					<%= text_area_tag 'did_well', nil %>
-					<%= label_tag 'did_well', 'What should the supplier work on to improve?' %>
-					<%= text_area_tag 'did_badly', nil %>
-				</div>
+        <div class="clear">
+          <%= label_tag 'did_well', 'What did the supplier do well?' %>
+          <%= text_area_tag 'did_well', nil %>
+          <%= label_tag 'did_well', 'What should the supplier work on to improve?' %>
+          <%= text_area_tag 'did_badly', nil %>
+        </div>
 
-				<%= submit_tag "Submit review", :disable_with => "Saving...", class: "save-button" %>
+        <%= submit_tag "Submit review", :disable_with => "Saving...", class: "save-button" %>
 
-			<% end %>
+      <% end %>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

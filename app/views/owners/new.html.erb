@@ -2,42 +2,42 @@
 
 <div class="container">
   <div class="row">
-  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-			<h3>Add machines to supplier</h3>
+      <h3>Add machines to supplier</h3>
 
-			<%= form_tag :action => "create", :controller => "owners" do %>
-				<div>
-					<%= label_tag :supplier_id, "Supplier ID" %>
-				 	<%= text_field_tag :supplier_id, @supplier.id, class: "input_field" %>
-			 	</div>
-				<div>
-					<%= label_tag :machine_id, "Machine ID" %>
-				 	<%= text_field_tag :machine_id, nil, class: "input_field" %>
-			 	</div>
-				<div>
-					<%= label_tag :quantity, "Quantity to add" %>
-				 	<%= text_field_tag :quantity, 1, class: "input_field" %>
-			 	</div> 	
-				<div class="clear">
-					<%= submit_tag "Add machine(s)" %>
-				</div>
-			<% end %>
+      <%= form_tag :action => "create", :controller => "owners" do %>
+        <div>
+          <%= label_tag :supplier_id, "Supplier ID" %>
+          <%= text_field_tag :supplier_id, @supplier.id, class: "input_field" %>
+        </div>
+        <div>
+          <%= label_tag :machine_id, "Machine ID" %>
+          <%= text_field_tag :machine_id, nil, class: "input_field" %>
+        </div>
+        <div>
+          <%= label_tag :quantity, "Quantity to add" %>
+          <%= text_field_tag :quantity, 1, class: "input_field" %>
+        </div>  
+        <div class="clear">
+          <%= submit_tag "Add machine(s)" %>
+        </div>
+      <% end %>
 
-			<%= link_to "Back to supplier admin edit", admin_edit_path(@supplier.name_for_link) %>
+      <%= link_to "Back to supplier admin edit", admin_edit_path(@supplier.name_for_link) %>
 
-			<h3>Existing machines</h3>
+      <h3>Existing machines</h3>
 
-			<% if @machines_quantity_hash %>
-				<%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier, show_delete: true } %>
-			<% end %>
+      <% if @machines_quantity_hash %>
+        <%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier, show_delete: true } %>
+      <% end %>
 
-			<h3>All machine IDs</h3>
+      <h3>All machine IDs</h3>
 
-			<%= link_to "Add a machine to the list", new_machine_path %>
+      <%= link_to "Add a machine to the list", new_machine_path %>
 
-			<%= render :partial => 'analytics/machines_table', locals: {machines: @machines} %>
+      <%= render :partial => 'analytics/machines_table', locals: {machines: @machines} %>
 
-		</div>
-	</div>
+    </div>
+  </div>
 </div>

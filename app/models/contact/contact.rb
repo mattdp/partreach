@@ -23,37 +23,37 @@
 #
 
 class Contact < ActiveRecord::Base
-	belongs_to :contactable, polymorphic: true
+  belongs_to :contactable, polymorphic: true
 
-	#will need to expand to allow different models
-	def self.create_or_update_contacts(model,parameters)
+  #will need to expand to allow different models
+  def self.create_or_update_contacts(model,parameters)
     updatables = {
-    								"Supplier" => { 
-	    								:billing_contact => BillingContact, 
-	    								:contract_contact => ContractContact,
-	    								:rfq_contact => RfqContact
-    								}
-    							}					
+                    "Supplier" => { 
+                      :billing_contact => BillingContact, 
+                      :contract_contact => ContractContact,
+                      :rfq_contact => RfqContact
+                    }
+                  }         
 
     updatables[model.class.to_s].each do |method_name,class_name|
-    	if parameters[method_name].present?
-    		cleaner_parameters = parameters[method_name].delete_if { |k,v| v.nil? or v.empty?}
-	    	if !model.send(method_name).present?
-	    		model.send("#{method_name}=",class_name.create(cleaner_parameters))
-	    	else
-	    		model.send(method_name).update_attributes(cleaner_parameters)
-	    	end
-	    end
+      if parameters[method_name].present?
+        cleaner_parameters = parameters[method_name].delete_if { |k,v| v.nil? or v.empty?}
+        if !model.send(method_name).present?
+          model.send("#{method_name}=",class_name.create(cleaner_parameters))
+        else
+          model.send(method_name).update_attributes(cleaner_parameters)
+        end
+      end
     end
-	end
+  end
 
   def full_name_untrusted
-  	if (self.first_name.present? or self.last_name.present?)
-  		return "#{self.first_name} #{self.last_name}"
-  	else
-  		return "#{self.name}"
-  	end
-  end	
+    if (self.first_name.present? or self.last_name.present?)
+      return "#{self.first_name} #{self.last_name}"
+    else
+      return "#{self.name}"
+    end
+  end 
 
   def salutation
     return "Hi #{self.first_name}," if self.first_name.present?

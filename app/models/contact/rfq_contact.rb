@@ -23,5 +23,5 @@
 #
 
 class RfqContact < Contact
-	
+  
 end

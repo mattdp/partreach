@@ -1,22 +1,22 @@
 <%= form_for @order_group do |f| %>
 
-	<%= hidden_field_tag "order_group[order_id]", params[:order_id] if @order_group.order_id.nil?%>
+  <%= hidden_field_tag "order_group[order_id]", params[:order_id] if @order_group.order_id.nil?%>
 
-	<div class="field">
-	  <%= f.label :name %>
-	  <%= f.text_field :name %>
-	</div>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
 
-	<div class="field">
-	  <%= f.label :process %>
-	  <%= f.text_field :process %>
-	</div>
+  <div class="field">
+    <%= f.label :process %>
+    <%= f.text_field :process %>
+  </div>
 
-	<div class="field">
-	  <%= f.label :material %>
-	  <%= f.text_field :material %>
-	</div>
+  <div class="field">
+    <%= f.label :material %>
+    <%= f.text_field :material %>
+  </div>
 
-	<div class="actions"><%= f.submit "Save Order Group", class: "save-button" %></div>
+  <div class="actions"><%= f.submit "Save Order Group", class: "save-button" %></div>
 
 <% end %>

@@ -2,12 +2,12 @@
 
 <div class="container">
   <div class="row">
-  	<%# colors different since email pasting needs black font, white background %>
-  	<div class="col-sm-10 col-sm-offset-1 email-font">
+    <%# colors different since email pasting needs black font, white background %>
+    <div class="col-sm-10 col-sm-offset-1 email-font">
 
-  		<p><%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %></p>
+      <p><%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %></p>
 
-  		<p><%= link_to "Edit master email for this order", initial_email_edit_path(@order) %></p>
+      <p><%= link_to "Edit master email for this order", initial_email_edit_path(@order) %></p>
 
       <p><%= link_to "SEND initial email - no confirmation! (pretty format)", dialogue_send_initial_email_path(@dialogue), method: :post %></p>
 
@@ -28,21 +28,21 @@
       <% end %>
 
 
-  		<p>First name of RFQ contact: 
-	  		<% if @contact.first_name %>
-	  			<%= "#{@contact.first_name} (full name: #{@contact.full_name_untrusted})" %>
-	  		<% else %>
-	  			<%= link_to "First name not in database. Click to enter it.", admin_edit_path(@supplier.name_for_link) %>
-	  		<% end %>
-  		</p>
+      <p>First name of RFQ contact: 
+        <% if @contact.first_name %>
+          <%= "#{@contact.first_name} (full name: #{@contact.full_name_untrusted})" %>
+        <% else %>
+          <%= link_to "First name not in database. Click to enter it.", admin_edit_path(@supplier.name_for_link) %>
+        <% end %>
+      </p>
 
       <p>Email of RFQ contact: <%= text_field_tag "dummy_subject", "#{@contact.email}" %></p>
 
-  		<p>-----BEGIN COPYABLE TEXT-----</p>
+      <p>-----BEGIN COPYABLE TEXT-----</p>
 
       <%= text_field_tag "dummy_subject", "#{raw @subject}" %>
-  		<%= raw "#{@body}" %>
+      <%= raw "#{@body}" %>
 
-  	</div>
+    </div>
   </div>
 </div>

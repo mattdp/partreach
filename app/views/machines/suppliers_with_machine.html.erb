@@ -2,22 +2,22 @@
 
 <div class="container">
   <div class="row">
-  	<div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-  	<% if @suppliers.present? %>
-  		<h3><%= "Suppliers who have at least one #{@machine.formatted_name}" %></h3>
-  		<ul>
-	  		<% @suppliers.each do |supplier| %>
-	  			<li><%= link_to "#{supplier.name}", admin_edit_path(supplier.name_for_link) %></li>
-	  		<% end %>
-	  	</ul>
-  	<% else %>
-  		<h3>Better luck next time!</h3>
-  		<p>No suppliers are linked to this machine in the database.</p>
-  	<% end %>
+    <% if @suppliers.present? %>
+      <h3><%= "Suppliers who have at least one #{@machine.formatted_name}" %></h3>
+      <ul>
+        <% @suppliers.each do |supplier| %>
+          <li><%= link_to "#{supplier.name}", admin_edit_path(supplier.name_for_link) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <h3>Better luck next time!</h3>
+      <p>No suppliers are linked to this machine in the database.</p>
+    <% end %>
 
-  	<%= link_to "Back to machines", analytics_machines_path %>
+    <%= link_to "Back to machines", analytics_machines_path %>
 
-  	</div>
+    </div>
   </div>
 </div>

@@ -15,22 +15,22 @@
 
 class Communication < ActiveRecord::Base
 
-	belongs_to :communicator, polymorphic: true
-	belongs_to :supplier
-	belongs_to :user
+  belongs_to :communicator, polymorphic: true
+  belongs_to :supplier
+  belongs_to :user
 
-	validates :communicator_id, presence: true
-	validates :communicator_type, presence: true
-	validates :means_of_interaction, presence: true
+  validates :communicator_id, presence: true
+  validates :communicator_type, presence: true
+  validates :means_of_interaction, presence: true
 
-	def self.get_ordered(model,id)
-		Communication.where("communicator_id = ? AND communicator_type = '#{model}'",id).sort_by{ |c| c.created_at }.reverse
-	end
+  def self.get_ordered(model,id)
+    Communication.where("communicator_id = ? AND communicator_type = '#{model}'",id).sort_by{ |c| c.created_at }.reverse
+  end
 
-	def self.has_communication?(model,interaction_title)
-		if model and comms = model.communications and comms.present?
-			return comms.any?{|c| c.interaction_title == interaction_title}
-		end
-	end
+  def self.has_communication?(model,interaction_title)
+    if model and comms = model.communications and comms.present?
+      return comms.any?{|c| c.interaction_title == interaction_title}
+    end
+  end
 
 end

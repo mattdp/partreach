@@ -1,10 +1,10 @@
 <% text_field_attributes = [:name,:first_name,:last_name,:phone,:email,:method] %>
 <% text_field_attributes.each do |attribute| %>
-	<%= label_tag "#{contact_type}[#{attribute}]", "#{attribute}" %>
-	<%= text_field_tag "#{contact_type}[#{attribute.to_s}]", contact.send(attribute) %>
+  <%= label_tag "#{contact_type}[#{attribute}]", "#{attribute}" %>
+  <%= text_field_tag "#{contact_type}[#{attribute.to_s}]", contact.send(attribute) %>
 <% end %>
 <% text_area_attributes = [:notes] %>
 <% text_area_attributes.each do |attribute| %>
-	<%= label_tag "#{contact_type}[#{attribute}]", "#{attribute}" %>
-	<%= text_area_tag "#{contact_type}[#{attribute.to_s}]", contact.send(attribute) %>
+  <%= label_tag "#{contact_type}[#{attribute}]", "#{attribute}" %>
+  <%= text_area_tag "#{contact_type}[#{attribute.to_s}]", contact.send(attribute) %>
 <% end %>

@@ -1,7 +1,7 @@
 #sets of information that could possibly be displayed on an order
 
 class OrderColumn
-	def self.all
+  def self.all
     
     list = {
       bid_status: {
@@ -47,7 +47,7 @@ class OrderColumn
     }
 
     return list
-	end
+  end
 
   def self.get_columns(set=:all)
     map = OrderColumn.set_to_names_map
