@@ -1,11 +1,11 @@
 <p><%= link_to "Add a new tag", new_tag_path %></p>
 <table class="tag_matrix">
 
-  <% @family_names_and_tags.keys.each do |k| %>
+  <% @tags_by_group.keys.each do |k| %>
     <% counter = 1 %>
     <tr>
       <td><strong><%= "#{k}" %><strong></td>
-      <% @family_names_and_tags[k].each do |t| %>
+      <% @tags_by_group[k].each do |t| %>
         <% if counter >= tag_columns %>
           </tr><tr>
           <% counter = 0 %>

@@ -16,7 +16,7 @@ class SuppliersController < ApplicationController
     @address = Address.new
     @address.country = Geography.new
     @address.state = Geography.new
-    @family_names_and_tags = Tag.family_names_and_tags
+    @tags_by_group = Tag.tags_by_group
     @billing_contact = BillingContact.new
     @contract_contact = ContractContact.new
     @rfq_contact = RfqContact.new
@@ -54,7 +54,7 @@ class SuppliersController < ApplicationController
     @checked_tags = @tags
     @internal_tags = @supplier.internal_tags
     @address = @supplier.address
-    @family_names_and_tags = Tag.family_names_and_tags
+    @tags_by_group = Tag.tags_by_group
     @claimant = User.find_by_supplier_id(@supplier.id)
     @machines_quantity_hash = @supplier.machines_quantity_hash
     @dialogues = Dialogue.where("supplier_id = ?",@supplier.id).order("created_at desc")

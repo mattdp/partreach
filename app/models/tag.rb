@@ -45,18 +45,13 @@ class Tag < ActiveRecord::Base
     Supplier.proper_name_for_link(readable)
   end
 
-  #return hash of {family1:[tag1,tag2],family2:[tag3:tag4]}
-  def self.family_names_and_tags
+  #return hash of {group1_name=>[tag1, tag2, ...], group2_name=>[tag3, tag4, ...], ...}
+  def self.tags_by_group
     answers = {}
-    Tag.find_each do |t|
-      t.family.nil? ? tkey = "No family" : tkey = t.family
-      if answers.has_key?(tkey)
-        answers[tkey] << t
-      else
-        answers[tkey] = [t]
-      end
+    TagGroup.eager_load(:tags).each do |tag_group|
+      answers[tag_group.group_name] = tag_group.tags
     end
-    return answers
+    answers
   end
 
   #takes array of 1-n tags and a country
