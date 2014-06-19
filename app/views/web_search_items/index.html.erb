@@ -1,4 +1,4 @@
-<h1>Listing web_search_items</h1>
+<h1>Supplier web search items</h1>
 
 <table>
   <thead>
@@ -28,4 +28,24 @@
 
 <br>
 
-<%= link_to 'New Web search item', new_web_search_item_path %>
+<div>
+<%= link_to 'Add new supplier web search item', new_web_search_item_path %>
+</div>
+
+<br>
+
+<div>
+<%= form_tag({action: :upload}, multipart: true) do %>
+  <%= label_tag :file, "Upload list of supplier web search items:" %>
+  <%= file_field_tag :file %>
+  <br>
+  <%= label_tag :priority %>
+  <%= number_field_tag :priority %>
+  <br>
+  <%= label_tag :num_requested %> (max. 100)
+  <%= text_field_tag :num_requested %>
+  <br>
+  <%= submit_tag "Add items" %>
+<% end %>
+</div>
+

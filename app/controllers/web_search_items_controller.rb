@@ -29,7 +29,7 @@ class WebSearchItemsController < ApplicationController
   # PATCH/PUT /web_search_items/1
   def update
     params = web_search_item_params
-    params["priority"] = WebSearchItem::DEFAULT_PRIORITY if params["priority"].blank?
+    params[:priority] = WebSearchItem::DEFAULT_PRIORITY if params[:priority].blank?
     if @web_search_item.update(params)
       redirect_to web_search_items_path, notice: 'Web search item was successfully updated.'
     else
@@ -40,8 +40,24 @@ class WebSearchItemsController < ApplicationController
   # DELETE /web_search_items/1
   def destroy
     @web_search_item.destroy
-    redirect_to web_search_items_url, notice: 'Web search item was successfully destroyed.'
+    redirect_to web_search_items_path, notice: 'Web search item was successfully deleted.'
   end
+
+  def upload
+    uploaded_file = params[:file]
+    priority = params[:priority].blank? ? WebSearchItem::DEFAULT_PRIORITY : params[:priority]
+    num_requested = params[:num_requested]
+
+    if uploaded_file
+      search_items = uploaded_file.open
+      search_items.each do |line|
+        WebSearchItem.add_item(line, priority, num_requested)
+      end
+    end
+
+    redirect_to web_search_items_path, notice: 'Web search item list was successfully uploaded.'
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
