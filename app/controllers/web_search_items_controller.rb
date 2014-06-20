@@ -45,7 +45,7 @@ class WebSearchItemsController < ApplicationController
 
   def upload
     uploaded_file = params[:file]
-    priority = params[:priority].blank? ? WebSearchItem::DEFAULT_PRIORITY : params[:priority]
+    priority = params[:priority].present? ? params[:priority] : WebSearchItem::DEFAULT_PRIORITY
     num_requested = params[:num_requested]
 
     if uploaded_file
@@ -58,6 +58,14 @@ class WebSearchItemsController < ApplicationController
     redirect_to web_search_items_path, notice: 'Web search item list was successfully uploaded.'
   end
 
+  def run_immediate
+    size = params[:batch_size].present? ? params[:batch_size] : 10
+    WebSearchItem.batch(size).each do |item|
+      WebSearchResult.search_google(item)
+    end
+
+    redirect_to web_search_items_path, notice: 'Supplier web search was successfully run.'
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,5 +1,6 @@
 <h1>Supplier web search items</h1>
 
+<h3>Current list waiting to run:</h3>
 <table>
   <thead>
     <tr>
@@ -29,23 +30,62 @@
 <br>
 
 <div>
-<%= link_to 'Add new supplier web search item', new_web_search_item_path %>
+<%= link_to 'Add new search item', new_web_search_item_path %>
 </div>
 
 <br>
 
 <div>
+<h3>Upload additional search items:</h3>
 <%= form_tag({action: :upload}, multipart: true) do %>
-  <%= label_tag :file, "Upload list of supplier web search items:" %>
+<table>
+<tbody>
+<tr>
+<td>
   <%= file_field_tag :file %>
-  <br>
+</td>
+</tr>
+<tr>
+<td>
   <%= label_tag :priority %>
   <%= number_field_tag :priority %>
-  <br>
+</td>
+</tr>
+<tr>
+<td>
   <%= label_tag :num_requested %> (max. 100)
   <%= text_field_tag :num_requested %>
-  <br>
-  <%= submit_tag "Add items" %>
+</td>
+</tr>
+<tr>
+<td>
+  <%= submit_tag "Upload items" %>
+</td>
+</tr>
+</tbody>
+</table>
 <% end %>
 </div>
 
+<br>
+
+<div>
+<h3>Run search from current list</h3>
+<%= form_tag(action: :run_immediate) do %>
+<table>
+<tbody>
+<tr>
+<td>
+  <%= label_tag :priority, "Number of items (max. 10)" %>
+  <%= number_field_tag :batch_size %>
+</td>
+</tr>
+<tr>
+<td>
+  <%= submit_tag "Run search" %>
+</td>
+</tr>
+</tbody>
+</table>
+<% end %>
+</div>
