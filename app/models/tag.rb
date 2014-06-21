@@ -23,6 +23,11 @@ class Tag < ActiveRecord::Base
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :readable, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true
+  validates_presence_of :tag_group
+
+  def self.all_by_group
+    Tag.includes(:tag_group).order('tag_groups.id, tags.id')
+  end
 
   def self.tag_set(category,attribute)
     sets = {

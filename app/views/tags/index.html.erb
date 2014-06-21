@@ -8,21 +8,27 @@
       <p><%= link_to "Back to analytics", analytics_metrics_path %></p>
 
       <table>
+        <% current_group_name = "" %>
+        <% @tags.each do |tag| %>
+          <% group_name = tag.tag_group.group_name %>
+          <% if group_name != current_group_name %>
+            <% current_group_name = group_name %>
+            <tr>
+              <td colspan="7"><h4><strong><%= "Tag group: #{current_group_name}" %></strong></h4></td>
+            </tr>
         <tr>
           <th>ID</th>
           <th>Readable</th>
-          <th>Family</th>
           <th>Name</th>
           <th>Name for link</th>
-          <th>Edit</th>
           <th>Visible</th>
           <th>Exclusive</th>
+          <th></th>
         </tr>
-        <% @tags.each do |tag| %>
+          <% end %>
           <tr>
             <td><%= tag.id %>
             <td><%= tag.readable %></td>
-            <td><%= tag.family %></td>
             <td><%= tag.name %></td>
             <td><%= tag.name_for_link %></td>
             <td><%= tag.visible %></td>

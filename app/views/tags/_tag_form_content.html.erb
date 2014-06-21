@@ -1,26 +1,24 @@
-<p><%= link_to "Back to tags", tags_path %></p>
+<%= label_tag :tag_group_id %>
+<%= select_tag(:tag_group_id, options_from_collection_for_select(TagGroup.all, :id, :group_name, @tag.tag_group_id)) %>
 
 <%= label_tag :name %>
-<%= text_field_tag :name, tag.name %>
+<%= text_field_tag :name, @tag.name %>
 
 <%= label_tag :readable %>
-<%= text_field_tag :readable, tag.readable %>
-
-<%= label_tag :family %>
-<%= text_field_tag :family, tag.family %>
+<%= text_field_tag :readable, @tag.readable %>
 
 <%= label_tag :note %>
-<%= text_area_tag :note, tag.note %>
+<%= text_area_tag :note, @tag.note %>
 
 <div>
   <div><%= label_tag :visible %></div>
   <div class="one-fourth fleft">
     <%= label_tag :visible, "True" %>
-    <%= radio_button_tag :visible, true, tag.visible %>
+    <%= radio_button_tag :visible, true, @tag.visible %>
   </div>
   <div class="one-fourth fleft">
     <%= label_tag :visible, "False" %>
-    <%= radio_button_tag :visible, false, !tag.visible %>
+    <%= radio_button_tag :visible, false, !@tag.visible %>
   </div>
 </div>
 
@@ -28,11 +26,11 @@
   <div><%= label_tag :exclusive %></div>
   <div class="one-fourth fleft">
     <%= label_tag :exclusive, "True" %>
-    <%= radio_button_tag :exclusive, true, tag.exclusive %>
+    <%= radio_button_tag :exclusive, true, @tag.exclusive %>
   </div>
   <div class="one-fourth fleft">
     <%= label_tag :exclusive, "False" %>
-    <%= radio_button_tag :exclusive, false, !tag.exclusive %>
+    <%= radio_button_tag :exclusive, false, !@tag.exclusive %>
   </div>
 </div>
 

@@ -132,14 +132,13 @@ class SuppliersController < ApplicationController
   end
 
   # list of tags within "state"
-  # for now, process-family tags only
   def tag_index
     # @country = Geography.find_by_name_for_link(params[:country])
     # for now, hard-code for unitedstates only
     @country = Geography.find_by_name_for_link('unitedstates')
     @state = Geography.find_by_name_for_link(params[:state])
     
-    # Filters only include (a subset of) process tags
+    # Filters are currently defined for a subset of process group tags only
     @processes_array = []
     Filter.where("name like '#{@country.name_for_link}-#{@state.name_for_link}-%'").each do |f|
       process_name = Tag.find(f.has_tag_id).readable
