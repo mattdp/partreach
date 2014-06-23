@@ -1,4 +1,5 @@
 class WebSearchItemsController < ApplicationController
+  before_filter :admin_user
   before_action :set_web_search_item, only: [:show, :edit, :update, :destroy]
 
   # GET /web_search_items
