@@ -1,0 +1,29 @@
+<%= form_for(@web_search_item) do |f| %>
+  <% if @web_search_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@web_search_item.errors.count, "error") %> prohibited this web_search_item from being saved:</h2>
+
+      <ul>
+      <% @web_search_item.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :query %><br>
+    <%= f.text_field :query %>
+  </div>
+  <div class="field">
+    <%= f.label :priority %><br>
+    <%= f.number_field :priority %>
+  </div>
+  <div class="field">
+    <%= f.label :num_requested %> (max. 100)<br>
+    <%= f.number_field :num_requested %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

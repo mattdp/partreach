@@ -15,7 +15,8 @@ end
 desc "run a set of supplier searches using Google CSE"
 # Usage: rake run_supplier_search_batch [batch_size=<number_of_items_to_process>]
 task :run_supplier_search_batch => :environment do
-  WebSearchItem.batch(ENV["batch_size"]).each do |item|
+  size = ENV["batch_size"] || 10
+  WebSearchItem.batch(size).each do |item|
     puts "running search for: #{item.query}"
     WebSearchResult.search_google(item)
     num_requested = item.num_requested ||= "max"

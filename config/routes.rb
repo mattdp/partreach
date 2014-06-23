@@ -97,4 +97,8 @@ Partreach::Application.routes.draw do
 
   resources :users, only: [:edit, :update, :show] # no index, no destroy 
 
+  resources :web_search_items, except: [:show]
+  post '/web_search_items/upload', to: 'web_search_items#upload'
+  post '/web_search_items/run_immediate', to: 'web_search_items#run_immediate'
+
 end
