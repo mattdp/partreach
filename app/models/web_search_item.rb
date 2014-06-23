@@ -6,7 +6,12 @@ class WebSearchItem < ActiveRecord::Base
     create!(query: query, priority: priority, num_requested: num_requested)
   end
 
-  def self.batch(batch_size=10)
-    where(run_date: nil).order(priority: :desc, created_at: :desc).limit(batch_size)
+  def self.queued
+    where(run_date: nil).order(priority: :desc, created_at: :desc)
   end
+
+  def self.batch(batch_size)
+    queued.limit(batch_size)
+  end
+
 end
