@@ -198,37 +198,6 @@ module DataEntry
     end
   end
 
-  def csv_to_tags(location)
-    counter = 0
-    CSV.new(open(location)).each do |row|
-      csv_to_tags_row_helper(row, counter)
-      counter += 1
-    end
-    return "Tag upload attempted"
-  end
-
-  def csv_to_hashes(absolute_filepath)
-    headers = []
-    row_size = 0
-    answer = []
-    CSV.foreach(absolute_filepath) do |row|
-      if row_size == 0
-        row_size = row.size
-        headers = row.map {|x| x.to_sym}
-        return -1 unless headers[0] == :id
-      elsif row.size == row_size
-        row_hash = Hash.new
-        (0..row.size-1).each do |n|
-          row_hash[headers[n]] = row[n]
-        end
-        answer << row_hash
-      else
-        return -1 #need to have the rows all having a header, or odd stuff will happen
-      end
-    end
-    return answer
-  end
-
   def hashes_to_saved_changes(hashes)
     hashes.each do |h|
       #use ID to find dialogue
