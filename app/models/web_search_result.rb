@@ -71,7 +71,12 @@ class WebSearchResult < ActiveRecord::Base
         end
       end
 
-      opts[:start] = page.queries.nextPage.first.startIndex
+      if page.queries["nextPage"]
+        opts[:start] = page.queries.nextPage.first.startIndex
+      else
+        print "\n" # terminate progress indicator dots with newline
+        return
+      end
     end
   end
 
