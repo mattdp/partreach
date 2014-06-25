@@ -309,14 +309,14 @@ ActiveRecord::Schema.define(version: 20140611131439) do
 
   add_index "tag_groups", ["group_name"], name: "index_tag_groups_on_group_name", unique: true, using: :btree
 
-  create_table "taggables", force: true do |t|
+  create_table "taggable_types", force: true do |t|
     t.string   "type_name",    null: false
     t.integer  "tag_group_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "taggables", ["type_name", "tag_group_id"], name: "index_taggables_on_type_name_and_tag_group_id", unique: true, using: :btree
+  add_index "taggable_types", ["type_name", "tag_group_id"], name: "index_taggable_types_on_type_name_and_tag_group_id", unique: true, using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"

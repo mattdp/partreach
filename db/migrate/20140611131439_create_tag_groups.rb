@@ -10,12 +10,12 @@ class CreateTagGroups < ActiveRecord::Migration
 
     add_reference :tags, :tag_group, index: true
 
-    create_table :taggables do |t|
+    create_table :taggable_types do |t|
       t.string      :type_name, :null => false
       t.references  :tag_group, :null => false
       t.timestamps
     end
-    add_index :taggables, [:type_name, :tag_group_id], unique: true
+    add_index :taggable_types, [:type_name, :tag_group_id], unique: true
 
 
     reversible do |dir|
@@ -38,10 +38,10 @@ class CreateTagGroups < ActiveRecord::Migration
 
         # make all of these tag groups applicable to Suppliers
         sql = <<-SQL
-          INSERT INTO taggables (type_name, tag_group_id, created_at, updated_at)
+          INSERT INTO taggable_types (type_name, tag_group_id, created_at, updated_at)
           SELECT 'Supplier', id, now(), now() FROM tag_groups;
         SQL
-        Taggable.connection.execute(sql)
+        TaggableType.connection.execute(sql)
       end
     end
   end
