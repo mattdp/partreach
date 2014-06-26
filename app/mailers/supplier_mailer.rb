@@ -1,6 +1,6 @@
 class SupplierMailer < ActionMailer::Base
-  default from: "rob@supplybetter.com",
-          bcc: "partreach@gmail.com"
+  default from: "robert@supplybetter.com",
+          bcc: "robert@supplybetter.com"
   include SessionsHelper
 
   def initial_supplier_email(dialogue)
