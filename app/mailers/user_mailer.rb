@@ -6,11 +6,13 @@ class UserMailer < ActionMailer::Base
   MATT =  "matt@supplybetter.com"
   ROB =   "rob@supplybetter.com"
   JAMES = "james@supplybetter.com"
-  EMPLOYEES = [MATT,ROB,JAMES]
+  YOSSI = "yossi@supplybetter.com"
+  CUSTOMER_SERVICE = "robert@supplybetter.com"
+  INTERNAL_EMAIL_DISTRIBUTION_LIST = [MATT,ROB,JAMES,YOSSI,SUPPLIER_CORRESPONDENCE]
 
   def email_internal_team(subject, note)
     @note = note
-    EMPLOYEES.each do |e|
+    INTERNAL_EMAIL_DISTRIBUTION_LIST.each do |e|
       mail(to: e, subject: subject).deliver do |format|
         format.html { render layout: "layouts/blast_mailer", 
                     locals: { title: subject, 
@@ -32,7 +34,7 @@ class UserMailer < ActionMailer::Base
     @leads_to_bother = Lead.sorted(false)
     @need_to_inform_suppliers_structure = Order.need_to_inform_suppliers_structure
     @duplicates_detected = Contact.duplicate_detector
-    EMPLOYEES.each do |e|
+    INTERNAL_EMAIL_DISTRIBUTION_LIST.each do |e|
       mail(to: e, subject: subject).deliver do |format|
         format.html { render layout: "layouts/blast_mailer", 
                     locals: { title: subject, 
