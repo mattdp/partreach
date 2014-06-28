@@ -1,0 +1,50 @@
+<div class="questions">
+      <%#= get, since passing params to orders_new, without a state change in the database %>
+      <%= form_tag new_order_path, method: :get do %>
+
+        <%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
+
+        <div class="questions__instructions">
+          <h2 class="inline">Step 1 of 2:</h2>
+          <h2 class="inline">Help us ask you the right questions.</h2>
+          <h2 class="inline strong">For each topic, which fits this job best?</h2>
+        </div>
+
+        <div class="questions__columns">
+          <table class="">
+            <tr>
+              <% @content.each do |column, values| %>
+                <th class="">
+                  <h4 class="main-header"><%= values[:main_header] %></h4>
+                  <p class="sub-header"><%= values[:sub_header] %></p>
+                </th>
+              <% end %>
+            </tr>
+            <tr>
+              <% @content.each do |column, values| %>
+                <td class="">
+                  <% values[:options].each do |option_name, display_information| %>
+                    <div class="question__opt">
+                      <%= label_tag "questions_#{column}_#{option_name}" do %>
+                        <%= radio_button_tag "questions[#{column}]", option_name, false, class: "#{column} question_radio_button fleft radio", data: {summary: display_information[:summary]} %>
+                        <%= display_information[:punchy] %>
+                        <p class="question__opt__detail"><%= display_information[:detail] %></p>
+                      <% end %>
+                    </div>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <div class="summary_and_submission space-above space-below clearfix col-sm-12">
+            <% blanks = "__________" %>
+            <%= render partial: "orders/preference_summary", locals: {position_class: "left", experience: blanks, priority: blanks, manufacturing: blanks} %>
+            <p style="text-align: center;"><%= submit_tag "Final step", :disable_with => "Processing...", id: "create_button" %></p>
+          </div>
+        </div>
+
+
+      <% end %>
+</div>

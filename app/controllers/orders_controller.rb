@@ -60,6 +60,9 @@ class OrdersController < ApplicationController
       instance_variable_set("@#{summary_var}_summary_wording",value)
     end
 
+    @content = Question.raw_list
+    @from_supplier_name = Supplier.find(params[:from_supplier]).name if params[:from_supplier]
+
     @order = Order.new
     #goal: for naming the folder of part files on S3, be close though not exact to what next order will be - it helps to have a rough order for manual troubleshooting
     #programmatic links to the files won't have the race conditions this creates

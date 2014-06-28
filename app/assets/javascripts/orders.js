@@ -79,4 +79,8 @@ $(document).ready(function() {
     errorClass: "signup_signin_errors"
   });
 
+  $('.questions__columns input').change(function() {
+    $(this).parents('td').find('label').removeClass('checked');
+    $(this).closest('label').toggleClass('checked', $(this).is(':checked'));
+  });
 });
