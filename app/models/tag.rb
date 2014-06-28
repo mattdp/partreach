@@ -17,8 +17,8 @@
 class Tag < ActiveRecord::Base
 
   belongs_to :tag_group
-  has_many :combos
-  has_many :suppliers, :through => :combos
+  has_many :taggings
+  has_many :suppliers, :through => :taggings, :source_type => 'Supplier'
  
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :readable, presence: true, uniqueness: {case_sensitive: false}
