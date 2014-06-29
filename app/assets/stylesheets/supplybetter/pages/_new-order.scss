@@ -1,4 +1,18 @@
-.questions {
+.progress {
+  background: #f8f8f8;
+  border-radius: 2px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.progress .bar {
+  @include transition(width 0.4s ease);
+  background: $sb-blue;
+  float: left;
+  height: 100%;
+}
+
+.questions, .new-order {
   @include outer-container();
   max-width: 1024px;
   padding: 40px 0;
@@ -18,6 +32,11 @@
 
   .strong {
     font-weight: 800;
+  }
+
+  p {
+    line-height: 1.4;
+    max-width: 66%;
   }
 }
 
@@ -92,4 +111,107 @@
 .question__opt__detail {
   margin-left: 25px;
   padding-top: 6px;
+}
+
+.upload {
+  @include clearfix();
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
+
+  .filename, .progress {
+    float: left;
+    width: 50%;
+  }
+
+  .progress {
+  }
+}
+
+.new-order {
+  .main-header {
+  } 
+  .step-header {
+    font-family: $serif;
+    font-size: 16px;
+    font-weight: 800;
+  }
+
+  .step-desc {
+    color: #666;
+    font-size: 14px;
+    line-height: 1.4;
+    width: 100%;
+
+    @include media($tablet) {
+      width: 66%;
+    }
+  }
+}
+
+#uploaded_file_list {
+  margin: 0;
+  padding: 10px 0;
+}
+
+#new-order {
+  label {
+    display: block;
+    margin-top: 20px;
+  }
+
+  input, textarea {
+    @include appearance(none);
+    background: $light-gray;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-top: 8px;
+    padding: 0 10px;
+    width: 100%;
+  }
+
+  input {
+    height: 36px;
+  }
+
+  textarea {
+    line-height: 1.5;
+    min-height: 74px;
+    padding-top: 6px;
+  }
+
+  input.signup_signin_errors {
+    border-color: $light-red;
+  }
+
+  label.signup_signin_errors {
+    color: darken($light-red, 40%);
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  .detail-text {
+    color: $med-gray;
+    font-size: 14px;
+    margin: 5px 0 0;
+  }
+
+  .triplets {
+    margin: 0 -20px;
+    padding-bottom: 30px;
+
+    .two-col {
+      padding: 0 20px;
+      width: 66%;
+
+      .step-desc {
+        width: 100%;
+      }
+    }
+
+    textarea.two-col {
+      margin-left: 20px;
+      padding: 10px;
+    }
+  }
+
 }
