@@ -19,6 +19,10 @@ class Tag < ActiveRecord::Base
   belongs_to :tag_group
   has_many :taggings
   has_many :suppliers, :through => :taggings, :source_type => 'Supplier'
+  has_many :tag_relationships, foreign_key: "source_tag_id"
+  has_many :related_tags, :through => :tag_relationships
+  has_many :reverse_tag_relationships, class_name: "TagRelationship", foreign_key: "related_tag_id"
+  has_many :source_tags, :through => :reverse_tag_relationships
  
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :readable, presence: true, uniqueness: {case_sensitive: false}
