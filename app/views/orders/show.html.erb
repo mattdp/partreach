@@ -6,17 +6,6 @@
 
       <h3 class="bit-of-space">Details of quote request</h3>
 
-      <% if @order.errors.any? %>
-        <div class="error_explanation">
-          <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
-          <ul>
-            <% @order.errors.full_messages.each do |msg| %>
-              <li><%= msg %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-
       <%= render 'layouts/order_basics' %>
 
       <% if @order_groups and @order.dialogues.count > 0 %>
