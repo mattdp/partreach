@@ -84,6 +84,7 @@ class OrdersController < ApplicationController
     existed_already = false
     did_user_work = false
     @order = Order.new
+    @order_group = OrderGroup.find(params['order_group_id'])
     did_order_save = false
     if current_user.nil?
       #they've filled out the signin form
@@ -135,13 +136,10 @@ class OrdersController < ApplicationController
         @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
       end
 
+      @order.order_groups << @order_group
+
       did_order_save = @order.save
       logger.debug "Order saving: #{did_order_save}"
-      if did_order_save
-        order_group = OrderGroup.find(params['order_group_id'])
-        order_group.order = @order
-        order_group.save
-      end
     else
       @order.errors.messages[:Sign_back_in] = ["with a valid email and password"]
     end
