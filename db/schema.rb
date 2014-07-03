@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611131439) do
+ActiveRecord::Schema.define(version: 20140630125654) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -309,14 +309,40 @@ ActiveRecord::Schema.define(version: 20140611131439) do
 
   add_index "tag_groups", ["group_name"], name: "index_tag_groups_on_group_name", unique: true, using: :btree
 
-  create_table "taggables", force: true do |t|
+  create_table "tag_relationships", force: true do |t|
+    t.integer  "source_tag_id",  null: false
+    t.integer  "related_tag_id", null: false
+    t.string   "relationship",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tag_relationships", ["related_tag_id", "source_tag_id", "relationship"], name: "index_tag_relationships_unique", unique: true, using: :btree
+  add_index "tag_relationships", ["source_tag_id"], name: "index_tag_relationships_on_source_tag_id", using: :btree
+
+  create_table "taggable_types", force: true do |t|
     t.string   "type_name",    null: false
     t.integer  "tag_group_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "taggables", ["type_name", "tag_group_id"], name: "index_taggables_on_type_name_and_tag_group_id", unique: true, using: :btree
+  add_index "taggable_types", ["type_name", "tag_group_id"], name: "index_taggable_types_on_type_name_and_tag_group_id", unique: true, using: :btree
+
+  create_table "taggings", force: true do |t|
+    t.integer  "tag_id",             null: false
+    t.integer  "taggable_id",        null: false
+    t.string   "taggable_type",      null: false
+    t.string   "source"
+    t.integer  "last_updated_by_id"
+    t.integer  "confidence"
+    t.text     "notes"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type"], name: "index_taggings_on_tag_id_and_taggable_id_and_taggable_type", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type"], name: "index_taggings_on_taggable_id_and_taggable_type", using: :btree
 
   create_table "tags", force: true do |t|
     t.string   "name"

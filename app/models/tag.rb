@@ -17,12 +17,21 @@
 class Tag < ActiveRecord::Base
 
   belongs_to :tag_group
-  has_many :combos
-  has_many :suppliers, :through => :combos
+  has_many :taggings
+  has_many :suppliers, :through => :taggings, :source_type => 'Supplier'
+  has_many :tag_relationships, foreign_key: "source_tag_id"
+  has_many :related_tags, :through => :tag_relationships
+  has_many :reverse_tag_relationships, class_name: "TagRelationship", foreign_key: "related_tag_id"
+  has_many :source_tags, :through => :reverse_tag_relationships
  
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :readable, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true
+  validates_presence_of :tag_group
+
+  def self.all_by_group
+    Tag.includes(:tag_group).order('tag_groups.id, tags.id')
+  end
 
   def self.tag_set(category,attribute)
     sets = {
@@ -45,18 +54,13 @@ class Tag < ActiveRecord::Base
     Supplier.proper_name_for_link(readable)
   end
 
-  #return hash of {family1:[tag1,tag2],family2:[tag3:tag4]}
-  def self.family_names_and_tags
+  #return hash of {group1_name=>[tag1, tag2, ...], group2_name=>[tag3, tag4, ...], ...}
+  def self.tags_by_group
     answers = {}
-    Tag.find_each do |t|
-      t.family.nil? ? tkey = "No family" : tkey = t.family
-      if answers.has_key?(tkey)
-        answers[tkey] << t
-      else
-        answers[tkey] = [t]
-      end
+    TagGroup.eager_load(:tags).each do |tag_group|
+      answers[tag_group.group_name] = tag_group.tags
     end
-    return answers
+    answers
   end
 
   #takes array of 1-n tags and a country

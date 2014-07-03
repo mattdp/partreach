@@ -105,7 +105,7 @@
 
   <%= label_tag 'change_tag_information', 'Change tag information' %>
   <% tag_columns = 5 %>
-  <%= render :partial => "/suppliers/tag_matrix", locals: {tag_columns: tag_columns, family_names_and_tags: @family_names_and_tags, existing_tags: @checked_tags } %>
+  <%= render :partial => "/suppliers/tag_matrix", locals: {tag_columns: tag_columns, tags_by_group: @tags_by_group, existing_tags: @checked_tags } %>
 
   <h3>Dialogue information</h3>
 

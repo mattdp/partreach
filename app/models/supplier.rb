@@ -30,8 +30,8 @@ class Supplier < ActiveRecord::Base
 
   has_many :dialogues, :dependent => :destroy
   has_one :address, :as => :place, :dependent => :destroy
-  has_many :combos, :dependent => :destroy
-  has_many :tags, :through => :combos
+  has_many :taggings, :as => :taggable
+  has_many :tags, :through => :taggings
   has_many :owners, :dependent => :destroy
   has_many :machines, :through => :owners
   has_many :externals, :as => :consumer, :dependent => :destroy
@@ -152,9 +152,10 @@ class Supplier < ActiveRecord::Base
     return structure.map { |key, values| values[:repeats] * values[:points] }.sum
   end
 
+#TODO - re-write method
+#assumes tags are only on suppliers, so will return incorrect result when tags on other types are added
   def self.pending_examination
-    datadump_id = Tag.find_by_name("datadump").id
-    return Combo.where("tag_id = ?", datadump_id).count
+    return Tagging.joins(:tag).references(:tag).where("name='datadump'").count
   end
 
   def self.create_new_with_default_dependent_objects(params)
@@ -278,11 +279,15 @@ class Supplier < ActiveRecord::Base
     end
   end
 
+#minimal modification of method to use Tagging vs. Combo
+#TODO - re-write!!!
+#assumes tags are only on suppliers, so will break when tags on other types are added
+#also, very inefficient
   def self.quantity_by_tag_id(quantity,tag_id,country=nil,state=nil)
-    quantity = Combo.all.count if quantity == "all"
-    combos = Combo.where("tag_id = ?", tag_id).take(quantity)
+    quantity = Tagging.all.count if quantity == "all"
+    combos = Tagging.where("tag_id = ?", tag_id).take(quantity)
     return [] if combos == []
-    suppliers = Supplier.find(combos.map{|c| c.supplier_id})
+    suppliers = Supplier.find(combos.map{|c| c.taggable_id})
     suppliers = suppliers.delete_if{|s| s.address.country.short_name != country} if country
     return [] if suppliers == []
     suppliers = suppliers.delete_if{|s| s.address.state.short_name != state} if state    
@@ -323,7 +328,7 @@ class Supplier < ActiveRecord::Base
 
   def add_tag(tag_id)
     tag = Tag.find_by_id(tag_id)
-    return false if Combo.find_by(supplier: self, tag: tag)
+    return false if self.tags.include?(tag)
     if tag.tag_group.exclusive
       self.tags.each do |t|
         self.tags.destroy(t) if t.tag_group_id == tag.tag_group_id
@@ -335,8 +340,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def remove_tags(tag_id)
-    c = Combo.where("supplier_id = ? AND tag_id = ?", self.id, tag_id)
-    Combo.destroy_all(supplier_id: self.id, tag_id: tag_id) unless c.nil? or c == []
+    self.tags.destroy(tag_id)
   end
 
   def has_tag?(tag_id)

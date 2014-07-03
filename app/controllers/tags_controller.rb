@@ -3,14 +3,12 @@ class TagsController < ApplicationController
 
   def new
     @tag = Tag.new
-    @tag.exclusive = false
-    @tag.visible = true
   end
 
   def create
-    @tag = Tag.new
+    @tag = Tag.new(tag_params)
     @tag.name_for_link = Tag.proper_name_for_link(params[:name])
-    @tag.update_attributes(tag_params)
+    @tag.save
 
     redirect_to tags_path, notice: "Tag save attempted."
   end
@@ -28,13 +26,14 @@ class TagsController < ApplicationController
   end
 
   def index
-    @tags = Tag.all
+    @tags = Tag.all_by_group
   end
+
 
   private
 
-    def tag_params
-      params.permit(:name,:family,:readable,:note,:exclusive,:visible)
-    end
+  def tag_params
+    params.permit(:tag_group_id,:name,:readable,:note,:exclusive,:visible)
+  end
 
 end

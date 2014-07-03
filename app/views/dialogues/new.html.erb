@@ -49,7 +49,7 @@
           <% supplier_columns = 0 %>
           <% tag_columns = 6 %>
 
-          <%= render partial: "/suppliers/tag_matrix", locals: {tag_columns: tag_columns, family_names_and_tags: @family_names_and_tags, existing_tags: []} %>
+          <%= render partial: "/suppliers/tag_matrix", locals: {tag_columns: tag_columns, tags_by_group: @tags_by_group, existing_tags: []} %>
 
           <table class="tag_matrix">
             <% counter = 0 %>

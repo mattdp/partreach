@@ -6,7 +6,7 @@ class DialoguesController < ApplicationController
       logger.debug "Cache miss: dialogues_new_setup"
       Dialogue.dialogues_new_setup
     end
-    @family_names_and_tags = Tag.family_names_and_tags
+    @tags_by_group = Tag.tags_by_group
     @countries = Geography.all_countries.map{|geo| geo.short_name}
     @us_states = Geography.all_us_states.map{|geo| geo.short_name}
     params[:id].present? ? @order = Order.find(params[:id]) : @order = nil

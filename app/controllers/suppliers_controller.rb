@@ -16,7 +16,7 @@ class SuppliersController < ApplicationController
     @address = Address.new
     @address.country = Geography.new
     @address.state = Geography.new
-    @family_names_and_tags = Tag.family_names_and_tags
+    @tags_by_group = Tag.tags_by_group
     @billing_contact = BillingContact.new
     @contract_contact = ContractContact.new
     @rfq_contact = RfqContact.new
@@ -54,7 +54,7 @@ class SuppliersController < ApplicationController
     @checked_tags = @tags
     @internal_tags = @supplier.internal_tags
     @address = @supplier.address
-    @family_names_and_tags = Tag.family_names_and_tags
+    @tags_by_group = Tag.tags_by_group
     @claimant = User.find_by_supplier_id(@supplier.id)
     @machines_quantity_hash = @supplier.machines_quantity_hash
     @dialogues = Dialogue.where("supplier_id = ?",@supplier.id).order("created_at desc")
@@ -132,14 +132,13 @@ class SuppliersController < ApplicationController
   end
 
   # list of tags within "state"
-  # for now, process-family tags only
   def tag_index
     # @country = Geography.find_by_name_for_link(params[:country])
     # for now, hard-code for unitedstates only
     @country = Geography.find_by_name_for_link('unitedstates')
     @state = Geography.find_by_name_for_link(params[:state])
     
-    # Filters only include (a subset of) process tags
+    # Filters are currently defined for a subset of process group tags only
     @processes_array = []
     Filter.where("name like '#{@country.name_for_link}-#{@state.name_for_link}-%'").each do |f|
       process_name = Tag.find(f.has_tag_id).readable

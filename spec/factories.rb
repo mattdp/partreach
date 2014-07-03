@@ -54,6 +54,7 @@ FactoryGirl.define do
     sequence(:name_for_link)  { |n| "tag#{n}" }
     sequence(:readable)       { |n| "Readable#{n}" }
     exclusive                 false
+    tag_group
   end
 
   #has_tag always must be provided
