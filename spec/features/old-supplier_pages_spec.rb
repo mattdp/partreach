@@ -19,6 +19,18 @@ describe "Supplier-related pages" do
     end
   end
 
+  describe "Supplier profile" do
+    let(:supplier) { FactoryGirl.create :supplier }
+    let(:country) { FactoryGirl.create :united_states }
+    let(:state) { FactoryGirl.create :geography }
+
+    it "should display breadcrumb" do
+      visit "/suppliers/#{country.name_for_link}/#{state.name_for_link}/#{supplier.name_for_link}"
+      # not really much of a verification, but...
+      should have_text("Directory")
+    end
+  end
+
   describe "Be a Supplier page" do
     before do
       visit be_a_supplier_path

@@ -151,6 +151,8 @@ class SuppliersController < ApplicationController
 
   # list of suppliers for specified process -OR- profile for specified supplier
   def lookup
+    @country = Geography.find_by_name_for_link(params[:country])
+    @state = Geography.find_by_name_for_link(params[:state])
     lookup_term = params[:term].downcase
     @supplier = Supplier.find_by_name_for_link(lookup_term)
     if @supplier
@@ -176,9 +178,6 @@ class SuppliersController < ApplicationController
 
   # list of supplier profiles within geography for given process
   def supplier_index
-    @country = Geography.find_by_name_for_link(params[:country])
-    @state = Geography.find_by_name_for_link(params[:state])
-      
     if @filter
       @location_phrase = @filter.geography.long_name
 
