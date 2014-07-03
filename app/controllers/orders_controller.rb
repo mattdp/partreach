@@ -63,7 +63,8 @@ class OrdersController < ApplicationController
     @order = Order.new
     #goal: for naming the folder of part files on S3, be close though not exact to what next order will be - it helps to have a rough order for manual troubleshooting
     #programmatic links to the files won't have the race conditions this creates
-    @approximate_next_order_id = Order.order("created_at desc").limit(1)[0].id + 1
+    most_recent_order = Order.order("created_at desc").limit(1)[0]
+    @approximate_next_order_id = most_recent_order ? most_recent_order.id + 1 : 1
 
     @order_group = OrderGroup.create_default
 
@@ -84,6 +85,7 @@ class OrdersController < ApplicationController
     existed_already = false
     did_user_work = false
     @order = Order.new
+    @order_group = OrderGroup.find(params['order_group_id'])
     did_order_save = false
     if current_user.nil?
       #they've filled out the signin form
@@ -135,15 +137,12 @@ class OrdersController < ApplicationController
         @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
       end
 
+      @order.order_groups << @order_group
+
       did_order_save = @order.save
       logger.debug "Order saving: #{did_order_save}"
-      if did_order_save
-        order_group = OrderGroup.find(params['order_group_id'])
-        order_group.order = @order
-        order_group.save
-      end
     else
-      @order.errors.messages[:Sign_back_in] = ["with a valid email and password"]
+      @order.errors.messages[:Sign_up_or_sign_in] = ["needs a valid email and password"]
     end
 
     respond_to do |format|
