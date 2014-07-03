@@ -1,5 +1,5 @@
-<% link_url = Domainatrix.parse(supplier_search_result.link) %>
-<% suggested_url_main = link_url.url.gsub(link_url.path, "") %>
+<% url = Domainatrix.parse(supplier_search_result.link) %>
+<% suggested_url_main = "#{url.scheme}://#{url.host}" %>
 <td class="choice">
   <p class="clear">
     <%= label_tag "url_main[#{supplier_search_result.id}]", "Suggested Website:", :class => "fleft" %>
