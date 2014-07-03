@@ -6,11 +6,11 @@ feature "Order creation" do
     @visible_supplier = FactoryGirl.create(:supplier)
   end
 
-  scenario "Creating order without fillout shouldn't make an order", broken: true do
+  scenario "Creating order without fillout shouldn't make an order" do
     visit new_order_path
 
     page.click_button "Create order"
-    page.should have_content "too short"
+    page.should have_content "prohibited this order from being saved"
   end
 
   #might be something about clearing email queue when done, railscast on testing?
