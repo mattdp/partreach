@@ -42,11 +42,12 @@
             </tr>
 
             <tr>
-              <th>Part id</th>
-              <th>Part name</th>
+              <th>Part Id</th>
+              <th>Part Name</th>
               <th>Order Group</th>
               <th>Quantity</th>
-              <th>File Storage Path</th>
+              <th>HTML Snippet (for master email)</th>
+              <th>View File</th>
             </tr>
 
             <% order_group.parts.sort.each do |part| %>
@@ -55,11 +56,11 @@
                   <td><%= "#{part.id}" %></td>
                   <td><%= "#{part.name}" %></td>
                   <td><%= part_fields.collection_select(:order_group_id, @order_groups, :id, :name) %></td>
-                  <td><%= part_fields.text_field :quantity %></td>
+                  <td><%= part_fields.text_field :quantity, size: "5" %></td>
                   <% if (external = part.external) %>
                     <%= part_fields.fields_for :external, index: external.id do |external_fields| %>
-                      <td><%= external_fields.text_field :url %></td>
-                      <td class="center"><%= link_to "(view)", "#{external.url}", target: "_blank" %></td>
+                      <td><%= text_field_tag 'snippet', html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
+                      <td class="center"><%= link_to "@", "#{external.url}", target: "_blank" %></td>
                     <% end %>
                   <% end %>
                 </tr>
