@@ -4,8 +4,6 @@ author: Rob
 title: Top 6 Ways to Not Burn a New Supplier
 published: true
 ---
-<h1>faker title</h1>
-
 <p><img src="http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg" alt="Molten steel being prepped for casting" width=460></a></p>
 <p>Molten steel being prepped for casting (credit: <a href="http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg" target="_blank">Wikipedia</a>)</p>
 
