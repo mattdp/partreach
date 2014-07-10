@@ -4,12 +4,80 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-10T13:51:39-07:00</updated>
+ <updated>2014-07-10T15:13:42-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>What to Expect With FDM</title>
+   <link href="YOUR_URL/what-to-expect-with-fdm.html"/>
+   <updated>2014-07-09T00:00:00-07:00</updated>
+   <id>BLOG_URL/what-to-expect-with-fdm</id>
+   <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;Sculpture printed by FDM (Image Courtesy of &lt;a href=&quot;https://www.flickr.com/photos/afsart/4494997999/in/photolist-7Rd3iv-7Rd39p-7R5toq-7R2cKT-7VUKvS-7VULvj-dJGB9Q-dJB9VX-8dUAeE-fPSZWn-dEWhFq-dLk1HJ-dJGB3d-dJW18N-dKuJzn-dKAchd-7Rd4Yr-dFcR38-dGJdZo-dGCNxP-dJJ8hu-dF8TtV-dGCZ24-dFvBcE-dJ13a6-cuUuff-eaUmgn-aHhUQx-aHhUXM-6TrEz7-6TrEKN&quot; target=&quot;_blank&quot;&gt;Andrew Scott&lt;/a&gt; &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;(License)&lt;/a&gt;)&lt;/caption&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/FDM_image.jpg&quot; width=&quot;740&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+
+&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss Fused Deposition Modeling, or FDM for short. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;What is FDM?&lt;/h3&gt;
+
+
+&lt;p&gt;&lt;p&gt;FDM is an additive manufacturing process and a trademark of Stratasys. It is often known as the &quot;commercial&quot; alternative to desktop 3D printers such as Makerbots. Like a Makerbot, an FDM machine extrudes a plastic filament through a heated tip. While this occurs, the extruder moves and traces a cross section of the desired object. After a cross section is completed, the extruder is raised, and another cross section is deposited on top of the first. In this way, an entire 3D object is constructed.&lt;p&gt;
+  &lt;p&gt;We’ve already written about the differences between FDM and hobby-level printing (&lt;a href=&quot;https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;find that here&lt;/a&gt;). Instead, we will examine some of the benefits and shortcomings of FDM.&lt;p&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;h3&amp;gt;Is FDM right for me?&amp;lt;/h3&amp;gt;
+&amp;lt;p&amp;gt;Here&#39;s an example of a part that we sourced at SupplyBetter. It has:&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;ul&gt;
+  &lt;li&gt;Functional structure.&lt;/li&gt;
+  &lt;li&gt;No surface finish requirements.&lt;/li&gt;
+  &lt;li&gt;This part specifically needed to be made of ABS, because it was to be chemically bonded to an injection-molded ABS part.&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;FDM printed [GETFROMROB] for &lt;a href=&quot;https://www.anybots.com&quot; target=&quot;_blank&quot;&gt;Anybots&#39;s&lt;/a&gt; Virtual Presence Robot, &quot;QB&quot;.&lt;/caption&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/FDM_anybots.jpg&quot; width=&quot;740&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;  &lt;p&gt;This is an ideal use case for FDM 3D printing! We helped the buyer find a service bureau that fit their project needs exactly.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;  &lt;h3&gt;What FDM is great for:&lt;/h3&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Cost. FDM printing is one of the cheapest, industrial-quality prototyping methods available.&lt;/li&gt;
+    &lt;li&gt;Durability. FDM parts are not cured with UV light (vs SLA and Polyjet [links]), and therefore do not lose structural integrity when exposed to sunlight.&lt;/li&gt;
+    &lt;li&gt;Mechanical strength. FDM parts can be very strong, and are used as functional production parts as well as prototypes.&lt;/li&gt;
+    &lt;li&gt;Complex geometry. With the aid of support material, FDM parts may contain overhangs and cavities.&lt;/li&gt;
+  &lt;/ul&gt;&lt;/p&gt;
+
+&lt;p&gt;  &lt;h3&gt;What FDM is not great for:&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Color models. Parts printed by an FDM machine are generally limited to one or two colors per part.&lt;/li&gt;
+&lt;li&gt;Smooth surfaces. Even though FDM printers can produce finer layer thicknesses than hobby-level printers, the layers will still be distinctly visible in the finished part.&lt;/li&gt;
+&lt;li&gt;Parts that require isotropic (directionally independent) mechanical properties. The bonds between FDM layers are always weaker than the bonds in the filament, causing FDM parts to have decidedly anisotropic mechanical properties. As FDM layers are oriented horizontally, the strength along the vertical axis suffers.&lt;/li&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h3&gt;What materials can I print with FDM?&lt;/h3&gt;
+&lt;p&gt;ABS plastic is by far the most common material used with FDM machines. ABS now comes in a myriad of colors and types, and can even be translucent. If you need superior mechanical properties, one alternative is &lt;a href=&quot;http://www.modernplastics.com/pdf/mp-great-opportunities-aircraft-industry-brochure1.pdf&quot; target=&quot;_blank&quot;&gt;Ultem 9085&lt;/a&gt;. Ultem plastic has significantly greater tensile and flexural strengths than ABS.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;This eye-friendly data sheet, provided by SolidConcepts, does a good job at laying out the material options for FDM. &lt;a href=&quot;http://www.solidconcepts.com/materials/fdm-materials/&quot; target=&quot;_blank&quot;&gt;(Link)&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;For a complete list of FDM materials available from Stratasys, &lt;a href=&quot;http://www.stratasys.com/materials/fdm/compare-fdm-materials&quot; target=&quot;_blank&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Top 6 Ways to Not Burn a New Supplier</title>
