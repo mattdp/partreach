@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.generate-email-button').click(function() {
+  $('.generate-email-button').click(function(event) {
     event.preventDefault();
     var html = $(this).attr('data-html');
     $(this).closest('div').children('textarea').val(html);
