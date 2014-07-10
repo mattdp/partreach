@@ -7,7 +7,7 @@ published: true
 
 <table class="image" style="margin: auto;">
 <caption align="bottom">Molten steel being prepped for casting (credit: <a href="http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg" target="_blank">Wikipedia</a>)</caption>
-<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Gussmetallschmelze.jpg" width="730"></td></tr>
+<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/Gussmetallschmelze.jpg" width="740"></td></tr>
 </table>
 
 <p><br><i>It’s time to make the hardware parts for your product.</i> You've googled for suppliers, asked your friends and colleagues for recommendations, and settled on a few contract manufacturers. Before you embark on your journey towards holding that part in hand, you will need to work cooperatively with these new business partners. Since August, we have facilitated hundreds of conversations with suppliers around real products being made. Here are some of the best steps you can follow to foster great supplier relationships and get your part made.</p>
