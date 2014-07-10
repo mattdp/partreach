@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-10T10:07:54-07:00</updated>
+ <updated>2014-07-10T10:15:34-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -18,47 +18,93 @@
    <id>BLOG_URL/top-6-ways-to-not-burn-a-supplier</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
 &lt;caption align=&quot;bottom&quot;&gt;Molten steel being prepped for casting (credit: &lt;a href=&quot;http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg&quot; target=&quot;_blank&quot;&gt;Wikipedia&lt;/a&gt;)&lt;/caption&gt;
-&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg&quot; alt=&quot;Molten steel being prepped for casting&quot; width=500&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg&quot; alt=&quot;Molten steel being prepped for casting&quot; width=&quot;65%&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
 
 
 
-&lt;p&gt;It’s time to make the hardware parts for your product. You&#39;ve googled for suppliers, asked your friends and colleagues for recommendations, and settled on a few contract manufacturers. Before you embark on your journey towards holding that part in hand, you will need to work cooperatively with these new business partners. Since August we’ve facilitated hundreds of conversations with suppliers around real products being made. Here are some of the best steps you can follow to foster great supplier relationships and get your part made.&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;It’s time to make the hardware parts for your product. You&#39;ve googled for suppliers, asked your friends and colleagues for recommendations, and settled on a few contract manufacturers. Before you embark on your journey towards holding that part in hand, you will need to work cooperatively with these new business partners. Since August we’ve facilitated hundreds of conversations with suppliers around real products being made. Here are some of the best steps you can follow to foster great supplier relationships and get your part made.&lt;/p&gt;
 
 
 
 
-&lt;p&gt;&lt;h3&gt;1. Quickly determine whether or not a supplier is a good fit.&lt;h3&gt;
-&lt;p&gt;Spending the time upfront to &lt;a href=&quot;http://www.zycus.com/blog/supplier-management/the-supplier-information-performance-dossier-part-2-supplier-information-management.html&quot; target=&quot;_blank&quot;&gt;research potential suppliers&lt;/a&gt; can save you hours of effort in the future. This should involve exploring the supplier&#39;s webpage, reading testimonials, and contacting previous customers of that supplier. If it appears that the supplier is a good initial match, then call the supplier and interview with them. Speaking directly with your supplier will help you gauge their level of expertise and how busy they are. After you’ve acquainted yourself with a handful of suppliers, you will have to make some judgement calls about how to proceed with your project. If a supplier turns out to be an expert in the type of manufacturing that you need, great! If not, it is not a crime to thank them and let them know that you’ll pursue other leads. Do not be discouraged if your first attempt at sourcing does not work out as expected.  We formed &lt;a href=&quot;http://supplybetter.com&quot; target=&quot;_blank&quot;&gt;our service&lt;/a&gt; specifically to help with this part of the process.&lt;/p&gt;&lt;/p&gt;
+&lt;h3&gt;1. Quickly determine whether or not a supplier is a good fit.&lt;/h3&gt;
 
-&lt;p&gt;&lt;h3&gt;2. Don&#39;t get quotes until you&#39;re ready to go.&lt;/h3&gt;
-&lt;p&gt;We understand that you want to know how much your project will cost at every step of the way. However, when you request a quote from a supplier, you are declaring to them that you are ready for their services right away. If a supplier sees that you were not serious about jobs for which you requested quotes in the past or that you were not ready to proceed when you sent the RFQ, they’ll be less enthusiastic about working with you when the time comes to get your part made. For advice on preparing your idea for production, &lt;a href=&quot;http://www.businessweek.com/smallbiz/content/oct2009/sb2009102_031287.htm&quot; target=&quot;_blank&quot;&gt;check out this article&lt;/a&gt;.&lt;/p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h3&gt;3. Convey the priorities of your project early on.&lt;/h3&gt;
-&lt;p&gt;No aspect of your design is too insignificant to mention, but you likely care about the order in which the design details are considered. You must communicate clearly which design aspects are necessary to the success of your project, and which are flexible. For example, if you require structurally functional 3D printed parts but don’t care as much about surface finish, let your supplier know. Both you and your supplier should have 100 percent confidence that your part is being produced exactly as you intended.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;Spending the time upfront to &lt;a href=&quot;http://www.zycus.com/blog/supplier-management/the-supplier-information-performance-dossier-part-2-supplier-information-management.html&quot; target=&quot;_blank&quot;&gt;research potential suppliers&lt;/a&gt; can save you hours of effort in the future. This should involve exploring the supplier&#39;s webpage, reading testimonials, and contacting previous customers of that supplier. If it appears that the supplier is a good initial match, then call the supplier and interview with them. Speaking directly with your supplier will help you gauge their level of expertise and how busy they are. After you’ve acquainted yourself with a handful of suppliers, you will have to make some judgement calls about how to proceed with your project. If a supplier turns out to be an expert in the type of manufacturing that you need, great! If not, it is not a crime to thank them and let them know that you’ll pursue other leads. Do not be discouraged if your first attempt at sourcing does not work out as expected.  We formed &lt;a href=&quot;http://supplybetter.com&quot; target=&quot;_blank&quot;&gt;our service&lt;/a&gt; specifically to help with this part of the process.&lt;/p&gt;
 
-&lt;p&gt;&lt;h4&gt;&quot;If you you need something faster be prepared for an expedite fee. If you give a supplier more time there could be price breaks.&quot;&lt;/h4&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;p&gt;Another priority to consider is speed, how quickly you need to have a part in hand. Shawn, from &lt;a href=&quot;http://www.morpheusrp.com&quot; target=&quot;_blank&quot;&gt;Morpheus Prototypes&lt;/a&gt;, is one of our most trusted suppliers. His advice: &quot;&quot;If you you need something faster be prepared for an expedite fee. If you give a supplier more time there could be price breaks.&quot;&lt;/p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h3&gt;4. Be explicit about purchasing intent.&lt;/h3&gt;
-&lt;p&gt;The best way to foster a healthy relationship with a supplier is to make it clear why you are reaching out for a quote. If you are just looking for a ballpark estimate and not a formal quote, let them know right away. If your part is being produced in small volume now but you will likely move to large-scale production in the future, let them know. Any information you can give to a supplier, whether about your specific designs or about future buying intent, will only serve to strengthen your relationship. &lt;a href=&quot;http://www.ladieswholaunch.com/magazine/fa-planecomfort/1407&quot; target=&quot;_blank&quot;&gt;Here is a great article&lt;/a&gt; that discusses buyer-supplier relationships in more detail (see section 4).&lt;/p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h3&gt;5. Don&#39;t waste their time.&lt;/h3&gt;
-&lt;p&gt;By the time that you request a quote from a supplier, you should already be sure that they are trustworthy and professional. That means you should treat them as trustworthy and professional.&lt;/p&gt;&lt;/p&gt;
+&lt;h3&gt;2. Don&#39;t get quotes until you&#39;re ready to go.&lt;/h3&gt;
 
-&lt;p&gt;&lt;h4&gt;&quot;You don’t know how many times I have spent hours quoting a large project just to find out the customer was just shopping for the cheapest.&quot;&lt;/h4&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;p&gt;Few things are worse than prepping for a job, only to realize that it was not real. One supplier in our network agrees, telling us, &quot;You don’t know how many times I have spent hours quoting a large project just to find out the customer was just shopping for the cheapest. They need to understand the time involved in putting numbers to a project.&quot; If you decide not to continue with an order, let your supplier know as soon as you can. If production needs to be delayed, tell your supplier, so that they do not unnecessarily put resources on hold. Be respectful of their time, and that respect will translate into healthier relationships and greater profits for everyone involved.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;We understand that you want to know how much your project will cost at every step of the way. However, when you request a quote from a supplier, you are declaring to them that you are ready for their services right away. If a supplier sees that you were not serious about jobs for which you requested quotes in the past or that you were not ready to proceed when you sent the RFQ, they’ll be less enthusiastic about working with you when the time comes to get your part made. For advice on preparing your idea for production, &lt;a href=&quot;http://www.businessweek.com/smallbiz/content/oct2009/sb2009102_031287.htm&quot; target=&quot;_blank&quot;&gt;check out this article&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;h3&gt;6. Follow Up&lt;/h3&gt;
-&lt;p&gt;After the job is done, your supplier is going to want to hear about your experience. A quick email or phone call can help them improve their service immeasurably. Charles Overy, CEO of &lt;a href=&quot;http://www.lgm3d.com&quot; target=&quot;_blank&quot;&gt;LGM 3D&lt;/a&gt;, says on the topic, &quot;If you do go though with a project, let your suppliers know how it turned out! Be honest about how their parts worked, and if the decisions that were made were the right ones. Good suppliers will be open to feedback.&quot;&lt;/p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;p&gt;As always, best of luck with your 3D printing and manufacturing.&lt;/p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
-&lt;p&gt;The SupplyBetter Team&lt;/p&gt;&lt;/p&gt;
+
+&lt;h3&gt;3. Convey the priorities of your project early on.&lt;/h3&gt;
+
+
+&lt;p&gt;No aspect of your design is too insignificant to mention, but you likely care about the order in which the design details are considered. You must communicate clearly which design aspects are necessary to the success of your project, and which are flexible. For example, if you require structurally functional 3D printed parts but don’t care as much about surface finish, let your supplier know. Both you and your supplier should have 100 percent confidence that your part is being produced exactly as you intended.&lt;/p&gt;
+
+
+
+
+&lt;h4&gt;&quot;If you you need something faster be prepared for an expedite fee. If you give a supplier more time there could be price breaks.&quot;&lt;/h4&gt;
+
+
+
+
+&lt;p&gt;Another priority to consider is speed, how quickly you need to have a part in hand. Shawn, from &lt;a href=&quot;http://www.morpheusrp.com&quot; target=&quot;_blank&quot;&gt;Morpheus Prototypes&lt;/a&gt;, is one of our most trusted suppliers. His advice: &quot;&quot;If you you need something faster be prepared for an expedite fee. If you give a supplier more time there could be price breaks.&quot;&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;4. Be explicit about purchasing intent.&lt;/h3&gt;
+
+
+&lt;p&gt;The best way to foster a healthy relationship with a supplier is to make it clear why you are reaching out for a quote. If you are just looking for a ballpark estimate and not a formal quote, let them know right away. If your part is being produced in small volume now but you will likely move to large-scale production in the future, let them know. Any information you can give to a supplier, whether about your specific designs or about future buying intent, will only serve to strengthen your relationship. &lt;a href=&quot;http://www.ladieswholaunch.com/magazine/fa-planecomfort/1407&quot; target=&quot;_blank&quot;&gt;Here is a great article&lt;/a&gt; that discusses buyer-supplier relationships in more detail (see section 4).&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;5. Don&#39;t waste their time.&lt;/h3&gt;
+
+
+&lt;p&gt;By the time that you request a quote from a supplier, you should already be sure that they are trustworthy and professional. That means you should treat them as trustworthy and professional.&lt;/p&gt;
+
+
+
+
+&lt;h4&gt;&quot;You don’t know how many times I have spent hours quoting a large project just to find out the customer was just shopping for the cheapest.&quot;&lt;/h4&gt;
+
+
+
+
+&lt;p&gt;Few things are worse than prepping for a job, only to realize that it was not real. One supplier in our network agrees, telling us, &quot;You don’t know how many times I have spent hours quoting a large project just to find out the customer was just shopping for the cheapest. They need to understand the time involved in putting numbers to a project.&quot; If you decide not to continue with an order, let your supplier know as soon as you can. If production needs to be delayed, tell your supplier, so that they do not unnecessarily put resources on hold. Be respectful of their time, and that respect will translate into healthier relationships and greater profits for everyone involved.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;6. Follow Up&lt;/h3&gt;
+
+
+&lt;p&gt;After the job is done, your supplier is going to want to hear about your experience. A quick email or phone call can help them improve their service immeasurably. Charles Overy, CEO of &lt;a href=&quot;http://www.lgm3d.com&quot; target=&quot;_blank&quot;&gt;LGM 3D&lt;/a&gt;, says on the topic, &quot;If you do go though with a project, let your suppliers know how it turned out! Be honest about how their parts worked, and if the decisions that were made were the right ones. Good suppliers will be open to feedback.&quot;&lt;/p&gt;
+
+
+
+
+&lt;p&gt;As always, best of luck with your 3D printing and manufacturing.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Cheers,&lt;br&gt;
+The SupplyBetter Team&lt;/p&gt;
+
 </content>
  </entry>
  

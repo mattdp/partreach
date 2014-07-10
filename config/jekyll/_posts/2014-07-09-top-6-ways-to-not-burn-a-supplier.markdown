@@ -7,13 +7,13 @@ published: true
 
 <table class="image" style="margin: auto;">
 <caption align="bottom">Molten steel being prepped for casting (credit: <a href="http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg" target="_blank">Wikipedia</a>)</caption>
-<tr><td><img src="http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg" alt="Molten steel being prepped for casting" width=500></td></tr>
+<tr><td><img src="http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg" alt="Molten steel being prepped for casting" width="65%"></td></tr>
 </table>
 
 
-<p>It’s time to make the hardware parts for your product. You've googled for suppliers, asked your friends and colleagues for recommendations, and settled on a few contract manufacturers. Before you embark on your journey towards holding that part in hand, you will need to work cooperatively with these new business partners. Since August we’ve facilitated hundreds of conversations with suppliers around real products being made. Here are some of the best steps you can follow to foster great supplier relationships and get your part made.</p>
+<p><br>It’s time to make the hardware parts for your product. You've googled for suppliers, asked your friends and colleagues for recommendations, and settled on a few contract manufacturers. Before you embark on your journey towards holding that part in hand, you will need to work cooperatively with these new business partners. Since August we’ve facilitated hundreds of conversations with suppliers around real products being made. Here are some of the best steps you can follow to foster great supplier relationships and get your part made.</p>
 
-<h3>1. Quickly determine whether or not a supplier is a good fit.<h3>
+<h3>1. Quickly determine whether or not a supplier is a good fit.</h3>
 <p>Spending the time upfront to <a href="http://www.zycus.com/blog/supplier-management/the-supplier-information-performance-dossier-part-2-supplier-information-management.html" target="_blank">research potential suppliers</a> can save you hours of effort in the future. This should involve exploring the supplier's webpage, reading testimonials, and contacting previous customers of that supplier. If it appears that the supplier is a good initial match, then call the supplier and interview with them. Speaking directly with your supplier will help you gauge their level of expertise and how busy they are. After you’ve acquainted yourself with a handful of suppliers, you will have to make some judgement calls about how to proceed with your project. If a supplier turns out to be an expert in the type of manufacturing that you need, great! If not, it is not a crime to thank them and let them know that you’ll pursue other leads. Do not be discouraged if your first attempt at sourcing does not work out as expected.  We formed <a href="http://supplybetter.com" target="_blank">our service</a> specifically to help with this part of the process.</p>
 
 <h3>2. Don't get quotes until you're ready to go.</h3>
@@ -44,5 +44,5 @@ published: true
 
 <p>As always, best of luck with your 3D printing and manufacturing.</p>
 
-<p>Cheers,</p>
-<p>The SupplyBetter Team</p>
+<p>Cheers,<br>
+The SupplyBetter Team</p>
