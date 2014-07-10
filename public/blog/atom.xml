@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-10T10:30:33-07:00</updated>
+ <updated>2014-07-10T10:33:49-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -17,8 +17,8 @@
    <updated>2014-07-09T00:00:00-07:00</updated>
    <id>BLOG_URL/top-6-ways-to-not-burn-a-supplier</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-&lt;caption align=&quot;bottom&quot;&gt;Molten steel being prepped for casting (credit: &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Gussmetallschmelze.jpg&quot; target=&quot;_blank&quot;&gt;Wikipedia&lt;/a&gt;)&lt;/caption&gt;
-&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg&quot; alt=&quot;Molten steel being prepped for casting&quot; width=&quot;650&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;caption align=&quot;bottom&quot;&gt;Molten steel being prepped for casting (credit: &lt;a href=&quot;http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg&quot; target=&quot;_blank&quot;&gt;Wikipedia&lt;/a&gt;)&lt;/caption&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Gussmetallschmelze.jpg&quot; width=&quot;650&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
 
