@@ -27,8 +27,8 @@ published: true
 </ul>
 
 <table class="image" style="margin: auto;">
-  <caption align="bottom">FDM printed [GETFROMROB] for <a href="https://www.anybots.com" target="_blank">Anybots's</a> Virtual Presence Robot, "QB".</caption>
-<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/FDM_anybots.jpg" width="850"></td>
+  <caption align="bottom">FDM printed camera enclosure for a Virtual Presence Robot, designed by <a href="https://www.anybots.com" target="_blank">Anybots</a> </caption>
+<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/FDM_anybots.jpg" width="930"></td>
 </tr>
 </table>
 
@@ -37,7 +37,7 @@ published: true
 <h4>What FDM is great for:</h4>
 <ul>
   <li>Cost. FDM printing is one of the cheapest, industrial-quality prototyping methods available.</li>
-  <li>Durability. FDM parts are not cured with UV light (vs SLA and Polyjet [links]), and therefore do not lose structural integrity when exposed to sunlight.</li>
+  <li>Durability. FDM parts are not cured with UV light (vs <a href="https://www.supplybetter.com/blog/what-to-expect-with-sla.html" target="_blank">SLA</a> or <a href="https://www.supplybetter.com/blog/what-to-expect-with-polyjet.html" target="_blank">Polyjet</a>), and therefore do not lose structural integrity when exposed to sunlight.</li>
   <li>Mechanical strength. FDM parts can be very strong, and are used as functional production parts as well as prototypes.</li>
   <li>Complex geometry. With the aid of support material, FDM parts may contain overhangs and cavities.</li>
 </ul>
