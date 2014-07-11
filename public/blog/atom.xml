@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-11T15:57:14-07:00</updated>
+ <updated>2014-07-11T16:32:48-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -47,7 +47,7 @@
 
 &lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;FDM printed camera enclosure for a Virtual Presence Robot, designed by &lt;a href=&quot;https://www.anybots.com&quot; target=&quot;_blank&quot;&gt;Anybots&lt;/a&gt; &lt;/caption&gt;
-&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/FDM_anybots.jpg&quot; width=&quot;930&quot;&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/FDM_anybots.jpg&quot; width=&quot;934&quot;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;&lt;/p&gt;
 

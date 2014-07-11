@@ -28,7 +28,7 @@ published: true
 
 <table class="image" style="margin: auto;">
   <caption align="bottom">FDM printed camera enclosure for a Virtual Presence Robot, designed by <a href="https://www.anybots.com" target="_blank">Anybots</a> </caption>
-<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/FDM_anybots.jpg" width="930"></td>
+<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/FDM_anybots.jpg" width="934"></td>
 </tr>
 </table>
 
