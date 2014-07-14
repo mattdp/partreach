@@ -28,8 +28,8 @@ class OrderGroup < ActiveRecord::Base
   def parts_snippet_generator
     snippet = <<-HTML
 <p><u><strong>#{name} (Process: #{process}, Material: #{material})</strong></u></p>
-<p><strong>Download link for all files:</strong> <a href="[ZIP_FILE_LINK]"> <strong>[ZIP_FILE_NAME]</strong></a></p>
-<p><strong>Total Quantity: </strong>[TOTAL_QUANTITY]</p>
+<p><strong>Download link for all files:</strong> <a href="ZIPFILELINK]"> <strong>ZIPFILENAME]</strong></a></p>
+<p><strong>Total Quantity: </strong>TOTALQUANTITY</p>
 
 <p>Please quote the items below individually.</p>
     HTML
@@ -45,8 +45,8 @@ class OrderGroup < ActiveRecord::Base
 <li><strong>Part: </strong> #{part.name} (<a href=#{external.url}><strong>Link to file</strong></a>)</li>
 <li><strong>Quantity: </strong>QUANTITY</li>
 <li><strong>Color: </strong>COLOR</li>
-<li><strong>Desired method: </strong>[METHOD]</li>
-<li><strong>Drawing units: </strong>[UNITS]</li>
+<li><strong>Desired method: </strong>METHOD</li>
+<li><strong>Drawing units: </strong>UNITS</li>
 </ul>
       HTML
     end

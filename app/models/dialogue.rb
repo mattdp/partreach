@@ -108,12 +108,15 @@ class Dialogue < ActiveRecord::Base
     
     returnee[:body] += order.email_snippet if order.email_snippet.present?
 
+    # add in parts and images snippets for the appropriate order groups
     parts_information = ""
+    images_information = ""
     order.dialogues.select{|d| d.supplier_id == supplier.id}.each do |dialogue|
-      parts_information += dialogue.order_group.email_snippet if dialogue.order_group.email_snippet.present?
+      parts_information += dialogue.order_group.parts_snippet if dialogue.order_group.parts_snippet.present?
+      images_information += dialogue.order_group.images_snippet if dialogue.order_group.images_snippet.present?
     end
-
     returnee[:body] = returnee[:body].sub(Order::PARTS_SNIPPETS_PLACEHOLDER, parts_information)
+    returnee[:body] = returnee[:body].sub(Order::IMAGES_SNIPPETS_PLACEHOLDER, images_information)
 
     #in paid network
     if (supplier.has_tag?(Tag.find_by_name('n5_signed_only').id) or supplier.has_tag?(Tag.find_by_name('n6_signedAndNDAd').id))
