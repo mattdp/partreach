@@ -37,10 +37,9 @@ class OrderGroup < ActiveRecord::Base
       external = part.external
       next if external.nil?
       suffix = external.url.split(".").last.upcase
-      next if suffix.in? ["PNG", "JPG"]
+      next if suffix.in? ["PNG", "JPG", "ZIP"]
 
       snippet += <<-HTML
-
 <ul>
 <li><strong>Part: </strong> #{part.name} (<a href=#{external.url}><strong>Link to file</strong></a>)</li>
 <li><strong>Quantity: </strong>QUANTITY</li>
@@ -62,7 +61,6 @@ class OrderGroup < ActiveRecord::Base
       suffix = external.url.split(".").last.upcase
       if suffix.in? ["PNG", "JPG"]
         snippet += <<-HTML
-
 <p><a href="#{external.url}" alt="SupplyBetter RFQ#{order_id}" target="_blank">
 <img src="#{external.url}" alt="SupplyBetter RFQ#{order_id}" width="460"></a></p>
         HTML
