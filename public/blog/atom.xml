@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-14T14:57:14-07:00</updated>
+ <updated>2014-07-14T16:40:16-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -29,12 +29,12 @@
 &lt;/table&gt;
 
 
-&lt;p&gt;&lt;br&gt;&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people use SLS parts intended for both prototype and production use cases. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people buy SLS parts intended for both prototype and production use cases. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;&lt;/p&gt;
 
 &lt;h3&gt;What is SLS?&lt;/h3&gt;
 
 
-&lt;p&gt;SLS is an additive manufacturing method that produces solids from a variety of powders, using a laser as its energy source. First, a CAD program slices the design into individual, planar, cross-sections. The SLS machine then rolls out a thin layer of powder onto the build table, and a laser traces the first cross-section of the object in the powder. This causes the affected powder particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object. In this way, a part is built from the bottom up, with any overhangs supported by the un-sintered powder. After the part has been fully sintered, the excess powder must be removed by hand.&lt;/p&gt;
+&lt;p&gt;SLS is an additive manufacturing method that produces solid parts from a variety of powdered, using a laser as its energy source. First, specialized software slices a CAD design into individual, planar, cross-sections. The SLS machine then rolls out a thin layer of powder onto the build table, and a laser traces the first cross-section of the object in the powder. This causes the affected powder particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object. In this way, a part is built from the bottom up, with any overhangs supported by the un-sintered powder. After the part is completed, the excess powder must be removed by hand.&lt;/p&gt;
 
 
 
@@ -42,7 +42,7 @@
 &lt;h3&gt;Is SLS right for me?&lt;/h3&gt;
 
 
-&lt;p&gt;&lt;p&gt;Let&#39;s start with givens. Take this part for instance and let&#39;s say I need 25 of them in my hands in a week. It has:
+&lt;p&gt;&lt;p&gt;Let&#39;s start with givens. Take this part, for instance, and let&#39;s say I need 25 of them in my hands in a week. It has:
 &lt;ul&gt;
 &lt;li&gt;Unique geometry (it is indeed a custom part).&lt;/li&gt;
 &lt;li&gt;Complex geometry. This makes it impractical to make this part using other manufacturing methods, like injection molding, without huge upfront cost.&lt;/li&gt;
@@ -64,7 +64,7 @@
 &lt;ul&gt;
 &lt;li&gt;Having the least amount of design considerations. You can print almost anything.&lt;/li&gt;
 &lt;li&gt;Producing a consistent matte surface finish. Parts generally look pretty great.&lt;/li&gt;
-&lt;li&gt;When you need relatively isotropic tolerances or mechanical behavior (Isotropic means directionally independent. Unlike FDM parts, which have much lower tensile strengths in the &quot;z&quot; direction, SLS parts have only slightly different properties for different build orientations.)&lt;/li&gt;
+&lt;li&gt;When you need relatively isotropic tolerances or mechanical behavior. (Isotropic means directionally independent.) Unlike &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-fdm.thml&quot; target=&quot;_blank&quot;&gt;FDM&lt;/a&gt; parts, which have much lower tensile strengths in the &quot;z&quot; direction, SLS parts have only slightly different mechanical properties for different build orientations.&lt;/li&gt;
 &lt;li&gt;Small parts.&lt;/li&gt;
 &lt;li&gt;Flexibility.&lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;
@@ -76,7 +76,7 @@
 &lt;/ul&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;p&gt;&lt;i&gt;But why not just go to &lt;a href=&quot;https://www.supplybetter.com/blog/shapeways-vs-supplybetter.html&quot; target=&quot;_blank&quot;&gt;Shapeways&lt;/a&gt;?&lt;/i&gt;&lt;p&gt;
-&lt;p&gt;Shapeways is great for low cost, non-critical parts that don&#39;t have a short deadline. If a job is fit for Shapeways (or any of the other online service bureaus), then we&#39;ll definitely recommend them, but for ones that require any degree of speed and quality, then finding an SLS service bureau is the right choice.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;Shapeways is great for low cost, non-critical parts that don&#39;t have a short deadline. If a job is fit for Shapeways (or any of the other online service bureaus), then we&#39;ll definitely recommend them, but for jobs that require any degree of speed and quality, finding an SLS service bureau is the right choice.&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
 
@@ -139,6 +139,61 @@
 &lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
 
 &lt;p&gt;Rob&lt;p&gt;&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>What to Expect With Binder Jet</title>
+   <link href="YOUR_URL/what-to-expect-with-binder-jet.html"/>
+   <updated>2014-07-11T00:00:00-07:00</updated>
+   <id>BLOG_URL/what-to-expect-with-binder-jet</id>
+   <content type="html">&lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+&lt;caption align=&quot;bottom&quot;&gt;&quot;Enneper Rainbow Flower,&quot; a binder jet print by &lt;a href=&quot;https://www.flickr.com/photos/virtox/13622672794/in/photolist-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S&quot; target=&quot;_blank&quot;&gt;Stijn van der Linden&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-ND 2.0.&lt;/a&gt;
+&lt;td&gt;&lt;tr&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/binderjet_cover.jpg&quot; width=&quot;600&quot;&gt;
+&lt;/tr&gt;&lt;/td&gt;&lt;/caption&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss binder jet printing. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h3&gt;What can I print with binder jet?&lt;/h3&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;Binder jet printing is unique in that it can produce both and metal and nonmetal parts. For example, 3D printing service bureau Shapeways uses the binder jet process to produce steel and bronze parts, as well as its widely known Full Color Sandstone parts. Below are examples of parts made from both of these materials.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Guardian of Time,&quot; by Kronberger4 under [&lt;a href=&quot;http://creativecommons.org/licenses/by-sa/3.0&quot; target=&quot;_blank&quot;&gt;CC BY-SA-3.0&lt;/a&gt;], &lt;a href=&quot;http://commons.wikimedia.org/wiki/File%3AGuardians_of_Time_sculpture_Manfred_Kielnhofer_3d_printing.JPG&quot; target=&quot;_blank&quot;&gt;via Wikimedia Commons&lt;/a&gt; This sculpture was printed by Shapeways in their nickel steel material. (Right) Madeline Gannon&lt;/a&gt; printed with SLS. (Right) &quot;Double Gyroid Color,&quot; a binder jet print by &lt;a href=&quot;https://www.flickr.com/photos/virtox/6559330485/in/photolist-bT9KbH-dQo4VX-dQtEGs-dQo4Gc-dQtBjy-dQtE77-dQo5qH-dQo4mV-aZChqV-dQo3Zi-dQtC5b-dQtCm7-dQo2tH-dQtBRW-aZCikD-dQo3Fk-8eA9aN-8ewT3F-8F1JAD-7s8U8Z-4nY2dd-6gHrTK-99WKAG-4Y9nuW-7akaV9-4URtBp-9eGiri-9GkdJ9-97fZuV-ezeaor-bhLFjn-3aC6bA-efswsC-7xvAgr-fwQtLk-4WdnJv-9jvqzK-67qoDe-earknD-76Cvbu-7t2YET-7c4mB3-85JBjd-aDfbsd-fc6mgC-hSGmSN-7uZiim-5ZGqK1-8h7tUD-Jto4w/&quot; target=&quot;_blank&quot;&gt;Stijn van der Linden&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC 2.0&lt;/a&gt;)&lt;/caption&gt;
+&lt;tr&gt;
+&lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/guardian_of_time.jpg&quot;&gt;
+&lt;/td&gt;
+&lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/double_gyroid.jpg&quot;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h3&gt;How does binder jet printing work?&lt;/h3&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;The binder jet build process is similar to SLS &lt;link&gt;, where a model is built out of powder, one cross section at a time. Instead of using a laser to bind the powder, these printers use a glue, or &quot;binder material.&quot; For each cross section, a moving nozzle prints the binder in the desired shape. Then, the build table is lowered, a new layer of powder is spread, and the next cross section is bound. This process produces a solid part in its &quot;green&quot; stage. The part is held together only by the binder, and is extremely fragile. It must now be processed to increase strength and durability, in a manner that depends on the type of powder used.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;Metal parts produced by a binder jet printer, such as Shapeways &quot;stainless steel&quot; parts, must be baked at very high temperatures. This actually fuses the metal powder together and melts away the binder material, forming a solid metal part. These parts tend to be porous, and require additional material to be infused to achieve adequate density. Once fully processed, however, they have mechanical properties comparable to those of cast metals.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;Non-metal parts produced by a binder jet printer are usually coated in a lacquer to improve durability. They may also be infused with a resin to greatly improve mechanical strength.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;What binder jet is great for:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Relatively cheap metal parts. Compared to alternatives like DMLS and EBM, binder jet can be a cost effective way to produce larger metal parts.&lt;/li&gt;
+&lt;li&gt;Full color models and figurines. Binder jet machines are most commonly used to make full-color models.  Binder jet printers that are specialized for color print ink onto each layer to produce color parts, such as architectural models.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;What binder jet is not so great for:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Complex geometry. Because of the weakness of a part in its green stage, extended overhangs and very thin sections may cause the part to break before or during post-processing.&lt;/li&gt;
+&lt;li&gt;Mechanical strength/durability in non-metal parts. Unless infused with resin, these parts are not meant for any structural roles. They also lose structural integrity when exposed to water.&lt;/li&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;As always, best of luck with your 3D printing!&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;The SupplyBetter Team&lt;/p&gt;&lt;/p&gt;
 </content>
  </entry>
  

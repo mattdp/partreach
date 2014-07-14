@@ -18,13 +18,13 @@ published: true
 </table>
 
 
-<br><p>This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people use SLS parts intended for both prototype and production use cases. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.</p>
+<br><p>This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people buy SLS parts intended for both prototype and production use cases. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.</p>
 
 <h3>What is SLS?</h3>
-<p>SLS is an additive manufacturing method that produces solids from a variety of powders, using a laser as its energy source. First, a CAD program slices the design into individual, planar, cross-sections. The SLS machine then rolls out a thin layer of powder onto the build table, and a laser traces the first cross-section of the object in the powder. This causes the affected powder particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object. In this way, a part is built from the bottom up, with any overhangs supported by the un-sintered powder. After the part has been fully sintered, the excess powder must be removed by hand.</p>
+<p>SLS is an additive manufacturing method that produces solid parts from a variety of powdered, using a laser as its energy source. First, specialized software slices a CAD design into individual, planar, cross-sections. The SLS machine then rolls out a thin layer of powder onto the build table, and a laser traces the first cross-section of the object in the powder. This causes the affected powder particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object. In this way, a part is built from the bottom up, with any overhangs supported by the un-sintered powder. After the part is completed, the excess powder must be removed by hand.</p>
 
 <h3>Is SLS right for me?</h3>
-<p>Let's start with givens. Take this part for instance and let's say I need 25 of them in my hands in a week. It has: 
+<p>Let's start with givens. Take this part, for instance, and let's say I need 25 of them in my hands in a week. It has: 
 <ul>
 <li>Unique geometry (it is indeed a custom part).</li>
 <li>Complex geometry. This makes it impractical to make this part using other manufacturing methods, like injection molding, without huge upfront cost.</li>
@@ -46,7 +46,7 @@ published: true
 <ul>
 <li>Having the least amount of design considerations. You can print almost anything.</li>
 <li>Producing a consistent matte surface finish. Parts generally look pretty great.</li>
-<li>When you need relatively isotropic tolerances or mechanical behavior (Isotropic means directionally independent. Unlike FDM parts, which have much lower tensile strengths in the "z" direction, SLS parts have only slightly different properties for different build orientations.)</li>
+<li>When you need relatively isotropic tolerances or mechanical behavior. (Isotropic means directionally independent.) Unlike <a href="www.supplybetter.com/blog/what-to-expect-with-fdm.thml" target="_blank">FDM</a> parts, which have much lower tensile strengths in the "z" direction, SLS parts have only slightly different mechanical properties for different build orientations.</li>
 <li>Small parts.</li>
 <li>Flexibility.</li>
 </ul>
@@ -58,7 +58,7 @@ published: true
 </ul>
   
 <p><i>But why not just go to <a href="https://www.supplybetter.com/blog/shapeways-vs-supplybetter.html" target="_blank">Shapeways</a>?</i><p>
-<p>Shapeways is great for low cost, non-critical parts that don't have a short deadline. If a job is fit for Shapeways (or any of the other online service bureaus), then we'll definitely recommend them, but for ones that require any degree of speed and quality, then finding an SLS service bureau is the right choice.</p>
+<p>Shapeways is great for low cost, non-critical parts that don't have a short deadline. If a job is fit for Shapeways (or any of the other online service bureaus), then we'll definitely recommend them, but for jobs that require any degree of speed and quality, finding an SLS service bureau is the right choice.</p>
 
 <p>Cheers,
 
