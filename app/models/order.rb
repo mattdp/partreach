@@ -232,45 +232,44 @@ def add_complex_order(location)
   end
 
   def email_snippet_generator
-    snippet = 
-      "<u><h3>What We Need</h3></u><p><strong>Total Cost</strong> (including any shipping and taxes):</p>"
+
     if self.stated_priority == "speed"
-      snippet += "<p><strong>Estimated delivery date:</strong></p><p><strong>Deadline for client to place order to hit that delivery date:</strong></p>"
+      turnaround_snippet = <<-HTML
+<p><strong>Estimated delivery date:</strong></p>
+<p><strong>Deadline for client to place order to hit that delivery date:</strong></p>
+      HTML
     else
-      snippet += "<p><strong>Lead Time:</strong></p>"
+      turnaround_snippet = <<-HTML
+<p><strong>Lead Time:</strong></p>
+      HTML
     end
-    snippet += "<u><h3>Project Details</h3></u>"
 
-    #omits speed, since that's covered in other fields
-    case self.stated_priority
-    when "cost"
-      snippet += "<p><strong>Priority:</strong> Cost is the main concern here. This is not a rush order.</p>"
-    when "quality"
-      snippet += "<p><strong>Priority:</strong> Quality is the main concern here with this project. See the note from client for details on what exactly they're looking for.</p>"
-    end
-    
-    snippet += "<p><strong>Deadline:</strong> "
     if self.stated_priority == "speed"
-      snippet += "ASAP. Client is willing to pay rush order costs to hit a deadline of #{self.deadline}, see note below.</p>"
+      deadline_text = <<-HTML
+ASAP. Client is willing to pay rush order costs to hit a deadline of #{self.deadline}, see note below.
+      HTML
     else
-      snippet += "#{self.deadline}</p>\n" if self.deadline.present?
+      deadline_text = self.deadline ||= ""
     end
 
-    snippet += Order.group_text_substitution #special characters, to be replaced by group information
+    zipcode = self.user.address.zip if self.user && self.user.address && self.user.address.zip
 
-    snippet += "<p><strong>Shipping Zipcode:</strong>"
-    snippet += " #{self.user.address.zip}" if (self.user and self.user.address and self.user.address.zip)
-    snippet += "</p>""
+    snippet = <<-HTML
+<u><h3>What We Need</h3></u>
+<p><strong>Total Cost</strong> (including any shipping and taxes):</p>
+#{turnaround_snippet}
+<u><h3>Project Details</h3></u>
+<p><strong>Deadline:</strong> #{deadline_text}</p>
 
-      <p><strong>Infill:</strong></p>
+<[$groups$]>
 
-      <p><strong>Build Orientation:</strong></p>
+<p><strong>Shipping Zipcode:</strong> #{zipcode}</p>
 
-      <p><strong>Note from Client:</strong> <i>#{self.supplier_message}</i></p>
-
-      <p><strong>Notes about Client:</strong></p>"
-
-    return snippet
+<p><strong>Infill:</strong> </p>
+<p><strong>Build Orientation:</strong> </p>
+<p><strong>Note from Client:</strong><i> </i></p>
+<p><strong>Notes about Client:</strong> </p>
+    HTML
   end
 
   def self.metrics(interval,tracking_start_date)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630125654) do
+ActiveRecord::Schema.define(version: 20140712015714) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -205,6 +205,7 @@ ActiveRecord::Schema.define(version: 20140630125654) do
     t.string   "process"
     t.string   "material"
     t.text     "email_snippet"
+    t.text     "email_images_snippet"
   end
 
   create_table "orders", force: true do |t|

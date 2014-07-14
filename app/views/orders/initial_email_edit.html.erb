@@ -23,10 +23,19 @@
       <% @order.order_groups.each do |order_group| %>
         <div>
           <%= label_tag "order_group_email_snippets[#{order_group.id}]", "#{order_group.name} (Process: #{order_group.process}, Material: #{order_group.material})" %>
+          <br>
           <%= link_to "Regenerate default text", "#", class: "generate-email-button", data: {html: order_group.email_snippet_generator} %>
           or
           <%= link_to "Edit this order group", edit_order_group_path(order_group) %>
+          <br>
           <%= text_area_tag "order_group_email_snippets[#{order_group.id}]", order_group.email_snippet, rows: 10 %>
+        </div>
+        <div>
+          Image files:
+          <br>
+          <%= link_to "Regenerate default text", "#", class: "generate-email-button", data: {html: order_group.email_images_snippet_generator} %>
+          <br>
+          <%= text_area_tag "order_group_email_snippets[#{order_group.id}]", order_group.email_images_snippet, rows: 10 %>
         </div>
       <% end %>
 
