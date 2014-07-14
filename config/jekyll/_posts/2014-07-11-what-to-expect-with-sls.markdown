@@ -6,7 +6,7 @@ published: true
 ---
 
 <table class="image" style="margin: auto;">
-  <caption align="bottom">(Left)Front view of "Collar 2," original necklace by <a href="https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6" target="_blank">Madeline Gannon</a> printed with SLS. (Right) <a href="https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL" target="_blank">Reverse view</a> of the same piece. Used under <a href="https://creativecommons.org/licenses/by-nc/2.0/legalcode" target="_blank">CC BY-NC 2.0</a>)</caption>
+  <caption align="bottom">(Left) Front view of "Collar 2," original necklace by <a href="https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6" target="_blank">Madeline Gannon</a> printed with SLS. (Right) <a href="https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL" target="_blank">Reverse view</a> of the same piece. Used under <a href="https://creativecommons.org/licenses/by-nc/2.0/legalcode" target="_blank">CC BY-NC 2.0</a>)</caption>
 <tr>
 <td width="50%" align="center">
 <img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg">
@@ -18,7 +18,7 @@ published: true
 </table>
 
 
-<p>This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people use SLS parts intended for both prototype and production use cases. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.</p>
+<br><p>This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people use SLS parts intended for both prototype and production use cases. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.</p>
 
 <h3>What is SLS?</h3>
 <p>SLS is an additive manufacturing method that produces solids from a variety of resins, using a laser as its energy source. The SLS machine rolls out a thin layer of powder onto the build table, and a laser heats the desired cross-section from above. This causes the particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object.</p>
@@ -32,6 +32,12 @@ published: true
 <li>A "living hinge." (<a href="http://en.wikipedia.org/wiki/Living_hinge" target="_blank">What's a living hinge?</a>)</li>
 </ul>
 
+<table class="image" style="margin: auto;">
+<caption align="bottom">Custom, functional bracket produced with SLS></caption>
+<tr><td>
+<img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLS+Bracket.jpg">
+</td></tr>
+</table>
 
 <p>This is an ideal use case for SLS 3D printing, and is actually from a real project that came through SupplyBetter. We helped the buyer find a service bureau that fit their project needs exactly. More on that in a bit.</p>
 
