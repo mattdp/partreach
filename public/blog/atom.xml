@@ -4,12 +4,83 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-14T12:06:47-07:00</updated>
+ <updated>2014-07-14T12:44:03-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>What to Expect With SLS</title>
+   <link href="YOUR_URL/what-to-expect-with-sls.html"/>
+   <updated>2014-07-11T00:00:00-07:00</updated>
+   <id>BLOG_URL/what-to-expect-with-sls</id>
+   <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;(Left)Front view of &quot;Collar 2,&quot; original necklace by &lt;a href=&quot;https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6&quot; target=&quot;_blank&quot;&gt;Madeline Gannon&lt;/a&gt; printed with SLS. (Right) &lt;a href=&quot;https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL&quot; target=&quot;_blank&quot;&gt;Reverse view&lt;/a&gt; of the same piece. Used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC 2.0&lt;/a&gt;)&lt;/caption&gt;
+&lt;tr&gt;
+&lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg&quot;&gt;
+&lt;/td&gt;
+&lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back.jpg&quot;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+
+&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people use SLS parts intended for both prototype and production use cases. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;What is SLS?&lt;/h3&gt;
+
+
+&lt;p&gt;SLS is an additive manufacturing method that produces solids from a variety of resins, using a laser as its energy source. The SLS machine rolls out a thin layer of powder onto the build table, and a laser heats the desired cross-section from above. This causes the particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;Is SLS right for me?&lt;/h3&gt;
+
+
+&lt;p&gt;&lt;p&gt;Let&#39;s start with givens. Take this part for instance and let&#39;s say I need 25 of them in my hands in a week. It has:
+&lt;ul&gt;
+&lt;li&gt;Unique geometry (is indeed a custom part).&lt;/li&gt;
+&lt;li&gt;Complex geometry. This makes it impractical to make this part using other manufacturing methods, like injection molding, without huge upfront cost.&lt;/li&gt;
+&lt;li&gt;Small outer dimensions.&lt;/li&gt;
+&lt;li&gt;A &quot;living hinge.&quot; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Living_hinge&quot; target=&quot;_blank&quot;&gt;What&#39;s a living hinge?&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;This is an ideal use case for SLS 3D printing, and is actually from a real project that came through SupplyBetter. We helped the buyer find a service bureau that fit their project needs exactly. More on that in a bit.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;What SLS is great for:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Scalability, up to a point.&lt;/li&gt;
+&lt;li&gt;Having the least amount of design considerations. You can print almost anything.&lt;/li&gt;
+&lt;li&gt;Producing a consistent matte surface finish. Parts generally look pretty great.&lt;/li&gt;
+&lt;li&gt;When you need relatively isotropic tolerances or mechanical behavior (Isotropic means directionally independent. Unlike FDM parts, which have much lower tensile strengths in the &quot;z&quot; direction, SLS parts have only slightly different properties for different build orientations.)&lt;/li&gt;
+&lt;li&gt;Small parts.&lt;/li&gt;
+&lt;li&gt;Flexibility.&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;What SLS is not great for:&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;Color.&lt;/li&gt;
+&lt;li&gt;Same day speeds.&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;&lt;i&gt;But why not just go to &lt;a href=&quot;https://www.supplybetter.com/blog/shapeways-vs-supplybetter.html&quot; target=&quot;_blank&quot;&gt;Shapeways&lt;/a&gt;?&lt;/i&gt;&lt;p&gt;
+&lt;p&gt;Shapeways is great for low cost, non-critical parts that don&#39;t have a short deadline. If a job is fit for Shapeways (or any of the other online service bureaus), then we&#39;ll definitely recommend them, but for ones that require any degree of speed and quality, then finding an SLS service bureau is the right choice.&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>What to Expect With SLA</title>
