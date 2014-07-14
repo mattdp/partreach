@@ -6,7 +6,7 @@ published: true
 ---
 <table class="image" style="margin: auto;">
   <caption align="bottom">"Fixed Landscapes" sculpture printed with SLA, courtesy of <a href="https://www.flickr.com/photos/gabriellalevine/10934704833/in/photolist-8ZKrBi-hnHrYR-hnFxWP-h66KBM-hnG8x7-hnHe9T-hnG6fG-hnFUvU-hnGiXU-hnH7b4-hnGZwn-hnFe8r-hnG2tS-hnHty4-hnH4bX-hnFZs9-hnFS8C-hnFQku-hnFR2R-hnFXCY-hnHpaK-hnFgqT-hnGcJb-hnGs5L-hnFrRT-h674hL-h685UF-h66Rkm-h675mu-h66SE5-h66Lfa-h684V6-h684Z4-h66Kux-nAnwqX-gnE9vS-hEgdMF-hEfWqc-hEgmar-hEezkF-hEg8CH-hEeEce-hEgiAt-hEg2Ev-hEfUJs-hEfAWo-hEgvaF-hEf4yp-hEfKHS-92efH8" target="_blank">Gabriella Levine</a>, under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode" target="_blank">CC BY-NC-SA</a></caption>
-<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_cover.jpg" width="600"></td>
+<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_cover.jpg" width="934"></td>
 </tr>
 </table>
 
@@ -20,7 +20,7 @@ published: true
 
 <table class="image" style="margin: auto;">
   <caption align="bottom">Doll hand printed with SLA, courtesy of <a href="https://www.flickr.com/photos/dannychoo/12028241423/in/photolist-9S3znM-9S3xxg-jjWDqN-jjUd4N-jjTT7P-nAnwqX-9S3vPR-6vDX3a/" target="_blank">Danny Choo</a>, under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode" target="_blank">CC BY-NC-SA</a></caption>
-<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_doll-hand.jpg" width="600"></td>
+<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_doll-hand.jpg" width="934"></td>
 </tr>
 </table>
 

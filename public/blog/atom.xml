@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-14T10:24:09-07:00</updated>
+ <updated>2014-07-14T10:50:20-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -18,7 +18,7 @@
    <id>BLOG_URL/what-to-expect-with-sla</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;&quot;Fixed Landscapes&quot; sculpture printed with SLA, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/gabriellalevine/10934704833/in/photolist-8ZKrBi-hnHrYR-hnFxWP-h66KBM-hnG8x7-hnHe9T-hnG6fG-hnFUvU-hnGiXU-hnH7b4-hnGZwn-hnFe8r-hnG2tS-hnHty4-hnH4bX-hnFZs9-hnFS8C-hnFQku-hnFR2R-hnFXCY-hnHpaK-hnFgqT-hnGcJb-hnGs5L-hnFrRT-h674hL-h685UF-h66Rkm-h675mu-h66SE5-h66Lfa-h684V6-h684Z4-h66Kux-nAnwqX-gnE9vS-hEgdMF-hEfWqc-hEgmar-hEezkF-hEg8CH-hEeEce-hEgiAt-hEg2Ev-hEfUJs-hEfAWo-hEgvaF-hEf4yp-hEfKHS-92efH8&quot; target=&quot;_blank&quot;&gt;Gabriella Levine&lt;/a&gt;, under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-SA&lt;/a&gt;&lt;/caption&gt;
-&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_cover.jpg&quot; width=&quot;600&quot;&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_cover.jpg&quot; width=&quot;934&quot;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 
@@ -35,7 +35,7 @@
 
 &lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;Doll hand printed with SLA, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/dannychoo/12028241423/in/photolist-9S3znM-9S3xxg-jjWDqN-jjUd4N-jjTT7P-nAnwqX-9S3vPR-6vDX3a/&quot; target=&quot;_blank&quot;&gt;Danny Choo&lt;/a&gt;, under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-SA&lt;/a&gt;&lt;/caption&gt;
-&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_doll-hand.jpg&quot; width=&quot;600&quot;&gt;&lt;/td&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_doll-hand.jpg&quot; width=&quot;934&quot;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;&lt;/p&gt;
 
