@@ -204,8 +204,8 @@ ActiveRecord::Schema.define(version: 20140712015714) do
     t.datetime "updated_at"
     t.string   "process"
     t.string   "material"
-    t.text     "email_snippet"
-    t.text     "email_images_snippet"
+    t.text     "parts_snippet"
+    t.text     "images_snippet"
   end
 
   create_table "orders", force: true do |t|

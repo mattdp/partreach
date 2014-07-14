@@ -45,6 +45,9 @@ class Order < ActiveRecord::Base
   validates :material_message, presence: true, length: {minimum: 2}
   validates :columns_shown, presence: true
 
+  PARTS_SNIPPETS_PLACEHOLDER = "<[$PARTS$]>"
+  IMAGES_SNIPPETS_PLACEHOLDER = "<[$IMAGES$]>"
+
   def alphabetical_unique_supplier_names
     return self.dialogues.map{|d| d.supplier_id}.uniq.map{|id| Supplier.find(id).name}.sort
   end
@@ -227,10 +230,6 @@ def add_complex_order(location)
     return variable
   end
 
-  def self.group_text_substitution
-    return "<[$groups$]>"
-  end
-
   def email_snippet_generator
 
     if self.stated_priority == "speed"
@@ -261,7 +260,7 @@ ASAP. Client is willing to pay rush order costs to hit a deadline of #{self.dead
 <u><h3>Project Details</h3></u>
 <p><strong>Deadline:</strong> #{deadline_text}</p>
 
-<[$groups$]>
+#{Order::PARTS_SNIPPETS_PLACEHOLDER}
 
 <p><strong>Shipping Zipcode:</strong> #{zipcode}</p>
 
@@ -269,6 +268,8 @@ ASAP. Client is willing to pay rush order costs to hit a deadline of #{self.dead
 <p><strong>Build Orientation:</strong> </p>
 <p><strong>Note from Client:</strong><i> </i></p>
 <p><strong>Notes about Client:</strong> </p>
+
+#{Order::IMAGES_SNIPPETS_PLACEHOLDER}
     HTML
   end
 

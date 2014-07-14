@@ -9,7 +9,8 @@
 #  updated_at    :datetime
 #  process       :string(255)
 #  material      :string(255)
-#  email_snippet :text
+#  parts_snippet :text
+#  images_snippet :text
 #
 
 class OrderGroup < ActiveRecord::Base
@@ -24,7 +25,7 @@ class OrderGroup < ActiveRecord::Base
     OrderGroup.create!({name: "Default"})
   end
 
-  def email_snippet_generator
+  def parts_snippet_generator
     snippet = <<-HTML
 <p><u><strong>#{name} (Process: #{process}, Material: #{material})</strong></u></p>
 <p><strong>Download link for all files:</strong> <a href="[ZIP_FILE_LINK]"> <strong>[ZIP_FILE_NAME]</strong></a></p>
@@ -53,7 +54,7 @@ class OrderGroup < ActiveRecord::Base
     snippet
   end
 
-  def email_images_snippet_generator
+  def images_snippet_generator
     snippet = ""
     self.parts.each do |part|
       external = part.external

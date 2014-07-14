@@ -113,7 +113,7 @@ class Dialogue < ActiveRecord::Base
       parts_information += dialogue.order_group.email_snippet if dialogue.order_group.email_snippet.present?
     end
 
-    returnee[:body] = returnee[:body].sub(Order.group_text_substitution,parts_information)
+    returnee[:body] = returnee[:body].sub(Order::PARTS_SNIPPETS_PLACEHOLDER, parts_information)
 
     #in paid network
     if (supplier.has_tag?(Tag.find_by_name('n5_signed_only').id) or supplier.has_tag?(Tag.find_by_name('n6_signedAndNDAd').id))

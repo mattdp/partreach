@@ -21,16 +21,17 @@
       </div>
 
       <% @order.order_groups.each do |order_group| %>
-        <%= label_tag "order_group_email_snippets[#{order_group.id}]", "Order Group: #{order_group.name} (Process: #{order_group.process}, Material: #{order_group.material})" %>
+        <%= label_tag nil, "Order Group: #{order_group.name} (Process: #{order_group.process}, Material: #{order_group.material})" %>
           <%= link_to "Edit this order group", edit_order_group_path(order_group) %>
         <div>
-          Image files
-          <%= link_to "Regenerate default text", "#", class: "generate-email-button", data: {html: order_group.email_images_snippet_generator} %>
-          <%= text_area_tag "order_group_email_snippets[#{order_group.id}]", order_group.email_images_snippet, rows: 10 %>
+          <%= label_tag "order_group_parts_snippets[#{order_group.id}]", "Parts snippet" %>
+          <%= link_to "Regenerate default text", "#", class: "generate-email-button", data: {html: order_group.parts_snippet_generator} %>
+          <%= text_area_tag "order_group_parts_snippets[#{order_group.id}]", order_group.parts_snippet, rows: 10 %>
         </div>
         <div>
-          <%= link_to "Regenerate default text", "#", class: "generate-email-button", data: {html: order_group.email_snippet_generator} %>
-          <%= text_area_tag "order_group_email_snippets[#{order_group.id}]", order_group.email_snippet, rows: 10 %>
+          <%= label_tag "order_group_images_snippets[#{order_group.id}]", "Images snippet" %>
+          <%= link_to "Regenerate default text", "#", class: "generate-email-button", data: {html: order_group.images_snippet_generator} %>
+          <%= text_area_tag "order_group_images_snippets[#{order_group.id}]", order_group.images_snippet, rows: 10 %>
         </div>
       <% end %>
 
