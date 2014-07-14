@@ -18,12 +18,11 @@ published: true
 <p>We’ve already written about the differences between FDM and hobby-level printing (<a href="https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html" target="_blank">find that here</a>). Instead, we will examine some of the benefits and shortcomings of FDM.<p>
 
 <h3>Is FDM right for me?</h3>
-<p>Here's an example of a part that we sourced at SupplyBetter. It has:</p>
+<p>Here's an example of a part that we sourced at SupplyBetter. This part specifically needed to be made of ABS, because it was to be chemically bonded to a part made of injection-molded ABS. It has:</p>
 
 <ul>
   <li>Functional structure.</li>
   <li>No surface finish requirements.</li>
-  <li>This part specifically needed to be made of ABS, because it was to be chemically bonded to an injection-molded ABS part.</li>
 </ul>
 
 <table class="image" style="margin: auto;">
