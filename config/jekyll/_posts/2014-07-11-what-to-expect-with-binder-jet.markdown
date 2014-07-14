@@ -4,11 +4,12 @@ author: Rob
 title: What to Expect With Binder Jet
 published: true
 ---
+
 <table class="image" style="margin: auto;">
-<caption align="bottom">"Enneper Rainbow Flower," a binder jet print by <a href="https://www.flickr.com/photos/virtox/13622672794/in/photolist-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S" target="_blank">Stijn van der Linden</a>, used under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">CC BY-NC-ND 2.0.</a>
-<td><tr>
+<caption align="bottom">"Enneper Rainbow Flower," a binder jet print by <a href="https://www.flickr.com/photos/virtox/13622672794/in/photolist-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S" target="_blank">Stijn van der Linden</a>, used under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">CC BY-NC-ND 2.0.</a></caption>
+<tr><td>
 <img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/binderjet_cover.jpg" width="600">
-</tr></td></caption>
+</td></tr>
 </table>
 
 <p>This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss binder jet printing. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.</p>

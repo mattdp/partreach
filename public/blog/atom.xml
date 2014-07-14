@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-14T16:45:44-07:00</updated>
+ <updated>2014-07-14T16:50:29-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -148,10 +148,10 @@
    <updated>2014-07-11T00:00:00-07:00</updated>
    <id>BLOG_URL/what-to-expect-with-binder-jet</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-&lt;caption align=&quot;bottom&quot;&gt;&quot;Enneper Rainbow Flower,&quot; a binder jet print by &lt;a href=&quot;https://www.flickr.com/photos/virtox/13622672794/in/photolist-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S&quot; target=&quot;_blank&quot;&gt;Stijn van der Linden&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-ND 2.0.&lt;/a&gt;
-&lt;td&gt;&lt;tr&gt;
+&lt;caption align=&quot;bottom&quot;&gt;&quot;Enneper Rainbow Flower,&quot; a binder jet print by &lt;a href=&quot;https://www.flickr.com/photos/virtox/13622672794/in/photolist-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S&quot; target=&quot;_blank&quot;&gt;Stijn van der Linden&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-ND 2.0.&lt;/a&gt;&lt;/caption&gt;
+&lt;tr&gt;&lt;td&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/binderjet_cover.jpg&quot; width=&quot;600&quot;&gt;
-&lt;/tr&gt;&lt;/td&gt;&lt;/caption&gt;
+&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
 
