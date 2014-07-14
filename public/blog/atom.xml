@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-14T10:50:20-07:00</updated>
+ <updated>2014-07-14T10:53:57-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -45,21 +45,21 @@
 &lt;li&gt;Tiny details. Individual fingers on the doll’s hand need to look realistic.&lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;p&gt;This was an ideal use case for SLA!&lt;/p&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;h4&gt;What SLA is great for:&lt;/h4&gt;
+&lt;p&gt;&lt;p&gt;This was an ideal use case for SLA!&lt;/p&gt;
+&lt;br&gt;
+&lt;h4&gt;What SLA is great for:&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Fine details. SLA printers are capable of some of the highest tolerances in the business. &lt;a href=&quot;http://www.quickparts.com/LowVolumePrototypes/SLA.aspx&quot; target=&quot;_blank&quot;&gt;Tolerance&lt;/a&gt; in each cross section is typically 5/1000 of an inch, with tolerance in the z-axis of 1/100 of an inch or smaller. Smooth surfaces. The high tolerances associated with SLA give parts a silky-smooth appearance, even before post-processing.&lt;/li&gt;
 &lt;li&gt;Complex geometry. Thin walls and support material allow SLA to produce highly complex shapes with overhangs. Enclosed cavities, however, will be full of resin.&lt;/li&gt;
-&lt;/ul&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;h4&gt;What SLA is not great for:&lt;/h4&gt;
+&lt;/ul&gt;
+&lt;br&gt;
+&lt;h4&gt;What SLA is not great for:&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Material costs. Photopolymers tend to be expensive (hundreds of dollars per liter)&lt;/li&gt;
 &lt;li&gt;Durability. Exposure to sunlight (or any ultraviolet light) will cause SLA parts to lose structural integrity over time.&lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;h4&gt;What materials can I print with SLA?&lt;/h4&gt;
+&lt;p&gt;&lt;h3&gt;What materials can I print with SLA?&lt;/h3&gt;
 &lt;p&gt;3D systems, the company that pioneered SLA printing, has developed a wide array of photopolymers. These have varying properties, and are grouped by the material they imitate. For example, there is a class of &quot;ABS-like&quot; resins.&lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;p&gt;This eye-friendly data sheet, provided by SolidConcepts, does a good job at laying them out. &lt;a href=&quot;http://www.solidconcepts.com/materials/sla-materials/&quot; target=&quot;_blank&quot;&gt;(link)&lt;/a&gt;&lt;p&gt;&lt;/p&gt;

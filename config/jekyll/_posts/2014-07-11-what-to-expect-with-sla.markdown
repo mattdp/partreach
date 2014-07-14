@@ -31,20 +31,20 @@ It has:
 </ul>
 
 <p>This was an ideal use case for SLA!</p>
-
+<br>
 <h4>What SLA is great for:</h4>
 <ul>
 <li>Fine details. SLA printers are capable of some of the highest tolerances in the business. <a href="http://www.quickparts.com/LowVolumePrototypes/SLA.aspx" target="_blank">Tolerance</a> in each cross section is typically 5/1000 of an inch, with tolerance in the z-axis of 1/100 of an inch or smaller. Smooth surfaces. The high tolerances associated with SLA give parts a silky-smooth appearance, even before post-processing.</li>
 <li>Complex geometry. Thin walls and support material allow SLA to produce highly complex shapes with overhangs. Enclosed cavities, however, will be full of resin.</li>
 </ul>
-  
+<br>
 <h4>What SLA is not great for:</h4>
 <ul>
 <li>Material costs. Photopolymers tend to be expensive (hundreds of dollars per liter)</li>
 <li>Durability. Exposure to sunlight (or any ultraviolet light) will cause SLA parts to lose structural integrity over time.</li>
 </ul>
 
-<h4>What materials can I print with SLA?</h4>
+<h3>What materials can I print with SLA?</h3>
 <p>3D systems, the company that pioneered SLA printing, has developed a wide array of photopolymers. These have varying properties, and are grouped by the material they imitate. For example, there is a class of "ABS-like" resins.<p>
 
 <p>This eye-friendly data sheet, provided by SolidConcepts, does a good job at laying them out. <a href="http://www.solidconcepts.com/materials/sla-materials/" target="_blank">(link)</a><p>
