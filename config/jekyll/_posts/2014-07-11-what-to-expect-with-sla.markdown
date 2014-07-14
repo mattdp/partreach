@@ -16,7 +16,12 @@ published: true
 <p>The SLA process begins with a vat of UV-curable photopolymer resin. Photopolymers are liquids that may be cured, or hardened, by exposure to various wavelengths of light. This differs from <a href="www.supplybetter.com/blog/what-to-expect-with-sls.html" target="_blank">SLS</a>, where the raw material begins its life as a fine powder. The print begins with the build table resting just below the surface of the resin, submerged below just one layer's-worth of resin (a few thousandths of an inch). An ultraviolet laser traces out the first cross section of the desired part in the resin, hardening only the material that will form the part. Then, the build table descends into the vat by another layer's thickness, and the laser traces out the next cross section on top of the first. This both hardens the next layer of photopolymer and fuses the two layers together. After the entire part has been constructed in this way, the part is removed, and may be further cured in a UV-Oven.<p>
 
 <h3>Is SLA right for me?</h3>
-<p>Here's an example part made by stereolithography. The part is a prototype hand for a custom doll, and needed to be made of a transparent material.</p>
+<p>Here's an example part made by stereolithography. The part is a prototype hand for a custom doll, and needed to be made of a transparent material. It has:</p>
+
+<ul>
+<li>Small size.</li>
+<li>Tiny details. Individual fingers on the doll’s hand need to look realistic.</li>
+</ul>
 
 <table class="image" style="margin: auto;">
   <caption align="bottom">Doll hand printed with SLA, courtesy of <a href="https://www.flickr.com/photos/dannychoo/12028241423/in/photolist-9S3znM-9S3xxg-jjWDqN-jjUd4N-jjTT7P-nAnwqX-9S3vPR-6vDX3a/" target="_blank">Danny Choo</a>, under <a href="https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode" target="_blank">CC BY-NC-SA</a></caption>
@@ -24,20 +29,14 @@ published: true
 </tr>
 </table>
 
-It has:
-<ul>
-<li>Small size.</li>
-<li>Tiny details. Individual fingers on the doll’s hand need to look realistic.</li>
-</ul>
-
 <p>This was an ideal use case for SLA!</p>
-<br>
+
 <h4>What SLA is great for:</h4>
 <ul>
 <li>Fine details. SLA printers are capable of some of the highest tolerances in the business. <a href="http://www.quickparts.com/LowVolumePrototypes/SLA.aspx" target="_blank">Tolerance</a> in each cross section is typically 5/1000 of an inch, with tolerance in the z-axis of 1/100 of an inch or smaller. Smooth surfaces. The high tolerances associated with SLA give parts a silky-smooth appearance, even before post-processing.</li>
 <li>Complex geometry. Thin walls and support material allow SLA to produce highly complex shapes with overhangs. Enclosed cavities, however, will be full of resin.</li>
 </ul>
-<br>
+
 <h4>What SLA is not great for:</h4>
 <ul>
 <li>Material costs. Photopolymers tend to be expensive (hundreds of dollars per liter)</li>
@@ -47,9 +46,7 @@ It has:
 <h3>What materials can I print with SLA?</h3>
 <p>3D systems, the company that pioneered SLA printing, has developed a wide array of photopolymers. These have varying properties, and are grouped by the material they imitate. For example, there is a class of "ABS-like" resins.<p>
 
-<p>This eye-friendly data sheet, provided by SolidConcepts, does a good job at laying them out. <a href="http://www.solidconcepts.com/materials/sla-materials/" target="_blank">(link)</a><p>
-
-<p>A comprehensive list of available materials and their properties is provided by 3D systems <a href="http://www.3dsystems.com/quickparts/prototyping-pre-production/stereolithography-sla/materials" target="_blank">here</a>.<p>
+<p>This <a href="http://www.solidconcepts.com/materials/sla-materials/" target="_blank">eye-friendly data sheet</a>, provided by SolidConcepts, does a good job at laying them out. A comprehensive list of available materials and their properties is provided by 3D systems <a href="http://www.3dsystems.com/quickparts/prototyping-pre-production/stereolithography-sla/materials" target="_blank">here</a>.<p>
 
 <p>Cheers,
 

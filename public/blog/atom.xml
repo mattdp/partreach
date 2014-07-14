@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-14T10:53:57-07:00</updated>
+ <updated>2014-07-14T10:59:53-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -31,7 +31,12 @@
 &lt;p&gt;The SLA process begins with a vat of UV-curable photopolymer resin. Photopolymers are liquids that may be cured, or hardened, by exposure to various wavelengths of light. This differs from &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sls.html&quot; target=&quot;_blank&quot;&gt;SLS&lt;/a&gt;, where the raw material begins its life as a fine powder. The print begins with the build table resting just below the surface of the resin, submerged below just one layer&#39;s-worth of resin (a few thousandths of an inch). An ultraviolet laser traces out the first cross section of the desired part in the resin, hardening only the material that will form the part. Then, the build table descends into the vat by another layer&#39;s thickness, and the laser traces out the next cross section on top of the first. This both hardens the next layer of photopolymer and fuses the two layers together. After the entire part has been constructed in this way, the part is removed, and may be further cured in a UV-Oven.&lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h3&gt;Is SLA right for me?&lt;/h3&gt;
-&lt;p&gt;Here&#39;s an example part made by stereolithography. The part is a prototype hand for a custom doll, and needed to be made of a transparent material.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;Here&#39;s an example part made by stereolithography. The part is a prototype hand for a custom doll, and needed to be made of a transparent material. It has:&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;ul&gt;
+&lt;li&gt;Small size.&lt;/li&gt;
+&lt;li&gt;Tiny details. Individual fingers on the doll’s hand need to look realistic.&lt;/li&gt;
+&lt;/ul&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;Doll hand printed with SLA, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/dannychoo/12028241423/in/photolist-9S3znM-9S3xxg-jjWDqN-jjUd4N-jjTT7P-nAnwqX-9S3vPR-6vDX3a/&quot; target=&quot;_blank&quot;&gt;Danny Choo&lt;/a&gt;, under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-SA&lt;/a&gt;&lt;/caption&gt;
@@ -39,21 +44,15 @@
 &lt;/tr&gt;
 &lt;/table&gt;&lt;/p&gt;
 
-&lt;p&gt;It has:
-&lt;ul&gt;
-&lt;li&gt;Small size.&lt;/li&gt;
-&lt;li&gt;Tiny details. Individual fingers on the doll’s hand need to look realistic.&lt;/li&gt;
-&lt;/ul&gt;&lt;/p&gt;
+&lt;p&gt;&lt;p&gt;This was an ideal use case for SLA!&lt;/p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;p&gt;This was an ideal use case for SLA!&lt;/p&gt;
-&lt;br&gt;
-&lt;h4&gt;What SLA is great for:&lt;/h4&gt;
+&lt;p&gt;&lt;h4&gt;What SLA is great for:&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Fine details. SLA printers are capable of some of the highest tolerances in the business. &lt;a href=&quot;http://www.quickparts.com/LowVolumePrototypes/SLA.aspx&quot; target=&quot;_blank&quot;&gt;Tolerance&lt;/a&gt; in each cross section is typically 5/1000 of an inch, with tolerance in the z-axis of 1/100 of an inch or smaller. Smooth surfaces. The high tolerances associated with SLA give parts a silky-smooth appearance, even before post-processing.&lt;/li&gt;
 &lt;li&gt;Complex geometry. Thin walls and support material allow SLA to produce highly complex shapes with overhangs. Enclosed cavities, however, will be full of resin.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;br&gt;
-&lt;h4&gt;What SLA is not great for:&lt;/h4&gt;
+&lt;/ul&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;h4&gt;What SLA is not great for:&lt;/h4&gt;
 &lt;ul&gt;
 &lt;li&gt;Material costs. Photopolymers tend to be expensive (hundreds of dollars per liter)&lt;/li&gt;
 &lt;li&gt;Durability. Exposure to sunlight (or any ultraviolet light) will cause SLA parts to lose structural integrity over time.&lt;/li&gt;
@@ -62,9 +61,7 @@
 &lt;p&gt;&lt;h3&gt;What materials can I print with SLA?&lt;/h3&gt;
 &lt;p&gt;3D systems, the company that pioneered SLA printing, has developed a wide array of photopolymers. These have varying properties, and are grouped by the material they imitate. For example, there is a class of &quot;ABS-like&quot; resins.&lt;p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;p&gt;This eye-friendly data sheet, provided by SolidConcepts, does a good job at laying them out. &lt;a href=&quot;http://www.solidconcepts.com/materials/sla-materials/&quot; target=&quot;_blank&quot;&gt;(link)&lt;/a&gt;&lt;p&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;p&gt;A comprehensive list of available materials and their properties is provided by 3D systems &lt;a href=&quot;http://www.3dsystems.com/quickparts/prototyping-pre-production/stereolithography-sla/materials&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;p&gt;This &lt;a href=&quot;http://www.solidconcepts.com/materials/sla-materials/&quot; target=&quot;_blank&quot;&gt;eye-friendly data sheet&lt;/a&gt;, provided by SolidConcepts, does a good job at laying them out. A comprehensive list of available materials and their properties is provided by 3D systems &lt;a href=&quot;http://www.3dsystems.com/quickparts/prototyping-pre-production/stereolithography-sla/materials&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
 
@@ -132,9 +129,7 @@
 &lt;p&gt;&lt;h3&gt;What materials can I print with FDM?&lt;/h3&gt;
 &lt;p&gt;ABS plastic is by far the most common material used with FDM machines. ABS now comes in a myriad of colors and types, and can even be translucent. If you need superior mechanical properties, one alternative is &lt;a href=&quot;http://www.modernplastics.com/pdf/mp-great-opportunities-aircraft-industry-brochure1.pdf&quot; target=&quot;_blank&quot;&gt;Ultem 9085&lt;/a&gt;. Ultem plastic has significantly greater tensile and flexural strengths than ABS.&lt;/p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;p&gt;This eye-friendly data sheet, provided by SolidConcepts, does a good job at laying out the material options for FDM. &lt;a href=&quot;http://www.solidconcepts.com/materials/fdm-materials/&quot; target=&quot;_blank&quot;&gt;(Link)&lt;/a&gt;&lt;/p&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;p&gt;For a complete list of FDM materials available from Stratasys, &lt;a href=&quot;http://www.stratasys.com/materials/fdm/compare-fdm-materials&quot; target=&quot;_blank&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;p&gt;This &lt;a href=&quot;http://www.solidconcepts.com/materials/fdm-materials/&quot; target=&quot;_blank&quot;&gt;eye-friendly data sheet&lt;/a&gt;, provided by SolidConcepts, does a good job at laying out the material options for FDM. For a complete list of FDM materials available from Stratasys, &lt;a href=&quot;http://www.stratasys.com/materials/fdm/compare-fdm-materials&quot; target=&quot;_blank&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;Cheers,&lt;/p&gt;
 
