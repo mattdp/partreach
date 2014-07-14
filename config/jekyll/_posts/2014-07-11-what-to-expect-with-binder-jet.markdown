@@ -9,6 +9,7 @@ published: true
 <td><tr>
 <img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/binderjet_cover.jpg" width="600">
 </tr></td></caption>
+</table>
 
 <p>This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss binder jet printing. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.</p>
 
@@ -45,7 +46,7 @@ published: true
 <ul>
 <li>Complex geometry. Because of the weakness of a part in its green stage, extended overhangs and very thin sections may cause the part to break before or during post-processing.</li>
 <li>Mechanical strength/durability in non-metal parts. Unless infused with resin, these parts are not meant for any structural roles. They also lose structural integrity when exposed to water.</li>
- 
+</ul>
 <p>As always, best of luck with your 3D printing!</p>
 
 <p>Cheers,
