@@ -21,7 +21,7 @@ published: true
 <br><p>This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people use SLS parts intended for both prototype and production use cases. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.</p>
 
 <h3>What is SLS?</h3>
-<p>SLS is an additive manufacturing method that produces solids from a variety of resins, using a laser as its energy source. The SLS machine rolls out a thin layer of powder onto the build table, and a laser heats the desired cross-section from above. This causes the particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object.</p>
+<p>SLS is an additive manufacturing method that produces solids from a variety of powders, using a laser as its energy source. First, a CAD program slices the design into individual, planar, cross-sections. The SLS machine then rolls out a thin layer of powder onto the build table, and a laser traces the first cross-section of the object in the powder. This causes the affected powder particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object. In this way, a part is built from the bottom up, with any overhangs supported by the un-sintered powder. After the part has been fully sintered, the excess powder must be removed by hand.</p>
 
 <h3>Is SLS right for me?</h3>
 <p>Let's start with givens. Take this part for instance and let's say I need 25 of them in my hands in a week. It has: 
@@ -32,6 +32,7 @@ published: true
 <li>A "living hinge." (<a href="http://en.wikipedia.org/wiki/Living_hinge" target="_blank">What's a living hinge?</a>)</li>
 </ul>
 
+<br>
 <table class="image" style="margin: auto;">
 <caption align="bottom">Custom, functional bracket produced with SLS</caption>
 <tr><td>

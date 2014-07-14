@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-14T14:35:43-07:00</updated>
+ <updated>2014-07-14T14:57:14-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -34,7 +34,7 @@
 &lt;h3&gt;What is SLS?&lt;/h3&gt;
 
 
-&lt;p&gt;SLS is an additive manufacturing method that produces solids from a variety of resins, using a laser as its energy source. The SLS machine rolls out a thin layer of powder onto the build table, and a laser heats the desired cross-section from above. This causes the particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object.&lt;/p&gt;
+&lt;p&gt;SLS is an additive manufacturing method that produces solids from a variety of powders, using a laser as its energy source. First, a CAD program slices the design into individual, planar, cross-sections. The SLS machine then rolls out a thin layer of powder onto the build table, and a laser traces the first cross-section of the object in the powder. This causes the affected powder particles to bond (sinter, to be exact) together into a solid slice of plastic. The build table is then moved down slightly, another layer of powder is rolled out on top, and the laser traces the design for the next cross-section. Each time a new layer is made, it is also fused to the layer below, forming a solid object. In this way, a part is built from the bottom up, with any overhangs supported by the un-sintered powder. After the part has been fully sintered, the excess powder must be removed by hand.&lt;/p&gt;
 
 
 
@@ -50,7 +50,8 @@
 &lt;li&gt;A &quot;living hinge.&quot; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Living_hinge&quot; target=&quot;_blank&quot;&gt;What&#39;s a living hinge?&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
 &lt;caption align=&quot;bottom&quot;&gt;Custom, functional bracket produced with SLS&lt;/caption&gt;
 &lt;tr&gt;&lt;td&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLS+Bracket.jpg&quot; width=&quot;400&quot;&gt;
