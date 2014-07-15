@@ -39,10 +39,11 @@ class OrderGroup < ActiveRecord::Base
       next if external.nil?
       suffix = external.url.split(".").last.upcase
       next if suffix.in? ["PNG", "JPG", "ZIP"]
+      part_name_without_suffix = part.name.slice(0, part.name.rindex("."))
 
       snippet += <<-HTML
 <ul>
-<li><strong>Part: </strong> #{part.name} (<a href=#{external.url}><strong>Link to file</strong></a>)</li>
+<li><strong>Part: </strong>#{part_name_without_suffix} (<a href=#{external.url}><strong>Link to #{suffix} file</strong></a>)</li>
 <li><strong>Quantity: </strong>QUANTITY</li>
 <li><strong>Color: </strong>COLOR</li>
 <li><strong>Desired method: </strong>METHOD</li>
