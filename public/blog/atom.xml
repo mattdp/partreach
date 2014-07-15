@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-15T14:23:16-07:00</updated>
+ <updated>2014-07-15T14:30:24-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -19,44 +19,78 @@
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;Color model built with PolyJet technology. Images thanks to &lt;a href=&quot;https://www.flickr.com/photos/epredator/3661614279/in/set-72157620443237729/&quot; target=&quot;_blank&quot;&gt;Ian Hughes, under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/a&gt;&lt;/caption&gt;
 &lt;tr&gt;
-&lt;td align=&quot;center&quot; width=&quot;30%&quot;&gt;
+&lt;td align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/polyjet_1.jpg&quot;&gt;
 &lt;/td&gt;
-&lt;td align=&quot;center&quot; width=&quot;30%&quot;&gt;
+&lt;td align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/polyjet_2.jpg&quot;&gt;
 &lt;/td&gt;
-&lt;td align=&quot;center&quot; width=&quot;30%&quot;&gt;
+&lt;td align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/polyjet_3.jpg&quot;&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
 
 
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+
 &lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss PolyJet. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;
 
-&lt;p&gt;What is PolyJet?
-PolyJet printers work in much the same way as two-dimensional ink printers. The difference: instead of printing ink, the printer nozzles jet tiny drops of photopolymers and support material. Attached to the printing apparatus is an ultraviolet light source that cures the photopolymer almost immediately as it is printed. After a complete cross section is printed this way, the build table moves down the height of one layer (only about 1/1000 of an inch) and the machine prints the next layer on top of the first. As each layer is formed, the UV light also fuses the individual layers together, forming a solid object.&lt;/p&gt;
 
-&lt;p&gt;This is an ideal use case for PolyJet printing!&lt;/p&gt;
 
-&lt;p&gt;What PolyJet is great for:
-Color. PolyJet printers are now capable of printing in the full cyan/magenta/yellow spectrum, laying down the three different materials at once like ink printers. Alternatively, one color may be replaced by white or black to yield a range of tints and shades.
-Fine details. PolyJet printers generally achieve 600 dpi (dots per inch) in the x-y plane, and layer heights of  .001 inches.&lt;br/&gt;
-Multi-material prototypes.
-Extremely tight tolerances. PolyJet tolerances in the x-y axis are at most .005 inches, and can be even smaller.&lt;a href=&quot;http://www.solidconcepts.com/technologies/PolyJet/&quot;&gt;http://www.solidconcepts.com/technologies/PolyJet/&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt; What PolyJet is not great for:&lt;/p&gt;
+&lt;h3&gt;What is PolyJet?&lt;/h3&gt;
 
-&lt;p&gt;Durability. Like SLA parts, PolyJet parts are cured in UV light, and exposure to the sun&#39;s rays can cause damage to their mechanical strength.
-Consistency across part. Support material may mix with buid resin in some areas and cause inconsistencies in the strength.&lt;/p&gt;
 
-&lt;p&gt;What materials can I print with PolyJet?
-By mixing various combinations of resins, PolyJet printers can imitate many types of engineering plastics and rubbers. These include a &quot;digital ABS,&quot; whose properties greatly resemble those of ABS, and translucent options. Find a list of materials, provided by Stratasys, &lt;a href=”http://www.stratasys.com/materials/polyjet” target=”_blank”&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;PolyJet printers work in much the same way as two-dimensional ink printers. The difference: instead of printing ink, the printer nozzles jet tiny drops of photopolymers and support material. Attached to the printing apparatus is an ultraviolet light source that cures the photopolymer almost immediately as it is printed. After a complete cross section is printed this way, the build table moves down the height of one layer (only about 1/1000 of an inch) and the machine prints the next layer on top of the first. As each layer is formed, the UV light also fuses the individual layers together, forming a solid object.&lt;/p&gt;
 
-&lt;p&gt;Note: PolyJet is a trademark of Stratasys (after a merger with Objet). 3D systems offers a range of competitive Projet machines that are also capable of full color modeling.&lt;/p&gt;
 
-&lt;p&gt;Cheers,
-The SupplyBetter Team&lt;/p&gt;
+
+
+&lt;h4&gt;What PolyJet is great for:&lt;/h4&gt;
+
+
+&lt;ul&gt;
+  &lt;li&gt;Color. PolyJet printers are now capable of printing in the full cyan/magenta/yellow spectrum, laying down the three different materials at once like ink printers. Alternatively, one color may be replaced by white or black to yield a range of tints and shades. &lt;/li&gt;
+  &lt;li&gt;Fine details. PolyJet printers generally achieve 600 dpi (dots per inch) in the x-y plane, and layer heights of .001 inches. &lt;/li&gt;
+  &lt;li&gt;Multi-material prototypes. &lt;/li&gt;
+  &lt;li&gt;Extremely tight tolerances. PolyJet tolerances in the x-y axis are at most .005 inches, and can be &lt;a href=&quot;http://www.solidconcepts.com/technologies/PolyJet/&quot;&gt;even smaller&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;h4&gt;What PolyJet is not great for:&lt;/h4&gt;
+
+
+&lt;ul&gt;  
+&lt;li&gt;Durability. Like SLA parts, PolyJet parts are cured in UV light, and exposure to the sun&#39;s rays can cause damage to their mechanical strength.&lt;/li&gt;
+&lt;li&gt;Consistency across part. Support material may mix with buid resin in some areas and cause inconsistencies in the strength.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;h3&gt;What materials can I print with PolyJet?&lt;/h3&gt;
+
+
+&lt;p&gt;By mixing various combinations of resins, PolyJet printers can imitate many types of engineering plastics and rubbers. These include a &quot;digital ABS,&quot; whose properties greatly resemble those of ABS, and translucent options. Find a list of materials, provided by Stratasys, &lt;a href=”http://www.stratasys.com/materials/polyjet” target=”_blank”&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Note: PolyJet is a trademark of Objet (now merged with with Stratasys). 3D systems offers a range of competitive Projet machines that are also capable of full color modeling.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+
+&lt;p&gt;Rob&lt;/p&gt;
+
+
+
 </content>
  </entry>
  
