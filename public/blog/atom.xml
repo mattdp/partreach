@@ -4,12 +4,61 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-15T13:18:39-07:00</updated>
+ <updated>2014-07-15T14:23:16-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>What to Expect With PolyJet</title>
+   <link href="YOUR_URL/what-to-expect-with-polyjet.html"/>
+   <updated>2014-07-15T00:00:00-07:00</updated>
+   <id>BLOG_URL/what-to-expect-with-polyjet</id>
+   <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;Color model built with PolyJet technology. Images thanks to &lt;a href=&quot;https://www.flickr.com/photos/epredator/3661614279/in/set-72157620443237729/&quot; target=&quot;_blank&quot;&gt;Ian Hughes, under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/a&gt;&lt;/caption&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot; width=&quot;30%&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/polyjet_1.jpg&quot;&gt;
+&lt;/td&gt;
+&lt;td align=&quot;center&quot; width=&quot;30%&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/polyjet_2.jpg&quot;&gt;
+&lt;/td&gt;
+&lt;td align=&quot;center&quot; width=&quot;30%&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/polyjet_3.jpg&quot;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss PolyJet. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;
+
+&lt;p&gt;What is PolyJet?
+PolyJet printers work in much the same way as two-dimensional ink printers. The difference: instead of printing ink, the printer nozzles jet tiny drops of photopolymers and support material. Attached to the printing apparatus is an ultraviolet light source that cures the photopolymer almost immediately as it is printed. After a complete cross section is printed this way, the build table moves down the height of one layer (only about 1/1000 of an inch) and the machine prints the next layer on top of the first. As each layer is formed, the UV light also fuses the individual layers together, forming a solid object.&lt;/p&gt;
+
+&lt;p&gt;This is an ideal use case for PolyJet printing!&lt;/p&gt;
+
+&lt;p&gt;What PolyJet is great for:
+Color. PolyJet printers are now capable of printing in the full cyan/magenta/yellow spectrum, laying down the three different materials at once like ink printers. Alternatively, one color may be replaced by white or black to yield a range of tints and shades.
+Fine details. PolyJet printers generally achieve 600 dpi (dots per inch) in the x-y plane, and layer heights of  .001 inches.&lt;br/&gt;
+Multi-material prototypes.
+Extremely tight tolerances. PolyJet tolerances in the x-y axis are at most .005 inches, and can be even smaller.&lt;a href=&quot;http://www.solidconcepts.com/technologies/PolyJet/&quot;&gt;http://www.solidconcepts.com/technologies/PolyJet/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt; What PolyJet is not great for:&lt;/p&gt;
+
+&lt;p&gt;Durability. Like SLA parts, PolyJet parts are cured in UV light, and exposure to the sun&#39;s rays can cause damage to their mechanical strength.
+Consistency across part. Support material may mix with buid resin in some areas and cause inconsistencies in the strength.&lt;/p&gt;
+
+&lt;p&gt;What materials can I print with PolyJet?
+By mixing various combinations of resins, PolyJet printers can imitate many types of engineering plastics and rubbers. These include a &quot;digital ABS,&quot; whose properties greatly resemble those of ABS, and translucent options. Find a list of materials, provided by Stratasys, &lt;a href=”http://www.stratasys.com/materials/polyjet” target=”_blank”&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Note: PolyJet is a trademark of Stratasys (after a merger with Objet). 3D systems offers a range of competitive Projet machines that are also capable of full color modeling.&lt;/p&gt;
+
+&lt;p&gt;Cheers,
+The SupplyBetter Team&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>What's the Deal With Support Material</title>
@@ -26,7 +75,7 @@
 
 &lt;p&gt;&lt;br&gt;&lt;p&gt;&lt;i&gt;Gravity is the archnemesis of the adventurous 3D printer.&lt;/i&gt;&lt;/p&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;The problem:&lt;/strong&gt; 3D printers build parts one cross section at a time, printing each layer on top of the last. So what happens when the printer encounters an overhang, with no base-layer to print on? Then, gravity takes over, the layer tumbles down to the build table, and the part is ruined. Some of the world’s best engineers have put their minds to the issue and have developed a way to 3D print parts with extremely complex geometries.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The problem:&lt;/strong&gt; 3D printers build parts one cross section at a time, printing each layer on top of the last. So what happens when the printer encounters an overhang, with no base layer to print on? Then, gravity takes over, the layer tumbles down to the build table, and the part is ruined. Some of the world’s best engineers have put their minds to the issue and have developed a way to 3D print parts with extremely complex geometries.&lt;/p&gt;
 
 
 &lt;p&gt;&lt;strong&gt;The solution:&lt;/strong&gt; Support material. Simply print a removable scaffolding below the overhangs and rest easy knowing that those overhangs cannot fail. &lt;/p&gt;
@@ -34,20 +83,17 @@
 
 
 
-&lt;p&gt;We will look at some of the most popular 3D printing methods that require support material: SLA, FDM, FFF, and DMLS. Want to learn more about these methods? &lt;a href=&quot;www.supplybetter.com/blog&quot; target=&quot;_blank&quot;&gt;Visit our blog&lt;/a&gt;.
-&lt;p&gt;While the benefits of support structures are obvious, we will see that the use of support material often returns unfortunate consequences.&lt;/p&gt;
+&lt;p&gt;&lt;p&gt;We will look at some of the most popular 3D printing methods that require support material: SLA, FDM, FFF, and DMLS. Want to learn more about these methods? &lt;a href=&quot;www.supplybetter.com/blog&quot; target=&quot;_blank&quot;&gt;Visit our blog&lt;/a&gt;.
+&lt;p&gt;While the benefits of support structures are obvious, we will see that the use of support material often returns unfortunate consequences.&lt;/p&gt;&lt;/p&gt;
 
-&lt;h4&gt;But first: how does the printer know where to put the support?&lt;/h4&gt;
-&lt;p&gt;This problem is solved by software. Most slicers, programs that take a CAD file and split it into cross sections to be printed, can also automatically add the necessary support to the design. For example, FDM printers, made by Stratasys, use the Insight software package to orient and support parts.&lt;/p&gt;
+&lt;p&gt;&lt;h4&gt;But first: how does the printer know where to put the support?&lt;/h4&gt;
+&lt;p&gt;This problem is solved by software. Most slicers, programs that take a CAD file and split it into cross sections to be printed, can also automatically add the necessary support to the design. For example, FDM printers, made by Stratasys, use the Insight software package to orient and support parts.&lt;/p&gt;&lt;/p&gt;
 
-&lt;h4&gt;SLA:&lt;/h4&gt;
-Because the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sla.html&quot; target=&quot;_blank&quot;&gt;SLA process&lt;/a&gt; inherently supports any overhangs with un-hardened resin, one might imagine that no support material was necessary. However, fluctuations in the resin caused by the build table moving, compounded with the general instability of the liquid resin, necessitate a more solid support structure. This is achieved by hardening key vertical support “columns” in the resin, below where the overhangs are planned. These supports can be snapped off after the part is removed from the vat, and before it is post-processed in the curing oven. Often, visible nubs are left where the support was attached to the part. These must be removed by copious sanding or bead blasting, which adds costly man-hours to the process.&lt;/p&gt;
+&lt;p&gt;&lt;h4&gt;SLA:&lt;/h4&gt;
+&lt;p&gt;Because the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sla.html&quot; target=&quot;_blank&quot;&gt;SLA process&lt;/a&gt; inherently supports any overhangs with un-hardened resin, one might imagine that no support material was necessary. However, fluctuations in the resin caused by the build table moving, compounded with the general instability of the liquid resin, necessitate a more solid support structure. This is achieved by hardening key vertical support “columns” in the resin, below where the overhangs are planned. These supports can be snapped off after the part is removed from the vat, and before the part is post-processed in the curing oven. Visible nubs are often left where the support was attached to the part. These must be removed by copious sanding or bead blasting, which adds costly man-hours to the process.&lt;/p&gt;&lt;/p&gt;
 
-
-
-
-&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-&lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Mr. Piggy with support material,&quot; an FDM printed model with support material (dark) intact. The support material here was water soluble.  (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of &lt;a href=&quot;http://www.flickr.com/photos/cabfablab/3613870642/&quot; target=&quot;_blank&quot;&gt;Fab Lab den Haag&lt;/a&gt; (left) and &lt;a href=&quot;https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673&quot; target=&quot;_blank&quot;&gt;Makerbot Industries &lt;/a&gt;(right) under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
+&lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Mr. Piggy with support material,&quot; an FDM printed model with support material (dark) intact. The support material here was water soluble.  (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of &lt;a href=&quot;http://www.flickr.com/photos/cabfablab/3613870642/&quot; target=&quot;_blank&quot;&gt;Fab Lab den Haag&lt;/a&gt; (left) and &lt;a href=&quot;https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673&quot; target=&quot;_blank&quot;&gt;Makerbot Industries &lt;/a&gt;(right) under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
 &lt;tr&gt;
 &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/pig_support.jpg&quot;&gt;
@@ -56,45 +102,21 @@ Because the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sla.h
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/blue_support.jpg&quot;&gt;
 &lt;/td&gt;
 &lt;/tr&gt;
-&lt;/table&gt;
+&lt;/table&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;h4&gt;FDM:&lt;/h4&gt;
+&lt;p&gt;Stratasys has developed several different proprietary materials for support in their &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-fdm.html&quot;&gt;FDM process&lt;/a&gt;. Adding a second (support) material to a print means that multiple extruders are necessary, each printing in a single material. Support materials offered by Stratasys include include a wax material (ICW06 Wax), a Break Away Support System (BASS for short), and several soluble materials. The soluble materials may be removed by soaking the part in water or in some cases a chemical bath, and should leave almost no visible mark on the part. However, the Break Away system will leave marks.&lt;/p&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;h4&gt;FFF:&lt;/h4&gt;
+&lt;p&gt;Unlike the more advanced FDM machines, FFF machines rarely have two extruders. Unfortunately, this leaves only one option for support material: the build material itself. The support structure is constructed along with the part, but with much lower infill density. This makes it faster to print and easier to remove after the print is completed. However, the surface of the part will retain bumps and other defects after the support is removed.&lt;/p&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;h4&gt;DMLS:&lt;/h4&gt;
+&lt;p&gt;In the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-dmls.html&quot;&gt;DMLS process&lt;/a&gt;, only one type of powder can be used per part. This means that support structure must be built from the same powder as the rest of the part. It is not intuitive why DMLS parts even need support material, when parts produced by the similar &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sls.html&quot;&gt;SLS process&lt;/a&gt; can be supported by the excess powder alone. The difference lies in the phase changes that occur. In SLS, the goal is to heat the powder to the point of sintering only, and no further. In this way, the powder never reaches a liquid phase. In DMLS, a &lt;a href=&quot;http://www.3trpd.co.uk/dmls.htm&quot;&gt;liquid state&lt;/a&gt; may be reached, and the powder alone cannot support the molten metal. Scaffolding is required underneath overhangs, and must be removed by CNC machining. Machining adds significant time and expense to the DMLS process. To preserve the accuracy of the part, the machining tools must be capable of the same tight tolerances as the printer.&lt;/p&gt;&lt;/p&gt;
 
-&lt;h4&gt;FDM:&lt;/h4&gt;
+&lt;p&gt;&lt;p&gt;I hope this was instructional, and as always, best of luck with your 3D printing! Don’t let gravity get you (or your overhangs) down.&lt;/p&gt;&lt;/p&gt;
 
-
-&lt;p&gt;Stratasys has developed several different proprietary materials for support in their &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-fdm.html&quot;&gt;FDM process&lt;/a&gt;. Adding a second (support) material to a print means that multiple extruders are necessary, each printing in a single material. Support materials offered by Stratasys include include a wax material (ICW06 Wax), a Break Away Support System (BASS for short), and several soluble materials. The soluble materials may be removed by soaking the part in water or in some cases a chemical bath, and should leave almost no visible mark on the part. However, the Break Away system will leave marks.&lt;/p&gt;
-
-
-
-
-&lt;h4&gt;FFF:&lt;/h4&gt;
-
-
-&lt;p&gt;Unlike the more advanced FDM machines, FFF machines rarely have two extruders. Unfortunately, this leaves only one option for support material: the build material itself. The support material is constructed along with the part, but with much lower infill density. This makes it faster to print and easier to remove after the print is completed. However, the surface of the part will retain bumps and other defects after the support is removed.&lt;/p&gt;
-
-
-
-
-&lt;h4&gt;DMLS:&lt;/h4&gt;
-
-
-&lt;p&gt;In the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-dmls.html&quot;&gt;DMLS process&lt;/a&gt;, only one type of powder can be used per part. This means that support structure must be built from the same powder as the rest of the part. It is not intuitive why DMLS parts even need support material, when parts produced by the similar &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sls.html&quot;&gt;SLS process&lt;/a&gt; can be supported by the excess powder alone. The difference lies in the phase changes that occur. In SLS, the goal is to heat the powder to the point of sintering only, and no further. In this way, the powder never reaches a liquid phase. In DMLS, a &lt;a href=&quot;http://www.3trpd.co.uk/dmls.htm&quot;&gt;liquid state&lt;/a&gt; may be reached, and the powder alone cannot support the molten metal. Scaffolding is required underneath overhangs, and must be removed by CNC machining. Machining adds significant time and expense to the DMLS process. To preserve the accuracy of the part, the machining tools must be capable of the same tight tolerances as the printer.&lt;/p&gt;
-
-
-
-
-&lt;p&gt;I hope this was instructional, and as always, best of luck with your 3D printing! Don’t let gravity get you (or your overhangs) down.&lt;/p&gt;
-
-
-
-
-&lt;p&gt;Cheers,&lt;/p&gt;
-
-
-&lt;p&gt;Rob&lt;/p&gt;
-
+&lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
+&lt;p&gt;Rob&lt;/p&gt;&lt;/p&gt;
 </content>
  </entry>
  
