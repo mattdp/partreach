@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-15T13:05:55-07:00</updated>
+ <updated>2014-07-15T13:09:42-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -19,7 +19,7 @@
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;FFF printed &quot;Stanford Bunny&quot; with support material still intact, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/creative_tools/14485075381/in/photolist-o4ZNfZ-o75bFH-h8WN15-nahjC9-g1KXpN-gwmN7H-gwmAC2-g1Ljrp-g1KNQJ-g1L4mK-g1EDcJ-gwmFi5-o2yj1i-g1L3vt-ee57X9-o7bjmH-gkrQXZ-7FfGcB-oi4wBJ-fqvWhC-fDVtrM-fDVyWc-fEcuRh-fEcDX3-fDUVwn-dZngZU-dZnhnd-e9W6k8-nahjDm-jjWWDL-5nhASg-bkqCjC-bogJSF-bogJJn-jjUqDh-jjTT7P-jjUoJA-yqXXP-a7qBdv-kM4tbZ-dZnPMW-dZnPko-omRjVe-k1mFee-nZmZCp-e9ceij-awarjT-5YyHH5-nZnL8p-oiBgKn&quot; target=&quot;_blank&quot;&gt;Creative Tools&lt;/a&gt; under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
 &lt;tr&gt;&lt;td&gt;
-&lt;img src=&quot;s3:https://s3.amazonaws.com/supplybetter_images/Blog+Images/bunny_support.jpg&quot; width=&quot;100%&quot;&gt;
+&lt;img src=&quot;s3:https://s3.amazonaws.com/supplybetter_images/Blog+Images/bunny_support.jpg&quot; width=&quot;936&quot;&gt;
 &lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
@@ -52,7 +52,7 @@ Because the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sla.h
 
 
 &lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-&lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Mr. Piggy with support material,&quot; an FDM printed model with support material (dark) intact. The support material here was water soluble. (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of &lt;a href=&quot;http://www.flickr.com/photos/cabfablab/3613870642/&quot; target=&quot;_blank&quot;&gt;Fab Lab den Haag&lt;/a&gt;(left) and &lt;a href=&quot;https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673&quot; target=&quot;_blank&quot;&gt;Makerbot Industries (right)&lt;/a&gt; under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
+&lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Mr. Piggy with support material,&quot; an FDM printed model with support material (dark) intact. The support material here was water soluble. (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of &lt;a href=&quot;http://www.flickr.com/photos/cabfablab/3613870642/&quot; target=&quot;_blank&quot;&gt;Fab Lab den Haag&lt;/a&gt; (left) and &lt;a href=&quot;https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673&quot; target=&quot;_blank&quot;&gt;Makerbot Industries &lt;/a&gt;(right) under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
 &lt;tr&gt;
 &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/pig_support.jpg&quot;&gt;

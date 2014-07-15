@@ -7,7 +7,7 @@ published: true
 <table class="image" style="margin: auto;">
   <caption align="bottom">FFF printed "Stanford Bunny" with support material still intact, courtesy of <a href="https://www.flickr.com/photos/creative_tools/14485075381/in/photolist-o4ZNfZ-o75bFH-h8WN15-nahjC9-g1KXpN-gwmN7H-gwmAC2-g1Ljrp-g1KNQJ-g1L4mK-g1EDcJ-gwmFi5-o2yj1i-g1L3vt-ee57X9-o7bjmH-gkrQXZ-7FfGcB-oi4wBJ-fqvWhC-fDVtrM-fDVyWc-fEcuRh-fEcDX3-fDUVwn-dZngZU-dZnhnd-e9W6k8-nahjDm-jjWWDL-5nhASg-bkqCjC-bogJSF-bogJJn-jjUqDh-jjTT7P-jjUoJA-yqXXP-a7qBdv-kM4tbZ-dZnPMW-dZnPko-omRjVe-k1mFee-nZmZCp-e9ceij-awarjT-5YyHH5-nZnL8p-oiBgKn" target="_blank">Creative Tools</a> under <a href="https://creativecommons.org/licenses/by/2.0/legalcode" target="_blank">CC BY 2.0</a>.</caption>
 <tr><td>
-<img src="s3:https://s3.amazonaws.com/supplybetter_images/Blog+Images/bunny_support.jpg" width="100%">
+<img src="s3:https://s3.amazonaws.com/supplybetter_images/Blog+Images/bunny_support.jpg" width="936">
 </td></tr>
 </table>
 
@@ -26,7 +26,7 @@ published: true
 Because the <a href="www.supplybetter.com/blog/what-to-expect-with-sla.html" target="_blank">SLA process</a> inherently supports any overhangs with un-hardened resin, one might imagine that no support material was necessary. However, fluctuations in the resin caused by the build table moving, compounded with the general instability of the liquid resin, necessitate a more solid support structure. This is achieved by hardening key vertical support “columns” in the resin, below where the overhangs are planned. These supports can be snapped off after the part is removed from the vat, and before it is post-processed in the curing oven. Often, visible nubs are left where the support was attached to the part. These must be removed by copious sanding or bead blasting, which adds costly man-hours to the process.</p>
 
 <table class="image" style="margin: auto;">
-<caption align="bottom">(Left) "Mr. Piggy with support material," an FDM printed model with support material (dark) intact. The support material here was water soluble. (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of <a href="http://www.flickr.com/photos/cabfablab/3613870642/" target="_blank">Fab Lab den Haag</a>(left) and <a href="https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673" target="_blank">Makerbot Industries (right)</a> under <a href="https://creativecommons.org/licenses/by/2.0/legalcode" target="_blank">CC BY 2.0</a>.</caption>
+<caption align="bottom">(Left) "Mr. Piggy with support material," an FDM printed model with support material (dark) intact. The support material here was water soluble. (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of <a href="http://www.flickr.com/photos/cabfablab/3613870642/" target="_blank">Fab Lab den Haag</a> (left) and <a href="https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673" target="_blank">Makerbot Industries </a>(right) under <a href="https://creativecommons.org/licenses/by/2.0/legalcode" target="_blank">CC BY 2.0</a>.</caption>
 <tr>
 <td width="50%" align="center">
 <img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/pig_support.jpg">
