@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-14T17:20:42-07:00</updated>
+ <updated>2014-07-15T10:23:13-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -155,12 +155,7 @@
 &lt;/table&gt;
 
 
-
-
-&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss binder jet printing. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;
-
-
-
+&lt;p&gt;&lt;br&gt;&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss binder jet printing. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;&lt;/p&gt;
 
 &lt;h3&gt;What can I print with binder jet?&lt;/h3&gt;
 
@@ -173,7 +168,7 @@
 
 
 &lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-  &lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Guardian of Time,&quot; by Kronberger4 under [&lt;a href=&quot;http://creativecommons.org/licenses/by-sa/3.0&quot; target=&quot;_blank&quot;&gt;CC BY-SA-3.0&lt;/a&gt;], &lt;a href=&quot;http://commons.wikimedia.org/wiki/File%3AGuardians_of_Time_sculpture_Manfred_Kielnhofer_3d_printing.JPG&quot; target=&quot;_blank&quot;&gt;via Wikimedia Commons&lt;/a&gt; This sculpture was printed by Shapeways in their nickel steel material. (Right) Madeline Gannon&lt;/a&gt; printed with SLS. (Right) &quot;Double Gyroid Color,&quot; a binder jet print by &lt;a href=&quot;https://www.flickr.com/photos/virtox/6559330485/in/photolist-bT9KbH-dQo4VX-dQtEGs-dQo4Gc-dQtBjy-dQtE77-dQo5qH-dQo4mV-aZChqV-dQo3Zi-dQtC5b-dQtCm7-dQo2tH-dQtBRW-aZCikD-dQo3Fk-8eA9aN-8ewT3F-8F1JAD-7s8U8Z-4nY2dd-6gHrTK-99WKAG-4Y9nuW-7akaV9-4URtBp-9eGiri-9GkdJ9-97fZuV-ezeaor-bhLFjn-3aC6bA-efswsC-7xvAgr-fwQtLk-4WdnJv-9jvqzK-67qoDe-earknD-76Cvbu-7t2YET-7c4mB3-85JBjd-aDfbsd-fc6mgC-hSGmSN-7uZiim-5ZGqK1-8h7tUD-Jto4w/&quot; target=&quot;_blank&quot;&gt;Stijn van der Linden&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC 2.0&lt;/a&gt;)&lt;/caption&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Guardian of Time,&quot; by Kronberger4 under &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/3.0&quot; target=&quot;_blank&quot;&gt;CC BY-SA 3.0&lt;/a&gt;, &lt;a href=&quot;http://commons.wikimedia.org/wiki/File%3AGuardians_of_Time_sculpture_Manfred_Kielnhofer_3d_printing.JPG&quot; target=&quot;_blank&quot;&gt;via Wikimedia Commons&lt;/a&gt; This sculpture was printed by Shapeways in their nickel steel material. (Right) &quot;Double Gyroid Color,&quot; a binder jet print by &lt;a href=&quot;https://www.flickr.com/photos/virtox/6559330485/in/photolist-bT9KbH-dQo4VX-dQtEGs-dQo4Gc-dQtBjy-dQtE77-dQo5qH-dQo4mV-aZChqV-dQo3Zi-dQtC5b-dQtCm7-dQo2tH-dQtBRW-aZCikD-dQo3Fk-8eA9aN-8ewT3F-8F1JAD-7s8U8Z-4nY2dd-6gHrTK-99WKAG-4Y9nuW-7akaV9-4URtBp-9eGiri-9GkdJ9-97fZuV-ezeaor-bhLFjn-3aC6bA-efswsC-7xvAgr-fwQtLk-4WdnJv-9jvqzK-67qoDe-earknD-76Cvbu-7t2YET-7c4mB3-85JBjd-aDfbsd-fc6mgC-hSGmSN-7uZiim-5ZGqK1-8h7tUD-Jto4w/&quot; target=&quot;_blank&quot;&gt;Stijn van der Linden&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC 2.0&lt;/a&gt;&lt;/caption&gt;
 &lt;tr&gt;
 &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/guardian_of_time.jpg&quot;&gt;
@@ -232,7 +227,7 @@
 
 &lt;p&gt;Cheers,
 
-The SupplyBetter Team&lt;/p&gt;
+Rob&lt;/p&gt;
 
 
 
@@ -301,9 +296,9 @@ The SupplyBetter Team&lt;/p&gt;
 
 &lt;p&gt;&lt;p&gt;This &lt;a href=&quot;http://www.solidconcepts.com/materials/fdm-materials/&quot; target=&quot;_blank&quot;&gt;eye-friendly data sheet&lt;/a&gt;, provided by SolidConcepts, does a good job at laying out the material options for FDM. For a complete list of FDM materials available from Stratasys, &lt;a href=&quot;http://www.stratasys.com/materials/fdm/compare-fdm-materials&quot; target=&quot;_blank&quot;&gt;click here&lt;/a&gt;.&lt;/p&gt;&lt;/p&gt;
 
-&lt;p&gt;Cheers,&lt;/p&gt;
+&lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
 
-&lt;p&gt;Rob&lt;/p&gt;
+&lt;p&gt;Rob&lt;p&gt;&lt;/p&gt;
 </content>
  </entry>
  
@@ -396,9 +391,11 @@ The SupplyBetter Team&lt;/p&gt;
 &lt;p&gt;As always, best of luck with your 3D printing and manufacturing.&lt;/p&gt;
 
 
-&lt;p&gt;Cheers,&lt;/p&gt;
 
-&lt;p&gt;Rob&lt;/p&gt;
+
+&lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;p&gt;&lt;/p&gt;
 </content>
  </entry>
  

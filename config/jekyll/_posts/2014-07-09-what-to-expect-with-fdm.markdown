@@ -54,6 +54,6 @@ published: true
 
 <p>This <a href="http://www.solidconcepts.com/materials/fdm-materials/" target="_blank">eye-friendly data sheet</a>, provided by SolidConcepts, does a good job at laying out the material options for FDM. For a complete list of FDM materials available from Stratasys, <a href="http://www.stratasys.com/materials/fdm/compare-fdm-materials" target="_blank">click here</a>.</p>
 
-Cheers,
+<p>Cheers,
 
-Rob
+Rob<p>

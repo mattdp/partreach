@@ -43,6 +43,6 @@ published: true
 
 <p>As always, best of luck with your 3D printing and manufacturing.</p>
 
-Cheers,
+<p>Cheers,
 
-Rob
+Rob<p>
