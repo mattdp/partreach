@@ -19,7 +19,7 @@ published: true
 <p>Binder jet printing is unique in that it can produce both and metal and nonmetal parts. For example, 3D printing service bureau Shapeways uses the binder jet process to produce steel and bronze parts, as well as its widely known Full Color Sandstone parts. Below are examples of parts made from both of these materials.</p>
 
 <table class="image" style="margin: auto;">
-  <caption align="bottom">(Left) "Guardian of Time," by Kronberger4 under <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_blank">CC BY-SA 3.0</a>, <a href="http://commons.wikimedia.org/wiki/File%3AGuardians_of_Time_sculpture_Manfred_Kielnhofer_3d_printing.JPG" target="_blank">via Wikimedia Commons</a> This sculpture was printed by Shapeways in their nickel steel material. (Right) "Double Gyroid Color," a binder jet print by <a href="https://www.flickr.com/photos/virtox/6559330485/in/photolist-bT9KbH-dQo4VX-dQtEGs-dQo4Gc-dQtBjy-dQtE77-dQo5qH-dQo4mV-aZChqV-dQo3Zi-dQtC5b-dQtCm7-dQo2tH-dQtBRW-aZCikD-dQo3Fk-8eA9aN-8ewT3F-8F1JAD-7s8U8Z-4nY2dd-6gHrTK-99WKAG-4Y9nuW-7akaV9-4URtBp-9eGiri-9GkdJ9-97fZuV-ezeaor-bhLFjn-3aC6bA-efswsC-7xvAgr-fwQtLk-4WdnJv-9jvqzK-67qoDe-earknD-76Cvbu-7t2YET-7c4mB3-85JBjd-aDfbsd-fc6mgC-hSGmSN-7uZiim-5ZGqK1-8h7tUD-Jto4w/" target="_blank">Stijn van der Linden</a>, used under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">CC BY-NC 2.0</a></caption>
+  <caption align="bottom">(Left) "Guardian of Time," by Kronberger4 under <a href="http://creativecommons.org/licenses/by-sa/3.0" target="_blank">CC BY-SA 3.0</a>, <a href="http://commons.wikimedia.org/wiki/File%3AGuardians_of_Time_sculpture_Manfred_Kielnhofer_3d_printing.JPG" target="_blank">via Wikimedia Commons</a> This sculpture was printed by Shapeways in their nickel steel material. (Right) "Double Gyroid Color," a binder jet print by <a href="https://www.flickr.com/photos/virtox/6559330485/in/photolist-bT9KbH-dQo4VX-dQtEGs-dQo4Gc-dQtBjy-dQtE77-dQo5qH-dQo4mV-aZChqV-dQo3Zi-dQtC5b-dQtCm7-dQo2tH-dQtBRW-aZCikD-dQo3Fk-8eA9aN-8ewT3F-8F1JAD-7s8U8Z-4nY2dd-6gHrTK-99WKAG-4Y9nuW-7akaV9-4URtBp-9eGiri-9GkdJ9-97fZuV-ezeaor-bhLFjn-3aC6bA-efswsC-7xvAgr-fwQtLk-4WdnJv-9jvqzK-67qoDe-earknD-76Cvbu-7t2YET-7c4mB3-85JBjd-aDfbsd-fc6mgC-hSGmSN-7uZiim-5ZGqK1-8h7tUD-Jto4w/" target="_blank">Stijn van der Linden</a>, used under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">CC BY-NC 2.0.</a></caption>
 <tr>
 <td width="50%" align="center">
 <img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/guardian_of_time.jpg">
@@ -53,4 +53,3 @@ published: true
 <p>Cheers,
 
 Rob</p>
-

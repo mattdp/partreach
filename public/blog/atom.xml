@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-15T13:09:42-07:00</updated>
+ <updated>2014-07-15T13:15:25-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -19,17 +19,12 @@
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;FFF printed &quot;Stanford Bunny&quot; with support material still intact, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/creative_tools/14485075381/in/photolist-o4ZNfZ-o75bFH-h8WN15-nahjC9-g1KXpN-gwmN7H-gwmAC2-g1Ljrp-g1KNQJ-g1L4mK-g1EDcJ-gwmFi5-o2yj1i-g1L3vt-ee57X9-o7bjmH-gkrQXZ-7FfGcB-oi4wBJ-fqvWhC-fDVtrM-fDVyWc-fEcuRh-fEcDX3-fDUVwn-dZngZU-dZnhnd-e9W6k8-nahjDm-jjWWDL-5nhASg-bkqCjC-bogJSF-bogJJn-jjUqDh-jjTT7P-jjUoJA-yqXXP-a7qBdv-kM4tbZ-dZnPMW-dZnPko-omRjVe-k1mFee-nZmZCp-e9ceij-awarjT-5YyHH5-nZnL8p-oiBgKn&quot; target=&quot;_blank&quot;&gt;Creative Tools&lt;/a&gt; under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
 &lt;tr&gt;&lt;td&gt;
-&lt;img src=&quot;s3:https://s3.amazonaws.com/supplybetter_images/Blog+Images/bunny_support.jpg&quot; width=&quot;936&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/bunny_support.jpg&quot; width=&quot;936&quot;&gt;
 &lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
 
-
-
-&lt;p&gt;&lt;i&gt;Gravity is the archnemesis of the adventurous 3D printer.&lt;/i&gt;&lt;/p&gt;
-
-
-
+&lt;p&gt;&lt;br&gt;&lt;p&gt;&lt;i&gt;Gravity is the archnemesis of the adventurous 3D printer.&lt;/i&gt;&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;The problem:&lt;/strong&gt; 3D printers build parts one cross section at a time, printing each layer on top of the last. So what happens when the printer encounters an overhang, with no base-layer to print on? Then, gravity takes over, the layer tumbles down to the build table, and the part is ruined. Some of the world’s best engineers have put their minds to the issue and have developed a way to 3D print parts with extremely complex geometries.&lt;/p&gt;
 
@@ -52,7 +47,7 @@ Because the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sla.h
 
 
 &lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-&lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Mr. Piggy with support material,&quot; an FDM printed model with support material (dark) intact. The support material here was water soluble. (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of &lt;a href=&quot;http://www.flickr.com/photos/cabfablab/3613870642/&quot; target=&quot;_blank&quot;&gt;Fab Lab den Haag&lt;/a&gt; (left) and &lt;a href=&quot;https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673&quot; target=&quot;_blank&quot;&gt;Makerbot Industries &lt;/a&gt;(right) under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
+&lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Mr. Piggy with support material,&quot; an FDM printed model with support material (dark) intact. The support material here was water soluble.  (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of &lt;a href=&quot;http://www.flickr.com/photos/cabfablab/3613870642/&quot; target=&quot;_blank&quot;&gt;Fab Lab den Haag&lt;/a&gt; (left) and &lt;a href=&quot;https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673&quot; target=&quot;_blank&quot;&gt;Makerbot Industries &lt;/a&gt;(right) under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
 &lt;tr&gt;
 &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/pig_support.jpg&quot;&gt;
@@ -259,7 +254,7 @@ Rob&lt;/p&gt;
 
 
 &lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-  &lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Guardian of Time,&quot; by Kronberger4 under &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/3.0&quot; target=&quot;_blank&quot;&gt;CC BY-SA 3.0&lt;/a&gt;, &lt;a href=&quot;http://commons.wikimedia.org/wiki/File%3AGuardians_of_Time_sculpture_Manfred_Kielnhofer_3d_printing.JPG&quot; target=&quot;_blank&quot;&gt;via Wikimedia Commons&lt;/a&gt; This sculpture was printed by Shapeways in their nickel steel material. (Right) &quot;Double Gyroid Color,&quot; a binder jet print by &lt;a href=&quot;https://www.flickr.com/photos/virtox/6559330485/in/photolist-bT9KbH-dQo4VX-dQtEGs-dQo4Gc-dQtBjy-dQtE77-dQo5qH-dQo4mV-aZChqV-dQo3Zi-dQtC5b-dQtCm7-dQo2tH-dQtBRW-aZCikD-dQo3Fk-8eA9aN-8ewT3F-8F1JAD-7s8U8Z-4nY2dd-6gHrTK-99WKAG-4Y9nuW-7akaV9-4URtBp-9eGiri-9GkdJ9-97fZuV-ezeaor-bhLFjn-3aC6bA-efswsC-7xvAgr-fwQtLk-4WdnJv-9jvqzK-67qoDe-earknD-76Cvbu-7t2YET-7c4mB3-85JBjd-aDfbsd-fc6mgC-hSGmSN-7uZiim-5ZGqK1-8h7tUD-Jto4w/&quot; target=&quot;_blank&quot;&gt;Stijn van der Linden&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC 2.0&lt;/a&gt;&lt;/caption&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Guardian of Time,&quot; by Kronberger4 under &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/3.0&quot; target=&quot;_blank&quot;&gt;CC BY-SA 3.0&lt;/a&gt;, &lt;a href=&quot;http://commons.wikimedia.org/wiki/File%3AGuardians_of_Time_sculpture_Manfred_Kielnhofer_3d_printing.JPG&quot; target=&quot;_blank&quot;&gt;via Wikimedia Commons&lt;/a&gt; This sculpture was printed by Shapeways in their nickel steel material. (Right) &quot;Double Gyroid Color,&quot; a binder jet print by &lt;a href=&quot;https://www.flickr.com/photos/virtox/6559330485/in/photolist-bT9KbH-dQo4VX-dQtEGs-dQo4Gc-dQtBjy-dQtE77-dQo5qH-dQo4mV-aZChqV-dQo3Zi-dQtC5b-dQtCm7-dQo2tH-dQtBRW-aZCikD-dQo3Fk-8eA9aN-8ewT3F-8F1JAD-7s8U8Z-4nY2dd-6gHrTK-99WKAG-4Y9nuW-7akaV9-4URtBp-9eGiri-9GkdJ9-97fZuV-ezeaor-bhLFjn-3aC6bA-efswsC-7xvAgr-fwQtLk-4WdnJv-9jvqzK-67qoDe-earknD-76Cvbu-7t2YET-7c4mB3-85JBjd-aDfbsd-fc6mgC-hSGmSN-7uZiim-5ZGqK1-8h7tUD-Jto4w/&quot; target=&quot;_blank&quot;&gt;Stijn van der Linden&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC 2.0.&lt;/a&gt;&lt;/caption&gt;
 &lt;tr&gt;
 &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/guardian_of_time.jpg&quot;&gt;
@@ -319,8 +314,6 @@ Rob&lt;/p&gt;
 &lt;p&gt;Cheers,
 
 Rob&lt;/p&gt;
-
-
 
 </content>
  </entry>
