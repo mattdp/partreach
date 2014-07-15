@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-15T10:23:13-07:00</updated>
+ <updated>2014-07-15T13:05:55-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -12,12 +12,103 @@
 
  
  <entry>
+   <title>What's the Deal With Support Material</title>
+   <link href="YOUR_URL/what's-the-deal-with-support-material.html"/>
+   <updated>2014-07-12T00:00:00-07:00</updated>
+   <id>BLOG_URL/what's-the-deal-with-support-material</id>
+   <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;FFF printed &quot;Stanford Bunny&quot; with support material still intact, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/creative_tools/14485075381/in/photolist-o4ZNfZ-o75bFH-h8WN15-nahjC9-g1KXpN-gwmN7H-gwmAC2-g1Ljrp-g1KNQJ-g1L4mK-g1EDcJ-gwmFi5-o2yj1i-g1L3vt-ee57X9-o7bjmH-gkrQXZ-7FfGcB-oi4wBJ-fqvWhC-fDVtrM-fDVyWc-fEcuRh-fEcDX3-fDUVwn-dZngZU-dZnhnd-e9W6k8-nahjDm-jjWWDL-5nhASg-bkqCjC-bogJSF-bogJJn-jjUqDh-jjTT7P-jjUoJA-yqXXP-a7qBdv-kM4tbZ-dZnPMW-dZnPko-omRjVe-k1mFee-nZmZCp-e9ceij-awarjT-5YyHH5-nZnL8p-oiBgKn&quot; target=&quot;_blank&quot;&gt;Creative Tools&lt;/a&gt; under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
+&lt;tr&gt;&lt;td&gt;
+&lt;img src=&quot;s3:https://s3.amazonaws.com/supplybetter_images/Blog+Images/bunny_support.jpg&quot; width=&quot;100%&quot;&gt;
+&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+
+&lt;p&gt;&lt;i&gt;Gravity is the archnemesis of the adventurous 3D printer.&lt;/i&gt;&lt;/p&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;The problem:&lt;/strong&gt; 3D printers build parts one cross section at a time, printing each layer on top of the last. So what happens when the printer encounters an overhang, with no base-layer to print on? Then, gravity takes over, the layer tumbles down to the build table, and the part is ruined. Some of the world’s best engineers have put their minds to the issue and have developed a way to 3D print parts with extremely complex geometries.&lt;/p&gt;
+
+
+&lt;p&gt;&lt;strong&gt;The solution:&lt;/strong&gt; Support material. Simply print a removable scaffolding below the overhangs and rest easy knowing that those overhangs cannot fail. &lt;/p&gt;
+
+
+
+
+&lt;p&gt;We will look at some of the most popular 3D printing methods that require support material: SLA, FDM, FFF, and DMLS. Want to learn more about these methods? &lt;a href=&quot;www.supplybetter.com/blog&quot; target=&quot;_blank&quot;&gt;Visit our blog&lt;/a&gt;.
+&lt;p&gt;While the benefits of support structures are obvious, we will see that the use of support material often returns unfortunate consequences.&lt;/p&gt;
+
+&lt;h4&gt;But first: how does the printer know where to put the support?&lt;/h4&gt;
+&lt;p&gt;This problem is solved by software. Most slicers, programs that take a CAD file and split it into cross sections to be printed, can also automatically add the necessary support to the design. For example, FDM printers, made by Stratasys, use the Insight software package to orient and support parts.&lt;/p&gt;
+
+&lt;h4&gt;SLA:&lt;/h4&gt;
+Because the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sla.html&quot; target=&quot;_blank&quot;&gt;SLA process&lt;/a&gt; inherently supports any overhangs with un-hardened resin, one might imagine that no support material was necessary. However, fluctuations in the resin caused by the build table moving, compounded with the general instability of the liquid resin, necessitate a more solid support structure. This is achieved by hardening key vertical support “columns” in the resin, below where the overhangs are planned. These supports can be snapped off after the part is removed from the vat, and before it is post-processed in the curing oven. Often, visible nubs are left where the support was attached to the part. These must be removed by copious sanding or bead blasting, which adds costly man-hours to the process.&lt;/p&gt;
+
+
+
+
+&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+&lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Mr. Piggy with support material,&quot; an FDM printed model with support material (dark) intact. The support material here was water soluble. (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of &lt;a href=&quot;http://www.flickr.com/photos/cabfablab/3613870642/&quot; target=&quot;_blank&quot;&gt;Fab Lab den Haag&lt;/a&gt;(left) and &lt;a href=&quot;https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673&quot; target=&quot;_blank&quot;&gt;Makerbot Industries (right)&lt;/a&gt; under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
+&lt;tr&gt;
+&lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/pig_support.jpg&quot;&gt;
+&lt;/td&gt;
+&lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
+&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/blue_support.jpg&quot;&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+
+&lt;h4&gt;FDM:&lt;/h4&gt;
+
+
+&lt;p&gt;Stratasys has developed several different proprietary materials for support in their &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-fdm.html&quot;&gt;FDM process&lt;/a&gt;. Adding a second (support) material to a print means that multiple extruders are necessary, each printing in a single material. Support materials offered by Stratasys include include a wax material (ICW06 Wax), a Break Away Support System (BASS for short), and several soluble materials. The soluble materials may be removed by soaking the part in water or in some cases a chemical bath, and should leave almost no visible mark on the part. However, the Break Away system will leave marks.&lt;/p&gt;
+
+
+
+
+&lt;h4&gt;FFF:&lt;/h4&gt;
+
+
+&lt;p&gt;Unlike the more advanced FDM machines, FFF machines rarely have two extruders. Unfortunately, this leaves only one option for support material: the build material itself. The support material is constructed along with the part, but with much lower infill density. This makes it faster to print and easier to remove after the print is completed. However, the surface of the part will retain bumps and other defects after the support is removed.&lt;/p&gt;
+
+
+
+
+&lt;h4&gt;DMLS:&lt;/h4&gt;
+
+
+&lt;p&gt;In the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-dmls.html&quot;&gt;DMLS process&lt;/a&gt;, only one type of powder can be used per part. This means that support structure must be built from the same powder as the rest of the part. It is not intuitive why DMLS parts even need support material, when parts produced by the similar &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sls.html&quot;&gt;SLS process&lt;/a&gt; can be supported by the excess powder alone. The difference lies in the phase changes that occur. In SLS, the goal is to heat the powder to the point of sintering only, and no further. In this way, the powder never reaches a liquid phase. In DMLS, a &lt;a href=&quot;http://www.3trpd.co.uk/dmls.htm&quot;&gt;liquid state&lt;/a&gt; may be reached, and the powder alone cannot support the molten metal. Scaffolding is required underneath overhangs, and must be removed by CNC machining. Machining adds significant time and expense to the DMLS process. To preserve the accuracy of the part, the machining tools must be capable of the same tight tolerances as the printer.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;I hope this was instructional, and as always, best of luck with your 3D printing! Don’t let gravity get you (or your overhangs) down.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Cheers,
+
+Rob&lt;/p&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
    <title>What to Expect With SLS</title>
    <link href="YOUR_URL/what-to-expect-with-sls.html"/>
    <updated>2014-07-11T00:00:00-07:00</updated>
    <id>BLOG_URL/what-to-expect-with-sls</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-  &lt;caption align=&quot;bottom&quot;&gt;(Left) Front view of &quot;Collar 2,&quot; an original necklace design by &lt;a href=&quot;https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6&quot; target=&quot;_blank&quot;&gt;Madeline Gannon&lt;/a&gt; printed with SLS. (Right) &lt;a href=&quot;https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL&quot; target=&quot;_blank&quot;&gt;Reverse view&lt;/a&gt; of the same piece. Used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC 2.0&lt;/a&gt;)&lt;/caption&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;(Left) Front view of &quot;Collar 2,&quot; an original necklace design by &lt;a href=&quot;https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6&quot; target=&quot;_blank&quot;&gt;Madeline Gannon&lt;/a&gt; printed with SLS. (Right) &lt;a href=&quot;https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL&quot; target=&quot;_blank&quot;&gt;Reverse view&lt;/a&gt; of the same piece. Used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC 2.0.&lt;/a&gt;&lt;/caption&gt;
 &lt;tr&gt;
 &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg&quot;&gt;
@@ -90,7 +181,7 @@
    <updated>2014-07-11T00:00:00-07:00</updated>
    <id>BLOG_URL/what-to-expect-with-sla</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-  &lt;caption align=&quot;bottom&quot;&gt;&quot;Fixed Landscapes&quot; sculpture printed with SLA, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/gabriellalevine/10934704833/in/photolist-8ZKrBi-hnHrYR-hnFxWP-h66KBM-hnG8x7-hnHe9T-hnG6fG-hnFUvU-hnGiXU-hnH7b4-hnGZwn-hnFe8r-hnG2tS-hnHty4-hnH4bX-hnFZs9-hnFS8C-hnFQku-hnFR2R-hnFXCY-hnHpaK-hnFgqT-hnGcJb-hnGs5L-hnFrRT-h674hL-h685UF-h66Rkm-h675mu-h66SE5-h66Lfa-h684V6-h684Z4-h66Kux-nAnwqX-gnE9vS-hEgdMF-hEfWqc-hEgmar-hEezkF-hEg8CH-hEeEce-hEgiAt-hEg2Ev-hEfUJs-hEfAWo-hEgvaF-hEf4yp-hEfKHS-92efH8&quot; target=&quot;_blank&quot;&gt;Gabriella Levine&lt;/a&gt;, under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-SA&lt;/a&gt;&lt;/caption&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;&quot;Fixed Landscapes&quot; sculpture printed with SLA, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/gabriellalevine/10934704833/in/photolist-8ZKrBi-hnHrYR-hnFxWP-h66KBM-hnG8x7-hnHe9T-hnG6fG-hnFUvU-hnGiXU-hnH7b4-hnGZwn-hnFe8r-hnG2tS-hnHty4-hnH4bX-hnFZs9-hnFS8C-hnFQku-hnFR2R-hnFXCY-hnHpaK-hnFgqT-hnGcJb-hnGs5L-hnFrRT-h674hL-h685UF-h66Rkm-h675mu-h66SE5-h66Lfa-h684V6-h684Z4-h66Kux-nAnwqX-gnE9vS-hEgdMF-hEfWqc-hEgmar-hEezkF-hEg8CH-hEeEce-hEgiAt-hEg2Ev-hEfUJs-hEfAWo-hEgvaF-hEf4yp-hEfKHS-92efH8&quot; target=&quot;_blank&quot;&gt;Gabriella Levine&lt;/a&gt;, under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-SA 2.0.&lt;/a&gt;&lt;/caption&gt;
 &lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_cover.jpg&quot; width=&quot;936&quot;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;
@@ -112,7 +203,7 @@
 &lt;/ul&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-  &lt;caption align=&quot;bottom&quot;&gt;Doll hand printed with SLA, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/dannychoo/12028241423/in/photolist-9S3znM-9S3xxg-jjWDqN-jjUd4N-jjTT7P-nAnwqX-9S3vPR-6vDX3a/&quot; target=&quot;_blank&quot;&gt;Danny Choo&lt;/a&gt;, under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-SA&lt;/a&gt;&lt;/caption&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;Doll hand printed with SLA, courtesy of &lt;a href=&quot;https://www.flickr.com/photos/dannychoo/12028241423/in/photolist-9S3znM-9S3xxg-jjWDqN-jjUd4N-jjTT7P-nAnwqX-9S3vPR-6vDX3a/&quot; target=&quot;_blank&quot;&gt;Danny Choo&lt;/a&gt;, under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-SA 2.0.&lt;/a&gt;&lt;/caption&gt;
 &lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SLA_doll-hand.jpg&quot; width=&quot;936&quot;&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;/table&gt;&lt;/p&gt;
@@ -240,7 +331,7 @@ Rob&lt;/p&gt;
    <updated>2014-07-09T00:00:00-07:00</updated>
    <id>BLOG_URL/what-to-expect-with-fdm</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-  &lt;caption align=&quot;bottom&quot;&gt;Sculpture printed by FDM (Image Courtesy of &lt;a href=&quot;https://www.flickr.com/photos/afsart/4494997999/in/photolist-7Rd3iv-7Rd39p-7R5toq-7R2cKT-7VUKvS-7VULvj-dJGB9Q-dJB9VX-8dUAeE-fPSZWn-dEWhFq-dLk1HJ-dJGB3d-dJW18N-dKuJzn-dKAchd-7Rd4Yr-dFcR38-dGJdZo-dGCNxP-dJJ8hu-dF8TtV-dGCZ24-dFvBcE-dJ13a6-cuUuff-eaUmgn-aHhUQx-aHhUXM-6TrEz7-6TrEKN&quot; target=&quot;_blank&quot;&gt;Andrew Scott&lt;/a&gt; under&lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt; CC BY-NC-ND 2.0&lt;/a&gt;)&lt;/caption&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;Sculpture printed by FDM (Image Courtesy of &lt;a href=&quot;https://www.flickr.com/photos/afsart/4494997999/in/photolist-7Rd3iv-7Rd39p-7R5toq-7R2cKT-7VUKvS-7VULvj-dJGB9Q-dJB9VX-8dUAeE-fPSZWn-dEWhFq-dLk1HJ-dJGB3d-dJW18N-dKuJzn-dKAchd-7Rd4Yr-dFcR38-dGJdZo-dGCNxP-dJJ8hu-dF8TtV-dGCZ24-dFvBcE-dJ13a6-cuUuff-eaUmgn-aHhUQx-aHhUXM-6TrEz7-6TrEKN&quot; target=&quot;_blank&quot;&gt;Andrew Scott&lt;/a&gt; under&lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt; CC BY-NC-ND 2.0&lt;/a&gt;.)&lt;/caption&gt;
 &lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/FDM_image.jpg&quot; width=&quot;500&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
