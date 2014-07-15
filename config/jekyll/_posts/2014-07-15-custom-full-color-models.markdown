@@ -7,7 +7,7 @@ published: true
 <table class="image" style="margin: auto;">
   <caption align="bottom">Designs by <a href="https://www.flickr.com/photos/fdecomite/6424477973/in/photolist-aMH8tB-aMH8C2-aMH842-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S">fdecomite</a>, printed by Shapeways in their Full Color Sandstone. Used under <a href="https://creativecommons.org/licenses/by/2.0/legalcode">CC BY 2.0</a>.</caption>
 <tr><td>
-<img src="s3:https://s3.amazonaws.com/supplybetter_images/Blog+Images/sandstone_balls.jpg" width="650">
+<img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sandstone_balls.jpg" width="650">
 </td></tr></table>
 
 <br>
@@ -20,7 +20,7 @@ published: true
 <table class="image" stlye="margin: auto;">
   <caption align="bottom">LOM Printer Components: 1 Foil supply. 2 Heated roller. 3 Laser beam. 4. Scanning prism. 5 Laser unit. 6 Layers. 7 Moving platform. 8 Waste. Image by LaurensvanLieshout, used under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a> <a href="http://commons.wikimedia.org/wiki/File%3ALaminated_object_manufacturing.png">via Wikimedia Commons</a>.</caption>
 <tr><td>
-<img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/LOM.png" width="700">
+<img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/LOM.png" width="720">
 </td></tr></table>
 
 We've already written about how binder jet printing works. <a href="www.supplybetter.com/blog/what-to-expect-with-binder-jet.html" target="_blank">Find that here</a>. For your viewing pleasure, here is another example of a binder jet part.
@@ -28,7 +28,7 @@ We've already written about how binder jet printing works. <a href="www.supplybe
 <table class="image" stlye="margin: auto;">
   <caption align="bottom">3D printed color model of a house from the popular computer game "Minecraft," designed by <a href="https://www.flickr.com/photos/68387974@N02/6761890353/in/photolist-biwsqr-kKZhwC-kKZhhQ-aMH8C2-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH8tB-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S">Eric Haines</a>, used under <a href="https://creativecommons.org/licenses/by/2.0/legalcode">CC BY 2.0</a>.</caption>
 <tr><td>
-<img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/LOM.png" width="700">
+<img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sandstone_house.jpg" width="700">
 </td></tr></table>
 
 <h4>How these processes are similar:</h4>
