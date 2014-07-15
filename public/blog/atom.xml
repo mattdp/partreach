@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-15T13:15:25-07:00</updated>
+ <updated>2014-07-15T13:18:39-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -90,9 +90,10 @@ Because the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sla.h
 
 
 
-&lt;p&gt;Cheers,
+&lt;p&gt;Cheers,&lt;/p&gt;
 
-Rob&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
 
 </content>
  </entry>
@@ -165,7 +166,6 @@ Rob&lt;/p&gt;
 &lt;p&gt;Shapeways is great for low cost, non-critical parts that don&#39;t have a short deadline. If a job is fit for Shapeways (or any of the other online service bureaus), then we&#39;ll definitely recommend them, but for jobs that require any degree of speed and quality, finding an SLS service bureau is the right choice.&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
-
 &lt;p&gt;Rob&lt;/p&gt;&lt;/p&gt;
 </content>
  </entry>
@@ -311,9 +311,10 @@ Rob&lt;/p&gt;
 
 
 
-&lt;p&gt;Cheers,
+&lt;p&gt;Cheers,&lt;/p&gt;
 
-Rob&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
 
 </content>
  </entry>

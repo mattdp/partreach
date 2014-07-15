@@ -48,6 +48,5 @@ Because the <a href="www.supplybetter.com/blog/what-to-expect-with-sla.html" tar
 
 <p>I hope this was instructional, and as always, best of luck with your 3D printing! Don’t let gravity get you (or your overhangs) down.</p>
 
-<p>Cheers,
-
-Rob</p>
+<p>Cheers,</p>
+<p>Rob</p>

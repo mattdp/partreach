@@ -50,6 +50,5 @@ published: true
 </ul>
 <p>As always, best of luck with your 3D printing!</p>
 
-<p>Cheers,
-
-Rob</p>
+<p>Cheers,</p>
+<p>Rob</p>

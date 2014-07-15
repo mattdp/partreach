@@ -60,6 +60,5 @@ published: true
 <p><i>But why not just go to <a href="https://www.supplybetter.com/blog/shapeways-vs-supplybetter.html" target="_blank">Shapeways</a>?</i><p>
 <p>Shapeways is great for low cost, non-critical parts that don't have a short deadline. If a job is fit for Shapeways (or any of the other online service bureaus), then we'll definitely recommend them, but for jobs that require any degree of speed and quality, finding an SLS service bureau is the right choice.</p>
 
-<p>Cheers,
-
-Rob</p>
+<p>Cheers,</p>
+<p>Rob</p>
