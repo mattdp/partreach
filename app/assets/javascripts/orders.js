@@ -10,9 +10,9 @@ $(document).ready(function() {
   });
 
 
-  $("#s3-uploader").S3Uploader();
+  $(".s3-uploader").S3Uploader();
 
-  $('#s3-uploader').bind('s3_upload_complete', function(e, content) {
+  $('.s3-uploader').bind('s3_upload_complete', function(e, content) {
     var orderGroupId = $('#order_group_id')[0].value;
     $.ajax({
       url : "/parts/create_with_external",
@@ -23,16 +23,18 @@ $(document).ready(function() {
         if ( $('#uploaded_file_list').length) {
           $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
           $('#files_uploaded').val("true")
-        } else {
-          window.location.reload(true);
         }
-
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
         alert("An error occurred during upload (" + jqXHR.status + ")")
       }
     });
+  });
+
+  $('.s3-uploader-page-refresh').bind('s3_uploads_complete', function(e, content) {
+    alert("All Uploads completed")
+    window.location.reload(true);
   });
 
   // run client-side validations (using jquery.validate)

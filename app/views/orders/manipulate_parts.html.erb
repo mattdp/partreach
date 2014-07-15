@@ -17,7 +17,7 @@
         <tr>
           <td><%= select_tag(:order_group_id, options_from_collection_for_select(@order_groups, :id, :name)) %></td>
           <td>
-            <%= s3_uploader_form id: "s3-uploader",
+            <%= s3_uploader_form id: "s3-uploader", class: "s3-uploader s3-uploader-page-refresh",
               key_starts_with: "externals/",
               key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
                 <%= file_field_tag :file, multiple: true %>

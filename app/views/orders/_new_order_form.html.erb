@@ -21,7 +21,7 @@
 </div>
 
 <p>Upload drawing (maximum 300Mb)</p>
-<%= s3_uploader_form  id: "s3-uploader", 
+<%= s3_uploader_form id: "s3-uploader", class: "s3-uploader",
                       max_file_size: 300.megabytes,
                       key_starts_with: "externals/",
                       key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
