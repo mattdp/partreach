@@ -23,13 +23,13 @@ published: true
 <h4>What DMLS is great for:</h4>
 <ul>
 <li>Custom functional prototypes.</li>
-<li>Specific porosities. Laser wattage and sand fineness may be adjusted to control the density of the part. Outputted metals ranges from relatively porous materials to metals with densities of <a href="http://www.layerwise.com/medical/dmls-benefits/" target="_blank">99.98 percent</a>. </li>
+<li>Specific porosities. Laser wattage and sand fineness may be adjusted to control the density of the part. Outputted metals ranges from relatively porous to very dense, with densities of up to<a href="http://www.layerwise.com/medical/dmls-benefits/" target="_blank">99.98 percent</a>. </li>
 <li>Functional prototypes.</li>
 </ul>
 
 <h4>What DMLS is not great for:</h4>
 <ul>
-<li>Cost. While cheaper for prototyping than casting, this is one of the most expensive 3D printing methods.//not sure about this, it is expensive but a cheaper alternative to other methods.</li>
+<li>Cost. While cheaper for prototyping than casting, this is one of the most expensive 3D printing methods. If possible, consider binder jet printing.</li>
 <li>Ready-to-go prints. Support material in DMLS is the same as the build material, so extensive machining may be necessary to finish the part. For complex parts with tight tolerances, stress relieving might also be necessary.</li>
 <li>Large parts. DMLS machines tend to have small build envelopes.</li>
 </ul>

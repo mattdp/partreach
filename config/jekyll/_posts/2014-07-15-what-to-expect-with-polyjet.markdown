@@ -29,17 +29,17 @@ published: true
   <li>Color. PolyJet printers are now capable of printing in the full cyan/magenta/yellow spectrum, laying down the three different materials at once like ink printers. Alternatively, one color may be replaced by white or black to yield a range of tints and shades. </li>
   <li>Fine details. PolyJet printers generally achieve 600 dpi (dots per inch) in the x-y plane, and layer heights of .001 inches. </li>
   <li>Multi-material prototypes. </li>
-  <li>Extremely tight tolerances. PolyJet tolerances in the x-y axis are at most .005 inches, and can be <a href="http://www.solidconcepts.com/technologies/PolyJet/">even smaller</a>.</li>
+  <li>Extremely tight tolerances. PolyJet tolerances in the x-y axis are at most .005 inches, and can be <a href="http://www.solidconcepts.com/technologies/PolyJet/" target="_blank">even smaller</a>.</li>
 </ul>
 
 <h4>What PolyJet is not great for:</h4>
 <ul>  
 <li>Durability. Like SLA parts, PolyJet parts are cured in UV light, and exposure to the sun's rays can cause damage to their mechanical strength.</li>
-<li>Consistency across part. Support material may mix with buid resin in some areas and cause inconsistencies in the strength.</li>
+<li>Consistency across part. Support material may mix with build resin in some areas and cause inconsistencies in the part's strength.</li>
 </ul>
 
 <h3>What materials can I print with PolyJet?</h3>
-<p>By mixing various combinations of resins, PolyJet printers can imitate many types of engineering plastics and rubbers. These include a "digital ABS," whose properties greatly resemble those of ABS, and translucent options. Find a list of materials, provided by Stratasys, <a href=”http://www.stratasys.com/materials/polyjet” target=”_blank”>here</a>.</p>
+<p>By mixing various combinations of resins, PolyJet printers can imitate many types of engineering plastics and rubbers. These include a "digital ABS," whose properties greatly resemble those of ABS, and translucent options. Find a list of materials, provided by Stratasys, <a href="http://www.stratasys.com/materials/polyjet" target="_blank">here</a>.</p>
 
 <p>Note: PolyJet is a trademark of Objet (now merged with with Stratasys). 3D systems offers a range of competitive Projet machines that are also capable of full color modeling.</p>
 

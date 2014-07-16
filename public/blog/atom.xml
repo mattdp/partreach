@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-16T10:49:26-07:00</updated>
+ <updated>2014-07-16T11:43:56-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -17,7 +17,7 @@
    <updated>2014-07-16T00:00:00-07:00</updated>
    <id>BLOG_URL/what-to-expect-with-ldt</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-  &lt;caption align=&quot;bottom&quot;&gt;LDT in action. Nozzles deposit metal powder into molten pool created with laser. Image courtesy of &lt;a href=&quot;https://www.flickr.com/photos/wallyg/4952753283/in/photolist-7rpGMh-7cMgdr-ekULc-8xE9Xx-nzWpw4-8xE9ZZ-dxJz1G-4Xu4m4-4Xu49v-ekSP3-8xE9U8-8xHmuE-amQfMU-dxJyYs-amMqbH-8xHbYS-8xEj7t-8xE9RK-kHQqk/&quot; target=&quot;_blank&quot;&gt;Penn State&lt;/a&gt; under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-ND 2.0&lt;/a&gt;.&lt;/caption&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;LDT in action. Nozzles deposit metal powder into molten pool created by a laser. Image courtesy of &lt;a href=&quot;https://www.flickr.com/photos/wallyg/4952753283/in/photolist-7rpGMh-7cMgdr-ekULc-8xE9Xx-nzWpw4-8xE9ZZ-dxJz1G-4Xu4m4-4Xu49v-ekSP3-8xE9U8-8xHmuE-amQfMU-dxJyYs-amMqbH-8xHbYS-8xEj7t-8xE9RK-kHQqk/&quot; target=&quot;_blank&quot;&gt;Penn State&lt;/a&gt; under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC-ND 2.0&lt;/a&gt;.&lt;/caption&gt;
   &lt;tr&gt;&lt;td&gt;
   &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/Laser+Deposition.jpg&quot; width=&quot;100%&quot;&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -45,11 +45,11 @@
 
 
 &lt;ul&gt;  
-  &lt;li&gt;Repairs. One of the most popular applications of LDT is in the repair of old or broken metal parts. For more on this, &lt;a href=”http://www.twi-global.com/news-events/case-studies/innovative-additive-laser-repair-technology-used-in-restoration-of-iconic-ww2-spitfire-aircraft-557/” target=”_blank”&gt;check out this case study&lt;/a&gt; by the The Welding Institute.&lt;/li&gt;
+  &lt;li&gt;Repairs. One of the most popular applications of LDT is in the repair of old or broken metal parts. For more on this, &lt;a href=&quot;http://www.twi-global.com/news-events/case-studies/innovative-additive-laser-repair-technology-used-in-restoration-of-iconic-ww2-spitfire-aircraft-557/&quot; target=&quot;_blank&quot;&gt;check out this case study&lt;/a&gt; by the The Welding Institute.&lt;/li&gt;
   &lt;li&gt;Mechanical Strength. Parts built with laser deposition have equal to-or better strengths than equivalent cast or wrought alternatives.&lt;/li&gt;
   &lt;li&gt;Cladding. Laser deposition can be used to cover, or clad, an existing part in a metal shell. The maneuverability of many LDT systems allows them to clad complex parts.&lt;/li&gt;
-  &lt;li&gt;Fast build speeds. &lt;a href=”http://www.3dprinterworld.com/article/giveth-and-taketh-away-cnc-milling-and-additive-laser-deposition-one-cycle” target=”_blank”&gt;One source&lt;/a&gt; claims that LDT can be up to 20 times faster than &lt;a href=”www.supplybetter.com/blog/what-to-expect-with-dmls.html” target=”_blank”&gt;Direct Metal Laser Sintering&lt;/a&gt;, with deposition rates of up to 3.5 kg/hour.&lt;/li&gt;
-  &lt;li&gt;Many laser deposition machines have 5 axis capabilities. This allows them to print unsupported structures that would otherwise require costly support material. &lt;a href=”https://www.youtube.com/watch?v=s9IdZ2pI5dA” target= “blank”&gt;See this video&lt;/a&gt; for a great example of 5 axis laser deposition.&lt;/li&gt;
+  &lt;li&gt;Fast build speeds. &lt;a href=&quot;http://www.3dprinterworld.com/article/giveth-and-taketh-away-cnc-milling-and-additive-laser-deposition-one-cycle&quot; target=&quot;_blank&quot;&gt;One source&lt;/a&gt; claims that LDT can be up to 20 times faster than &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-dmls.html&quot; target=&quot;_blank&quot;&gt;Direct Metal Laser Sintering&lt;/a&gt;, with deposition rates of up to 3.5 kg/hour.&lt;/li&gt;
+  &lt;li&gt;Many laser deposition machines have 5 axis capabilities. This allows them to print unsupported structures that would otherwise require costly support material. &lt;a href=&quot;https://www.youtube.com/watch?v=s9IdZ2pI5dA&quot; target= &quot;blank&quot;&gt;See this video&lt;/a&gt; for a great example of 5 axis laser deposition.&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -61,7 +61,7 @@
 &lt;ul&gt; 
   &lt;li&gt;Cost. Inherent complexities to this process make it one of the most expensive 3D printing processes. Unsurprisingly, the biggest demand for Laser deposition comes from the aerospace and defense sectors. Still, if LDT repairs mean that buying new parts can be avoided, laser deposition may be an extremely cost effective option.&lt;/li&gt;
   &lt;li&gt;Ready-to-go parts. Just like with other metal additive manufacturing processes, the use of any support material means extensive machining after the build is complete.&lt;/li&gt;
-  &lt;li&gt;Tiny details. LDT is most commonly used to make large metal parts, and most laser deposition machines cannot create details as small as DMLS. &lt;a href=”http://www.rpm-innovations.com/laser_deposition_technology” target=”_blank”&gt;The width&lt;/a&gt; of the deposition ranges from about 0.04 inches to 0.16 inches.&lt;/li&gt;
+  &lt;li&gt;Tiny details. LDT is most commonly used to make large metal parts, and most laser deposition machines cannot create details as small as DMLS. &lt;a href=&quot;http://www.rpm-innovations.com/laser_deposition_technology&quot; target=&quot;_blank&quot;&gt;The width&lt;/a&gt; of the deposition ranges from about 0.04 inches to 0.16 inches.&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -126,7 +126,7 @@
   &lt;li&gt;Color. PolyJet printers are now capable of printing in the full cyan/magenta/yellow spectrum, laying down the three different materials at once like ink printers. Alternatively, one color may be replaced by white or black to yield a range of tints and shades. &lt;/li&gt;
   &lt;li&gt;Fine details. PolyJet printers generally achieve 600 dpi (dots per inch) in the x-y plane, and layer heights of .001 inches. &lt;/li&gt;
   &lt;li&gt;Multi-material prototypes. &lt;/li&gt;
-  &lt;li&gt;Extremely tight tolerances. PolyJet tolerances in the x-y axis are at most .005 inches, and can be &lt;a href=&quot;http://www.solidconcepts.com/technologies/PolyJet/&quot;&gt;even smaller&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Extremely tight tolerances. PolyJet tolerances in the x-y axis are at most .005 inches, and can be &lt;a href=&quot;http://www.solidconcepts.com/technologies/PolyJet/&quot; target=&quot;_blank&quot;&gt;even smaller&lt;/a&gt;.&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -137,7 +137,7 @@
 
 &lt;ul&gt;  
 &lt;li&gt;Durability. Like SLA parts, PolyJet parts are cured in UV light, and exposure to the sun&#39;s rays can cause damage to their mechanical strength.&lt;/li&gt;
-&lt;li&gt;Consistency across part. Support material may mix with buid resin in some areas and cause inconsistencies in the strength.&lt;/li&gt;
+&lt;li&gt;Consistency across part. Support material may mix with build resin in some areas and cause inconsistencies in the part&#39;s strength.&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -146,7 +146,7 @@
 &lt;h3&gt;What materials can I print with PolyJet?&lt;/h3&gt;
 
 
-&lt;p&gt;By mixing various combinations of resins, PolyJet printers can imitate many types of engineering plastics and rubbers. These include a &quot;digital ABS,&quot; whose properties greatly resemble those of ABS, and translucent options. Find a list of materials, provided by Stratasys, &lt;a href=”http://www.stratasys.com/materials/polyjet” target=”_blank”&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;By mixing various combinations of resins, PolyJet printers can imitate many types of engineering plastics and rubbers. These include a &quot;digital ABS,&quot; whose properties greatly resemble those of ABS, and translucent options. Find a list of materials, provided by Stratasys, &lt;a href=&quot;http://www.stratasys.com/materials/polyjet&quot; target=&quot;_blank&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 
 
 
@@ -210,7 +210,7 @@
 
 &lt;ul&gt;
 &lt;li&gt;Custom functional prototypes.&lt;/li&gt;
-&lt;li&gt;Specific porosities. Laser wattage and sand fineness may be adjusted to control the density of the part. Outputted metals ranges from relatively porous materials to metals with densities of &lt;a href=&quot;http://www.layerwise.com/medical/dmls-benefits/&quot; target=&quot;_blank&quot;&gt;99.98 percent&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;Specific porosities. Laser wattage and sand fineness may be adjusted to control the density of the part. Outputted metals ranges from relatively porous to very dense, with densities of up to&lt;a href=&quot;http://www.layerwise.com/medical/dmls-benefits/&quot; target=&quot;_blank&quot;&gt;99.98 percent&lt;/a&gt;. &lt;/li&gt;
 &lt;li&gt;Functional prototypes.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -221,7 +221,7 @@
 
 
 &lt;ul&gt;
-&lt;li&gt;Cost. While cheaper for prototyping than casting, this is one of the most expensive 3D printing methods.//not sure about this, it is expensive but a cheaper alternative to other methods.&lt;/li&gt;
+&lt;li&gt;Cost. While cheaper for prototyping than casting, this is one of the most expensive 3D printing methods. If possible, consider binder jet printing.&lt;/li&gt;
 &lt;li&gt;Ready-to-go prints. Support material in DMLS is the same as the build material, so extensive machining may be necessary to finish the part. For complex parts with tight tolerances, stress relieving might also be necessary.&lt;/li&gt;
 &lt;li&gt;Large parts. DMLS machines tend to have small build envelopes.&lt;/li&gt;
 &lt;/ul&gt;
@@ -257,7 +257,7 @@
    <updated>2014-07-15T00:00:00-07:00</updated>
    <id>BLOG_URL/custom-full-color-models</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-  &lt;caption align=&quot;bottom&quot;&gt;Designs by &lt;a href=&quot;https://www.flickr.com/photos/fdecomite/6424477973/in/photolist-aMH8tB-aMH8C2-aMH842-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S&quot;&gt;fdecomite&lt;/a&gt;, printed by Shapeways in their Full Color Sandstone. Used under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;Designs by &lt;a href=&quot;https://www.flickr.com/photos/fdecomite/6424477973/in/photolist-aMH8tB-aMH8C2-aMH842-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S&quot; target=&quot;_blank&quot;&gt;fdecomite&lt;/a&gt;, printed by Shapeways in their Full Color Sandstone. Used under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
 &lt;tr&gt;&lt;td&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sandstone_balls.jpg&quot; width=&quot;650&quot;&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
@@ -265,7 +265,7 @@
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;p&gt;Of all of the additive manufacturing processes, Laminated Object Manufacturing (LOM) and binder jet printing set themselves apart from the rest. The reason: these techniques can both be used to produce intricate full-color models. Advances in PolyJet technology have also allowed for full-color modeling, but with a limited color spectrum offered. For beautifully colored models, no other method competes with LOM and binder jet. Two major service bureaus offer binder jet technology: &lt;a href=&quot;www.shapeways.com&quot; target=&quot;_blank&quot;&gt;Shapeways&lt;/a&gt;, with their “Full Color Sandstone” material, and &lt;a href=&quot;https://www.quickparts.com/home.aspx&quot;&gt;Quickparts&lt;/a&gt;, with their “ColorJet” technology.&lt;/p&gt;
+&lt;p&gt;Of all of the additive manufacturing processes, Laminated Object Manufacturing (LOM) and binder jet printing set themselves apart from the rest. The reason: these techniques can both be used to produce intricate full-color models. Advances in PolyJet technology have also allowed for full-color modeling, but with a limited color spectrum offered. For beautifully colored models, no other method competes with LOM and binder jet. Two major service bureaus offer binder jet technology: &lt;a href=&quot;http://www.shapeways.com&quot; target=&quot;_blank&quot;&gt;Shapeways&lt;/a&gt;, with their “Full Color Sandstone” material, and &lt;a href=&quot;https://www.quickparts.com/home.aspx&quot; target=&quot;_blank&quot;&gt;Quickparts&lt;/a&gt;, with their “ColorJet” technology.&lt;/p&gt;
 
 
 
@@ -275,7 +275,7 @@
 
 
 
-&lt;p&gt;Laminated Object Manufacturing works by stacking thin layers of build material. The material is most often paper, but can be plastic or even certain metal foils. The bulk of the material starts on a roll to one side of the build table, with one end stretched across the table and attached to an empty roller on the other side. A laser or blade cuts out the first cross section from the sheet on the table, and the table is lowered to separate the section from the undesired waste material. Then, both rollers are turned, causing the waste material to be rolled away to the empty roller and a new sheet to take its place on the build table. One side of the build material is usually coated with an adhesive that fastens each cross section to the next. Alternatively, the LOM printer may lay down adhesive selectively. When paper is the desired build material, the model can be colored layer by layer by an ink printer. This means that it has the same range of colors as any 2D printed artwork, and can be colored all the way through (useful for cutting cross sections in models).&lt;/p&gt;
+&lt;p&gt;An LOM machine constructs a part by stacking thin layers of build material. The material is most often paper, but can be plastic or even certain metal foils. The bulk of the material starts on a roll to one side of the build table, with one end stretched across the table and attached to an empty roller on the other side. A laser or blade cuts out the first cross section from the sheet on the table, and the table is lowered to separate the section from the undesired waste material. Then, both rollers are turned, causing the waste material to be rolled away to the empty roller and a new sheet to take its place on the build table. One side of the build material is usually coated with an adhesive that fastens each cross section to the next. Alternatively, the LOM printer may lay down adhesive selectively. When paper is the desired build material, the model can be colored layer by layer by an ink printer. This means that it has the same range of colors as any 2D printed artwork, and can be colored all the way through (useful for cutting cross sections in models).&lt;/p&gt;
 
 
 
@@ -287,7 +287,7 @@
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 
-&lt;p&gt;&lt;br&gt;&lt;p&gt;We&#39;ve already written about how binder jet printing works. &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-binder-jet.html&quot; target=&quot;_blank&quot;&gt;Find that here&lt;/a&gt;. For your viewing pleasure, here is another example of a binder jet part.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;p&gt;We&#39;ve already written about how binder jet printing works. &lt;a href=&quot;http://www.supplybetter.com/blog/what-to-expect-with-binder-jet.html&quot; target=&quot;_blank&quot;&gt;Find that here&lt;/a&gt;. For your viewing pleasure, here is another example of a binder jet part.&lt;/p&gt;&lt;/p&gt;
 
 &lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;Binder jet color model of a house from the popular videogame &quot;Minecraft,&quot; designed by &lt;a href=&quot;https://www.flickr.com/photos/68387974@N02/6761890353/in/photolist-biwsqr-kKZhwC-kKZhhQ-aMH8C2-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH8tB-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S&quot; target=&quot;_blank&quot;&gt;Eric Haines&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
@@ -302,8 +302,8 @@
 
 
 &lt;ul&gt;
-&lt;li&gt;Both of these processes are capable of printing with a full cyan-magenta-yellow spectrum of colors.
--Both LOM and binder jet models are cheap to make. The paper used in LOM is inexpensive, and LOM models usually require no post-processing. Shapeways charges only $0.75 per cubic centimeter for its Full Color Sandstone, making it another cost-effective option.&lt;/li&gt;
+&lt;li&gt;Both of these processes are capable of printing a full cyan/magenta/yellow spectrum of colors, with black and white dyes used to create tints and hues like a 2D printer.&lt;/li&gt;
+&lt;li&gt;Both LOM and binder jet models are cheap to make. The paper used in LOM is inexpensive, and LOM models usually require no post-processing. Shapeways charges only $0.75 per cubic centimeter for its Full Color Sandstone, making it another cost-effective option.&lt;/li&gt;
 &lt;li&gt;Neither process produces structurally functional parts&lt;/li&gt;
 &lt;li&gt;Neither binder jet parts nor LOM parts should be exposed to water, as it will cause the colors to fade.&lt;/li&gt;
 &lt;/ul&gt;
@@ -315,7 +315,7 @@
 
 
 &lt;ul&gt;
-&lt;li&gt;LOM models have clearly visible &quot;steps&quot; caused by relatively high layer depths. The sides of these steps are the color of the paper used, usually white. binder jet models have much more uniform surfaces.&lt;/li&gt;
+&lt;li&gt;LOM models have clearly visible &quot;steps&quot; caused by relatively high layer depths. The sides of these steps are the color of the paper used, usually white. Binder jet models have much more uniform surfaces.&lt;/li&gt;
 &lt;li&gt;Binder jet models are brittle and easily breakable, while LOM models feel more robust.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -325,7 +325,7 @@
 &lt;h3&gt;Our advice&lt;/h3&gt;
 
 
-&lt;p&gt;For 3D models with minute details, binder jet is probably the way to go. Complex geometry, such as overhangs or thin walls, will be difficult with LOM, so complex models are better to build with binder jet. If the model needs to be handled, or has open, flat areas, then LOM may be the better choice.&lt;/p&gt;
+&lt;p&gt;For 3D models with minute details, binder jet is probably the way to go. Complex geometry, such as overhangs or thin walls, will be difficult with LOM, so complex models are better to build with binder jet. If a model needs to be handled, or has open, flat areas, then LOM may be the better choice.&lt;/p&gt;
 
 
 
