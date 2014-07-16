@@ -7,14 +7,14 @@ published: true
 <table class="image" style="margin: auto;">
   <caption align="bottom">LDT in action. Nozzles deposit metal powder into molten pool created by a laser. Image courtesy of <a href="https://www.flickr.com/photos/wallyg/4952753283/in/photolist-7rpGMh-7cMgdr-ekULc-8xE9Xx-nzWpw4-8xE9ZZ-dxJz1G-4Xu4m4-4Xu49v-ekSP3-8xE9U8-8xHmuE-amQfMU-dxJyYs-amMqbH-8xHbYS-8xEj7t-8xE9RK-kHQqk/" target="_blank">Penn State</a> under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">CC BY-NC-ND 2.0</a>.</caption>
   <tr><td>
-  <img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/Laser+Deposition.jpg" width="100%">
+  <img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/Laser+Deposition.jpg" width="750">
 </td></tr></table>
 <br>
 
 <p>This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss Laser Deposition Technology, or LDT for short. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.</p>
 
 <h3>What is LDT?</h3>
-<p>LDT easily wins the "most names" award for additive manufacturing. At least 5 different companies have achieved similar processes and given them different names, including Laser Engineered Net Shaping by Optomec, Direct Model Deposition by POM Group, Laser Consolidation by Accufusion, and many others.</p>
+<p>LDT easily wins the "most names" award for additive manufacturing. At least 5 different companies have achieved similar laser deposition processes and given them different names, including Laser Engineered Net Shaping by Optomec, Direct Model Deposition by POM Group, Laser Consolidation by Accufusion, and many others.</p>
 <p>LDT is an additive manufacturing technique used to build functional metal parts. The process is similar to the DMLS process in that a powerful laser is used to fuse metal powder into a solid object. How they differ: where DMLS machines sinter cross sections out of a pre-rolled bed of powder, an LDT machine deposits the powder as it goes. As the laser heats the substrate (existing metal) to its melting point, fine nozzles spray metal powder into the molten pool, and the powder melts into the substrate. This means that the entire object is metallurgically bonded together, without the risk of weakness between layers.</p>
 
 
