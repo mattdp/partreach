@@ -17,13 +17,13 @@ published: true
 
 <p>Laminated Object Manufacturing works by stacking thin layers of build material. The material is most often paper, but can be plastic or even certain metal foils. The bulk of the material starts on a roll to one side of the build table, with one end stretched across the table and attached to an empty roller on the other side. A laser or blade cuts out the first cross section from the sheet on the table, and the table is lowered to separate the section from the undesired waste material. Then, both rollers are turned, causing the waste material to be rolled away to the empty roller and a new sheet to take its place on the build table. One side of the build material is usually coated with an adhesive that fastens each cross section to the next. Alternatively, the LOM printer may lay down adhesive selectively. When paper is the desired build material, the model can be colored layer by layer by an ink printer. This means that it has the same range of colors as any 2D printed artwork, and can be colored all the way through (useful for cutting cross sections in models).</p>
 
-<table class="image" stlye="margin: auto;">
+<table class="image" style="margin: auto;">
   <caption align="bottom">LOM Printer Components: 1 Foil supply. 2 Heated roller. 3 Laser beam. 4. Scanning prism. 5 Laser unit. 6 Layers. 7 Moving platform. 8 Waste. Image by LaurensvanLieshout, used under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a> <a href="http://commons.wikimedia.org/wiki/File%3ALaminated_object_manufacturing.png">via Wikimedia Commons</a>.</caption>
 <tr><td>
 <img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/LOM.png" width="720">
 </td></tr></table>
 
-We've already written about how binder jet printing works. <a href="www.supplybetter.com/blog/what-to-expect-with-binder-jet.html" target="_blank">Find that here</a>. For your viewing pleasure, here is another example of a binder jet part.
+<p>We've already written about how binder jet printing works. <a href="www.supplybetter.com/blog/what-to-expect-with-binder-jet.html" target="_blank">Find that here</a>. For your viewing pleasure, here is another example of a binder jet part.</p>
 
 <table class="image" stlye="margin: auto;">
   <caption align="bottom">3D printed color model of a house from the popular computer game "Minecraft," designed by <a href="https://www.flickr.com/photos/68387974@N02/6761890353/in/photolist-biwsqr-kKZhwC-kKZhhQ-aMH8C2-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH8tB-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S">Eric Haines</a>, used under <a href="https://creativecommons.org/licenses/by/2.0/legalcode">CC BY 2.0</a>.</caption>

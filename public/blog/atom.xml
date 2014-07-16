@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-15T16:38:03-07:00</updated>
+ <updated>2014-07-15T17:05:57-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -17,7 +17,7 @@
    <updated>2014-07-15T00:00:00-07:00</updated>
    <id>BLOG_URL/what-to-expect-with-polyjet</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-  &lt;caption align=&quot;bottom&quot;&gt;Color model built with PolyJet technology. Images thanks to &lt;a href=&quot;https://www.flickr.com/photos/epredator/3661614279/in/set-72157620443237729/&quot; target=&quot;_blank&quot;&gt;Ian Hughes, under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/a&gt;&lt;/caption&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;Color models built with PolyJet technology. Images thanks to &lt;a href=&quot;https://www.flickr.com/photos/epredator/3661614279/in/set-72157620443237729/&quot; target=&quot;_blank&quot;&gt;Ian Hughes, under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/a&gt;&lt;/caption&gt;
 &lt;tr&gt;
 &lt;td align=&quot;center&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/polyjet_1.jpg&quot;&gt;
@@ -123,14 +123,19 @@
 
 
 
-&lt;table class=&quot;image&quot; stlye=&quot;margin: auto;&quot;&gt;
+&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;LOM Printer Components: 1 Foil supply. 2 Heated roller. 3 Laser beam. 4. Scanning prism. 5 Laser unit. 6 Layers. 7 Moving platform. 8 Waste. Image by LaurensvanLieshout, used under &lt;a href=&quot;http://creativecommons.org/licenses/by-sa/3.0&quot;&gt;CC BY-SA 3.0&lt;/a&gt; &lt;a href=&quot;http://commons.wikimedia.org/wiki/File%3ALaminated_object_manufacturing.png&quot;&gt;via Wikimedia Commons&lt;/a&gt;.&lt;/caption&gt;
 &lt;tr&gt;&lt;td&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/LOM.png&quot; width=&quot;720&quot;&gt;
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 
+
+
 &lt;p&gt;We&#39;ve already written about how binder jet printing works. &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-binder-jet.html&quot; target=&quot;_blank&quot;&gt;Find that here&lt;/a&gt;. For your viewing pleasure, here is another example of a binder jet part.&lt;/p&gt;
+
+
+
 
 &lt;table class=&quot;image&quot; stlye=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;3D printed color model of a house from the popular computer game &quot;Minecraft,&quot; designed by &lt;a href=&quot;https://www.flickr.com/photos/68387974@N02/6761890353/in/photolist-biwsqr-kKZhwC-kKZhhQ-aMH8C2-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH8tB-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S&quot;&gt;Eric Haines&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
