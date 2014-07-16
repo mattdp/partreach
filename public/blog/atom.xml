@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-16T11:43:56-07:00</updated>
+ <updated>2014-07-16T12:39:34-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -48,7 +48,7 @@
   &lt;li&gt;Repairs. One of the most popular applications of LDT is in the repair of old or broken metal parts. For more on this, &lt;a href=&quot;http://www.twi-global.com/news-events/case-studies/innovative-additive-laser-repair-technology-used-in-restoration-of-iconic-ww2-spitfire-aircraft-557/&quot; target=&quot;_blank&quot;&gt;check out this case study&lt;/a&gt; by the The Welding Institute.&lt;/li&gt;
   &lt;li&gt;Mechanical Strength. Parts built with laser deposition have equal to-or better strengths than equivalent cast or wrought alternatives.&lt;/li&gt;
   &lt;li&gt;Cladding. Laser deposition can be used to cover, or clad, an existing part in a metal shell. The maneuverability of many LDT systems allows them to clad complex parts.&lt;/li&gt;
-  &lt;li&gt;Fast build speeds. &lt;a href=&quot;http://www.3dprinterworld.com/article/giveth-and-taketh-away-cnc-milling-and-additive-laser-deposition-one-cycle&quot; target=&quot;_blank&quot;&gt;One source&lt;/a&gt; claims that LDT can be up to 20 times faster than &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-dmls.html&quot; target=&quot;_blank&quot;&gt;Direct Metal Laser Sintering&lt;/a&gt;, with deposition rates of up to 3.5 kg/hour.&lt;/li&gt;
+  &lt;li&gt;Fast build speeds. &lt;a href=&quot;http://www.3dprinterworld.com/article/giveth-and-taketh-away-cnc-milling-and-additive-laser-deposition-one-cycle&quot; target=&quot;_blank&quot;&gt;One source&lt;/a&gt; claims that LDT can be up to 20 times faster than &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-dmls.html&quot; target=&quot;_blank&quot;&gt;Direct Metal Laser Sintering&lt;/a&gt;, with deposition rates of up to 3.5 kg/hour.&lt;/li&gt;
   &lt;li&gt;Many laser deposition machines have 5 axis capabilities. This allows them to print unsupported structures that would otherwise require costly support material. &lt;a href=&quot;https://www.youtube.com/watch?v=s9IdZ2pI5dA&quot; target= &quot;blank&quot;&gt;See this video&lt;/a&gt; for a great example of 5 axis laser deposition.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -123,7 +123,7 @@
 
 
 &lt;ul&gt;
-  &lt;li&gt;Color. PolyJet printers are now capable of printing in the full cyan/magenta/yellow spectrum, laying down the three different materials at once like ink printers. Alternatively, one color may be replaced by white or black to yield a range of tints and shades. &lt;/li&gt;
+  &lt;li&gt;Color. PolyJet printers are now capable of printing in the cyan/magenta/yellow spectrum, laying down the three different materials at once like ink printers. Alternatively, one color may be replaced by white or black to yield a range of tints and shades. &lt;/li&gt;
   &lt;li&gt;Fine details. PolyJet printers generally achieve 600 dpi (dots per inch) in the x-y plane, and layer heights of .001 inches. &lt;/li&gt;
   &lt;li&gt;Multi-material prototypes. &lt;/li&gt;
   &lt;li&gt;Extremely tight tolerances. PolyJet tolerances in the x-y axis are at most .005 inches, and can be &lt;a href=&quot;http://www.solidconcepts.com/technologies/PolyJet/&quot; target=&quot;_blank&quot;&gt;even smaller&lt;/a&gt;.&lt;/li&gt;
@@ -179,7 +179,7 @@
 &lt;h3&gt;What is DMLS?&lt;/h3&gt;
 
 
-&lt;p&gt;DMLS is a very similar process to &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-SLS&quot; target=&quot;_blank&quot;&gt;SLS&lt;/a&gt;. However, DMLS machines use metal powders instead of plastic powders, and produce solid metal parts. To prevent the metal from oxidizing during the process, oxygen is removed from the build chamber before printing. An inert gas, like Argon or Nitrogen, fills the build chamber instead. A DMLS part begins its life as a CAD drawing that is split into layers, or sliced, by specific software before being printed. Just like in SLS, a DMLS machine uses a laser to &quot;draw&quot; individual cross sections on a thin layer of powder. After a cross section has been sintered together by the laser, the build table is lowered, another layer of powder is rolled out on top, and the next cross section is formed. Unlike in SLS, support material is necessary to build overhangs. The final product is a solid metal part whose strength and other mechanical properties may be equivalent to those of machined parts.&lt;/p&gt;
+&lt;p&gt;DMLS is a very similar process to &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-SLS&quot; target=&quot;_blank&quot;&gt;SLS&lt;/a&gt;. However, DMLS machines use metal powders instead of plastic powders, and produce solid metal parts. To prevent the metal from oxidizing during the process, oxygen is removed from the build chamber before printing. An inert gas, like Argon or Nitrogen, fills the build chamber instead. A DMLS part begins its life as a CAD drawing that is split into layers, or sliced, by specific software before being printed. Just like in SLS, a DMLS machine uses a laser to &quot;draw&quot; individual cross sections on a thin layer of powder. After a cross section has been sintered together by the laser, the build table is lowered, another layer of powder is rolled out on top, and the next cross section is formed. Unlike in SLS, support material is necessary to build overhangs. The final product is a solid metal part whose strength and other mechanical properties may be equivalent to those of machined parts.&lt;/p&gt;
 
 
 
@@ -246,7 +246,7 @@
 &lt;p&gt;Cheers,&lt;/p&gt;
 
 
-&lt;p&gt;The SupplyBetter Team&lt;/p&gt;
+&lt;p&gt;Rob&lt;/p&gt;
 
 </content>
  </entry>
@@ -287,7 +287,7 @@
 &lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 
 
-&lt;p&gt;&lt;br&gt;&lt;p&gt;We&#39;ve already written about how binder jet printing works. &lt;a href=&quot;http://www.supplybetter.com/blog/what-to-expect-with-binder-jet.html&quot; target=&quot;_blank&quot;&gt;Find that here&lt;/a&gt;. For your viewing pleasure, here is another example of a binder jet part.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;&lt;br&gt;&lt;p&gt;We&#39;ve already written about how binder jet printing works. &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-binder-jet.html&quot; target=&quot;_blank&quot;&gt;Find that here&lt;/a&gt;. For your viewing pleasure, here is another example of a binder jet part.&lt;/p&gt;&lt;/p&gt;
 
 &lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;Binder jet color model of a house from the popular videogame &quot;Minecraft,&quot; designed by &lt;a href=&quot;https://www.flickr.com/photos/68387974@N02/6761890353/in/photolist-biwsqr-kKZhwC-kKZhhQ-aMH8C2-aMH842-k5wKDS-aMH8ng-aMH7PH-aMH7z6-aMH7tR-aMH8tB-aMH7Xx-aMH7JR-k3vtnP-k3w8DM-k3vsVg-k3xWAw-8BMVA6-8BR26d-mKKWwB-ant3vw-antMKs-mKML1S&quot; target=&quot;_blank&quot;&gt;Eric Haines&lt;/a&gt;, used under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
@@ -366,14 +366,14 @@
 
 
 
-&lt;p&gt;&lt;p&gt;We will look at some of the most popular 3D printing methods that require support material: SLA, FDM, FFF, and DMLS. Want to learn more about these methods? &lt;a href=&quot;www.supplybetter.com/blog&quot; target=&quot;_blank&quot;&gt;Visit our blog&lt;/a&gt;.
+&lt;p&gt;&lt;p&gt;We will look at some of the most popular 3D printing methods that require support material: SLA, FDM, FFF, and DMLS. Want to learn more about these methods? &lt;a href=&quot;https://www.supplybetter.com/blog&quot; target=&quot;_blank&quot;&gt;Visit our blog&lt;/a&gt;.
 &lt;p&gt;While the benefits of support structures are obvious, we will see that the use of support material often returns unfortunate consequences.&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h4&gt;But first: how does the printer know where to put the support?&lt;/h4&gt;
 &lt;p&gt;This problem is solved by software. Most slicers, programs that take a CAD file and split it into cross sections to be printed, can also automatically add the necessary support to the design. For example, FDM printers, made by Stratasys, use the Insight software package to orient and support parts.&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h4&gt;SLA:&lt;/h4&gt;
-&lt;p&gt;Because the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sla.html&quot; target=&quot;_blank&quot;&gt;SLA process&lt;/a&gt; inherently supports any overhangs with un-hardened resin, one might imagine that no support material was necessary. However, fluctuations in the resin caused by the build table moving, compounded with the general instability of the liquid resin, necessitate a more solid support structure. This is achieved by hardening key vertical support “columns” in the resin, below where the overhangs are planned. These supports can be snapped off after the part is removed from the vat, and before the part is post-processed in the curing oven. Visible nubs are often left where the support was attached to the part. These must be removed by copious sanding or bead blasting, which adds costly man-hours to the process.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;Because the &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-sla.html&quot; target=&quot;_blank&quot;&gt;SLA process&lt;/a&gt; inherently supports any overhangs with un-hardened resin, one might imagine that no support material was necessary. However, fluctuations in the resin caused by the build table moving, compounded with the general instability of the liquid resin, necessitate a more solid support structure. This is achieved by hardening key vertical support “columns” in the resin, below where the overhangs are planned. These supports can be snapped off after the part is removed from the vat, and before the part is post-processed in the curing oven. Visible nubs are often left where the support was attached to the part. These must be removed by copious sanding or bead blasting, which adds costly man-hours to the process.&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;(Left) &quot;Mr. Piggy with support material,&quot; an FDM printed model with support material (dark) intact. The support material here was water soluble.  (Right) Blue model printed with FFF. The support material here is the same as the build material. Images courtesy of &lt;a href=&quot;http://www.flickr.com/photos/cabfablab/3613870642/&quot; target=&quot;_blank&quot;&gt;Fab Lab den Haag&lt;/a&gt; (left) and &lt;a href=&quot;https://www.flickr.com/photos/makerbot/5234651355/in/set-72157625474608673&quot; target=&quot;_blank&quot;&gt;Makerbot Industries &lt;/a&gt;(right) under &lt;a href=&quot;https://creativecommons.org/licenses/by/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY 2.0&lt;/a&gt;.&lt;/caption&gt;
@@ -388,13 +388,13 @@
 &lt;/table&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h4&gt;FDM:&lt;/h4&gt;
-&lt;p&gt;Stratasys has developed several different proprietary materials for support in their &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-fdm.html&quot;&gt;FDM process&lt;/a&gt;. Adding a second (support) material to a print means that multiple extruders are necessary, each printing in a single material. Support materials offered by Stratasys include include a wax material (ICW06 Wax), a Break Away Support System (BASS for short), and several soluble materials. The soluble materials may be removed by soaking the part in water or in some cases a chemical bath, and should leave almost no visible mark on the part. However, the Break Away system will leave marks.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;Stratasys has developed several different proprietary materials for support in their &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-fdm.html&quot;&gt;FDM process&lt;/a&gt;. Adding a second (support) material to a print means that multiple extruders are necessary, each printing in a single material. Support materials offered by Stratasys include include a wax material (ICW06 Wax), a Break Away Support System (BASS for short), and several soluble materials. The soluble materials may be removed by soaking the part in water or in some cases a chemical bath, and should leave almost no visible mark on the part. However, the Break Away system will leave marks.&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h4&gt;FFF:&lt;/h4&gt;
 &lt;p&gt;Unlike the more advanced FDM machines, FFF machines rarely have two extruders. Unfortunately, this leaves only one option for support material: the build material itself. The support structure is constructed along with the part, but with much lower infill density. This makes it faster to print and easier to remove after the print is completed. However, the surface of the part will retain bumps and other defects after the support is removed.&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h4&gt;DMLS:&lt;/h4&gt;
-&lt;p&gt;In the &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-dmls.html&quot;&gt;DMLS process&lt;/a&gt;, only one type of powder can be used per part. This means that support structure must be built from the same powder as the rest of the part. It is not intuitive why DMLS parts even need support material, when parts produced by the similar &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sls.html&quot;&gt;SLS process&lt;/a&gt; can be supported by the excess powder alone. The difference lies in the phase changes that occur. In SLS, the goal is to heat the powder to the point of sintering only, and no further. In this way, the powder never reaches a liquid phase. In DMLS, a &lt;a href=&quot;http://www.3trpd.co.uk/dmls.htm&quot;&gt;liquid state&lt;/a&gt; may be reached, and the powder alone cannot support the molten metal. Scaffolding is required underneath overhangs, and must be removed by CNC machining. Machining adds significant time and expense to the DMLS process. To preserve the accuracy of the part, the machining tools must be capable of the same tight tolerances as the printer.&lt;/p&gt;&lt;/p&gt;
+&lt;p&gt;In the &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-dmls.html&quot;&gt;DMLS process&lt;/a&gt;, only one type of powder can be used per part. This means that support structure must be built from the same powder as the rest of the part. It is not intuitive why DMLS parts even need support material, when parts produced by the similar &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-sls.html&quot;&gt;SLS process&lt;/a&gt; can be supported by the excess powder alone. The difference lies in the phase changes that occur. In SLS, the goal is to heat the powder to the point of sintering only, and no further. In this way, the powder never reaches a liquid phase. In DMLS, a &lt;a href=&quot;http://www.3trpd.co.uk/dmls.htm&quot;&gt;liquid state&lt;/a&gt; may be reached, and the powder alone cannot support the molten metal. Scaffolding is required underneath overhangs, and must be removed by CNC machining. Machining adds significant time and expense to the DMLS process. To preserve the accuracy of the part, the machining tools must be capable of the same tight tolerances as the printer.&lt;/p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;p&gt;I hope this was instructional, and as always, best of luck with your 3D printing! Don’t let gravity get you (or your overhangs) down.&lt;/p&gt;&lt;/p&gt;
 
@@ -456,7 +456,7 @@
 &lt;ul&gt;
 &lt;li&gt;Having the least amount of design considerations. You can print almost anything.&lt;/li&gt;
 &lt;li&gt;Producing a consistent matte surface finish. Parts generally look pretty great.&lt;/li&gt;
-&lt;li&gt;When you need relatively isotropic tolerances or mechanical behavior. (Isotropic means directionally independent.) Unlike &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-fdm.thml&quot; target=&quot;_blank&quot;&gt;FDM&lt;/a&gt; parts, which have much lower tensile strengths in the &quot;z&quot; direction, SLS parts have only slightly different mechanical properties for different build orientations.&lt;/li&gt;
+&lt;li&gt;When you need relatively isotropic tolerances or mechanical behavior. (Isotropic means directionally independent.) Unlike &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-fdm.thml&quot; target=&quot;_blank&quot;&gt;FDM&lt;/a&gt; parts, which have much lower tensile strengths in the &quot;z&quot; direction, SLS parts have only slightly different mechanical properties for different build orientations.&lt;/li&gt;
 &lt;li&gt;Small parts.&lt;/li&gt;
 &lt;li&gt;Flexibility.&lt;/li&gt;
 &lt;/ul&gt;&lt;/p&gt;
@@ -492,7 +492,7 @@
 &lt;p&gt;&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss Stereolithography, or SLA for short. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h3&gt;What is SLA?&lt;/h3&gt;
-&lt;p&gt;The SLA process begins with a vat of UV-curable photopolymer resin. Photopolymers are liquids that may be cured, or hardened, by exposure to various wavelengths of light. This differs from &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-sls.html&quot; target=&quot;_blank&quot;&gt;SLS&lt;/a&gt;, where the raw material begins its life as a fine powder. The print begins with the build table resting just below the surface of the resin, submerged below just one layer&#39;s-worth of resin (a few thousandths of an inch). An ultraviolet laser traces out the first cross section of the desired part in the resin, hardening only the material that will form the part. Then, the build table descends into the vat by another layer&#39;s thickness, and the laser traces out the next cross section on top of the first. This both hardens the next layer of photopolymer and fuses the two layers together. After the entire part has been constructed in this way, the part is removed, and may be further cured in a UV-Oven.&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;The SLA process begins with a vat of UV-curable photopolymer resin. Photopolymers are liquids that may be cured, or hardened, by exposure to various wavelengths of light. This differs from &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-sls.html&quot; target=&quot;_blank&quot;&gt;SLS&lt;/a&gt;, where the raw material begins its life as a fine powder. The print begins with the build table resting just below the surface of the resin, submerged below just one layer&#39;s-worth of resin (a few thousandths of an inch). An ultraviolet laser traces out the first cross section of the desired part in the resin, hardening only the material that will form the part. Then, the build table descends into the vat by another layer&#39;s thickness, and the laser traces out the next cross section on top of the first. This both hardens the next layer of photopolymer and fuses the two layers together. After the entire part has been constructed in this way, the part is removed, and may be further cured in a UV-Oven.&lt;p&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;h3&gt;Is SLA right for me?&lt;/h3&gt;
 &lt;p&gt;Here&#39;s an example part made by stereolithography. The part is a prototype hand for a custom doll, and needed to be made of a transparent material. It has:&lt;/p&gt;&lt;/p&gt;
@@ -713,7 +713,7 @@
 &lt;h3&gt;1. Quickly determine whether or not a supplier is a good fit.&lt;/h3&gt;
 
 
-&lt;p&gt;Spending the time upfront to &lt;a href=&quot;http://www.zycus.com/blog/supplier-management/the-supplier-information-performance-dossier-part-2-supplier-information-management.html&quot; target=&quot;_blank&quot;&gt;research potential suppliers&lt;/a&gt; can save you hours of effort in the future. This should involve exploring the supplier&#39;s webpage, reading testimonials, and contacting previous customers of that supplier. If it appears that the supplier is a good initial match, then call the supplier and interview with them. Speaking directly with your supplier will help you gauge their level of expertise and how busy they are. After you’ve acquainted yourself with a handful of suppliers, you will have to make some judgement calls about how to proceed with your project. If a supplier turns out to be an expert in the type of manufacturing that you need, great! If not, it is not a crime to thank them and let them know that you’ll pursue other leads. Do not be discouraged if your first attempt at sourcing does not work out as expected.  We formed &lt;a href=&quot;http://supplybetter.com&quot; target=&quot;_blank&quot;&gt;our service&lt;/a&gt; specifically to help with this part of the process.&lt;/p&gt;
+&lt;p&gt;Spending the time upfront to &lt;a href=&quot;http://www.zycus.com/blog/supplier-management/the-supplier-information-performance-dossier-part-2-supplier-information-management.html&quot; target=&quot;_blank&quot;&gt;research potential suppliers&lt;/a&gt; can save you hours of effort in the future. This should involve exploring the supplier&#39;s webpage, reading testimonials, and contacting previous customers of that supplier. If it appears that the supplier is a good initial match, then call the supplier and interview with them. Speaking directly with your supplier will help you gauge their level of expertise and how busy they are. After you’ve acquainted yourself with a handful of suppliers, you will have to make some judgement calls about how to proceed with your project. If a supplier turns out to be an expert in the type of manufacturing that you need, great! If not, it is not a crime to thank them and let them know that you’ll pursue other leads. Do not be discouraged if your first attempt at sourcing does not work out as expected.  We formed &lt;a href=&quot;https://supplybetter.com&quot; target=&quot;_blank&quot;&gt;our service&lt;/a&gt; specifically to help with this part of the process.&lt;/p&gt;
 
 
 

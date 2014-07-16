@@ -46,7 +46,7 @@ published: true
 <ul>
 <li>Having the least amount of design considerations. You can print almost anything.</li>
 <li>Producing a consistent matte surface finish. Parts generally look pretty great.</li>
-<li>When you need relatively isotropic tolerances or mechanical behavior. (Isotropic means directionally independent.) Unlike <a href="www.supplybetter.com/blog/what-to-expect-with-fdm.thml" target="_blank">FDM</a> parts, which have much lower tensile strengths in the "z" direction, SLS parts have only slightly different mechanical properties for different build orientations.</li>
+<li>When you need relatively isotropic tolerances or mechanical behavior. (Isotropic means directionally independent.) Unlike <a href="https://www.supplybetter.com/blog/what-to-expect-with-fdm.thml" target="_blank">FDM</a> parts, which have much lower tensile strengths in the "z" direction, SLS parts have only slightly different mechanical properties for different build orientations.</li>
 <li>Small parts.</li>
 <li>Flexibility.</li>
 </ul>
