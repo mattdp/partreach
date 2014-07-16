@@ -7,7 +7,7 @@ published: true
 <table class="image" style="margin: auto;">
   <caption align="bottom">LDT in action. Nozzles deposit metal powder into molten pool created with laser. Image courtesy of <a href="https://www.flickr.com/photos/wallyg/4952753283/in/photolist-7rpGMh-7cMgdr-ekULc-8xE9Xx-nzWpw4-8xE9ZZ-dxJz1G-4Xu4m4-4Xu49v-ekSP3-8xE9U8-8xHmuE-amQfMU-dxJyYs-amMqbH-8xHbYS-8xEj7t-8xE9RK-kHQqk/" target="_blank">Penn State</a> under <a href="https://creativecommons.org/licenses/by-nc-nd/2.0/legalcode" target="_blank">CC BY-NC-ND 2.0</a>.</caption>
   <tr><td>
-  <img src="s3:https://s3.amazonaws.com/supplybetter_images/Blog+Images/Laser+Deposition.jpg" width="750">
+  <img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/Laser+Deposition.jpg" width="100%">
 </td></tr></table>
 <br>
 
@@ -32,6 +32,7 @@ published: true
   <li>Cost. Inherent complexities to this process make it one of the most expensive 3D printing processes. Unsurprisingly, the biggest demand for Laser deposition comes from the aerospace and defense sectors. Still, if LDT repairs mean that buying new parts can be avoided, laser deposition may be an extremely cost effective option.</li>
   <li>Ready-to-go parts. Just like with other metal additive manufacturing processes, the use of any support material means extensive machining after the build is complete.</li>
   <li>Tiny details. LDT is most commonly used to make large metal parts, and most laser deposition machines cannot create details as small as DMLS. <a href=”http://www.rpm-innovations.com/laser_deposition_technology” target=”_blank”>The width</a> of the deposition ranges from about 0.04 inches to 0.16 inches.</li>
+</ul>
 
 <h3>What materials can I print with LDT?</h3>
 <p>A variety of metal powders are compatible with laser deposition techniques. These includes alloys of nickel, cobalt, steel, and titanium.</p>
