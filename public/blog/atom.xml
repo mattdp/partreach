@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-15T17:44:22-07:00</updated>
+ <updated>2014-07-15T18:02:00-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -90,6 +90,91 @@
 &lt;p&gt;Rob&lt;/p&gt;
 
 
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>What to Expect With SLS</title>
+   <link href="YOUR_URL/what-to-expect-with-dmls.html"/>
+   <updated>2014-07-15T00:00:00-07:00</updated>
+   <id>BLOG_URL/what-to-expect-with-dmls</id>
+   <content type="html">&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about some of the most common 3D printing methods used today. Here we will discuss Direct Metal Laser Sintering, or DMLS for short. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;What is DMLS?&lt;/h3&gt;
+
+
+&lt;p&gt;DMLS is a very similar process to &lt;a href=&quot;www.supplybetter.com/blog/what-to-expect-with-SLS&quot; target=&quot;_blank&quot;&gt;SLS&lt;/a&gt;. However, DMLS machines use metal powders instead of plastic powders, and produce solid metal parts. To prevent the metal from oxidizing during the process, oxygen is removed from the build chamber before printing. An inert gas, like Argon or Nitrogen, fills the build chamber instead. A DMLS part begins its life as a CAD drawing that is split into layers, or sliced, by specific software before being printed. Just like in SLS, a DMLS machine uses a laser to &quot;draw&quot; individual cross sections on a thin layer of powder. After a cross section has been sintered together by the laser, the build table is lowered, another layer of powder is rolled out on top, and the next cross section is formed. Unlike in SLS, support material is necessary to build overhangs. The final product is a solid metal part whose strength and other mechanical properties may be equivalent to those of machined parts.&lt;/p&gt;
+
+
+
+
+&lt;h3&gt;Is DMLS right for me?&lt;/h3&gt;
+
+
+
+
+&lt;p&gt;Here is &lt;a href=&quot;http://directmetallasersintering.blogspot.com/2010/01/dmls-direct-metal-laser-sintering-costs.html&quot; target=&quot;_blank&quot;&gt;an example DMLS part&lt;/a&gt;, courtesy of the blog directmetalsintering (check it out, it&#39;s terrific). This steel part has:&lt;/p&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Complex geometry that would be impossible to machine.&lt;/li&gt;
+&lt;li&gt;Small size&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;p&gt;These attributes make it a perfect candidate for DMLS. Just for reference, this roughly 1-inch-tall part cost 650 dollars to make. That price makes DMLS a much cheaper alternative to casting, but not a scalable process for production.&lt;/p&gt;
+
+
+
+
+&lt;h4&gt;What DMLS is great for:&lt;/h4&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Custom functional prototypes.&lt;/li&gt;
+&lt;li&gt;Specific porosities. Laser wattage and sand fineness may be adjusted to control the density of the part. Outputted metals ranges from relatively porous materials to metals with densities of &lt;a href=&quot;http://www.layerwise.com/medical/dmls-benefits/&quot; target=&quot;_blank&quot;&gt;99.98 percent&lt;/a&gt;. &lt;/li&gt;
+&lt;li&gt;Functional prototypes.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;h4&gt;What DMLS is not great for:&lt;/h4&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Cost. While cheaper for prototyping than casting, this is one of the most expensive 3D printing methods.//not sure about this, it is expensive but a cheaper alternative to other methods.&lt;/li&gt;
+&lt;li&gt;Ready-to-go prints. Support material in DMLS is the same as the build material, so extensive machining may be necessary to finish the part. For complex parts with tight tolerances, stress relieving might also be necessary.&lt;/li&gt;
+&lt;li&gt;Large parts. DMLS machines tend to have small build envelopes.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;h3&gt;What materials can I print with DMLS?&lt;/h3&gt;
+
+
+&lt;p&gt;Many metal alloys have been developed specially for DMLS. These include alloys of nickel, aluminum, stainless steel, and titanium. Different suppliers of DMLS services offer different alloys, but here are a couple of companies&#39; materials lists to reference:&lt;/p&gt;
+
+
+&lt;p&gt;&lt;a href=&quot;http://dmlstechnology.com/dmls-materials&quot; target=&quot;_blank&quot;&gt;DMLStechnology.com&lt;/a&gt;&lt;/p&gt;
+
+
+&lt;p&gt;&lt;a href=&quot;http://www.solidconcepts.com/materials/dmls-materials/&quot; target=&quot;_blank&quot;&gt;SolidConcepts.com&lt;/a&gt;&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+
+&lt;p&gt;The SupplyBetter Team&lt;/p&gt;
 
 </content>
  </entry>
