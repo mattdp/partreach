@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-15T18:02:00-07:00</updated>
+ <updated>2014-07-15T18:05:08-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -95,7 +95,7 @@
  </entry>
  
  <entry>
-   <title>What to Expect With SLS</title>
+   <title>What to Expect With DMLS</title>
    <link href="YOUR_URL/what-to-expect-with-dmls.html"/>
    <updated>2014-07-15T00:00:00-07:00</updated>
    <id>BLOG_URL/what-to-expect-with-dmls</id>
@@ -117,7 +117,7 @@
 
 
 
-&lt;p&gt;Here is &lt;a href=&quot;http://directmetallasersintering.blogspot.com/2010/01/dmls-direct-metal-laser-sintering-costs.html&quot; target=&quot;_blank&quot;&gt;an example DMLS part&lt;/a&gt;, courtesy of the blog directmetalsintering (check it out, it&#39;s terrific). This steel part has:&lt;/p&gt;
+&lt;p&gt;Here is an&lt;a href=&quot;http://directmetallasersintering.blogspot.com/2010/01/dmls-direct-metal-laser-sintering-costs.html&quot; target=&quot;_blank&quot;&gt; example DMLS part&lt;/a&gt;, courtesy of the blog directmetalsintering (check it out, it&#39;s terrific). This steel part has:&lt;/p&gt;
 
 
 &lt;ul&gt;

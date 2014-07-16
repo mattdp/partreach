@@ -1,7 +1,7 @@
 --- 
 layout: post
 author: Rob
-title: What to Expect With SLS
+title: What to Expect With DMLS
 published: true
 ---
 
@@ -12,7 +12,7 @@ published: true
 
 <h3>Is DMLS right for me?</h3>
 
-<p>Here is <a href="http://directmetallasersintering.blogspot.com/2010/01/dmls-direct-metal-laser-sintering-costs.html" target="_blank">an example DMLS part</a>, courtesy of the blog directmetalsintering (check it out, it's terrific). This steel part has:</p>
+<p>Here is an<a href="http://directmetallasersintering.blogspot.com/2010/01/dmls-direct-metal-laser-sintering-costs.html" target="_blank"> example DMLS part</a>, courtesy of the blog directmetalsintering (check it out, it's terrific). This steel part has:</p>
 <ul>
 <li>Complex geometry that would be impossible to machine.</li>
 <li>Small size</li>
