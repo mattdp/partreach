@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-16T13:55:03-07:00</updated>
+ <updated>2014-07-16T17:02:40-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -46,7 +46,7 @@
 
 &lt;ul&gt;  
   &lt;li&gt;Repairs. One of the most popular applications of LDT is in the repair of old or broken metal parts. For more on this, &lt;a href=&quot;http://www.twi-global.com/news-events/case-studies/innovative-additive-laser-repair-technology-used-in-restoration-of-iconic-ww2-spitfire-aircraft-557/&quot; target=&quot;_blank&quot;&gt;check out this case study&lt;/a&gt; by the The Welding Institute.&lt;/li&gt;
-  &lt;li&gt;Mechanical Strength. Parts built with laser deposition have equal to-or better strengths than equivalent cast or wrought alternatives.&lt;/li&gt;
+  &lt;li&gt;Mechanical Strength. Parts built with laser deposition have equal-to or better strengths than equivalent cast or wrought alternatives.&lt;/li&gt;
   &lt;li&gt;Cladding. Laser deposition can be used to cover, or clad, an existing part in a metal shell. The maneuverability of many LDT systems allows them to clad complex parts.&lt;/li&gt;
   &lt;li&gt;Fast build speeds. &lt;a href=&quot;http://www.3dprinterworld.com/article/giveth-and-taketh-away-cnc-milling-and-additive-laser-deposition-one-cycle&quot; target=&quot;_blank&quot;&gt;One source&lt;/a&gt; claims that LDT can be up to 20 times faster than &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-dmls.html&quot; target=&quot;_blank&quot;&gt;Direct Metal Laser Sintering&lt;/a&gt;, with deposition rates of up to 3.5 kg/hour.&lt;/li&gt;
   &lt;li&gt;Many laser deposition machines have 5 axis capabilities. This allows them to print unsupported structures that would otherwise require costly support material. &lt;a href=&quot;https://www.youtube.com/watch?v=s9IdZ2pI5dA&quot; target= &quot;blank&quot;&gt;See this video&lt;/a&gt; for a great example of 5 axis laser deposition.&lt;/li&gt;
@@ -59,7 +59,7 @@
 
 
 &lt;ul&gt; 
-  &lt;li&gt;Cost. Inherent complexities to this process make it one of the most expensive 3D printing processes. Unsurprisingly, the biggest demand for Laser deposition comes from the aerospace and defense sectors. Still, if LDT repairs mean that buying new parts can be avoided, laser deposition may be an extremely cost effective option.&lt;/li&gt;
+  &lt;li&gt;Cost. Inherent complexities to this process make it one of the most expensive 3D printing processes. Unsurprisingly, the biggest demand for laser deposition comes from the aerospace and defense sectors. Still, if LDT repairs mean that buying new parts can be avoided, laser deposition may be an extremely cost effective option.&lt;/li&gt;
   &lt;li&gt;Ready-to-go parts. Just like with other metal additive manufacturing processes, the use of any support material means extensive machining after the build is complete.&lt;/li&gt;
   &lt;li&gt;Tiny details. LDT is most commonly used to make large metal parts, and most laser deposition machines cannot create details as small as DMLS. &lt;a href=&quot;http://www.rpm-innovations.com/laser_deposition_technology&quot; target=&quot;_blank&quot;&gt;The width&lt;/a&gt; of the deposition ranges from about 0.04 inches to 0.16 inches.&lt;/li&gt;
 &lt;/ul&gt;
@@ -694,9 +694,9 @@
  
  <entry>
    <title>The 6 Ways to Not Burn a New Supplier</title>
-   <link href="YOUR_URL/top-6-ways-to-not-burn-a-supplier.html"/>
+   <link href="YOUR_URL/the-6-ways-to-not-burn-a-supplier.html"/>
    <updated>2014-07-09T00:00:00-07:00</updated>
-   <id>BLOG_URL/top-6-ways-to-not-burn-a-supplier</id>
+   <id>BLOG_URL/the-6-ways-to-not-burn-a-supplier</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
 &lt;caption align=&quot;bottom&quot;&gt;Molten steel being prepped for casting (credit: &lt;a href=&quot;http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg&quot; target=&quot;_blank&quot;&gt;Wikipedia&lt;/a&gt;)&lt;/caption&gt;
 &lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/Gussmetallschmelze.jpg&quot; width=&quot;740&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
@@ -783,9 +783,18 @@
 
 
 
-&lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
+&lt;p&gt;Cheers,&lt;/p&gt;
 
-&lt;p&gt;Rob&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Rob&lt;/p&gt;
+
+
+
+
+&lt;div class=&quot;footer&quot;&gt;
+Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp of Stratasys, Leslie Ahner of ProtoCAM, Ian Finn of Finnovation, Patrycjusz Grobelny of Euro Machining, Diane Martinez, Nicholas Cristie, Matt Du Pont, James Bond, and Yossi Kohrman-Glaser for reading this post and providing feedback!
+&lt;/div&gt;
+
 </content>
  </entry>
  
