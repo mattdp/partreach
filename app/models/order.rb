@@ -237,18 +237,29 @@ def add_complex_order(location)
 <p><strong>Estimated delivery date:</strong></p>
 <p><strong>Deadline for client to place order to hit that delivery date:</strong></p>
       HTML
-    else
-      turnaround_snippet = <<-HTML
-<p><strong>Lead Time:</strong></p>
-      HTML
-    end
-
-    if self.stated_priority == "speed"
       deadline_text = <<-HTML
 ASAP. Client is willing to pay rush order costs to hit a deadline of #{self.deadline}, see note below.
       HTML
     else
+      turnaround_snippet = <<-HTML
+<p><strong>Lead Time:</strong></p>
+      HTML
       deadline_text = self.deadline ||= ""
+    end
+
+    #omits speed, since that's covered in other fields
+    case self.stated_priority
+    when "speed"
+      priority_snippet = ""
+    when "cost"
+      priority_snippet = <<-HTML
+<p><strong>Priority:</strong> Cost is the main concern here. This is not a rush order.</p>
+    HTML
+    when "quality"
+      priority_snippet = <<-HTML
+<p><strong>Priority:</strong> Quality is the main concern with this project. 
+See the note from client for details on what exactly they're looking for.</p>
+    HTML
     end
 
     zipcode = self.user.address.zip if self.user && self.user.address && self.user.address.zip
@@ -258,6 +269,8 @@ ASAP. Client is willing to pay rush order costs to hit a deadline of #{self.dead
 <p><strong>Total Cost</strong> (including any shipping and taxes):</p>
 #{turnaround_snippet}
 <u><h3>Project Details</h3></u>
+
+#{priority_snippet}
 <p><strong>Deadline:</strong> #{deadline_text}</p>
 
 #{Order::PARTS_SNIPPETS_PLACEHOLDER}
