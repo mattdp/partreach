@@ -20,8 +20,13 @@ $(document).ready(function() {
       data: { 'order_group_id': orderGroupId, 'filename': content.filename, 'url': content.url },
       success: function(data, textStatus, jqXHR)
       {
-        $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
-        $('#files_uploaded').val("true")
+        if ( $('#uploaded_file_list').length) {
+          $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
+          $('#files_uploaded').val("true")
+        } else {
+          window.location.reload(true);
+        }
+
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
@@ -29,7 +34,6 @@ $(document).ready(function() {
       }
     });
   });
-
 
   // run client-side validations (using jquery.validate)
   $("#new-order").validate({

@@ -20,9 +20,9 @@
   <h3>Basic information for quote request</h3>
 </div>
 
-<p>Upload drawing (max size: 100 MB)</p>
+<p>Upload drawing (maximum 300Mb)</p>
 <%= s3_uploader_form  id: "s3-uploader", 
-                      max_file_size: 100.megabytes,
+                      max_file_size: 300.megabytes,
                       key_starts_with: "externals/",
                       key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
                         <%= file_field_tag :file, multiple: true %>

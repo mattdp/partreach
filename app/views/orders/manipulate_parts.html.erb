@@ -3,48 +3,77 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
       <h1 class="center">View and edit parts for order <%= "#{@order.id}" %></h1>
       <p><%= link_to "Manipulate dialogues", manipulate_path(@order) %> - edit order group names here.</p>
       <p><%= link_to "Order show", order_path(@order) %></p>
       <p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
-    <%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |order_form| %>
-      <%= hidden_field_tag "id", @order.id %>
+      <p>Upload a new part / file</p>
+
+      <table>
+        <tr>
+          <th>Order Group</th>
+          <th>File</th>
+        <tr>
+          <td><%= select_tag(:order_group_id, options_from_collection_for_select(@order_groups, :id, :name)) %></td>
+          <td>
+            <%= s3_uploader_form id: "s3-uploader",
+              key_starts_with: "externals/",
+              key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
+                <%= file_field_tag :file, multiple: true %>
+              <% end %>
+            <script id="template-upload" type="text/x-tmpl">
+            <div id="file-{%=o.unique_id%}" class="upload">
+              {%=o.name%}
+              <div class="progress"><div class="bar" style="width: 0%"></div></div>
+            </div>
+            </script>
+          </td>
+        </tr>
+      </table>
+
+      <%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |order_form| %>
+        <%= hidden_field_tag "id", @order.id %>
 
         <table>
-        <% @order_groups.sort.each do |order_group| %>
-      <tr>
-        <td><h4><%= link_to "#{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
-      </tr>
-      <tr>
-        <th>Part id</th>
-        <th>Part name</th>
-        <th>Order Group</th>
-        <th>Quantity</th>
-        <th>Part file</th>
-      </tr>
-          <% order_group.parts.sort.each do |part| %>
-            <%= order_form.fields_for part, index: part.id do |part_fields| %>
+          <% @order_groups.sort.each do |order_group| %>
             <tr>
-              <td><%= "#{part.id}" %></td>
-              <td><%= "#{part.name}" %></td>
-              <td><%= part_fields.collection_select(:order_group_id, @order_groups, :id, :name) %></td>
-              <td><%= part_fields.text_field :quantity %></td>
-              <% if (external = part.external) %>
-              <%= part_fields.fields_for :external, index: external.id do |external_fields| %>
-                  <td class="center"><%= link_to "(view)", "#{external.url}" %></td>
-                  <td><%= external_fields.text_field :url %></td>
-                <% end %>
-              <% end %>
+              <td colspan="6"><h4><%= link_to "#{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
             </tr>
+
+            <tr>
+              <th>Part Id</th>
+              <th>Part Name</th>
+              <th>Order Group</th>
+              <th>Quantity</th>
+              <th>HTML Snippet (for master email)</th>
+              <th>View File</th>
+            </tr>
+
+            <% order_group.parts.sort.each do |part| %>
+              <%= order_form.fields_for part, index: part.id do |part_fields| %>
+                <tr>
+                  <td><%= "#{part.id}" %></td>
+                  <td><%= "#{part.name}" %></td>
+                  <td><%= part_fields.collection_select(:order_group_id, @order_groups, :id, :name) %></td>
+                  <td><%= part_fields.text_field :quantity, size: "5" %></td>
+                  <% if (external = part.external) %>
+                    <%= part_fields.fields_for :external, index: external.id do |external_fields| %>
+                      <td><%= text_field_tag 'snippet', html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
+                      <td class="center"><%= link_to "@", "#{external.url}", target: "_blank" %></td>
+                    <% end %>
+                  <% end %>
+                </tr>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
-          </table>
+        </table>
 
-      <div class="clear">
-      <%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
-      </div>
-    <% end %> 
+        <div class="clear">
+          <%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
+        </div>
+      <% end %> 
+
     </div>
   </div>
 </div>
