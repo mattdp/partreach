@@ -53,7 +53,12 @@ class BlastMailer < ActionMailer::Base
   #method: way of calling the single email sender for this mail
   def general_sender(contacts,method,validate=true)
     contacts.each do |contact|
-      if !validate or (contactable = contact.contactable and !Communication.has_communication?(contactable,method.to_s))
+      if !validate || (
+          contact.email_valid &&
+          contact.email_subscribed &&
+          contactable = contact.contactable &&
+          !Communication.has_communication?(contactable,method.to_s)
+          )
         letter = BlastMailer.send(method,contact)
         letter.deliver
         Communication.create({
