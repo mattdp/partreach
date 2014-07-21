@@ -54,9 +54,9 @@ class BlastMailer < ActionMailer::Base
   def general_sender(contacts,method,validate=true)
     contacts.each do |contact|
       if !validate || (
+          (contactable = contact.contactable) &&
           contact.email_valid &&
           contact.email_subscribed &&
-          contactable = contact.contactable &&
           !Communication.has_communication?(contactable,method.to_s)
           )
         letter = BlastMailer.send(method,contact)
