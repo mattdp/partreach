@@ -83,6 +83,14 @@ class BlastMailer < ActionMailer::Base
     end
   end
 
+  def blog_post_july2114(contact)
+    @title = "The 6 Ways to Not Burn a New Supplier"
+    @salutation = contact.salutation
+    mail(to: contact.email, subject: @title) do |format|
+      format.html { render layout: "layouts/blast_mailer", locals: {title: @title, supplier: nil} }
+    end
+  end
+
   def test_for_layout
     @title = "Test title"
     m = mail(to: "matt@supplybetter.com", from: "supplier-reachouts@supplybetter.com", subject:"test email!") do |format|
