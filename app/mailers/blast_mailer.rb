@@ -53,7 +53,12 @@ class BlastMailer < ActionMailer::Base
   #method: way of calling the single email sender for this mail
   def general_sender(contacts,method,validate=true)
     contacts.each do |contact|
-      if !validate or (contactable = contact.contactable and !Communication.has_communication?(contactable,method.to_s))
+      if !validate || (
+          (contactable = contact.contactable) &&
+          contact.email_valid &&
+          contact.email_subscribed &&
+          !Communication.has_communication?(contactable,method.to_s)
+          )
         letter = BlastMailer.send(method,contact)
         letter.deliver
         Communication.create({
@@ -77,6 +82,14 @@ class BlastMailer < ActionMailer::Base
 
   def blog_post_april1614(contact)
     @title = "The 13 most common 3D printing methods explained"
+    @salutation = contact.salutation
+    mail(to: contact.email, subject: @title) do |format|
+      format.html { render layout: "layouts/blast_mailer", locals: {title: @title, supplier: nil} }
+    end
+  end
+
+  def blog_post_july2114(contact)
+    @title = "The 6 Ways to Not Burn a New Supplier"
     @salutation = contact.salutation
     mail(to: contact.email, subject: @title) do |format|
       format.html { render layout: "layouts/blast_mailer", locals: {title: @title, supplier: nil} }

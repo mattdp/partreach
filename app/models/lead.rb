@@ -58,7 +58,7 @@ class Lead < ActiveRecord::Base
   end
 
   #goal is all users, supplier contacts (not sales), people who added email via site
-  def self.blog_post_reachout_april2014_targeter(max_targets=nil)
+  def self.blog_post_reachout_targeter(max_targets=nil)
     user_lead_contacts = Lead.where("user_id IS NOT NULL").map{|lead| lead.lead_contact}
     supplier_contacts = User.where("supplier_id IS NOT NULL").map{|user| user.lead.lead_contact}
     email_form_leads = Lead.where("source = 'email_collector'").map{|lead| lead.lead_contact}
