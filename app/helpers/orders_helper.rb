@@ -59,5 +59,20 @@ module OrdersHelper
     end
     return nil
   end
+
+  def html_snippet_helper(url, order_id)
+    suffix = url.split(".").last.upcase
+    if suffix.in? ["PNG", "JPG"]
+      <<-HTML
+<p><a href="#{url}" alt="SupplyBetter RFQ#{order_id}>" target="_blank">
+<img src="#{url}" alt="SupplyBetter RFQ#{order_id}" width="460">
+</a></p>
+      HTML
+    else
+      <<-HTML
+<a href="#{url}">Link to #{suffix}</a>
+      HTML
+    end
+  end
   
 end
