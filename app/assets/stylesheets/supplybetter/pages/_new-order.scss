@@ -169,6 +169,7 @@
     border: 1px solid #ccc;
     font-size: 14px;
     margin-top: 8px;
+    outline: none;
     padding: 0 10px;
     width: 100%;
   }
@@ -183,6 +184,12 @@
     padding-top: 6px;
   }
 
+  input, textarea, select {
+    &:focus {
+      border: 1px solid $sb-blue;
+    }
+  }
+
   input.signup_signin_errors {
     border-color: $light-red;
   }
@@ -195,7 +202,7 @@
 
   .detail-text {
     color: $med-gray;
-    font-size: 14px;
+    font-size: 12px;
     margin: 5px 0 0;
   }
 
@@ -223,4 +230,11 @@
     }
   }
 
+  #create_button {
+    background: #3cb878;
+    border: 2px solid #31a76a;
+    border-radius: 2px;
+    color: white;
+    height: 40px;
+  }
 }

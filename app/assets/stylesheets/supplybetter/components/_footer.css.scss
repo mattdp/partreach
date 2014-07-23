@@ -93,3 +93,7 @@
 .footer-links--sub {
   opacity: .55;
 }
+
+.new-order + .footer + footer {
+  display: none;
+}
