@@ -154,6 +154,10 @@
 }
 
 #new-order {
+  p {
+    line-height: 1.7;
+  }
+
   label {
     display: block;
     margin-top: 20px;
@@ -193,6 +197,11 @@
     color: $med-gray;
     font-size: 14px;
     margin: 5px 0 0;
+  }
+
+  .twins {
+    margin: 0 -20px;
+    padding-bottom: 30px;
   }
 
   .triplets {

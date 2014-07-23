@@ -5,6 +5,7 @@
 .header__inner {
   @include clearfix();
   @include outer-container();
+  max-width: 1024px;
 }
 
 .header__logo {
