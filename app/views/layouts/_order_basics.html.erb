@@ -1,33 +1,93 @@
-<div class="order_basics bit-of-space">
-  <% if @order.name != "" %>
-    <strong>Order name: </strong> <%= "#{@order.name}" %>
-    <br>
-  <% end %>
-  <span class="index_quantity"><strong>Total quantity: </strong><%= "#{@total_quantity}" %></span>
-  <span class="index_quantity"><strong>Drawing units: </strong><%= "#{@order.units}" %></span>
-  <% if !@order.deadline.nil? %>
-    <span class="index_quantity"><strong>Deadline: </strong><%= "#{@order.deadline}" %></span>
-  <% end %>
-  <% if !@user.address.nil? and @user.address.zip.length > 0 %>
-    <span class="index_quantity"><strong>Zip Code: </strong><%= "#{@user.address.zip}" %></span>
-  <% end %>
-  <strong>Material requested: </strong><%= "#{@order.material_message}" %>
-  <br>
-  <% if !(@order.supplier_message.nil? or @order.supplier_message == "") %>
-    <strong>Message to suppliers: </strong><%= "#{@order.supplier_message}" %>
-    <br>
-  <% end %>
-  <% if !(@order.recommendation.nil? or @order.recommendation == "") %>
-    <strong>Our recommendation: </strong><%= "#{@order.recommendation}" %>
-    <br>
-  <% end %>
-  <% if !(@order.next_steps.nil? or @order.next_steps == "")%>
-    <strong>Suggested next steps: </strong><%= "#{@order.next_steps}" %>
-    <br>
-  <% end %>
-  <%= link_to "Leave a supplier review", new_review_path %>
+<div class="order_basics">
+  <table class="table">
+    <% if @order.name != "" %>
+      <tr>
+        <td>
+          Order name
+        </td>
+        <td>
+          <%= "#{@order.name}" %>
+        </td>
+      </tr>
+    <% end %>
+      <tr>
+        <td>
+          Total quantity
+        </td>
+        <td>
+          <%= "#{@total_quantity}" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Drawing units
+        </td>
+        <td>
+          <%= "#{@order.units}" %>
+        </td>
+      </tr>
+    <% if !@order.deadline.nil? %>
+      <tr>
+        <td>
+          Deadline
+        </td>
+        <td>
+          <%= "#{@order.deadline}" %>
+        </td>
+      </tr>
+    <% end %>
+    <% if !@user.address.nil? and @user.address.zip.length > 0 %>
+      <tr>
+        <td>
+          Zip Code
+        </td>
+        <td>
+          <%= "#{@user.address.zip}" %>
+        </td>
+      </tr>
+    <% end %>
+      <tr>
+        <td>
+          Material requested
+        </td>
+        <td>
+          <%= "#{@order.material_message}" %>
+        </td>
+      </tr>
+    <% if !(@order.supplier_message.nil? or @order.supplier_message == "") %>
+      <tr>
+        <td>
+          Message to suppliers
+        </td>
+        <td>
+          <%= "#{@order.supplier_message}" %>
+        </td>
+      </tr>
+    <% end %>
+    <% if !(@order.recommendation.nil? or @order.recommendation == "") %>
+      <tr>
+        <td>
+          Our recommendation
+        </td>
+        <td>
+          <%= "#{@order.recommendation}" %>
+        </td>
+      </tr>
+    <% end %>
+    <% if !(@order.next_steps.nil? or @order.next_steps == "") %>
+      <tr>
+        <td>
+          Suggested next steps
+        </td>
+        <td>
+          <%= "#{@order.next_steps}" %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <%= link_to "Leave a supplier review", new_review_path, :class => "button--blue" %>
   <% if current_user.admin? %>
     <%= "or admin privileges: " %>
-    <%= link_to "Manipulate dialogues (admin)", manipulate_path(@order) %>
+    <%= link_to "Manipulate dialogues (admin)", manipulate_path(@order), :class => "button--blue" %>
   <% end %>
 </div>

@@ -1,54 +1,40 @@
 <% provide(:title, "RFQ ##{@order.id} details") %>
+<div class="show-order">
+  <h3>Details of quote request</h3>
+  <%= render 'layouts/order_basics' %>
+  <% if @order_groups and @order.dialogues.count > 0 %>
+    <% if @recommended.present? and @order_groups.length > 1 %>
+      <h3>Summary: recommendations across all part groupings</h3>
+      <%= render partial: "orders/show_order_table", locals: {rows: @recommended, columns: @columns} %>
+    <% end %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override order">
+    <% @order_groups.each do |order_group| %>
+      <h3>
+        <%= "#{order_group.name}" %>
+        <%= " (Process: #{order_group.process}, Material: #{order_group.material})" if (order_group.process and order_group.material) %>
+      </h3>
 
-      <h3 class="bit-of-space">Details of quote request</h3>
-
-      <%= render 'layouts/order_basics' %>
-
-      <% if @order_groups and @order.dialogues.count > 0 %>
-
-        <% if @recommended.present? and @order_groups.length > 1 %>
-          <h3 class="bit-of-space">Summary: recommendations across all part groupings</h3>
-          <%= render partial: "orders/show_order_table", locals: {rows: @recommended, columns: @columns} %>
-        <% end %>
-
-        <% @order_groups.each do |order_group| %>
-
-          <h3 class="bit-of-space">
-            <%= "#{order_group.name}" %>
-            <%= " (Process: #{order_group.process}, Material: #{order_group.material})" if (order_group.process and order_group.material) %>
-          </h3>
-
-          <% visibles = order_group.sort_visible_dialogues %>
-          <% if visibles.present? %>
-            <%= render partial: "orders/show_order_table", locals: {rows: visibles, columns: @columns} %>
-          <% else %>
-            <p>No quotes have been received for this group of parts yet! We will notify you as soon as suppliers respond.</p>
-          <% end %>
-
-          <% if order_group.parts != [] %>
-            <p><strong>Parts included in this group:</strong></p>
-            <ul>
-              <% order_group.parts.each do |part| %>
-                <% part_string = "Quantity: #{part.quantity}" %>
-                <% part_string = "#{part.name}, " + part_string if part.name %>
-                <% part_string = part_string + ", BOM id: #{part.bom_identifier}" if part.bom_identifier %>
-                <li><%= part_string %></li>
-              <% end %>
-            </ul>
-          <% end %>
-
-        <% end %>
+      <% visibles = order_group.sort_visible_dialogues %>
+      <% if visibles.present? %>
+        <%= render partial: "orders/show_order_table", locals: {rows: visibles, columns: @columns} %>
       <% else %>
-        <br>
-        <p><strong>No quotes have been received yet! We will notify you as soon as suppliers respond.</strong></p>
+        <p>No quotes have been received for this group of parts yet! We will notify you as soon as suppliers respond.</p>
       <% end %>
 
-      <p class="back_to_home"><%= link_to 'Back to orders', orders_path %></p>
-
-    </div>
-  </div>
+      <% if order_group.parts != [] %>
+        <p><strong>Parts included in this group:</strong></p>
+        <ul>
+          <% order_group.parts.each do |part| %>
+            <% part_string = "Quantity: #{part.quantity}" %>
+            <% part_string = "#{part.name}, " + part_string if part.name %>
+            <% part_string = part_string + ", BOM id: #{part.bom_identifier}" if part.bom_identifier %>
+            <li><%= part_string %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  <% else %>
+    <p><strong>No quotes have been received yet! We will notify you as soon as suppliers respond.</strong></p>
+  <% end %>
+  <p class="back_to_home"><%= link_to 'Back to orders', orders_path %></p>
 </div>
