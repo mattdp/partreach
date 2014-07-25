@@ -1,0 +1,9 @@
+<p>Hi<%= " #{@contact.first_name}" if @contact.first_name %>,</p>
+
+<p>Just following up to let you know the bidding for this project is closed. The client has chosen a quote from a different supplier. I appreciate your looking into this project and look forward to sending you business again.</p>
+
+<% if @email_type == "generic_with_check" %>
+<p>For the future, is <<%= "#{@contact.email}" %>> the best email to use for future RFQs?</p>
+<% end %>  
+
+<p>Best,</p>

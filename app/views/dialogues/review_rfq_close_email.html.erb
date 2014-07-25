@@ -1,0 +1,38 @@
+<% provide(:title, "Review RFQ Close email") %>
+
+<div class="container">
+  <div class="row">
+    <%# colors different since email pasting needs black font, white background %>
+    <div class="col-sm-10 col-sm-offset-1 email-font">
+
+      <p><%= link_to "Back to Edit RFQ Close Email", dialogue_edit_rfq_close_email_path(@dialogue) %></p>
+
+      <p>Order groups visible for this order:</p>
+      <ul>
+        <% @order_groups.each do |order_group| %>
+          <li><%= "#{order_group.name}" %></li>
+        <% end %>
+      </ul>
+
+      <p>First name of RFQ contact: 
+        <% if @contact.first_name %>
+          <%= "#{@contact.first_name} (full name: #{@contact.full_name_untrusted})" %>
+        <% else %>
+          <%= link_to "First name not in database. Click to enter it.", admin_edit_path(@supplier.name_for_link) %>
+        <% end %>
+      </p>
+
+      <p>Email of RFQ contact: <%= "#{@contact.email}" %></p>
+      <p>Subject: <%= "#{@subject}" %></p>
+      <p>Body:</p>
+      <hr>
+      <p><%= raw "#{@body}" %></p>
+
+      <%= form_tag :action => "send_rfq_close_email", :controller => "dialogues" do %>
+        <%= hidden_field_tag :id, @dialogue.id %>
+        <%= submit_tag "Send", class: "save-button" %>
+      <% end %>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,41 @@
+<% provide(:title, "Edit RFQ Close Email") %>
+
+<div class="container">
+  <div class="row">
+    <%# colors different since email pasting needs black font, white background %>
+    <div class="col-sm-10 col-sm-offset-1 email-font">
+
+      <p><%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %></p>
+
+      <%= form_tag :action => "update_rfq_close_email", :controller => "dialogues" do %>
+        <%= hidden_field_tag :id, @dialogue.id %>
+        <table>
+        <tr>
+        <td width="80%">
+        <%= label_tag :email_body, "Email body" %>
+        <%= text_area_tag :email_body, @email_body, rows: 20 %>
+        </td>
+        <td>
+        <% options_array = [
+          ["Select email type", "none"],
+          ["Generic", "generic"],
+          ["Generic w/email check", "generic_with_check"],
+          ["In-network, lost", "in_network_lost"],
+          ["Not in-network, lost", "not_in_network_lost"],
+          ["In-network, won", "in_network_won"],
+          ["Not in-network, won", "not_in_network_won"]
+        ] %>
+        <%= select_tag("email_type", options_for_select(options_array)) %>
+        <%= submit_tag "Insert generated text", name: "generate" %>
+        </td>
+        </tr>
+        </table>
+        <%= submit_tag "Save Changes", name: "save", class: "save-button" %>
+        <%= submit_tag "Revert to last saved version", name: "revert" %>
+      <% end %>
+
+      <p><%= link_to "Review RFQ Close email", dialogue_review_rfq_close_email_path(@dialogue) %></p>
+
+    </div>
+  </div>
+</div>

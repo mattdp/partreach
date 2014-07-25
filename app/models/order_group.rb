@@ -127,4 +127,10 @@ class OrderGroup < ActiveRecord::Base
     return answer
   end    
 
+  def build_bidset
+    bidset = BidSet.new
+    self.dialogues.map{|d| bidset.include(d) if d.bid?}
+    bidset
+  end
+
 end

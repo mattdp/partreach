@@ -18,13 +18,12 @@ class SupplierMailer < ActionMailer::Base
     end
   end
 
-  def generic_quote_ended_email(dialogue)
+  def rfq_close_email(dialogue)
     @supplier = dialogue.supplier
     @contact = @supplier.rfq_contact
 
-    content = dialogue.generic_quote_ended_email_generator
-    @subject = content[:subject]
-    @body = content[:body]
+    @subject = "SupplyBetter RFQ ##{dialogue.order.id}1 for #{@supplier.name}"
+    @body = dialogue.close_email_body
 
     mail(to: @contact.email, subject: @subject).deliver do |format|
       format.html { render layout: "layouts/supplier_mailer" }

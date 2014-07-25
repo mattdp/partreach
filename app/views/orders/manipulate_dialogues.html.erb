@@ -19,9 +19,13 @@
         <strong>Stated method:</strong><%= "#{@order.stated_manufacturing}" %>
       </p>
 
-      <p> <%= link_to "Add a dialogue", "/dialogues/new/#{@order.id}" %> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
-      <p><%= link_to "Add new supplier", new_supplier_path %></p>
+      <p><%= link_to "Edit RFQ package", initial_email_edit_path(@order) %></p>
+      <p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
       <p><%= link_to "Manipulate parts", manipulate_parts_path(@order) %></p>
+      <p><%= link_to "Add new supplier", new_supplier_path %></p>
+      <p><%= link_to "Add a dialogue", "/dialogues/new/#{@order.id}" %> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
+
+
 
       <%= form_tag :action => 'update_dialogues', :controller => 'orders' do %>
 
@@ -35,8 +39,6 @@
         <%= text_field_tag "next_action_date", @order.next_action_date %>
         <%= label_tag "order notes", "Internal notes on order" %>
         <%= text_area_tag "notes", @order.notes %>
-
-        <%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %>
 
         <% @order_groups.each do |order_group| %>
 
@@ -111,8 +113,6 @@
               <% end %>
           </table>
 
-          <strong><%= link_to "Edit master emails", initial_email_edit_path(@order) %></strong>
-
           <table>
             <% order_group.alphabetical_dialogues.each do |d| %>
               <tr class="horizontal-lines">
@@ -122,7 +122,8 @@
                   <strong><%= link_to "#{@supplier.name[0,6]}", external_url(@supplier.url_main), target: "_blank" %></strong>
                 </td>
                 <td><%= "#{@supplier.address.state.short_name},#{@supplier.address.country.short_name}" %></td>
-                <td><%= link_to "Email", dialogue_initial_email_path(d) %></td>
+                <td><%= link_to "RFQ Open Email", dialogue_initial_email_path(d) %></td>
+                <td><%= link_to "RFQ Close Email", dialogue_edit_rfq_close_email_path(d) %></td>
                 <td>
                   <strong><%= "Note for this order: #{d.internal_notes}" if d.internal_notes.present? %></strong>
                   <%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
@@ -135,7 +136,7 @@
           </table>
         <% end %>
 
-        <p>Order status</p>
+        <h4>Order status</h4>
         <% Order.order_status_hash.keys.each do |message| %>
           <div class="clear">
             <%= radio_button_tag "status", message, @order.status == message, :class => "fleft radio" %>

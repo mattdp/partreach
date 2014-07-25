@@ -1,0 +1,49 @@
+Hi<%= " #{@contact.first_name}" if @contact.first_name %>,
+
+Just following up to let you know the bidding for this project is closed. The client has chosen a quote from a different supplier. I appreciate your looking into this project and look forward to sending you business again.
+
+Want to learn more about this projectand become competitive in this market? <a href="https://www.supplybetter.com/be_a_supplier" target="_blank">Sign up now</a> to learn about:
+How your bid compared to other bids returned (always anonymized)
+Which bid won (always anonymized)
+The average bid amount
+Client contact information (to follow up with about the project)
+
+Summary of RFQ #<%= "#{@order.id}" %>1
+(all bids include shipping and fees)
+
+Priority of buyer: <%= "#{@order.stated_priority}" %>
+
+<% if @bidset.count > 0 %>
+  <p>
+  <% @bids.each do |bid| %>
+    <% if @supplier.is_in_network? %>
+      <%= currencyize(bid.total_cost, bid.currency) %>
+    <% else %>
+      $---.--
+    <% end %>
+    <%= " (this was your bid)" if (bid.supplier == @supplier) && @supplier.is_in_network? %>
+    <%= " (this was the winning bid)" if bid.won %>
+    <br>
+  <% end %>
+  </p>
+
+  <p>
+  <%= "Total # of Bids: #{@bidset.count}" %>
+  <br>
+  <% if @bidset.common_currency %>
+    Average bid: 
+    <% if @supplier.is_in_network? %>
+      <%= currencyize(@bidset.average_cost, @bidset.common_currency) %>
+    <% else %>
+      $---.--
+    <% end %>
+  <% end %>
+  </p>
+<% end %>
+
+*We impose a maximum of 5 bids to keep the quoting process fair for suppliers. 
+
+As always, feel free to let me know if there are any questions. 
+
+Cheers,
+Rob

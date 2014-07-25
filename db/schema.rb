@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712015714) do
+ActiveRecord::Schema.define(version: 20140724151952) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20140712015714) do
     t.integer  "order_group_id"
     t.boolean  "supplier_working"
     t.text     "email_snippet"
+    t.text     "close_email_body"
   end
 
   create_table "events", force: true do |t|

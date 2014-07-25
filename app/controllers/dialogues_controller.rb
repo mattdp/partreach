@@ -1,5 +1,5 @@
 class DialoguesController < ApplicationController
-  before_filter :admin_user, only: [:new, :create, :initial_email, :send_initial_email, :send_generic_quote_ended_email, :update_email_snippet]
+  before_filter :admin_user
 
   def new
     @structure = Rails.cache.fetch "dialogues_new_setup", :expires_in => 25.hours do |key|
@@ -114,11 +114,59 @@ class DialoguesController < ApplicationController
     redirect_to manipulate_path(@order), notice: "Email send attempted."
   end
 
-  def send_generic_quote_ended_email
+  def edit_rfq_close_email
     @dialogue = Dialogue.find(params[:id])
-    @order = @dialogue.order_group.order
+    @order = @dialogue.order
+    @contact = @dialogue.supplier.rfq_contact
+    @email_body = @dialogue.close_email_body
+  end
 
-    @dialogue.send_generic_quote_ended_email
+  def update_rfq_close_email
+    @dialogue = Dialogue.find(params[:id])
+
+    if params["generate"]
+      @supplier = @dialogue.supplier
+      @contact = @supplier.rfq_contact
+      @order = @dialogue.order
+      order_group = @dialogue.order_group
+      @bidset = order_group.build_bidset
+      @bids = @bidset.bids_sorted_by_price!
+      @email_type = params["email_type"]
+
+      case @email_type
+      when "generic", "generic_with_check"
+        @email_body = render_to_string "basic_close_email", layout: false
+      when "in_network_lost", "not_in_network_lost", "in_network_won", "not_in_network_won"
+        @email_body = render_to_string "bid_summary_close_email", layout: false
+      else
+        @email_body = params[:email_body]
+      end
+    elsif params["save"]
+      @dialogue.update(close_email_body: params[:email_body])
+      @email_body = @dialogue.close_email_body
+    elsif params["revert"]
+      @email_body = @dialogue.close_email_body
+    end
+
+    render "edit_rfq_close_email"
+  end
+
+  def review_rfq_close_email
+    @dialogue = Dialogue.find(params[:id])
+
+    @supplier = @dialogue.supplier
+    @contact = @supplier.rfq_contact
+    @order_groups = @dialogue.order.dialogues.select {|d| d.supplier_id == @supplier.id}.map{|d| d.order_group}
+
+    @subject = "SupplyBetter RFQ ##{@dialogue.order.id}1 for #{@supplier.name}"
+    @body = @dialogue.close_email_body
+  end
+
+  def send_rfq_close_email
+    @dialogue = Dialogue.find(params[:id])
+    @order = @dialogue.order
+
+    @dialogue.send_rfq_close_email
 
     redirect_to manipulate_path(@order), notice: "Email send attempted."
   end
