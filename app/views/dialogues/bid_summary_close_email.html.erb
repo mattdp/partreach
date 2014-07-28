@@ -1,46 +1,55 @@
 <p>Hi<%= " #{@contact.first_name}" if @contact.first_name %>,</p>
-<p>Just following up to let you know the bidding for this project is closed. The client has chosen a quote from a different supplier. I appreciate your looking into this project and look forward to sending you business again.</p>
 <p>
-Want to learn more about this projectand become competitive in this market? <a href="https://www.supplybetter.com/be_a_supplier" target="_blank">Sign up now</a> to learn about:
+<% case @email_type %>
+<% when "lost_bid_summary" %>
+Just following up to let you know the bidding for this project is closed. The client has chosen a quote from a different supplier. I appreciate your looking into this project and look forward to sending you business again.
+<% when "won_bid_summary" %>
+Congratulations! The client has chosen your quote and I will be making an email introduction shortly to put you two in touch. 
+<% end %>
 </p>
+<% unless @supplier.is_in_network? %>
+<p>
+Want to learn more about this project and become competitive in this market? <a href="https://www.supplybetter.com/be_a_supplier" target="_blank">Sign up now</a> to learn about:
 <ul>
 <li>How your bid compared to other bids returned (always anonymized)</li>
 <li>Which bid won (always anonymized)</li>
 <li>The average bid amount</li>
 <li>Client contact information (to follow up with about the project)</li>
 </ul>
-<p>
-Summary of RFQ #<%= "#{@order.id}" %>1<br>
-(all bids include shipping and fees)
 </p>
+<% end %>
+<p><strong>
+Summary of RFQ #<%= "#{@order.id}" %>1
+</strong></p>
 <p>
 Priority of buyer: <%= "#{@order.stated_priority}" %>
+<br>
+<%= "Total # of Bids: #{@bidset.count}" %>
 </p>
 <p>
 <% @bids.each do |bid| %>
-  <% if @supplier.is_in_network? %>
+<% if @supplier.is_in_network? %>
 <%= currencyize(bid.total_cost, bid.currency) %>
+<% else %>
+$---.--
+<% end %>
+<%= " (this was your bid)" if (bid.supplier == @supplier) && @supplier.is_in_network? %>
+<%= " (this was the winning bid)" if bid.won %>
+<br>
+<% end %>
+<% if @bidset.common_currency %>
+Average bid: 
+  <% if @supplier.is_in_network? %>
+<%= currencyize(@bidset.average_cost, @bidset.common_currency) %>
   <% else %>
 $---.--
   <% end %>
-<%= " (this was your bid)" if (bid.supplier == @supplier) && @supplier.is_in_network? %>
-<%= " (this was the winning bid)" if bid.won %>
-  <br>
-<% end %>
-<%= "Total # of Bids: #{@bidset.count}*" %>
-<br>
-<% if @bidset.common_currency %>
-  Average bid: 
-  <% if @supplier.is_in_network? %>
-    <%= currencyize(@bidset.average_cost, @bidset.common_currency) %>
-  <% else %>
-    $---.--
-  <% end %>
 <% end %>
 </p>
-<p>
-*We impose a maximum of 5 bids to keep the quoting process fair for suppliers. 
-</p>
+<p><em>
+All bids include shipping and fees.
+We impose a maximum of 5 bids to keep the quoting process fair for suppliers. 
+</em></p>
 <p>
 As always, feel free to let me know if there are any questions. 
 </p>
@@ -51,4 +60,3 @@ Co-Founder &amp; VP Eng.<br>
 <a href='http://www.supplybetter.com'>SupplyBetter</a><br>
 W: 5022766224
 </p>
-

@@ -132,7 +132,7 @@ class DialoguesController < ApplicationController
     case @email_type
     when "generic", "generic_with_check"
       render "basic_close_email", layout: false
-    when "in_network_lost", "not_in_network_lost", "in_network_won", "not_in_network_won"
+    when "lost_bid_summary", "won_bid_summary"
       render "bid_summary_close_email", layout: false
     else
       render nothing: true, status: :bad_request
@@ -142,7 +142,11 @@ class DialoguesController < ApplicationController
   def update_rfq_close_email
     @dialogue = Dialogue.find(params[:id])
     @dialogue.update(close_email_body: params[:email_body])
-    redirect_to dialogue_review_rfq_close_email_path(@dialogue)
+    if params["review"]
+      redirect_to dialogue_review_rfq_close_email_path(@dialogue)
+    else
+      redirect_to dialogue_edit_rfq_close_email_path(@dialogue)
+    end
   end
 
   def review_rfq_close_email

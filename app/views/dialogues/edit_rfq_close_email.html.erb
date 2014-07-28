@@ -22,16 +22,15 @@
           ["Select email type", "select"],
           ["Generic", "generic"],
           ["Generic w/email check", "generic_with_check"],
-          ["In-network, lost", "in_network_lost"],
-          ["Not in-network, lost", "not_in_network_lost"],
-          ["In-network, won", "in_network_won"],
-          ["Not in-network, won", "not_in_network_won"]
+          ["Lost bid summary", "lost_bid_summary"],
+          ["Won bid summary", "won_bid_summary"]
         ] %>
         <%= select_tag("email_type", options_for_select(options_array)) %>
         </td>
         </tr>
         </table>
-        <%= submit_tag "Save and review", class: "save-button" %>
+        <%= submit_tag "Save", name: "save", class: "save-button" %>
+        <%= submit_tag "Review", name: "review", class: "save-button" %>
       <% end %>
     </div>
   </div>
