@@ -16,8 +16,10 @@
         <%= text_area_tag :email_body, @email_body, rows: 20 %>
         </td>
         <td>
+        Use generated text:
+        <br>
         <% options_array = [
-          ["Select email type", "none"],
+          ["Select email type", "select"],
           ["Generic", "generic"],
           ["Generic w/email check", "generic_with_check"],
           ["In-network, lost", "in_network_lost"],
@@ -26,16 +28,11 @@
           ["Not in-network, won", "not_in_network_won"]
         ] %>
         <%= select_tag("email_type", options_for_select(options_array)) %>
-        <%= submit_tag "Insert generated text", name: "generate" %>
         </td>
         </tr>
         </table>
-        <%= submit_tag "Save Changes", name: "save", class: "save-button" %>
-        <%= submit_tag "Revert to last saved version", name: "revert" %>
+        <%= submit_tag "Save and review", class: "save-button" %>
       <% end %>
-
-      <p><%= link_to "Review RFQ Close email", dialogue_review_rfq_close_email_path(@dialogue) %></p>
-
     </div>
   </div>
 </div>

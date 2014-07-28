@@ -117,46 +117,40 @@ class DialoguesController < ApplicationController
   def edit_rfq_close_email
     @dialogue = Dialogue.find(params[:id])
     @order = @dialogue.order
-    @contact = @dialogue.supplier.rfq_contact
     @email_body = @dialogue.close_email_body
+  end
+
+  def generate_rfq_close_email
+    @dialogue = Dialogue.find(params[:id])
+    @supplier = @dialogue.supplier
+    @contact = @supplier.rfq_contact
+    @order = @dialogue.order
+    @bidset = @dialogue.order_group.build_bidset
+    @bids = @bidset.bids_sorted_by_price!
+    @email_type = params[:email_type]
+
+    case @email_type
+    when "generic", "generic_with_check"
+      render "basic_close_email", layout: false
+    when "in_network_lost", "not_in_network_lost", "in_network_won", "not_in_network_won"
+      render "bid_summary_close_email", layout: false
+    else
+      render nothing: true, status: :bad_request
+    end
   end
 
   def update_rfq_close_email
     @dialogue = Dialogue.find(params[:id])
-
-    if params["generate"]
-      @supplier = @dialogue.supplier
-      @contact = @supplier.rfq_contact
-      @order = @dialogue.order
-      order_group = @dialogue.order_group
-      @bidset = order_group.build_bidset
-      @bids = @bidset.bids_sorted_by_price!
-      @email_type = params["email_type"]
-
-      case @email_type
-      when "generic", "generic_with_check"
-        @email_body = render_to_string "basic_close_email", layout: false
-      when "in_network_lost", "not_in_network_lost", "in_network_won", "not_in_network_won"
-        @email_body = render_to_string "bid_summary_close_email", layout: false
-      else
-        @email_body = params[:email_body]
-      end
-    elsif params["save"]
-      @dialogue.update(close_email_body: params[:email_body])
-      @email_body = @dialogue.close_email_body
-    elsif params["revert"]
-      @email_body = @dialogue.close_email_body
-    end
-
-    render "edit_rfq_close_email"
+    @dialogue.update(close_email_body: params[:email_body])
+    redirect_to dialogue_review_rfq_close_email_path(@dialogue)
   end
 
   def review_rfq_close_email
     @dialogue = Dialogue.find(params[:id])
-
     @supplier = @dialogue.supplier
     @contact = @supplier.rfq_contact
-    @order_groups = @dialogue.order.dialogues.select {|d| d.supplier_id == @supplier.id}.map{|d| d.order_group}
+    @order = @dialogue.order
+    @order_groups = @order.dialogues.select {|d| d.supplier_id == @supplier.id}.map{|d| d.order_group}
 
     @subject = "SupplyBetter RFQ ##{@dialogue.order.id}1 for #{@supplier.name}"
     @body = @dialogue.close_email_body

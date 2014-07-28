@@ -17,6 +17,7 @@ Partreach::Application.routes.draw do
   get '/dialogues/new/:id', to: 'dialogues#new'
   get '/dialogues/initial_email/:id', to: 'dialogues#initial_email', as: 'dialogue_initial_email'
   get '/dialogues/edit_rfq_close_email/:id', to: 'dialogues#edit_rfq_close_email', as: 'dialogue_edit_rfq_close_email'
+  get '/dialogues/generate_rfq_close_email', to: 'dialogues#generate_rfq_close_email', as: 'dialogue_generate_rfq_close_email'
   get '/dialogues/review_rfq_close_email/:id', to: 'dialogues#review_rfq_close_email', as: 'dialogue_review_rfq_close_email'
   match '/dialogues/update_rfq_close_email', to: 'dialogues#update_rfq_close_email', as: 'dialogue_update_rfq_close_email', via: :post
   match '/dialogues/update_email_snippet', to: 'dialogues#update_email_snippet', as: 'dialogue_update_email_snippet', via: :post

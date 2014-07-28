@@ -7,6 +7,8 @@
 
       <p><%= link_to "Back to Edit RFQ Close Email", dialogue_edit_rfq_close_email_path(@dialogue) %></p>
 
+      <p><%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %></p>
+
       <p>Order groups visible for this order:</p>
       <ul>
         <% @order_groups.each do |order_group| %>
