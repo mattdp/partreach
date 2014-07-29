@@ -46,7 +46,7 @@ published: true
 </ul>
 
 <h3>Our advice</h3>
-<p>For 3D models with minute details, binder jet is probably the way to go. Complex geometry, such as overhangs or thin walls, will be difficult with LOM, so complex models are better to build with binder jet. If a model needs to be handled, or has open, flat areas, then LOM may be the better choice.</p>
+<p>For 3D models with minute details, binder jet is probably the way to go. Complex geometries, such as overhangs or thin walls, will be difficult with LOM, so complex models are better to build with binder jet. If a model needs to be handled, or has open, flat areas, then LOM may be the better choice.</p>
 
 <p>As always, best of luck with your 3D printing!</p>
 

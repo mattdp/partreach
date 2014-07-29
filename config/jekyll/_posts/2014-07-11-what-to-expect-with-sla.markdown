@@ -33,7 +33,8 @@ published: true
 
 <h4>What SLA is great for:</h4>
 <ul>
-<li>Fine details. SLA printers are capable of some of the highest tolerances in the business. <a href="http://www.quickparts.com/LowVolumePrototypes/SLA.aspx" target="_blank">Tolerance</a> in each cross section is typically 5/1000 of an inch, with tolerance in the z-axis of 1/100 of an inch or smaller. Smooth surfaces. The high tolerances associated with SLA give parts a silky-smooth appearance, even before post-processing.</li>
+<li>Fine details. SLA printers are capable of some of the highest tolerances in the business. <a href="http://www.quickparts.com/LowVolumePrototypes/SLA.aspx" target="_blank">Tolerance</a> in each cross section is typically 5/1000 of an inch, with tolerance in the z-axis of 1/100 of an inch or smaller.</li>
+<li>Smooth surfaces. The high tolerances associated with SLA give parts a silky-smooth appearance, even before post-processing.</li>
 <li>Complex geometry. Thin walls and support material allow SLA to produce highly complex shapes with overhangs. Enclosed cavities, however, will be full of resin.</li>
 </ul>
 
