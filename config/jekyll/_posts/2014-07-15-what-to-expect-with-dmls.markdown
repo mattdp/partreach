@@ -23,7 +23,7 @@ published: true
 <h4>What DMLS is great for:</h4>
 <ul>
 <li>Custom functional prototypes.</li>
-<li>Specific porosities. Laser wattage and sand fineness may be adjusted to control the density of the part. Outputted metals ranges from relatively porous to very dense, with densities of up to<a href="http://www.layerwise.com/medical/dmls-benefits/" target="_blank">99.98 percent</a>. </li>
+<li>Specific porosities. Laser wattage and sand fineness may be adjusted to control the density of the part. Outputted metals ranges from relatively porous to very dense, with densities of up to <a href="http://www.layerwise.com/medical/dmls-benefits/" target="_blank">99.98 percent</a>. </li>
 <li>Functional prototypes.</li>
 </ul>
 
