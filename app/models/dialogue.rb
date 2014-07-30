@@ -134,31 +134,14 @@ class Dialogue < ActiveRecord::Base
     return returnee
   end
 
-  def generic_quote_ended_email_generator
-    order = self.order
-    supplier = self.supplier
-    contact = supplier.rfq_contact
-
-    returnee = {}
-    returnee[:subject] = "SupplyBetter RFQ ##{order.id}1 for #{supplier.name}"
-
-    contact.first_name.present? ? returnee[:body] = "<p>Hi #{contact.first_name},</p>" : returnee[:body] = "<p>Hi,</p>"
-
-    returnee[:body] += "<p>Just following up to let you know the bidding for this project is closed. The client has chosen a quote from a different supplier. I appreciate your looking into this project and look forward to sending you business again.</p>"
-    returnee[:body] += "<p>Best,</p>"
-    returnee[:body] += "<p>Robert Martinez<br>Co-Founder & VP Eng.<br><a href='http://www.supplybetter.com'>SupplyBetter</a><br>W: 5022766224</p>"
-
-    return returnee
-  end
-
   def send_initial_email
     SupplierMailer.initial_supplier_email(self)
     self.update_attributes({initial_select: true, opener_sent: true})  
   end
 
-  def send_generic_quote_ended_email
-    SupplierMailer.generic_quote_ended_email(self)
-    self.update_attributes({informed: true})
+  def send_rfq_close_email
+    SupplierMailer.rfq_close_email(self)
+    update(informed: true)
   end
   
 end
