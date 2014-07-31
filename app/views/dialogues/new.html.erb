@@ -98,6 +98,7 @@
               <% else %>
                 <%= link_to supplier_hash[:supplier].name, external_url(supplier_hash[:supplier].url_main), target: "_blank" %>
               <% end %>
+              |
               <%= link_to "Admin Edit Page", admin_edit_url(supplier_hash[:supplier].name_for_link), target: "_blank" %>
               <%= " [#{supplier_hash[:tag_names].join(',')}] <#{supplier_hash[:safe_country]}:#{supplier_hash[:safe_state]}:#{supplier_hash[:safe_zip]}> #{supplier_hash[:supplier].internally_hidden_preferences}" %>
 
