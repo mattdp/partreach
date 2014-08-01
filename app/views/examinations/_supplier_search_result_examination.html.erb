@@ -1,6 +1,13 @@
+<% name = Domainatrix.parse(supplier_search_result.domain).domain.capitalize %>
+<%= hidden_field_tag "name[#{supplier_search_result.id}]", name %>
+
+<% url = Domainatrix.parse(supplier_search_result.link) %>
+<% url_main = "#{url.scheme}://#{url.host}" %>
+<%= hidden_field_tag "url_main[#{supplier_search_result.id}]", url_main %>
+
 <td class="supporting-info">
   <p class="clear">
-    Search Link: <%= link_to supplier_search_result.link, supplier_search_result.link, target: "_blank" %>
+    Website: <%= link_to url_main, url_main, target: "_blank" %>
   </p>
   <p class="clear">
     Title: <%= supplier_search_result.title %>
