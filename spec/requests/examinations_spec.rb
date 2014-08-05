@@ -23,13 +23,15 @@ describe "/examinations requests" do
   describe "Supplier search result examination" do
     before do
       @wsr = FactoryGirl.create :web_search_result
-      @expected_tags = Array.new
+
+      # populate database with needed tags
+      exclusive_group = FactoryGirl.create(:tag_group, exclusive: true)
       # new_supplier tags
-      @expected_tags << FactoryGirl.create(:tag, name: 'b0_none_sent')
-      @expected_tags << FactoryGirl.create(:tag, name: 'n1_no_contact')
-      @expected_tags << FactoryGirl.create(:tag, name: 'e2_existence_unknown')
+      @b0_none_sent = FactoryGirl.create(:tag, name: 'b0_none_sent')
+      @n1_no_contact = FactoryGirl.create(:tag, name: 'n1_no_contact')
+      @e2_existence_unknown = FactoryGirl.create(:tag, name: 'e2_existence_unknown', tag_group: exclusive_group)
       # datadump tag
-      @expected_tags << FactoryGirl.create(:tag, name: 'datadump')
+      @datadump = FactoryGirl.create(:tag, name: 'datadump', tag_group: exclusive_group)
     end
 
     it "displays the Supplier Search Result Examination page" do
@@ -52,8 +54,7 @@ describe "/examinations requests" do
       expect(new_supplier.url_main).to eq 'http://derived_url.com'
       expect(new_supplier.source).to eq 'supplier_search_result_examination'
       expect(new_supplier.profile_visible).to be_false
-      # verify that all expected tags are included in new_supplier.tags:
-      expect((@expected_tags - new_supplier.tags).empty?).to be_true
+      expect(new_supplier.tags).to match_array([@b0_none_sent, @n1_no_contact, @datadump])
     end
   end
 
