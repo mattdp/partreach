@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('.generate-email-button').click(function() {
+  $('.generate-email-button').click(function(event) {
     event.preventDefault();
     var html = $(this).attr('data-html');
     $(this).closest('div').children('textarea').val(html);
@@ -10,9 +10,9 @@ $(document).ready(function() {
   });
 
 
-  $("#s3-uploader").S3Uploader();
+  $(".s3-uploader").S3Uploader();
 
-  $('#s3-uploader').bind('s3_upload_complete', function(e, content) {
+  $('.s3-uploader').bind('s3_upload_complete', function(e, content) {
     var orderGroupId = $('#order_group_id')[0].value;
     $.ajax({
       url : "/parts/create_with_external",
@@ -20,8 +20,10 @@ $(document).ready(function() {
       data: { 'order_group_id': orderGroupId, 'filename': content.filename, 'url': content.url },
       success: function(data, textStatus, jqXHR)
       {
-        $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
-        $('#files_uploaded').val("true")
+        if ( $('#uploaded_file_list').length) {
+          $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
+          $('#files_uploaded').val("true")
+        }
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
@@ -30,6 +32,10 @@ $(document).ready(function() {
     });
   });
 
+  $('.s3-uploader-page-refresh').bind('s3_uploads_complete', function(e, content) {
+    alert("All Uploads completed")
+    window.location.reload(true);
+  });
 
   // run client-side validations (using jquery.validate)
   $("#new-order").validate({

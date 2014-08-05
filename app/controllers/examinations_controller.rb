@@ -18,7 +18,6 @@ class ExaminationsController < ApplicationController
     end
   end
 
-  #faster if batch load suppliers
   def submit_examinations
     note = "Didn't submit to a model name. Error in code."
     if params[:model_examined] == "supplier"
@@ -52,8 +51,6 @@ class ExaminationsController < ApplicationController
             WebSearchResult.delete_all_with_matching_domain(wsr_id)
           elsif choice == "drop"
             WebSearchResult.delete(wsr_id)
-          # elsif choice == "later"
-            # don't take any action now; leave search result item for later review
           end
         end
       end

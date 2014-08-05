@@ -1,4 +1,4 @@
-<% provide(:title, "Initial email suggestion") %>
+<% provide(:title, "Edit RFQ Open email") %>
 
 <div class="container">
   <div class="row">
@@ -7,11 +7,9 @@
 
       <p><%= link_to "Back to manipulate dialogues for this order", manipulate_path(@order) %></p>
 
-      <p><%= link_to "Edit master email for this order", initial_email_edit_path(@order) %></p>
+      <p><%= link_to "Edit RFQ package for this order", initial_email_edit_path(@order) %></p>
 
-      <p><%= link_to "SEND initial email - no confirmation! (pretty format)", dialogue_send_initial_email_path(@dialogue), method: :post %></p>
-
-      <p><%= link_to "SEND generic bidding closed email - no confirmation! (pretty format)", dialogue_send_generic_quote_ended_email_path(@dialogue), method: :post %></p>
+      <p><%= link_to "SEND RFQ open email (NO CONFIRMATION!)", dialogue_send_initial_email_path(@dialogue), method: :post %></p>
 
       <p>Order groups visible for this order:</p>
       <ul>

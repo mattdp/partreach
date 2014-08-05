@@ -16,9 +16,13 @@ Partreach::Application.routes.draw do
   resources :dialogues, only: [:new, :create]
   get '/dialogues/new/:id', to: 'dialogues#new'
   get '/dialogues/initial_email/:id', to: 'dialogues#initial_email', as: 'dialogue_initial_email'
+  get '/dialogues/edit_rfq_close_email/:id', to: 'dialogues#edit_rfq_close_email', as: 'dialogue_edit_rfq_close_email'
+  get '/dialogues/generate_rfq_close_email', to: 'dialogues#generate_rfq_close_email', as: 'dialogue_generate_rfq_close_email'
+  get '/dialogues/review_rfq_close_email/:id', to: 'dialogues#review_rfq_close_email', as: 'dialogue_review_rfq_close_email'
+  match '/dialogues/update_rfq_close_email', to: 'dialogues#update_rfq_close_email', as: 'dialogue_update_rfq_close_email', via: :post
   match '/dialogues/update_email_snippet', to: 'dialogues#update_email_snippet', as: 'dialogue_update_email_snippet', via: :post
   match '/dialogues/send_initial_email/:id', to: 'dialogues#send_initial_email', as: 'dialogue_send_initial_email', via: :post
-  match '/dialogues/generic_quote_ended_email/:id', to: 'dialogues#send_generic_quote_ended_email', as: 'dialogue_send_generic_quote_ended_email', via: :post
+  match '/dialogues/send_rfq_close_email/:id', to: 'dialogues#send_rfq_close_email', as: 'dialogue_send_rfq_close_email', via: :post
 
   get '/examinations/:name', to: 'examinations#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"

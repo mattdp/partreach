@@ -1,6 +1,3 @@
-#!/bin/env ruby
-# encoding: utf-8
-
 module OrdersHelper
 
   def bids_received(order)
@@ -27,24 +24,6 @@ module OrdersHelper
 
   end
 
-  def currencyize(amount, currency)
-
-    if amount.nil?
-      return "-"
-    else
-      if currency == "dollars"
-        currency_symbol = "$"
-      elsif currency == "euros"
-        currency_symbol = "€"
-      elsif currency == "pounds"
-        currency_symbol = "£"
-      else
-        currency_symbol = ""
-      end
-      return sprintf("#{currency_symbol}%.02f",amount)
-    end
-  end
-
   def notarize(shipping,notes)
     if !shipping.nil? and !notes.nil?
       "#{shipping}; #{notes}"
@@ -58,6 +37,21 @@ module OrdersHelper
       return d if d.won 
     end
     return nil
+  end
+
+  def html_snippet_helper(url, order_id)
+    suffix = url.split(".").last.upcase
+    if suffix.in? ["PNG", "JPG"]
+      <<-HTML
+<p><a href="#{url}" alt="SupplyBetter RFQ#{order_id}>" target="_blank">
+<img src="#{url}" alt="SupplyBetter RFQ#{order_id}" width="460">
+</a></p>
+      HTML
+    else
+      <<-HTML
+<a href="#{url}">Link to #{suffix}</a>
+      HTML
+    end
   end
   
 end

@@ -185,9 +185,15 @@ class OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order.update_attributes(order_params)
 
-    params["order_group_email_snippets"].each do |id,text|
+    params["order_group_parts_snippets"].each do |id,text|
       order_group = OrderGroup.find(id)
-      order_group.email_snippet = text
+      order_group.parts_snippet = text
+      order_group.save
+    end
+
+    params["order_group_images_snippets"].each do |id,text|
+      order_group = OrderGroup.find(id)
+      order_group.images_snippet = text
       order_group.save
     end
 
@@ -276,7 +282,6 @@ class OrdersController < ApplicationController
   def manipulate_parts
     @order = Order.find(params[:id])
     @order_groups = @order.order_groups.order("created_at")
-    @total_quantity = @order.total_quantity
   end
 
   def update_parts

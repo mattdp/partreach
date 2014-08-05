@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140630125654) do
+ActiveRecord::Schema.define(version: 20140724151952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,7 @@ ActiveRecord::Schema.define(version: 20140630125654) do
     t.integer  "order_group_id"
     t.boolean  "supplier_working"
     t.text     "email_snippet"
+    t.text     "close_email_body"
   end
 
   create_table "events", force: true do |t|
@@ -207,7 +208,8 @@ ActiveRecord::Schema.define(version: 20140630125654) do
     t.datetime "updated_at"
     t.string   "process"
     t.string   "material"
-    t.text     "email_snippet"
+    t.text     "parts_snippet"
+    t.text     "images_snippet"
   end
 
   create_table "orders", force: true do |t|

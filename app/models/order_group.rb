@@ -9,7 +9,8 @@
 #  updated_at    :datetime
 #  process       :string(255)
 #  material      :string(255)
-#  email_snippet :text
+#  parts_snippet :text
+#  images_snippet :text
 #
 
 class OrderGroup < ActiveRecord::Base
@@ -24,20 +25,51 @@ class OrderGroup < ActiveRecord::Base
     OrderGroup.create!({name: "Default"})
   end
 
-  def email_snippet_generator
-    snippet = "<p><u><strong>#{self.name} (Process: #{self.process}, Material: #{self.material})</strong></u></p>\n"
-    snippet += "<ul>\n"
+  def parts_snippet_generator
+    snippet = <<-HTML
+<p><u><strong>#{name} (Process: #{process}, Material: #{material})</strong></u></p>
+<p><strong>Download link for all files:</strong> <a href="ZIPFILELINK]"> <strong>ZIPFILENAME]</strong></a></p>
+<p><strong>Total Quantity: </strong>TOTALQUANTITY</p>
+
+<p>Please quote the items below individually.</p>
+    HTML
+
     self.parts.each do |part|
       external = part.external
-      snippet += "<li>\n#{part.name}, quantity #{part.quantity}"
-      if external
-        snippet += " (<a href=#{external.url}>Link to drawing</a>"
-        snippet += ", drawing units: #{external.units})\n"
-      end
-      snippet += "</li>\n"
+      next if external.nil?
+      suffix = external.url.split(".").last.upcase
+      next if suffix.in? ["PNG", "JPG", "ZIP"]
+      part_name_without_suffix = part.name.slice(0, part.name.rindex("."))
+
+      snippet += <<-HTML
+<ul>
+<li><strong>Part: </strong>#{part_name_without_suffix} (<a href=#{external.url}><strong>Link to #{suffix} file</strong></a>)</li>
+<li><strong>Quantity: </strong>QUANTITY</li>
+<li><strong>Color: </strong>COLOR</li>
+<li><strong>Desired method: </strong>METHOD</li>
+<li><strong>Drawing units: </strong>UNITS</li>
+</ul>
+      HTML
     end
-    snippet += "</ul>\n"
-    return snippet
+
+    snippet
+  end
+
+  def images_snippet_generator
+    snippet = ""
+    self.parts.each do |part|
+      external = part.external
+      next if external.nil?
+      suffix = external.url.split(".").last.upcase
+      if suffix.in? ["PNG", "JPG"]
+        snippet += <<-HTML
+<p><a href="#{external.url}" alt="SupplyBetter RFQ#{order_id}" target="_blank">
+<img src="#{external.url}" alt="SupplyBetter RFQ#{order_id}" width="460"></a></p>
+        HTML
+      end
+    end
+
+    snippet
   end
 
   def self.switch_group(to_group_id,model_array)
@@ -94,5 +126,11 @@ class OrderGroup < ActiveRecord::Base
 
     return answer
   end    
+
+  def build_bidset
+    bidset = BidSet.new
+    self.dialogues.map{|d| bidset.include(d) if d.bid?}
+    bidset
+  end
 
 end
