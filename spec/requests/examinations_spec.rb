@@ -16,18 +16,44 @@ describe "/examinations requests" do
 
     it "displays the Review Examination page" do
       get "/examinations/review"
-      response.should render_template(:_review_examination)
+      expect(response).to render_template(:_review_examination)
     end
   end
 
   describe "Supplier search result examination" do
     before do
-      FactoryGirl.create :web_search_result
+      @wsr = FactoryGirl.create :web_search_result
+      @expected_tags = Array.new
+      # new_supplier tags
+      @expected_tags << FactoryGirl.create(:tag, name: 'b0_none_sent')
+      @expected_tags << FactoryGirl.create(:tag, name: 'n1_no_contact')
+      @expected_tags << FactoryGirl.create(:tag, name: 'e2_existence_unknown')
+      # datadump tag
+      @expected_tags << FactoryGirl.create(:tag, name: 'datadump')
     end
 
     it "displays the Supplier Search Result Examination page" do
       get "/examinations/supplier_search_result"
-      response.should render_template(:_supplier_search_result_examination)
+      expect(response).to render_template(:_supplier_search_result_examination)
+    end
+
+    it "adds chosen supplier as a new supplier" do
+      get "/examinations/supplier_search_result"
+      post "/examinations",
+        "model_examined"=>"supplier_search_result", "name"=>{@wsr.id=>"derived_name"},
+        "url_main"=>{@wsr.id=>"http://derived_url.com"}, "choices"=>{@wsr.id=>"add_supplier"}
+
+      expect(response).to redirect_to (setup_examinations_path('supplier_search_result'))
+      follow_redirect!
+      expect(response.body).to include("Supplier search results submitted")
+
+      new_supplier = Supplier.first
+      expect(new_supplier.name).to eq 'derived_name'
+      expect(new_supplier.url_main).to eq 'http://derived_url.com'
+      expect(new_supplier.source).to eq 'supplier_search_result_examination'
+      expect(new_supplier.profile_visible).to be_false
+      # verify that all expected tags are included in new_supplier.tags:
+      expect((@expected_tags - new_supplier.tags).empty?).to be_true
     end
   end
 
