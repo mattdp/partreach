@@ -100,7 +100,7 @@ task :daily_cache_reset => :environment do
   
   to_reset = {
     "us_states_of_visible_profiles" => 'Address.us_states_of_visible_profiles',
-    "dialogues_new_setup" => 'Dialogue.dialogues_new_setup'
+    "dialogues_new_setup" => 'Supplier.dialogues_new_setup'
   }
 
   to_reset.each do |key,method_string|
