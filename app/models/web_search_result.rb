@@ -1,7 +1,7 @@
 class WebSearchResult < ActiveRecord::Base
 
   belongs_to :web_search_item
-  belongs_to :user, :foreign_key => "action_taken_by_id"
+  belongs_to :action_taken_by, class_name: User, foreign_key: "action_taken_by_id"
   belongs_to :supplier
 
   scope :in_priority_order, -> { includes(:web_search_item).order('web_search_items.priority desc, web_search_results.created_at desc') }
@@ -17,7 +17,7 @@ class WebSearchResult < ActiveRecord::Base
   end
 
   def record_action(choice, user, supplier=nil)
-    update(action: choice, action_taken_by_id: user.id, supplier: supplier)
+    update(action: choice, action_taken_by: user, supplier: supplier)
     WebSearchResult.mark_duplicates(domain, id)
   end
 
