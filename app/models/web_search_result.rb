@@ -4,17 +4,27 @@ class WebSearchResult < ActiveRecord::Base
   belongs_to :user, :foreign_key => "action_taken_by_id"
   belongs_to :supplier
 
-  def self.quantity_for_examination(quantity)
-    if quantity == 'all'
-      return WebSearchResult.in_priority_order.take(all)
-    else
-      return WebSearchResult.in_priority_order.take(quantity)
-    end
-  end
-
   scope :in_priority_order, -> { includes(:web_search_item).order('web_search_items.priority desc, web_search_results.created_at desc') }
   scope :matches_exclusions, -> { where("domain IN (SELECT domain FROM search_exclusions)") }
   scope :matches_suppliers, -> { joins("JOIN suppliers s ON s.url_main LIKE '%' || domain || '%'") }
+
+  def self.quantity_for_examination(quantity)
+    if quantity == 'all'
+      return WebSearchResult.where(action: nil).in_priority_order.take(all)
+    else
+      return WebSearchResult.where(action: nil).in_priority_order.take(quantity)
+    end
+  end
+
+  def record_action(choice, user, supplier=nil)
+    update(action: choice, action_taken_by_id: user.id, supplier: supplier)
+    WebSearchResult.mark_duplicates(domain, id)
+  end
+
+  def self.mark_duplicates(domain, except_id)
+    WebSearchResult.where(domain: domain).where.not(id: except_id).update_all(action: 'duplicate_domain')
+  end
+
 
   def self.search_google(item)
     WebSearchResult.search_loop(item)
@@ -70,16 +80,6 @@ class WebSearchResult < ActiveRecord::Base
         return
       end
     end
-  end
-
-
-  def record_action(choice, supplier=nil)
-    update(action: choice, action_taken_by_id: current_user, supplier: supplier)
-    WebSearchResult.mark_duplicates(domain)
-  end
-
-  def self.mark_duplicates(domain)
-    WebSearchResult.where(domain: domain).update_all(action: 'duplicate_domain')
   end
 
 end
