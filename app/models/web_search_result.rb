@@ -1,6 +1,8 @@
 class WebSearchResult < ActiveRecord::Base
 
   belongs_to :web_search_item
+  belongs_to :user, :foreign_key => "action_taken_by_id"
+  belongs_to :supplier
 
   def self.quantity_for_examination(quantity)
     if quantity == 'all'
@@ -14,22 +16,12 @@ class WebSearchResult < ActiveRecord::Base
   scope :matches_exclusions, -> { where("domain IN (SELECT domain FROM search_exclusions)") }
   scope :matches_suppliers, -> { joins("JOIN suppliers s ON s.url_main LIKE '%' || domain || '%'") }
 
-  def self.domain_for_id(id)
-    item = WebSearchResult.find_by(id: id)
-    item.domain if item
-  end
-
-  def self.delete_all_with_matching_domain(id)
-    domain = WebSearchResult.domain_for_id(id)
-    WebSearchResult.delete_all(["domain = ?", domain]) if domain
-  end
-
   def self.search_google(item)
     WebSearchResult.search_loop(item)
 
     # delete results with domains matching existing suppliers
     WebSearchResult.matches_suppliers.delete_all
-    # delete results with domains that have been flagged as not suppliers
+    # delete results with domains that have been excluded as not being suppliers
     WebSearchResult.matches_exclusions.delete_all
 
     item.update!(run_date: DateTime.now, net_new_results: item.web_search_results.count)
@@ -78,6 +70,16 @@ class WebSearchResult < ActiveRecord::Base
         return
       end
     end
+  end
+
+
+  def record_action(choice, supplier=nil)
+    update(action: choice, action_taken_by_id: current_user, supplier: supplier)
+    WebSearchResult.mark_duplicates(domain)
+  end
+
+  def self.mark_duplicates(domain)
+    WebSearchResult.where(domain: domain).update_all(action: 'duplicate_domain')
   end
 
 end

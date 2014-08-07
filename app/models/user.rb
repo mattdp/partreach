@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_one :address, :as => :place, :dependent => :destroy
   has_one :supplier
   has_one :lead, dependent: :destroy
+  has_many :web_search_results, :foreign_key => "action_taken_by_id"
 
   before_save :create_remember_token
 
