@@ -4,7 +4,7 @@ class DialoguesController < ApplicationController
   def new
     @structure = Rails.cache.fetch "dialogues_new_setup", :expires_in => 25.hours do |key|
       logger.debug "Cache miss: dialogues_new_setup"
-      Dialogue.dialogues_new_setup
+      Supplier.dialogues_new_setup
     end
     @tags_by_group = Tag.tags_by_group
     @countries = Geography.all_countries.map{|geo| geo.short_name}
@@ -66,7 +66,7 @@ class DialoguesController < ApplicationController
 
     elsif params[:form_use] == "refresh_cache"
       @order = Order.find(params[:order_id_field])
-      Rails.cache.write("dialogues_new_setup",Dialogue.dialogues_new_setup,:expires_in => 25.hours)
+      Rails.cache.write("dialogues_new_setup", Supplier.dialogues_new_setup,:expires_in => 25.hours)
       redir_to = "/dialogues/new/#{@order.id}"
       redir_notice = "Cache reset attempted."
     else #should never happen

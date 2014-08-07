@@ -175,6 +175,27 @@ class Supplier < ActiveRecord::Base
     new_supplier
   end
 
+  #return array of hashes, each containing the needed information on suppliers, for caching purposes
+  def self.dialogues_new_setup
+    structure = []
+    suppliers = Supplier.all.sort_by! { |s| s.name.downcase }
+    suppliers.each do |supplier|
+      tag_names = supplier.tags.map{|t| t.name}
+      # don't include suppliers with datadump tag
+      if (tag_names & ["datadump", "e0_out_of_business"]).empty?
+        address = supplier.address
+        structure << {
+          supplier: supplier,
+          tag_names: supplier.tags.map{|t| t.name},
+          safe_country: supplier.safe_country,
+          safe_state: supplier.safe_state,
+          safe_zip: supplier.safe_zip
+        }
+      end
+    end
+    return structure
+  end
+
   def update_tags(submitted_tag_ids)
     saved_ok = true
     
