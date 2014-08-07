@@ -1,93 +1,101 @@
-<h1>Supplier web search items</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-<%= link_to "Supplier search results", setup_examinations_path("supplier") %>
+      <h1>Supplier web search items</h1>
 
-<h3>Current list waiting to run:</h3>
-<table>
-  <thead>
-    <tr>
-      <th>Query terms</th>
-      <th># requested</th>
-      <th>Priority</th>
-      <th>Create date</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+      <%= link_to "Supplier search results", setup_examinations_path("supplier") %>
 
-  <tbody>
-    <% @web_search_items.each do |web_search_item| %>
+      <h3>Current list waiting to run:</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Query terms</th>
+            <th># requested</th>
+            <th>Priority</th>
+            <th>Create date</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @web_search_items.each do |web_search_item| %>
+            <tr>
+              <td><%= web_search_item.query %></td>
+              <td><%= web_search_item.num_requested %></td>
+              <td><%= web_search_item.priority %></td>
+              <td><%= web_search_item.created_at.to_s(:db) %></td>
+              <td><%= link_to 'Edit', edit_web_search_item_path(web_search_item) %></td>
+              <td><%= link_to 'Delete', web_search_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+
+      <div>
+      <%= link_to 'Add new search item', new_web_search_item_path %>
+      </div>
+
+      <br>
+
+      <div>
+      <h3>Upload additional search items:</h3>
+      <%= form_tag({action: :upload}, multipart: true) do %>
+      <table>
+      <tbody>
       <tr>
-        <td><%= web_search_item.query %></td>
-        <td><%= web_search_item.num_requested %></td>
-        <td><%= web_search_item.priority %></td>
-        <td><%= web_search_item.created_at.to_s(:db) %></td>
-        <td><%= link_to 'Edit', edit_web_search_item_path(web_search_item) %></td>
-        <td><%= link_to 'Delete', web_search_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td>
+        <%= file_field_tag :file %>
+      </td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <tr>
+      <td>
+        <%= label_tag :priority %>
+        <%= number_field_tag :priority %>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <%= label_tag :num_requested %> (max. 100)
+        <%= text_field_tag :num_requested %>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <%= submit_tag "Upload items" %>
+      </td>
+      </tr>
+      </tbody>
+      </table>
+      <% end %>
+      </div>
 
-<br>
+      <br>
 
-<div>
-<%= link_to 'Add new search item', new_web_search_item_path %>
-</div>
+      <div>
+      <h3>Run search from current list</h3>
+      <%= form_tag(action: :run_immediate) do %>
+      <table>
+      <tbody>
+      <tr>
+      <td>
+        <%= label_tag :priority, "Number of items (max. 10)" %>
+        <%= number_field_tag :batch_size %>
+      </td>
+      </tr>
+      <tr>
+      <td>
+        <%= submit_tag "Run search" %>
+      </td>
+      </tr>
+      </tbody>
+      </table>
+      <% end %>
+      </div>
 
-<br>
-
-<div>
-<h3>Upload additional search items:</h3>
-<%= form_tag({action: :upload}, multipart: true) do %>
-<table>
-<tbody>
-<tr>
-<td>
-  <%= file_field_tag :file %>
-</td>
-</tr>
-<tr>
-<td>
-  <%= label_tag :priority %>
-  <%= number_field_tag :priority %>
-</td>
-</tr>
-<tr>
-<td>
-  <%= label_tag :num_requested %> (max. 100)
-  <%= text_field_tag :num_requested %>
-</td>
-</tr>
-<tr>
-<td>
-  <%= submit_tag "Upload items" %>
-</td>
-</tr>
-</tbody>
-</table>
-<% end %>
-</div>
-
-<br>
-
-<div>
-<h3>Run search from current list</h3>
-<%= form_tag(action: :run_immediate) do %>
-<table>
-<tbody>
-<tr>
-<td>
-  <%= label_tag :priority, "Number of items (max. 10)" %>
-  <%= number_field_tag :batch_size %>
-</td>
-</tr>
-<tr>
-<td>
-  <%= submit_tag "Run search" %>
-</td>
-</tr>
-</tbody>
-</table>
-<% end %>
+    </div>
+  </div>
 </div>
