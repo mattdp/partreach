@@ -206,7 +206,9 @@ class OrdersController < ApplicationController
     @user = User.find(@order.user_id)
     @lead_contact = @user.lead.lead_contact
     @total_quantity = @order.total_quantity
-    @order_create_date_utc = "#{@order.created_at.month}/#{@order.created_at.day}/#{@order.created_at.year}"
+
+    create_time = @order.created_at.in_time_zone("Pacific Time (US & Canada)")
+    @order_create_date = "#{create_time.month}/#{create_time.day}/#{create_time.year}"
 
     @checkboxes = setup_checkboxes
     @textfields = setup_textfields

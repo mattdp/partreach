@@ -8,7 +8,7 @@
 
       <%= render "layouts/order_basics" %>
 
-      <p><strong>Order creation date (UTC): </strong><%= "#{@order_create_date_utc}" %></p>
+      <p><strong>Order creation date: </strong><%= "#{@order_create_date}" %></p>
       <p><strong>User email: </strong><%= "#{@lead_contact.email}" %></p>
       <% if !@order.override_average_value.nil? %>
         <p><strong>Override value for what quote was worth, for tracking (console change): </strong><%= @order.override_average_value %>
