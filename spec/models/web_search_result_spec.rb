@@ -3,59 +3,54 @@ require 'spec_helper'
 describe WebSearchResult do
 
   before :each do
-    @a = FactoryGirl.create(:web_search_result, domain: "aaa.com")
-    @b1 = FactoryGirl.create(:web_search_result, domain: "bbb.com")
-    @c = FactoryGirl.create(:web_search_result, domain: "ccc.com")
-    @b2 = FactoryGirl.create(:web_search_result, domain: "bbb.com")
+    @wsr1 = FactoryGirl.create(:web_search_result, domain: "aaa.com")
+    @wsr2 = FactoryGirl.create(:web_search_result, domain: "bbb.com")
+    @wsr3 = FactoryGirl.create(:web_search_result, domain: "ccc.com")
+    @wsr4 = FactoryGirl.create(:web_search_result, domain: "bbb.com")
   end
+
+  let (:examiner) {FactoryGirl.create :examiner_user}
+  let (:supplier) {FactoryGirl.create :supplier}
 
   describe "scope :matches_exclusions" do
     it "selects all items with domains in the exlusions list" do
-      FactoryGirl.create(:search_exclusion, domain: "ccc.com")
-      FactoryGirl.create(:search_exclusion, domain: "xyz.com")
-      FactoryGirl.create(:search_exclusion, domain: "bbb.com")
-
-      expect(WebSearchResult.matches_exclusions.size).to eq 3
+      @e1 = FactoryGirl.create(:search_exclusion, domain: "bbb.com")
+      @e2 = FactoryGirl.create(:search_exclusion, domain: "xyz.com")
+      @e3 = FactoryGirl.create(:search_exclusion, domain: "aaa.com")
+      expect(WebSearchResult.matches_exclusions).to match_array([@wsr1, @wsr2, @wsr4])
     end
   end
 
   describe "scope :matches_suppliers" do
     it "selects all items with root domains of existing suppliers" do
-      FactoryGirl.create(:supplier, url_main: "http://www.ccc.com/index.asp")
-      FactoryGirl.create(:supplier, url_main: "http://www.xyz.com")
-      FactoryGirl.create(:supplier, url_main: "https://www.bbb.com/3d_printing")
-
-      expect(WebSearchResult.matches_suppliers.size).to eq 3
+      @s1 = FactoryGirl.create(:supplier, url_main: "http://www.ccc.com/index.asp")
+      @s2 = FactoryGirl.create(:supplier, url_main: "http://www.xyz.com")
+      @s3 = FactoryGirl.create(:supplier, url_main: "https://www.bbb.com/3d_printing")
+      expect(WebSearchResult.matches_suppliers).to match_array([@wsr2, @wsr3, @wsr4])
     end
   end
 
-  describe "#self.delete_all_with_matching_domain" do
-    context "when selected item has unique domain" do
-      it "deletes that item only" do
-        WebSearchResult.delete_all_with_matching_domain(@a.id)
+  describe "#record_action" do
+    it "keeps track of which user took an action, and what choice they made" do
+      @wsr1.record_action("not_supplier", examiner)
 
-        expect(WebSearchResult.all.size).to eq 3
-        expect(WebSearchResult.where("domain = 'aaa.com'").size).to eq 0
-      end
+      wsr = WebSearchResult.find(@wsr1.id)
+      expect(wsr.action).to eq "not_supplier"
+      expect(wsr.action_taken_by).to eq examiner
     end
 
-    context "when other items have same domain as selected item" do
-      it "deletes selected item and all other items with matching domain" do
-        WebSearchResult.delete_all_with_matching_domain(@b1.id)
+    it "keeps track of associated supplier, when given" do
+      @wsr3.record_action("add_supplier", examiner, supplier)
 
-        expect(WebSearchResult.all.size).to eq 2
-        expect(WebSearchResult.where("domain = 'bbb.com'").size).to eq 0
-      end
+      wsr = WebSearchResult.find(@wsr3.id)
+      expect(wsr.supplier).to eq supplier
     end
 
-    context "when selected item has already been deleted" do
-      it "does not delete any items" do
-        id = @b1.id
-        @b1.destroy!
-        WebSearchResult.delete_all_with_matching_domain(id)
+    it "marks other search results with same domain as duplicate" do
+      @wsr2.record_action("not_supplier", examiner, supplier)
 
-        expect(WebSearchResult.all.size).to eq 3
-      end
+      wsr = WebSearchResult.find(@wsr4.id)
+      expect(wsr.action).to eq "duplicate_domain"
     end
   end
 

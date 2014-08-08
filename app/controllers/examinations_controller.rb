@@ -42,16 +42,14 @@ class ExaminationsController < ApplicationController
       note = "Supplier search results submitted"
       if params[:choices]
         params[:choices].each do |wsr_id, choice|
-          if choice == "add_supplier"
-            Supplier.create_new_from_supplier_search_result_examination(
+          case choice
+          when "add_supplier"
+            supplier = Supplier.create_new_from_supplier_search_result_examination(
               name: params[:name][wsr_id], url_main: params[:url_main][wsr_id])
-            WebSearchResult.delete_all_with_matching_domain(wsr_id)
-          elsif choice == "not_supplier"
-            SearchExclusion.create({:domain => WebSearchResult.domain_for_id(wsr_id)})
-            WebSearchResult.delete_all_with_matching_domain(wsr_id)
-          elsif choice == "drop"
-            WebSearchResult.delete(wsr_id)
+          when "not_supplier"
+            SearchExclusion.create({:domain => WebSearchResult.find(wsr_id).domain})
           end
+          WebSearchResult.find(wsr_id).record_action(choice, current_user, supplier)
         end
       end
     elsif params[:model_examined] == "review"

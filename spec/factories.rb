@@ -10,6 +10,10 @@ FactoryGirl.define do
     factory :admin_user do
       admin   true
     end
+
+    factory :examiner_user do
+      examiner  true
+    end
   end
 
   factory :lead do |l|
