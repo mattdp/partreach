@@ -1,7 +1,7 @@
 <div class="order_basics bit-of-space">
-  <% if @order.name != "" %>
-    <strong>Order name: </strong> <%= "#{@order.name}" %>
-    <br>
+  <p><strong>Order created: </strong><%= @order_create_date_pacific.strftime("%m/%d/%Y %H:%M (%Z)") %></p>
+  <% if @order.name.present? %>
+    <p><strong>Order name: </strong> <%= "#{@order.name}" %></p>
   <% end %>
   <span class="index_quantity"><strong>Total quantity: </strong><%= "#{@total_quantity}" %></span>
   <span class="index_quantity"><strong>Drawing units: </strong><%= "#{@order.units}" %></span>
