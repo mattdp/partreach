@@ -37,6 +37,7 @@ class Supplier < ActiveRecord::Base
   has_many :externals, :as => :consumer, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
   has_many :communications, as: :communicator, :dependent => :destroy
+  has_one :web_search_result
 
   has_one :contract_contact, :as => :contactable, :dependent => :destroy
   has_one :billing_contact, :as => :contactable, :dependent => :destroy

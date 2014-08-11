@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140724151952) do
+ActiveRecord::Schema.define(version: 20140806225717) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -399,6 +399,9 @@ ActiveRecord::Schema.define(version: 20140724151952) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "web_search_item_id"
+    t.string   "action"
+    t.integer  "action_taken_by_id"
+    t.integer  "supplier_id"
   end
 
   add_index "web_search_results", ["domain"], name: "index_web_search_results_on_domain", using: :btree
