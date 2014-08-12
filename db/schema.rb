@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806225717) do
+ActiveRecord::Schema.define(version: 20140809055336) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -383,7 +383,7 @@ ActiveRecord::Schema.define(version: 20140806225717) do
     t.datetime "run_date"
     t.integer  "num_requested"
     t.integer  "net_new_results"
-    t.integer  "suppliers_added"
+    t.integer  "suppliers_added", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
