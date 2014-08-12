@@ -208,6 +208,9 @@ class OrdersController < ApplicationController
     @total_quantity = @order.total_quantity
     @order_create_date_pacific = @order.created_at.in_time_zone("Pacific Time (US & Canada)")
 
+    create_time = @order.created_at.in_time_zone("Pacific Time (US & Canada)")
+    @order_create_date = "#{create_time.month}/#{create_time.day}/#{create_time.year}"
+
     @checkboxes = setup_checkboxes
     @textfields = setup_textfields
     @numberfields = setup_numberfields
