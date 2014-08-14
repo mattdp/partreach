@@ -17,105 +17,92 @@
       </p></h4>
 
       <div class="supplier-profile">
-        <% if !@allowed %>
-          <% provide(:title, "Profile not found") %>
-          <% meta_description "Profile not found" %>
-          <h3 class="center bit-of-space">This is not a valid URL to find a supplier profile</h3>
-          <p>It's possible we haven't released a profile for this supplier yet, or perhaps you typed in a bad address.</p>
-
-          <p>Help expand our database by
-            <%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for adding a supplier" %></p>
-
-          <p>Want to head to the <%= link_to "home page", root_path %> instead?</p>
-        <% else %>
-          <% provide(:title, "#{@supplier.name} - Supplier Profile") %>
-          <% meta_description @meta %>
-          <h1 id="supplier-name" class="left">
-            <%= "#{@supplier.name}" %>
-            <%= " (not visible)" unless @supplier.profile_visible %>
-            <%= link_to "Link to admin_edit", admin_edit_path(@supplier.name_for_link) if current_user and current_user.admin? %>
-          </h1>
-          <div class="fleft">
-            <div>
-              <p>
-                <%= "Location: #{@supplier.safe_country}" %>
-                <%= " - #{@supplier.safe_location_name}" if @supplier.safe_location_name.length > 0 %>          
-                <%= ", #{@supplier.safe_state}" if @supplier.safe_state.length > 0 %>
-              </p>
-              <%= render :partial => "/profiles/tag_display", locals: {tags: @tags, row_end: 4} %>
-              <p>
-                <% if !@supplier.url_main.nil? %>
-                  <%= link_to "Webpage", @supplier.url_main %>
-                <% else %> 
-                  Webpage unavailable.
-                <% end %>
-              </p>
-            </div>
-            <div>
-              <% @supplier.externals.each do |e| %>
-                <%= image_tag e.url, class: "supplier-image-box" %>
-              <% end %> 
-            </div>
+        <% provide(:title, "#{@supplier.name} - Supplier Profile") %>
+        <% meta_description @meta %>
+        <h1 id="supplier-name" class="left">
+          <%= "#{@supplier.name}" %>
+          <%= " (not visible)" unless @supplier.profile_visible %>
+          <%= link_to "Link to admin_edit", admin_edit_path(@supplier.name_for_link) if current_user and current_user.admin? %>
+        </h1>
+        <div class="fleft">
+          <div>
+            <p>
+              <%= "Location: #{@supplier.safe_country}" %>
+              <%= " - #{@supplier.safe_location_name}" if @supplier.safe_location_name.length > 0 %>          
+              <%= ", #{@supplier.safe_state}" if @supplier.safe_state.length > 0 %>
+            </p>
+            <%= render :partial => "/profiles/tag_display", locals: {tags: @tags, row_end: 4} %>
+            <p>
+              <% if !@supplier.url_main.nil? %>
+                <%= link_to "Webpage", @supplier.url_main %>
+              <% else %> 
+                Webpage unavailable.
+              <% end %>
+            </p>
           </div>
-          <div class="fright">
-            <%= link_to "Request Quote", {:controller => "static_pages", :action => "questions", :from_supplier => @supplier.id}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
-            <% if !@supplier.claimed %>
-              <p><%= mail_to "claim-profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
-            <% end %>
-            <p><%= mail_to "suggest-edits@supplybetter.com", "Submit corrections or more information", encode: "javascript", target: "_blank", subject: "Suggested profile change for #{@supplier.name}" %></p>
+          <div>
+            <% @supplier.externals.each do |e| %>
+              <%= image_tag e.url, class: "supplier-image-box" %>
+            <% end %> 
           </div>
-          <div class="clear supplier-variable">
-            <ul class="nav nav-tabs">
-              <li class="active"><%= link_to "Description", "#", :class => "description-toggle" %></li>
-              <% @num_machines > 0 ? machines_link_text = "Machines (#{@num_machines})" : machines_link_text = "Machines" %>
-              <% if @machines_toggle %><li><%= link_to "#{machines_link_text}", "#", :class => "machines-toggle" %></li><% end %>
-              <% @num_reviews > 0 ? reviews_link_text = "Reviews (#{@num_reviews})" : reviews_link_text = "Reviews" %>              
-              <% if @reviews_toggle %><li><%= link_to "#{reviews_link_text}", "#", :class => "reviews-toggle" %></li><% end %>
-              <% if @photos_toggle %><li><%= link_to "Photos", "#", :class => "photos-toggle" %></li><% end %>
-            </ul>
+        </div>
+        <div class="fright">
+          <%= link_to "Request Quote", {:controller => "static_pages", :action => "questions", :from_supplier => @supplier.id}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
+          <% if !@supplier.claimed %>
+            <p><%= mail_to "claim-profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
+          <% end %>
+          <p><%= mail_to "suggest-edits@supplybetter.com", "Submit corrections or more information", encode: "javascript", target: "_blank", subject: "Suggested profile change for #{@supplier.name}" %></p>
+        </div>
+        <div class="clear supplier-variable">
+          <ul class="nav nav-tabs">
+            <li class="active"><%= link_to "Description", "#", :class => "description-toggle" %></li>
+            <% @num_machines > 0 ? machines_link_text = "Machines (#{@num_machines})" : machines_link_text = "Machines" %>
+            <% if @machines_toggle %><li><%= link_to "#{machines_link_text}", "#", :class => "machines-toggle" %></li><% end %>
+            <% @num_reviews > 0 ? reviews_link_text = "Reviews (#{@num_reviews})" : reviews_link_text = "Reviews" %>              
+            <% if @reviews_toggle %><li><%= link_to "#{reviews_link_text}", "#", :class => "reviews-toggle" %></li><% end %>
+            <% if @photos_toggle %><li><%= link_to "Photos", "#", :class => "photos-toggle" %></li><% end %>
+          </ul>
 
-            <div class="supplier-variable-content">
-              <div class="panel description-content">
-                <% if @supplier.description.nil? %>
-                  <%= render :partial => "profiles/panel_text", :locals => {:no_yet => "description", :lead_type => "description_requested", :s_id => @supplier.id, :u_id => @user_id} %>
+          <div class="supplier-variable-content">
+            <div class="panel description-content">
+              <% if @supplier.description.nil? %>
+                <%= render :partial => "profiles/panel_text", :locals => {:no_yet => "description", :lead_type => "description_requested", :s_id => @supplier.id, :u_id => @user_id} %>
+              <% else %>
+                <div class="supplier-description">
+                  <%= raw(@supplier.description) %>
+                </div>
+              <% end %>
+            </div>
+            <% if @machines_toggle %>
+              <div class="panel hidden machines-content">
+                <% if @supplier.machines.nil? or @supplier.machines == [] %>
+                  <%= render :partial => "profiles/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested", :s_id => @supplier.id, :u_id => @user_id} %>
                 <% else %>
-                  <div class="supplier-description">
-                    <%= raw(@supplier.description) %>
-                  </div>
+                  <%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier, show_delete: false } %>
                 <% end %>
               </div>
-              <% if @machines_toggle %>
-                <div class="panel hidden machines-content">
-                  <% if @supplier.machines.nil? or @supplier.machines == [] %>
-                    <%= render :partial => "profiles/panel_text", :locals => {:no_yet => "machine data", :lead_type => "machines_requested", :s_id => @supplier.id, :u_id => @user_id} %>
-                  <% else %>
-                    <%= render :partial => "profiles/machine_listing", locals: { machines_quantity_hash: @machines_quantity_hash, supplier: @supplier, show_delete: false } %>
+            <% end %>
+            <% if @reviews_toggle %>
+              <div class="panel hidden reviews-content">
+                <% visible_reviews = @supplier.visible_reviews %>
+                <% if visible_reviews == [] %>
+                  <%= render :partial => "profiles/panel_text", :locals => {:no_yet => "reviews", :lead_type => "reviews_requested", :s_id => @supplier.id, :u_id => @user_id} %>
+                <% else %>
+                  <p>There <%= visible_reviews.count > 1 ? "are" : "is" %> currently <%= "#{pluralize(visible_reviews.count,'review')}" %>. <%= link_to "Add more to help others choose well!", new_review_path %>
+                  <% visible_reviews.each do |review| %>
+                    <div class="review_on_profile">
+                      <%= render :partial => "profiles/review_listing", locals: {review: review} %>
+                    </div>
                   <% end %>
-                </div>
-              <% end %>
-              <% if @reviews_toggle %>
-                <div class="panel hidden reviews-content">
-                  <% visible_reviews = @supplier.visible_reviews %>
-                  <% if visible_reviews == [] %>
-                    <%= render :partial => "profiles/panel_text", :locals => {:no_yet => "reviews", :lead_type => "reviews_requested", :s_id => @supplier.id, :u_id => @user_id} %>
-                  <% else %>
-                    <p>There <%= visible_reviews.count > 1 ? "are" : "is" %> currently <%= "#{pluralize(visible_reviews.count,'review')}" %>. <%= link_to "Add more to help others choose well!", new_review_path %>
-                    <% visible_reviews.each do |review| %>
-                      <div class="review_on_profile">
-                        <%= render :partial => "profiles/review_listing", locals: {review: review} %>
-                      </div>
-                    <% end %>
-                  <% end %>
-                </div>
-              <% end %>
-              <% if @photos_toggle %><div class="panel hidden photos-content"><%= render :partial => "profiles/panel_text", :locals => {:no_yet => "photos", :lead_type => "photos_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
-            </div>
+                <% end %>
+              </div>
+            <% end %>
+            <% if @photos_toggle %><div class="panel hidden photos-content"><%= render :partial => "profiles/panel_text", :locals => {:no_yet => "photos", :lead_type => "photos_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
           </div>
-        <% end %>
+        </div>
 
-        <% @return_path ||= us_3dprinting_path %>
         <div class="back_to_suppliers">
-          <%= link_to "Return to supplier index", @return_path %>
+          <%= link_to "Return to supplier index", us_3dprinting_path %>
         </div>
       </div>
 

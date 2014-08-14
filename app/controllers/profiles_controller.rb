@@ -10,7 +10,7 @@ class ProfilesController < ApplicationController
       redirect_to lookup_path(country_name_for_link, state_name_for_link, supplier.name_for_link),
         :status => :moved_permanently
     else
-      render template: "suppliers/profile"
+      render template: "suppliers/profile_not_found", status: :not_found
     end
   end
 
