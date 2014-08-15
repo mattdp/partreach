@@ -39,6 +39,10 @@ module OrdersHelper
     return nil
   end
 
+  def to_pacific_timezone(datetime)
+    datetime.in_time_zone("Pacific Time (US & Canada)")
+  end
+
   def html_snippet_helper(url, order_id)
     suffix = url.split(".").last.upcase
     if suffix.in? ["PNG", "JPG"]
