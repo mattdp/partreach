@@ -122,18 +122,17 @@
     float: left;
     width: 50%;
   }
-
-  .progress {
-  }
 }
 
 .new-order {
-  .main-header {
-  } 
   .step-header {
     font-family: $serif;
     font-size: 16px;
     font-weight: 800;
+  }
+
+  .uploaded-file-header {
+    margin-bottom: 0;
   }
 
   .step-desc {
@@ -214,6 +213,10 @@
   .triplets {
     margin: 0 -20px;
     padding-bottom: 30px;
+
+    & + .triplets {
+      margin-top: -30px;
+    }
 
     .two-col {
       padding: 0 20px;

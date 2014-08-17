@@ -21,6 +21,9 @@ $(document).ready(function() {
       success: function(data, textStatus, jqXHR)
       {
         if ( $('#uploaded_file_list').length) {
+          if ( $('.uploaded-file-placeholder').length ) {
+            $('.uploaded-file-placeholder').remove();
+          }
           $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
           $('#files_uploaded').val("true")
         }
@@ -56,9 +59,6 @@ $(document).ready(function() {
       user_email: {
         require_from_group: [2, ".signup-signin-group"]
       },
-      user_password: {
-        require_from_group: [2, ".signup-signin-group"]
-      },
       signin_email: {
         require_from_group: [2, ".signup-signin-group"]
       },
@@ -72,7 +72,6 @@ $(document).ready(function() {
     messages: {
       "files_uploaded": "Please upload at least one file",
       "user_email": "Please enter email and password",
-      "user_password": "Please enter email and password",
       "signin_email": "Please enter email and password",
       "signin_password": "Please enter email and password",
     },
