@@ -18,7 +18,6 @@ class ExaminationsController < ApplicationController
     end
   end
 
-  #faster if batch load suppliers
   def submit_examinations
     note = "Didn't submit to a model name. Error in code."
     if params[:model_examined] == "supplier"
@@ -43,18 +42,16 @@ class ExaminationsController < ApplicationController
       note = "Supplier search results submitted"
       if params[:choices]
         params[:choices].each do |wsr_id, choice|
-          if choice == "add_supplier"
-            Supplier.create_new_with_default_dependent_objects(
-              name: params[:name][wsr_id], url_main: params[:url_main][wsr_id], profile_visible: false)
-            WebSearchResult.delete_all_with_matching_domain(wsr_id)
-          elsif choice == "not_supplier"
-            SearchExclusion.create({:domain => WebSearchResult.domain_for_id(wsr_id)})
-            WebSearchResult.delete_all_with_matching_domain(wsr_id)
-          elsif choice == "drop"
-            WebSearchResult.delete(wsr_id)
-          # elsif choice == "later"
-            # don't take any action now; leave search result item for later review
+          wsr = WebSearchResult.find(wsr_id)
+          case choice
+          when "add_supplier"
+            supplier = Supplier.create_new_from_supplier_search_result_examination(
+              name: params[:name][wsr_id], url_main: params[:url_main][wsr_id])
+            WebSearchItem.increment_suppliers_added_count(wsr.web_search_item_id)
+          when "not_supplier"
+            SearchExclusion.create({:domain => WebSearchResult.find(wsr_id).domain})
           end
+          wsr.record_action(choice, current_user, supplier)
         end
       end
     elsif params[:model_examined] == "review"

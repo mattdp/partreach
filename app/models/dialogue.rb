@@ -77,14 +77,18 @@ class Dialogue < ActiveRecord::Base
     structure = []
     suppliers = Supplier.all.sort_by! { |s| s.name.downcase }
     suppliers.each do |supplier|
-      address = supplier.address
-      structure << {
-        supplier: supplier,
-        tag_names: supplier.tags.map{|t| t.name},
-        safe_country: supplier.safe_country,
-        safe_state: supplier.safe_state,
-        safe_zip: supplier.safe_zip
-      }
+      tag_names = supplier.tags.map{|t| t.name}
+      # don't include suppliers marked as datadump or out of business
+      if (tag_names & ["datadump", "e0_out_of_business"]).empty?
+        address = supplier.address
+        structure << {
+          supplier: supplier,
+          tag_names: supplier.tags.map{|t| t.name},
+          safe_country: supplier.safe_country,
+          safe_state: supplier.safe_state,
+          safe_zip: supplier.safe_zip
+        }
+      end
     end
     return structure
   end

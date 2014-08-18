@@ -37,6 +37,7 @@ class Supplier < ActiveRecord::Base
   has_many :externals, :as => :consumer, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
   has_many :communications, as: :communicator, :dependent => :destroy
+  has_one :web_search_result
 
   has_one :contract_contact, :as => :contactable, :dependent => :destroy
   has_one :billing_contact, :as => :contactable, :dependent => :destroy
@@ -158,17 +159,20 @@ class Supplier < ActiveRecord::Base
     return Tagging.joins(:tag).references(:tag).where("name='datadump'").count
   end
 
-  def self.create_new_with_default_dependent_objects(params)
+  def self.create_new_from_supplier_search_result_examination(params)
     new_supplier = Supplier.new(params)
     new_supplier.name_for_link = proper_name_for_link(new_supplier.name)
     new_supplier.create_or_update_address
     new_supplier.billing_contact = BillingContact.new
     new_supplier.contract_contact = ContractContact.new
     new_supplier.rfq_contact = RfqContact.new
+    new_supplier.source = 'supplier_search_result_examination'
+    new_supplier.profile_visible = false
     new_supplier.save
     Tag.tag_set(:new_supplier,:id).each do |id|
       new_supplier.add_tag(id)
     end
+    new_supplier.add_tag(Tag.find_by_name("datadump").id)
     new_supplier
   end
 
