@@ -26,6 +26,7 @@ gem 'domainatrix', '0.0.11'
 gem 'rb-readline', '0.5.1'
 gem 'google_custom_search_api', '1.0.0'
 
+
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'
 gem 'coffee-rails', '~> 4.0.0'
@@ -39,6 +40,7 @@ group :development, :test do
   gem 'pry', '0.9.12.2'
   gem 'pry-rails', '0.3.2'
   gem 'pry-nav', '0.2.3'
+  gem 'dotenv-rails'
 end
 
 group :development do
