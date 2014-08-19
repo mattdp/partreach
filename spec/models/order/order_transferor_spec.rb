@@ -15,20 +15,22 @@ describe 'OrderTransferor' do
     end
 
     it 'assigns the order to the User' do
-      OrderTransferor.new(@order).transfer('test@test.com')
+      OrderTransferor.new(@order).transfer('test@test.com', 'Test User')
       @order.user_id.should == @new_user.id
+      @order.user.lead.lead_contact.full_name_untrusted.should_not == 'Test User'
     end
 
     it 'does not create a new User' do
-      expect {OrderTransferor.new(@order).transfer('test@test.com')}.to_not change{User.count}.by(1)
+      expect {OrderTransferor.new(@order).transfer('test@test.com', 'Test User')}.to_not change{User.count}.by(1)
     end
   end
 
   describe 'when a User does not exist for provided email' do
 
     it 'creates a new user with that email' do 
-      expect {OrderTransferor.new(@order).transfer('test@test.com')}.to change{User.count}.by(1)
+      expect {OrderTransferor.new(@order).transfer('test@test.com', 'Test User')}.to change{User.count}.by(1)
       @order.user.lead.lead_contact.email.should == 'test@test.com'
+      @order.user.lead.lead_contact.full_name_untrusted.should == 'Test User'
     end
 
   end
