@@ -19,12 +19,11 @@
         <strong>Stated method:</strong>{{ order.stated_manufacturing }}
       </p>
 
-      <p><%= link_to "Edit RFQ package", initial_email_edit_path(@order) %></p>
-      <p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
-      <p><%= link_to "Manipulate parts", manipulate_parts_path(@order) %></p>
-      <p><%= link_to "Add new supplier", new_supplier_path %></p>
-      <p><%= link_to "Add a dialogue", "/dialogues/new/#{@order.id}" %> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
-
+      <p><a href="/orders/initial_email_edit/{{order.id}}">Edit RFQ package</a></p>
+      <p><a href="/order_groups/new">Add an order group</a></p>
+      <p><a href="/parts/{{order.id}}">Manipulate parts</a></p>
+      <p><a href="/suppliers/new">Add new supplier</a></p>
+      <p><a href="/dialogues/new/{{order.id}}">Add a dialogue</a> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
 
 
       <%= form_tag :action => 'update_dialogues', :controller => 'orders' do %>
