@@ -9,6 +9,21 @@ $(document).ready(function() {
     $('.generate-email-button').trigger('click');
   });
 
+  $('#transfer-order-owner-button').click(function(event){
+    order_id = $('.transfer_order .order_id').val() 
+    new_owner_email = $('.transfer_order .new_owner_email').val()
+
+    $.ajax({
+      url: '/transfer_orders',
+      type: 'POST',
+      data: {order_id: order_id, new_owner_email: new_owner_email},
+      success: function(data, textStatus, jqXHR){
+        console.log(data)
+      }
+    });
+
+  });
+
 
   $(".s3-uploader").S3Uploader();
 
