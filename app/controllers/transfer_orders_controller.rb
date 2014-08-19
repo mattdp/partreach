@@ -5,7 +5,7 @@ class TransferOrdersController < ApplicationController
     #Need to implement EstablishNewOwner according to transfer_order_to_different_user.txt
     respond_to do |format|
       if OrderTransferor.new(@order).transfer(params[:new_owner_email])
-        format.json { render json: @order }
+        format.json { render 'orders/manipulate_dialogues' }
       else
         format.json { render json: @order.errors.full_messages }
       end

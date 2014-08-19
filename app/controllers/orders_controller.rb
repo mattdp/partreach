@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_filter :signed_in_user, only: [:index, :show, :destroy, :manipulate_dialogues]
   before_filter :correct_user, only: [:show, :destroy]
+  before_filter :set_gon_order_id, only: [:show, :manipulate_dialogues]
   before_filter :admin_user, only: [:manipulate_dialogues, :update_dialogues, :manipulate_parts, :update_parts, :initial_email_edit, :initial_email_update]
   include UrlHelper
 
@@ -213,7 +214,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       format.html # manipulate_dialogues.html.erb
-      format.json { render json: @order }
+      format.json { render 'manipulate_dialogues' }
     end
   end
 
@@ -352,6 +353,10 @@ class OrdersController < ApplicationController
 
     def setup_numberfields
       numberfields = [:order_group_id, :supplier_id, :process_cost, :shipping_cost, :total_cost]
+    end
+
+    def set_gon_order_id
+      gon.order_id = params[:id]
     end
 
   #private doesn't 'end'

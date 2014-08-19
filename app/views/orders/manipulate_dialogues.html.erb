@@ -1,22 +1,22 @@
 <% provide(:title, "##{@order.id} - Manipulate") %>
 
-<div class="container">
+<div class="container" ng-controller="OrderDetailsCtrl">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-      <h1><%= "Changes to Order \##{@order.id} (User #{@lead_contact.full_name_untrusted})"  %></h1>  
+      <h1>Changes to Order {{order.id}} (User {{order.user.lead.lead_contact.full_name_untrusted}})</h1>  
 
       <%= render "layouts/order_basics" %>
 
-      <p><strong>User email: </strong><%= "#{@lead_contact.email}" %></p>
+      <p><strong>User email: </strong>{{order.lead.lead_contact.email}}</p>
       <% if !@order.override_average_value.nil? %>
-        <p><strong>Override value for what quote was worth, for tracking (console change): </strong><%= @order.override_average_value %>
+        <p><strong>Override value for what quote was worth, for tracking (console change): </strong>{{ order.override_average_value }}
       <% end %>
 
       <p>
-        <strong>Stated experience:</strong><%= "#{@order.stated_experience}" %>
-        <strong>Stated priority:</strong><%= "#{@order.stated_priority}" %>
-        <strong>Stated method:</strong><%= "#{@order.stated_manufacturing}" %>
+        <strong>Stated experience:</strong>{{ order.stated_experience }}
+        <strong>Stated priority:</strong>{{ order.stated_priority }}
+        <strong>Stated method:</strong>{{ order.stated_manufacturing }}
       </p>
 
       <p><%= link_to "Edit RFQ package", initial_email_edit_path(@order) %></p>
@@ -157,9 +157,8 @@
         </div>
 
         <div class="transfer_order">
-          <input type="text" class="new_owner_email" />
-          <input type="hidden" class="order_id" value="<%= @order.id %>" />
-          <button type="button" class="btn-primary" id="transfer-order-owner-button">Transfer Order</button>
+          <input type="text" class="new_owner_email" ng-model="newEmail" />
+          <button type="button" class="btn-primary" ng-click="transferOrder(newEmail)">Transfer Order</button>
         </div>
 
       <% end %> 

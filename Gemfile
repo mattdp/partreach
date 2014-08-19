@@ -25,6 +25,9 @@ gem 'nokogiri', '1.6.0'
 gem 'domainatrix', '0.0.11'
 gem 'rb-readline', '0.5.1'
 gem 'google_custom_search_api', '1.0.0'
+gem 'angularjs-rails'
+gem 'gon'
+gem 'jbuilder'
 
 
 #old assets block
