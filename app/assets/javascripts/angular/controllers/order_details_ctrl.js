@@ -4,6 +4,7 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
 
     $http.get('/manipulate/' + window.gon.order_id + '.json').success(function(order){
         $scope.order = order
+        console.log(order)
     })
 
     $scope.transferOrder = function(newEmail, newName){

@@ -9,3 +9,8 @@ json.user do
     end
   end
 end
+json.order_groups do
+  json.array! @order.order_groups do |og|
+    json.merge! og.attributes
+  end
+end
