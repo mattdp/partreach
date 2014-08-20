@@ -5,7 +5,7 @@ class OrderTransferor
   end
 
   def transfer(new_email, new_name)
-    contact = Contact.find_by_email(new_email) 
+    contact = LeadContact.find_by_email(new_email) 
     if contact && contact.contactable && contact.contactable.user
       user_id = contact.contactable.user.id
     else
