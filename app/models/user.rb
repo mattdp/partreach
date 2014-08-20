@@ -53,7 +53,10 @@ class User < ActiveRecord::Base
     user.password_digest = SecureRandom.urlsafe_base64 #have something in there so it can save
     user.admin = admin
     user.save(validate: false)
-    Lead.create_or_update_lead({name: name, email: email}, user.id)
+    Lead.create_or_update_lead({
+      lead: {user_id: user.id},
+      lead_contact: { name: name, email: email}
+    })
     return user
   end
 

@@ -115,10 +115,10 @@ class OrdersController < ApplicationController
           if @user.save
             sign_in @user
             did_user_work = true
-            Lead.create_or_update_lead(
-              {name: params[:user_name], email: params[:user_email], phone: params[:user_phone]},
-              @user.id
-            )
+            Lead.create_or_update_lead({
+              lead: {user_id: @user.id},
+              lead_contact: {name: params[:user_name], email: params[:user_email], phone: params[:user_phone]}
+            })
           end
         end
       end

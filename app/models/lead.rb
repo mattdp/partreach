@@ -31,22 +31,13 @@ class Lead < ActiveRecord::Base
     return leads.order(:priority,:next_contact_date)
   end
 
-  #supports :source, :name, :email, :phone
-  def self.create_or_update_lead(parameters,user_id=nil)
-    lead = nil
-    if parameters[:email]
-      lcs = LeadContact.where("email = ?", parameters[:email])
-      lead = lcs[0].contactable if lcs.length > 0
+  def self.create_or_update_lead(params)
+    LeadContact.find_or_initialize_by(email: params[:lead_contact][:email]) do |lc|
+      @lead = lc.contactable ? @lead.contactable : Lead.create(params[:lead])
+      params[:lead_contact].merge!({contactable_id: @lead.id, contactable_type: "Lead"})
+      lc.update_attributes(params[:lead_contact])
     end
-    if lead.nil?
-      lead = Lead.create
-      lc = LeadContact.create({contactable_id: lead.id, contactable_type: "Lead"})
-    end
-
-    lead.update_attributes({source: parameters[:source], user_id: user_id})
-    lc = lead.lead_contact
-    lc.update_attributes({name: parameters[:name], email: parameters[:email], phone: parameters[:phone]})
-    return lead
+    @lead
   end
 
   #should make a general 'targeter' method once building the second one
