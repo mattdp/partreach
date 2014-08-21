@@ -21,6 +21,8 @@ class OrderGroup < ActiveRecord::Base
 
   validates :name, presence: true
 
+  # scope alphabetical_dialogues, -> { joins(:dialouges).joins(:suppliers) }
+
   def self.create_default
     OrderGroup.create!({name: "Default"})
   end

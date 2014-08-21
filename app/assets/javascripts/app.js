@@ -1,1 +1,1 @@
-window.App = angular.module('SupplyBetter', ['ngResource']);
+window.App = angular.module('SupplyBetter', ['ngResource', 'ui.bootstrap']);
