@@ -7,12 +7,13 @@ class WebSearchResult < ActiveRecord::Base
   scope :in_priority_order, -> { includes(:web_search_item).order('web_search_items.priority desc, web_search_results.created_at desc') }
   scope :matches_exclusions, -> { where("domain IN (SELECT domain FROM search_exclusions)") }
   scope :matches_suppliers, -> { joins("JOIN suppliers s ON s.url_main LIKE '%' || domain || '%'") }
+  scope :unexamined, -> { where(action: nil) }
 
   def self.quantity_for_examination(quantity)
     if quantity == 'all'
-      return WebSearchResult.where(action: nil).in_priority_order.take(all)
+      return WebSearchResult.unexamined.in_priority_order.take(all)
     else
-      return WebSearchResult.where(action: nil).in_priority_order.take(quantity)
+      return WebSearchResult.unexamined.in_priority_order.take(quantity)
     end
   end
 
@@ -30,9 +31,9 @@ class WebSearchResult < ActiveRecord::Base
     WebSearchResult.search_loop(item)
 
     # delete results with domains matching existing suppliers
-    WebSearchResult.matches_suppliers.delete_all
+    WebSearchResult.unexamined.matches_suppliers.delete_all
     # delete results with domains that have been excluded as not being suppliers
-    WebSearchResult.matches_exclusions.delete_all
+    WebSearchResult.unexamined.matches_exclusions.delete_all
 
     item.update!(run_date: DateTime.now, net_new_results: item.web_search_results.count)
   end
