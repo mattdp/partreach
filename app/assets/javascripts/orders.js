@@ -9,7 +9,6 @@ $(document).ready(function() {
     $('.generate-email-button').trigger('click');
   });
 
-
   $(".s3-uploader").S3Uploader();
 
   $('.s3-uploader').bind('s3_upload_complete', function(e, content) {

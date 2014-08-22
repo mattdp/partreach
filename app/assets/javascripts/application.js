@@ -12,9 +12,17 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require angular
+//= require angular-animate
+//= require angular-resource
+//= require app.js
 //= require bootstrap
+
 //= require s3_direct_upload
 //= require jquery.validate
 //= require chosen.jquery.min
 //= require additional-methods
-//= require_tree .
+
+//= require_tree ./angular
+//= require_tree ./bootstrap
+//= require_directory .

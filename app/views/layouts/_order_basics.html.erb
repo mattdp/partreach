@@ -1,6 +1,14 @@
 <div class="order_basics">
   <table class="table">
-    <% if @order.name != "" %>
+      <tr>
+        <td>
+          Order created
+        </td>
+        <td>
+          <%= @order_create_date_pacific.strftime("%m/%d/%Y %H:%M (%Z)") %>
+        </td>
+      </tr>
+    <% if @order.name.present? %>
       <tr>
         <td>
           Order name
