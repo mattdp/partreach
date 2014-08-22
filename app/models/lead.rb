@@ -33,10 +33,19 @@ class Lead < ActiveRecord::Base
 
   def self.create_or_update_lead(params)
     lc = LeadContact.find_or_initialize_by(email: params[:lead_contact][:email]) do |lc|
+      p "*" * 100
+      p lc
       lead = lc.contactable ? lc.contactable : Lead.create(params[:lead])
+      p "@" * 100
+      p lead
       params[:lead_contact].merge!({contactable_id: lead.id, contactable_type: "Lead"})
+      p params
       lc.update_attributes(params[:lead_contact])
+      p '$' * 100
+      p lc
     end
+    p '#' * 100
+    p lc.contactable
     lc.contactable
   end
 

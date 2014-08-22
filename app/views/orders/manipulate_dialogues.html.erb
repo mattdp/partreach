@@ -155,15 +155,15 @@
           <%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
         </div>
 
-        <div class="transfer_order">
-          <label>New Email</label>
-          <input type="text" class="new_owner_email" ng-model="newEmail" />
-          <label>User's Name</label>
-          <input type="text" class="new_owner_name" placeholder="Only needed if no user in system" ng-model="newName" />
-          <button type="button" class="btn-primary" ng-click="transferOrder(newEmail, newName)">Transfer Order</button>
-        </div>
 
       <% end %> 
+      <div class="transfer_order">
+        <label>New Email</label>
+        <input type="text" class="new_owner_email" ng-model="newEmail" />
+        <label>User's Name</label>
+        <input type="text" class="new_owner_name" placeholder="Only needed if no user in system" ng-model="newName" />
+        <button type="button" class="btn-primary" ng-click="transferOrder(newEmail, newName)">Transfer Order</button>
+      </div>
 
     </div>
   </div>
