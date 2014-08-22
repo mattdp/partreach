@@ -32,12 +32,11 @@ class Lead < ActiveRecord::Base
   end
 
   def self.create_or_update_lead(params)
-    lc = LeadContact.find_or_initialize_by(email: params[:lead_contact][:email]) do |lc|
-      lead = lc.contactable ? lc.contactable : Lead.new
-      lead.update_attributes(params[:lead])
-      params[:lead_contact].merge!({contactable_id: lead.id, contactable_type: "Lead"})
-      lc.update_attributes(params[:lead_contact])
-    end
+    lc = LeadContact.find_by(email: params[:lead_contact][:email]) || LeadContact.new
+    lead = lc.contactable ? lc.contactable : Lead.new
+    lead.update_attributes(params[:lead])
+    params[:lead_contact].merge!({contactable_id: lead.id, contactable_type: "Lead"})
+    lc.update_attributes(params[:lead_contact])
     lc.contactable
   end
 
