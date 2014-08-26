@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809055336) do
+ActiveRecord::Schema.define(version: 20140826200533) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -311,15 +311,25 @@ ActiveRecord::Schema.define(version: 20140809055336) do
 
   add_index "tag_groups", ["group_name"], name: "index_tag_groups_on_group_name", unique: true, using: :btree
 
-  create_table "tag_relationships", force: true do |t|
-    t.integer  "source_tag_id",  null: false
-    t.integer  "related_tag_id", null: false
-    t.string   "relationship",   null: false
+  create_table "tag_relationship_types", force: true do |t|
+    t.string   "name"
+    t.integer  "source_group_id"
+    t.integer  "related_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "tag_relationships", ["related_tag_id", "source_tag_id", "relationship"], name: "index_tag_relationships_unique", unique: true, using: :btree
+  add_index "tag_relationship_types", ["related_group_id"], name: "index_tag_relationship_types_on_related_group_id", using: :btree
+  add_index "tag_relationship_types", ["source_group_id"], name: "index_tag_relationship_types_on_source_group_id", using: :btree
+
+  create_table "tag_relationships", force: true do |t|
+    t.integer  "source_tag_id",            null: false
+    t.integer  "related_tag_id",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "tag_relationship_type_id"
+  end
+
   add_index "tag_relationships", ["source_tag_id"], name: "index_tag_relationships_on_source_tag_id", using: :btree
 
   create_table "taggable_types", force: true do |t|
