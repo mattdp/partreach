@@ -14,4 +14,8 @@ class WebSearchItem < ActiveRecord::Base
     queued.limit(batch_size)
   end
 
+  def self.increment_suppliers_added_count(id)
+    WebSearchItem.increment_counter(:suppliers_added, id)
+  end
+
 end

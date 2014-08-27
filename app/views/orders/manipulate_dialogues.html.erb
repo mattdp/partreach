@@ -1,30 +1,29 @@
 <% provide(:title, "##{@order.id} - Manipulate") %>
 
-<div class="container">
+<div class="container" ng-controller="OrderDetailsCtrl">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-      <h1><%= "Changes to Order \##{@order.id} (User #{@lead_contact.full_name_untrusted})"  %></h1>  
+      <h1>Changes to Order {{order.id}} (User {{order.user.lead.lead_contact.full_name_untrusted}})</h1>  
 
       <%= render "layouts/order_basics" %>
 
-      <p><strong>User email: </strong><%= "#{@lead_contact.email}" %></p>
-      <% if !@order.override_average_value.nil? %>
-        <p><strong>Override value for what quote was worth, for tracking (console change): </strong><%= @order.override_average_value %>
-      <% end %>
-
-      <p>
-        <strong>Stated experience:</strong><%= "#{@order.stated_experience}" %>
-        <strong>Stated priority:</strong><%= "#{@order.stated_priority}" %>
-        <strong>Stated method:</strong><%= "#{@order.stated_manufacturing}" %>
+      <p><strong>User email: </strong>{{order.lead.lead_contact.email}}</p>
+      <p ng-if="order.override_average_value">
+        <strong>Override value for what quote was worth, for tracking (console change): </strong>{{ order.override_average_value }}
       </p>
 
-      <p><%= link_to "Edit RFQ package", initial_email_edit_path(@order) %></p>
-      <p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
-      <p><%= link_to "Manipulate parts", manipulate_parts_path(@order) %></p>
-      <p><%= link_to "Add new supplier", new_supplier_path %></p>
-      <p><%= link_to "Add a dialogue", "/dialogues/new/#{@order.id}" %> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
+      <p>
+        <strong>Stated experience:</strong>{{ order.stated_experience }}
+        <strong>Stated priority:</strong>{{ order.stated_priority }}
+        <strong>Stated method:</strong>{{ order.stated_manufacturing }}
+      </p>
 
+      <p><a href="/orders/initial_email_edit/{{order.id}}">Edit RFQ package</a></p>
+      <p><a href="/order_groups/new?order_id={{order.id}}">Add an order group</a></p>
+      <p><a href="/parts/{{order.id}}">Manipulate parts</a></p>
+      <p><a href="/suppliers/new">Add new supplier</a></p>
+      <p><a href="/dialogues/new/{{order.id}}">Add a dialogue</a> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
 
 
       <%= form_tag :action => 'update_dialogues', :controller => 'orders' do %>
@@ -156,7 +155,15 @@
           <%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
         </div>
 
+
       <% end %> 
+      <div class="transfer_order">
+        <label>New Email</label>
+        <input type="text" class="new_owner_email" ng-model="newEmail" />
+        <label>User's Name</label>
+        <input type="text" class="new_owner_name" placeholder="Only needed if no user in system" ng-model="newName" />
+        <button type="button" class="btn-primary" ng-click="transferOrder(newEmail, newName)">Transfer Order</button>
+      </div>
 
     </div>
   </div>

@@ -206,8 +206,7 @@ class SuppliersController < ApplicationController
 
     current_user.nil? ? @user_id = 0 : @user_id = current_user.id
 
-    @allowed = allowed_to_see?(@supplier)
-    if @allowed
+    if allowed_to_see?(@supplier)
       @tags = @supplier.visible_tags if @supplier
       @machines_quantity_hash = @supplier.machines_quantity_hash
       @num_machines = @machines_quantity_hash.sum{|k,v| v}
@@ -218,11 +217,10 @@ class SuppliersController < ApplicationController
       profile_factors = andlist(meta_for_supplier(@supplier))
       @meta += "The #{@supplier.name} profile has " + andlist(meta_for_supplier(@supplier)) + ". " if profile_factors.present?
       @meta = @meta.present? ? @meta : "#{@supplier.name} - Supplier profile"
+      render "profile"
+    else
+      render "profile_not_found", status: :not_found
     end
-
-    @return_path = request.env["HTTP_REFERER"]
-
-    render "profile"
   end
 
   private
