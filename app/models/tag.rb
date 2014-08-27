@@ -50,10 +50,6 @@ class Tag < ActiveRecord::Base
     end
   end
 
-  def self.proper_name_for_link(readable)
-    Supplier.proper_name_for_link(readable)
-  end
-
   #return hash of {group1_name=>[tag1, tag2, ...], group2_name=>[tag3, tag4, ...], ...}
   def self.tags_by_group
     answers = {}
