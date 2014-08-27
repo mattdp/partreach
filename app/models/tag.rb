@@ -19,15 +19,23 @@ class Tag < ActiveRecord::Base
   belongs_to :tag_group
   has_many :taggings
   has_many :suppliers, :through => :taggings, :source_type => 'Supplier'
-  has_many :tag_relationships, foreign_key: "source_tag_id"
+  has_many :tag_relationships, foreign_key: "source_tag_id", class_name: "TagRelationship"
   has_many :related_tags, :through => :tag_relationships
-  has_many :reverse_tag_relationships, class_name: "TagRelationship", foreign_key: "related_tag_id"
+  has_many :reverse_tag_relationships, foreign_key: "related_tag_id", class_name: "TagRelationship"
   has_many :source_tags, :through => :reverse_tag_relationships
  
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :readable, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true
   validates_presence_of :tag_group
+
+  def self.find_or_create_tag(name, tag_group)
+    Tag.find_or_create_by(name: name) do |tag|
+      tag.readable = name
+      tag.name_for_link = Tag.proper_name_for_link(name)
+      tag.tag_group = tag_group
+    end
+  end
 
   def self.all_by_group
     Tag.includes(:tag_group).order('tag_groups.id, tags.id')
