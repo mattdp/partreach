@@ -70,7 +70,7 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
         });
     }
 
-    // Would rather have update_dialouges accept_nested_attributes_for :dialouges
+    // Would rather have update_dialogues accept_nested_attributes_for :dialogues
     serializeParams = function(){
         updateParams = {id: $scope.order.id}
         angular.forEach(orderAttributes, function(value, index){
