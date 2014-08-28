@@ -1,8 +1,7 @@
 App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, $http){
-    $scope.graphShow = null
+    $scope.graphShow = 'typeOf'
 
     $scope.showGraph = function(chart){
-        createChart(chart)
         $scope.graphShow = chart;
     }
 
@@ -71,66 +70,65 @@ App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
         });
     }
 
+    var width = 650,
+    height = 400;
+
+    var cluster = d3.layout.cluster()
+        .size([height, width/2]);
+
+    var svg = d3.select("#type-of-d3-graph").append("svg")
+        .attr("width", width + 50)
+        .attr("height", height)
+        .append("g")
+        .attr("transform", "translate("+ width/2 + ",0)");
+
+    var rootLeft = {children: [], name: $scope.graphData.name}
+    var rootRight = {children: [], name: $scope.graphData.name}
     var nodePositionDictionary = {};
+
+    angular.forEach($scope.graphData.parents, function(parent, index){
+        rootLeft.children.push(parent);
+    });
+    angular.forEach($scope.graphData.children, function(child, index){
+      rootRight.children.push(child);
+    });
+
+    var nodesRight = cluster.nodes(rootRight);
+    angular.forEach(nodesRight, function(node, index){
+      node.right = true;
+      nodePositionDictionary[node.name + (node.parent ? node.parent.name : "")] = node;
+    })
+    var nodesLeft = cluster.nodes(rootLeft);
+    angular.forEach(nodesLeft, function(node, index){
+      node.right = false;
+      nodePositionDictionary[node.name + (node.parent ? node.parent.name : "")] = node;
+    })
+
     var nodes = [];
-    createChart = function(chart){
-        var width = 650,
-        height = 400;
+    updateNodePositions($scope.graphData);
 
-        var cluster = d3.layout.cluster()
-            .size([height, width/2]);
+    var diagonalRight = d3.svg.diagonal().projection(function(d) { return [d.y, d.x]; });
+    var diagonalLeft = d3.svg.diagonal().projection(function(d) { return [(-d.y+10), d.x]; });
+    var links = cluster.links(nodes);
+    var link = svg.selectAll(".link")
+        .data(links)
+        .enter().append("path")
+        .attr("class", "link")
+        .attr("d", function(d){return d.target.right || d.source.right ? diagonalRight(d) : diagonalLeft(d); });
 
-        var svg = d3.select("#type-of-d3-graph").append("svg")
-            .attr("width", width + 50)
-            .attr("height", height)
-            .append("g")
-            .attr("transform", "translate("+ width/2 + ",0)");
+    var node = svg.selectAll(".node")
+        .data(nodes)
+        .enter().append("g")
+        .attr("class", "node")
+        .attr("transform", function(d) { return d.right ? "translate(" + d.y + "," + d.x + ")" : "translate(" + (-d.y+10) + "," + d.x + ")" ; })
 
-        var rootLeft = {children: [], name: $scope.graphData.name}
-        var rootRight = {children: [], name: $scope.graphData.name}
+    node.append("circle")
+        .attr("r", 4.5);
 
-        angular.forEach($scope.graphData.parents, function(parent, index){
-            rootLeft.children.push(parent);
-        });
-        angular.forEach($scope.graphData.children, function(child, index){
-          rootRight.children.push(child);
-        });
+    node.append("text")
+        .attr("dx", function(d) { return d.children ? -8 : 8; })
+        .attr("dy", 3)
+        .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
+        .text(function(d) { return d.name; });
 
-        var nodesRight = cluster.nodes(rootRight);
-        angular.forEach(nodesRight, function(node, index){
-          node.right = true;
-          nodePositionDictionary[node.name + (node.parent ? node.parent.name : "")] = node;
-        })
-        var nodesLeft = cluster.nodes(rootLeft);
-        angular.forEach(nodesLeft, function(node, index){
-          node.right = false;
-          nodePositionDictionary[node.name + (node.parent ? node.parent.name : "")] = node;
-        })
-
-        updateNodePositions($scope.graphData);
-
-        var diagonalRight = d3.svg.diagonal().projection(function(d) { return [d.y, d.x]; });
-        var diagonalLeft = d3.svg.diagonal().projection(function(d) { return [(-d.y+10), d.x]; });
-        var links = cluster.links(nodes);
-        var link = svg.selectAll(".link")
-            .data(links)
-            .enter().append("path")
-            .attr("class", "link")
-            .attr("d", function(d){return d.target.right || d.source.right ? diagonalRight(d) : diagonalLeft(d); });
-
-        var node = svg.selectAll(".node")
-            .data(nodes)
-            .enter().append("g")
-            .attr("class", "node")
-            .attr("transform", function(d) { return d.right ? "translate(" + d.y + "," + d.x + ")" : "translate(" + (-d.y+10) + "," + d.x + ")" ; })
-
-        node.append("circle")
-            .attr("r", 4.5);
-
-        node.append("text")
-            .attr("dx", function(d) { return d.children ? -8 : 8; })
-            .attr("dy", 3)
-            .style("text-anchor", function(d) { return d.children ? "end" : "start"; })
-            .text(function(d) { return d.name; });
-    }
 }]);
