@@ -13,8 +13,6 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
         {displayText: 'Notes', attribute: 'notes'}, 
         {displayText: 'Currency', attribute: 'currency'}, 
         {displayText: 'Internal Notes', attribute: 'internal_notes'}, 
-        {displayText: 'Order Group ID', attribute: 'order_group_id'}, 
-        {displayText: 'Supplier ID', attribute: 'supplier_id'}, 
         {displayText: 'Process Cost', attribute: 'process_cost'}, 
         {displayText: 'Shipping Cost', attribute: 'shipping_cost'}, 
         {displayText: 'Total Cost', attribute: 'total_cost'}

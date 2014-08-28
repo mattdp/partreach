@@ -51,7 +51,6 @@
             Material: "{{order_group.material}}"
             <a href="/order_groups/{{order_group.id}}/edit">Edit order group</a>
           </h3>
-          <p>>Movement between groups is currently console-only.</p>
           <p><strong>Parts:</strong></p>
           <ul>
             <li ng-repeat="part in order_group.parts">
@@ -69,15 +68,13 @@
 
           <table class="manipulate_dialogues_table">
             <tr>
-              <th class="rotate"><div><span>D ID</span></div></th>
-              <th class="rotate"><div><span>OG Name</span></div></th>
-              <th class="rotate"><div><span>Supplier</span></div></th>
+              <th></th>
+              <th></th>
               <th ng-repeat="checkbox in checkboxes"><div class="md_checkbox_th"><span class="checkbox"></span></div></th>
               <th ng-repeat="header in headers" class="rotate"><div><span>{{header.displayText}}</span></div></th>
             </tr>
             <tr ng-repeat="d in order_group.alphabetical_dialogues">
               <td>{{d.id}}</td>
-              <td>{{order_group.name}}</td>
               <td><strong><a href="/suppliers/admin_edit/{{d.supplier.name_for_link}}" target="_blank">{{d.supplier.name}}</a></strong></td>
               <td ng-repeat="checkbox in checkboxes" class="center md_checkbox_td"><input type="checkbox" ng-model="d[checkbox.attribute]" tooltip-append-to-body="true" tooltip="{{checkbox.displayText}}"></td>
               <td ng-repeat="header in headers"><input type="text" ng-model="d[header.attribute]"></td>
