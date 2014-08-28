@@ -9,3 +9,19 @@
 @import "custom/static_pages.css.scss";
 @import "custom/orders.css.scss";
 @import "custom/custom.css.scss";
+
+.link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+
+.node circle {
+  fill: #fff;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.node {
+  font: 10px sans-serif;
+}
