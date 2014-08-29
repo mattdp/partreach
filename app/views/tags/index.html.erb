@@ -34,6 +34,7 @@
             <td><%= tag.visible %></td>
             <td><%= tag.exclusive %></td>
             <td><%= link_to "Edit", edit_tag_path(tag) %></td>
+            <td><%= link_to "Related Tags", related_tags_path(tag) %></td>
         <% end %>
       </table>
     </div>
