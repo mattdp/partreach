@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829023240) do
+ActiveRecord::Schema.define(version: 20140829055506) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -327,7 +327,7 @@ ActiveRecord::Schema.define(version: 20140829023240) do
     t.integer  "related_tag_id",           null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "tag_relationship_type_id"
+    t.integer  "tag_relationship_type_id", null: false
   end
 
   add_index "tag_relationships", ["related_tag_id"], name: "index_tag_relationships_on_related_tag_id", using: :btree
