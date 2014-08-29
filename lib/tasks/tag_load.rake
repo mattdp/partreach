@@ -8,8 +8,8 @@ task :load_related_tags => :environment do
   CSV.new(open(ENV["url"]), {headers: headers}).each do |row|
     puts "ADDING: #{row[:source_tag]} #{row[:relationship_type]} #{row[:related_tag]}"
     relationship_type = TagRelationshipType.find_by_name(row[:relationship_type])
-    source_tag = Tag.find_or_create_tag(row[:source_tag], relationship_type.source_group)
-    related_tag = Tag.find_or_create_tag(row[:related_tag], relationship_type.related_group)
+    source_tag = Tag.find_or_create!(row[:source_tag], relationship_type.source_group)
+    related_tag = Tag.find_or_create!(row[:related_tag], relationship_type.related_group)
     add_tag_relationship(source_tag, relationship_type, related_tag)
   end
 end
@@ -33,13 +33,13 @@ def valid_tag_group?(tag, relationship_type_group)
   return valid
 end
 
-desc "load tag_groups"
+desc "add lifecycle and machine tag_groups"
 task :add_tag_groups => :environment do
   TagGroup.create(group_name: "lifecycle")
   TagGroup.create(group_name: "machine")
 end
 
-desc "load tag_relationship_types"
+desc "add initial set of tag_relationship_types"
 # assumes associated source_group and related_group already exist
 task :add_tag_relationship_types => :environment do
   process_group = TagGroup.find_by(group_name: "process")
