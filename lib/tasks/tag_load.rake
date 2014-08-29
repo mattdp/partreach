@@ -18,10 +18,13 @@ def add_tag_relationship(source_tag, relationship_type, related_tag)
   source_ok = valid_tag_group?(source_tag, relationship_type.source_group)
   related_ok = valid_tag_group?(related_tag, relationship_type.related_group)
   if source_ok && related_ok
-    TagRelationship.create(
-      source_tag: source_tag,
-      relationship: relationship_type,
-      related_tag: related_tag)
+    begin
+      TagRelationship.create(source_tag: source_tag,
+                             relationship: relationship_type,
+                             related_tag: related_tag)
+    rescue ActiveRecord::RecordNotUnique
+      puts "SKIPPED - ALREADY EXISTS: #{source_tag.readable} #{relationship_type.name} #{related_tag.readable}"
+    end
   end
 end
 

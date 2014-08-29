@@ -30,15 +30,15 @@ class Tag < ActiveRecord::Base
   validates_presence_of :tag_group
 
   def self.find_or_create!(name, tag_group)
-    tag = Tag.where("LOWER(readable) = ?", name).first
-    if tag
-      # if existing tag found
-      return tag
-    else
-      tag.readable = name
-      tag.name_for_link = Tag.proper_name_for_link(name)
-      tag.tag_group = tag_group
+    tag = Tag.where("LOWER(readable) = ?", name.downcase).first
+    unless tag
+      tag = Tag.create!(
+        name: name,
+        readable: name,
+        name_for_link: Tag.proper_name_for_link(name),
+        tag_group: tag_group)
     end
+    return tag
   end
 
   def self.all_by_group
