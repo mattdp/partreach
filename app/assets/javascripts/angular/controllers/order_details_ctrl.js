@@ -13,8 +13,6 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
         {displayText: 'Notes', attribute: 'notes'}, 
         {displayText: 'Currency', attribute: 'currency'}, 
         {displayText: 'Internal Notes', attribute: 'internal_notes'}, 
-        {displayText: 'Order Group ID', attribute: 'order_group_id'}, 
-        {displayText: 'Supplier ID', attribute: 'supplier_id'}, 
         {displayText: 'Process Cost', attribute: 'process_cost'}, 
         {displayText: 'Shipping Cost', attribute: 'shipping_cost'}, 
         {displayText: 'Total Cost', attribute: 'total_cost'}
@@ -70,7 +68,7 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
         });
     }
 
-    // Would rather have update_dialouges accept_nested_attributes_for :dialouges
+    // Would rather have update_dialogues accept_nested_attributes_for :dialogues
     serializeParams = function(){
         updateParams = {id: $scope.order.id}
         angular.forEach(orderAttributes, function(value, index){
