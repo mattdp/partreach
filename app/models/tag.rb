@@ -30,7 +30,11 @@ class Tag < ActiveRecord::Base
   validates_presence_of :tag_group
 
   def self.find_or_create!(name, tag_group)
-    Tag.find_or_create_by!(name: name) do |tag|
+    tag = Tag.where("LOWER(readable) = ?", name).first
+    if tag
+      # if existing tag found
+      return tag
+    else
       tag.readable = name
       tag.name_for_link = Tag.proper_name_for_link(name)
       tag.tag_group = tag_group
