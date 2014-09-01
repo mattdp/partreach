@@ -30,17 +30,8 @@ class TagsController < ApplicationController
   end
 
   def related_tags
-    @tag = Tag.find params[:id]
-    @relationships_hash = {}
-    relationships = TagRelationshipType.distinct.joins(:tag_relationships).where(tag_relationships: {source_tag_id: @tag.id})
-    relationships.each do |relationship|
-      related_tags_array = []
-      related_tags = Tag.joins(reverse_tag_relationships: :source_tag).where(tag_relationships: {source_tag_id: @tag.id}).where(tag_relationships: {tag_relationship_type_id: relationship.id})
-      related_tags.each do |related_tag|
-        related_tags_array << related_tag.readable
-      end
-      @relationships_hash[relationship.name] = related_tags_array
-    end
+    @tag = Tag.find(params[:id])
+    @relationships_hash = TagRelationship.related_tags_by_relationship(@tag.id)
   end
 
   private
