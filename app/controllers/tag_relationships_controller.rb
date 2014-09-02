@@ -10,4 +10,17 @@ class TagRelationshipsController < ApplicationController
       format.json { render 'index' }
     end
   end
+
+  def create
+    @tag = Tag.find(params[:tag_id])
+    @relationship = TagRelationship.new(params[:tag_relationship])
+
+    respond_to do |format|
+      if @relationship.save
+        format.json { render json: @relationship}
+      else
+        format.json { render json: {success: false}}
+      end
+    end
+  end
 end
