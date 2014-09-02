@@ -79,8 +79,9 @@ App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
 
         angular.forEach(data.tag_relationships, function(graph, index){
 
+            larger = graphs[graph.name].parents > graphs[graph.name].children ? graphs[graph.name].parents.length : graphs[graph.name].children.length
             var width = 650,
-            height = 400;
+            height = larger * 20;
 
             var cluster = d3.layout.cluster()
                 .size([height, width/2]);
