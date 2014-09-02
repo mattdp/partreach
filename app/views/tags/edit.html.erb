@@ -8,6 +8,8 @@
         <a href="#" ng-click="showGraph(null)">None</a>
         <% @tag_relationships.each do |tr| %>
           <a href="#" ng-click="showGraph('<%= tr.gsub(' ', '_') %>')"><%= tr %></a>
+        <% end %>
+        <% @tag_relationships.each do |tr| %>
           <div ng-show="graphShow === '<%= tr.gsub(' ', '_') %>' " id="<%= tr.gsub(' ', '_') %>_d3_graph"></div>
         <% end %>
       </div>
