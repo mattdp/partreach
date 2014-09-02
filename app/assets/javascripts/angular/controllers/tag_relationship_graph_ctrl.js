@@ -1,4 +1,4 @@
-App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, $http){
+App.controller('TagRelationshipGraphCtrl', ['$scope', '$http', function($scope, $http){
     $scope.graphShow = null;
 
     $scope.showGraph = function(chart){
