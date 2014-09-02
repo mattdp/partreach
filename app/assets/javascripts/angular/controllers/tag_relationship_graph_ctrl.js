@@ -3,7 +3,6 @@ App.controller('TagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
 
     $scope.showGraph = function(chart){
         $scope.graphShow = chart;
-        console.log($scope.graphShow)
     }
 
     updateNodePositions2 = function(n, nodePositionDictionary){
