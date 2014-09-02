@@ -88,7 +88,8 @@
               <td><a href="/dialogues/initial_email/{{d.id}}">RFQ Open Email</a></td>
               <td><a href="/dialogues/edit_rfq_close_email/{{d.id}}">RFQ Close Email</a></td>
               <td>
-                <div ng-if="d.internal_notes.length > 0"><strong>Note for this order: {{d.internal_notes}}</strong> {{d.supplier.isInNetwork ? 'Pays per bid' : 'Not in network' }}</div>
+                <div ng-if="d.internal_notes !== null"><strong>Note for this order: {{d.internal_notes}}</strong></div>
+                {{d.supplier.isInNetwork ? 'Pays per bid' : 'Not in network' }}
                 <div ng-if="d.supplier.rfq_contact.email">{{d.supplier.rfq_contact.email}}</div>
                 <div ng-if="d.supplier.rfq_contact.phone">{{d.supplier.rfq_contact.phone}}</div>
                 <div ng-if="d.supplier.internally_hidden_preferences">{{d.supplier.internally_hidden_preferences}}</div>
