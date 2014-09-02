@@ -130,6 +130,7 @@ App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
                 .data(nodes)
                 .enter().append("g")
                 .on("click", function(d,i) { window.location.href = '/tags/' + d.id + '/edit' })
+                .on("mouseover", function(){ $(this).css('cursor', 'pointer');})
                 .attr("class", "node")
                 .attr("transform", function(d) { return d.right ? "translate(" + (d.y) + "," + d.x + ")" : "translate(" + (-d.y) + "," + d.x + ")" ; })
 
@@ -137,6 +138,8 @@ App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
                 .attr("r", 4.5);
 
             node.append("text")
+                .on("click", function(d,i) { window.location.href = '/tags/' + d.id + '/edit' })
+                .on("mouseover", function(){ $(this).css('cursor', 'pointer');})
                 .attr("dx", function(d) { if ( d.right === false){return -8}else if (d.right === true){return 8}else {return 0} })
                 .attr("dy", function(d) { return d.right === undefined ? -10 : 3; })
                 .style("text-anchor", function(d) { if ( d.right === false){return "end"}else if (d.right === true){return "start"}else {return "middle"} })
