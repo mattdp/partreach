@@ -82,10 +82,17 @@
           </table>
 
           <table>
-            <tr ng-repeat="d in order_group.alphabetical_dialogues">
-              <td><a href="/dialogues/initial_email/{{d.id}}"></a></td>
-              <td><a href="/dialogues/edit_rfq_close_email/{{d.id}}"></a></td>
-              <td><div ng-if="d.internal_notes.length > 0"><strong>Note for this order: {{d.internal_notes}}</strong></div></td>
+            <tr ng-repeat="d in order_group.alphabetical_dialogues" class="horizontal-lines">
+              <td>{{d.id}}</td>
+              <td><strong><a href="{{d.supplier.url_main}}">{{d.supplier.name}}</a></strong></td>
+              <td><a href="/dialogues/initial_email/{{d.id}}">RFQ Open Email</a></td>
+              <td><a href="/dialogues/edit_rfq_close_email/{{d.id}}">RFQ Close Email</a></td>
+              <td>
+                <div ng-if="d.internal_notes.length > 0"><strong>Note for this order: {{d.internal_notes}}</strong> {{d.supplier.isInNetwork ? 'Pays per bid' : 'Not in network' }}</div>
+                <div ng-if="d.supplier.rfq_contact.email">{{d.supplier.rfq_contact.email}}</div>
+                <div ng-if="d.supplier.rfq_contact.phone">{{d.supplier.rfq_contact.phone}}</div>
+                <div ng-if="d.supplier.internally_hidden_preferences">{{d.supplier.internally_hidden_preferences}}</div>
+              </td>
             </tr>
           </table>
         </div> <!-- End ng-repeat of order_groups -->

@@ -13,7 +13,11 @@ json.order_groups @order.order_groups do |og|
   json.merge! og.attributes
   json.alphabetical_dialogues og.alphabetical_dialogues do |ad|
     json.merge! ad.attributes
-    json.supplier ad.supplier
+    json.supplier do
+      json.merge! ad.supplier.attributes
+      json.isInNetwork ad.supplier.is_in_network?
+      json.rfq_contact ad.supplier.rfq_contact
+    end
   end
   json.parts og.parts do |part|
     json.merge! part.attributes
