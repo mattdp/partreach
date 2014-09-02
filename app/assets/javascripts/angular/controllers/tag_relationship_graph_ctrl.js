@@ -117,8 +117,8 @@ App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
             
             nodes = updateNodePositions2(graphs[graph.name], nodePositionDictionary);
 
-            var diagonalRight = d3.svg.diagonal().projection(function(d) { return [(d.y-20), d.x]; });
-            var diagonalLeft = d3.svg.diagonal().projection(function(d) { return [(-d.y+20), d.x]; });
+            var diagonalRight = d3.svg.diagonal().projection(function(d) { return [(d.y-40), d.x]; });
+            var diagonalLeft = d3.svg.diagonal().projection(function(d) { return [(-d.y+40), d.x]; });
             var links = cluster.links(nodes);
             var link = svg.selectAll(".link")
                 .data(links)
@@ -131,7 +131,7 @@ App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
                 .enter().append("g")
                 .on("click", function(d,i) { window.location.href = '/tags/' + d.id + '/edit' })
                 .attr("class", "node")
-                .attr("transform", function(d) { return d.right ? "translate(" + (d.y-20) + "," + d.x + ")" : "translate(" + (-d.y+20) + "," + d.x + ")" ; })
+                .attr("transform", function(d) { return d.right ? "translate(" + (d.y-40) + "," + d.x + ")" : "translate(" + (-d.y+40) + "," + d.x + ")" ; })
 
             node.append("circle")
                 .attr("r", 4.5);
