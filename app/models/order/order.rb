@@ -291,7 +291,7 @@ See the note from client for details on what exactly they're looking for.</p>
 
     dates = Order.date_ranges(interval,tracking_start_date)
 
-    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Creates", "Buyers touched by RFQs", "Suppliers touched by RFQs", "Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network", "Leads and Users"]
+    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Creates", "Closed RFQs"]
 
     printout = []
     index = 0
@@ -302,13 +302,7 @@ See the note from client for details on what exactly they're looking for.</p>
       unit << dates[index]
       unit << created_orders.sum{|o| o.quote_value}.to_s
       unit << created_orders.count
-      unit << created_orders.map{|o| o.user_id}.uniq.count
-      unit << created_orders.map{|o| o.dialogues}.flatten.select{|d| d.opener_sent}.map{|d| d.supplier_id}.uniq.count
       unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
-      unit << Review.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
-      unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "claimed_profile").count
-      unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "joined_network").count
-      unit << LeadContact.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
       printout << unit
       index += 1
     end
