@@ -91,8 +91,8 @@ App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
                 .append("g")
                 .attr("transform", "translate("+ width/2 + ",0)");
 
-            var rootLeft = {children: [], name: graphs[graph.name].name}
-            var rootRight = {children: [], name: graphs[graph.name].name}
+            var rootLeft = {children: [], name: graphs[graph.name].name, id: graphs[graph.name].id}
+            var rootRight = {children: [], name: graphs[graph.name].name, id: graphs[graph.name].id}
             var nodePositionDictionary = {};
 
             angular.forEach(graphs[graph.name].parents, function(parent, index){
@@ -128,6 +128,7 @@ App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
             var node = svg.selectAll(".node")
                 .data(nodes)
                 .enter().append("g")
+                .on("click", function(d,i) { window.location.href = '/tags/' + d.id + '/edit' })
                 .attr("class", "node")
                 .attr("transform", function(d) { return d.right ? "translate(" + d.y + "," + d.x + ")" : "translate(" + (-d.y+10) + "," + d.x + ")" ; })
 
