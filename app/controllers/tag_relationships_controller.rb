@@ -13,14 +13,20 @@ class TagRelationshipsController < ApplicationController
 
   def create
     @tag = Tag.find(params[:tag_id])
-    @relationship = TagRelationship.new(params[:tag_relationship])
+    @relationship = TagRelationship.new(tag_relationship_params)
 
     respond_to do |format|
       if @relationship.save
-        format.json { render json: @relationship}
+        format.json { render json: {success: true}}
       else
         format.json { render json: {success: false}}
       end
     end
   end
+
+  private
+
+    def tag_relationship_params
+      params.require(:tag_relationship).permit(:source_tag_id, :related_tag_id, :tag_relationship_type_id)
+    end
 end

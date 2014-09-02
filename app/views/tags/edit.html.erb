@@ -21,6 +21,14 @@
 
       <% end %>
 
+      <div>
+        <select ng-model="relationshipType" ng-options="type.name for type in relationshipTypes">
+          <option value="">Select Relationship Type</option>
+        </select>
+        <input ng-model="tagId" type="text" typeahead="tag.id as tag.readable for tag in processTags | filter:$viewValue" typeahead-append-to-body="true" />
+        <button type="button" class="btn-primary" ng-click="selectTag(tagId, relationshipType.id)">Create Relationship</button>
+      </div>
+
     </div>
   </div>
 </div>
