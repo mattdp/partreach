@@ -5,9 +5,11 @@
       <h1>Edit tag: <%= @tag.readable %></h1>
 
       <div ng-controller="tagRelationshipGraphCtrl">
-        <a href="#" ng-click="showGraph('typeOf')">Type Of</a>
         <a href="#" ng-click="showGraph(null)">None</a>
-        <div ng-show="graphShow === 'typeOf' " id="type-of-d3-graph"></div>
+        <% @tag_relationships.each do |tr| %>
+          <a href="#" ng-click="showGraph('<%= tr.gsub(' ', '_') %>')"><%= tr %></a>
+          <div ng-show="graphShow === '<%= tr.gsub(' ', '_') %>' " id="<%= tr.gsub(' ', '_') %>_d3_graph"></div>
+        <% end %>
       </div>
 
 
