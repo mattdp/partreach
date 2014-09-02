@@ -29,6 +29,7 @@ gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
 gem 'gon'
 gem 'jbuilder'
+gem "d3-rails"
 
 
 #old assets block
