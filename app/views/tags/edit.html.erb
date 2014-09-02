@@ -4,45 +4,14 @@
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
       <h1>Edit tag: <%= @tag.readable %></h1>
 
-      <!-- placeholder styling for displaying relationships -->
-      <table>
-        <tr>
-          <th>Children</th>
-          <th>Descendants</th>
-          <th>Parents</th>
-          <th>Ancestors</th>
-        </tr>
-        <tr>
-          <td>
-            <ul>
-              <% @tag.related_tags.each do |child| %>
-                <li><%= link_to child.readable, edit_tag_path(child) %></li>
-              <% end %>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <% @tag.descendants.each do |desc| %>
-                <li><%= link_to desc.readable, edit_tag_path(desc) %></li>
-              <% end %>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <% @tag.source_tags.each do |parent| %>
-                <li><%= link_to parent.readable, edit_tag_path(parent) %></li>
-              <% end %>
-            </ul>
-          </td>
-          <td>
-            <ul>
-              <% @tag.ancestors.each do |anc| %>
-                <li><%= link_to anc.readable, edit_tag_path(anc) %></li>
-              <% end %>
-            </ul>
-          </td>
-        </tr>
-      </table>
+      <div ng-controller="tagRelationshipGraphCtrl">
+        <a href="#" ng-click="showGraph(null)">None</a>
+        <% @tag_relationships.each do |tr| %>
+          <a href="#" ng-click="showGraph('<%= tr.gsub(' ', '_') %>')"><%= tr %></a>
+          <div ng-show="graphShow === '<%= tr.gsub(' ', '_') %>' " id="<%= tr.gsub(' ', '_') %>_d3_graph"></div>
+        <% end %>
+      </div>
+
 
       <%= form_tag tag_path(@tag), method: :patch do %>
 
