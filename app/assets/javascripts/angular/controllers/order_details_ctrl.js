@@ -25,7 +25,8 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
         {displayText: 'Response Received', attribute: 'response_received'},
         {displayText: 'Informed', attribute: 'informed'},
         {displayText: 'Won', attribute: 'won'},
-        {displayText: 'Recommended', attribute: 'recommended'}
+        {displayText: 'Recommended', attribute: 'recommended'},
+        {displayText: 'Billable', attribute: 'billable'}
     ]
 
     orderAttributes = [
@@ -56,7 +57,6 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
 
     $http.get('/manipulate/' + window.gon.order_id + '.json').success(function(order){
         $scope.order = order
-        console.log(order)
     });
 
     $scope.transferOrder = function(newEmail, newName){
@@ -76,7 +76,7 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
         });
         angular.forEach($scope.order.order_groups, function(og, index){      
             angular.forEach(og.alphabetical_dialogues, function(dialogue, index){
-                updateParams[dialogue.id] = {}
+                updateParams[dialogue.id] = {order_group_id: og.id, supplier_id: dialogue.supplier_id}
                 angular.forEach($scope.checkboxes, function(cHash, index){
                     updateParams[dialogue.id][cHash.attribute] = dialogue[cHash.attribute]
                 });
@@ -85,7 +85,6 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
                 });
             });
         });
-        console.log(updateParams)
         return updateParams
     }
 
