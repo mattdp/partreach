@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809055336) do
+ActiveRecord::Schema.define(version: 20140903165133) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20140809055336) do
     t.boolean  "supplier_working"
     t.text     "email_snippet"
     t.text     "close_email_body"
+    t.boolean  "billable",                                     default: false
   end
 
   create_table "events", force: true do |t|
@@ -314,12 +315,11 @@ ActiveRecord::Schema.define(version: 20140809055336) do
   create_table "tag_relationships", force: true do |t|
     t.integer  "source_tag_id",  null: false
     t.integer  "related_tag_id", null: false
-    t.string   "relationship",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "relationship"
   end
 
-  add_index "tag_relationships", ["related_tag_id", "source_tag_id", "relationship"], name: "index_tag_relationships_unique", unique: true, using: :btree
   add_index "tag_relationships", ["source_tag_id"], name: "index_tag_relationships_on_source_tag_id", using: :btree
 
   create_table "taggable_types", force: true do |t|
