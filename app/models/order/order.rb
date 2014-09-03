@@ -298,11 +298,11 @@ See the note from client for details on what exactly they're looking for.</p>
     #-2 since using dates[index] and dates[index+1]
     while index <= dates.length - 2   
       unit = []
-      created_orders = Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
+      created_orders = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
       unit << dates[index]
       unit << created_orders.sum{|o| o.quote_value}.to_s
       unit << created_orders.count
-      unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
+      unit << Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
       printout << unit
       index += 1
     end
@@ -320,7 +320,7 @@ See the note from client for details on what exactly they're looking for.</p>
 
     while (index <= dates.length - 2)
 
-      orders_for_month = Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
+      orders_for_month = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
       
       total_possible_revenue = 0
       bid_fee = 0.01
