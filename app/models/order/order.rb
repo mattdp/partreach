@@ -37,7 +37,7 @@ class Order < ActiveRecord::Base
                     :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
   
   belongs_to :user
-  has_many :order_groups, dependent: :destroy, order: :created_at
+  has_many :order_groups, -> { order(:created_at) }, dependent: :destroy
   has_many :dialogues, through: :order_groups, dependent: :destroy
   has_many :parts, through: :order_groups, dependent: :destroy
 
