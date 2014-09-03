@@ -28,6 +28,7 @@ gem 'google_custom_search_api', '1.0.0'
 gem 'angularjs-rails'
 gem 'gon'
 gem 'jbuilder'
+gem "d3-rails"
 
 
 #old assets block
