@@ -286,12 +286,17 @@ See the note from client for details on what exactly they're looking for.</p>
     HTML
   end
 
+  def self.closed_orders(start_date, end_date)
+    closed_orders = Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", start_date, end_date, "Order", "closed_successfully").
+      map { |e| e.model_id}
+  end
+
   def self.metrics(interval,tracking_start_date)
     output = {}
 
     dates = Order.date_ranges(interval,tracking_start_date)
 
-    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Creates", "Closed RFQs"]
+    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Created", "Closed RFQs", "Total Billable Fees"]
 
     printout = []
     index = 0
@@ -303,6 +308,8 @@ See the note from client for details on what exactly they're looking for.</p>
       unit << created_orders.sum{|o| o.quote_value}.to_s
       unit << created_orders.count
       unit << Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
+      closed = Order.closed_orders(dates[index], dates[index+1])
+      unit << Dialogue.total_billable_fees(closed)
       printout << unit
       index += 1
     end

@@ -147,5 +147,34 @@ class Dialogue < ActiveRecord::Base
     SupplierMailer.rfq_close_email(self)
     update(informed: true)
   end
-  
+
+  def self.billable_by_supplier(closed_orders)
+    in_network_tags = Tag.tag_set(:network,:id)
+    result_hash = {}
+    Dialogue.where(billable: true).
+      includes(:supplier).
+      joins(supplier: :tags).where(tags: {id: in_network_tags}).
+      joins(:order).where(orders: {id: closed_orders}).
+      order('suppliers.id').
+      each do |dialogue|
+      if result_hash[dialogue.supplier]
+        result_hash[dialogue.supplier] << dialogue
+      else
+        result_hash[dialogue.supplier] = [dialogue]
+      end
+    end
+    result_hash
+  end
+
+  # 1% of sum of total cost of all billable bids during period
+  def self.total_billable_fees(closed)
+    total = 0.0
+    Dialogue.billable_by_supplier(closed).each do |supplier, dialogues|
+      dialogues.each do |dialogue|
+        total += (dialogue.total_cost * 0.01).round(2)
+      end
+    end
+    total
+  end
+
 end
