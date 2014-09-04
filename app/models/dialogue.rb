@@ -174,7 +174,7 @@ class Dialogue < ActiveRecord::Base
         total += (dialogue.total_cost * 0.01).round(2)
       end
     end
-    total
+    total.round(2)
   end
 
 end
