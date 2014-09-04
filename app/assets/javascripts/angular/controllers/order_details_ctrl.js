@@ -94,10 +94,12 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
     }
 
     $scope.removeDialogue = function(id, dialogueIndex, ogIndex){
-        $http.delete('/dialogues/' + id + '.json').success(function(data){
-            if (data.success === true){
-                $scope.order.order_groups[ogIndex].alphabetical_dialogues.splice(dialogueIndex,1)
-            }
-        })
+        if (confirm('Before deleting this dialogue, please contemplate life and it\'s meaning; Also whether you meant to delete this.') ){
+            $http.delete('/dialogues/' + id + '.json').success(function(data){
+                if (data.success === true){
+                    $scope.order.order_groups[ogIndex].alphabetical_dialogues.splice(dialogueIndex,1)
+                }
+            })
+        }
     }
 }]);
