@@ -38,7 +38,7 @@ class Tag < ActiveRecord::Base
         name_for_link: Tag.proper_name_for_link(name),
         tag_group: tag_group)
     end
-    return tag
+    tag
   end
 
   def self.all_by_group
