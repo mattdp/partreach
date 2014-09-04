@@ -78,6 +78,7 @@
               <td><strong><a href="/suppliers/admin_edit/{{d.supplier.name_for_link}}" target="_blank">{{d.supplier.name}}</a></strong></td>
               <td ng-repeat="checkbox in checkboxes" class="center md_checkbox_td"><input type="checkbox" ng-model="d[checkbox.attribute]" tooltip-append-to-body="true" tooltip="{{checkbox.displayText}}"></td>
               <td ng-repeat="header in headers"><input type="text" ng-model="d[header.attribute]"></td>
+              <td><a class="ng-link" ng-click="removeDialogue(d.id, this.$index, this.$parent.$index)">Remove Dialougue</a></td>
             </tr>
           </table>
 

@@ -13,7 +13,7 @@ Partreach::Application.routes.draw do
 
   resources :communications, only: [:new, :create]
 
-  resources :dialogues, only: [:new, :create]
+  resources :dialogues, only: [:new, :create, :destroy]
   get '/dialogues/new/:id', to: 'dialogues#new'
   get '/dialogues/initial_email/:id', to: 'dialogues#initial_email', as: 'dialogue_initial_email'
   get '/dialogues/edit_rfq_close_email/:id', to: 'dialogues#edit_rfq_close_email', as: 'dialogue_edit_rfq_close_email'
