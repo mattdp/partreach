@@ -1,13 +1,15 @@
 class Crawler::Supplier < Crawler
-  def initialize(args)
+  def initialize(supplier, args)
+    return false if supplier.url_main.blank?
     super(args)
+    @supplier = supplier
+    args[:url] = @supplier.url_main
     @site_info = {
       phone: [],
       email: [],
       zip: [],
       state: []
     }
-    @supplier = Supplier.find(args[:supplier_id])
     @data = {}
   end
 
