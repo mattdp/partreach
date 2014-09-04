@@ -12,6 +12,7 @@ class CrawlerRefactor
   end
 
   def run
+    raise ArgumentError, 'Needs a url' if @urls.empty?
     while @pages_crawled <= @max_pages && @urls.any?
       url = @urls.shift
       @current_url_object = Domainatrix.parse(url)
