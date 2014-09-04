@@ -5,7 +5,7 @@ class CrawlerRefactor
     args = defaults.merge(args)
     @max_pages = args[:max_pages]
     @urls = [args[:url]]
-    @starting_url_object = Domainatrix.parse(args[:url])
+    @starting_url_object = run_domainatrix(args[:url])
     @completed_urls = []
     @html_documents = []
     @pages_crawled = 0
@@ -15,8 +15,8 @@ class CrawlerRefactor
     raise ArgumentError, 'Needs a url' if @urls.empty?
     while @pages_crawled <= @max_pages && @urls.any?
       url = @urls.shift
-      @current_url_object = Domainatrix.parse(url)
-      page = self.open_page
+      @current_url_object = run_domainatrix(url)
+      page = @current_url_object ? self.open_page : false
 
       @urls = @urls | page.css('a').map{|l| l['href']} if page
 
@@ -49,6 +49,15 @@ class CrawlerRefactor
         Rails.logger.debug "Open failed for #{url}"
       end
       page
+    end
+
+    def run_domainatrix(url)
+      begin
+        d_object = Domainatrix.parse(url)
+      rescue StandardError => e
+        d_object = nil
+      end
+      d_object
     end
   
     def page_should_be_skipped?
