@@ -34,7 +34,8 @@
         <% end %>
       </p>
 
-      <p>Email of RFQ contact: <%= text_field_tag "dummy_subject", "#{@contact.email}" %></p>
+      <p>Email of RFQ contact: <%= text_field_tag "dummy_subject", "#{@contact.email}" %></p> <%= text_field_tag "dummy_subject", "#{@contact.cc_emails}" %></p>
+      <p>CC email's of RFQ contact: 
 
       <p>-----BEGIN COPYABLE TEXT-----</p>
 
