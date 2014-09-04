@@ -18,7 +18,7 @@ class CrawlerRefactor
       @current_url_object = run_domainatrix(url)
       page = @current_url_object ? self.open_page : false
 
-      @urls = @urls | page.css('a').map{|l| l['href']} if page
+      @urls = @urls | page.css('a').map{|l| l['href'].gsub(/.*(?=http:\/\/)/, '')} if page
 
       @completed_urls << url
       @html_documents << page if page
@@ -29,7 +29,7 @@ class CrawlerRefactor
 
   protected
     def open_page
-      return nil if page_should_be_skipped?
+      return nil if self.page_should_be_skipped?
 
       page = build_html_and_sleep
     end
@@ -61,14 +61,14 @@ class CrawlerRefactor
     end
   
     def page_should_be_skipped?
-      if !(@current_url_object.domain == @starting_url_object.domain || @current_url_object.domain == "" or !(@current_url_object.host.include?("www") or @current_url_object.host.include?("http")) )
-        Rails.logger.info "current url isn't on the master domain, #{@starting_url_object.domain}. Skipping."
-        true
-      elsif (@current_url_object.path != "" and @current_url_object.path[0] == "#")
-        Rails.logger.info "current url is an anchor link. Skipping."
-        true
+      if @starting_url_object.domain != @current_url_object.domain && (@current_url_object.domain == "" && @current_url_object.host != "")
+        Rails.logger.info "#{@current_url_object.url} isn't on the master domain, #{@starting_url_object.domain}. Skipping."
+        return true
+      elsif (@current_url_object.path != "" && @current_url_object.path[0] == "#")
+        Rails.logger.info "#{@current_url_object.url} is an anchor link. Skipping."
+        return true
       else
-        false
+        return false
       end
     end
 
