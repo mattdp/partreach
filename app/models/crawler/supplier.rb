@@ -1,4 +1,4 @@
-class Crawler::Supplier < Crawler
+class Crawler::Supplier < CrawlerRefactor
   def initialize(supplier, args)
     return false if supplier.url_main.blank?
     super(args)

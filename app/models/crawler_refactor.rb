@@ -18,7 +18,7 @@ class CrawlerRefactor
       @current_url_object = run_domainatrix(url)
       page = @current_url_object ? self.open_page : false
 
-      @urls = @urls | page.css('a').map{|l| l['href'].gsub(/.*(?=http:\/\/)/, '')} if page
+      @urls = @urls | page.css('a').map{|l| l['href']} if page
 
       @completed_urls << url
       @html_documents << page if page
