@@ -87,12 +87,33 @@ class Tag < ActiveRecord::Base
     return counter
   end
 
-  def user_readable
-    self.readable.nil? ? self.name : self.readable
-  end
-
   def self.proper_name_for_link(name)
     Supplier.proper_name_for_link(name)
   end
 
+  def user_readable
+    self.readable.nil? ? self.name : self.readable
+  end
+
+  # Recursively get all the related_tags (descendants) of a tag
+  def descendants(node = self, nodes = [])
+    # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
+    # JAMES AND I ARE GOING TO DISCUSS TAGGING RELATIONSHIPS FURTHER
+    if !node.related_tags.empty?
+      node.related_tags.each {|n| nodes << n }
+      node.related_tags.each {|n| n.descendants(n, nodes)}
+    end
+    nodes
+  end
+
+  # Recursively get all the related_tags (descendants) of a tag
+  def ancestors(node = self, nodes = [])
+    # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
+    # JAMES AND I ARE GOING TO DISCUSS TAGGING RELATIONSHIPS FURTHER
+    if !node.source_tags.empty?
+      node.source_tags.each {|n| nodes << n }
+      node.source_tags.each {|n| n.ancestors(n, nodes)}
+    end
+    nodes
+  end
 end
