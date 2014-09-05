@@ -211,6 +211,8 @@ class OrdersController < ApplicationController
     end
   end
 
+
+  # This method is horrendus.  MUST REFACTOR
   def update_dialogues
     @order = Order.find(params[:id])
     @dialogues = @order.dialogues
@@ -318,7 +320,7 @@ class OrdersController < ApplicationController
     end
 
     def setup_checkboxes
-      checkboxes = [:initial_select, :opener_sent, :supplier_working, :response_received, :informed, :won, :recommended]
+      checkboxes = [:initial_select, :opener_sent, :supplier_working, :response_received, :informed, :won, :recommended, :billable]
     end
 
     def setup_textfields

@@ -37,7 +37,7 @@ class Order < ActiveRecord::Base
                     :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
   
   belongs_to :user
-  has_many :order_groups, dependent: :destroy, order: :created_at
+  has_many :order_groups, -> { order(:created_at) }, dependent: :destroy
   has_many :dialogues, through: :order_groups, dependent: :destroy
   has_many :parts, through: :order_groups, dependent: :destroy
 
@@ -286,23 +286,30 @@ See the note from client for details on what exactly they're looking for.</p>
     HTML
   end
 
+  def self.closed_orders(start_date, end_date)
+    closed_orders = Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", start_date, end_date, "Order", "closed_successfully").
+      map { |e| e.model_id}
+  end
+
   def self.metrics(interval,tracking_start_date)
     output = {}
 
     dates = Order.date_ranges(interval,tracking_start_date)
 
-    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Creates", "Closed RFQs"]
+    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Created", "Closed RFQs", "Total Billable Fees"]
 
     printout = []
     index = 0
     #-2 since using dates[index] and dates[index+1]
     while index <= dates.length - 2   
       unit = []
-      created_orders = Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
+      created_orders = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
       unit << dates[index]
       unit << created_orders.sum{|o| o.quote_value}.to_s
       unit << created_orders.count
-      unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
+      unit << Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
+      closed = Order.closed_orders(dates[index], dates[index+1])
+      unit << Dialogue.total_billable_fees(closed)
       printout << unit
       index += 1
     end
@@ -320,7 +327,7 @@ See the note from client for details on what exactly they're looking for.</p>
 
     while (index <= dates.length - 2)
 
-      orders_for_month = Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
+      orders_for_month = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
       
       total_possible_revenue = 0
       bid_fee = 0.01
