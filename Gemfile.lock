@@ -30,6 +30,7 @@ GEM
       faraday (>= 0.8, < 0.10)
       faraday_middleware (>= 0.8, < 0.10)
       multi_json (~> 1.0)
+    angular-ui-bootstrap-rails (0.11.0)
     angularjs-rails (1.2.21)
     annotate (2.5.0)
       rake
@@ -280,6 +281,7 @@ PLATFORMS
 
 DEPENDENCIES
   analytics-ruby (< 1.0)
+  angular-ui-bootstrap-rails
   angularjs-rails
   annotate (= 2.5.0)
   bcrypt-ruby (~> 3.0.0)
