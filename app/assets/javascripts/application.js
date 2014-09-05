@@ -12,11 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require d3
 //= require angular
 //= require angular-animate
 //= require angular-resource
-//= require app.js
+//= require angular-ui-bootstrap-tpls
 //= require bootstrap
+//= require app.js
 
 //= require s3_direct_upload
 //= require jquery.validate

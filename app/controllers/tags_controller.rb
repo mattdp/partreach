@@ -15,6 +15,11 @@ class TagsController < ApplicationController
 
   def edit
     @tag = Tag.find(params[:id])
+    @tag_relationships = TagRelationship
+      .joins(:relationship)
+      .where('tag_relationships.source_tag_id = ? OR tag_relationships.related_tag_id = ?', @tag.id, @tag.id)
+      .joins(:relationship).pluck(:name).uniq
+    gon.tag_id = @tag.id
   end
 
   def update

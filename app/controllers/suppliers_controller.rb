@@ -33,6 +33,7 @@ class SuppliersController < ApplicationController
     saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
 
     if saved_ok
+      Crawler.delay.crawl_master([@supplier])
       redirect_to admin_edit_path(@supplier.name_for_link), notice: "Saved OK!" 
     else 
       redirect_to new_supplier_path(@supplier.name_for_link), notice: "Saving problem."
