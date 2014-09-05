@@ -542,7 +542,7 @@ class Supplier < ActiveRecord::Base
 
   def append_http_to_url
     if self.url_main
-      sef.url_main = /^http/.match(self.url_main) ? self.url_main : "http://#{self.url_main}"
+      self.url_main = /^http/.match(self.url_main) ? self.url_main : "http://#{self.url_main}"
     end
   end
 
