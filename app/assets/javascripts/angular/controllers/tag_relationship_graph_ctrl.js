@@ -1,35 +1,8 @@
-App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', function($scope, $http){
+App.controller('TagRelationshipGraphCtrl', ['$scope', '$http', function($scope, $http){
     $scope.graphShow = null;
 
     $scope.showGraph = function(chart){
         $scope.graphShow = chart;
-        console.log($scope.graphShow)
-    }
-
-    $scope.graphData = {
-        name: 'Root',
-        children: [
-            {
-                name: 'Child1'
-            },
-            {
-                name: 'Child2'
-            },
-            {
-                name: 'Child3'
-            }
-        ],
-        parents: [
-            {
-                name: 'Parent1'
-            },
-            {
-                name: 'Parent2'
-            },
-            {
-                name: 'Parent3'
-            }
-        ] 
     }
 
     updateNodePositions2 = function(n, nodePositionDictionary){
