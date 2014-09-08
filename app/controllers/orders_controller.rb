@@ -62,7 +62,6 @@ class OrdersController < ApplicationController
       end
       instance_variable_set("@#{summary_var}_summary_wording",value)
     end
-
     @content = Question.raw_list
     @from_supplier_name = Supplier.find(params[:from_supplier]).name if params[:from_supplier]
 

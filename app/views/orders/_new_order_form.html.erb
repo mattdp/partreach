@@ -13,9 +13,6 @@
   <div class="questions__instructions">
     <h2 class="inline">Step 2 of 2:</h2>
     <h2 class="inline">Tell us about your order.</h2>
-  <% if @priority == "speed" %>
-    <p><strong>You need this fast, and we can help.</strong> Make sure to give us your deadline and phone number below so we can move quickly.</p>
-  <% end %>
   </div>
 
   <h2 class="main-header">Upload your files</h2>
@@ -63,7 +60,6 @@
         <%= text_field_tag 'material_message', nil, :placeholder => 'ABS, stainless steel, etc.' %>
       </div>
     </div>
-    <% if @priority == "speed" %>
     <div class="triplets">
       <div class="col">
         <%= label_tag 'deadline', 'Deadline (date and time)' %>
@@ -72,7 +68,6 @@
       <div class="col">
       </div>
     </div>
-    <% end %>
 
     <div class="triplets">
       <div class="two-col">
