@@ -1,4 +1,16 @@
 $(document).ready(function() {
+  $('.sign_in_toggle').click(function(){
+    provide_info_div = $('.order_provide_info')
+    sign_in_div = $('.order_sign_in')
+    if (provide_info_div.is(":visible")){
+      provide_info_div.addClass('hidden')
+      sign_in_div.removeClass('hidden')
+    }else{
+      provide_info_div.removeClass('hidden')
+      sign_in_div.addClass('hidden')
+    }
+  })
+
   $('.generate-email-button').click(function(event) {
     event.preventDefault();
     var html = $(this).attr('data-html');

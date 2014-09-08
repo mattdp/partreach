@@ -17,14 +17,14 @@
     </div>
     <div class="col-60 twins p-0">
       <div class="col p-0">
-        <h3>Not ready for a quote?</h3>
-        <p>We’ll keep you updated in the&nbsp;meantime.</p>
+        <h3></h3>
       </div>
       <div class="col">
         <div class="email-form">
+          <p> Not ready for a quote?</p>
           <%= form_tag :action => 'create', :controller => 'leads' do %>
             <input type="hidden" name="next_step_field" value="/">
-            <%= text_field_tag 'email_field', nil, :placeholder => "sam.joss@supplybetter.com", class: "email-input", :id => "email-submit-field" %>
+            <%= text_field_tag 'email_field', nil, :placeholder => "Enter email for updates!", class: "email-input", :id => "email-submit-field" %>
             <%= submit_tag "Sign up", data: { disable_with: 'Submitting...' }, class: "email-button", :id => "email-submit-button" %>
           <% end %>
         </div>
