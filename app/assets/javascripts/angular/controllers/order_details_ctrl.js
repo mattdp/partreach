@@ -92,4 +92,14 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
         updateParams = serializeParams()
         $http.post('/orders/update_dialogues', updateParams)
     }
+
+    $scope.removeDialogue = function(id, dialogueIndex, ogIndex){
+        if (confirm('Before deleting this dialogue, please contemplate life and it\'s meaning; Also whether you meant to delete this.') ){
+            $http.delete('/dialogues/' + id + '.json').success(function(data){
+                if (data.success === true){
+                    $scope.order.order_groups[ogIndex].alphabetical_dialogues.splice(dialogueIndex,1)
+                }
+            })
+        }
+    }
 }]);
