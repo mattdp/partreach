@@ -207,14 +207,7 @@ class OrdersController < ApplicationController
 
   def manipulate_dialogues
     @order = Order.find(params[:id])
-    @order_groups = @order.order_groups.order("created_at")
     @user = User.find(@order.user_id)
-    @lead_contact = @user.lead.lead_contact
-    @total_quantity = @order.total_quantity
-
-    @checkboxes = setup_checkboxes
-    @textfields = setup_textfields
-    @numberfields = setup_numberfields
 
     respond_to do |format|
       format.html # manipulate_dialogues.html.erb
@@ -222,6 +215,8 @@ class OrdersController < ApplicationController
     end
   end
 
+
+  # This method is horrendus.  MUST REFACTOR
   def update_dialogues
     @order = Order.find(params[:id])
     @dialogues = @order.dialogues
@@ -234,38 +229,19 @@ class OrdersController < ApplicationController
     @order.columns_shown = params[:columns_shown]
     @order.next_steps = params[:next_steps]
     if params[:status].present?
-      Event.add_event("Order",@order.id,"closed_successfully") if params[:status] == "Finished - closed" and @order.status != params[:status]
+      Event.add_event("Order",@order.id,"closed_successfully") if params[:status] == "Finished - closed" && @order.status != params[:status]
       @order.status = params[:status]
     end
     @order.next_action_date = params[:next_action_date]
     @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
     @dialogues.each do |d|
+
       if !params[d.id.to_s].nil?
         d_params = params[d.id.to_s]
 
         [@checkboxes, @textfields, @numberfields].each do |set|
           set.each do |field|
-            if set == @checkboxes
-              d_params[field.to_s].nil? ? d[field.to_s] = false : d[field.to_s] = true
-            else
-
-              field_value = d_params["#{field.to_s}_field"]
-              if !field_value.nil?
-                case field
-                when :order_group_id, :supplier_id
-                  if field_value != ""
-                    d[field.to_s] = field_value.to_i
-                  end
-                when :process_cost, :shipping_cost, :total_cost
-                  if field_value != ""
-                    d[field.to_s] = BigDecimal.new(field_value)
-                  end
-                else
-                  field_value == "" ? d[field.to_s] = nil : d[field.to_s] = field_value
-                end
-              end
-
-            end
+              d[field.to_s] = d_params[field.to_s]
           end
         end
 
@@ -330,11 +306,11 @@ class OrdersController < ApplicationController
 
     def correct_user
       @orders = current_user.orders.find_by_id(params[:id])
-      redirect_to(root_path) if (@orders.nil? and !current_user.admin)
+      redirect_to(root_path) if (@orders.nil? && !current_user.admin)
     end
 
     def text_notification(message_text)
-      phone_numbers = ["+14152382438","+16033205765","+12038852107"] #matt, rob, yossi
+      phone_numbers = ["+14152382438","+16033205765","+14156565920"] #matt, rob, steve
 
       account_sid = 'AC019c83da8ef75c162b430e909464f5a4'
       auth_token = ENV['SB_TWILIO_AUTH_TOKEN']
@@ -348,7 +324,7 @@ class OrdersController < ApplicationController
     end
 
     def setup_checkboxes
-      checkboxes = [:initial_select, :opener_sent, :supplier_working, :response_received, :informed, :won, :recommended]
+      checkboxes = [:initial_select, :opener_sent, :supplier_working, :response_received, :informed, :won, :recommended, :billable]
     end
 
     def setup_textfields
