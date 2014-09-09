@@ -67,6 +67,12 @@ $(document).ready(function() {
       material_message: {
         required: true
       },
+      user_email: {
+        require_from_group: [2, ".signup-signin-group"]
+      },
+      user_password: {
+        require_from_group: [2, ".signup-signin-group"]
+      },
       signin_email: {
         require_from_group: [2, ".signup-signin-group"]
       },
@@ -80,6 +86,8 @@ $(document).ready(function() {
     messages: {
       "files_uploaded": "Please upload at least one file",
       "signin_email": "Please enter email and password",
+      "user_email": "Please enter email and password",
+      "user_password": "Please enter email and password",
       "signin_password": "Please enter email and password",
     },
     errorClass: "signup_signin_errors"

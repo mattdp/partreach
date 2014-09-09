@@ -84,13 +84,16 @@
     <% if current_user.nil? %>
       <div class="twins">
         <div class="col order_provide_info">
-          <h3>Tell us how to contact you.</h3>
-          <a class="sign_in_toggle" href="">Or sign in to your account</a>
+          <h3>Create an account</h3>
+          <a class="sign_in_toggle" href="">Already have an account? Sign in.</a>
           <%= label_tag 'user_name', 'Name' %>
-          <%= text_field_tag 'user_name', nil, placeholder: 'Enter name here' %>
+          <%= text_field_tag 'user_name', nil, placeholder: 'Enter name here', class: 'signup-signin-group'  %>
 
           <%= label_tag 'user_email', 'Email' %>
           <%= text_field_tag 'user_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group' %>
+
+          <%= label_tag 'user_password', 'Password' %>
+          <%= password_field_tag 'user_password', nil, placeholder: 'Enter password', class: 'signup-signin-group' %>
 
           <%= label_tag 'user_phone', 'Phone number (Phone, Skype, Google+)' %>
           <%= text_field_tag 'user_phone', nil, :placeholder => 'We call with questions on rush jobs.' %>
@@ -100,7 +103,7 @@
         </div>
         <div class="col order_sign_in hidden">
           <h3>Sign back in</h3>
-          <a class="sign_in_toggle" href="">No account? Provide contact info.</a>
+          <a class="sign_in_toggle" href="">No account? Create one.</a>
           <%= label_tag 'signin_email', 'Email' %>
           <%= text_field_tag 'signin_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group' %>
           <%= label_tag 'signin_password', 'Password' %>
