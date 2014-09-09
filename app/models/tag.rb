@@ -18,7 +18,7 @@ class Tag < ActiveRecord::Base
 
   belongs_to :tag_group
   has_many :taggings
-  has_many :suppliers, :through => :taggings, :source_type => 'Supplier'
+  has_many :suppliers, :through => :taggings, :source => :taggable, :source_type => 'Supplier'
   has_many :tag_relationships, foreign_key: "source_tag_id", class_name: "TagRelationship"
   has_many :related_tags, :through => :tag_relationships
   has_many :reverse_tag_relationships, foreign_key: "related_tag_id", class_name: "TagRelationship"
@@ -29,12 +29,16 @@ class Tag < ActiveRecord::Base
   validates :name_for_link, presence: true
   validates_presence_of :tag_group
 
-  def self.find_or_create_tag(name, tag_group)
-    Tag.find_or_create_by(name: name) do |tag|
-      tag.readable = name
-      tag.name_for_link = Tag.proper_name_for_link(name)
-      tag.tag_group = tag_group
+  def self.find_or_create!(name, tag_group)
+    tag = Tag.where("LOWER(readable) = ?", name.downcase).first
+    unless tag
+      tag = Tag.create!(
+        name: name,
+        readable: name,
+        name_for_link: Tag.proper_name_for_link(name),
+        tag_group: tag_group)
     end
+    tag
   end
 
   def self.all_by_group
