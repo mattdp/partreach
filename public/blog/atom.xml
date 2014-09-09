@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-07-21T14:44:15-07:00</updated>
+ <updated>2014-09-09T14:56:27-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -133,7 +133,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
 &lt;h3&gt;&lt;strong&gt;FDM&lt;/strong&gt; (&lt;a href=&quot;https://en.wikipedia.org/wiki/Fused_deposition_modeling&quot; target=&quot;_blank&quot;&gt;Fused Deposition Modeling&lt;/a&gt;)&lt;/h3&gt;
 &lt;div&gt;
     &lt;p&gt;There is a great example of FDM&#39;s capabilities in the middle of this promotional video of the Fortus 900mc by Stratasys. Notice how the large build volume and liberal use of support material allows for huge end-use parts.&lt;/p&gt;
-    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;https://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;https://www.youtube.com/v/W5h2d7Vyj6s&amp;hl=en_US&amp;start=131&amp;end=184&quot; type=&quot;application/x-shockwave-flash&quot; allowscriptaccess=&quot;always&quot; width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
+    &lt;object width=&quot;640&quot; height=&quot;385&quot;&gt;&lt;param name=&quot;movie&quot; value=&quot;//www.youtube.com/v/KlDDKb3_DOg?version=3&amp;amp;hl=en_US&amp;start=137&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowFullScreen&quot; value=&quot;true&quot;&gt;&lt;/param&gt;&lt;param name=&quot;allowscriptaccess&quot; value=&quot;always&quot;&gt;&lt;/param&gt;&lt;embed src=&quot;//www.youtube.com/v/KlDDKb3_DOg?version=3&amp;amp;hl=en_US&amp;start=137&quot; type=&quot;application/x-shockwave-flash&quot; width=&quot;640&quot; height=&quot;385&quot; allowscriptaccess=&quot;always&quot;&gt;&lt;/embed&gt;&lt;/object&gt;
     &lt;p&gt;&lt;strong&gt;Best use case:&lt;/strong&gt; Large custom brackets that need good mechanical strength for either prototype or production applications. Also, parts that have large closed voids are well suited to this method.&lt;/p&gt;
     &lt;p&gt;&lt;strong&gt;Biggest disadvantage:&lt;/strong&gt; Mechanical strength is highly dependent on build orientation. Specifically, the z-axis has a lower tensile strength than the x or y axis.&lt;/p&gt;
     &lt;p&gt;&lt;strong&gt;How common is this method?&lt;/strong&gt; Very common. This is one of our most requested 3D printing options.&lt;/p&gt;
