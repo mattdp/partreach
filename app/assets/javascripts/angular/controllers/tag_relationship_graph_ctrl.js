@@ -1,5 +1,5 @@
-App.controller('TagRelationshipGraphCtrl', ['$scope', '$http', function($scope, $http){
-    $scope.graphShow = null;
+App.controller('tagRelationshipGraphCtrl', ['$scope', '$http', 'UrlParams', function($scope, $http, UrlParams){
+    $scope.graphShow = UrlParams('graph') || null;
 
     $scope.showGraph = function(chart){
         $scope.graphShow = chart;
@@ -102,7 +102,7 @@ App.controller('TagRelationshipGraphCtrl', ['$scope', '$http', function($scope, 
             var node = svg.selectAll(".node")
                 .data(nodes)
                 .enter().append("g")
-                .on("click", function(d,i) { window.location.href = '/tags/' + d.id + '/edit' })
+                .on("click", function(d,i) { window.location.href = '/tags/' + d.id + '/edit?graph=' + $scope.graphShow })
                 .on("mouseover", function(){ $(this).css('cursor', 'pointer');})
                 .attr("class", "node")
                 .attr("transform", function(d) { return d.right ? "translate(" + (d.y) + "," + d.x + ")" : "translate(" + (-d.y) + "," + d.x + ")" ; })
