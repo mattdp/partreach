@@ -10,13 +10,14 @@
 
 .header__logo {
   float: left;
-  margin: 9px 0 0;
+  margin: 0px;
   width: 173px;
 }
 
 .header__links {
   float: right;
   list-style: none;
+  padding-top: 10px;
 
   > li {
     float: left;
