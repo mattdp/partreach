@@ -50,14 +50,14 @@ class OrdersController < ApplicationController
     looking_for_supplier.present? ? @supplier = looking_for_supplier[0] : @supplier = nil
 
     blanks = "__________"
-    questions = params["questions"]
+    @questions = params["questions"]
     [:experience, :priority, :manufacturing].each do |summary_var|
       value = blanks
-      if questions.present? and questions[summary_var].present?
-        option_details = Question.get_option_details(summary_var,questions[summary_var])
+      if @questions.present? and @questions[summary_var].present?
+        option_details = Question.get_option_details(summary_var,@questions[summary_var])
         if option_details
           value = option_details[:summary]
-          instance_variable_set("@#{summary_var}",questions[summary_var])
+          instance_variable_set("@#{summary_var}",@questions[summary_var])
         end
       end
       instance_variable_set("@#{summary_var}_summary_wording",value)
