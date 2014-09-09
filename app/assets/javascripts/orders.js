@@ -67,9 +67,6 @@ $(document).ready(function() {
       material_message: {
         required: true
       },
-      user_email: {
-        require_from_group: [2, ".signup-signin-group"]
-      },
       signin_email: {
         require_from_group: [2, ".signup-signin-group"]
       },
@@ -82,7 +79,6 @@ $(document).ready(function() {
     },
     messages: {
       "files_uploaded": "Please upload at least one file",
-      "user_email": "Please enter email and password",
       "signin_email": "Please enter email and password",
       "signin_password": "Please enter email and password",
     },
