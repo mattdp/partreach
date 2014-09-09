@@ -5,7 +5,7 @@
           Order created
         </td>
         <td>
-          <%= @order_create_date_pacific.strftime("%m/%d/%Y %H:%M (%Z)") %>
+          <%= to_pacific_timezone(@order.created_at).strftime("%m/%d/%Y %H:%M (%Z)") %>
         </td>
       </tr>
     <% if @order.name.present? %>
