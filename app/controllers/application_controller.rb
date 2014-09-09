@@ -1,9 +1,13 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  after_filter :set_csrf_cookie_for_ng
   include SessionsHelper
 
 #http://stackoverflow.com/questions/128450/best-practices-for-reusing-code-between-controllers-in-ruby-on-rails/130821#130821
 
+  def set_csrf_cookie_for_ng
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+  end
 
   #http://stackoverflow.com/questions/1183506/make-blank-params-nil
   def clean_params
@@ -47,5 +51,11 @@ class ApplicationController < ActionController::Base
     (return true if current_user.supplier_id == supplier.id) if model.class.to_s == "Supplier"
     return false
   end
+
+  protected
+
+    def verified_request?
+      super || form_authenticity_token == request.headers['X-XSRF-TOKEN']
+    end
 
 end

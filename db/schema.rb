@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140829055506) do
+ActiveRecord::Schema.define(version: 20140903165133) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -116,6 +116,7 @@ ActiveRecord::Schema.define(version: 20140829055506) do
     t.boolean  "supplier_working"
     t.text     "email_snippet"
     t.text     "close_email_body"
+    t.boolean  "billable",                                     default: false
   end
 
   create_table "events", force: true do |t|

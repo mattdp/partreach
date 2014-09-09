@@ -18,7 +18,7 @@ class Tag < ActiveRecord::Base
 
   belongs_to :tag_group
   has_many :taggings
-  has_many :suppliers, :through => :taggings, :source_type => 'Supplier'
+  has_many :suppliers, :through => :taggings, :source => :taggable, :source_type => 'Supplier'
   has_many :tag_relationships, foreign_key: "source_tag_id", class_name: "TagRelationship"
   has_many :related_tags, :through => :tag_relationships
   has_many :reverse_tag_relationships, foreign_key: "related_tag_id", class_name: "TagRelationship"
@@ -38,7 +38,7 @@ class Tag < ActiveRecord::Base
         name_for_link: Tag.proper_name_for_link(name),
         tag_group: tag_group)
     end
-    return tag
+    tag
   end
 
   def self.all_by_group
@@ -87,12 +87,33 @@ class Tag < ActiveRecord::Base
     return counter
   end
 
-  def user_readable
-    self.readable.nil? ? self.name : self.readable
-  end
-
   def self.proper_name_for_link(name)
     Supplier.proper_name_for_link(name)
   end
 
+  def user_readable
+    self.readable.nil? ? self.name : self.readable
+  end
+
+  # Recursively get all the related_tags (descendants) of a tag
+  def descendants(node = self, nodes = [])
+    # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
+    # JAMES AND I ARE GOING TO DISCUSS TAGGING RELATIONSHIPS FURTHER
+    if !node.related_tags.empty?
+      node.related_tags.each {|n| nodes << n }
+      node.related_tags.each {|n| n.descendants(n, nodes)}
+    end
+    nodes
+  end
+
+  # Recursively get all the related_tags (descendants) of a tag
+  def ancestors(node = self, nodes = [])
+    # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
+    # JAMES AND I ARE GOING TO DISCUSS TAGGING RELATIONSHIPS FURTHER
+    if !node.source_tags.empty?
+      node.source_tags.each {|n| nodes << n }
+      node.source_tags.each {|n| n.ancestors(n, nodes)}
+    end
+    nodes
+  end
 end
