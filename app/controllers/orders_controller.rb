@@ -3,7 +3,6 @@ class OrdersController < ApplicationController
   before_filter :correct_user, only: [:show, :destroy]
   before_filter :set_gon_order_id, only: [:show, :manipulate_dialogues]
   before_filter :admin_user, only: [:manipulate_dialogues, :update_dialogues, :manipulate_parts, :update_parts, :initial_email_edit, :initial_email_update]
-  include UrlHelper
 
   # GET /orders
   # GET /orders.json

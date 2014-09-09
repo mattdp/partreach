@@ -136,12 +136,14 @@ class Crawler
 
     #returns parsed_url or false
     def self.page_opener(raw_url,master_parsed_url,explored)
+      #will this ever fail???  The only time Domainatrix complains is when it gets anything other than a string
       begin
         parsed_url = Domainatrix.parse(raw_url)
       rescue StandardError => e
         $stdout.puts "#{raw_url} is not a valid domain name. Skipping."
         return false
       end
+
       if !(parsed_url.domain == master_parsed_url.domain or parsed_url.domain == "" or !(parsed_url.host.include?("www") or parsed_url.host.include?("http")) )
         $stdout.puts "#{raw_url} isn't on the master domain, #{master_parsed_url.domain}. Skipping."
         return false
@@ -201,6 +203,7 @@ class Crawler
         state: []
       }
 
+      #will this ever fail???  The only time Domainatrix complains is when it gets anything other than a string
       begin
         master_parsed_url = Domainatrix.parse(starting_point)
         @scheme = master_parsed_url.scheme || 'http'
