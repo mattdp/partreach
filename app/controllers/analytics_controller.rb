@@ -34,11 +34,9 @@ class AnalyticsController < ApplicationController
   end
 
   def metrics
-
     metrics = Order.metrics(:months,Date.new(2013,8,3))
     @titles = metrics[:titles] 
     @printout = metrics[:printout]
-
   end
 
 end
