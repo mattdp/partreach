@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903165133) do
+ActiveRecord::Schema.define(version: 20140904201033) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20140903165133) do
     t.string   "linkedin_url"
     t.boolean  "email_valid",      default: true
     t.boolean  "email_subscribed", default: true
+    t.text     "cc_emails",        default: ""
   end
 
   create_table "delayed_jobs", force: true do |t|
