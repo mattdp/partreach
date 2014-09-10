@@ -27,6 +27,9 @@ Partreach::Application.routes.draw do
   get '/examinations/:name', to: 'examinations#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"
 
+  get '/experiments/sde', to: 'experiments#sde', as: "experiments_sde"
+  get '/experiments/sla', to: 'experiments#sla', as: "experiments_sla"
+
   get '/guides/:country/:state/:tag', to: redirect("/suppliers/%{country}/%{state}/%{tag}")
   get '/guides/:country/:tag', to: redirect("/suppliers/%{country}/all/%{tag}")
   get '/guides/:name', to: redirect {|params, req| 
