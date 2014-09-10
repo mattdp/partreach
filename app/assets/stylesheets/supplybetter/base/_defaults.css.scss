@@ -8,6 +8,11 @@ p {
   font-weight: 100;
 }
 
+.hidden {
+  display: none !important;
+  visibility: hidden !important;
+}
+
 a {
   color: $blue;
   text-decoration: none;
