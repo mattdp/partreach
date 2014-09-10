@@ -1,16 +1,15 @@
-<table class="table" cellspacing="0">
-  <thead>
-    <tr class="order_table_header_row">
-      <th>Name</th>
+<table class="order_table" cellspacing="0">
 
-      <% columns.each do |name,details| %>
-        <th><%= "#{details[:header]}" %></th>
-      <% end %>
+  <tr class="order_table_header_row">
+    <th>Name</th>
 
-      <th class="little-field">Selection</th>
-    </tr>
-  </thead>
-  <tbody>
+    <% columns.each do |name,details| %>
+      <th><%= "#{details[:header]}" %></th>
+    <% end %>
+
+    <th class="little-field">Selection</th>
+  </tr>
+
   <% rows.each do |d| %>
     <% if d.recommended %>
       <tr class="recommended">
@@ -36,5 +35,5 @@
     <td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
     </tr>
   <% end %>
-  </tbody>
+  
 </table>
