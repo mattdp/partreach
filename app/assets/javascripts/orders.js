@@ -85,9 +85,9 @@ $(document).ready(function() {
     },
     messages: {
       "files_uploaded": "Please upload at least one file",
-      "signin_email": "Please enter email and password",
       "user_email": "Please enter email and password",
       "user_password": "Please enter email and password",
+      "signin_email": "Please enter email and password",
       "signin_password": "Please enter email and password",
     },
     errorClass: "signup_signin_errors"
