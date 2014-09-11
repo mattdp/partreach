@@ -53,16 +53,29 @@ Partreach::Application.configure do
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
 
+  # WHY was this set up for staging?  curious.
   # configure outbound email for Mailgun
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :authentication => :plain,
+  #   :address => "smtp.mailgun.org",
+  #   :port => 587,
+  #   :domain => "supplybetter.com",
+  #   :user_name => "postmaster@supplybetter.com",
+  #   :password => ENV['SB_MAILER_PASSWORD']
+  # }
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :authentication => :plain,
-    :address => "smtp.mailgun.org",
-    :port => 587,
-    :domain => "supplybetter.com",
-    :user_name => "postmaster@supplybetter.com",
-    :password => ENV['SB_MAILER_PASSWORD']
+    :user_name => '23757f9b722070397',
+    :password => '59decc2a1c50ba',
+    :address => 'mailtrap.io',
+    :domain => 'mailtrap.io',
+    :port => '2525',
+    :authentication => :cram_md5,
+    :enable_starttls_auto => true
   }
+  
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = false

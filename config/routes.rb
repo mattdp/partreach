@@ -13,7 +13,7 @@ Partreach::Application.routes.draw do
 
   resources :communications, only: [:new, :create]
 
-  resources :dialogues, only: [:new, :create]
+  resources :dialogues, only: [:new, :create, :destroy]
   get '/dialogues/new/:id', to: 'dialogues#new'
   get '/dialogues/initial_email/:id', to: 'dialogues#initial_email', as: 'dialogue_initial_email'
   get '/dialogues/edit_rfq_close_email/:id', to: 'dialogues#edit_rfq_close_email', as: 'dialogue_edit_rfq_close_email'
@@ -26,6 +26,9 @@ Partreach::Application.routes.draw do
 
   get '/examinations/:name', to: 'examinations#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"
+
+  get '/experiments/sde', to: 'experiments#sde', as: "experiments_sde"
+  get '/experiments/sla', to: 'experiments#sla', as: "experiments_sla"
 
   get '/guides/:country/:state/:tag', to: redirect("/suppliers/%{country}/%{state}/%{tag}")
   get '/guides/:country/:tag', to: redirect("/suppliers/%{country}/all/%{tag}")
