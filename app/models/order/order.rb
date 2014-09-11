@@ -313,7 +313,7 @@ See the note from client for details on what exactly they're looking for.</p>
       unit << dates[index]
       created_orders = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
       average_quote_values = created_orders.map{ |o| o.quote_value }
-      unit << average_quote_values.sum.to_s
+      unit << average_quote_values.sum
       unit << created_orders.count
       unit << Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
       closed = Order.closed_orders(dates[index], dates[index+1])
