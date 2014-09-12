@@ -18,8 +18,10 @@ class CommunicationsController < ApplicationController
 
     if @communication.communicator_type == "Supplier"
       redirect_to admin_edit_path(Supplier.find(@communication.communicator_id).name_for_link), notice: note
-    elsif @communication.communicator_type == "Lead"
+    elsif @communication.communicator_type == "Lead" && params[:manipulate] == false
       redirect_to edit_lead_path(Lead.find(@communication.communicator_id)), notice: note
+    elsif @communication.communicator_type == "Lead" && params[:manipulate]
+      redirect_to manipulate_path(id: params[:manipulate])
     else
       redirect_to root_path, notice: "Error in redirection code. Investigate."
     end

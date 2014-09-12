@@ -6,6 +6,7 @@
   <% end %>
   <% if current_user.admin? %>
     <%= render :partial => "communications/new_communication", locals: {c_id: @user.lead.id, c_type: "Lead", user_id: current_user.id, o_id: @order.id} %>
+    <%= render :partial => "communications/display_communications", locals: {communications: @communications} %>
   <% end %>
   <span class="index_quantity"><strong>Total quantity: </strong><%= "#{@order.total_quantity}" %></span>
   <span class="index_quantity"><strong>Drawing units: </strong><%= "#{@order.units}" %></span>

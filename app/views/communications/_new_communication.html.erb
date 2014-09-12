@@ -1,5 +1,4 @@
 <h3>Communications</h3>
-<p>New communication</p>
 <%= form_tag :action => "create", :controller => "communications" do %>
 
   <div class="one-fourth fleft" >
@@ -12,6 +11,9 @@
 
     <%= hidden_field_tag :communicator_id, c_id %>
     <%= hidden_field_tag :communicator_type, c_type %>
+
+    <% manipulate = current_page?(controller: 'orders', action: 'manipulate_dialogues') ? o_id : false %>
+    <%= hidden_field_tag :manipulate, manipulate %>
 
     <%= submit_tag "Create", class: "save-button" %>
    </div>
