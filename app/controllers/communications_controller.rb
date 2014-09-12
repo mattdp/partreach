@@ -7,12 +7,13 @@ class CommunicationsController < ApplicationController
 
   def create
     @communication = Communication.new(communication_params)
+    @communication.user_id = current_user.id
 
     saved_ok = @communication.save
     if saved_ok
       note = "Communication saved OK!" 
     else 
-      note = "Communication saving problem."
+      note = @communication.errors.full_messages.join(', ')
     end
 
     if @communication.communicator_type == "Supplier"
