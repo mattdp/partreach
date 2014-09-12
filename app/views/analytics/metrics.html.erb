@@ -15,7 +15,7 @@
         <% @printout.each do |unit| %>
           <tr>
             <% unit.each do |datum| %>
-            <td><%= "#{datum}" %></td>
+            <td><%= (datum.class == BigDecimal) ? number_to_currency(datum) : datum %></td>
             <% end %>
           </tr>
         <% end %>
