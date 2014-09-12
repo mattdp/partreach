@@ -57,6 +57,7 @@ App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http)
 
     $http.get('/manipulate/' + window.gon.order_id + '.json').success(function(order){
         $scope.order = order
+        console.log(order)
         $scope.notes = "RFQ"+order.id + " - "
     });
 
