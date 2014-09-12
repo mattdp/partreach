@@ -1,0 +1,36 @@
+<div class="order_basics bit-of-space">
+  <p><strong>Order Created: </strong>{{order.order_created}}</p>
+  <p ng-if="order.name !== null"><strong>Order name: </strong>{{order.name}}</p>
+  <!-- new communications partial -->
+  <h3>Communications</h3>
+  <form class="create_communications_form" novalidate>
+    <div class="one-fourth fleft">
+      <label for="interaction-field">Means of Interaction</label>
+      <input id="interaction-field" type="text" class="input_field" ng-model="interactionMeans" />
+    </div>
+    <div class="clear">
+      <label for="notes-field">Notes</label>
+      <textarea id="notes-field" ng-model="notes"></textarea>
+      <input type="submit" class="save-button" ng-click="createCommunication(interactionMeans, notes)" />
+    </div>
+  </form>
+
+  <ul ng-if="order.user.lead.communications.length > 0">
+    <li ng-repeat="c in order.user.lead.communications">
+      {{c.created_at}} [{{c.user.lead.lead_contact.name}}]: {{c.means_of_interaction}}/{{c.interaction_title}} - {{c.notes}}
+    </li>
+  </ul>
+  <span class="index_quantity"><strong>Total quantity: </strong>{{order.total_quantity}}</span>
+  <span class="index_quantity"><strong>Drawing units: </strong>{{order.units}}</span>
+  <span class="index_quantity" ng-if="order.deadline !== null"><strong>Deadline: </strong>{{order.deadline}}</span>
+  <span class="index_quantity" ng-if="order.user.address !== null && order.user.address.zip.length > 0"><strong>Zip Code: </strong>{{order.user.address.zip}}</span>
+  <strong>Material requested: </strong>{{order.material_message}}
+  <br>
+  <strong ng-if="order.supplier_message !== null && order.supplier_message !== ''">Message to suppliers: </strong>{{order.supplier_message}}
+  <br>
+  <strong ng-if="order.recommendation !== null && order.recomendation !== ''">Our recommendation: </strong>{{order.recommendation}}
+  <br>
+  <strong ng-if="order.next_steps !== null && order.next_steps !== ''">Suggested next steps: </strong>{{order.next_steps}}
+  <br>
+  <a href="/reviews/new">Leave a supplier review</a>  
+</div>

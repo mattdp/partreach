@@ -1,12 +1,12 @@
 <% provide(:title, "##{@order.id} - Manipulate") %>
 
-<div class="container" ng-controller="OrderDetailsCtrl">
+<div class="container" ng-controller="AdminDashboardCtrl">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
       <h1>Changes to RFQ {{order.id}}</h1>  
 
-      <%= render "layouts/order_basics" %>
+      <%= render "layouts/angular_order_basics" %>
 
       <p><strong>User email: </strong>{{order.user.lead.lead_contact.email}}</p>
       <p ng-if="order.override_average_value">

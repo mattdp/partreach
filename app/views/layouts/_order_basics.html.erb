@@ -4,10 +4,6 @@
   <% if @order.name.present? %>
     <p><strong>Order name: </strong> <%= "#{@order.name}" %></p>
   <% end %>
-  <% if current_user.admin? %>
-    <%= render :partial => "communications/new_communication", locals: {c_id: @user.lead.id, c_type: "Lead", user_id: current_user.id, o_id: @order.id} %>
-    <%= render :partial => "communications/display_communications", locals: {communications: @communications} %>
-  <% end %>
   <span class="index_quantity"><strong>Total quantity: </strong><%= "#{@order.total_quantity}" %></span>
   <span class="index_quantity"><strong>Drawing units: </strong><%= "#{@order.units}" %></span>
   <% if !@order.deadline.nil? %>
@@ -31,7 +27,7 @@
     <br>
   <% end %>
   <%= link_to "Leave a supplier review", new_review_path %>
-  <% if current_user.admin? && !current_page?(controller: 'orders', action: 'manipulate_dialogues') %>
+  <% if current_user.admin? %>
     <%= "or admin privileges: " %>
     <%= link_to "Manipulate dialogues (admin)", manipulate_path(@order) %>
   <% end %>

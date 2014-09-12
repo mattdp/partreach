@@ -7,7 +7,7 @@
       <%= link_to "Back to leads", leads_path %>
       <%= link_to "Create new lead", new_lead_path %>
 
-      <%= render :partial => "communications/new_communication", locals: {c_id: @lead.id, c_type: "Lead", user_id: current_user.id, o_id: nil} %>
+      <%= render :partial => "communications/new_communication", locals: {c_id: @lead.id, c_type: "Lead", user_id: current_user.id} %>
       <%= render :partial => "communications/display_communications", locals: {communications: @communications} %>
 
       <% if @user %>

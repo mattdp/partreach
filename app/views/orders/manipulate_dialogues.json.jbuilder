@@ -1,8 +1,11 @@
 json.merge! @order.attributes
+json.order_created to_pacific_timezone(@order.created_at).strftime("%m/%d/%Y %H:%M (%Z)")
 json.user do
   json.merge! @order.user.attributes
+  json.address @order.user.address
   json.lead do 
     json.merge! @order.user.lead.attributes
+    json.communications @order.user.lead.communications
     json.lead_contact do 
       json.merge! @order.user.lead.lead_contact.attributes
       json.full_name_untrusted @order.user.lead.lead_contact.full_name_untrusted
