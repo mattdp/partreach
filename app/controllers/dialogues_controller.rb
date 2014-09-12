@@ -83,6 +83,19 @@ class DialoguesController < ApplicationController
     end
   end
 
+  #this isn't a real destroy method yet, as we wanted to orphan them first.  Likely will become one.
+  def destroy
+    @dialogue = Dialogue.find(params[:id])
+    @dialogue.order_group_id = 0
+    respond_to do |format|
+      if @dialogue.save
+        format.json {render json: {success: true}}
+      else
+        format.json {render json: {success: false}}
+      end
+    end
+  end
+
   def initial_email
     @dialogue = Dialogue.find(params[:id])
 
