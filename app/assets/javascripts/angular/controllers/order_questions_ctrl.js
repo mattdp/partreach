@@ -11,7 +11,6 @@ App.controller('OrderQuestionsCtrl', ['$scope', 'UrlParams', function($scope, Ur
             values: {
                 experienced: {
                     value: "experienced",
-                    summary: "am experienced",
                     punchy: "Experienced",
                     detail: "I know the details. Let me tell you exactly what I need."
                 },

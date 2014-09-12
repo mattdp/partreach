@@ -28,7 +28,7 @@
           <td class="qc_td" ng-repeat="option in options">
             <div ng-repeat="value in option.values" class="question__opt">
               <label class="qo_label" for="questions_{{option.attribute}}_{{value.value}}">
-                <input type="radio" value="{{value.value}}" class="{{option.attribute}} question_radio_button fleft radio qo_input" data-summary="{{value.summary}}" id="questions_{{option.attribute}}_{{value.value}}" ng-checked="{{selectedRadio[(option.attribute)] == value.value}}" ng-model="selectedRadio[(option.attribute)]" name="stated_{{option.attribute}}">{{value.punchy}}
+                <input type="radio" value="{{value.value}}" class="{{option.attribute}} question_radio_button fleft radio qo_input" id="questions_{{option.attribute}}_{{value.value}}" ng-checked="{{selectedRadio[(option.attribute)] == value.value}}" ng-model="selectedRadio[(option.attribute)]" name="stated_{{option.attribute}}">{{value.punchy}}
                 <p class="question__opt__detail">{{value.detail}}
               </label>
             </div>
