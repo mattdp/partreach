@@ -7,7 +7,7 @@
   </div>
   <div class="clear">
     <%= label_tag :notes %>
-    <%= text_area_tag :notes, o_id ? "RFQ#{o_id} - " : "" %>
+    <%= text_area_tag :notes %>
 
     <%= hidden_field_tag :communicator_id, c_id %>
     <%= hidden_field_tag :communicator_type, c_type %>
