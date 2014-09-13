@@ -1,6 +1,7 @@
 desc 'import suppliers from csv'
-task :import => :environment do
-  file_location = ENV['file_location']
+task :supplier_csv_import => :environment do
+  file_location = "#{Rails.root}/tmp/cache/supplier_csv_#{SecureRandom.hex}.csv"
+  File.open(file_location, 'wb') {|file| file.write open(ENV['url']).read }
   # will need to save a local file as most likely the file will
   # be coming from AWS
 
@@ -9,7 +10,7 @@ task :import => :environment do
 
     s = Supplier.new({
       name: row['name'],
-      name_for_link: row['name'].gsub(/\W/, ''),
+      name_for_link: row['name'].gsub(/\W/, '').downcase,
       url_main: row['website']
     })
     rc = RfqContact.create({
@@ -37,6 +38,6 @@ task :import => :environment do
     s.rfq_contact = rc
     s.contract_contact = cc
 
-    s.save
+    p "Supplier #{s.name} Saved" if s.save
   end
 end
