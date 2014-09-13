@@ -17,7 +17,13 @@ class CommunicationsController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: @communication}
+      format.json do
+        if saved_ok
+          render 'show'
+        else
+          render json: {success: false}
+        end
+      end
       format.html do
         if @communication.communicator_type == "Supplier"
           redirect_to admin_edit_path(Supplier.find(@communication.communicator_id).name_for_link), notice: note

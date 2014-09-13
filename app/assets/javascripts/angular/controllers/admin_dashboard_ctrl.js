@@ -1,6 +1,7 @@
 App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http){
     $scope.newEmail = null;
     $scope.newName = null;
+    $scope.interactionMeans = null;
 
 
     // I could combine headers and checkboxes into one dialogueAttributes array that has a 'type'
@@ -57,7 +58,6 @@ App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http)
 
     $http.get('/manipulate/' + window.gon.order_id + '.json').success(function(order){
         $scope.order = order
-        console.log(order)
         $scope.notes = "RFQ"+order.id + " - "
     });
 
@@ -113,8 +113,11 @@ App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http)
             notes: notes
         }
         $http.post('/communications.json', postParams).success(function(data){
-            $scope.order.user.lead.communications.push(data)
+            if (data.success === true){
+                $scope.order.user.lead.communications.unshift(data.communication)
+            }
             $scope.notes = "RFQ" + $scope.order.id + " - "
+            $scope.interactionMeans = null;
         })
     }
 }]);
