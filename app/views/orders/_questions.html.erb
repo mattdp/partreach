@@ -1,7 +1,4 @@
 <div class="questions">
-  <%#= get, since passing params to orders_new, without a state change in the database %>
-  <%= form_tag new_order_path, method: :get do %>
-
     <%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
 
     <div class="questions__instructions">
@@ -38,5 +35,4 @@
         </tr>
       </table>
     </div>
-  <% end %>
 </div>
