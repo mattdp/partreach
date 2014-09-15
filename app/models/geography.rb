@@ -50,16 +50,6 @@ class Geography < ActiveRecord::Base
     geo
   end
 
-  def self.create_or_reference_geography(text,symbol,level)
-    geo = Geography.locate(text,symbol,level)
-    return geo if geo
-    create_hash = {level: level}
-    create_hash[symbol] = text
-    geo = Geography.new(create_hash) 
-    geo.save(validate: false)
-    return geo
-  end 
-
   def self.locate(text,symbol,level)
     Geography.all.detect {|geo| geo.send(symbol) == text and geo.level == level}
   end

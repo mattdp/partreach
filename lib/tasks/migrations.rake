@@ -131,17 +131,6 @@ task :set_externals_to_consumer => :environment do
   end
 end
 
-desc 'Use country and state information for addresses to point to or create Geos'
-task :point_addresses_to_geographies => :environment do
-  Address.find_each do |address|
-    [:country,:state].each do |attribute|
-      geo = Geography.create_or_reference_geography(address.attributes[attribute.to_s],:short_name,attribute.to_s)
-      address.send("#{attribute}_id=",geo.id)
-      address.save
-    end
-  end
-end
-
 desc 'One-time migration of machine/manufacturer to separate models'
 task :migrate_machines => :environment do 
   Machine.find_each do |machine|
