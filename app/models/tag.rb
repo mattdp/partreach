@@ -95,6 +95,16 @@ class Tag < ActiveRecord::Base
     self.readable.nil? ? self.name : self.readable
   end
 
+  def eat(tag)
+    unless self.note.present?
+      self.note = tag.note 
+      self.save
+    end
+    TagRelationship.where('source_tag_id = ?',tag.id).update_all(source_tag_id: self.id)
+    TagRelationship.where('related_tag_id = ?',tag.id).update_all(related_tag_id: self.id)
+    Tagging.where('tag_id = ?', tag.id).update_all(tag_id: self.id)
+  end
+
   # Recursively get all the related_tags (descendants) of a tag
   def descendants(node = self, nodes = [])
     # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
