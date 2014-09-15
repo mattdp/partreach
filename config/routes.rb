@@ -101,10 +101,12 @@ Partreach::Application.routes.draw do
   get 'suppliers/:country/:state', to: 'suppliers#tag_index', as: 'tag_index'
   get 'suppliers/:country/:state/:term', to: 'suppliers#lookup', as: 'lookup'
 
+
   resources :tags, only: [:show, :new, :create, :edit, :update, :index] do
     resources :tag_relationships, only: [:index, :create]
   end
   resources :tag_relationship_types, only: [:index]
+  get '/tags/:id/related', to: 'tags#related_tags', as: 'related_tags'
 
   resources :users, only: [:edit, :update, :show] # no index, no destroy 
 
