@@ -168,13 +168,13 @@ class Dialogue < ActiveRecord::Base
 
   # 1% of sum of total cost of all billable bids during period
   def self.total_billable_fees(closed)
-    total = 0.0
+    total = BigDecimal.new(0)
     Dialogue.billable_by_supplier(closed).each do |supplier, dialogues|
       dialogues.each do |dialogue|
-        total += (dialogue.total_cost * 0.01).round(2)
+        total += dialogue.total_cost
       end
     end
-    total.round(2)
+    (total * Supplier::DEFAULT_BID_FEE).round(2)
   end
 
 end

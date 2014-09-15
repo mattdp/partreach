@@ -43,6 +43,10 @@ class TagsController < ApplicationController
     @tags = Tag.all_by_group
   end
 
+  def related_tags
+    @tag = Tag.find(params[:id])
+    @relationships_hash = TagRelationship.related_tags_by_relationship(@tag.id)
+  end
 
   private
 
