@@ -43,7 +43,7 @@ class OrderGroup < ActiveRecord::Base
 
       snippet += <<-HTML
 <ul>
-<li><strong>Part: </strong>#{part_name_without_suffix} (<a href=#{external.url}><strong>Link to #{suffix} file</strong></a>)</li>
+<li><strong>Part: </strong>#{part_name_without_suffix} (<a href="#{external.url}"><strong>Link to #{suffix} file</strong></a>)</li>
 <li><strong>Quantity: </strong>QUANTITY</li>
 <li><strong>Color: </strong>COLOR</li>
 <li><strong>Desired method: </strong>METHOD</li>
