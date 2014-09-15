@@ -61,23 +61,35 @@ class Address < ActiveRecord::Base
   end
 
   #country, state, zip only right now
-  def self.create_or_update_address(owner,options)
-    address = owner.address
-    if address.nil?
+  def self.create_or_update_address(owner, options)
+    if owner.address
+      address = owner.address
+    else
       address = Address.new({place_id: owner.id, place_type: owner.class.to_s})
-      address.country = Geography.create_or_reference_geography(nil,:short_name,"country")
-      address.state = Geography.create_or_reference_geography(nil,:short_name,"state")
-      address.save
-      owner.address = address
     end
-    address.zip = options[:zip] if options[:zip]
-    [:country,:state].each do |geo_symbol|
-      place_name = options[geo_symbol]
-      geo = Geography.create_or_reference_geography(place_name,:short_name,geo_symbol.to_s)
-      address.send("#{geo_symbol}=",geo)
-    end
-    return owner.address.save
-  end
 
+    address.country =
+    case
+    when options[:country]
+      Geography.find_or_create_country(options[:country])
+    when address.country.nil?
+      # TODO refactor - it would probably be simpler to just use nil to represent country/state not known,
+      # but first need to refactor code that assumes that these fields are never nil
+      Geography.find_by_name_for_link('country_unknown')
+    end
+
+    address.state =
+    case
+    when options[:state]
+      Geography.find_or_create_state(options[:state])
+    when address.state.nil?
+      Geography.find_by_name_for_link('state_unknown')
+    end
+
+    address.zip = options[:zip] if options[:zip]
+
+    address.save
+    owner.address = address
+  end
 
 end

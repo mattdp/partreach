@@ -28,10 +28,26 @@ class Geography < ActiveRecord::Base
     return self.geography
   end
 
-  def self.display_all
-    Geography.find_each do |g|
-      puts "#{g.id}\t#{g.level}\t#{g.short_name}\t#{g.long_name}"
+  def self.find_or_create_country(name)
+    self.find_or_create(name, 'country')
+  end
+
+  def self.find_or_create_state(name)
+    self.find_or_create(name, 'state')
+  end
+
+  def self.find_or_create(name, level)
+    # make match case-insensitive?
+    geo = ( Geography.locate(name, :short_name, level) ||
+            Geography.locate(name, :long_name, level) )
+
+    unless geo
+      name_for_link = self.proper_name_for_link("#{level}_#{name}")
+      geo = Geography.create!(
+        level: level, short_name: name, long_name: name, name_for_link: name_for_link)
     end
+
+    geo
   end
 
   def self.create_or_reference_geography(text,symbol,level)
