@@ -8,8 +8,6 @@
       <%#= get, since passing params to orders_new, without a state change in the database %>
       <%= form_tag new_order_path, method: :get do %>
 
-        <%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
-
         <div>
           <p class="page-number fright">Page 1 of 2</p>
           <h1 class="center clear">Help us ask you the right questions.</h1>

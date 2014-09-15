@@ -29,7 +29,6 @@
     <div class="start-quote">
       <%#= get, since passing params to orders_new, without a state change in the database %>
       <%= form_tag new_order_path, method: :get do %>
-        <%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
         <p>
           I am
           <% options_array = [ ["still learning", "rookie"], ["experienced", "experienced"] ] %>
