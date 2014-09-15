@@ -16,7 +16,7 @@ class Geography < ActiveRecord::Base
 
   #ideally, validate short_name unique within a level, but not important until internationalize
   validates :level, presence: true
-  validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates :name_for_link, presence: true
 
   #has a parent geography containing it, or nil if top level
   belongs_to :geography
