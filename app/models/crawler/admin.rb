@@ -18,10 +18,19 @@ class Crawler::Admin < CrawlerRefactor
     links = @html_documents.map{|page| page.css('a').map{|l| l['href']} }
   end
 
-  def scan_for_tags(tags)
+  def scan_for_tags(tags, options = {})
+    options = sft_defaults.merge(options)
     docs_text = self.load_documents.join('')
     tags.each do |t|
-       @supplier.add_tag(t.id) if docs_text.match(/#{t.readable}/i)
+      if options[:test_mode] == false
+        @supplier.add_tag(t.id) if docs_text.scan(/#{t.readable}/i).size > options[:n]
+      else
+        Rails.logger.info "#{@supplier.name} would get tag #{t.name}"
+      end
     end
+  end
+
+  def sft_defaults
+    {test_mode: false, n: 1}
   end
 end
