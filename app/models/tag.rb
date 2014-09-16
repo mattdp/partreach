@@ -107,6 +107,7 @@ class Tag < ActiveRecord::Base
       tr.update_column('related_tag_id', self.id) if TagRelationship.where(source_tag_id: tr.source_tag_id, related_tag_id: self.id).empty?
     end
     Tagging.where('tag_id = ?', tag.id).update_all(tag_id: self.id)
+    tag.destroy
   end
 
   # Recursively get all the related_tags (descendants) of a tag
