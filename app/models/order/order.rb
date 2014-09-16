@@ -101,19 +101,26 @@ class Order < ActiveRecord::Base
   end
 
   def quote_value
-    qv = 0 # if no recommendations, quotes, or overrides
-    dialogues = self.dialogues.select{|d| d.total_cost and d.total_cost > 0}
-    if self.override_average_value
-      qv = self.override_average_value #override in order for jobs where something was weird    
-    elsif (dialogues.present? and recs = dialogues.select{|d| d.recommended} and recs.present?)
-      values = recs.map{|d| d.total_cost}
-      qv = values.sum / values.size.to_f
-    elsif dialogues.present? #should this be a median?
-      values = dialogues.map{|d| d.total_cost}
-      qv = values.sum / values.size.to_f
+    # if order override (for jobs where something was weird)
+    return override_average_value if self.override_average_value
+
+    # all dialogues with quotes submitted for this order
+    quotes = dialogues.select{|d| d.total_cost and d.total_cost > 0}
+
+    # if no quotes submitted
+    return BigDecimal.new(0) if quotes.empty?
+
+    if ( (recs = quotes.select{|d| d.recommended}) && recs.present?)
+      # recommended quote(s) 
+      values = recs.map{ |d| d.total_cost }
+    else
+      # all quotes
+      values = quotes.map{ |d| d.total_cost }
     end
-    return qv
-  end  
+
+    # average quote value
+    (values.sum / values.size).round(2)
+  end
 
   def visible_dialogues
     visibles = []
@@ -303,9 +310,10 @@ See the note from client for details on what exactly they're looking for.</p>
     #-2 since using dates[index] and dates[index+1]
     while index <= dates.length - 2   
       unit = []
-      created_orders = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
       unit << dates[index]
-      unit << created_orders.sum{|o| o.quote_value}.to_s
+      created_orders = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
+      average_quote_values = created_orders.map{ |o| o.quote_value }
+      unit << average_quote_values.sum
       unit << created_orders.count
       unit << Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
       closed = Order.closed_orders(dates[index], dates[index+1])
