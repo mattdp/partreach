@@ -1,19 +1,9 @@
 <h3>Communications</h3>
-<p>New communication</p>
 <%= form_tag :action => "create", :controller => "communications" do %>
 
   <div class="one-fourth fleft" >
     <%= label_tag :means_of_interaction %>
     <%= text_field_tag :means_of_interaction, nil, class: "input_field" %>
-  </div>
-  <div>
-    <% User.admins.each do |user| %>
-      <div>
-        <% id = user.id %>
-        <%= radio_button_tag :user_id, id, current_user.id == id, :class => "fleft radio margin-left" %>  
-        <%= label_tag :user_id, "#{user.lead.lead_contact.full_name_untrusted}", :class => "fleft" %>
-      </div>
-    <% end %>
   </div>
   <div class="clear">
     <%= label_tag :notes %>
