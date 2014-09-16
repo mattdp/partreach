@@ -446,7 +446,7 @@ class Supplier < ActiveRecord::Base
 
   #return nested, ordered arrays of [country][state][supplier]
   #super slow, relies on caching
-  #no_state for country -> supplier direct stuff
+  #unknown for country -> supplier direct stuff
 
   def self.visible_profiles_sorted(filter)
 
@@ -463,13 +463,7 @@ class Supplier < ActiveRecord::Base
         state = s.address.state.short_name
         array_for_sorting = s.array_for_sorting
         chaos[country] = {} if chaos[country].nil?
-        if state.nil?
-          if chaos[country]["no_state"].nil?
-            chaos[country]["no_state"] = [array_for_sorting]
-          else
-            chaos[country]["no_state"] << array_for_sorting
-          end
-        elsif chaos[country][state].nil?
+        if chaos[country][state].nil?
           chaos[country][state] = [array_for_sorting]
         else
           chaos[country][state] << array_for_sorting
@@ -478,7 +472,7 @@ class Supplier < ActiveRecord::Base
 
       chaos.keys.sort.each do |country|
         order[country] = ActiveSupport::OrderedHash.new
-        ufs = ["no_state","CA","NY"]
+        ufs = ["unknown","CA","NY"]
         if ufs.present? 
           ufs.each do |upfront| #http://stackoverflow.com/questions/73032/how-can-i-sort-by-multiple-conditions-with-different-orders
             order[country][upfront] = chaos[country][upfront].sort{ |a,b| [b[0].points, a[0].name.downcase] <=> [a[0].points, b[0].name.downcase] } if chaos[country][upfront].present?

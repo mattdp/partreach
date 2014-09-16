@@ -2,7 +2,7 @@
 <% country = visibles.keys[0] %>
 <% visibles[country].keys.each do |state| %>
   <%== "<h4 class=\"supplier-list-state fleft\" id=\"#{country}-#{state}\">" %>
-    <% if state == "no_state" %>
+    <% if state == "unknown" %>
       <%= "Many-state / No state" %>
     <% else %> 
       <%= "#{state}" %>
