@@ -100,8 +100,12 @@ class Tag < ActiveRecord::Base
       self.note = tag.note 
       self.save
     end
-    TagRelationship.where('source_tag_id = ?',tag.id).update_all(source_tag_id: self.id)
-    TagRelationship.where('related_tag_id = ?',tag.id).update_all(related_tag_id: self.id)
+    TagRelationship.where('source_tag_id = ?',tag.id).each do |tr|
+      tr.update_column('source_tag_id', self.id) if TagRelationship.where(source_tag_id: self.id, related_tag_id: tr.related_tag_id).empty?
+    end
+    TagRelationship.where('related_tag_id = ?',tag.id).each do |tr|
+      tr.update_column('related_tag_id', self.id) if TagRelationship.where(source_tag_id: tr.source_tag_id, related_tag_id: self.id).empty?
+    end
     Tagging.where('tag_id = ?', tag.id).update_all(tag_id: self.id)
   end
 
