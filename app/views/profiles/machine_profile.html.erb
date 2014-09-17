@@ -14,7 +14,7 @@
           <p>Help expand our database by
             <%= mail_to "suggest-edits@supplybetter.com", "suggesting additions or corrections!", encode: "javascript", target: "_blank", subject: "I have a suggestion for adding a machine" %></p>
 
-          <%= link_to "Find supplier", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
+          <%= link_to "Find supplier", {:controller => "static_pages", new_order_path, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
 
           <p>Want to head to the <%= link_to "home page", root_path %> instead?</p>
 
@@ -33,7 +33,7 @@
             </p>
           </p>
           <p>If you need to find a supplier with this machine, let us know!</p>
-          <%= link_to "Find supplier", {:controller => "static_pages", :action => "questions", :from_supplier => nil}, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
+          <%= link_to "Find supplier", new_order_path, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
 
           <p>Alternately, check out <%= link_to "all machines by #{@manufacturer.name}", manufacturer_profile_path(@manufacturer.name_for_link) %>, or <%= link_to "head to the home page", root_path %>.
         <% end %>
