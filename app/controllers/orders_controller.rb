@@ -79,7 +79,7 @@ class OrdersController < ApplicationController
     did_order_save = false
     if current_user.nil?
       #they've filled out the signin form
-      if params[:signin_email] != "" and params[:signin_password] != ""
+      if params[:signin_email].present? && params[:signin_password].present?
         #how pass in email and password, get signed in user?
         if (@lead_contact = LeadContact.find_by_email(params[:signin_email]) \
             and @user = @lead_contact.contactable.user \
@@ -123,7 +123,7 @@ class OrdersController < ApplicationController
       @order.columns_shown = "all"
       @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
       @order.assign_attributes(order_params)
-      if (!params[:zip].nil? or !params[:country].nil?)
+      if (params[:zip].present? || params[:country].present?)
         @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
       end
 
