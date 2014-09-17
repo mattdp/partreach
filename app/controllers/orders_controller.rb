@@ -197,6 +197,7 @@ class OrdersController < ApplicationController
   def manipulate_dialogues
     @order = Order.find(params[:id])
     @user = User.find(@order.user_id)
+    @communications = Communication.get_ordered('Lead', @user.lead.id)
 
     respond_to do |format|
       format.html # manipulate_dialogues.html.erb
