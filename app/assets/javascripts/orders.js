@@ -1,4 +1,16 @@
 $(document).ready(function() {
+  $('.sign_in_toggle').click(function(){
+    provide_info_div = $('.order_provide_info')
+    sign_in_div = $('.order_sign_in')
+    if (provide_info_div.is(":visible")){
+      provide_info_div.addClass('hidden')
+      sign_in_div.removeClass('hidden')
+    }else{
+      provide_info_div.removeClass('hidden')
+      sign_in_div.addClass('hidden')
+    }
+  })
+
   $('.generate-email-button').click(function(event) {
     event.preventDefault();
     var html = $(this).attr('data-html');
@@ -20,6 +32,9 @@ $(document).ready(function() {
       success: function(data, textStatus, jqXHR)
       {
         if ( $('#uploaded_file_list').length) {
+          if ( $('.uploaded-file-placeholder').length ) {
+            $('.uploaded-file-placeholder').remove();
+          }
           $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
           $('#files_uploaded').val("true")
         }
@@ -78,4 +93,8 @@ $(document).ready(function() {
     errorClass: "signup_signin_errors"
   });
 
+  $('.questions__columns input').change(function() {
+    $(this).parents('td').find('label').removeClass('checked');
+    $(this).closest('label').toggleClass('checked', $(this).is(':checked'));
+  });
 });

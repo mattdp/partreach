@@ -1,0 +1,39 @@
+<div class="questions">
+  <%#= get, since passing params to orders_new, without a state change in the database %>
+
+    <%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
+
+    <div class="questions__instructions">
+      <h2 class="inline qi_h2">Help us ask you the right questions.</h2>
+      <h2 class="inline strong qi_h2">For each topic, which fits this job best?</h2>
+    </div>
+
+    <div class="questions__columns" ng-controller="OrderQuestionsCtrl">
+      <table class="qc_table">
+        <tr>
+          <th class="qc_th">
+            <h4 class="main-header">Experience</h4>
+            <p class="sub-header">Are you experienced with this sort of job?</p>
+          </th>
+          <th class="qc_th">
+            <h4 class="main-header">Priorities</h4>
+            <p class="sub-header">What do you care about most?</p>
+          </th>
+            <th class="qc_th">
+            <h4 class="main-header">Manufacturing method</h4>
+            <p class="sub-header">How do you think this should be made?</p>
+          </th>
+        </tr>
+        <tr>
+          <td class="qc_td" ng-repeat="option in options">
+            <div ng-repeat="value in option.values" class="question__opt">
+              <label class="qo_label" for="questions_{{option.attribute}}_{{value.value}}">
+                <input type="radio" value="{{value.value}}" class="{{option.attribute}} question_radio_button fleft radio qo_input" id="questions_{{option.attribute}}_{{value.value}}" ng-checked="{{selectedRadio[(option.attribute)] == value.value}}" ng-model="selectedRadio[(option.attribute)]" name="stated_{{option.attribute}}">{{value.punchy}}
+                <p class="question__opt__detail">{{value.detail}}
+              </label>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+</div>

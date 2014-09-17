@@ -18,7 +18,7 @@
       <p class="hero-subheadline">
         <span class="subheadline-text">A new way to turn CAD models into physical&nbsp;parts.</span>
         <span>Get matched to the right suppliers by an experienced engineer in&nbsp;minutes.</span>
-        <span><%= link_to "Let’s get started", order_questions_path, class: "button--white arrow-link" %></span>
+        <span><%= link_to "Let’s get started", new_order_path, class: "button--white arrow-link" %></span>
       </p>
     </div>
   </div>
@@ -33,13 +33,13 @@
         <p>
           I am
           <% options_array = [ ["still learning", "rookie"], ["experienced", "experienced"] ] %>
-          <%= select_tag("questions[experience]", options_for_select(options_array, "experienced"), class: "chosen-select select-one") %>
+          <%= select_tag("experience", options_for_select(options_array, "experienced"), class: "chosen-select select-one") %>
           , I care most about
           <% options_array = [ ["speed", "speed"], ["quality", "quality"], ["cost", "cost"] ] %>
-          <%= select_tag("questions[priority]", options_for_select(options_array, "quality"), class: "chosen-select select-two") %>
+          <%= select_tag("priority", options_for_select(options_array, "quality"), class: "chosen-select select-two") %>
           , and think 3D printing
           <% options_array = [ ["should be", "printing"], ["shouldn’t be", "other"], ["might be", "unknown"] ] %>
-          <%= select_tag("questions[manufacturing]", options_for_select(options_array, "printing"), class: "chosen-select") %>
+          <%= select_tag("manufacturing", options_for_select(options_array, "printing"), class: "chosen-select") %>
           the&nbsp;method.
         </p>
         <%= submit_tag "Continue »", :disable_with => "Processing...",class: "button--blue" %>
@@ -54,7 +54,7 @@
       <div class="col">
         <%= image_tag "home-quote-icon.svg", :alt => "Upload your project documents" %>
         <h3>You upload your design and project&nbsp;details.</h3>
-        <%= link_to "Fill out a quote now", order_questions_path, :class => "arrow-link" %>
+        <%= link_to "Fill out a quote now", new_order_path, :class => "arrow-link" %>
       </div>
       <div class="col wide">
         <%= image_tag "home-selection-icon.svg", :alt => "We select a supplier" %>
