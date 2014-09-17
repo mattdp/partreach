@@ -56,12 +56,9 @@ class OrdersController < ApplicationController
     end
     @content = Question.raw_list
 
-    @order = Order.new
-    #goal: for naming the folder of part files on S3, be close though not exact to what next order will be - it helps to have a rough order for manual troubleshooting
-    #programmatic links to the files won't have the race conditions this creates
-    most_recent_order = Order.order("created_at desc").limit(1)[0]
-    @approximate_next_order_id = most_recent_order ? most_recent_order.id + 1 : 1
+    @approximate_next_order_id = next_order_id
 
+    @order = Order.new
     @order_group = OrderGroup.create_default
 
     respond_to do |format|
@@ -152,6 +149,8 @@ class OrdersController < ApplicationController
         format.json { render json: @order, status: :created, location: @order }
       else
         logger.debug "ERRORS: #{@order.errors.full_messages}"
+        @approximate_next_order_id = next_order_id
+        @content = Question.raw_list
         format.html { render action: "new" }
         format.json { render json: @order.errors.full_messages, status: 400 }
       end
@@ -335,6 +334,15 @@ class OrdersController < ApplicationController
       else
         'application'
       end
+    end
+
+    def next_order_id
+      # what next order id will (likely) be
+      # used for naming the folder of part files on S3
+      # NOTE that two different sessions could end up getting the same id using this method
+      # but that's good enough for this usage (it helps to have a rough order for manual troubleshooting)
+      # "programmatic links to the files won't have the race conditions this creates" MDP -- huh?
+      Order.max_id + 1
     end
 
   #private doesn't 'end'

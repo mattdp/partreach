@@ -48,6 +48,10 @@ class Order < ActiveRecord::Base
   PARTS_SNIPPETS_PLACEHOLDER = "<[$PARTS$]>"
   IMAGES_SNIPPETS_PLACEHOLDER = "<[$IMAGES$]>"
 
+  def self.max_id
+    Order.maximum(:id) || 0
+  end
+
   def alphabetical_unique_supplier_names
     return self.dialogues.map{|d| d.supplier_id}.uniq.map{|id| Supplier.find(id).name}.sort
   end
