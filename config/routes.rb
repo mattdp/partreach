@@ -91,7 +91,7 @@ Partreach::Application.routes.draw do
   get '/testimonials', to: 'static_pages#testimonials'
   get '/terms', to: 'static_pages#terms'
   get '/privacy', to: 'static_pages#privacy'  
-  get '/questions', to: 'orders#new'
+  get '/questions', to: redirect('/orders/new')
   get '/recruiting', to: 'static_pages#recruiting', as: 'recruiting'
 
   resources :suppliers, only: [:new, :create, :edit, :update, :index]
