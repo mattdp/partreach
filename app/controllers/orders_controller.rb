@@ -53,7 +53,6 @@ class OrdersController < ApplicationController
           instance_variable_set("@#{summary_var}",@questions[summary_var])
         end
       end
-      instance_variable_set("@#{summary_var}_summary_wording",value)
     end
     @content = Question.raw_list
 

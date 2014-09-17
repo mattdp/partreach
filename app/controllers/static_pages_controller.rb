@@ -19,10 +19,6 @@ class StaticPagesController < ApplicationController
   def getting_started
   end
 
-  def questions
-    @content = Question.raw_list
-  end
-
   def procurement
   end
 

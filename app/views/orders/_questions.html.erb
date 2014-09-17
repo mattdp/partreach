@@ -23,7 +23,7 @@
                 <div class="question__opt">
                   <%= label_tag "questions_#{column}_#{option_name}" do %>
                     <% checked = @questions ? (@questions[column] == option_name.to_s) : false %>
-                    <%= radio_button_tag "questions[#{column}]", option_name, checked, class: "#{column} question_radio_button fleft radio", data: {summary: display_information[:summary]} %>
+                    <%= radio_button_tag "questions[#{column}]", option_name, checked, class: "#{column} question_radio_button fleft radio" %>
                     <%= display_information[:punchy] %>
                     <p class="question__opt__detail"><%= display_information[:detail] %></p>
                   <% end %>
