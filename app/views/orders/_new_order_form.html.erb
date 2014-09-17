@@ -48,7 +48,7 @@
     <div class="triplets">
       <div class="col">
         <%= label_tag 'stated_quantity', 'Quantity' %>
-        <%= number_field_tag 'stated_quantity', nil, :class => 'left-half' %>
+        <%= number_field_tag 'stated_quantity', '1', min: '1', :class => 'left-half' %>
         <p class="detail-text">If you upload multiple parts, please put total quantity.</p>
       </div>
       <div class="col">
