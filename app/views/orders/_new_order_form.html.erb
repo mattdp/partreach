@@ -9,12 +9,6 @@
     </ul>
   </div>
 <% end %>
-
-  <div class="questions__instructions">
-    <h2 class="inline">Step 2 of 2:</h2>
-    <h2 class="inline">Tell us about your order.</h2>
-  </div>
-
   <h2 class="main-header">Upload your files</h2>
   <p class="step-desc">Maximum 300Mb each, all filetypes accepted.</p>
   <%= s3_uploader_form  id: "s3-uploader", class: "s3-uploader",
@@ -37,33 +31,36 @@
     </ul>
   </div>
 
-
   <%= form_tag order_path(@order), id: 'new-order' do %>
+    <%= render partial: "orders/questions" %>
+
+    <div class="questions__instructions">
+      <h2 class="inline qi_h2">Tell us about your order.</h2>
+    </div>
+
+
     <%= hidden_field_tag "files_uploaded" %>
     <%= hidden_field_tag "order_group_id", @order_group.id %>
-    <%= hidden_field_tag "stated_experience", @experience %>
-    <%= hidden_field_tag "stated_priority", @priority %>
-    <%= hidden_field_tag "stated_manufacturing", @manufacturing %>
 
     <div class="triplets">
       <div class="col">
-        <%= label_tag 'stated_quantity', 'Quantity' %>
-        <%= number_field_tag 'stated_quantity', nil, :class => 'left-half' %>
-        <p class="detail-text">If you upload multiple parts, please put total quantity.</p>
+        <%= label_tag 'stated_quantity', 'Quantity', class: 'no_label' %>
+        <%= number_field_tag 'stated_quantity', nil, :class => 'left-half no_input' %>
+        <p class="detail-text no_p">If you upload multiple parts, please put total quantity.</p>
       </div>
       <div class="col">
-        <%= label_tag 'units', 'Drawing units' %>
-        <%= text_field_tag 'units', nil, :placeholder => 'mm./in.', :class => 'right-half' %>
+        <%= label_tag 'units', 'Drawing units', class: 'no_label' %>
+        <%= text_field_tag 'units', nil, :placeholder => 'mm./in.', :class => 'right-half no_input' %>
       </div>
       <div class="col">
-        <%= label_tag 'material_message', 'Material' %>
-        <%= text_field_tag 'material_message', nil, :placeholder => 'ABS, stainless steel, etc.' %>
+        <%= label_tag 'material_message', 'Material', class: 'no_label' %>
+        <%= text_field_tag 'material_message', nil, :placeholder => 'ABS, stainless steel, etc.', class: 'no_input' %>
       </div>
     </div>
     <div class="triplets">
       <div class="col">
-        <%= label_tag 'deadline', 'Deadline (date and time)' %>
-        <%= text_field_tag 'deadline', nil %>
+        <%= label_tag 'deadline', 'Deadline (date and time)', class: 'no_label' %>
+        <%= text_field_tag 'deadline', nil, class: 'no_input' %>
       </div>
       <div class="col">
       </div>
@@ -71,13 +68,13 @@
 
     <div class="triplets">
       <div class="two-col">
-        <%= label_tag 'order_description', 'Order description' %>
-        <%= text_area_tag 'order_description', nil, :rows => 5, :placeholder => "We are starting the next build iteration for a next-generation spork..." %>
+        <%= label_tag 'order_description', 'Order description', class: 'no_label' %>
+        <%= text_area_tag 'order_description', nil, :rows => 5, :placeholder => "We are starting the next build iteration for a next-generation spork...", class: 'no_input no_textarea' %>
       </div>
 
       <div class="two-col">
-        <%= label_tag 'supplier_message', 'Technical notes' %>
-        <%= text_area_tag 'supplier_message', nil, :rows => 5, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)" %>
+        <%= label_tag 'supplier_message', 'Technical notes', class: 'no_label' %>
+        <%= text_area_tag 'supplier_message', nil, :rows => 5, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)", class: 'no_textarea no_input' %>
       </div>
     </div>
 
@@ -86,36 +83,36 @@
         <div class="col order_provide_info">
           <h3>Create an account</h3>
           <a class="sign_in_toggle" href="">Already have an account? Sign in.</a>
-          <%= label_tag 'user_name', 'Name' %>
-          <%= text_field_tag 'user_name', nil, placeholder: 'Enter name here', class: 'signup-signin-group'  %>
+          <%= label_tag 'user_name', 'Name', class: 'no_label' %>
+          <%= text_field_tag 'user_name', nil, placeholder: 'Enter name here', class: 'signup-signin-group no_input'  %>
 
-          <%= label_tag 'user_email', 'Email' %>
-          <%= text_field_tag 'user_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group' %>
+          <%= label_tag 'user_email', 'Email', class: 'no_label' %>
+          <%= text_field_tag 'user_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group no_input' %>
 
-          <%= label_tag 'user_password', 'Password' %>
-          <%= password_field_tag 'user_password', nil, placeholder: 'Enter password', class: 'signup-signin-group' %>
+          <%= label_tag 'user_password', 'Password', class: 'no_label' %>
+          <%= password_field_tag 'user_password', nil, placeholder: 'Enter password', class: 'signup-signin-group no_input' %>
 
-          <%= label_tag 'user_phone', 'Phone number (Phone, Skype, Google+)' %>
-          <%= text_field_tag 'user_phone', nil, :placeholder => 'We call with questions on rush jobs.' %>
+          <%= label_tag 'user_phone', 'Phone number (Phone, Skype, Google+)', class: 'no_label' %>
+          <%= text_field_tag 'user_phone', nil, :placeholder => 'We call with questions on rush jobs.', class: 'no_input' %>
 
-          <%= label_tag 'zip', 'Postal Code' %>
-          <%= text_field_tag 'zip', nil, :placeholder => '(Needed for shipping estimates)' %>
+          <%= label_tag 'zip', 'Postal Code', class: 'no_label' %>
+          <%= text_field_tag 'zip', nil, :placeholder => '(Needed for shipping estimates)', class: 'no_input' %>
         </div>
         <div class="col order_sign_in hidden">
           <h3>Sign back in</h3>
           <a class="sign_in_toggle" href="">No account? Create one.</a>
-          <%= label_tag 'signin_email', 'Email' %>
-          <%= text_field_tag 'signin_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group' %>
-          <%= label_tag 'signin_password', 'Password' %>
-          <%= password_field_tag 'signin_password', nil, placeholder: 'Enter password here', class: 'signup-signin-group' %>
+          <%= label_tag 'signin_email', 'Email', class: 'no_label' %>
+          <%= text_field_tag 'signin_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group no_input' %>
+          <%= label_tag 'signin_password', 'Password', class: 'no_label' %>
+          <%= password_field_tag 'signin_password', nil, placeholder: 'Enter password here', class: 'signup-signin-group no_input' %>
         </div>
       </div>
     <% end %>
 
     <div class="triplets">
       <div class="col">
-        <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
-        <p class="detail-text">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
+        <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button no_input" %>
+        <p class="detail-text no_p">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
       </div>
     </div>
 

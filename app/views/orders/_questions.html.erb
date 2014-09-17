@@ -1,42 +1,39 @@
 <div class="questions">
   <%#= get, since passing params to orders_new, without a state change in the database %>
-  <%= form_tag new_order_path, method: :get do %>
 
     <%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
 
     <div class="questions__instructions">
-      <h2 class="inline">Step 1 of 2:</h2>
-      <h2 class="inline">Help us ask you the right questions.</h2>
-      <h2 class="inline strong">For each topic, which fits this job best?</h2>
+      <h2 class="inline qi_h2">Help us ask you the right questions.</h2>
+      <h2 class="inline strong qi_h2">For each topic, which fits this job best?</h2>
     </div>
 
-    <div class="questions__columns">
-      <table>
+    <div class="questions__columns" ng-controller="OrderQuestionsCtrl">
+      <table class="qc_table">
         <tr>
-          <% @content.each do |column, values| %>
-            <th>
-              <h4 class="main-header"><%= values[:main_header] %></h4>
-              <p class="sub-header"><%= values[:sub_header] %></p>
-            </th>
-          <% end %>
+          <th class="qc_th">
+            <h4 class="main-header">Experience</h4>
+            <p class="sub-header">Are you experienced with this sort of job?</p>
+          </th>
+          <th class="qc_th">
+            <h4 class="main-header">Priorities</h4>
+            <p class="sub-header">What do you care about most?</p>
+          </th>
+            <th class="qc_th">
+            <h4 class="main-header">Manufacturing method</h4>
+            <p class="sub-header">How do you think this should be made?</p>
+          </th>
         </tr>
         <tr>
-          <% @content.each do |column, values| %>
-            <td>
-              <% values[:options].each do |option_name, display_information| %>
-                <div class="question__opt">
-                  <%= label_tag "questions_#{column}_#{option_name}" do %>
-                    <% checked = @questions ? (@questions[column] == option_name.to_s) : false %>
-                    <%= radio_button_tag "questions[#{column}]", option_name, checked, class: "#{column} question_radio_button fleft radio", data: {summary: display_information[:summary]} %>
-                    <%= display_information[:punchy] %>
-                    <p class="question__opt__detail"><%= display_information[:detail] %></p>
-                  <% end %>
-                </div>
-              <% end %>
-            </td>
-          <% end %>
+          <td class="qc_td" ng-repeat="option in options">
+            <div ng-repeat="value in option.values" class="question__opt">
+              <label class="qo_label" for="questions_{{option.attribute}}_{{value.value}}">
+                <input type="radio" value="{{value.value}}" class="{{option.attribute}} question_radio_button fleft radio qo_input" id="questions_{{option.attribute}}_{{value.value}}" ng-checked="{{selectedRadio[(option.attribute)] == value.value}}" ng-model="selectedRadio[(option.attribute)]" name="stated_{{option.attribute}}">{{value.punchy}}
+                <p class="question__opt__detail">{{value.detail}}
+              </label>
+            </div>
+          </td>
         </tr>
       </table>
     </div>
-  <% end %>
 </div>
