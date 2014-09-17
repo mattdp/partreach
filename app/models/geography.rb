@@ -51,7 +51,7 @@ class Geography < ActiveRecord::Base
   end
 
   def self.locate(text,symbol,level)
-    Geography.all.detect {|geo| geo.send(symbol) == text and geo.level == level}
+    Geography.where(symbol => text, :level => level).first
   end
 
   def self.proper_name_for_link(input)
