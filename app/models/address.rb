@@ -68,28 +68,24 @@ class Address < ActiveRecord::Base
       address = Address.new({place_id: owner.id, place_type: owner.class.to_s})
     end
 
-    address.country =
-    case
-    when options[:country]
-      Geography.find_or_create_country(options[:country])
-    when address.country.nil?
+    if options[:country]
+      address.country = Geography.find_or_create_country(options[:country])
+    elsif address.country.nil?
       # TODO refactor - it would probably be simpler to just use nil to represent country/state not known,
       # but first need to refactor code that assumes that these fields are never nil
-      Geography.find_by_name_for_link('country_unknown')
+      address.country = Geography.find_by_name_for_link('country_unknown')
     end
 
-    address.state =
-    case
-    when options[:state]
-      Geography.find_or_create_state(options[:state])
-    when address.state.nil?
-      Geography.find_by_name_for_link('state_unknown')
+    if options[:state]
+      address.state = Geography.find_or_create_state(options[:state])
+    elsif address.state.nil?
+      address.state = Geography.find_by_name_for_link('state_unknown')
     end
 
     address.zip = options[:zip] if options[:zip]
 
     address.save
-    owner.address = address
+    owner.address(true) # force refresh of address association for in-memory owner object
   end
 
 end
