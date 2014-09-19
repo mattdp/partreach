@@ -91,7 +91,7 @@ App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http)
     }
 
     $scope.manipulateDialog = function(){
-        updateParams = serializeDialougesParams()
+        updateParams = serializeDialoguesParams()
         $http.post('/orders/update_dialogues', updateParams)
     }
 
