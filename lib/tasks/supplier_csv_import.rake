@@ -1,11 +1,6 @@
 desc 'import suppliers from csv'
 task :supplier_csv_import => :environment do
-  file_location = "#{Rails.root}/tmp/cache/supplier_csv_#{SecureRandom.hex}.csv"
-  File.open(file_location, 'wb') {|file| file.write open(ENV['url']).read }
-  # will need to save a local file as most likely the file will
-  # be coming from AWS
-
-  CSV.foreach(file_location, headers: true) do |row|
+  CSV.new(open(ENV["url"]), headers: true).each do |row|
     next if Supplier.find_by_name(row['name'])
 
     s = Supplier.new({
