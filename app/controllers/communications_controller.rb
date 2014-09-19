@@ -7,20 +7,32 @@ class CommunicationsController < ApplicationController
 
   def create
     @communication = Communication.new(communication_params)
+    @communication.user_id = current_user.id
 
     saved_ok = @communication.save
     if saved_ok
       note = "Communication saved OK!" 
     else 
-      note = "Communication saving problem."
+      note = @communication.errors.full_messages.join(', ')
     end
 
-    if @communication.communicator_type == "Supplier"
-      redirect_to admin_edit_path(Supplier.find(@communication.communicator_id).name_for_link), notice: note
-    elsif @communication.communicator_type == "Lead"
-      redirect_to edit_lead_path(Lead.find(@communication.communicator_id)), notice: note
-    else
-      redirect_to root_path, notice: "Error in redirection code. Investigate."
+    respond_to do |format|
+      format.json do
+        if saved_ok
+          render 'show'
+        else
+          render json: {success: false}
+        end
+      end
+      format.html do
+        if @communication.communicator_type == "Supplier"
+          redirect_to admin_edit_path(Supplier.find(@communication.communicator_id).name_for_link), notice: note
+        elsif @communication.communicator_type == "Lead"
+          redirect_to edit_lead_path(Lead.find(@communication.communicator_id)), notice: note
+        else
+          redirect_to root_path, notice: "Error in redirection code. Investigate."
+        end
+      end
     end
   end
 

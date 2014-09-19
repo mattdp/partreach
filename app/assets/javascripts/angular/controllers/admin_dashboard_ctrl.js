@@ -1,6 +1,7 @@
-App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
+App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http){
     $scope.newEmail = null;
     $scope.newName = null;
+    $scope.interactionMeans = null;
 
 
     // I could combine headers and checkboxes into one dialogueAttributes array that has a 'type'
@@ -57,6 +58,7 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
 
     $http.get('/manipulate/' + window.gon.order_id + '.json').success(function(order){
         $scope.order = order
+        $scope.notes = "RFQ"+order.id + " - "
     });
 
     $scope.transferOrder = function(newEmail, newName){
@@ -69,7 +71,7 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
     }
 
     // Would rather have update_dialogues accept_nested_attributes_for :dialogues
-    serializeParams = function(){
+    serializeDialoguesParams = function(){
         updateParams = {id: $scope.order.id}
         angular.forEach(orderAttributes, function(value, index){
             updateParams[value] = $scope.order[value]
@@ -89,17 +91,33 @@ App.controller('OrderDetailsCtrl', ['$scope', '$http', function($scope, $http){
     }
 
     $scope.manipulateDialog = function(){
-        updateParams = serializeParams()
+        updateParams = serializeDialoguesParams()
         $http.post('/orders/update_dialogues', updateParams)
     }
 
     $scope.removeDialogue = function(id, dialogueIndex, ogIndex){
-        if (confirm('Before deleting this dialogue, please contemplate life and it\'s meaning; Also whether you meant to delete this.') ){
+        if (confirm('Sun Tzu says: Deleting dialogue is forever.') ){
             $http.delete('/dialogues/' + id + '.json').success(function(data){
                 if (data.success === true){
                     $scope.order.order_groups[ogIndex].alphabetical_dialogues.splice(dialogueIndex,1)
                 }
             })
         }
+    }
+
+    $scope.createCommunication = function(interactionMeans, notes){
+        postParams = {
+            communicator_type: 'Lead', 
+            communicator_id: $scope.order.user.lead.id,
+            means_of_interaction: interactionMeans,
+            notes: notes
+        }
+        $http.post('/communications.json', postParams).success(function(data){
+            if (data.success === true){
+                $scope.order.user.lead.communications.unshift(data.communication)
+            }
+            $scope.notes = "RFQ" + $scope.order.id + " - "
+            $scope.interactionMeans = null;
+        })
     }
 }]);

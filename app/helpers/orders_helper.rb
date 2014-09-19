@@ -53,7 +53,7 @@ module OrdersHelper
       HTML
     else
       <<-HTML
-<a href="#{url}">Link to #{suffix}</a>
+<a href="#{url}"><strong>Link to #{suffix}</strong></a>
       HTML
     end
   end
