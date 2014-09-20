@@ -37,7 +37,7 @@ class Order < ActiveRecord::Base
                     :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
   
   belongs_to :user
-  has_many :order_groups, dependent: :destroy, order: :created_at
+  has_many :order_groups, -> { order(:created_at) }, dependent: :destroy
   has_many :dialogues, through: :order_groups, dependent: :destroy
   has_many :parts, through: :order_groups, dependent: :destroy
 
@@ -101,19 +101,26 @@ class Order < ActiveRecord::Base
   end
 
   def quote_value
-    qv = 0 # if no recommendations, quotes, or overrides
-    dialogues = self.dialogues.select{|d| d.total_cost and d.total_cost > 0}
-    if self.override_average_value
-      qv = self.override_average_value #override in order for jobs where something was weird    
-    elsif (dialogues.present? and recs = dialogues.select{|d| d.recommended} and recs.present?)
-      values = recs.map{|d| d.total_cost}
-      qv = values.sum / values.size.to_f
-    elsif dialogues.present? #should this be a median?
-      values = dialogues.map{|d| d.total_cost}
-      qv = values.sum / values.size.to_f
+    # if order override (for jobs where something was weird)
+    return override_average_value if self.override_average_value
+
+    # all dialogues with quotes submitted for this order
+    quotes = dialogues.select{|d| d.total_cost and d.total_cost > 0}
+
+    # if no quotes submitted
+    return BigDecimal.new(0) if quotes.empty?
+
+    if ( (recs = quotes.select{|d| d.recommended}) && recs.present?)
+      # recommended quote(s) 
+      values = recs.map{ |d| d.total_cost }
+    else
+      # all quotes
+      values = quotes.map{ |d| d.total_cost }
     end
-    return qv
-  end  
+
+    # average quote value
+    (values.sum / values.size).round(2)
+  end
 
   def visible_dialogues
     visibles = []
@@ -286,29 +293,31 @@ See the note from client for details on what exactly they're looking for.</p>
     HTML
   end
 
+  def self.closed_orders(start_date, end_date)
+    closed_orders = Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", start_date, end_date, "Order", "closed_successfully").
+      map { |e| e.model_id}
+  end
+
   def self.metrics(interval,tracking_start_date)
     output = {}
 
     dates = Order.date_ranges(interval,tracking_start_date)
 
-    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Creates", "Buyers touched by RFQs", "Suppliers touched by RFQs", "Closed RFQs","Reviews","Profiles claimed", "Suppliers joined network", "Leads and Users"]
+    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Created", "Closed RFQs", "Total Billable Fees"]
 
     printout = []
     index = 0
     #-2 since using dates[index] and dates[index+1]
     while index <= dates.length - 2   
       unit = []
-      created_orders = Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
       unit << dates[index]
-      unit << created_orders.sum{|o| o.quote_value}.to_s
+      created_orders = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
+      average_quote_values = created_orders.map{ |o| o.quote_value }
+      unit << average_quote_values.sum
       unit << created_orders.count
-      unit << created_orders.map{|o| o.user_id}.uniq.count
-      unit << created_orders.map{|o| o.dialogues}.flatten.select{|d| d.opener_sent}.map{|d| d.supplier_id}.uniq.count
-      unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
-      unit << Review.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
-      unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "claimed_profile").count
-      unit << Event.where("created_at > ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Supplier", "joined_network").count
-      unit << LeadContact.where("created_at > ? AND created_at < ?", dates[index], dates[index+1]).count
+      unit << Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
+      closed = Order.closed_orders(dates[index], dates[index+1])
+      unit << Dialogue.total_billable_fees(closed)
       printout << unit
       index += 1
     end
@@ -326,7 +335,7 @@ See the note from client for details on what exactly they're looking for.</p>
 
     while (index <= dates.length - 2)
 
-      orders_for_month = Order.where("created_at > ? AND created_at < ?", dates[index], dates[index+1])
+      orders_for_month = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
       
       total_possible_revenue = 0
       bid_fee = 0.01

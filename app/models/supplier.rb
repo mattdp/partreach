@@ -28,6 +28,8 @@
 class Supplier < ActiveRecord::Base
   belongs_to :user
 
+  before_create :append_http_to_url
+
   has_many :dialogues, :dependent => :destroy
   has_one :address, :as => :place, :dependent => :destroy
   has_many :taggings, :as => :taggable
@@ -51,6 +53,8 @@ class Supplier < ActiveRecord::Base
   validates_presence_of :contract_contact
   validates_presence_of :billing_contact
   validates_presence_of :rfq_contact
+
+  DEFAULT_BID_FEE = 0.01 # 1%
 
   #unreadable without the method that assesses suppliers. After this is more fixed, make it into a model.
   def self.get_point_structure
@@ -536,6 +540,12 @@ class Supplier < ActiveRecord::Base
     suppliers = Supplier.where("LOWER(LEFT(name,1)) = ?", char)
     screened_suppliers = suppliers.reject{|s| s.has_tag?(datadump_id)}
     return "Other non-datadump suppliers with names starting with #{char.upcase}: #{screened_suppliers.map{|s| s.name}.sort}"
+  end
+
+  def append_http_to_url
+    if self.url_main
+      self.url_main = /^http/.match(self.url_main) ? self.url_main : "http://#{self.url_main}"
+    end
   end
 
   def self.next_contact_suppliers_sorted(only_after_today=true)

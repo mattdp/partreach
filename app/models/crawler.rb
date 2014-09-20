@@ -79,10 +79,10 @@ class Crawler
       contact = supplier.rfq_contact
       address = supplier.address
 
-      contact.email = attributes[:email] if attributes[:email].present?
-      contact.phone = attributes[:phone] if attributes[:phone].present?
-      address.zip = attributes[:zip] if attributes[:zip].present?
-      address.state_id = Geography.locate(attributes[:state],:short_name,"state").id if attributes[:state].present? 
+      contact.email = attributes[:email] if attributes[:email].present? && contact.email.blank?
+      contact.phone = attributes[:phone] if attributes[:phone].present? && contact.phone.blank?
+      address.zip = attributes[:zip] if attributes[:zip].present? && address.zip.blank?
+      address.state_id = Geography.locate(attributes[:state],:short_name,"state").id if attributes[:state].present? && address.state_id.blank?
 
       # #needs fixing for geo before this will operate correctly, since state is messed up
       # attributes.each do |attribute, value|
@@ -160,12 +160,11 @@ class Crawler
 
       if page.nil?
         $stdout.puts "Reattempt: adding host prefix to relative link..."
-        page = Crawler.url_tryer("http://#{master_parsed_url.host}#{parsed_url.path}",explored)
+        page = Crawler.url_tryer("#{@scheme}://#{master_parsed_url.host}#{parsed_url.path}",explored)
       end
 
       if page.nil?
-        $stdout.puts "Reattempt: appending host to master domain..."
-        page = Crawler.url_tryer("http://#{master_parsed_url.host}/#{parsed_url.host}",explored)
+        page = Crawler.url_tryer("#{@scheme}://#{master_parsed_url.host}/#{parsed_url.host}",explored)
       end
 
       return page #either exists or nil
@@ -207,6 +206,7 @@ class Crawler
       #will this ever fail???  The only time Domainatrix complains is when it gets anything other than a string
       begin
         master_parsed_url = Domainatrix.parse(starting_point)
+        @scheme = master_parsed_url.scheme || 'http'
       rescue StandardError => e
         $stdout.puts "#{starting_point} is not a valid domain name. Skipping."
         return false  

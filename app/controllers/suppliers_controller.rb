@@ -33,6 +33,7 @@ class SuppliersController < ApplicationController
     saved_ok = @supplier.save and @supplier.update_tags(params[:tag_selection])
 
     if saved_ok
+      Crawler.delay.crawl_master([@supplier])
       redirect_to admin_edit_path(@supplier.name_for_link), notice: "Saved OK!" 
     else 
       redirect_to new_supplier_path(@supplier.name_for_link), notice: "Saving problem."
@@ -137,14 +138,19 @@ class SuppliersController < ApplicationController
     # for now, hard-code for unitedstates only
     @country = Geography.find_by_name_for_link('unitedstates')
     @state = Geography.find_by_name_for_link(params[:state])
+
     
-    # Filters are currently defined for a subset of process group tags only
-    @processes_array = []
-    Filter.where("name like '#{@country.name_for_link}-#{@state.name_for_link}-%'").each do |f|
-      process_name = Tag.find(f.has_tag_id).readable
-      lookup_term = f.name.gsub("#{@country.name_for_link}-#{@state.name_for_link}-", "")
-      supplier_index_path = lookup_path(@country.name_for_link, @state.name_for_link, lookup_term)
-      @processes_array << [ process_name, supplier_index_path ]
+    if @state
+      # Filters are currently defined for a subset of process group tags only
+      @processes_array = []
+      Filter.where("name like '#{@country.name_for_link}-#{@state.name_for_link}-%'").each do |f|
+        process_name = Tag.find(f.has_tag_id).readable
+        lookup_term = f.name.gsub("#{@country.name_for_link}-#{@state.name_for_link}-", "")
+        supplier_index_path = lookup_path(@country.name_for_link, @state.name_for_link, lookup_term)
+        @processes_array << [ process_name, supplier_index_path ]
+      end
+    else
+      redirect_to state_index_path(@country.name_for_link)
     end
   end
 

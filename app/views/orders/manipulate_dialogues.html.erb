@@ -1,14 +1,15 @@
 <% provide(:title, "##{@order.id} - Manipulate") %>
 
-<div class="container" ng-controller="OrderDetailsCtrl">
+<div class="container" ng-controller="AdminDashboardCtrl">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-      <h1>Changes to Order {{order.id}} (User {{order.user.lead.lead_contact.full_name_untrusted}})</h1>  
+      <h1>Changes to RFQ {{order.id}}</h1>  
 
-      <%= render "layouts/order_basics" %>
+      <p><strong>User: </strong><a href="/leads/{{order.user.lead.id}}/edit">{{order.user.lead.lead_contact.full_name_untrusted}}</a></p>
+      <%= render "layouts/angular_order_basics" %>
 
-      <p><strong>User email: </strong>{{order.lead.lead_contact.email}}</p>
+      <p><strong>User email: </strong>{{order.user.lead.lead_contact.email}}</p>
       <p ng-if="order.override_average_value">
         <strong>Override value for what quote was worth, for tracking (console change): </strong>{{ order.override_average_value }}
       </p>
@@ -26,137 +27,82 @@
       <p><a href="/dialogues/new/{{order.id}}">Add a dialogue</a> | Note: if you want erase an existing numeric field, set it to 0, do not simply delete it.</p>
 
 
-      <%= form_tag :action => 'update_dialogues', :controller => 'orders' do %>
+      <form class="manipulate_dialogues_form" novalidate>
+        <div class="form-group">
+          <label for="rec-field">Recommendation</label>
+          <textarea id="rec-field" ng-model="order.recommendation"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="ns-field">Next Steps</label>
+          <textarea id="ns-field" ng-model="order.next_steps"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="na-field">Next Action Date</label>
+          <textarea id="na-field" ng-model="order.next_action_date"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="on-field">Internal notes on order</label>
+          <textarea id="on-field" ng-model="order.notes"></textarea>
+        </div>
 
-        <%= hidden_field_tag "id", @order.id %>
-
-        <%= label_tag "recommendation", "Recommendation" %>
-        <%= text_area_tag "recommendation", @order.recommendation %>
-        <%= label_tag "next_steps", "Next steps" %>
-        <%= text_area_tag "next_steps", @order.next_steps %>
-        <%= label_tag "next_action_date", "Next action date" %>
-        <%= text_field_tag "next_action_date", @order.next_action_date %>
-        <%= label_tag "order notes", "Internal notes on order" %>
-        <%= text_area_tag "notes", @order.notes %>
-
-        <% @order_groups.each do |order_group| %>
-
+        <div ng-repeat="order_group in order.order_groups">
           <h3 class="bit-of-space">
-            <%= "Group #{order_group.id}: '#{order_group.name}' " %>
-            <%= "Process: '#{order_group.process}'" %>
-            <%= "Material: '#{order_group.material}'" %>
-            <%= link_to "Edit order group", edit_order_group_path(order_group) %>
+            Group {{order_group.id}}: "{{order_group.name}}"
+            Process: "{{order_group.process}}"
+            Material: "{{order_group.material}}"
+            <a href="/order_groups/{{order_group.id}}/edit">Edit order group</a>
           </h3>
-          <p>Movement between groups is currently console-only.</p>
           <p><strong>Parts:</strong></p>
           <ul>
-            <% order_group.parts.each do |part| %>
-              <% external = part.external %>
-              <li>
-                <% if external %>
-                  <%= "Quantity #{part.quantity} of '#{part.name}' (Units: #{external.units}" %>
-                  <%= link_to "Link to file", external.url %>
-                <% else %>
-                  <%= "WARNING - PART HAS NO EXTERNAL LINK. TROUBLESHOOT." %>
-                <% end %>
-                <%= ") [Part ID: #{part.id}, BOM ID: #{part.bom_identifier}]" %>
-              </li>
-            <% end %>
+            <li ng-repeat="part in order_group.parts">
+              <span ng-if="part.external">
+                Quantity {{part.quanitity}} of "{{part.name}}" (Units: {{part.external.units}}
+              </span>
+              <span ng-if="!part.external">
+                WARNING - PART HAS NO EXTERNAL LINK. TROUBLESHOOT.
+              </span>
+              <span>
+                ) [Part ID: {{part.id}}, BOM ID: {{part.bom_identifier}}]
+              </span>
+            </li>
           </ul>
 
-          <p>Ordering of checkboxes:</p>
-          <div><% @checkboxes.each do |c| %>
-            <%= "| #{c.to_s}" %>
-          <% end %></div>
-          <table>
+          <table class="manipulate_dialogues_table">
             <tr>
-              <th>d_id</th>
-              <th>og_name</th>
-              <th>Supplier</th>
-              <% [@checkboxes,@textfields,@numberfields].each do |set| %>
-                <% set.each do |h| %>
-                  <th class="word-break">
-                    <% if set == @checkboxes %>
-                      <%= "" %>
-                    <% else %>
-                      <%= "#{h.to_s}" %>
-                    <% end %>
-                  </th>
-                <% end %>
-              <% end %>
+              <th></th>
+              <th ng-repeat="checkbox in checkboxes"><div class="md_checkbox_th"><span class="checkbox"></span></div></th>
+              <th ng-repeat="header in headers" class="rotate"><div><span>{{header.displayText}}</span></div></th>
             </tr>
-              <% order_group.alphabetical_dialogues.each do |d| %>
-                <tr>
-                  <% @supplier = Supplier.find(d.supplier_id) %>
-                  <td><%= "#{d.id}" %></td>
-                  <td><%= "#{d.order_group.name}" %></td>
-                  <td>
-                    <strong><%= link_to "#{@supplier.name}", admin_edit_path(@supplier.name_for_link) %></strong>
-                  </td>
-                  <% @checkboxes.each do |c| %>
-                    <td class="center">
-                      <%= check_box_tag "#{d.id}[#{c.to_s}][]", d.id, d.attributes[c.to_s], class: "checkbox" %>
-                    </td>
-                  <% end %>
-                  <% @textfields.each do |t| %>
-                    <td>
-                      <%= text_field_tag "#{d.id}[#{t.to_s}_field]", d.attributes[t.to_s] %>
-                    </td>
-                  <% end %>
-                  <% @numberfields.each do |n| %>
-                    <td>
-                      <%= text_field_tag "#{d.id}[#{n.to_s}_field]", d.attributes[n.to_s] %>
-                    </td>
-                  <% end %>
-                </tr>
-              <% end %>
+            <tr ng-repeat="d in order_group.alphabetical_dialogues">
+              <td><strong><a href="/suppliers/admin_edit/{{d.supplier.name_for_link}}" target="_blank">{{d.supplier.name}}</a></strong></td>
+              <td ng-repeat="checkbox in checkboxes" class="center md_checkbox_td"><input type="checkbox" ng-model="d[checkbox.attribute]" tooltip-append-to-body="true" tooltip="{{checkbox.displayText}}"></td>
+              <td ng-repeat="header in headers"><input type="text" ng-model="d[header.attribute]"></td>
+              <td><a class="ng-link" ng-click="removeDialogue(d.id, this.$index, this.$parent.$index)">Remove Dialogue</a></td>
+            </tr>
           </table>
 
           <table>
-            <% order_group.alphabetical_dialogues.each do |d| %>
-              <tr class="horizontal-lines">
-                <% @supplier = Supplier.find(d.supplier_id) %>
-                <td><%= "#{d.id}" %></td>
-                <td>
-                  <strong><%= link_to "#{@supplier.name[0,6]}", external_url(@supplier.url_main), target: "_blank" %></strong>
-                </td>
-                <td><%= "#{@supplier.address.state.short_name},#{@supplier.address.country.short_name}" %></td>
-                <td><%= link_to "RFQ Open Email", dialogue_initial_email_path(d) %></td>
-                <td><%= link_to "RFQ Close Email", dialogue_edit_rfq_close_email_path(d) %></td>
-                <td>
-                  <strong><%= "Note for this order: #{d.internal_notes}" if d.internal_notes.present? %></strong>
-                  <%= @supplier.is_in_network? ? "Pays per bid" : "Not in network" %>
-                  <%= "\n#{@supplier.rfq_contact.email}" if @supplier.rfq_contact.email %>
-                  <%= "\n#{@supplier.rfq_contact.phone}" if @supplier.rfq_contact.phone %>
-                  <%= "\n#{@supplier.internally_hidden_preferences}" if @supplier.internally_hidden_preferences %>
-                </td>
-              </tr>
-            <% end %>
+            <tr ng-repeat="d in order_group.alphabetical_dialogues" class="horizontal-lines">
+              <td><strong><a href="{{d.supplier.url_main}}">{{d.supplier.name}}</a></strong></td>
+              <td><a href="/dialogues/initial_email/{{d.id}}">RFQ Open Email</a></td>
+              <td><a href="/dialogues/edit_rfq_close_email/{{d.id}}">RFQ Close Email</a></td>
+              <td>
+                <div ng-if="d.internal_notes !== null"><strong>Note for this order: {{d.internal_notes}}</strong></div>
+                {{d.supplier.isInNetwork ? 'Pays per bid' : 'Not in network' }}
+                <div ng-if="d.supplier.rfq_contact.email">{{d.supplier.rfq_contact.email}}</div>
+                <div ng-if="d.supplier.rfq_contact.phone">{{d.supplier.rfq_contact.phone}}</div>
+                <div ng-if="d.supplier.internally_hidden_preferences">{{d.supplier.internally_hidden_preferences}}</div>
+              </td>
+            </tr>
           </table>
-        <% end %>
+        </div> <!-- End ng-repeat of order_groups -->
 
         <h4>Order status</h4>
-        <% Order.order_status_hash.keys.each do |message| %>
-          <div class="clear">
-            <%= radio_button_tag "status", message, @order.status == message, :class => "fleft radio" %>
-            <%= label_tag "status_#{message}", message, :class => "fleft" %>
-          </div>
-        <% end %>
-
-        <div class="clear">
-          <p>Columns to show</p>
-          <% OrderColumn.set_to_names_map.each do |set_name,set_columns| %>
-            <%= radio_button_tag "columns_shown", set_name, @order.columns_shown == set_name.to_s, :class => "fleft radio" %>
-            <%= label_tag "columns_shown_#{set_name}", set_name, :class => "fleft" %>
-          <% end %>
-        </div>
-
-        <div class="clear">
-          <%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
-        </div>
-
-
-      <% end %> 
+        <select ng-model="order.status" ng-options="status for status in orderStatusOptions"></select>
+        <p>Columns to show</p>
+        <select ng-model="order.columns_shown" ng-options="column for column in columnsShownOptions"></select>
+        <button class="save-button" ng-click="manipulateDialog()">Save changes</button>
+      </form>
       <div class="transfer_order">
         <label>New Email</label>
         <input type="text" class="new_owner_email" ng-model="newEmail" />

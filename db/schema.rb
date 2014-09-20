@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140809055336) do
+ActiveRecord::Schema.define(version: 20140911143228) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20140809055336) do
     t.string   "linkedin_url"
     t.boolean  "email_valid",      default: true
     t.boolean  "email_subscribed", default: true
+    t.text     "cc_emails",        default: ""
   end
 
   create_table "delayed_jobs", force: true do |t|
@@ -116,6 +117,7 @@ ActiveRecord::Schema.define(version: 20140809055336) do
     t.boolean  "supplier_working"
     t.text     "email_snippet"
     t.text     "close_email_body"
+    t.boolean  "billable",                                     default: false
   end
 
   create_table "events", force: true do |t|
@@ -210,8 +212,8 @@ ActiveRecord::Schema.define(version: 20140809055336) do
   end
 
   create_table "orders", force: true do |t|
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
     t.integer  "user_id"
     t.string   "drawing_content_type"
     t.integer  "drawing_file_size"
@@ -223,14 +225,14 @@ ActiveRecord::Schema.define(version: 20140809055336) do
     t.text     "material_message"
     t.text     "next_steps"
     t.text     "suggested_suppliers"
-    t.string   "status",                 default: "Needs work"
+    t.string   "status",                                          default: "Needs work"
     t.string   "next_action_date"
     t.string   "stated_experience"
     t.string   "stated_priority"
     t.string   "stated_manufacturing"
     t.text     "notes"
-    t.decimal  "override_average_value"
-    t.string   "columns_shown",          default: "all"
+    t.decimal  "override_average_value", precision: 10, scale: 2
+    t.string   "columns_shown",                                   default: "all"
     t.text     "email_snippet"
     t.integer  "stated_quantity"
     t.string   "units"
@@ -311,16 +313,28 @@ ActiveRecord::Schema.define(version: 20140809055336) do
 
   add_index "tag_groups", ["group_name"], name: "index_tag_groups_on_group_name", unique: true, using: :btree
 
-  create_table "tag_relationships", force: true do |t|
-    t.integer  "source_tag_id",  null: false
-    t.integer  "related_tag_id", null: false
-    t.string   "relationship",   null: false
+  create_table "tag_relationship_types", force: true do |t|
+    t.string   "name"
+    t.integer  "source_group_id"
+    t.integer  "related_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "tag_relationships", ["related_tag_id", "source_tag_id", "relationship"], name: "index_tag_relationships_unique", unique: true, using: :btree
+  add_index "tag_relationship_types", ["related_group_id"], name: "index_tag_relationship_types_on_related_group_id", using: :btree
+  add_index "tag_relationship_types", ["source_group_id"], name: "index_tag_relationship_types_on_source_group_id", using: :btree
+
+  create_table "tag_relationships", force: true do |t|
+    t.integer  "source_tag_id",            null: false
+    t.integer  "related_tag_id",           null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "tag_relationship_type_id", null: false
+  end
+
+  add_index "tag_relationships", ["related_tag_id"], name: "index_tag_relationships_on_related_tag_id", using: :btree
   add_index "tag_relationships", ["source_tag_id"], name: "index_tag_relationships_on_source_tag_id", using: :btree
+  add_index "tag_relationships", ["tag_relationship_type_id", "source_tag_id", "related_tag_id"], name: "index_tag_relationships_unique", unique: true, using: :btree
 
   create_table "taggable_types", force: true do |t|
     t.string   "type_name",    null: false

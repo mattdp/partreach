@@ -4,7 +4,7 @@
   <% if @order.name.present? %>
     <p><strong>Order name: </strong> <%= "#{@order.name}" %></p>
   <% end %>
-  <span class="index_quantity"><strong>Total quantity: </strong><%= "#{@total_quantity}" %></span>
+  <span class="index_quantity"><strong>Total quantity: </strong><%= "#{@order.total_quantity}" %></span>
   <span class="index_quantity"><strong>Drawing units: </strong><%= "#{@order.units}" %></span>
   <% if !@order.deadline.nil? %>
     <span class="index_quantity"><strong>Deadline: </strong><%= "#{@order.deadline}" %></span>
