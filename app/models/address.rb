@@ -60,7 +60,6 @@ class Address < ActiveRecord::Base
     Geography.find(destroyed_id).destroy
   end
 
-  #country, state, zip only right now
   def self.create_or_update_address(owner, options)
     if owner.address
       address = owner.address
@@ -82,7 +81,9 @@ class Address < ActiveRecord::Base
       address.state = Geography.find_by_name_for_link('state_unknown')
     end
 
-    address.zip = options[:zip] if options[:zip]
+    address.street = options[:street] if options[:street].present?
+    address.city = options[:city] if options[:city].present?
+    address.zip = options[:zip] if options[:zip].present?
 
     address.save
     owner.address(true) # force refresh of address association for in-memory owner object
