@@ -24,8 +24,8 @@ class Crawler::Admin < CrawlerRefactor
     tags.each do |t|
       if options[:test_mode] == false
         @supplier.add_tag(t.id) if docs_text.scan(/#{t.readable}/i).size > options[:n]
-      else
-        Rails.logger.info "#{@supplier.name} would get tag #{t.name}" if docs_text.scan(/#{t.readable}/i).size > options[:n]
+      elsif docs_text.scan(/#{t.readable}/i).size > options[:n]
+        Rails.logger.info "{#supplier.id} #{supplier.name} would receive tag #{tag.id} #{tag.readable}"
       end
     end
   end
