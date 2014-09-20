@@ -26,6 +26,11 @@ task :supplier_csv_import => :environment do
     }
     s.create_or_update_address(address_params)
 
+    s.source = 'csv_import'
+    Tag.tag_set(:csv_import,:id).each do |id|
+      s.add_tag(id)
+    end
+
     p "Supplier #{s.name} Saved" if s.save
   end
 end
