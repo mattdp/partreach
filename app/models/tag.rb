@@ -49,7 +49,8 @@ class Tag < ActiveRecord::Base
     sets = {
       risky: %w(e0_out_of_business e1_existence_doubtful),
       network: %w(n6_signedAndNDAd n5_signed_only),
-      new_supplier: %w(b0_none_sent n1_no_contact e2_existence_unknown)
+      new_supplier: %w(b0_none_sent n1_no_contact e2_existence_unknown),
+      csv_import: %w(b0_none_sent n1_no_contact e3_existence_confirmed)
     }
     if attribute == :name
       return sets[category]
