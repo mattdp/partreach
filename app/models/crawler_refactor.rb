@@ -18,7 +18,7 @@ class CrawlerRefactor
       @current_url_object = run_domainatrix(url)
       page = @current_url_object ? self.open_page : false
 
-      @urls = @urls | page.css('a').map{|l| l['href']} if page
+      @urls = @urls | (page.css('a').map{|l| l['href']} - @completed_urls) if page
 
       @completed_urls << url
       @html_documents << page if page
@@ -35,8 +35,9 @@ class CrawlerRefactor
     end
 
     def build_html_and_sleep
+      path = @current_url_object.path != "" ? @current_url_object.path : "/#{@current_url_object.host}"
       page = self.run_nokogiri(@current_url_object.url) ||
-             self.run_nokogiri("#{@starting_url_object.scheme}://#{@starting_url_object.host}#{@current_url_object.path}")
+             self.run_nokogiri("#{@starting_url_object.scheme}://#{@starting_url_object.host}#{path}")
       sleep(5 + rand(3))
       page
     end
