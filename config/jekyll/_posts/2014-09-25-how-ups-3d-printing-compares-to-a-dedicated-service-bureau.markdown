@@ -1,22 +1,24 @@
 --- 
 layout: post
 author: Rob
-title: How UPS 3D Printing Service Compares to a Dedicated Service Bureau
+title: How UPS 3D Printing Compares to a Dedicated Service Bureau
 published: true
 ---
 
 <table class="image" style="margin: auto;">
 <caption align="bottom">Functional 3D printed brackets printed using Fused Deposition Modeling on a Stratasys 3D printer. </caption>
-<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-FDM_parts.jpg" width="740"></td></tr>
+<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-FDM_parts.jpg" width="100%"></td></tr>
 </table>
 
 <p>This week, UPS launched their <a href="http://www.theupsstore.com/small-business-solutions/Pages/3D-printing.aspx" target="_blank">#3DPrintWeek campaign</a>, which aims to “meet the growing demands of its small business customers” [0]. We decided to compare a project SupplyBetter recently helped a client with to see how UPS compares to 3D printing shops our matching service has worked with in the past.</p>
 
 <p>Six of their stores have been outfitted with a Stratasys UPrint SE Plus, a Fused Deposition Modeling (FDM) 3D printer that prints using ABSplus material. To make sure we’re comparing apples to apples, we chose a project submitted to us that was produced using the same material made on the same printer. The client, Anybots, is a Bay Area telepresence robotics company that was looking to use 3D printing to create quantity 1 of a custom bracket that would allow them to test a new HD video camera [1]. </p>
 
-<img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-PART1.png" width="740">
-<img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-PART2.png" width="740">
-<caption>Two parts 3D printed out of ABSplus using a Stratasys UPrint SE plus machine. Visualization provided by the free STL visualization tool, MakerWare (version 2.4.1.35).</caption>
+<table class="image" style="margin: auto;">
+<caption align="bottom">Two parts 3D printed out of ABSplus using a Stratasys UPrint SE plus machine. Visualization provided by the free STL visualization tool, MakerWare (version 2.4.1.35).</caption>
+<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-PART1.png" width="740"></td></tr>
+<tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-PART2.png" width="740"></td></tr>
+</table>
 
 <p>For this project, the priority was cost and the main goal was to produce a part that could perform as a mechanical bracket (known in product development as a “works like” prototype). If the expressed priority had been something else (e.g. tradeshow quality or same-day speed) we would have evaluated this project differently and may have reached out to a different set of service bureaus.</p>
 
