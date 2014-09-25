@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-09-25T15:44:39-07:00</updated>
+ <updated>2014-09-25T15:48:35-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -61,7 +61,17 @@
 
 
 
-&lt;p&gt;The quote from UPS for this project was $111.70 ($92.80 to print + $18.90 for packing and shipping) with a 1-2 day lead time. This is 30% higher than the average bid we received and more than 50% more expensive than the winning bid on this project. Considering machine and material were the same with similar lead times, it appears that UPS is simply a more expensive option than what is available elsewhere.&lt;/p&gt;
+&lt;p&gt;The quote from UPS for this project was:&lt;/p&gt;
+
+
+&lt;ul&gt;
+  &lt;li&gt;$111.70 ($92.80 to print + $18.90 for packing and shipping) with a 1-2 day lead time&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;p&gt;This is 30% higher than the average bid we received and more than 50% more expensive than the winning bid on this project. Considering machine and material were the same with similar lead times, it appears that UPS is simply a more expensive option than what is available elsewhere.&lt;/p&gt;
 
 
 
@@ -80,16 +90,11 @@
 
 
 &lt;div class=&quot;footer&quot;&gt;
-  [0] The messaging specifically towards small business owners (vs. hobbyists) is likely intentional. If you’re curious about whether a commercial 3D printer or hobbyist printer is a good fit for your project, &lt;a href=&quot;https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;check out our previous blog post&lt;/a&gt; that compares commercial (FDM) vs. hobbyist (FFF) printers. 
-[1] The author of this post is a former employee of Anybots
-[2] Be sure to scroll down for the video and check out the awesomely-large wooden mallet at 3:17. 
-&lt;/div&gt;
+  &lt;p&gt;[0] The messaging specifically towards small business owners (vs. hobbyists) is likely intentional. If you’re curious about whether a commercial 3D printer or hobbyist printer is a good fit for your project, &lt;a href=&quot;https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;check out our previous blog post&lt;/a&gt; that compares commercial (FDM) vs. hobbyist (FFF) printers. &lt;/p&gt;
+  &lt;p&gt;[1] The author of this post is a former employee of Anybots.&lt;/p&gt;
+  &lt;p&gt;[2] Be sure to scroll down for the video and check out the awesomely-large wooden mallet at 3:17. &lt;/p&gt;
+  &lt;p&gt;Special thanks to Bill at Anybots and Mike at PartSnap for allowing us to discuss this project. &lt;/p&gt;
 
-
-
-
-&lt;div class=&quot;footer&quot;&gt;
-Special thanks to Bill at Anybots and Mike at PartSnap for allowing us to discuss this project. 
 &lt;/div&gt;
 
 </content>

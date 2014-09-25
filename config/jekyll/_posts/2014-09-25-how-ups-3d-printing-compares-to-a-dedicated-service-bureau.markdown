@@ -29,7 +29,12 @@ published: true
 <li>Winning bid (PartSnap): $72.00 (including shipping), 1 day lead time</li>
 </ul>
 
-<p>The quote from UPS for this project was $111.70 ($92.80 to print + $18.90 for packing and shipping) with a 1-2 day lead time. This is 30% higher than the average bid we received and more than 50% more expensive than the winning bid on this project. Considering machine and material were the same with similar lead times, it appears that UPS is simply a more expensive option than what is available elsewhere.</p>
+<p>The quote from UPS for this project was:</p>
+<ul>
+  <li>$111.70 ($92.80 to print + $18.90 for packing and shipping) with a 1-2 day lead time</li>
+</ul>
+
+<p>This is 30% higher than the average bid we received and more than 50% more expensive than the winning bid on this project. Considering machine and material were the same with similar lead times, it appears that UPS is simply a more expensive option than what is available elsewhere.</p>
 
 <p>Given that UPS is just getting started with their 3D printing service, it’s too soon to know whether or not we should expect to see an FDM printer at every UPS location. Considering UPS has about 4,700 independent store locations, they could simply become known as the local 3D printing solution and adopt a similar model to Shapeways (this has its own tradeoffs, which <a href="https://www.supplybetter.com/blog/shapeways-vs-supplybetter" target="_blank">we’ve discussed here</a>). Further, they could even potentially explore <a href="http://qz.com/97059/atfab-future-of-manufacturing/" target="_blank">distributed manufacturing</a> as a service given the addition of <a href="http://www.shopbotblog.com/index.php/2014/06/homebuilt-is-re-inventing-homebuilding-with-distributed-manufacturing-and-shopbots/" target="_blank">a few more machines</a>[2]. It will be interesting to see where they might start adding value as a 3D printing service bureau in the coming months.</p>
 
@@ -38,11 +43,9 @@ published: true
 <p>Rob</p>
 
 <div class="footer">
-  [0] The messaging specifically towards small business owners (vs. hobbyists) is likely intentional. If you’re curious about whether a commercial 3D printer or hobbyist printer is a good fit for your project, <a href="https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html" target="_blank">check out our previous blog post</a> that compares commercial (FDM) vs. hobbyist (FFF) printers. 
-[1] The author of this post is a former employee of Anybots
-[2] Be sure to scroll down for the video and check out the awesomely-large wooden mallet at 3:17. 
-</div>
+  <p>[0] The messaging specifically towards small business owners (vs. hobbyists) is likely intentional. If you’re curious about whether a commercial 3D printer or hobbyist printer is a good fit for your project, <a href="https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html" target="_blank">check out our previous blog post</a> that compares commercial (FDM) vs. hobbyist (FFF) printers. </p>
+  <p>[1] The author of this post is a former employee of Anybots.</p>
+  <p>[2] Be sure to scroll down for the video and check out the awesomely-large wooden mallet at 3:17. </p>
+  <p>Special thanks to Bill at Anybots and Mike at PartSnap for allowing us to discuss this project. </p>
 
-<div class="footer">
-Special thanks to Bill at Anybots and Mike at PartSnap for allowing us to discuss this project. 
 </div>
