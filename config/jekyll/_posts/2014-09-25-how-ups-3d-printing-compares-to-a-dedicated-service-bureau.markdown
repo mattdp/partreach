@@ -10,9 +10,9 @@ published: true
 <tr><td><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-FDM_parts.jpg" width="100%"></td></tr>
 </table>
 
-<p>This week, UPS launched their <a href="http://www.theupsstore.com/small-business-solutions/Pages/3D-printing.aspx" target="_blank">#3DPrintWeek campaign</a>, which aims to “meet the growing demands of its small business customers” [0]. We decided to compare a project SupplyBetter recently helped a client with to see how UPS compares to 3D printing shops our matching service has worked with in the past.</p>
+<p>This week, UPS launched their <a href="http://www.theupsstore.com/small-business-solutions/Pages/3D-printing.aspx" target="_blank">#3DPrintWeek campaign</a>, which aims to “meet the growing demands of its small business customers” [0]. We decided to compare a project SupplyBetter recently helped a client with to see how UPS compares to 3D printing shops <a href="http://supplybetter.com" target="_blank">our matching service</a> has worked with in the past.</p>
 
-<p>Six of their stores have been outfitted with a Stratasys UPrint SE Plus, a Fused Deposition Modeling (FDM) 3D printer that prints using ABSplus material. To make sure we’re comparing apples to apples, we chose a project submitted to us that was produced using the same material made on the same printer. The client, Anybots, is a Bay Area telepresence robotics company that was looking to use 3D printing to create quantity 1 of a custom bracket that would allow them to test a new HD video camera [1]. </p>
+<p>Six of their stores have been outfitted with a Stratasys <a href="http://www.stratasys.com/~/media/Main/Secure/System_Spec_Sheets-SS/DimensionProductSpecs/uPrintSESellSheet-INTL-ENG-10-13%20WEB.pdf" target="_blank">UPrint SE Plus</a>, a Fused Deposition Modeling (FDM) 3D printer that prints using <a href="http://www.stratasys.com/~/media/Main/Secure/material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-ABSplus-01-13-web.ashx" target="_blank">ABSplus</a> material. To make sure we’re comparing apples to apples, we chose a project submitted to us that was produced using the same material made on the same printer. The client, <a href="https://www.anybots.com/" target="_blank">Anybots</a>, is a Bay Area telepresence robotics company that was looking to use 3D printing to create quantity 1 of a custom bracket that would allow them to test a new HD video camera [1]. </p>
 
 <table class="image" style="margin: auto;">
 <caption align="bottom">Two parts 3D printed out of ABSplus using a Stratasys UPrint SE plus machine. Visualization provided by the free STL visualization tool, MakerWare (version 2.4.1.35).</caption>
@@ -22,7 +22,7 @@ published: true
 
 <p>For this project, the priority was cost and the main goal was to produce a part that could perform as a mechanical bracket (known in product development as a “works like” prototype). If the expressed priority had been something else (e.g. tradeshow quality or same-day speed) we would have evaluated this project differently and may have reached out to a different set of service bureaus.</p>
 
-<p>The winning bid was placed by PartSnap, a Texas service bureau that was able to print the parts in black ABSplus and ship out within 1 business day. Here is the summary of bids:</p>
+<p>The winning bid was placed by <a href="https://www.partsnap.com/3d-printing/3d-printing-materials-stratasys-fdm/" target="_blank">PartSnap</a>, a Texas service bureau that was able to print the parts in black ABSplus and ship out within 1 business day. Here is the summary of bids:</p>
 
 <ul>
 <li>Average bid (5 suppliers, not including UPS): $84.90 (all bids include shipping)</li>
@@ -31,13 +31,14 @@ published: true
 
 <p>The quote from UPS for this project was $111.70 ($92.80 to print + $18.90 for packing and shipping) with a 1-2 day lead time. This is 30% higher than the average bid we received and more than 50% more expensive than the winning bid on this project. Considering machine and material were the same with similar lead times, it appears that UPS is simply a more expensive option than what is available elsewhere.</p>
 
-<p>Given that UPS is just getting started with their 3D printing service, it’s too soon to know whether or not we should expect to see an FDM printer at every UPS location. Considering UPS has about 4,700 independent store locations, they could simply become known as the local 3D printing solution. Further, they could even potentially explore distributed manufacturing as a service given the addition of a few more machines[2]. It will be interesting to see where they might start adding value as a 3D printing service bureau in the coming months.</p>
+<p>Given that UPS is just getting started with their 3D printing service, it’s too soon to know whether or not we should expect to see an FDM printer at every UPS location. Considering UPS has about 4,700 independent store locations, they could simply become known as the local 3D printing solution and adopt a similar model to Shapeways (this has its own tradeoffs, which <a href="https://www.supplybetter.com/blog/shapeways-vs-supplybetter" target="_blank">we’ve discussed here</a>). Further, they could even potentially explore <a href="http://qz.com/97059/atfab-future-of-manufacturing/" target="_blank">distributed manufacturing</a> as a service given the addition of <a href="http://www.shopbotblog.com/index.php/2014/06/homebuilt-is-re-inventing-homebuilding-with-distributed-manufacturing-and-shopbots/" target="_blank">a few more machines</a>[2]. It will be interesting to see where they might start adding value as a 3D printing service bureau in the coming months.</p>
+
 
 <p>Cheers,</p>
 <p>Rob</p>
 
 <div class="footer">
-[0] The messaging specifically towards small business owners (vs. hobbyists) is likely intentional. If you’re curious about whether a commercial 3D printer or hobbyist printer is a good fit for your project, check out our previous blog post that compares commercial (FDM) vs. hobbyist (FFF) printers. 
+  [0] The messaging specifically towards small business owners (vs. hobbyists) is likely intentional. If you’re curious about whether a commercial 3D printer or hobbyist printer is a good fit for your project, <a href="https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html" target="_blank">check out our previous blog post</a> that compares commercial (FDM) vs. hobbyist (FFF) printers. 
 [1] The author of this post is a former employee of Anybots
 [2] Be sure to scroll down for the video and check out the awesomely-large wooden mallet at 3:17. 
 </div>
