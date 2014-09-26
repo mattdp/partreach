@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-09-25T17:16:41-07:00</updated>
+ <updated>2014-09-25T17:19:59-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -14,7 +14,7 @@
  <entry>
    <title>How UPS 3D Printing Compares to a Dedicated Service Bureau</title>
    <link href="YOUR_URL/how-ups-3d-printing-compares-to-a-dedicated-service-bureau.html"/>
-   <updated>2014-09-25T00:00:00-07:00</updated>
+   <updated>2014-09-26T00:00:00-07:00</updated>
    <id>BLOG_URL/how-ups-3d-printing-compares-to-a-dedicated-service-bureau</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
 &lt;caption align=&quot;bottom&quot;&gt;Example of functional 3D printed brackets printed using Fused Deposition Modeling (FDM) on a Stratasys 3D printer. &lt;/caption&gt;
