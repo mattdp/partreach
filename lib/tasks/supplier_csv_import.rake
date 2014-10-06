@@ -3,9 +3,18 @@ task :supplier_csv_import => :environment do
   # expected field layout: website,name,email,phone,street_address,city,state,zip
   CSV.new(open(ENV["url"]), headers: true).each do |row|
 
+    # skip if supplier with this domain already exists
+    if Supplier.find_by_url_main(row['website'])
+      puts "***** SKIPPING - DUPLICATE DOMAIN: #{row['website']}"
+      next
+    end
+
     # skip if supplier with this exact name already exists
     # TODO do a fuzzy match
-    next if Supplier.find_by_name(row['name'])
+    if Supplier.find_by_name(row['name'])
+      puts "***** SKIPPING - DUPLICATE NAME: #{row['name']}"
+      next
+    end
 
     begin
       new_supplier = Supplier.new({
