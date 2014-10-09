@@ -1,0 +1,17 @@
+<% provide(:title, "Supplier Web Search Examinations Report") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
+<pre>
+<% @rows.each do |row| %>
+<%= [row.query, row.domain, row.action, row.name_for_link, row.name, row.updated_at, row.id].to_csv.strip %>
+<% end %>
+</pre>
+
+      <%= render 'analytics/links' %>
+
+    </div>
+  </div>
+</div>
