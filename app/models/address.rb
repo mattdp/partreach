@@ -60,7 +60,6 @@ class Address < ActiveRecord::Base
     Geography.find(destroyed_id).destroy
   end
 
-  #country, state, zip only right now
   def self.create_or_update_address(owner,options)
     address = owner.address
     if address.nil?
@@ -70,7 +69,9 @@ class Address < ActiveRecord::Base
       address.save
       owner.address = address
     end
-    address.zip = options[:zip] if options[:zip]
+    address.street = options[:street] if options[:street].present?
+    address.city = options[:city] if options[:city].present?
+    address.zip = options[:zip] if options[:zip].present?
     [:country,:state].each do |geo_symbol|
       place_name = options[geo_symbol]
       geo = Geography.create_or_reference_geography(place_name,:short_name,geo_symbol.to_s)

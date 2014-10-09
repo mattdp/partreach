@@ -4,12 +4,109 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-09-09T14:56:27-07:00</updated>
+ <updated>2014-09-25T17:19:59-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>How UPS 3D Printing Compares to a Dedicated Service Bureau</title>
+   <link href="YOUR_URL/how-ups-3d-printing-compares-to-a-dedicated-service-bureau.html"/>
+   <updated>2014-09-26T00:00:00-07:00</updated>
+   <id>BLOG_URL/how-ups-3d-printing-compares-to-a-dedicated-service-bureau</id>
+   <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+&lt;caption align=&quot;bottom&quot;&gt;Example of functional 3D printed brackets printed using Fused Deposition Modeling (FDM) on a Stratasys 3D printer. &lt;/caption&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-FDM_parts.jpg&quot; width=&quot;100%&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+
+&lt;p&gt;This week, UPS launched their &lt;a href=&quot;http://www.theupsstore.com/small-business-solutions/Pages/3D-printing.aspx&quot; target=&quot;_blank&quot;&gt;#3DPrintWeek campaign&lt;/a&gt;, which aims to “meet the growing demands of its small business customers” [&lt;a href=&quot;#f0n&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;0&lt;/font&gt;&lt;/a&gt;]. Specifically, UPS advertises their service as allowing companies to print functional prototypes, jigs/fixtures for manufacturing, custom accessories, and architectural models. We decided to compare a project SupplyBetter recently helped a client with to see how UPS compares to 3D printing shops &lt;a href=&quot;http://supplybetter.com&quot; target=&quot;_blank&quot;&gt;our matching service&lt;/a&gt; has worked with in the past.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Six UPS stores have been outfitted with a Stratasys &lt;a href=&quot;http://www.stratasys.com/~/media/Main/Secure/System_Spec_Sheets-SS/DimensionProductSpecs/uPrintSESellSheet-INTL-ENG-10-13%20WEB.pdf&quot; target=&quot;_blank&quot;&gt;UPrint SE Plus&lt;/a&gt;, a Fused Deposition Modeling (FDM) 3D printer that prints using &lt;a href=&quot;http://www.stratasys.com/~/media/Main/Secure/material%20Specs%20MS/Fortus-Material-Specs/Fortus-MS-ABSplus-01-13-web.ashx&quot; target=&quot;_blank&quot;&gt;ABSplus&lt;/a&gt; material [&lt;a href=&quot;#f1n&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;1&lt;/font&gt;&lt;/a&gt;]. To make sure we’re comparing apples to apples, we chose a project that was produced using the same material and made on the same printer. The client, &lt;a href=&quot;https://www.anybots.com/&quot; target=&quot;_blank&quot;&gt;Anybots&lt;/a&gt;, is a Bay Area telepresence robotics company that was looking to use 3D printing to create quantity 1 of a custom bracket that would allow them to test a new HD video camera [&lt;a href=&quot;#f2n&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;2&lt;/font&gt;&lt;/a&gt;]. &lt;/p&gt;
+
+
+
+
+&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+&lt;caption align=&quot;bottom&quot;&gt;Two parts 3D printed out of ABSplus using a Stratasys UPrint SE plus machine. Visualization provided by the free STL visualization tool, MakerWare (version 2.4.1.35).&lt;/caption&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-PART1.png&quot; width=&quot;740&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter-PART2.png&quot; width=&quot;740&quot;&gt;&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;
+
+
+
+
+&lt;p&gt;For this project, the client&#39;s priority was cost and the main goal was to produce a part that could perform as a mechanical bracket (known in product development as a &lt;a href=&quot;https://dschool.stanford.edu/groups/k12/wiki/e7aa3/Looks_likeWorks_like.html&quot; target=&quot;_blank&quot;&gt;“works like” prototype&lt;/a&gt;). If the expressed priority had been something else (e.g. tradeshow quality or same-day speed) we would have evaluated this project differently and may have reached out to a different set of service bureaus.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;The winning bid was placed by &lt;a href=&quot;https://www.partsnap.com/3d-printing/3d-printing-materials-stratasys-fdm/&quot; target=&quot;_blank&quot;&gt;PartSnap&lt;/a&gt;, a Texas service bureau that was able to print the parts in black ABSplus and ship out within 1 business day. Here is the summary of bids:&lt;/p&gt;
+
+
+
+
+&lt;ul&gt;
+&lt;li&gt;Average bid (5 suppliers, not including UPS): $84.90 (all bids include shipping)&lt;/li&gt;
+&lt;li&gt;Winning bid (PartSnap): $72.00 (including shipping), 1 day lead time&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;p&gt;The quote from UPS for this project was:&lt;/p&gt;
+
+
+&lt;ul&gt;
+  &lt;li&gt;$111.70 ($92.80 to print + $18.90 for packing and shipping) with a 1-2 day lead time&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;p&gt;&lt;strong&gt;The quote from UPS is 30% higher than the average bid we received from dedicated service bureaus and more than 50% more expensive than the winning bid on this project. Considering machine and material were the same with similar lead times, it appears that UPS is simply a more expensive option than what is available elsewhere.&lt;/strong&gt;&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Given that UPS is just getting started with their 3D printing service, it’s too soon to know whether or not we should expect to see an FDM printer at every UPS location. Considering UPS has about &lt;a href=&quot;http://en.wikipedia.org/wiki/The_UPS_Store&quot; target=&quot;_blank&quot;&gt;4,700 independent store locations&lt;/a&gt;, they could attempt to become known as a convenient online 3D printing solution by adopting a similar model to other online service bureaus like Shapeways [&lt;a href=&quot;#f3n&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;3&lt;/font&gt;&lt;/a&gt;]. Further, UPS could even potentially explore &lt;a href=&quot;http://qz.com/97059/atfab-future-of-manufacturing/&quot; target=&quot;_blank&quot;&gt;distributed manufacturing&lt;/a&gt; as a service if they add &lt;a href=&quot;http://www.shopbotblog.com/index.php/2014/06/homebuilt-is-re-inventing-homebuilding-with-distributed-manufacturing-and-shopbots/&quot; target=&quot;_blank&quot;&gt;a few more machines&lt;/a&gt; [&lt;a href=&quot;#f4n&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;4&lt;/font&gt;&lt;/a&gt;]. It will be interesting to see where they might start adding value as a 3D printing service bureau in the coming months, but for now we&#39;re going to treat UPS as a regular service bureau.&lt;/p&gt;
+
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;If you&#39;re considering using UPS to 3D print your next part, &lt;a href=&quot;https://www.supplybetter.com&quot; target=&quot;_blank&quot;&gt;submit an RFQ&lt;/a&gt; and we&#39;ll help you figure out the best way to make your parts.&lt;/p&gt;
+
+
+
+
+&lt;p&gt;Cheers,&lt;/p&gt;
+
+
+&lt;p&gt;Rob&lt;/p&gt;
+
+
+
+
+&lt;div class=&quot;footer&quot;&gt;
+  &lt;p&gt;Notes:&lt;/p&gt;
+  &lt;p&gt;[&lt;a name=&quot;f0n&quot;&gt;&lt;font color=&quot;#9499a7&quot;&gt;0&lt;/font&gt;&lt;/a&gt;] The messaging specifically towards small business owners (vs. hobbyists) is likely intentional. If you’re curious about whether a commercial 3D printer or hobbyist printer is a good fit for your project, &lt;a href=&quot;https://www.supplybetter.com/blog/choosing-fff-vs-fdm.html&quot; target=&quot;_blank&quot;&gt;check out our previous blog post that compares commercial (FDM) vs. hobbyist (FFF) printers&lt;/a&gt;. &lt;/p&gt;
+  &lt;p&gt;[&lt;a name=&quot;f1n&quot;&gt;&lt;font color=&quot;#9499a7&quot;&gt;1&lt;/font&gt;&lt;/a&gt;] If you want to learn more about 3D printing technologies, &lt;a href=&quot;https://www.supplybetter.com/blog/differences-between-major-commercial-3d-printing-types.html&quot; target=&quot;_blank&quot;&gt;check out our post highlighting the differences between all the major types of 3D printing in use today&lt;/a&gt;. 
+  &lt;p&gt;[&lt;a name=&quot;f2n&quot;&gt;&lt;font color=&quot;#9499a7&quot;&gt;2&lt;/font&gt;&lt;/a&gt;] The author of this post is a former employee of Anybots.&lt;/p&gt;
+  &lt;p&gt;[&lt;a name=&quot;f3n&quot;&gt;&lt;font color=&quot;#9499a7&quot;&gt;3&lt;/font&gt;&lt;/a&gt;] The model we&#39;re specifically referring to is online service bureaus (e.g. Shapeways, Sculpteo, Ponoko, and i.materialise) packing as many parts as possible into a single build chamber, thereby allowing them to provide the cheapest pricing possible (at the expense of speed and quality). While this model certainly has its advantages, there are quite a few tradeoffs that need to be considered when using an online service bureau for prototyping which &lt;a href=&quot;https://www.supplybetter.com/blog/shapeways-vs-supplybetter&quot; target=&quot;_blank&quot;&gt;we’ve discussed here&lt;/a&gt;. 
+  &lt;p&gt;[&lt;a name=&quot;f4n&quot;&gt;&lt;font color=&quot;#9499a7&quot;&gt;4&lt;/font&gt;&lt;/a&gt;] Be sure to scroll down for the video and check out the awesomely-large wooden mallet at 3:17. &lt;/p&gt;
+  &lt;p&gt;Special thanks to Bill at Anybots and Mike at PartSnap for allowing us to discuss this project. &lt;/p&gt;
+
+&lt;/div&gt;
+
+</content>
+ </entry>
  
  <entry>
    <title>The 6 Ways to Not Burn a New Supplier</title>
