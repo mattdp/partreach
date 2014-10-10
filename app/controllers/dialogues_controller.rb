@@ -2,14 +2,11 @@ class DialoguesController < ApplicationController
   before_filter :admin_user
 
   def new
-    @structure = Rails.cache.fetch "dialogues_new_setup", :expires_in => 25.hours do |key|
-      logger.debug "Cache miss: dialogues_new_setup"
-      Dialogue.dialogues_new_setup
-    end
+    @structure = Dialogue.dialogues_new_setup
     @tags_by_group = Tag.tags_by_group
-    @countries = Geography.all_countries.map{|geo| geo.short_name}
-    @us_states = Geography.all_us_states.map{|geo| geo.short_name}
-    params[:id].present? ? @order = Order.find(params[:id]) : @order = nil
+    @countries = Geography.all_countries.pluck(:short_name)
+    @us_states = Geography.all_us_states.pluck(:short_name)
+    @order = params[:id] ? Order.find(params[:id]) : nil
   end
 
   def create

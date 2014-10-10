@@ -75,22 +75,20 @@ class Dialogue < ActiveRecord::Base
   #return array of hashes, each containing the needed information on suppliers, for caching purposes
   def self.dialogues_new_setup
     structure = []
-    suppliers = Supplier.all.sort_by! { |s| s.name.downcase }
+    suppliers = Supplier.includes(:tags).references(:tags).includes([{ address: :country }, { address: :state }]).order("lower(suppliers.name)")
     suppliers.each do |supplier|
-      tag_names = supplier.tags.map{|t| t.name}
-      # don't include suppliers marked as datadump or out of business
-      if (tag_names & ["datadump", "e0_out_of_business"]).empty?
-        address = supplier.address
+      tag_names = supplier.tags.map { |t| t.name }
+      unless tag_names.include?("datadump") || tag_names.include?("e0.out_of_business")
         structure << {
           supplier: supplier,
-          tag_names: supplier.tags.map{|t| t.name},
+          tag_names: tag_names,
           safe_country: supplier.safe_country,
           safe_state: supplier.safe_state,
           safe_zip: supplier.safe_zip
         }
       end
     end
-    return structure
+    structure
   end
 
   #return {subject, body} of email. subject is text, body is html
