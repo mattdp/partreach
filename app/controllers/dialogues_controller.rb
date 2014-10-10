@@ -2,7 +2,7 @@ class DialoguesController < ApplicationController
   before_filter :admin_user
 
   def new
-    @structure = Dialogue.dialogues_new_setup
+    @suppliers = Supplier.suppliers_for_new_dialogue
     @tags_by_group = Tag.tags_by_group
     @countries = Geography.all_countries.pluck(:short_name)
     @us_states = Geography.all_us_states.pluck(:short_name)

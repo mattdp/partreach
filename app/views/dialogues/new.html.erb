@@ -90,17 +90,17 @@
           <% counter = 0 %>
           <table id="supplier_matrix"> 
             <tr><td>
-            <% @structure.each do |supplier_hash| %>
-
-              <%= check_box_tag "supplier_selection[]", supplier_hash[:supplier].id, false, class: "fleft supplier-checkbox #{supplier_hash[:tag_names].join(" ")} country-#{supplier_hash[:safe_country]} state-#{supplier_hash[:safe_state]} " %>
-              <% if supplier_hash[:supplier].url_main.nil? %>
-                <%= "#{supplier_hash[:supplier].name}" %>
+            <% @suppliers.each do |supplier| %>
+              <% tag_names = supplier.tags.map { |t| t.name } %>
+              <%= check_box_tag "supplier_selection[]", supplier.id, false, class: "fleft supplier-checkbox #{tag_names.join(" ")} country-#{supplier.safe_country} state-#{supplier.safe_state} " %>
+              <% if supplier.url_main.nil? %>
+                <%= supplier.name %>
               <% else %>
-                <%= link_to supplier_hash[:supplier].name, supplier_hash[:supplier].url_main, target: "_blank" %>
+                <%= link_to supplier.name, supplier.url_main, target: "_blank" %>
               <% end %>
               |
-              <%= link_to "Admin Edit Page", admin_edit_url(supplier_hash[:supplier].name_for_link), target: "_blank" %>
-              <%= " [#{supplier_hash[:tag_names].join(',')}] <#{supplier_hash[:safe_country]}:#{supplier_hash[:safe_state]}:#{supplier_hash[:safe_zip]}> #{supplier_hash[:supplier].internally_hidden_preferences}" %>
+              <%= link_to "Admin Edit Page", admin_edit_url(supplier.name_for_link), target: "_blank" %>
+              <%= " [#{tag_names.join(',')}] <#{supplier.safe_country}:#{supplier.safe_state}:#{supplier.safe_zip}> #{supplier.internally_hidden_preferences}" %>
 
               <% if counter >= supplier_columns %>
                 </td></tr><tr><td>
