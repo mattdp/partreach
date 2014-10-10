@@ -11,6 +11,7 @@
   <li><%= link_to "Phone number search (stub)", analytics_phone_path %></li>
   <li><%= link_to "Supplier examinations", setup_examinations_path("supplier") %></li>
   <li><%= link_to "Review examinations", setup_examinations_path("review") %></li>
-  <li><%= link_to "Supplier web search result examinations", setup_examinations_path("supplier_search_result") %></li>
-  <li><%= link_to "Supplier web search items", web_search_items_path %></li>
+  <li><%= link_to "Supplier web search examinations", setup_examinations_path("supplier_search_result") %></li>
+  <li><%= link_to "Supplier web search examinations report", analytics_web_search_results_path(starting: Date.today.midnight, before: Date.tomorrow.midnight) %></li>
+  <li><%= link_to "Manage supplier web search items", web_search_items_path %></li>
 </ul>
