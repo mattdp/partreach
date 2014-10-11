@@ -1,40 +1,46 @@
 <% provide(:title,@block[:title]) %>
 
-<h1><%= @block[:title] %></h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+      <h1><%= @block[:title] %></h1>
 
-<strong>This is a test page for data we intend to collect on machines. The content is not true - check out the <%= link_to "home page", root_path %> to see real information on how SupplyBetter can help you.</strong><br>
+      <strong>This is a test page for data we intend to collect on machines. The content is not true - check out the <%= link_to "home page", root_path %> to see real information on how SupplyBetter can help you.</strong><br>
 
-<p><strong>Description: </strong><%= @block[:description] %></p>
-<p><strong>Example Project: </strong><%= @block[:example_project] %></p>
-<p><strong>When you would use this machine: </strong></p>
-  <ul>
-    <% @block[:when_use].each do |use| %>
-      <li><%= use %></li>
-    <% end %>
-  </ul>
-</p>
-<p><strong>Why did a supplier buy this machine? </strong><i><%= @block[:why_buy_text] %></i> -<%= @block[:why_buy_supplier] %></p>
-<p><strong>Manufacturer: </strong><%= @block[:manufacturer] %></p>
-<p><strong>Process tags: </strong>
-  <ul>
-    <% @block[:process_tags].each do |tag| %>
-      <li><%= tag.readable %></li>
-    <% end %>
-  </ul>
-</p>
-<p><strong>Materials: </strong>
-  <ul>
-    <% @block[:materials].each do |material| %>
-      <li><%= material %></li>
-    <% end %>
-  </ul>
-</p>
-<p><strong>Filetypes: </strong>
-  <ul>
-    <% @block[:filetypes].each do |filetype| %>
-      <li><%= filetype %></li>
-    <% end %>
-  </ul>
-</p>
-<p><strong>Build Chamber: </strong><%= @block[:build_chamber_xyz] %></p>
-<p><strong>Example Project: </strong><%= @block[:example_project] %></p>
+      <p><strong>Description: </strong><%= @block[:description] %></p>
+      <p><strong>Example Project: </strong><%= @block[:example_project] %></p>
+      <p><strong>When you would use this machine: </strong></p>
+        <ul>
+          <% @block[:when_use].each do |use| %>
+            <li><%= use %></li>
+          <% end %>
+        </ul>
+      </p>
+      <p><strong>Why did a supplier buy this machine? </strong><i><%= @block[:why_buy_text] %></i> -<%= @block[:why_buy_supplier] %></p>
+      <p><strong>Manufacturer: </strong><%= @block[:manufacturer] %></p>
+      <p><strong>Process tags: </strong>
+        <ul>
+          <% @block[:process_tags].each do |tag| %>
+            <li><%= tag.readable %></li>
+          <% end %>
+        </ul>
+      </p>
+      <p><strong>Materials: </strong>
+        <ul>
+          <% @block[:materials].each do |material| %>
+            <li><%= material %></li>
+          <% end %>
+        </ul>
+      </p>
+      <p><strong>Filetypes: </strong>
+        <ul>
+          <% @block[:filetypes].each do |filetype| %>
+            <li><%= filetype %></li>
+          <% end %>
+        </ul>
+      </p>
+      <p><strong>Build Chamber: </strong><%= @block[:build_chamber_xyz] %></p>
+      <p><strong>Example Project: </strong><%= @block[:example_project] %></p>
+    </div>
+  </div>
+</div>

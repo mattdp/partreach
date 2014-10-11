@@ -10,6 +10,7 @@ Partreach::Application.routes.draw do
   get '/analytics/metrics', to: 'analytics#metrics', as: 'analytics_metrics'
   get '/analytics/machines', to: 'analytics#machines', as: 'analytics_machines'
   get '/analytics/phone', to: 'analytics#phone', as: 'analytics_phone'
+  get '/analytics/web_search_results', to: 'analytics#web_search_results', as: 'analytics_web_search_results'
 
   resources :communications, only: [:new, :create]
 
@@ -29,6 +30,7 @@ Partreach::Application.routes.draw do
 
   get '/experiments/sde', to: 'experiments#sde', as: "experiments_sde"
   get '/experiments/sla', to: 'experiments#sla', as: "experiments_sla"
+  get '/experiments/ultem', to: 'experiments#ultem', as: "experiments_ultem"
 
   get '/guides/:country/:state/:tag', to: redirect("/suppliers/%{country}/%{state}/%{tag}")
   get '/guides/:country/:tag', to: redirect("/suppliers/%{country}/all/%{tag}")

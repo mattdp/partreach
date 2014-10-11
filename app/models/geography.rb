@@ -65,15 +65,11 @@ class Geography < ActiveRecord::Base
   end
 
   def self.all_us_states
-    if us = Geography.locate("United States",:long_name,"country")
-      Geography.where("level = 'state' and geography_id = ?",us.id)
-    else
-      return nil
-    end
+    Geography.where(level: 'state').where(geography_id: Geography.select(:id).where(short_name: 'US'))
   end
 
   def self.all_countries
-    return Geography.where("level = 'country'")
+    return Geography.where(level: 'country')
   end
 
   def self.loader(array, parent=nil)

@@ -32,14 +32,14 @@ class Supplier < ActiveRecord::Base
 
   has_many :dialogues, :dependent => :destroy
   has_one :address, :as => :place, :dependent => :destroy
-  has_many :taggings, :as => :taggable
+  has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
   has_many :owners, :dependent => :destroy
   has_many :machines, :through => :owners
   has_many :externals, :as => :consumer, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
   has_many :communications, as: :communicator, :dependent => :destroy
-  has_one :web_search_result
+  has_one :web_search_result, :dependent => :destroy
 
   has_one :contract_contact, :as => :contactable, :dependent => :destroy
   has_one :billing_contact, :as => :contactable, :dependent => :destroy
@@ -117,6 +117,10 @@ class Supplier < ActiveRecord::Base
                     }
                   }
     return structure
+  end
+
+  def self.suppliers_for_new_dialogue
+    suppliers = Supplier.includes(:tags).references(:tags).includes([{ address: :country }, { address: :state }]).order("lower(suppliers.name)")
   end
 
   def self.all_signed
