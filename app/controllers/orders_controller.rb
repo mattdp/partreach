@@ -150,7 +150,7 @@ class OrdersController < ApplicationController
         logger.debug "ERRORS: #{@order.errors.full_messages}"
         @approximate_next_order_id = next_order_id
         @content = Question.raw_list
-        format.html { render action: "new" }
+        format.html { render action: "new", layout: "orders_new" }
         format.json { render json: @order.errors.full_messages, status: 400 }
       end
     end
