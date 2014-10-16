@@ -39,4 +39,20 @@ class AnalyticsController < ApplicationController
     @printout = metrics[:printout]
   end
 
+  def web_search_results
+    query = <<-SQL
+    SELECT wsr.id, web_search_items.query, wsr.domain, wsr.action, suppliers.name_for_link, contacts.name, wsr.updated_at
+    FROM web_search_results wsr
+    JOIN web_search_items ON web_search_items.id=wsr.web_search_item_id
+    JOIN leads ON leads.user_id=wsr.action_taken_by_id
+    JOIN contacts ON contactable_id=leads.id AND contactable_type='Lead'
+    LEFT OUTER JOIN suppliers ON suppliers.id=wsr.supplier_id
+    WHERE action IS NOT NULL AND action_taken_by_id IS NOT NULL
+    AND wsr.updated_at >= ? AND wsr.updated_at < ?
+    ORDER BY wsr.id desc;
+    SQL
+
+    @rows = WebSearchResult.find_by_sql [query, params['starting'], params['before']]
+  end
+
 end

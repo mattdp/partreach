@@ -2,14 +2,11 @@ class DialoguesController < ApplicationController
   before_filter :admin_user
 
   def new
-    @structure = Rails.cache.fetch "dialogues_new_setup", :expires_in => 25.hours do |key|
-      logger.debug "Cache miss: dialogues_new_setup"
-      Dialogue.dialogues_new_setup
-    end
+    @suppliers = Supplier.suppliers_for_new_dialogue
     @tags_by_group = Tag.tags_by_group
-    @countries = Geography.all_countries.map{|geo| geo.short_name}
-    @us_states = Geography.all_us_states.map{|geo| geo.short_name}
-    params[:id].present? ? @order = Order.find(params[:id]) : @order = nil
+    @countries = Geography.all_countries.pluck(:short_name)
+    @us_states = Geography.all_us_states.pluck(:short_name)
+    @order = params[:id] ? Order.find(params[:id]) : nil
   end
 
   def create
@@ -64,11 +61,6 @@ class DialoguesController < ApplicationController
       redir_to = "/dialogues/new"
       redir_notice = "#{params[:form_use]} to suppliers."
 
-    elsif params[:form_use] == "refresh_cache"
-      @order = Order.find(params[:order_id_field])
-      Rails.cache.write("dialogues_new_setup",Dialogue.dialogues_new_setup,:expires_in => 25.hours)
-      redir_to = "/dialogues/new/#{@order.id}"
-      redir_notice = "Cache reset attempted."
     else #should never happen
       saved_ok = false 
     end 

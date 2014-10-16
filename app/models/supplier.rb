@@ -119,6 +119,10 @@ class Supplier < ActiveRecord::Base
     return structure
   end
 
+  def self.suppliers_for_new_dialogue
+    suppliers = Supplier.includes(:tags).references(:tags).includes([{ address: :country }, { address: :state }]).order("lower(suppliers.name)")
+  end
+
   def self.all_signed
     signed = []
     Tag.tag_set(:network,:id).each do |tag_id|
