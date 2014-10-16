@@ -36,7 +36,6 @@ SitemapGenerator::Sitemap.create do
 
   add new_review_path, changefreq: 'weekly'
   add new_order_path, changefreq: 'weekly'
-  add new_order_path, changefreq: 'weekly'
   add signin_path, changefreq: 'weekly'
   add getting_started_path, changefreq: 'weekly'
   add be_a_supplier_path, changefreq: 'weekly'
