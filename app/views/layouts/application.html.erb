@@ -34,7 +34,7 @@
     <!-- end olark code -->
   </head>
   <body>
-    <%= render 'layouts/header' %>
+    <%= render 'layouts/old_header' %>
     <% flash.each do |key, value| %>
       <div class="alert alert-<%= key == :notice ? "success" : "danger" %>">
         <%= value %>
@@ -42,6 +42,6 @@
       </div>
     <% end %>
     <%= yield %>
-    <%= render 'layouts/footer' %>
+    <%= render 'layouts/old_footer' %>
   </body>
 </html>

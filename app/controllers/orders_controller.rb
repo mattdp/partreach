@@ -1,5 +1,4 @@
 class OrdersController < ApplicationController
-  layout :resolve_layout
 
   before_filter :signed_in_user, only: [:index, :show, :destroy, :manipulate_dialogues]
   before_filter :correct_user, only: [:show, :destroy]
@@ -62,7 +61,7 @@ class OrdersController < ApplicationController
     @order_group = OrderGroup.create_default
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: "orders_new" } # new.html.erb
       format.json { render json: @order }
     end
   end
@@ -325,15 +324,6 @@ class OrdersController < ApplicationController
 
     def set_gon_order_id
       gon.order_id = params[:id]
-    end
-
-    def resolve_layout
-      case action_name
-      when "new"
-        'order_new_temporary'
-      else
-        'application'
-      end
     end
 
     def next_order_id

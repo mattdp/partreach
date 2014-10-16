@@ -10,8 +10,6 @@
 @import "custom/orders.css.scss";
 @import "custom/custom.css.scss";
 
-@import "supplybetter/supplybetter";
-
 th.rotate {
   /* Something you can count on */
   height: 140px;
@@ -53,12 +51,6 @@ th.rotate > div > span.checkbox {
   font: 10px sans-serif;
 }
 
-.header__logo {
-  margin: 0px;
-}
-.header__links{
-  padding-top: 10px;
-}
 .ng-link{
     cursor: pointer;
 }
