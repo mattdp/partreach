@@ -51,18 +51,22 @@ class SuppliersController < ApplicationController
 
   def admin_edit
     @supplier = Supplier.where("name_for_link = ?", params[:name].downcase).first
-    @tags = @supplier.tags
-    @checked_tags = @tags
-    @internal_tags = @supplier.internal_tags
-    @address = @supplier.address
-    @tags_by_group = Tag.tags_by_group
-    @claimant = User.find_by_supplier_id(@supplier.id)
-    @machines_quantity_hash = @supplier.machines_quantity_hash
-    @dialogues = Dialogue.where("supplier_id = ?",@supplier.id).order("created_at desc")
-    @communications = Communication.get_ordered("Supplier",@supplier.id)
-    @billing_contact = @supplier.billing_contact
-    @contract_contact = @supplier.contract_contact
-    @rfq_contact = @supplier.rfq_contact
+    if @supplier
+      @tags = @supplier.tags
+      @checked_tags = @tags
+      @internal_tags = @supplier.internal_tags
+      @address = @supplier.address
+      @tags_by_group = Tag.tags_by_group
+      @claimant = User.find_by_supplier_id(@supplier.id)
+      @machines_quantity_hash = @supplier.machines_quantity_hash
+      @dialogues = Dialogue.where("supplier_id = ?",@supplier.id).order("created_at desc")
+      @communications = Communication.get_ordered("Supplier",@supplier.id)
+      @billing_contact = @supplier.billing_contact
+      @contract_contact = @supplier.contract_contact
+      @rfq_contact = @supplier.rfq_contact
+    else
+      render template: "suppliers/profile_not_found", status: :not_found unless @supplier
+    end
   end
 
   def admin_update
