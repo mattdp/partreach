@@ -4,6 +4,18 @@ task :supplier_csv_import => :environment do
   CSV.new(open(ENV['url']), headers: true).each do |row|
     puts "***** IMPORT DATA: #{row.to_csv}"
 
+    supplier_params = {
+      name: row['name'],
+      url_main: row['website']
+    }
+    supplier_params.delete_if { |key, value| value.blank? }
+
+    contact_params = {
+      email: row['email'],
+      phone: row['phone']
+    }
+    contact_params.delete_if { |key, value| value.blank? }
+
     address_params = {
       street: row['street_address'],
       city: row['city'],
@@ -11,6 +23,7 @@ task :supplier_csv_import => :environment do
       zip: row['zip'],
       country: row['country']
     }
+    address_params.delete_if { |key, value| value.blank? }
 
     url = Domainatrix.parse(row['website'])
     existing_supplier = (
@@ -25,8 +38,8 @@ task :supplier_csv_import => :environment do
         address = existing_supplier.address
         puts "***** FOUND EXISTING SUPPLIER: #{existing_supplier.url_main},#{existing_supplier.name},#{contact.email},#{contact.phone},#{address.street},#{address.city},#{address.state.short_name},#{address.zip},#{address.country.short_name}"
         if (ENV['update'] == 'true')
-          existing_supplier.update!({ name: row['name'], url_main: row['website'] })
-          existing_supplier.rfq_contact.update!({ email: row['email'], phone: row['phone'] })
+          existing_supplier.update!(supplier_params)
+          existing_supplier.rfq_contact.update!(contact_params)
           existing_supplier.create_or_update_address(address_params)
           puts "***** UPDATED SUPPLIER: #{existing_supplier.name} (#{existing_supplier.id})"
         else
@@ -34,13 +47,10 @@ task :supplier_csv_import => :environment do
           puts "***** SKIPPING DUPLICATE: #{existing_supplier.name} (#{existing_supplier.id})"
         end
       else
-        new_supplier = Supplier.new({
-          name: row['name'],
-          name_for_link: Supplier.proper_name_for_link(row['name']),
-          url_main: row['website']
-        })
+        new_supplier = Supplier.new(supplier_params)
+        new_supplier.name_for_link = Supplier.proper_name_for_link(row['name'])
 
-        new_supplier.rfq_contact = RfqContact.create({ email: row['email'], phone: row['phone'] })
+        new_supplier.rfq_contact = RfqContact.create(contact_params)
         new_supplier.contract_contact = ContractContact.create
         new_supplier.billing_contact = BillingContact.create
 
