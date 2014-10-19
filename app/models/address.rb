@@ -74,8 +74,10 @@ class Address < ActiveRecord::Base
     address.zip = options[:zip] if options[:zip].present?
     [:country,:state].each do |geo_symbol|
       place_name = options[geo_symbol]
-      geo = Geography.create_or_reference_geography(place_name,:short_name,geo_symbol.to_s)
-      address.send("#{geo_symbol}=",geo)
+      if place_name # don't update country/state if field not specified in options hash
+        geo = Geography.create_or_reference_geography(place_name,:short_name,geo_symbol.to_s)
+        address.send("#{geo_symbol}=",geo)
+      end
     end
     return owner.address.save
   end
