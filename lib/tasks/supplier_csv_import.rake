@@ -4,26 +4,20 @@ task :supplier_csv_import => :environment do
   CSV.new(open(ENV['url']), headers: true).each do |row|
     puts "***** IMPORT DATA: #{row.to_csv}"
 
-    supplier_params = {
-      name: row['name'],
-      url_main: row['website']
-    }
-    supplier_params.delete_if { |key, value| value.blank? }
+    supplier_params = {}
+    supplier_params[:name] = row['name'].strip if row['name']
+    supplier_params[:url_main] = row['website'].strip if row['website']
 
-    contact_params = {
-      email: row['email'],
-      phone: row['phone']
-    }
-    contact_params.delete_if { |key, value| value.blank? }
+    contact_params = {}
+    contact_params[:email] = row['email'].strip if row['email']
+    contact_params[:phone] = row['phone'].strip if row['phone']
 
-    address_params = {
-      street: row['street_address'],
-      city: row['city'],
-      state: row['state'],
-      zip: row['zip'],
-      country: row['country']
-    }
-    address_params.delete_if { |key, value| value.blank? }
+    address_params = {}
+    address_params[:street] = row['street_address'].strip if row['street_address']
+    address_params[:city] = row['city'].strip if row['city']
+    address_params[:state] = row['state'].strip if row['state']
+    address_params[:zip] = row['zip'].strip if row['zip']
+    address_params[:country] = row['country'].strip if row['country']
 
     url = Domainatrix.parse(row['website'])
     existing_supplier = (
