@@ -12,6 +12,7 @@
 #  priority             :string(255)
 #  user_id              :integer
 #  next_contactor       :string(255)
+#  how_found_us         :text
 #
 
 class Lead < ActiveRecord::Base
