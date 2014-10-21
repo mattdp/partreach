@@ -1,20 +1,8 @@
 <% provide(:title, "New request for quotes") %>
 <% meta_description "Let us know what you're making and how to contact you so we can find the best suppliers." %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+      <%= render partial: "orders/questions" %>
 
-      <div class="row">
-        <p class="page-number fright">Page 2 of 2</p>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12">
-          <%= render partial: "orders/preference_summary", locals: {position_class: "fleft", experience: @experience_summary_wording, priority: @priority_summary_wording, manufacturing: @manufacturing_summary_wording} %>
-        </div>
-      </div>
-      
       <%= render partial: 'orders/new_order_form' %>
 
     </div>

@@ -23,7 +23,7 @@
         <h3 class="bit-of-space">Order information</h3>
 
         <p class="bit-of-space">
-          <%= link_to "Submit a new RFQ", order_questions_path, class: "btn btn-xl supplybetter-blue" %>
+          <%= link_to "Submit a new RFQ", new_order_path, class: "btn btn-xl supplybetter-blue" %>
         </p>
 
         <div class="order">
@@ -62,10 +62,10 @@
           </table>
         </div>
 
-        <p><%= link_to 'Or create a new RFQ', order_questions_path %></p>
+        <p><%= link_to 'Or create a new RFQ', new_order_path %></p>
 
       <% else %>
-        <p> No orders yet! Make a <%= link_to 'new request for quotes', order_questions_path %> now! </p>
+        <p> No orders yet! Make a <%= link_to 'new request for quotes', new_order_path %> now! </p>
       <% end %>
 
     </div>

@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+
   before_filter :signed_in_user, only: [:index, :show, :destroy, :manipulate_dialogues]
   before_filter :correct_user, only: [:show, :destroy]
   before_filter :set_gon_order_id, only: [:show, :manipulate_dialogues]
@@ -39,45 +40,33 @@ class OrdersController < ApplicationController
   end
 
   # GET /orders/new
-  # GET /orders/new.json
   def new
-
-    fs = params[:from_supplier]
-    looking_for_supplier = Supplier.where("id = ?",fs.to_i) if not(fs.nil?)
-    looking_for_supplier.present? ? @supplier = looking_for_supplier[0] : @supplier = nil
-
     blanks = "__________"
-    questions = params["questions"]
+    @questions = params["questions"]
     [:experience, :priority, :manufacturing].each do |summary_var|
       value = blanks
-      if questions.present? and questions[summary_var].present?
-        option_details = Question.get_option_details(summary_var,questions[summary_var])
+      if @questions.present? and @questions[summary_var].present?
+        option_details = Question.get_option_details(summary_var,@questions[summary_var])
         if option_details
           value = option_details[:summary]
-          instance_variable_set("@#{summary_var}",questions[summary_var])
+          instance_variable_set("@#{summary_var}",@questions[summary_var])
         end
       end
-      instance_variable_set("@#{summary_var}_summary_wording",value)
     end
+    @content = Question.raw_list
+
+    @approximate_next_order_id = next_order_id
 
     @order = Order.new
-    #goal: for naming the folder of part files on S3, be close though not exact to what next order will be - it helps to have a rough order for manual troubleshooting
-    #programmatic links to the files won't have the race conditions this creates
-    most_recent_order = Order.order("created_at desc").limit(1)[0]
-    @approximate_next_order_id = most_recent_order ? most_recent_order.id + 1 : 1
-
     @order_group = OrderGroup.create_default
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render layout: "orders_new" } # new.html.erb
       format.json { render json: @order }
     end
   end
 
   # POST /orders
-  # POST /orders.json
-
-
   #
   # consider making the whole thing a transaction
   #
@@ -89,7 +78,7 @@ class OrdersController < ApplicationController
     did_order_save = false
     if current_user.nil?
       #they've filled out the signin form
-      if params[:signin_email] != "" and params[:signin_password] != ""
+      if params[:signin_email].present? && params[:signin_password].present?
         #how pass in email and password, get signed in user?
         if (@lead_contact = LeadContact.find_by_email(params[:signin_email]) \
             and @user = @lead_contact.contactable.user \
@@ -133,7 +122,7 @@ class OrdersController < ApplicationController
       @order.columns_shown = "all"
       @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
       @order.assign_attributes(order_params)
-      if (!params[:zip].nil? or !params[:country].nil?)
+      if (params[:zip].present? || params[:country].present?)
         @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
       end
 
@@ -159,7 +148,9 @@ class OrdersController < ApplicationController
         format.json { render json: @order, status: :created, location: @order }
       else
         logger.debug "ERRORS: #{@order.errors.full_messages}"
-        format.html { render action: "new" }
+        @approximate_next_order_id = next_order_id
+        @content = Question.raw_list
+        format.html { render action: "new", layout: "orders_new" }
         format.json { render json: @order.errors.full_messages, status: 400 }
       end
     end
@@ -333,6 +324,15 @@ class OrdersController < ApplicationController
 
     def set_gon_order_id
       gon.order_id = params[:id]
+    end
+
+    def next_order_id
+      # what next order id will (likely) be
+      # used for naming the folder of part files on S3
+      # NOTE that two different sessions could end up getting the same id using this method
+      # but that's good enough for this usage (it helps to have a rough order for manual troubleshooting)
+      # "programmatic links to the files won't have the race conditions this creates" MDP -- huh?
+      Order.max_id + 1
     end
 
   #private doesn't 'end'

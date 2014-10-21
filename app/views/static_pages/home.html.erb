@@ -18,7 +18,7 @@
       <p class="hero-subheadline">
         <span class="subheadline-text">A new way to turn CAD models into physical&nbsp;parts.</span>
         <span>Get matched to the right suppliers by an experienced engineer in&nbsp;minutes.</span>
-        <span><%= link_to "Let’s get started", order_questions_path, class: "button--white arrow-link" %></span>
+        <span><%= link_to "Let’s get started", new_order_path, class: "button--white arrow-link" %></span>
       </p>
     </div>
   </div>
@@ -29,7 +29,6 @@
     <div class="start-quote">
       <%#= get, since passing params to orders_new, without a state change in the database %>
       <%= form_tag new_order_path, method: :get do %>
-        <%= hidden_field_tag "from_supplier_name", @from_supplier_name if @from_supplier_name.present? %>
         <p>
           I am
           <% options_array = [ ["still learning", "rookie"], ["experienced", "experienced"] ] %>
@@ -54,7 +53,7 @@
       <div class="col">
         <%= image_tag "home-quote-icon.svg", :alt => "Upload your project documents" %>
         <h3>You upload your design and project&nbsp;details.</h3>
-        <%= link_to "Fill out a quote now", order_questions_path, :class => "arrow-link" %>
+        <%= link_to "Fill out a quote now", new_order_path, :class => "arrow-link" %>
       </div>
       <div class="col wide">
         <%= image_tag "home-selection-icon.svg", :alt => "We select a supplier" %>
