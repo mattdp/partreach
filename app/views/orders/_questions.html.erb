@@ -1,0 +1,37 @@
+<div class="questions">
+
+    <div class="questions__instructions">
+      <h2 class="inline">Step 1 of 2:</h2>
+      <h2 class="inline">Help us ask you the right questions.</h2>
+      <h2 class="inline strong">For each topic, which fits this job best?</h2>
+    </div>
+
+    <div class="questions__columns">
+      <table>
+        <tr>
+          <% @content.each do |column, values| %>
+            <th>
+              <h4 class="main-header"><%= values[:main_header] %></h4>
+              <p class="sub-header"><%= values[:sub_header] %></p>
+            </th>
+          <% end %>
+        </tr>
+        <tr>
+          <% @content.each do |column, values| %>
+            <td>
+              <% values[:options].each do |option_name, display_information| %>
+                <div class="question__opt">
+                  <%= label_tag "questions_#{column}_#{option_name}" do %>
+                    <% checked = @questions ? (@questions[column] == option_name.to_s) : false %>
+                    <%= radio_button_tag "questions[#{column}]", option_name, checked, class: "#{column} question_radio_button fleft radio" %>
+                    <%= display_information[:punchy] %>
+                    <p class="question__opt__detail"><%= display_information[:detail] %></p>
+                  <% end %>
+                </div>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
+    </div>
+</div>

@@ -88,5 +88,5 @@ class Address < ActiveRecord::Base
     address.save
     owner.address(true) # force refresh of address association for in-memory owner object
   end
-
+  
 end

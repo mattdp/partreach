@@ -1,3 +1,4 @@
+<div class="new-order">
 <% if @order.errors.any? %>
   <div class="error_explanation">
     <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
@@ -9,143 +10,115 @@
   </div>
 <% end %>
 
-<div class="clear space-above">
-
-  <% if @priority == "speed" %>
-    <p><strong>You need this fast, and we can help.</strong> Make sure to give us your deadline and phone number below so we can move quickly.</p>
-  <% end %>
-
-  <p>Based on your needs, we select the best suppliers for your part, and let you know how much it would cost to buy from each of them.</p>
-
-  <h3>Basic information for quote request</h3>
-</div>
-
-<p>Upload drawing (maximum 300Mb)</p>
-<%= s3_uploader_form id: "s3-uploader", class: "s3-uploader",
-                      max_file_size: 300.megabytes,
-                      key_starts_with: "externals/",
-                      key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
-                        <%= file_field_tag :file, multiple: true %>
-                      <% end %>
-<script id="template-upload" type="text/x-tmpl">
-<div id="file-{%=o.unique_id%}" class="upload">
-  {%=o.name%}
-  <div class="progress"><div class="bar" style="width: 0%"></div></div>
-</div>
-</script>
-
-<div>
-  <label>Uploaded files:</label>
-  <ul id='uploaded_file_list'></ul>
-</div>
-<p class="detail-text"> 3D model preferred, and multiple files accepted. If you have photos or sketches, we can help you find a designer to make the model.</p> 
-
-
-<%= form_tag order_path(@order), id: 'new-order' do %>
-  <div><%= hidden_field_tag "files_uploaded" %></div>
-
-  <%= hidden_field_tag "order_group_id", @order_group.id %>
-
-  <%= hidden_field_tag "stated_experience", @experience %>
-  <%= hidden_field_tag "stated_priority", @priority %>
-  <%= hidden_field_tag "stated_manufacturing", @manufacturing %>
-
-    <div class="pull-left half">
-      <%= label_tag 'stated_quantity', 'Quantity' %>
-      <%= text_field_tag 'stated_quantity', nil, :class => 'left-half' %>
-      <p class="detail-text">If you upload multiple parts, please put total quantity.</p> 
-    </div>
-    <div class="pull-right half">
-      <%= label_tag 'units', 'Drawing units' %>
-      <%= text_field_tag 'units', nil, :placeholder => '(mm./in.)', :class => 'right-half' %>
-    </div>
-
-  <div class="clear">
-    <%= label_tag 'material_message', 'Material' %>
-    <%= text_area_tag 'material_message', nil, :rows => 3, :placeholder => '(ex: ABS, stainless steel, white durable nylon, UV curable resin, etc. If you\'re not sure, we can help you decide.)' %>
+  <div class="questions__instructions">
+    <h2 class="inline">Step 2 of 2:</h2>
+    <h2 class="inline">Tell us about your order.</h2>
   </div>
 
-  <% if @priority == "speed" %>
-  <div>
-    <div class="pull-left half">
-      <%= label_tag 'deadline', 'Deadline (date and time)' %>
-      <%= text_field_tag 'deadline', nil %>
+  <h2 class="main-header">Upload your files</h2>
+  <p class="step-desc">Maximum 300Mb each, all filetypes accepted.</p>
+  <%= s3_uploader_form  id: "s3-uploader", class: "s3-uploader",
+                        max_file_size: 300.megabytes,
+                        key_starts_with: "externals/",
+                        key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
+                          <%= file_field_tag :file, multiple: true %>
+                        <% end %>
+  <script id="template-upload" type="text/x-tmpl">
+    <div id="file-{%=o.unique_id%}" class="upload">
+      <div class="filename">{%=o.name%}</div>
+      <div class="progress"><div class="bar" style="width: 0%"></div></div>
     </div>
-    <div class="pull-right half">
-      <%= label_tag 'user_phone', 'Phone number of primary contact' %>
-      <%= text_field_tag 'user_phone', nil, :placeholder => 'We call with questions on rush jobs.' %>
-    </div>
-  </div>
-  <% end %>
+  </script>
 
   <div>
-    <div class="pull-left half">
-      <%= label_tag 'zip', 'Postal Code' %>
-      <%= text_field_tag 'zip', nil, :placeholder => '(Needed for shipping estimates)' %>
-    </div>
-    <div class="pull-right half">
-      <%= label_tag 'country', 'Country' %>
-      <%= text_field_tag 'country', nil, :placeholder => '(Default: US)', class: "space-below" %>
-    </div>
+    <h3 class="step-header uploaded-file-header">Uploaded files:</h3>
+    <p class="step-desc uploaded-file-placeholder">No files uploaded yet.</p>
+    <ul id='uploaded_file_list'>
+    </ul>
   </div>
 
-  <div class="clear space-above">
-    <h3>Any particular suppliers we should quote for you?</h3>
-    <p>We choose suppliers that fit your needs, based on quality, reliability, and speed.</p>
 
-    <% if params[:from_supplier_name].nil? %>
-      <% suggested_suppliers_default = nil %>
-    <% else %>
-      <% suggested_suppliers_default = "Include #{params[:from_supplier_name]} (requested)" %>
+  <%= form_tag order_path(@order), id: 'new-order' do %>
+    <%= hidden_field_tag "files_uploaded" %>
+    <%= hidden_field_tag "order_group_id", @order_group.id %>
+    <%= hidden_field_tag "stated_experience", @experience %>
+    <%= hidden_field_tag "stated_priority", @priority %>
+    <%= hidden_field_tag "stated_manufacturing", @manufacturing %>
+
+    <div class="triplets">
+      <div class="col">
+        <%= label_tag 'stated_quantity', 'Quantity' %>
+        <%= number_field_tag 'stated_quantity', '1', min: '1', :class => 'left-half' %>
+        <p class="detail-text">If you upload multiple parts, please put total quantity.</p>
+      </div>
+      <div class="col">
+        <%= label_tag 'units', 'Drawing units' %>
+        <%= text_field_tag 'units', nil, :placeholder => 'mm./in.', :class => 'right-half' %>
+      </div>
+      <div class="col">
+        <%= label_tag 'material_message', 'Material' %>
+        <%= text_field_tag 'material_message', nil, :placeholder => 'ABS, stainless steel, etc.' %>
+      </div>
+    </div>
+    <div class="triplets">
+      <div class="col">
+        <%= label_tag 'deadline', 'Deadline (date and time)' %>
+        <%= text_field_tag 'deadline', nil %>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+
+    <div class="triplets">
+      <div class="two-col">
+        <%= label_tag 'order_description', 'Order description' %>
+        <%= text_area_tag 'order_description', nil, :rows => 5, :placeholder => "We are starting the next build iteration for a next-generation spork..." %>
+      </div>
+
+      <div class="two-col">
+        <%= label_tag 'supplier_message', 'Technical notes' %>
+        <%= text_area_tag 'supplier_message', nil, :rows => 5, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)" %>
+      </div>
+    </div>
+
+    <% if current_user.nil? %>
+      <div class="twins">
+        <div class="col order_provide_info">
+          <h3>Create an account</h3>
+          <a class="sign_in_toggle" href="">Already have an account? Sign in.</a>
+          <%= label_tag 'user_name', 'Name' %>
+          <%= text_field_tag 'user_name', nil, placeholder: 'Enter name here', class: 'signup-signin-group'  %>
+
+          <%= label_tag 'user_email', 'Email' %>
+          <%= text_field_tag 'user_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group' %>
+
+          <%= label_tag 'user_password', 'Password' %>
+          <%= password_field_tag 'user_password', nil, placeholder: 'Enter password', class: 'signup-signin-group' %>
+
+          <%= label_tag 'user_phone', 'Phone number (Phone, Skype, Google+)' %>
+          <%= text_field_tag 'user_phone', nil, :placeholder => 'We call with questions on rush jobs.' %>
+
+          <%= label_tag 'zip', 'Postal Code' %>
+          <%= text_field_tag 'zip', nil, :placeholder => '(Needed for shipping estimates)' %>
+        </div>
+        <div class="col order_sign_in hidden">
+          <h3>Sign back in</h3>
+          <a class="sign_in_toggle" href="">No account? Create one.</a>
+          <%= label_tag 'signin_email', 'Email' %>
+          <%= text_field_tag 'signin_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group' %>
+          <%= label_tag 'signin_password', 'Password' %>
+          <%= password_field_tag 'signin_password', nil, placeholder: 'Enter password here', class: 'signup-signin-group' %>
+        </div>
+      </div>
     <% end %>
 
-    <%= text_area_tag 'suggested_suppliers', suggested_suppliers_default, :rows => 3, :placeholder => "Don't worry if you don't have suggestions, we can choose for you." %>
-    <p class="detail-text"> For example, for a US West Coast prototype SLS plastic part, we'd quote: Shapeways, Ponoko, Sculpteo, i.materialise, ZoomRP, RedEye, and 3dproparts </p>
-  </div>
-
-  <% if current_user.nil? %>
-    <div class="two-signins">
-      <div class="half pull-left">
-        <h3>Create account</h3>
-        <%= label_tag 'user_email', 'Email' %>
-        <%= text_field_tag 'user_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group' %>
-        <%= label_tag 'user_password', 'Choose password' %>
-        <%= password_field_tag 'user_password', nil, placeholder: 'Enter password here', class: "signup-signin-group space-below" %>
-        <%= label_tag 'user_name', 'Name' %>
-        <%= text_field_tag 'user_name', nil, placeholder: 'Enter name here' %>
-      </div>
-      <div class="half pull-right">
-        <h3>Sign back in</h3>
-        <%= label_tag 'signin_email', 'Email' %>
-        <%= text_field_tag 'signin_email', nil, placeholder: 'Enter email address here', class: 'signup-signin-group' %>
-        <%= label_tag 'signin_password', 'Password' %>
-        <%= password_field_tag 'signin_password', nil, placeholder: 'Enter password here', class: 'signup-signin-group' %>
+    <div class="triplets">
+      <div class="col">
+        <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
+        <p class="detail-text">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
       </div>
     </div>
+
   <% end %>
-
-  <div class="final-notes clear">
-    <h3>Final notes</h3>
-    <%= label_tag 'supplier_message', 'Do you have a message for potential suppliers?' %>
-    <%= text_area_tag 'supplier_message', nil, :rows => 3, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)" %>
-  </div>
-
-  <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
-
-  <p class="detail-text">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
-
   <p class="space-above"><%= link_to 'Back to orders', orders_path %></p>
-
-<% end %>
-
-<% if current_user.nil? %>
-  <%= form_tag :action => 'create', :controller => 'leads' do %>
-
-    <input type="hidden" name="next_step_field" value="/orders/new">
-    <div class="clear cta">
-      <%= render 'layouts/email_collector' %>
-    </div>
-
-  <% end %>
-<% end %>
-
+</div>

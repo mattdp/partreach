@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915014355) do
+ActiveRecord::Schema.define(version: 20141017002144) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -168,6 +168,7 @@ ActiveRecord::Schema.define(version: 20140915014355) do
     t.string   "priority"
     t.integer  "user_id"
     t.string   "next_contactor"
+    t.text     "how_found_us"
   end
 
   create_table "locations", force: true do |t|

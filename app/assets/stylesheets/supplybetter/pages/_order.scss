@@ -1,0 +1,16 @@
+.show-order {
+  @include outer-container();
+  max-width: 1024px;
+
+  .back_to_home {
+    margin-top: 80px;
+  }
+}
+
+.order_basics {
+  .button--blue {
+    height: 50px;
+    line-height: 48px;
+    margin: 40px 0;
+  }
+}

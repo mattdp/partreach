@@ -85,7 +85,7 @@ Partreach::Application.routes.draw do
   get '/signin', to: 'sessions#new', as: 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
 
-  get '/signup', to: 'static_pages#questions' 
+  get '/signup', to: 'orders#new' 
   get '/getting_started', to: 'static_pages#getting_started'
   get '/procurement', to: 'static_pages#procurement'
   get '/materials', to: 'static_pages#materials'
@@ -93,7 +93,7 @@ Partreach::Application.routes.draw do
   get '/testimonials', to: 'static_pages#testimonials'
   get '/terms', to: 'static_pages#terms'
   get '/privacy', to: 'static_pages#privacy'  
-  get '/questions', to: 'static_pages#questions', as: 'order_questions'
+  get '/questions', to: redirect('/orders/new')
   get '/recruiting', to: 'static_pages#recruiting', as: 'recruiting'
 
   resources :suppliers, only: [:new, :create, :edit, :update, :index]

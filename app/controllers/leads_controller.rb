@@ -58,7 +58,7 @@ class LeadsController < ApplicationController
     end
 
     def lead_params
-      params.permit(:source,:next_contact_date,:next_contact_content,:next_contactor,:priority)
+      params.permit(:source,:next_contact_date,:next_contact_content,:next_contactor,:priority,:how_found_us)
     end
 
     def lead_contact_params
