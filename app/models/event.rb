@@ -21,4 +21,10 @@ class Event < ActiveRecord::Base
     Event.where("model = ? and model_id = ? and happening = ?",model,model_id,happening).present?
   end
 
+  def self.closed_orders(start_date, end_date)
+    Event.where(
+      "created_at >= ? AND created_at < ? AND model = ? AND happening = ?",
+      start_date, end_date, "Order", "closed_successfully")
+  end
+
 end
