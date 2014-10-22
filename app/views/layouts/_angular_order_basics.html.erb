@@ -17,7 +17,7 @@
 
   <ul ng-if="order.user.lead.communications.length > 0">
     <li ng-repeat="c in order.user.lead.communications">
-      {{c.created_at}} [{{order.user.lead.lead_contact.name}}]: {{c.means_of_interaction}}/{{c.interaction_title}} - {{c.notes}}
+      {{c.created_at}} [{{c.user_name}}]: {{c.means_of_interaction}}/{{c.interaction_title}} - {{c.notes}}
     </li>
   </ul>
   <span class="index_quantity"><strong>Total quantity: </strong>{{order.total_quantity}}</span>
