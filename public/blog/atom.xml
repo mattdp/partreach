@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-10-20T18:03:16-07:00</updated>
+ <updated>2014-10-21T18:10:24-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -16,7 +16,41 @@
    <link href="YOUR_URL/sls-services-overview.html"/>
    <updated>2014-10-23T00:00:00-07:00</updated>
    <id>BLOG_URL/sls-services-overview</id>
-   <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+   <content type="html">&lt;script type=&quot;text/javascript&quot;&gt;
+//&lt;![CDATA[
+  (function() {
+    var shr = document.createElement(&#39;script&#39;);
+    shr.setAttribute(&#39;data-cfasync&#39;, &#39;false&#39;);
+    shr.src = &#39;//dsms0mj1bbhn4.cloudfront.net/assets/pub/shareaholic.js&#39;;
+    shr.type = &#39;text/javascript&#39;; shr.async = &#39;true&#39;;
+    shr.onload = shr.onreadystatechange = function() {
+      var rs = this.readyState;
+      if (rs &amp;&amp; rs != &#39;complete&#39; &amp;&amp; rs != &#39;loaded&#39;) return;
+      var site_id = &#39;2b14088e0f930cd7e4054bdfef6360eb&#39;;
+      try { Shareaholic.init(site_id); } catch (e) {}
+    };
+    var s = document.getElementsByTagName(&#39;script&#39;)[0];
+    s.parentNode.insertBefore(shr, s);
+  })();
+//]]&gt;
+&lt;/script&gt;
+
+
+
+
+&lt;script&gt;
+ (function(d, t) {
+    var g = d.createElement(t),
+        s = d.getElementsByTagName(t)[0];
+    g.src = &#39;http://assets.gfycat.com/js/gfyajax-0.517d.js&#39;;
+    s.parentNode.insertBefore(g, s);
+}(document, &#39;script&#39;));
+&lt;/script&gt;
+
+
+
+
+&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
   &lt;caption align=&quot;bottom&quot;&gt;(Left) Front view of &quot;Collar 2,&quot; an original necklace design by &lt;a href=&quot;https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6&quot; target=&quot;_blank&quot;&gt;Madeline Gannon&lt;/a&gt; printed with SLS. (Right) &lt;a href=&quot;https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL&quot; target=&quot;_blank&quot;&gt;Reverse view&lt;/a&gt; of the same piece. Used under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc/2.0/legalcode&quot; target=&quot;_blank&quot;&gt;CC BY-NC 2.0.&lt;/a&gt;&lt;/caption&gt;
 &lt;tr&gt;
 &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt;
@@ -31,7 +65,7 @@
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people with SLS services intended for both prototype and production use cases. While there are great resources out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;
+&lt;p&gt;This post is intended for people who are new to 3D printing and want to learn more about one of the more common methods used today, Selective Laser Sintering (SLS). SupplyBetter has helped people with SLS services intended for both prototype and production use cases. While there are &lt;a href=&quot;http://www.shapeways.com/materials/strong-and-flexible-plastic?li=nav&quot; target=&quot;_blank&quot;&gt;great resources&lt;/a&gt; out there already with design tips, we want to help the curious buyer determine whether or not this is a 3D printing process that is right for them.&lt;/p&gt;
 
 
 
@@ -52,8 +86,8 @@
 
 &lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
 &lt;caption align=&quot;bottom&quot;&gt;Custom, functional bracket produced with SLS&lt;/caption&gt;
-&lt;tr&gt;&lt;td&gt;
-&lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg&quot; width=&quot;600&quot;&gt;&lt;/a&gt;
+&lt;tr&gt;&lt;td width=&quot;100%&quot; align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg&quot;&gt;&lt;/a&gt;
 &lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
@@ -62,7 +96,7 @@
 &lt;ul&gt;
 &lt;li&gt;Unique geometry (it is indeed a custom part).&lt;/li&gt;
 &lt;li&gt;Complex geometry. This makes it impractical to make this part using other manufacturing methods, like injection molding, without huge upfront cost.&lt;/li&gt;
-&lt;li&gt;Small outer dimensions.&lt;/li&gt;
+&lt;li&gt;Small outer dimensions and features.&lt;/li&gt;
 &lt;li&gt;A &quot;living hinge.&quot; (&lt;a href=&quot;http://en.wikipedia.org/wiki/Living_hinge&quot; target=&quot;_blank&quot;&gt;What&#39;s a living hinge?&lt;/a&gt;)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/p&gt;
@@ -70,44 +104,74 @@
 
 &lt;p&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;h3&gt;What SLS is great for:&lt;/h3&gt;
+&lt;h3&gt;What SLS is great for&lt;/h3&gt;
 
 
 &lt;ul&gt;
-&lt;li&gt;Having the least amount of design considerations. You can print almost anything.&lt;/li&gt;
-&lt;li&gt;Producing a consistent matte surface finish. Parts generally look pretty great.&lt;/li&gt;
-&lt;li&gt;When you need relatively isotropic tolerances or mechanical behavior. (Isotropic means directionally independent.) Unlike &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-fdm.thml&quot; target=&quot;_blank&quot;&gt;FDM&lt;/a&gt; parts, which have much lower tensile strengths in the &quot;z&quot; direction, SLS parts have only slightly different mechanical properties for different build orientations.&lt;/li&gt;
-&lt;li&gt;Small parts.&lt;/li&gt;
-&lt;li&gt;Flexibility.&lt;/li&gt;
+&lt;li&gt;Having the least amount of design considerations: You can print almost anything without having to worry about support material or overhangs.&lt;/li&gt;
+&lt;li&gt;Producing a consistent matte surface finish: Parts generally look pretty great.&lt;/li&gt;
+&lt;li&gt;When you need relatively isotropic tolerances or mechanical behavior: Isotropic means &lt;a href=&quot;http://en.wikipedia.org/wiki/Isotropy#Materials_science&quot; target=&quot;_blank&quot;&gt;directionally independent mechanical properties&lt;/a&gt;. Unlike &lt;a href=&quot;https://www.supplybetter.com/blog/what-to-expect-with-fdm.thml&quot; target=&quot;_blank&quot;&gt;FDM&lt;/a&gt; parts, which have much lower tensile strengths in the &quot;z&quot; direction, SLS parts have only slightly different mechanical properties for different build orientations.&lt;/li&gt;
+&lt;li&gt;Small features: See the images below for the kind of quality you can expect when your design has small features present. &lt;/li&gt;
+&lt;li&gt;Flexibility: See videos at the bottom of the page for examples.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+
+
+&lt;h3&gt;What SLS is not great for&lt;/h3&gt;
+
+
+&lt;ul&gt; 
+&lt;li&gt;Color: SLS parts are monochromatic, with color choices typically limited to just black and white.&lt;/li&gt;
+&lt;li&gt;Post-processing options: If you want an automotive-grade or  injection molded quality surface finish (i.e. glossy and smooth), then SLS is not a good fit. Parts will need to be sanded before being painted, and SLS doesn&#39;t do well with both sanding and painting (parts have a tendency to absorb paint). Parts can be dyed, but be sure to find a supplier who has experience dyeing parts to make sure you&#39;re going to get a uniform surface finish. 
+&lt;li&gt;Same day speeds: build chambers take a relatively long time to heat up and cool down (vs. SLA or polyjet which are 3D printing processes that do not rely on a heated build chamber in order to 3D print material). While 1 day lead times are actually quite common with SLS, same day is rare. In SLS&#39;s defense though, same-day 3D printing is really only achievable via FDM printing of parts that do not require support material.&lt;/li&gt;
+&lt;li&gt;Hollow parts: If your part has a void space, then that space will contain trapped, unsintered powder. If this happens, your part will be heavier than expected, as well as more expensive (since you will be charged for that material used).&lt;/li&gt;
 &lt;/ul&gt;
 
 
 
 
 &lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-&lt;caption align=&quot;bottom&quot;&gt;SLS nylon 3D print of a clothes pin courtesy of Sculpteo&lt;/caption&gt;
-&lt;tr&gt;&lt;td&gt;
-&lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg&quot; width=&quot;600&quot;&gt;&lt;/a&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;SLS nylon 3D print of a clothes pin courtesy of &lt;a href=&quot;https://www.supplybetter.com/suppliers/unitedstates/all/sculpteo&quot; target=&quot;_blank&quot;&gt;Sculpteo&lt;/a&gt;&lt;/caption&gt;
+&lt;tr&gt;&lt;td width=&quot;100%&quot; align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg&quot;&gt;&lt;/a&gt;
 &lt;/td&gt;&lt;/tr&gt;
 &lt;/table&gt;
 
 
 &lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
-&lt;caption align=&quot;bottom&quot;&gt;SLS nylon 3D print of a customized bracelet courtesy of Made With Code&lt;/caption&gt;
-&lt;tr&gt;&lt;td&gt;
-&lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg&quot; width=&quot;600&quot;&gt;&lt;/a&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;SLS nylon 3D print of a customized bracelet courtesy of &lt;a href=&quot;http://www.shapeways.com/madewithcode&quot; target=&quot;_blank&quot;&gt;Made With Code&lt;/a&gt;&lt;/caption&gt;
+&lt;tr&gt;&lt;td width=&quot;100%&quot; align=&quot;center&quot;&gt;
+&lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg&quot;&gt;&lt;/a&gt;
 &lt;/td&gt;&lt;/tr&gt; 
 &lt;/table&gt;
 
 
 
 
-&lt;h3&gt;What SLS is not great for:&lt;/h3&gt;
+&lt;h3&gt;Materials&lt;/h3&gt;
 
 
-&lt;ul&gt; 
-&lt;li&gt;Color. SLS parts are monochromatic, with severely limited color choices.&lt;/li&gt;
-&lt;li&gt;Same day speeds.&lt;/li&gt;
+&lt;p&gt; Nylon is by far the most common material used in Selective Laser Sintering. Nylon 12, PA2200, and Duraform PA are different technical terms for basically the same material, they are just just specific brands of material favored by the manufacturers of the machine. Here&#39;s short list of materials and datasheets so you can look for yourself.&lt;/p&gt;
+
+
+&lt;h4&gt;Common SLS 3D printing materials&lt;/h4&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;Nylon 12 (white): &lt;a href=&quot;http://www.3dsystems.com/sites/www.3dsystems.com/files/DS_DuraForm_PA_US.pdf&quot; target=&quot;_blank&quot;&gt;datasheet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;PA2200 (white): &lt;a href=&quot;https://www.solidconcepts.com/content/pdfs/material-specifications/sls-nylon-12-pa.pdf&quot; target=&quot;_blank&quot;&gt;datasheet&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Duraform PA (white): &lt;a href=&quot;https://www.shapeways.com/rrstatic/material_docs/mds-strongflex.pdf&quot; target=&quot;_blank&quot;&gt;datasheet&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h4&gt;Less common SLS 3D printing materials&lt;/h4&gt;
+
+
+&lt;ul&gt;
+  &lt;li&gt;Nylon 12  - glass filled (white): &lt;a href=&quot;https://www.solidconcepts.com/content/pdfs/material-specifications/sls-nylon-12-gf.pdf&quot; target=&quot;_blank&quot;&gt;datasheet&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Duraform EX (black): &lt;a href=&quot;http://www.paramountind.com/pdfs/PI_DS_DuraForm_EX_US.pdf&quot; target=&quot;_blank&quot;&gt;datasheet&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Elasto-Plastic (yellow): &lt;a href=&quot;https://www.shapeways.com/materials/elasto-plastic?li=nav&quot; target=&quot;_blank&quot;&gt;datasheet&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -116,8 +180,30 @@
 &lt;p&gt;&lt;p&gt;&lt;i&gt;But why not just go to &lt;a href=&quot;https://www.supplybetter.com/blog/shapeways-vs-supplybetter.html&quot; target=&quot;_blank&quot;&gt;Shapeways&lt;/a&gt;?&lt;/i&gt;&lt;p&gt;
 &lt;p&gt;Shapeways is great for low cost, non-critical parts that don&#39;t have a short deadline. If a job is fit for Shapeways (or any of the other online service bureaus), then we&#39;ll definitely recommend them, but for jobs that require any degree of speed and quality, finding an SLS service bureau is the right choice.&lt;/p&gt;&lt;/p&gt;
 
+&lt;p&gt;&lt;p&gt;Finally, to give you an idea of how durable SLS nylon prints are, we put together a few videos to illustrating the mechanical properties of a few parts we had around the office. Enjoy!&lt;/p&gt;&lt;/p&gt;
+
 &lt;p&gt;&lt;p&gt;Cheers,&lt;/p&gt;
 &lt;p&gt;Rob&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;The same SLS nylon 3D print of the clothes pin from earlier in the post&lt;/caption&gt;
+&lt;tr&gt;&lt;td width=&quot;100%&quot; align=&quot;center&quot;&gt;
+&lt;img class=&quot;gfyitem&quot; data-id=&quot;FittingSlushyAmazonparrot&quot; /&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+&lt;caption align=&quot;bottom&quot;&gt;SLS nylon 3D print of a custom bracket printed by &lt;a href=&quot;https://www.supplybetter.com/suppliers/unitedstates/newyork/finnovation&quot; target=&quot;_blank&quot;&gt;Finnovation PD&lt;/a&gt;&lt;/caption&gt;
+&lt;tr&gt;&lt;td width=&quot;100%&quot; align=&quot;center&quot;&gt;
+&lt;img class=&quot;gfyitem&quot; data-id=&quot;QuarterlyJitteryAmericanwigeon&quot; /&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
+  &lt;caption align=&quot;bottom&quot;&gt;Destructively testing the same SLS nylon 3D print&lt;/caption&gt;
+&lt;tr&gt;&lt;td width=&quot;100%&quot; align=&quot;center&quot;&gt;
+&lt;img class=&quot;gfyitem&quot; data-id=&quot;SecondhandImpeccableCardinal&quot; /&gt;
+&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#39;shareaholic-canvas&#39; data-app=&#39;share_buttons&#39; data-app-id=&#39;11427341&#39;&gt;&lt;/div&gt;&lt;/p&gt;
 </content>
  </entry>
  
