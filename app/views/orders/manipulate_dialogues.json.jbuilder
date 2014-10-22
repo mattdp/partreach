@@ -8,6 +8,7 @@ json.user do
     json.communications @order.user.lead.communications.order(created_at: :desc) do |c|
       json.merge! c.attributes
       json.created_at c.created_at.strftime('%Y-%m-%d')
+      json.user_name User.find(c.user_id).lead.lead_contact.name if c.user_id
     end
     json.lead_contact do 
       json.merge! @order.user.lead.lead_contact.attributes
