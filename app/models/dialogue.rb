@@ -127,13 +127,13 @@ class Dialogue < ActiveRecord::Base
     update(informed: true)
   end
 
-  def self.billable_by_supplier(closed_orders)
+  def self.billable_by_supplier(closed_order_ids)
     in_network_tags = Tag.tag_set(:network,:id)
     result_hash = {}
     Dialogue.where(billable: true).
       includes(:supplier).
       joins(supplier: :tags).where(tags: {id: in_network_tags}).
-      joins(:order).where(orders: {id: closed_orders}).
+      joins(:order).where(orders: {id: closed_order_ids}).
       order('suppliers.id').
       each do |dialogue|
       if result_hash[dialogue.supplier]
@@ -146,9 +146,9 @@ class Dialogue < ActiveRecord::Base
   end
 
   # 1% of sum of total cost of all billable bids during period
-  def self.total_billable_fees(closed)
+  def self.total_billable_fees(closed_order_ids)
     total = BigDecimal.new(0)
-    Dialogue.billable_by_supplier(closed).each do |supplier, dialogues|
+    Dialogue.billable_by_supplier(closed_order_ids).each do |supplier, dialogues|
       dialogues.each do |dialogue|
         total += dialogue.total_cost
       end

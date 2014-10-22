@@ -297,8 +297,10 @@ See the note from client for details on what exactly they're looking for.</p>
     HTML
   end
 
-  def self.closed_orders(start_date, end_date)
-    closed_orders = Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", start_date, end_date, "Order", "closed_successfully").
+  def self.closed_order_ids(start_date, end_date)
+    closed_orders = Event.where(
+      "created_at >= ? AND created_at < ? AND model = ? AND happening = ?",
+      start_date, end_date, "Order", "closed_successfully").
       map { |e| e.model_id}
   end
 
@@ -307,21 +309,24 @@ See the note from client for details on what exactly they're looking for.</p>
 
     dates = Order.date_ranges(interval,tracking_start_date)
 
-    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Created", "Closed RFQs", "Total Billable Fees"]
+    output[:titles] = [interval.to_s, "RFQs Created", "RFQs Closed", "Total average quote value", "Total Billable Fees"]
 
     printout = []
     index = 0
     #-2 since using dates[index] and dates[index+1]
     while index <= dates.length - 2   
+      created_orders = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
+      closed_order_ids = Order.closed_order_ids(dates[index], dates[index+1])
+      closed_orders = Order.where(id: closed_order_ids)
+      average_quote_values = closed_orders.map{ |o| o.quote_value }
+      total_average_quote_value = average_quote_values.sum
+      total_billable_fees = Dialogue.total_billable_fees(closed_order_ids)
       unit = []
       unit << dates[index]
-      created_orders = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
-      average_quote_values = created_orders.map{ |o| o.quote_value }
-      unit << average_quote_values.sum
       unit << created_orders.count
-      unit << Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
-      closed = Order.closed_orders(dates[index], dates[index+1])
-      unit << Dialogue.total_billable_fees(closed)
+      unit << closed_orders.count
+      unit << total_average_quote_value
+      unit << total_billable_fees
       printout << unit
       index += 1
     end
