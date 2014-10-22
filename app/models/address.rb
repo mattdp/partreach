@@ -64,29 +64,24 @@ class Address < ActiveRecord::Base
     if owner.address
       address = owner.address
     else
-      address = Address.new({place_id: owner.id, place_type: owner.class.to_s})
-    end
-
-    if options[:country]
-      address.country = Geography.find_or_create_country(options[:country])
-    elsif address.country.nil?
-      # TODO refactor - it would probably be simpler to just use nil to represent country/state not known,
-      # but first need to refactor code that assumes that these fields are never nil
-      address.country = Geography.find_by_name_for_link('country_unknown')
-    end
-
-    if options[:state]
-      address.state = Geography.find_or_create_state(options[:state])
-    elsif address.state.nil?
-      address.state = Geography.find_by_name_for_link('state_unknown')
+      address = Address.new({
+        place_id: owner.id,
+        place_type: owner.class.to_s,
+        country: Geography.find_by_name_for_link('country_unknown'),
+        state: Geography.find_by_name_for_link('state_unknown')
+      })
+      # TODO refactor - it would be simpler to just use nil to indicate country/state not known;
+      # but first need to refactor code elsewhere that assumes that these fields are never nil
     end
 
     address.street = options[:street] if options[:street].present?
     address.city = options[:city] if options[:city].present?
     address.zip = options[:zip] if options[:zip].present?
+    address.state = Geography.find_or_create_state(options[:state]) if options[:state].present?
+    address.country = Geography.find_or_create_country(options[:country]) if options[:country].present?
 
     address.save
     owner.address(true) # force refresh of address association for in-memory owner object
   end
-  
+
 end
