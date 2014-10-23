@@ -68,10 +68,23 @@ FactoryGirl.define do
   end
 
   factory :geography do |g|
-    level     "state"
     sequence(:name_for_link) { |n| "nfl#{n}"}
     sequence(:long_name) { |n| "ln#{n}" }
     sequence(:short_name) { |n| "sn#{n}" }
+
+    factory :country_unknown do
+      level 'country'
+      short_name 'unknown'
+      long_name 'Unknown'
+      name_for_link Geography.proper_name_for_link('country_unknown')
+    end
+
+    factory :state_unknown do
+      level 'state'
+      short_name 'unknown'
+      long_name 'Unknown'
+      name_for_link Geography.proper_name_for_link('state_unknown')
+    end
 
     factory :united_states do
       level 'country'

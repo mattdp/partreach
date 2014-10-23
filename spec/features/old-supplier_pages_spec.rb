@@ -22,7 +22,7 @@ describe "Supplier-related pages" do
   describe "Supplier profile" do
     let(:supplier) { FactoryGirl.create :supplier }
     let(:country) { FactoryGirl.create :united_states }
-    let(:state) { FactoryGirl.create :geography }
+    let(:state) { FactoryGirl.create :geography, level: 'state' }
 
     it "should display breadcrumb" do
       visit "/suppliers/#{country.name_for_link}/#{state.name_for_link}/#{supplier.name_for_link}"
