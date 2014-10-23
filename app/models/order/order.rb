@@ -104,28 +104,6 @@ class Order < ActiveRecord::Base
     return answer
   end
 
-  def quote_value
-    # if order override (for jobs where something was weird)
-    return override_average_value if self.override_average_value
-
-    # all dialogues with quotes submitted for this order
-    quotes = dialogues.select{|d| d.total_cost and d.total_cost > 0}
-
-    # if no quotes submitted
-    return BigDecimal.new(0) if quotes.empty?
-
-    if ( (recs = quotes.select{|d| d.recommended}) && recs.present?)
-      # recommended quote(s) 
-      values = recs.map{ |d| d.total_cost }
-    else
-      # all quotes
-      values = quotes.map{ |d| d.total_cost }
-    end
-
-    # average quote value
-    (values.sum / values.size).round(2)
-  end
-
   def visible_dialogues
     visibles = []
     self.dialogues.map{|d| visibles << d if d.opener_sent}
@@ -297,37 +275,71 @@ See the note from client for details on what exactly they're looking for.</p>
     HTML
   end
 
-  def self.closed_orders(start_date, end_date)
-    closed_orders = Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", start_date, end_date, "Order", "closed_successfully").
-      map { |e| e.model_id}
-  end
-
   def self.metrics(interval,tracking_start_date)
     output = {}
 
     dates = Order.date_ranges(interval,tracking_start_date)
 
-    output[:titles] = [interval.to_s,"Quote value of orders", "RFQ Created", "Closed RFQs", "Total Billable Fees"]
+    output[:titles] = [interval.to_s, "RFQs Created", "RFQs Closed", "Total average quote value", "Total Billable Fees"]
 
     printout = []
     index = 0
     #-2 since using dates[index] and dates[index+1]
     while index <= dates.length - 2   
+      created_orders = Order.created_orders(dates[index], dates[index+1])
+      closed_orders = Order.closed_orders(dates[index], dates[index+1])
+      total_average_quote_value = Order.total_average_quote_value(closed_orders)
+      total_billable_fees = Dialogue.total_billable_fees(closed_orders)
+
       unit = []
       unit << dates[index]
-      created_orders = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
-      average_quote_values = created_orders.map{ |o| o.quote_value }
-      unit << average_quote_values.sum
       unit << created_orders.count
-      unit << Event.where("created_at >= ? AND created_at < ? AND model = ? AND happening = ?", dates[index], dates[index+1], "Order", "closed_successfully").count
-      closed = Order.closed_orders(dates[index], dates[index+1])
-      unit << Dialogue.total_billable_fees(closed)
+      unit << closed_orders.count
+      unit << total_average_quote_value
+      unit << total_billable_fees
       printout << unit
       index += 1
     end
     output[:printout] = printout.reverse
 
     return output
+  end
+
+  def self.created_orders(start_date, end_date)
+    Order.where("created_at >= ? AND created_at < ?", start_date, end_date)
+  end
+
+  def self.closed_orders(start_date, end_date)
+    closed_order_events = Event.closed_orders(start_date, end_date)
+    closed_order_ids = closed_order_events.map { |e| e.model_id }
+    Order.where(id: closed_order_ids)
+  end
+
+  def self.total_average_quote_value(closed_orders)
+    average_quote_values = closed_orders.map{ |o| o.quote_value }
+    average_quote_values.sum
+  end
+
+  def quote_value
+    # if order override (for jobs where something was weird)
+    return override_average_value if self.override_average_value
+
+    # all dialogues with quotes submitted for this order
+    quotes = dialogues.select{|d| d.total_cost and d.total_cost > 0}
+
+    # if no quotes submitted
+    return BigDecimal.new(0) if quotes.empty?
+
+    if ( (recs = quotes.select{|d| d.recommended}) && recs.present?)
+      # recommended quote(s) 
+      values = recs.map{ |d| d.total_cost }
+    else
+      # all quotes
+      values = quotes.map{ |d| d.total_cost }
+    end
+
+    # average quote value
+    (values.sum / values.size).round(2)
   end
 
   def self.invoicing_helper
