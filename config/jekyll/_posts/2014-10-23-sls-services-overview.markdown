@@ -90,12 +90,12 @@ published: true
 <p>Rob</p>
 
 
-<iframe src="http://gfycat.com/ifr/FittingSlushyAmazonparrot" frameborder="0" scrolling="no" width="940" height="529" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+<iframe src="https://gfycat.com/ifr/FittingSlushyAmazonparrot" frameborder="0" scrolling="no" width="940" height="529" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
 <div class="footer" align="bottom">The same SLS nylon 3D print of the clothes pin from earlier in the post</div>
 
-<iframe src="http://gfycat.com/ifr/QuarterlyJitteryAmericanwigeon" frameborder="0" scrolling="no" width="940" height="529" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+<iframe src="https://gfycat.com/ifr/QuarterlyJitteryAmericanwigeon" frameborder="0" scrolling="no" width="940" height="529" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
 <div class="footer" align="bottom">SLS nylon 3D print of a custom bracket printed by <a href="https://www.supplybetter.com/suppliers/unitedstates/newyork/finnovation" target="_blank">Finnovation PD</a></div>
 
-<iframe src="http://gfycat.com/ifr/SecondhandImpeccableCardinal" frameborder="0" scrolling="no" width="940" height="529" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+<iframe src="https://gfycat.com/ifr/SecondhandImpeccableCardinal" frameborder="0" scrolling="no" width="940" height="529" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
 <div class="footer" align="bottom">Destructively testing the same SLS nylon 3D print</div>
 
