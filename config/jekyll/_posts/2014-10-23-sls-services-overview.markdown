@@ -5,6 +5,15 @@ title: SLS Services | Overview
 published: true
 ---
 
+<script>
+ (function(d, t) {
+  var g = d.createElement(t),
+  s = d.getElementsByTagName(t)[0];
+  g.src = 'https://assets.gfycat.com/js/gfyajax-0.517d.js';
+  s.parentNode.insertBefore(g, s);
+}(document, 'script'));
+</script>
+
 <div style="display:inline-block; max-width:50%; float:left">
   <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg"></a>
 </div>
@@ -89,13 +98,18 @@ published: true
 <p>Cheers,</p>
 <p>Rob</p>
 
-
-<iframe src="https://gfycat.com/ifr/FittingSlushyAmazonparrot" frameborder="0" scrolling="no" width="940" height="529" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+<div style="display:inline-block; max-width:100%; float:left">
+  <img class="gfyitem" data-id="FittingSlushyAmazonparrot" />
+</div>
 <div class="footer" align="bottom">The same SLS nylon 3D print of the clothes pin from earlier in the post</div>
 
-<iframe src="https://gfycat.com/ifr/QuarterlyJitteryAmericanwigeon" frameborder="0" scrolling="no" width="940" height="529" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+<div style="display:inline-block; max-width:100%; float:left">
+  <img class="gfyitem" data-id="QuarterlyJitteryAmericanwigeon" />
+</div>
 <div class="footer" align="bottom">SLS nylon 3D print of a custom bracket printed by <a href="https://www.supplybetter.com/suppliers/unitedstates/newyork/finnovation" target="_blank">Finnovation PD</a></div>
 
-<iframe src="https://gfycat.com/ifr/SecondhandImpeccableCardinal" frameborder="0" scrolling="no" width="940" height="529" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
+<div style="display:inline-block; max-width:100%; float:left">
+  <img class="gfyitem" data-id="SecondhandImpeccableCardinal" />
+</div>
 <div class="footer" align="bottom">Destructively testing the same SLS nylon 3D print</div>
 
