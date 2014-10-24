@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-10-24T12:23:26-07:00</updated>
+ <updated>2014-10-24T13:14:32-07:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -16,25 +16,13 @@
    <link href="YOUR_URL/sls-services-overview.html"/>
    <updated>2014-10-23T00:00:00-07:00</updated>
    <id>BLOG_URL/sls-services-overview</id>
-   <content type="html">&lt;script&gt;
- (function(d, t) {
-  var g = d.createElement(t),
-  s = d.getElementsByTagName(t)[0];
-  g.src = &#39;https://assets.gfycat.com/js/gfyajax-0.517d.js&#39;;
-  s.parentNode.insertBefore(g, s);
-}(document, &#39;script&#39;));
-&lt;/script&gt;
-
-
-
-
-&lt;div style=&quot;display:inline-block; max-width:50%; float:left&quot;&gt;
-  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg&quot;&gt;&lt;/a&gt;
+   <content type="html">&lt;div style=&quot;display:inline-block; max-width:50%; float:left&quot;&gt;
+  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover+copy-extra_small.jpg&quot;&gt;&lt;/a&gt;
 &lt;/div&gt;
 
 
 &lt;div style=&quot;display:inline-block; max-width:50%; float:left&quot;&gt;
-  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back.jpg&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back.jpg&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back.jpg&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back+copy-extra_small.jpg&quot;&gt;&lt;/a&gt;
 &lt;/div&gt;
 
 
@@ -65,7 +53,7 @@
 
 
 &lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
-  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3+copy-small.jpg&quot;&gt;&lt;/a&gt;
 &lt;/div&gt;
 
 
@@ -114,7 +102,7 @@
 
 
 &lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
-  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1+copy-small.jpg&quot;&gt;&lt;/a&gt;
 &lt;/div&gt;
 
 
@@ -124,7 +112,7 @@
 
 
 &lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
-  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2+copy-small.jpg&quot;&gt;&lt;/a&gt;
 &lt;/div&gt;
 
 
@@ -182,9 +170,7 @@
 
 
 
-&lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
-  &lt;img class=&quot;gfyitem&quot; data-id=&quot;FittingSlushyAmazonparrot&quot; /&gt;
-&lt;/div&gt;
+&lt;iframe src=&quot;https://gfycat.com/ifr/FittingSlushyAmazonparrot&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; width=&quot;700&quot; height=&quot;394&quot; style=&quot;-webkit-backface-visibility: hidden;-webkit-transform: scale(1);&quot; &gt;&lt;/iframe&gt;
 
 
 &lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;The same SLS nylon 3D print of the clothes pin from earlier in the post&lt;/div&gt;
@@ -192,9 +178,7 @@
 
 
 
-&lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
-  &lt;img class=&quot;gfyitem&quot; data-id=&quot;QuarterlyJitteryAmericanwigeon&quot; /&gt;
-&lt;/div&gt;
+&lt;iframe src=&quot;https://gfycat.com/ifr/QuarterlyJitteryAmericanwigeon&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; width=&quot;700&quot; height=&quot;394&quot; style=&quot;-webkit-backface-visibility: hidden;-webkit-transform: scale(1);&quot; &gt;&lt;/iframe&gt;
 
 
 &lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;SLS nylon 3D print of a custom bracket printed by &lt;a href=&quot;https://www.supplybetter.com/suppliers/unitedstates/newyork/finnovation&quot; target=&quot;_blank&quot;&gt;Finnovation PD&lt;/a&gt;&lt;/div&gt;
@@ -202,14 +186,10 @@
 
 
 
-&lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
-  &lt;img class=&quot;gfyitem&quot; data-id=&quot;SecondhandImpeccableCardinal&quot; /&gt;
-&lt;/div&gt;
+&lt;iframe src=&quot;https://gfycat.com/ifr/SecondhandImpeccableCardinal&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; width=&quot;700&quot; height=&quot;394&quot; style=&quot;-webkit-backface-visibility: hidden;-webkit-transform: scale(1);&quot; &gt;&lt;/iframe&gt;
 
 
 &lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;Destructively testing the same SLS nylon 3D print&lt;/div&gt;
-
-
 
 </content>
  </entry>

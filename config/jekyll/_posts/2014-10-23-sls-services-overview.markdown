@@ -5,20 +5,11 @@ title: SLS Services | Overview
 published: true
 ---
 
-<script>
- (function(d, t) {
-  var g = d.createElement(t),
-  s = d.getElementsByTagName(t)[0];
-  g.src = 'https://assets.gfycat.com/js/gfyajax-0.517d.js';
-  s.parentNode.insertBefore(g, s);
-}(document, 'script'));
-</script>
-
 <div style="display:inline-block; max-width:50%; float:left">
-  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg"></a>
+  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover+copy-extra_small.jpg"></a>
 </div>
 <div style="display:inline-block; max-width:50%; float:left">
-  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back.jpg"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back.jpg"></a>
+  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back.jpg"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back+copy-extra_small.jpg"></a>
 </div>
 <div class="footer" align="bottom">(Left) Front view of "Collar 2," an original necklace design by <a href="https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6" target="_blank">Madeline Gannon</a> printed with SLS. (Right) <a href="https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL" target="_blank">Reverse view</a> of the same piece. Used under <a href="https://creativecommons.org/licenses/by-nc/2.0/legalcode" target="_blank">CC BY-NC 2.0.</a></div>
 
@@ -33,7 +24,7 @@ published: true
 
 
 <div style="display:inline-block; max-width:100%; float:left">
-  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg"></a>
+  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_3+copy-small.jpg"></a>
 </div>
 <div class="footer" align="bottom">Custom, functional bracket produced with SLS</div>
 
@@ -66,12 +57,12 @@ published: true
 
 
 <div style="display:inline-block; max-width:100%; float:left">
-  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg"></a>
+  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_1+copy-small.jpg"></a>
 </div>
 <div class="footer" align="bottom">SLS nylon 3D print of a clothes pin courtesy of <a href="https://www.supplybetter.com/suppliers/unitedstates/all/sculpteo" target="_blank">Sculpteo</a></div>
 
 <div style="display:inline-block; max-width:100%; float:left">
-  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg"></a>
+  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_services_2+copy-small.jpg"></a>
 </div>
 <div class="footer" align="bottom">SLS nylon 3D print of a customized bracelet courtesy of <a href="http://www.shapeways.com/madewithcode" target="_blank">Made With Code</a></div>
 
@@ -98,18 +89,11 @@ published: true
 <p>Cheers,</p>
 <p>Rob</p>
 
-<div style="display:inline-block; max-width:100%; float:left">
-  <img class="gfyitem" data-id="FittingSlushyAmazonparrot" />
-</div>
+<iframe src="https://gfycat.com/ifr/FittingSlushyAmazonparrot" frameborder="0" scrolling="no" width="700" height="394" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
 <div class="footer" align="bottom">The same SLS nylon 3D print of the clothes pin from earlier in the post</div>
 
-<div style="display:inline-block; max-width:100%; float:left">
-  <img class="gfyitem" data-id="QuarterlyJitteryAmericanwigeon" />
-</div>
+<iframe src="https://gfycat.com/ifr/QuarterlyJitteryAmericanwigeon" frameborder="0" scrolling="no" width="700" height="394" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
 <div class="footer" align="bottom">SLS nylon 3D print of a custom bracket printed by <a href="https://www.supplybetter.com/suppliers/unitedstates/newyork/finnovation" target="_blank">Finnovation PD</a></div>
 
-<div style="display:inline-block; max-width:100%; float:left">
-  <img class="gfyitem" data-id="SecondhandImpeccableCardinal" />
-</div>
+<iframe src="https://gfycat.com/ifr/SecondhandImpeccableCardinal" frameborder="0" scrolling="no" width="700" height="394" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
 <div class="footer" align="bottom">Destructively testing the same SLS nylon 3D print</div>
-
