@@ -132,7 +132,7 @@ class Dialogue < ActiveRecord::Base
     closed_order_ids = closed_orders.map {|o| o.id}
     result_hash = {}
     Dialogue.where(billable: true).
-      includes(:supplier).
+      includes(:supplier).references(:supplier).
       joins(supplier: :tags).where(tags: {id: in_network_tags}).
       joins(:order).where(orders: {id: closed_order_ids}).
       order('suppliers.id').

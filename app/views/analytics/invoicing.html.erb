@@ -4,22 +4,19 @@
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-      <p><strong>Urgent:</strong> note that this is not smart about when suppliers signed up as paid members. If a supplier signed up in March 2013, and quoted in February 2013, this will flag them for the pre-signup paid quote and have total possible revenue too high. It is meant to be used as a current-month helper.</p>
+      <% @billable_bids_by_month.each do |billable_bids_for_month| %>
 
-      <p>Only potentially paid bids are highlighted in the undordered lists.</p>
+        <% bid_close_month = billable_bids_for_month[:month] %>
+        <p><strong><%= bid_close_month.strftime("%B %Y") %></strong></p>
 
-      <% @titles_and_orders.each do |blob| %>
-        <p><strong><%= blob[:title] %></strong><%= " Total possible revenue: #{currencyize(blob[:total_possible_revenue],'dollars')}" %></p>
-        <% blob[:orders_for_month].each do |order| %>
-          <p><%= link_to "#{order.id}", order_path(order) %></p>
-            <ul>
-              <% order.dialogues.each do |dialogue| %>
-                <% supplier = dialogue.supplier %>
-                <% if supplier.is_in_network? %>
-                  <li><%= "#{supplier.name}: #{dialogue.total_cost}" %></li>
-                <% end %>
-              <% end %>
-            </ul>
+        <% billable_bids_for_month[:billable_bids].each do |supplier, bids| %>
+          <% invoice_month = "#{(bid_close_month >> 1).strftime("%y%m")}" %>
+          <p><%= "#{supplier.name} - #{invoice_month}01#{supplier.id}" %></p>
+          <ul>
+          <% bids.each do |bid| %>
+            <li><%= "SupplyBetter RFQ ##{bid.order.id},<date TBD>,#{number_to_currency(bid.total_cost)},#{bid.won? ? 'won' : 'lost'},#{bid.order.user.lead.lead_contact.full_name_untrusted},#{bid.order.user.lead.lead_contact.email}" %></li>
+          <% end %>
+          </ul>
         <% end %>
       <% end %>
 

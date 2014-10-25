@@ -342,38 +342,6 @@ See the note from client for details on what exactly they're looking for.</p>
     (values.sum / values.size).round(2)
   end
 
-  def self.invoicing_helper
-    dates = Order.date_ranges(:months,Date.today-360)
-
-    output = []
-    index = 0
-    #-2 since using dates[index] and dates[index+1]
-
-    while (index <= dates.length - 2)
-
-      orders_for_month = Order.where("created_at >= ? AND created_at < ?", dates[index], dates[index+1])
-      
-      total_possible_revenue = 0
-      bid_fee = 0.01
-
-      orders_for_month.each do |order|
-        order.dialogues.each do |dialogue|
-          total_possible_revenue += dialogue.total_cost if (dialogue.total_cost && dialogue.total_cost > 0 && dialogue.supplier.is_in_network?)
-        end
-      end
-
-      output << {
-          title: dates[index].strftime("%B %Y"),
-          orders_for_month: orders_for_month,
-          total_possible_revenue: total_possible_revenue * bid_fee
-      }
-      index += 1
-
-    end
-
-    return output.reverse
-  end
-
   def self.date_ranges(interval,tracking_start_date) 
 
     if interval == :months

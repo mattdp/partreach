@@ -26,7 +26,20 @@ class AnalyticsController < ApplicationController
   end
 
   def invoicing
-    @titles_and_orders = Order.invoicing_helper
+    @billable_bids_by_month = []
+
+    dates = Order.date_ranges(:months,Date.today-360)
+    index = 0
+    #-2 since using dates[index] and dates[index+1]
+    while (index <= dates.length - 2)
+      closed_orders = Order.closed_orders(dates[index], dates[index+1])
+      billable_bids = Dialogue.billable_by_supplier(closed_orders)
+      @billable_bids_by_month << { month: dates[index], billable_bids: billable_bids }
+
+      index += 1
+    end
+
+    @billable_bids_by_month.reverse
   end
 
   def machines
