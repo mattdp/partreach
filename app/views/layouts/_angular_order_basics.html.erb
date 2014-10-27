@@ -20,7 +20,7 @@
       {{c.created_at}} [{{c.user_name}}]: {{c.means_of_interaction}}/{{c.interaction_title}} - {{c.notes}}
     </li>
   </ul>
-  <span class="index_quantity"><strong>Total quantity: </strong>{{order.total_quantity}}</span>
+  <span class="index_quantity"><strong>Total quantity: </strong>{{order.stated_quantity}}</span>
   <span class="index_quantity"><strong>Drawing units: </strong>{{order.units}}</span>
   <span class="index_quantity" ng-if="order.deadline !== null"><strong>Deadline: </strong>{{order.deadline}}</span>
   <span class="index_quantity" ng-if="order.user.address !== null && order.user.address.zip.length > 0"><strong>Zip Code: </strong>{{order.user.address.zip}}</span>
