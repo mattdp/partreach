@@ -150,11 +150,13 @@ ActiveRecord::Schema.define(version: 20141017002144) do
     t.string   "level"
     t.string   "short_name"
     t.string   "long_name"
-    t.string   "name_for_link"
+    t.string   "name_for_link", null: false
     t.integer  "geography_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "geographies", ["name_for_link"], name: "index_geographies_on_name_for_link", unique: true, using: :btree
 
   create_table "leads", force: true do |t|
     t.datetime "created_at",                              null: false

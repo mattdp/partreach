@@ -60,27 +60,28 @@ class Address < ActiveRecord::Base
     Geography.find(destroyed_id).destroy
   end
 
-  def self.create_or_update_address(owner,options)
-    address = owner.address
-    if address.nil?
-      address = Address.new({place_id: owner.id, place_type: owner.class.to_s})
-      address.country = Geography.create_or_reference_geography(nil,:short_name,"country")
-      address.state = Geography.create_or_reference_geography(nil,:short_name,"state")
-      address.save
-      owner.address = address
+  def self.create_or_update_address(owner, options)
+    if owner.address
+      address = owner.address
+    else
+      # TODO refactor - it would be simpler to just use nil to indicate country/state not known;
+      # but first need to refactor code elsewhere that assumes that these fields are never nil
+      address = Address.new({
+        place_id: owner.id,
+        place_type: owner.class.to_s,
+        country: Geography.find_by_name_for_link('country_unknown'),
+        state: Geography.find_by_name_for_link('state_unknown')
+      })
     end
+
     address.street = options[:street] if options[:street].present?
     address.city = options[:city] if options[:city].present?
     address.zip = options[:zip] if options[:zip].present?
-    [:country,:state].each do |geo_symbol|
-      place_name = options[geo_symbol]
-      if place_name # don't update country/state if field not specified in options hash
-        geo = Geography.create_or_reference_geography(place_name,:short_name,geo_symbol.to_s)
-        address.send("#{geo_symbol}=",geo)
-      end
-    end
-    return owner.address.save
-  end
+    address.state = Geography.find_or_create_state(options[:state]) if options[:state].present?
+    address.country = Geography.find_or_create_country(options[:country]) if options[:country].present?
 
+    address.save
+    owner.address = address
+  end
 
 end

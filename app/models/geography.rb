@@ -16,7 +16,7 @@ class Geography < ActiveRecord::Base
 
   #ideally, validate short_name unique within a level, but not important until internationalize
   validates :level, presence: true
-  validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates :name_for_link, presence: true
 
   #has a parent geography containing it, or nil if top level
   belongs_to :geography
@@ -28,24 +28,30 @@ class Geography < ActiveRecord::Base
     return self.geography
   end
 
-  def self.display_all
-    Geography.find_each do |g|
-      puts "#{g.id}\t#{g.level}\t#{g.short_name}\t#{g.long_name}"
-    end
+  def self.find_or_create_country(name)
+    self.find_or_create(name, 'country')
   end
 
-  def self.create_or_reference_geography(text,symbol,level)
-    geo = Geography.locate(text,symbol,level)
-    return geo if geo
-    create_hash = {level: level}
-    create_hash[symbol] = text
-    geo = Geography.new(create_hash) 
-    geo.save(validate: false)
-    return geo
-  end 
+  def self.find_or_create_state(name)
+    self.find_or_create(name, 'state')
+  end
+
+  def self.find_or_create(name, level)
+    # make match case-insensitive?
+    geo = ( Geography.locate(name, :short_name, level) ||
+            Geography.locate(name, :long_name, level) )
+
+    unless geo
+      name_for_link = self.proper_name_for_link("#{level}_#{name}")
+      geo = Geography.create!(
+        level: level, short_name: name, long_name: name, name_for_link: name_for_link)
+    end
+
+    geo
+  end
 
   def self.locate(text,symbol,level)
-    Geography.all.detect {|geo| geo.send(symbol) == text and geo.level == level}
+    Geography.where(symbol => text, :level => level).first
   end
 
   def self.proper_name_for_link(input)
