@@ -445,10 +445,13 @@ class Supplier < ActiveRecord::Base
   end
 
   def array_for_sorting
-    return [self, self.owners.count, self.reviews.count, self.claimed, Tag.tag_set(:risky,:id).any?{ |t_id| self.has_tag?(t_id) }]
+    out_of_business = Tag.tag_set(:risky,:id).any?{ |t_id| self.has_tag?(t_id) }
+    country_link = address.country.name_for_link
+    state_link = address.state.name_for_link
+    return [self, owners.count, reviews.count, claimed, out_of_business, country_link, state_link]
   end
 
-  #return nested, ordered arrays of [country][state][supplier]
+  #return nested, ordered arrays of [country][state][supplier,machine_count,review_count,claimed,out_of_business,country_link,state_link]
   #super slow, relies on caching
   #unknown for country -> supplier direct stuff
 

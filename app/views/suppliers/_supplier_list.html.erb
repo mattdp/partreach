@@ -13,7 +13,7 @@
     <% counter = 0 %>
     <ul class="supplier-list-bullets">
       <tr>
-        <% visibles[country][state].each do |supplier,machine_count,review_count,claimed,out_of_business| %>
+        <% visibles[country][state].each do |supplier,machine_count,review_count,claimed,out_of_business,country_link,state_link| %>
           <% if counter >= columns %>
             </tr><tr>
             <% counter = 0 %>
@@ -21,7 +21,7 @@
           <% if %>
             <td>
               <li>
-                <%= render partial: "suppliers/supplier_link_and_icons", locals: {supplier: supplier, machine_count: machine_count, review_count: review_count, claimed: claimed, out_of_business: out_of_business} %>
+                <%= render partial: "suppliers/supplier_link_and_icons", locals: {supplier: supplier, machine_count: machine_count, review_count: review_count, claimed: claimed, out_of_business: out_of_business, country_link: country_link, state_link: state_link} %>
               </li>
             </td>
             <% counter += 1 %>
