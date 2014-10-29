@@ -32,9 +32,8 @@ class AnalyticsController < ApplicationController
     index = 0
     #-2 since using dates[index] and dates[index+1]
     while (index <= dates.length - 2)
-      closed_orders = Order.closed_orders(dates[index], dates[index+1])
-      billable_bids = Dialogue.billable_by_supplier(closed_orders)
-      @billable_bids_by_month << { month: dates[index], billable_bids: billable_bids }
+      bid_summary_by_supplier = Dialogue.bid_summary_by_supplier(dates[index], dates[index+1])
+      @billable_bids_by_month << { month: dates[index], bid_summary_by_supplier: bid_summary_by_supplier }
 
       index += 1
     end

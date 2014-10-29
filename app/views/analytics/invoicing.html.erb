@@ -9,12 +9,13 @@
         <% bid_close_month = billable_bids_for_month[:month] %>
         <p><strong><%= bid_close_month.strftime("%B %Y") %></strong></p>
 
-        <% billable_bids_for_month[:billable_bids].each do |supplier, bids| %>
+        <% billable_bids_for_month[:bid_summary_by_supplier].each do |supplier, bids| %>
           <% invoice_month = "#{(bid_close_month >> 1).strftime("%y%m")}" %>
           <p><%= "#{supplier.name} - #{invoice_month}01#{supplier.id}" %></p>
           <ul>
-          <% bids.each do |bid| %>
-            <li><%= "SupplyBetter RFQ ##{bid.order.id},<date TBD>,#{number_to_currency(bid.total_cost)},#{bid.won? ? 'won' : 'lost'},#{bid.order.user.lead.lead_contact.full_name_untrusted},#{bid.order.user.lead.lead_contact.email}" %></li>
+          <% bids.each do |bid_info| %>
+            <% dialogue = bid_info[:dialogue] %>
+            <li><%= "SupplyBetter RFQ ##{dialogue.order.id},#{bid_info[:order_close_date].strftime('%Y-%m-%d')},#{number_to_currency(dialogue.total_cost)},#{dialogue.won? ? 'won' : 'lost'},#{dialogue.order.user.lead.lead_contact.full_name_untrusted},#{dialogue.order.user.lead.lead_contact.email}" %></li>
           <% end %>
           </ul>
         <% end %>

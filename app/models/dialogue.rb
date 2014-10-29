@@ -157,4 +157,33 @@ class Dialogue < ActiveRecord::Base
     (total * Supplier::DEFAULT_BID_FEE).round(2)
   end
 
+  def self.bid_summary_by_supplier(start_date, end_date)
+    order_closed_events = Event.order_closed_events(start_date, end_date)
+    closed_order_ids = order_closed_events.map { |e| e.model_id }
+    order_closed_dates = {}
+    order_closed_events.each do |event|
+      order_closed_dates[event.model_id] = event.created_at
+    end
+
+    in_network_tags = Tag.tag_set(:network,:id)
+
+    billable_bids =
+     Dialogue.where(billable: true).
+     includes(:supplier).references(:supplier).
+     joins(supplier: :tags).where(tags: {id: in_network_tags}).
+     joins(:order).where(orders: {id: closed_order_ids}).includes(:order)
+
+    result_hash = {}
+    billable_bids.each do |dialogue|
+        bid_info = { dialogue: dialogue}
+        bid_info[:order_close_date] = order_closed_dates[dialogue.order.id]
+        if result_hash[dialogue.supplier]
+          result_hash[dialogue.supplier] << bid_info
+        else
+          result_hash[dialogue.supplier] = [bid_info]
+      end
+    end
+    result_hash
+  end
+
 end

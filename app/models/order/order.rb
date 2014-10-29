@@ -310,8 +310,8 @@ See the note from client for details on what exactly they're looking for.</p>
   end
 
   def self.closed_orders(start_date, end_date)
-    closed_order_events = Event.closed_orders(start_date, end_date)
-    closed_order_ids = closed_order_events.map { |e| e.model_id }
+    order_closed_events = Event.order_closed_events(start_date, end_date)
+    closed_order_ids = order_closed_events.map { |e| e.model_id }
     Order.where(id: closed_order_ids)
   end
 
