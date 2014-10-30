@@ -298,9 +298,13 @@ class OrdersController < ApplicationController
         signed_in_user
         redirect_to(root_path) unless @order && (current_user == @order.user)
       else
-        redirect_to(root_path) unless params[:view_token] && @order && (params[:view_token] == @order.view_token)
+        redirect_to(root_path) unless valid_view_token? && (action_name == 'show')
         @using_view_token = true
       end
+    end
+
+    def valid_view_token?
+      params[:view_token] && @order && (params[:view_token] == @order.view_token)
     end
 
     def text_notification(message_text)
