@@ -1,5 +1,6 @@
 json.merge! @order.attributes
 json.order_created to_pacific_timezone(@order.created_at).strftime("%m/%d/%Y %H:%M (%Z)")
+json.view_link view_order_url(@order.id, @order.view_token) if @order.view_token
 json.user do
   json.merge! @order.user.attributes
   json.address @order.user.address
