@@ -121,6 +121,7 @@ class OrdersController < ApplicationController
 
       @order.columns_shown = "all"
       @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
+      @order.view_token = SecureRandom.hex
       @order.assign_attributes(order_params)
       if (params[:zip].present? || params[:country].present?)
         @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
