@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 
-  before_filter :signed_in_user, only: [:index, :show, :destroy, :manipulate_dialogues]
+  before_filter :signed_in_user, only: [:index, :destroy, :manipulate_dialogues]
   before_filter :correct_user, only: [:show, :destroy]
   before_filter :set_gon_order_id, only: [:show, :manipulate_dialogues]
   before_filter :admin_user, only: [:manipulate_dialogues, :update_dialogues, :manipulate_parts, :update_parts, :initial_email_edit, :initial_email_update]
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    @order = Order.find(params[:id])
+    @order ||= Order.find(params[:id])
     @order_groups = @order.order_groups.order("created_at")
     @user = User.find(@order.user_id)
     @total_quantity = @order.total_quantity
@@ -159,7 +159,7 @@ class OrdersController < ApplicationController
   # DELETE /orders/1
   # DELETE /orders/1.json
   def destroy
-    @order = Order.find(params[:id])
+    @order ||= Order.find(params[:id])
     @order.destroy
 
     respond_to do |format|
@@ -292,8 +292,15 @@ class OrdersController < ApplicationController
     end
 
     def correct_user
-      @orders = current_user.orders.find_by_id(params[:id])
-      redirect_to(root_path) if (@orders.nil? && !current_user.admin)
+      @order = Order.find_by_id(params[:id])
+      if current_user
+        return if current_user.admin
+        signed_in_user
+        redirect_to(root_path) unless @order && (current_user == @order.user)
+      else
+        redirect_to(root_path) unless params[:view_token] && @order && (params[:view_token] == @order.view_token)
+        @using_view_token = true
+      end
     end
 
     def text_notification(message_text)

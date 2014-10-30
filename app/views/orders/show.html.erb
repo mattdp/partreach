@@ -47,7 +47,9 @@
         <p><strong>No quotes have been received yet! We will notify you as soon as suppliers respond.</strong></p>
       <% end %>
 
-      <p class="back_to_home"><%= link_to 'Back to orders', orders_path %></p>
+      <% unless @using_view_token %>
+        <p class="back_to_home"><%= link_to 'Back to orders', orders_path %></p>
+      <% end %>
 
     </div>
   </div>
