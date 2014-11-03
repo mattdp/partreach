@@ -120,7 +120,10 @@ class Supplier < ActiveRecord::Base
   end
 
   def self.suppliers_for_new_dialogue
-    suppliers = Supplier.includes(:tags).references(:tags).includes([{ address: :country }, { address: :state }]).order("lower(suppliers.name)")
+    suppliers =
+      Supplier.includes(:tags).references(:tags).where.not(tags: {name: 'datadump'}).
+      includes([{ address: :country }, { address: :state }]).
+      order("lower(suppliers.name)")
   end
 
   def self.all_signed
