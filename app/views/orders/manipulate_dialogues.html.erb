@@ -44,6 +44,10 @@
           <label for="on-field">Internal notes on order</label>
           <textarea id="on-field" ng-model="order.notes"></textarea>
         </div>
+        <div class="form-group">
+          <label for="sl-field">Shareable link (for viewing only)</label>
+          <input type="text" id="sl-field" readonly ng-model="order.view_link">
+        </div>
 
         <div ng-repeat="order_group in order.order_groups">
           <h3 class="bit-of-space">

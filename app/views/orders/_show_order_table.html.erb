@@ -7,7 +7,9 @@
       <th><%= "#{details[:header]}" %></th>
     <% end %>
 
-    <th class="little-field">Selection</th>
+    <% unless @using_view_token %>
+      <th class="little-field">Selection</th>
+    <% end %>
   </tr>
 
   <% rows.each do |d| %>
@@ -32,7 +34,10 @@
       <td class=<%= "#{details[:css_class]}" %>><%= eval("#{details[:code]}") %></td>
     <% end %>
 
-    <td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
+    <% unless @using_view_token %>
+      <td class="center"><%= link_to "Purchase!", "/orders/purchase/#{@order.id}/#{d.id}" %></td>
+    <% end %>
+
     </tr>
   <% end %>
   

@@ -58,6 +58,7 @@ Partreach::Application.routes.draw do
   get '/submit_ask/', to: 'profiles#submit_ask'
   
   resources :orders, only: [:index, :show, :new, :create, :destroy]
+  get '/orders/view/:id/:view_token', to: 'orders#show', as: 'view_order'
   resources :transfer_orders, only: [:create]
   get '/manipulate/:id', to: 'orders#manipulate_dialogues', as: 'manipulate'
   get '/parts/:id', to: 'orders#manipulate_parts', as: 'manipulate_parts'

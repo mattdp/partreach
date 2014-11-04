@@ -27,7 +27,7 @@
     <br>
   <% end %>
   <%= link_to "Leave a supplier review", new_review_path %>
-  <% if current_user.admin? %>
+  <% if current_user && current_user.admin? %>
     <%= "or admin privileges: " %>
     <%= link_to "Manipulate dialogues (admin)", manipulate_path(@order) %>
   <% end %>
