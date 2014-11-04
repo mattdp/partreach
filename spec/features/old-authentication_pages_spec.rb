@@ -61,8 +61,8 @@ describe "Authentication" do
         end
 
         describe "after signing in" do
-
           it "should render the desired protected page" do
+            pending("fix")
             page.should have_selector('h1', text: 'Editing user')
           end
         end

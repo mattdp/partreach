@@ -61,10 +61,13 @@ FactoryGirl.define do
     tag_group
   end
 
+  factory :tag_relationship_type do |trt|
+  end
+
   #has_tag always must be provided
   factory :filter do |f|
     sequence(:name)   { |n| "Filter#{n}" }
-    geography
+    association :geography, level: "state"
   end
 
   factory :geography do |g|
