@@ -55,16 +55,10 @@ $(document).ready(function() {
   $("#new-order").validate({
     ignore: [],
     rules: {
-      files_uploaded: {
-        required: true
-      },
-      stated_quantity: {
-        required: true
-      },
-      units: {
-        required: true
-      },
-      material_message: {
+      // files_uploaded: {
+      //   required: true
+      // },
+      "order[units]": {
         required: true
       },
       user_email: {
@@ -98,58 +92,53 @@ $(document).ready(function() {
     $(this).closest('label').toggleClass('checked', $(this).is(':checked'));
   });
 
-  $('.questions__columns input').change(function() {
-    $(this).parents('td').find('label').removeClass('checked');
-    $(this).closest('label').toggleClass('checked', $(this).is(':checked'));
-  });
-
   $('#questions_experience_experienced').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_experience')[0].value = $('#questions_experience_experienced')[0].value;
+      $('#order_stated_experience')[0].value = $('#questions_experience_experienced')[0].value;
     }
   });
 
   $('#questions_experience_rookie').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_experience')[0].value = $('#questions_experience_rookie')[0].value;
+      $('#order_stated_experience')[0].value = $('#questions_experience_rookie')[0].value;
     }
   });
 
   $('#questions_priority_speed').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_priority')[0].value = $('#questions_priority_speed')[0].value;
+      $('#order_stated_priority')[0].value = $('#questions_priority_speed')[0].value;
     }
   });
 
 
   $('#questions_priority_quality').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_priority')[0].value = $('#questions_priority_quality')[0].value;
+      $('#order_stated_priority')[0].value = $('#questions_priority_quality')[0].value;
     }
   });
 
 
   $('#questions_priority_cost').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_priority')[0].value = $('#questions_priority_cost')[0].value;
+      $('#order_stated_priority')[0].value = $('#questions_priority_cost')[0].value;
     }
   });
 
   $('#questions_manufacturing_printing').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_manufacturing')[0].value = $('#questions_manufacturing_printing')[0].value;
+      $('#order_stated_manufacturing')[0].value = $('#questions_manufacturing_printing')[0].value;
     }
   });
 
   $('#questions_manufacturing_other').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_manufacturing')[0].value = $('#questions_manufacturing_other')[0].value;
+      $('#order_stated_manufacturing')[0].value = $('#questions_manufacturing_other')[0].value;
     }
   });
 
   $('#questions_manufacturing_unknown').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_manufacturing')[0].value = $('#questions_manufacturing_unknown')[0].value;
+      $('#order_stated_manufacturing')[0].value = $('#questions_manufacturing_unknown')[0].value;
     }
   });
 

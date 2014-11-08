@@ -58,13 +58,17 @@ class OrdersController < ApplicationController
     @approximate_next_order_id = next_order_id
 
     @order = Order.new
-    @order_group = OrderGroup.create_default
-
+    @order.order_groups.build
+    3.times { @order.order_groups[0].parts.build }
     respond_to do |format|
       format.html { render layout: "orders_new" } # new.html.erb
       format.json { render json: @order }
     end
   end
+
+# def create
+#   redirect_to new_order_path
+# end
 
   # POST /orders
   #
@@ -73,8 +77,7 @@ class OrdersController < ApplicationController
   def create
     existed_already = false
     did_user_work = false
-    @order = Order.new
-    @order_group = OrderGroup.find(params['order_group_id'])
+    @order = Order.new(order_params)
     did_order_save = false
     if current_user.nil?
       #they've filled out the signin form
@@ -117,17 +120,12 @@ class OrdersController < ApplicationController
     end
 
     if did_user_work
-      @order.user_id = current_user.id
+      @user.create_or_update_address({ zip: params[:zip] }) if params[:zip].present?
 
-      @order.columns_shown = "all"
+      @order.user_id = current_user.id
       @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
       @order.view_token = SecureRandom.hex
-      @order.assign_attributes(order_params)
-      if (params[:zip].present? || params[:country].present?)
-        @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
-      end
-
-      @order.order_groups << @order_group
+      @order.order_groups[0].init_default
 
       did_order_save = @order.save
       logger.debug "Order saving: #{did_order_save}"
@@ -287,9 +285,11 @@ class OrdersController < ApplicationController
   private
 
     def order_params
-      params.permit(:name,:material_message,:suggested_suppliers, :deadline, \
-        :stated_experience,:stated_priority,:stated_manufacturing,:supplier_message, \
-        :email_snippet, :stated_quantity, :units)
+      params.require(:order).permit(
+        :stated_experience, :stated_priority, :stated_manufacturing,
+        :units, :deadline, :order_description, :supplier_message,
+        order_groups_attributes: [:id, :name, parts_attributes: [:id, :name, :quantity, :material, :notes]]
+      )
     end
 
     def correct_user

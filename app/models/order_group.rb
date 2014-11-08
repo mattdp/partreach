@@ -17,7 +17,7 @@ class OrderGroup < ActiveRecord::Base
 
   belongs_to :order
   has_many :parts, dependent: :destroy
-  accepts_nested_attributes_for :parts, reject_if: :all_blanks
+  accepts_nested_attributes_for :parts, reject_if: :all_blank
   has_many :dialogues, dependent: :destroy
 
   validates :name, presence: true

@@ -38,11 +38,11 @@ class Order < ActiveRecord::Base
   
   belongs_to :user
   has_many :order_groups, -> { order(:created_at) }, dependent: :destroy
-  accepts_nested_attributes_for :order_groups, reject_if: :all_blanks
+  accepts_nested_attributes_for :order_groups, reject_if: :all_blank
   has_many :dialogues, through: :order_groups, dependent: :destroy
   has_many :parts, through: :order_groups, dependent: :destroy
   has_many :externals, :as => :consumer, :dependent => :destroy
-  accepts_nested_attributes_for :externals, reject_if: :all_blanks
+  accepts_nested_attributes_for :externals, reject_if: :all_blank
 
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
   validates :columns_shown, presence: true
