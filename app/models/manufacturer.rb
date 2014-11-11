@@ -18,14 +18,10 @@ class Manufacturer < ActiveRecord::Base
   
   def self.create_or_reference_manufacturer(manufacturer_params)
     name = manufacturer_params[:name]
-    manufacturer = Manufacturer.where("name = ?",name)
-    if manufacturer.present?
-      return manufacturer[0]
-    else
-      new_man = Manufacturer.create({name: name, name_for_link: Manufacturer.proper_name_for_link(name)})
-      return new_man if new_man
-      return nil
-    end
+    name_for_link = Manufacturer.proper_name_for_link(name)
+    manufacturer =
+      Manufacturer.find_by_name_for_link(name_for_link) ||
+      Manufacturer.create(name: name, name_for_link: name_for_link)
   end
 
   def self.proper_name_for_link(name)
