@@ -18,7 +18,7 @@
         <p><%= @user.supplier_id.present? ? "Attached to #{Supplier.find(@user.supplier_id).name}" : "Not attached to supplier" %></p>
         <p>Orders:</p>
         <ul>
-          <% @orders.each do |order| %>
+          <% @user.orders.each do |order| %>
             <li><%= link_to "#{order.id}", order_path(order) %><%= " (#{order.created_at.to_date}) #{order.status}" %></li>
             <ul>
               <% order.dialogue_partition.each do |title, dialogues| %>
