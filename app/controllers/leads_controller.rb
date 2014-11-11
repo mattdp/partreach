@@ -35,6 +35,7 @@ class LeadsController < ApplicationController
     @lead = Lead.find(params[:id])
     @lead_contact = @lead.lead_contact
     @user = @lead.user
+    @orders = Order.orders_for_user(@user)
     @communications = Communication.get_ordered("Lead",@lead.id)
     @text_field_setup = text_field_setup
   end

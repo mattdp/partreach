@@ -52,6 +52,10 @@ class Order < ActiveRecord::Base
     Order.maximum(:id) || 0
   end
 
+  def self.orders_for_user(user)
+    self.where(user: user).order(id: :desc)
+  end
+
   def alphabetical_unique_supplier_names
     return self.dialogues.map{|d| d.supplier_id}.uniq.map{|id| Supplier.find(id).name}.sort
   end
