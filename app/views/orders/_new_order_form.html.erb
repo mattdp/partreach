@@ -37,6 +37,7 @@
 
   <%= nested_form_for(@order, html: {id: 'new-order'}) do |order_form| %>
     <div id='uploads'></div>
+    <input id="files_uploaded" name="files_uploaded" type="hidden">
     <%= order_form.hidden_field :stated_experience, value: @experience %>
     <%= order_form.hidden_field :stated_priority, value: @priority %>
     <%= order_form.hidden_field :stated_manufacturing, value: @manufacturing %>

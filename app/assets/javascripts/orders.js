@@ -27,11 +27,11 @@ $(document).ready(function() {
         if ( $('.uploaded-file-placeholder').length ) {
           $('.uploaded-file-placeholder').remove();
         }
-        $('#uploaded_file_list').append('<li>' + content.filename + '</li>');
-
         $('#uploads').append(
           '<input type="hidden" name="uploads[][url]" value="' + content.url + '"> \
            <input type="hidden" name="uploads[][original_filename]" value="' + content.filename + '">');
+        $('#files_uploaded').val("true")
+        $('#uploaded_file_list').append('<li>' + content.filename + '</li>');
   });
 
   $('.s3-uploader-page-refresh').bind('s3_uploads_complete', function(e, content) {
@@ -43,6 +43,7 @@ $(document).ready(function() {
   $("#new-order").validate({
     ignore: [],
     rules: {
+      files_uploaded: "required",
       "order[units]": {
         required: true
       },
@@ -63,6 +64,7 @@ $(document).ready(function() {
       signup_signin: "user_email user_password signin_email signin_password"
     },
     messages: {
+      "files_uploaded": "Please upload at least one file",
       "user_email": "Please enter email and password",
       "user_password": "Please enter email and password",
       "signin_email": "Please enter email and password",
