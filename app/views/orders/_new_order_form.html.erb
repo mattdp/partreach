@@ -17,7 +17,7 @@
 
   <h2 class="main-header">Upload your files</h2>
   <p class="step-desc">Maximum 300Mb each, all filetypes accepted.</p>
-<!--   <%= s3_uploader_form  id: "s3-uploader", class: "s3-uploader",
+  <%= s3_uploader_form  id: "s3-uploader", class: "s3-uploader",
                         max_file_size: 300.megabytes,
                         key_starts_with: "externals/",
                         key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
@@ -29,15 +29,14 @@
       <div class="progress"><div class="bar" style="width: 0%"></div></div>
     </div>
   </script>
- -->
   <div>
     <h3 class="step-header uploaded-file-header">Uploaded files:</h3>
     <p class="step-desc uploaded-file-placeholder">No files uploaded yet.</p>
     <ul id='uploaded_file_list'></ul>
-    <%= hidden_field_tag "files_uploaded" %>
   </div>
 
   <%= nested_form_for(@order, html: {id: 'new-order'}) do |order_form| %>
+    <div id='uploads'></div>
     <%= order_form.hidden_field :stated_experience, value: @experience %>
     <%= order_form.hidden_field :stated_priority, value: @priority %>
     <%= order_form.hidden_field :stated_manufacturing, value: @manufacturing %>

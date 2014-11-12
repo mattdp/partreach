@@ -24,26 +24,14 @@ $(document).ready(function() {
   $(".s3-uploader").S3Uploader();
 
   $('.s3-uploader').bind('s3_upload_complete', function(e, content) {
-    var orderGroupId = $('#order_group_id')[0].value;
-    $.ajax({
-      url : "/parts/create_with_external",
-      type: "POST",
-      data: { 'order_group_id': orderGroupId, 'filename': content.filename, 'url': content.url },
-      success: function(data, textStatus, jqXHR)
-      {
-        if ( $('#uploaded_file_list').length) {
-          if ( $('.uploaded-file-placeholder').length ) {
-            $('.uploaded-file-placeholder').remove();
-          }
-          $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
-          $('#files_uploaded').val("true")
+        if ( $('.uploaded-file-placeholder').length ) {
+          $('.uploaded-file-placeholder').remove();
         }
-      },
-      error: function (jqXHR, textStatus, errorThrown)
-      {
-        alert("An error occurred during upload (" + jqXHR.status + ")")
-      }
-    });
+        $('#uploaded_file_list').append('<li>' + content.filename + '</li>');
+
+        $('#uploads').append(
+          '<input type="hidden" name="uploads[][url]" value="' + content.url + '"> \
+           <input type="hidden" name="uploads[][original_filename]" value="' + content.filename + '">');
   });
 
   $('.s3-uploader-page-refresh').bind('s3_uploads_complete', function(e, content) {
@@ -55,9 +43,6 @@ $(document).ready(function() {
   $("#new-order").validate({
     ignore: [],
     rules: {
-      // files_uploaded: {
-      //   required: true
-      // },
       "order[units]": {
         required: true
       },
@@ -78,7 +63,6 @@ $(document).ready(function() {
       signup_signin: "user_email user_password signin_email signin_password"
     },
     messages: {
-      "files_uploaded": "Please upload at least one file",
       "user_email": "Please enter email and password",
       "user_password": "Please enter email and password",
       "signin_email": "Please enter email and password",

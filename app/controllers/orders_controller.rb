@@ -66,10 +66,6 @@ class OrdersController < ApplicationController
     end
   end
 
-# def create
-#   redirect_to new_order_path
-# end
-
   # POST /orders
   #
   # consider making the whole thing a transaction
@@ -128,6 +124,12 @@ class OrdersController < ApplicationController
       @order.order_groups[0].init_default
 
       did_order_save = @order.save
+      if did_order_save
+        params["uploads"].each do |upload|
+          @order.externals.build(url: upload["url"], original_filename: upload["original_filename"])
+        end
+        did_order_save = @order.save
+      end
       logger.debug "Order saving: #{did_order_save}"
     else
       @order.errors.messages[:Sign_up_or_sign_in] = ["needs a valid email and password"]
