@@ -18,7 +18,7 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :orders, :dependent => :destroy
+  has_many :orders, -> { order id: :desc }, :dependent => :destroy
   has_many :dialogues, :through => :orders, :dependent => :destroy
   has_many :reviews
   has_one :address, :as => :place, :dependent => :destroy
