@@ -44,9 +44,7 @@ $(document).ready(function() {
     ignore: [],
     rules: {
       files_uploaded: "required",
-      "order[units]": {
-        required: true
-      },
+      "order[units]": "required",
       user_email: {
         require_from_group: [2, ".signup-signin-group"]
       },
@@ -65,6 +63,7 @@ $(document).ready(function() {
     },
     messages: {
       "files_uploaded": "Please upload at least one file",
+      "order[units]": "Please enter units (mm., in., etc.)",
       "user_email": "Please enter email and password",
       "user_password": "Please enter email and password",
       "signin_email": "Please enter email and password",
