@@ -44,8 +44,8 @@
 
     <div class="triplets">
       <div class="col">
-        <%= order_form.label :units, 'Drawing units' %>
-        <%= order_form.text_field :units, :class => 'right-half' %>
+        <%= order_form.label :units, 'Drawing units (for all parts)' %>
+        <%= order_form.text_field :units, placeholder: 'mm./in.', :class => 'right-half' %>
       </div>
     </div>
 
@@ -53,24 +53,20 @@
   <%= order_groups_form.fields_for :parts do |part_form| %>
     <div class="triplets">
       <div class="col">
-        <%= part_form.label :name %>
+        <%= part_form.label :name, 'Part name' %>
         <%= part_form.text_field :name %>
       </div>
       <div class="col">
         <%= part_form.label :quantity %>
-        <%= part_form.number_field :quantity, min: "1" %>
+        <%= part_form.number_field :quantity, value: "1", min: "1" %>
       </div>
       <div class="col">
         <%= part_form.label :material %>
-        <%= part_form.text_field :material %>
-      </div>
-      <div class="col">
-        <%= part_form.label :notes %>
-        <%= part_form.text_field :notes %>
+        <%= part_form.text_field :material, placeholder: 'ABS, stainless steel, etc.' %>
       </div>
     </div>
   <% end %>
-  <p><%= order_groups_form.link_to_add "Add a part", :parts %></p>
+  <p><%= order_groups_form.link_to_add 'Add a part', :parts %></p>
 <% end %>
 
     <div class="triplets">
