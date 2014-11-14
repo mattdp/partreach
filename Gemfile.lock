@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/ryanb/nested_form.git
+  revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a
+  specs:
+    nested_form (0.3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -168,7 +174,6 @@ GEM
     neat (1.5.0)
       bourbon (>= 2.1)
       sass (>= 3.2)
-    nested_form (0.3.2)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
@@ -309,7 +314,7 @@ DEPENDENCIES
   launchy (= 2.4.0)
   memcachier (= 0.0.2)
   neat
-  nested_form
+  nested_form!
   newrelic_rpm (= 3.6.6.147)
   nokogiri (= 1.6.0)
   paperclip (= 3.5.1)
