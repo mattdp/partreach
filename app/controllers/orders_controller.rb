@@ -59,7 +59,7 @@ class OrdersController < ApplicationController
 
     @order = Order.new
     @order.order_groups.build
-    3.times { @order.order_groups[0].parts.build }
+    @order.order_groups[0].parts.build
     respond_to do |format|
       format.html { render layout: "orders_new" } # new.html.erb
       format.json { render json: @order }
