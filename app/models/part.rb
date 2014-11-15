@@ -18,6 +18,10 @@ class Part < ActiveRecord::Base
   belongs_to :order_group
   has_one :order, through: :order_group
 
+  validates :name, presence: true
+  validates :quantity, numericality: { only_integer: true, greater_than: 0 }
+  validates :material, length: { minimum: 2 }
+
   # def self.create_with_external(order_group_id, filename, url)
   #   part = Part.create!({order_group_id: order_group_id, name: filename})
   #   external = External.create!({url: url, consumer_id: part.id, consumer_type: "Part" }) if part

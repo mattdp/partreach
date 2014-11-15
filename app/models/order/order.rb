@@ -47,7 +47,6 @@ class Order < ActiveRecord::Base
   validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
   validates :columns_shown, presence: true
   validates :units, presence: true
-  validates_presence_of :parts, message: ": Please enter name, quantity, and material for at least one part."
 
 
   PARTS_SNIPPETS_PLACEHOLDER = "<[$PARTS$]>"
