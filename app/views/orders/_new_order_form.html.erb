@@ -15,8 +15,8 @@
     <h2 class="inline">Tell us about your order.</h2>
   </div>
 
-  <h2 class="main-header">Upload your files</h2>
-  <p class="step-desc">Maximum 300Mb each, all filetypes accepted.</p>
+  <h2 class="main-header">Upload your files (CAD drawings, parts list, etc.)</h2>
+  <p class="step-desc">Maximum 300Mb each, all file types accepted. For parts list, any spreadsheet, CSV, or text file accepted.</p>
   <%= s3_uploader_form  id: "s3-uploader", class: "s3-uploader",
                         max_file_size: 300.megabytes,
                         key_starts_with: "externals/",
@@ -49,25 +49,31 @@
       </div>
     </div>
 
-<%= order_form.fields_for :order_groups do |order_groups_form| %>
-  <%= order_groups_form.fields_for :parts do |part_form| %>
     <div class="triplets">
       <div class="col">
-        <%= part_form.label :name, 'Part name' %>
-        <%= part_form.text_field :name %>
+        <label>Part name</label>
       </div>
       <div class="col">
-        <%= part_form.label :quantity %>
-        <%= part_form.number_field :quantity, value: "1", min: "1" %>
+        <label>Quantity</label>
       </div>
       <div class="col">
-        <%= part_form.label :material %>
-        <%= part_form.text_field :material, placeholder: 'ABS, stainless steel, etc.' %>
+        <label>Material</label>
       </div>
+      <%= order_form.fields_for :order_groups do |order_groups_form| %>
+        <%= order_groups_form.fields_for :parts do |part_form| %>
+          <div class="col">
+            <%= part_form.text_field :name %>
+          </div>
+          <div class="col">
+            <%= part_form.number_field :quantity, value: "1", min: "1" %>
+          </div>
+          <div class="col">
+            <%= part_form.text_field :material, placeholder: 'ABS, stainless steel, etc.' %>
+          </div>
+        <% end %>
+        <p><%= order_groups_form.link_to_add 'Add another part', :parts %></p>
+      <% end %>
     </div>
-  <% end %>
-  <p><%= order_groups_form.link_to_add 'Add a part', :parts %></p>
-<% end %>
 
     <div class="triplets">
       <div class="col">
