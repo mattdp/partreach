@@ -44,10 +44,11 @@ class Order < ActiveRecord::Base
   has_many :externals, :as => :consumer, :dependent => :destroy
   accepts_nested_attributes_for :externals, reject_if: :all_blank
 
-  validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
-  validates :columns_shown, presence: true
   validates :units, presence: true
-
+  validates :columns_shown, presence: true
+  validates :user, presence: true
+  validates :order_groups, presence: true
+  validates :externals, presence: true
 
   PARTS_SNIPPETS_PLACEHOLDER = "<[$PARTS$]>"
   IMAGES_SNIPPETS_PLACEHOLDER = "<[$IMAGES$]>"

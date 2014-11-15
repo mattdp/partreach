@@ -18,10 +18,10 @@ class OrderGroup < ActiveRecord::Base
   belongs_to :order
   has_many :parts, dependent: :destroy
   accepts_nested_attributes_for :parts, reject_if: proc { |attributes| attributes[:name].blank? && attributes[:material].blank? }
-  validates_presence_of :parts, message: ": Please enter name, quantity, and material for at least one part."
   has_many :dialogues, dependent: :destroy
 
   validates :name, presence: true
+  validates_presence_of :parts, message: ": Please enter name, quantity, and material for at least one part."
 
   def init_default
     self.name = 'Default'
