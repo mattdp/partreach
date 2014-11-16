@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030053442) do
+ActiveRecord::Schema.define(version: 20141106234422) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 20141030053442) do
     t.integer  "stated_quantity"
     t.string   "units"
     t.string   "view_token"
+    t.text     "order_description"
   end
 
   create_table "owners", force: true do |t|
