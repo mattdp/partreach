@@ -9,7 +9,11 @@ published: true
 </div>
 <div class="footer" align="bottom">Old Gulpo (right), New Gulpo (left)</div>
 
-This is a post about what it takes to source a custom hardware product overseas. 
+People like to say that "Manufacturing is hard". I've noticed recently that this is the frequent go-to answer for really anyone making a hardware product. The problem I have with this statement is that "manufacturing is hard" doesn't give any hint as to why. The only proper response to assertions like this is to nod your head with eyes glazed over and put on a consoling "you're so brave" look on your face. 
+
+Well I'm here to say that, yes, of course manufacturing is hard, but it's not impossible. Building a hardware product doesn't need to be a task for just masochists and martyrs like we're led to believe. It requires difficult decisions, attention to detail, and an ability to handle taking on business-level risks. 
+
+This post is about one, relatively simple, hardware product and how SupplyBetter helped get it made. Our goal is to provide as detailed an account of the steps involved so that those currently in the middle of or about to embark on a serious hardware project can see just what's involved. From our perspective this is a near-ideal case study of showing the risks involved, difficult decisions that have to made, and attention to detail necessary to source any hardware product. While the product itself was seemingly simple, the insights gained and lessons learned apply to anyone looking to get into hardware. This is neither a cautionary tale nor a glamor piece. Just a straightforward account of what it took to solve source a single hardware component. 
 
 Background
 
@@ -144,3 +148,13 @@ Old code:
 [] make sure Ever Greater holds onto the mold for SMBC
 
 *A supplier's only incentive in providing a discount for a large quantity order is the business advantage of having a longer term contract on the books
+
+
+
+
+
+
+------
+
+
+
