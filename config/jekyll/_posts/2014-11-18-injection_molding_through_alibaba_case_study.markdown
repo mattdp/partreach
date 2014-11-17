@@ -9,6 +9,48 @@ published: true
 </div>
 <div class="footer" align="bottom">Old Gulpo (right), New Gulpo (left)</div>
 
+This is a post about what it takes to source a custom hardware product overseas. 
+
+Background
+
+Gulpo is an Icthys-themed novelty car emblem conceived by Zach Weinersmith and the SMBC team. After Gulpo made its debut on their daily-updated webcomic, there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, Gulpo went on sale in the winter of 2013-14 and quickly sold out. [cite 2013] Gulpo was a success. 
+
+The Problem 
+
+tl;dr: SMBC could not make larger batches due to the limitations imposed by the manufacturing process used to produce the first batch of Gulpos.
+
+Despite the success of the first run of Gulpos, it didn't make sense to produce another run. Not including their time spent sourcing and managing the first production run, SMBC just barely broke even selling Gulpo Version 1. It was too expensive to manufacture given their current method, and the product didn't look as good as they wanted it to. Their choice of laser cutting as the manufacturing process for this first run of Gulpos was not suitable going forward for two reasons. 
+
+Laser cutting for prototyping: Gulpo Version 1 was laser cut from black plastic with a chrome front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is 2D and there is very little setup cost to cut the design. This is important because if SMBC was going to sell this product, they needed to validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an Icthys-themed novelty car emblem wouldn't matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually make the fish.  
+
+Laser cutting for production: Laser cutting's initial blessing of having a negligible setup cost quickly becomes a curse once production quantities begin approaching larger volumes. Laser cutting is a fixed-time manufacturing process, which means that the time-per-Gulpo for QTY 1 is the same as QTY 500. In other words, the cost of making Gulpo is relatively fixed, regardless of the quantity being produced. Considering that SMBC only broke even with the last batch, they wouldn't expect their margins to improve by order a large amount*. If SMBC really wanted Gulpo to make sense as a retail product, they were going to need to find a different way to produce them. 
+
+Aesthetics: As mentioned before, the main goal of the initial batch of Gulpos was to validate that people actually wanted to purchase this product. Aethetic were not a concern as long as they were good enough to validate this assumption (what is commonly referred to as the Minimum Viable Product a.k.a. MVP). Now that their initial assumption was firmly validated, SMBC wanted the next Gulpo to look as much like a car emblem you'd see in the wild as possible. This required a smooth and glossy chrome-on-black surface finish and an adhesive backing that would not fall off a car bumper regularly exposed to the elements. While laser cutting was able to produce a chrome against black surface finish, the results were not smooth or glossy. The surface finish wasn't smooth mainly due to the resolution of the laser cutter used, which etches the material by burning the surface line by line. While there are some great optimizations that can be done to improve the quality of images raster etched via laser cutting, you're not going to be able to produce a surface finish smooth enough to be glossy without a fair amount of post processing (i.e. sanding and/or polishing). Adding post processing as an additional step would only increase the price per unit. 
+
+Simply put, if SMBC wanted a better product for cheaper they would need to take a fundamentally different approach.
+
+Solution
+
+tl;dr: SupplyBetter needed to find an injection molding shop in China that was perfectly matched to produce this product.
+
+To better understand the decision made in making Version 2 Gulpo, here is a summary of specifications from the previous section:
+
+Technical specification
+Same 2D design as Version 1 Gulpo (e.g. letter font, outer dimensions, etc)
+A smooth and glossy surface finish
+Colors to be used are silver chrome and glossy black
+Durable enough material and strong enough adhesive backing to withstand exposure to the elements while affixed to the back of a car
+
+Business specification
+Want the ability to produce in batches of 1500+ 
+Per-unit cost to SMBC needs to be low enough to make financial sense to sell at their current price
+
+Given the above specs, an injection molded body with a die-cut adhesive backing made the most sense as the manufacturing methods of choice. Injection molding (vs. compression molding or vacuum forming) made the most sense because it's fantastically suited for high-volume production of thermoplastics. 
+
+
+
+
+
 <p><strong>The Road to Gulpo</strong></p>
 <ol>
   <li>Identify Suppliers</li>
@@ -97,3 +139,8 @@ Old code:
   <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back.jpg"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back+copy-extra_small.jpg"></a>
 </div>
 <div class="footer" align="bottom">(Left) Front view of "Collar 2," an original necklace design by <a href="https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6" target="_blank">Madeline Gannon</a> printed with SLS. (Right) <a href="https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL" target="_blank">Reverse view</a> of the same piece. Used under <a href="https://creativecommons.org/licenses/by-nc/2.0/legalcode" target="_blank">CC BY-NC 2.0.</a></div>
+
+
+[] make sure Ever Greater holds onto the mold for SMBC
+
+*A supplier's only incentive in providing a discount for a large quantity order is the business advantage of having a longer term contract on the books
