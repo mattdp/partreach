@@ -175,18 +175,16 @@ class OrdersController < ApplicationController
 
   def initial_email_update
     @order = Order.find(params[:id])
-    @order.update_attributes(order_params)
+    @order.update(email_snippet: params["email_snippet"])
 
     params["order_group_parts_snippets"].each do |id,text|
       order_group = OrderGroup.find(id)
-      order_group.parts_snippet = text
-      order_group.save
+      order_group.update(parts_snippet: text)
     end
 
     params["order_group_images_snippets"].each do |id,text|
       order_group = OrderGroup.find(id)
-      order_group.images_snippet = text
-      order_group.save
+      order_group.update(images_snippet: text)
     end
 
     redirect_to initial_email_edit_path(@order), notice: "Master email saves attempted."
