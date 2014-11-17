@@ -9,17 +9,30 @@ published: true
 </div>
 <div class="footer" align="bottom">Old Gulpo (right), New Gulpo (left)</div>
 
+Tone:
+MORE PASSION
+Not "down the rabbit hole"
+Not "heart of darkness"
+Not bland. 
+Competence, audacity, high moral compass, reassurance, informative, compelling. Complete. Relevant. 
+
+------
+
+<h1>Intro</h1>
+
 People like to say that "Manufacturing is hard". I've noticed recently that this is the frequent go-to answer for really anyone making a hardware product. The problem I have with this statement is that "manufacturing is hard" doesn't give any hint as to why. The only proper response to assertions like this is to nod your head with eyes glazed over and put on a consoling "you're so brave" look on your face. 
 
 Well I'm here to say that, yes, of course manufacturing is hard, but it's not impossible. Building a hardware product doesn't need to be a task for just masochists and martyrs like we're led to believe. It requires difficult decisions, attention to detail, and an ability to handle taking on business-level risks. 
 
 This post is about one, relatively simple, hardware product and how SupplyBetter helped get it made. Our goal is to provide as detailed an account of the steps involved so that those currently in the middle of or about to embark on a serious hardware project can see just what's involved. From our perspective this is a near-ideal case study of showing the risks involved, difficult decisions that have to made, and attention to detail necessary to source any hardware product. While the product itself was seemingly simple, the insights gained and lessons learned apply to anyone looking to get into hardware. This is neither a cautionary tale nor a glamor piece. Just a straightforward account of what it took to solve source a single hardware component. 
 
-Background
+<h1>Project Background</h1>
 
-Gulpo is an Icthys-themed novelty car emblem conceived by Zach Weinersmith and the SMBC team. After Gulpo made its debut on their daily-updated webcomic, there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, Gulpo went on sale in the winter of 2013-14 and quickly sold out. [cite 2013] Gulpo was a success. 
+People love Gulpo. And so do we. 
 
-The Problem 
+Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal team. After Gulpo made its debut on their daily-updated webcomic [cite], there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, Gulpo went on sale in the winter of 2013-14 and quickly sold out. [cite 2013] Gulpo was a success. 
+
+<h1>The Problem</h1>
 
 tl;dr: SMBC could not make larger batches due to the limitations imposed by the manufacturing process used to produce the first batch of Gulpos.
 
@@ -33,9 +46,9 @@ Aesthetics: As mentioned before, the main goal of the initial batch of Gulpos wa
 
 Simply put, if SMBC wanted a better product for cheaper they would need to take a fundamentally different approach.
 
-Solution
+<h1>Solution</h1>
 
-tl;dr: SupplyBetter needed to find an injection molding shop in China that was perfectly matched to produce this product.
+tl;dr: SupplyBetter needed to find a shop with the right capabilities in China in order to meet their project needs.
 
 To better understand the decision made in making Version 2 Gulpo, here is a summary of specifications from the previous section:
 
@@ -49,10 +62,48 @@ Business specification
 Want the ability to produce in batches of 1500+ 
 Per-unit cost to SMBC needs to be low enough to make financial sense to sell at their current price
 
-Given the above specs, an injection molded body with a die-cut adhesive backing made the most sense as the manufacturing methods of choice. Injection molding (vs. compression molding or vacuum forming) made the most sense because it's fantastically suited for high-volume production of thermoplastics. 
+Given the above specs, an injection molded body with a die-cut adhesive backing made the most sense as the manufacturing methods of choice. Injection molding is fantastically suited for high-volume production of thermoplastics, which is why you see it being used in the majority of consumer products today. Chances are whatever device you're using to read this has an injection molded component in it. This would be the most critical process to source around. 
+
+Given the above technical specs, we get a picture of who the ideal supplier would be for this project:
+
+Capability specification
+Injection molding
+Mold polishing
+Two color painting
+Die cutting
+Large batch production
+
+Business specification
+Already makes products similar to Gulpo
+Willing to send product samples
+Can work with an Minimum Order Quantity (MOQ) of ~1000 pieces
+Willing to work off of milestone payments (vs. timelines)
+
+Now that we knew what kind of supplier we were looking for, it was time to actually go out there and find them. 
+
+<h1>Discovery</h1>
+
+SupplyBetter prides itself in finding the handful of suppliers who are exact matches for the job. It's more than simply knowing which suppliers are "good" and which suppliers are "bad". You need to determine which suppliers are the most capable to work on your project. We believe that parts will be better and cheaper if you start your vendor relationship with a company that already as the equipment necessary and understands nuances of the manufacturing processes involved. Manufacturing vendors are more than just machines with spare capacity, it's the engineers and tradesmen behind them that truly make your products great. 
+
+That said, we did not yet have a supplier network established overseas. So where do you go when you need a consumer product made overseas? Alibaba. 
+
+Alibaba is ridiculously intimidating. A common perception held by hardware designers is that reaching out to suppliers on Alibaba is sometimes akin to directly emailing scammers to let them know that you're their newest victim.While there are indeed quality suppliers to be found on Alibaba's marketplace, with and entire ocean and legal system between you and the people you're sending money to there is very little, if any recourse to be had for manufacturing deals gone awry. The suspicion that you may be dealing with a fraudulent company is not unfounded.[cite] This why the in-person Asian factory tour is such a common to occurrence with hardware companies sourcing overseas. For excellent first-person accounts of what the manufacturing ecosystem looks like, I highly recommend bunnie's blog (for electronics) and The Open Company's blog (for sourcing and how it affects local culture) [cite bunnie and TOC].
+
+Neither SMBC nor SupplyBetter was willing to jump on a plane and go on a factory tour simply to make this one part. The cost of the plane tickets alone would likely amount to more than the cost of the entire production run. For this project we were stuck with online resources and our wits.
 
 
 
+
+
+"find that perfect supplier", only to realize that they're often not much more informed on the ground as they were online. Simply put, sourcing in Asia from the US is difficult, and doing it through Alibaba is risky. There are plenty of reputable companies to be found on their site, but Alibaba's effort to keep scammers away has not assuaged anyone's fears. 
+
+Oddly enough, there are a handful of suppliers who are advertising as producers of "Icthys-themed novelty car emblems" (try it!).  (vs. just finding everyone who does "injection molding"), so this was perfect for us. 
+
+This is why we wanted to do escrow. It's Alibaba's service that allows for us to commit the cash upfront to signal to supplier that we're good for the money, while reducing the risk of potentially dealing with a fraudulent supplier.
+
+Well, that didn't go so well for us, but not in the way we expected. 
+
+bricks motorcycle aftermarket parts. 
 
 
 <p><strong>The Road to Gulpo</strong></p>
@@ -155,6 +206,7 @@ Old code:
 
 
 ------
-
+China guide. http://www.chinaimportal.com/blog/sea-freight-shipping-from-china-guide/
+Mention The Open Company when talking bout Alibaba. 
 
 
