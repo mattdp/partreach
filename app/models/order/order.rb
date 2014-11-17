@@ -48,7 +48,7 @@ class Order < ActiveRecord::Base
   validates :columns_shown, presence: true
   validates :user, presence: true
   validates :order_groups, presence: true
-  validates :externals, presence: true
+  # validates :externals, presence: true
 
   PARTS_SNIPPETS_PLACEHOLDER = "<[$PARTS$]>"
   IMAGES_SNIPPETS_PLACEHOLDER = "<[$IMAGES$]>"
