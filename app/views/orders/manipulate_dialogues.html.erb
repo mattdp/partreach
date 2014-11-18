@@ -59,15 +59,7 @@
           <p><strong>Parts:</strong></p>
           <ul>
             <li ng-repeat="part in order_group.parts">
-              <span ng-if="part.external">
-                Quantity {{part.quantity}} of "{{part.name}}" (Units: {{part.external.units}}
-              </span>
-              <span ng-if="!part.external">
-                WARNING - PART HAS NO EXTERNAL LINK. TROUBLESHOOT.
-              </span>
-              <span>
-                ) [Part ID: {{part.id}}, BOM ID: {{part.bom_identifier}}]
-              </span>
+              Quantity {{part.quantity}} of "{{part.name}}" (Material: {{part.material}}) [Part ID: {{part.id}}}}]
             </li>
           </ul>
 
