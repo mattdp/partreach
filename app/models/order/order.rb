@@ -278,6 +278,32 @@ See the note from client for details on what exactly they're looking for.</p>
 
 #{Order::IMAGES_SNIPPETS_PLACEHOLDER}
     HTML
+
+    if self.externals.present?
+      order_id = self.id
+
+      snippet += <<-HTML
+---------- EXTERNALS ----------
+      HTML
+
+      self.externals.each do |external|
+        suffix = external.url.split(".").last.upcase
+        unless suffix.in? ["PNG", "JPG", "ZIP"]
+          snippet += <<-HTML
+(<a href="#{external.url}"><strong>Link to #{suffix} file</strong></a>)
+          HTML
+        end
+
+        if suffix.in? ["PNG", "JPG"]
+          snippet += <<-HTML
+<p><a href="#{external.url}" alt="SupplyBetter RFQ#{order_id}" target="_blank">
+<img src="#{external.url}" alt="SupplyBetter RFQ#{order_id}" width="460"></a></p>
+          HTML
+        end
+      end
+    end
+
+    snippet
   end
 
   def self.metrics(interval,tracking_start_date)
