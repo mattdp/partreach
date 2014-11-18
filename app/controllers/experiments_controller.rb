@@ -44,4 +44,8 @@ class ExperimentsController < ApplicationController
 
   end
 
+  def sls_vs_fdm
+    @title = "SLS vs FDM"
+  end
+
 end

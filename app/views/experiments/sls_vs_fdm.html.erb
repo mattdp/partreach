@@ -5,8 +5,24 @@
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
       <h1><%= @title %></h1>
 
-      
+      <p>A common case we've seen with Internet of Things (IoT) companies coming to us for us for help is figuring out the best way to 3D print their enclosures. Enclosures are notoriously difficult to prototype beyond the "box-with-some-holes" level because at some point a company is going to want to start prototyping the form factor of their product. This often what is referred to as the transition from "works-like" prototype to "looks-like" prototype. When you just want to produce 1 set of an enlcosure for a "looks-like" prototype, 3D printing is often the best bet. The question then is, which 3d printing method should you use? Due to strength and durability constraints, the decision often comes down to choosing between Selective Laser Sintering (SLS) and Fused Deposition Modeling (FDM). Researching SLS vs. FDM is particularly tricky considering the technologies are each owned by the largest 3D printing manufacturers in the industry (3D Systems and Stratasys, respectively). Basically, the decision criteria in choosing SLS vs. FDM come down to the following:<p>
 
+      <ul>
+        <li><strong>How nice does the surface finish need to be?</strong> Can you get away with the as-printed, layer-by-layer striations of FDM; the porous, matte surface finish of SLS; or do you intend to go for a glossy surface finish (in which both methods might not be ideal)?</li>
+
+        <li><strong>How strong do the parts need to be?</strong> Both SLS and FDM are durable, but if there's a XZ or YZ mechanical load on your part, SLS might be better than FDM. This is due to the strength in the z-height of an FDM part being relatively poor to SLS.</li>
+
+        <li><strong>How large are the flat areas?</strong> Warping is always a concern when previously-heated thermoplastics are trying to cool off (think of a flat sheet of heated plastic turning into a potato chip shape as it cools), so depending on your geometry you might have to spend more time optimizing the position of the model in the printer.</li>
+
+        <li><strong>Are there void spaces?</strong> Likely the biggest difference between SLS vs FDM: FDM can handle printed void spaces while SLS can't. FDM can simply avoid printing material in an area intended to be a fully enclosed cavity, while SLS will leave a bunch of un-sintered, trapped material in that cavity. This makes the parts heavier and more expensive.</li>
+
+        <li><strong>What is the initial quantity?</strong> There are batch discounts available with SLS if you can fill up an entire build chamber (even more if you can nest the parts). This is less true with FDM since stacking/nexting parts may require a lot of additional support material. Typically the volume discounts available with FDM stop once the entire build plate has been filled (vs. the entire build chamber volume with SLS).</li>
+      </ul>
+
+      <p>We can help you figure out if SLS or FDM is best for your project - submit <%= link_to "a request for quotes", new_order_path %>, and we'll find the best suppliers for you!</p>
+
+      <p><%= link_to "Back to home", root_path %></p>
+      
     </div>
   </div>
 </div>
