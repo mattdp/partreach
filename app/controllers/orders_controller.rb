@@ -71,9 +71,11 @@ class OrdersController < ApplicationController
   # consider making the whole thing a transaction
   #
   def create
+    @order = Order.new(order_params)
     existed_already = false
     did_user_work = false
     did_order_save = false
+
     if current_user.nil?
       #they've filled out the signin form
       if params[:signin_email].present? && params[:signin_password].present?
@@ -281,8 +283,6 @@ class OrdersController < ApplicationController
     end
 
   def validate_and_create
-    @order = Order.new(order_params)
-
     # validate that parts have been added (unless user checked that a parts list was uploaded)
     unless @order.order_groups[0] && @order.order_groups[0].parts.present?
       unless params["parts_list_uploaded"] == "true"
