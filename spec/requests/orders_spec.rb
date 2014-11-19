@@ -12,7 +12,7 @@ describe "/orders requests" do
   describe "New order" do
     it "with valid input, creates a new order" do
       post "/orders",
-        "uploads"=>
+        "order_uploads"=>
           [{"url"=>
              "https://s3.amazonaws.com/supplybetter_test_file_upload/externals%2F301-1afbf063116d5041dab5a9d0a8d1bacc%2Fpart_a.txt",
             "original_filename"=>"part_a.txt"}],
@@ -41,7 +41,7 @@ describe "/orders requests" do
 
     it "discards blank part rows and creates a new order" do
       post "/orders",
-        "uploads"=>
+        "order_uploads"=>
           [{"url"=>
              "https://s3.amazonaws.com/supplybetter_test_file_upload/externals%2F301-1afbf063116d5041dab5a9d0a8d1bacc%2Fpart_a.txt",
             "original_filename"=>"part_a.txt"}],
@@ -72,7 +72,7 @@ describe "/orders requests" do
 
     it "with incompletely filled-out part info, gives validation error message and does not create an order" do
       post "/orders",
-        "uploads"=>
+        "order_uploads"=>
           [{"url"=>
              "https://s3.amazonaws.com/supplybetter_test_file_upload/externals%2F301-1afbf063116d5041dab5a9d0a8d1bacc%2Fpart_a.txt",
             "original_filename"=>"part_a.txt"}],
@@ -100,7 +100,7 @@ describe "/orders requests" do
 
     it "with no parts info filled in, gives validation error message and does not create an order" do
       post "/orders",
-        "uploads"=>
+        "order_uploads"=>
           [{"url"=>
              "https://s3.amazonaws.com/supplybetter_test_file_upload/externals%2F301-1afbf063116d5041dab5a9d0a8d1bacc%2Fpart_a.txt",
             "original_filename"=>"part_a.txt"}],
@@ -127,7 +127,7 @@ describe "/orders requests" do
 
     it "with parts list uploaded, saves order with no parts" do
       post "/orders",
-        "uploads"=>
+        "order_uploads"=>
           [{"url"=>
              "https://s3.amazonaws.com/supplybetter_test_file_upload/externals%2F301-1afbf063116d5041dab5a9d0a8d1bacc%2Fpart_a.txt",
             "original_filename"=>"part_a.txt"}],

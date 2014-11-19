@@ -24,12 +24,12 @@ $(document).ready(function() {
   $(".s3-uploader").S3Uploader();
 
   $('.s3-uploader').bind('s3_upload_complete', function(e, content) {
-        if ( $('.uploaded-file-placeholder').length ) {
-          $('.uploaded-file-placeholder').remove();
+        if ( $('#uploaded-file-placeholder').length ) {
+          $('#uploaded-file-placeholder').remove();
         }
-        $('#uploads').append(
-          '<input type="hidden" name="uploads[][url]" value="' + content.url + '"> \
-           <input type="hidden" name="uploads[][original_filename]" value="' + content.filename + '">');
+        $('#order_uploads').append(
+          '<input type="hidden" name="order_uploads[][url]" value="' + content.url + '"> \
+           <input type="hidden" name="order_uploads[][original_filename]" value="' + content.filename + '">');
         $('#files_uploaded').val("true")
         $('#uploaded_file_list').append('<li>' + content.filename + '</li>');
   });

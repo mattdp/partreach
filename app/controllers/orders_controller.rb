@@ -41,18 +41,7 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    blanks = "__________"
     @questions = params["questions"]
-    [:experience, :priority, :manufacturing].each do |summary_var|
-      value = blanks
-      if @questions.present? and @questions[summary_var].present?
-        option_details = Question.get_option_details(summary_var,@questions[summary_var])
-        if option_details
-          value = option_details[:summary]
-          instance_variable_set("@#{summary_var}",@questions[summary_var])
-        end
-      end
-    end
     @content = Question.raw_list
 
     @approximate_next_order_id = next_order_id
@@ -60,6 +49,8 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order.order_groups.build
     @order.order_groups[0].parts.build
+    @files_uploaded = nil
+    @parts_list_uploaded = "false"
     respond_to do |format|
       format.html { render layout: "orders_new" } # new.html.erb
       format.json { render json: @order }
@@ -139,8 +130,19 @@ class OrdersController < ApplicationController
         format.json { render json: @order, status: :created, location: @order }
       else
         logger.debug "ERRORS: #{@order.errors.full_messages}"
-        @approximate_next_order_id = next_order_id
+        @questions = {}
+        @questions[:experience] = params["order"]["stated_experience"]
+        @questions[:priority] = params["order"]["stated_priority"]
+        @questions[:manufacturing] = params["order"]["stated_manufacturing"]
         @content = Question.raw_list
+
+        @order.order_groups.build if @order.order_groups.empty?
+        @order.order_groups[0].parts.build if @order.order_groups[0].parts.empty?
+
+        @order_uploads = params["order_uploads"]
+        @files_uploaded = ( (params["files_uploaded"] == "true") ? "true" : nil )
+        @parts_list_uploaded = params["parts_list_uploaded"]
+
         format.html { render action: "new", layout: "orders_new" }
         format.json { render json: @order.errors.full_messages, status: 400 }
       end
@@ -300,19 +302,19 @@ class OrdersController < ApplicationController
     return false unless @order.save
 
     # create externals and associate with order
-    if params["uploads"]
-      params["uploads"].each do |upload|
+    if params["order_uploads"]
+      params["order_uploads"].each do |upload|
         @order.externals.build(url: upload["url"], original_filename: upload["original_filename"])
-      end
-
-      # validate that at least one file was uploaded
-      if @order.externals.empty?
-        @order.errors.messages[:uploads] = [": Please upload least one file."]
-        return false
       end
 
       # causes externals to be saved, with polymorphic reference to order set appropriately
       return false unless @order.save
+    end
+
+    # validate that at least one file was uploaded
+    if @order.externals.empty?
+      @order.errors.messages[:uploads] = [": Please upload least one file."]
+      return false
     end
 
     # it's all good

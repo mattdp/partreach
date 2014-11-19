@@ -36,14 +36,28 @@
   </p>
   <div>
     <h3 class="step-header uploaded-file-header">Uploaded files:</h3>
-    <p class="step-desc uploaded-file-placeholder">No files uploaded yet.</p>
-    <ul id='uploaded_file_list'></ul>
+    <ul id='uploaded_file_list'>
+      <% if @order_uploads %>
+        <% @order_uploads.each do |upload| %>
+          <li><%= upload["original_filename"] %></li>
+        <% end %>
+      <% else %>
+        <li id="uploaded-file-placeholder" class="step-desc">No files uploaded yet.</li>
+      <% end %>
+    </ul>
   </div>
 
   <%= nested_form_for(@order, html: {id: 'new-order'}) do |order_form| %>
-    <div id='uploads'></div>
-    <input id="files_uploaded" name="files_uploaded" type="hidden">
-    <input id="parts_list_uploaded" name="parts_list_uploaded" value="false" type="hidden">
+    <div id='order_uploads'>
+      <% if @order_uploads %>
+        <% @order_uploads.each do |upload| %>
+          <%= hidden_field_tag 'order_uploads[][url]', upload["url"] %>
+          <%= hidden_field_tag 'order_uploads[][original_filename]', upload["original_filename"] %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= hidden_field_tag "files_uploaded", @files_uploaded %>
+    <%= hidden_field_tag "parts_list_uploaded", @parts_list_uploaded %>
     <%= order_form.hidden_field :stated_experience, value: @experience %>
     <%= order_form.hidden_field :stated_priority, value: @priority %>
     <%= order_form.hidden_field :stated_manufacturing, value: @manufacturing %>
