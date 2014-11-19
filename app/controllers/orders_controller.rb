@@ -73,7 +73,6 @@ class OrdersController < ApplicationController
   def create
     existed_already = false
     did_user_work = false
-    @order = Order.new(order_params)
     did_order_save = false
     if current_user.nil?
       #they've filled out the signin form
@@ -118,25 +117,14 @@ class OrdersController < ApplicationController
     if did_user_work
       @user.create_or_update_address({ zip: params[:zip] }) if params[:zip].present?
 
-      @order.user_id = current_user.id
-      @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
-      @order.view_token = SecureRandom.hex
-      @order.order_groups[0].init_default
-
-      did_order_save = @order.save
-      if did_order_save
-        params["uploads"].each do |upload|
-          @order.externals.build(url: upload["url"], original_filename: upload["original_filename"])
-        end
-        did_order_save = @order.save
-      end
+      did_order_save = validate_and_create
       logger.debug "Order saving: #{did_order_save}"
     else
       @order.errors.messages[:Sign_up_or_sign_in] = ["needs a valid email and password"]
     end
 
     respond_to do |format|
-      if did_user_work and did_order_save
+      if did_user_work && did_order_save
         track("order","created",@order.id)
         track("order","created_by_repeat_user",@order.id) if existed_already
         note = "#{brand_name}: Order created by #{current_user.lead.lead_contact.email}, order number #{@order.id}. Go get quotes!"
@@ -292,6 +280,45 @@ class OrdersController < ApplicationController
       )
     end
 
+  def validate_and_create
+    @order = Order.new(order_params)
+
+    # validate that parts have been added (unless user checked that a parts list was uploaded)
+    unless @order.order_groups[0] && @order.order_groups[0].parts.present?
+      unless params["parts_list_uploaded"] == "true"
+        @order.errors.messages[:parts] = [": Please enter name, quantity, and material for at least one part."]
+        return false
+      end
+    end
+
+    @order.user_id = current_user.id
+    @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
+    @order.view_token = SecureRandom.hex
+    @order.order_groups[0].init_default
+
+    # create order, along with nested order_group and parts
+    return false unless @order.save
+
+    # create externals and associate with order
+    if params["uploads"]
+      params["uploads"].each do |upload|
+        @order.externals.build(url: upload["url"], original_filename: upload["original_filename"])
+      end
+
+      # validate that at least one file was uploaded
+      if @order.externals.empty?
+        @order.errors.messages[:uploads] = [": Please upload least one file."]
+        return false
+      end
+
+      # causes externals to be saved, with polymorphic reference to order set appropriately
+      return false unless @order.save
+    end
+
+    # it's all good
+    return true
+  end
+
     def correct_user
       @order = Order.find_by_id(params[:id])
       if current_user
@@ -346,8 +373,6 @@ class OrdersController < ApplicationController
       # "programmatic links to the files won't have the race conditions this creates" MDP -- huh?
       Order.max_id + 1
     end
-
-  #private doesn't 'end'
 
 end
 

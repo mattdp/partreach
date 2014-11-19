@@ -42,7 +42,6 @@ class Order < ActiveRecord::Base
   has_many :dialogues, through: :order_groups, dependent: :destroy
   has_many :parts, through: :order_groups, dependent: :destroy
   has_many :externals, :as => :consumer, :dependent => :destroy
-  accepts_nested_attributes_for :externals, reject_if: :all_blank
 
   validates :units, presence: true
   validates :columns_shown, presence: true

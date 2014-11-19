@@ -16,7 +16,6 @@
   </div>
 
   <h2 class="main-header">Upload your files (CAD drawings, parts list, etc.)</h2>
-  <p class="step-desc">Maximum 300Mb each, all file types accepted. For parts list, any spreadsheet, CSV, or text file accepted.</p>
   <%= s3_uploader_form  id: "s3-uploader", class: "s3-uploader",
                         max_file_size: 300.megabytes,
                         key_starts_with: "externals/",
@@ -29,6 +28,12 @@
       <div class="progress"><div class="bar" style="width: 0%"></div></div>
     </div>
   </script>
+  <p class="step-desc">
+    Maximum 300Mb each, all file types accepted.
+    <br>
+    <input id="parts_list_checkbox" type="checkbox">
+    Check here if uploading a parts list (CSV. spreadsheet, or text format), to skip entering individual parts below.
+  </p>
   <div>
     <h3 class="step-header uploaded-file-header">Uploaded files:</h3>
     <p class="step-desc uploaded-file-placeholder">No files uploaded yet.</p>
@@ -38,6 +43,7 @@
   <%= nested_form_for(@order, html: {id: 'new-order'}) do |order_form| %>
     <div id='uploads'></div>
     <input id="files_uploaded" name="files_uploaded" type="hidden">
+    <input id="parts_list_uploaded" name="parts_list_uploaded" value="false" type="hidden">
     <%= order_form.hidden_field :stated_experience, value: @experience %>
     <%= order_form.hidden_field :stated_priority, value: @priority %>
     <%= order_form.hidden_field :stated_manufacturing, value: @manufacturing %>
@@ -49,7 +55,7 @@
       </div>
     </div>
 
-    <div class="triplets">
+    <div class="triplets" id="parts-input">
       <div class="col">
         <label>Part name</label>
       </div>

@@ -39,6 +39,16 @@ $(document).ready(function() {
     window.location.reload(true);
   });
 
+  $('#parts_list_checkbox').click(function () {
+    if ($(this).is(':checked')) {
+      $('#parts_list_uploaded')[0].value = true;
+      $('#parts-input').hide();
+    } else {
+      $('#parts_list_uploaded')[0].value = false;
+      $('#parts-input').show();
+    }
+  });
+
   // run client-side validations (using jquery.validate)
   $("#new-order").validate({
     ignore: [],
