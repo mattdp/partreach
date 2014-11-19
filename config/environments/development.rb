@@ -16,19 +16,26 @@ Partreach::Application.configure do
 
   # Tell Action Mailer not to deliver emails to the real world.
 
-  #this should be the steady state for development
-  config.action_mailer.delivery_method = :test
+#### UNCOMMENT FOR EMAIL TESTING. DO NOT PUSH WITH THIS UNCOMMENTED
 
-  # use this for testing. never commit with this uncommented
   # config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
-  #   :authentication => :plain,
-  #   :address => "smtp.mailgun.org",
-  #   :port => 587,
-  #   :domain => "supplybetter.com",
-  #   :user_name => "postmaster@supplybetter.com",
-  #   :password => ENV['SB_MAILER_PASSWORD']
+  #   :user_name => '23757f9b722070397',
+  #   :password => '59decc2a1c50ba',
+  #   :address => 'mailtrap.io',
+  #   :domain => 'mailtrap.io',
+  #   :port => '2525',
+  #   :authentication => :cram_md5,
+  #   :enable_starttls_auto => true
   # }
+
+  # config.action_mailer.perform_deliveries = true 
+
+#### UNCOMMENT FOR ANY PUSHES - BLOCKS EMAIL SENDING FROM LOCAL
+
+  config.action_mailer.delivery_method = :test
+
+#### BELOW ALWAYS APPLIES
 
   # Don't care if the mailer can't send
   config.action_mailer.raise_delivery_errors = false
