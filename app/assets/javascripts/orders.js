@@ -56,7 +56,7 @@ $(document).ready(function() {
 
   // run client-side validations (using jquery.validate)
   $("#new-order").validate({
-    ignore: [],
+    ignore: [], // without this, hidden fields are not validated
     rules: {
       files_uploaded: "required",
       "order[units]": "required",
@@ -76,7 +76,15 @@ $(document).ready(function() {
     groups: {
       signup_signin: "user_email user_password signin_email signin_password"
     },
+    errorPlacement: function(error, element) {
+     if (element.attr("name") == "user_email") {
+        error.insertAfter(".sign_in_toggle");
+      } else {
+        error.insertAfter(element);
+      }
+    },
     messages: {
+      "signup_signin": "special",
       "files_uploaded": "Please upload at least one file",
       "order[units]": "Please enter units (mm., in., etc.)",
       "user_email": "Please enter email and password",
