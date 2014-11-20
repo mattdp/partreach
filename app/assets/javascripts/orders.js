@@ -39,6 +39,11 @@ $(document).ready(function() {
     window.location.reload(true);
   });
 
+  if ($('#parts_list_uploaded')[0].value == "true") {
+    $('#parts_list_checkbox').prop('checked', true);
+    $('#parts-input').hide();
+  };
+
   $('#parts_list_checkbox').click(function () {
     if ($(this).is(':checked')) {
       $('#parts_list_uploaded')[0].value = true;
