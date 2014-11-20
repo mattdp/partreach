@@ -31,6 +31,7 @@ Partreach::Application.routes.draw do
   get '/experiments/sde', to: 'experiments#sde', as: "experiments_sde"
   get '/experiments/sla', to: 'experiments#sla', as: "experiments_sla"
   get '/experiments/ultem', to: 'experiments#ultem', as: "experiments_ultem"
+  get '/experiments/sls_vs_fdm', to: 'experiments#sls_vs_fdm', as: "experiments_sls_vs_fdm"
 
   get '/guides/:country/:state/:tag', to: redirect("/suppliers/%{country}/%{state}/%{tag}")
   get '/guides/:country/:tag', to: redirect("/suppliers/%{country}/all/%{tag}")
