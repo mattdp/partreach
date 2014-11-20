@@ -6,9 +6,8 @@ class UserMailer < ActionMailer::Base
   MATT =  "matt@supplybetter.com"
   ROB =   "rob@supplybetter.com"
   JAMES = "james@supplybetter.com"
-  STEVEN = "steven@supplybetter.com"
   CUSTOMER_SERVICE = "robert@supplybetter.com"
-  INTERNAL_EMAIL_DISTRIBUTION_LIST = [MATT,ROB,JAMES,STEVEN,CUSTOMER_SERVICE]
+  INTERNAL_EMAIL_DISTRIBUTION_LIST = [MATT,ROB,JAMES,CUSTOMER_SERVICE]
 
   def email_internal_team(subject, note)
     @note = note
