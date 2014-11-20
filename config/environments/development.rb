@@ -16,7 +16,7 @@ Partreach::Application.configure do
 
   # Tell Action Mailer not to deliver emails to the real world.
 
-#### UNCOMMENT FOR EMAIL TESTING. DO NOT PUSH WITH THIS UNCOMMENTED
+#### TOGGLE IF YOU WANT MAILTRAP ACTIVE IN DEVELOPMENT
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -31,7 +31,7 @@ Partreach::Application.configure do
 
   config.action_mailer.perform_deliveries = true 
 
-#### UNCOMMENT FOR ANY PUSHES - BLOCKS EMAIL SENDING FROM LOCAL
+#### TOGGLE IF YOU WANT TO AVOID MAILTRAP IN DEVELOPMENT
 
   # config.action_mailer.delivery_method = :test
 
