@@ -23,17 +23,14 @@ class UserMailer < ActionMailer::Base
   end
 
   def daily_internal_update
-    subject = "#{Date.today.strftime('%Y-%m-%d')} update on SupplyBetter metrics"
-    @pending = {
-      "reviews" => Review.pending_examination,
-      "suppliers" => Supplier.pending_examination
-    }
-    @incomplete_orders = Order.incomplete_orders
-    @brand_name = brand_name
-    @suppliers_to_bother = Supplier.next_contact_suppliers_sorted
-    @leads_to_bother = Lead.sorted(false)
-    @need_to_inform_suppliers_structure = Order.need_to_inform_suppliers_structure
-    @duplicates_detected = Contact.duplicate_detector
+    rfqs_created = 1
+    rfqs_closed = 2
+    quote_value = 3
+
+    metrics_data = Order.metrics(:months,Date.new(2013,8,3))[:printout][0]
+
+    subject = "#{metrics_data[rfqs_created]} RFQs created, #{metrics_data[rfqs_closed]} RFQs closed, $#{metrics_data[quote_value].to_i} quote value"
+
     INTERNAL_EMAIL_DISTRIBUTION_LIST.each do |e|
       mail(to: e, subject: subject).deliver do |format|
         format.html { render layout: "layouts/blast_mailer", 
