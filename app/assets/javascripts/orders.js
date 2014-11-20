@@ -39,10 +39,12 @@ $(document).ready(function() {
     window.location.reload(true);
   });
 
-  if ($('#parts_list_uploaded')[0].value == "true") {
-    $('#parts_list_checkbox').prop('checked', true);
-    $('#parts-input').hide();
-  };
+  if ($('#parts_list_uploaded').length > 0) {
+    if ($('#parts_list_uploaded')[0].value == "true") {
+      $('#parts_list_checkbox').prop('checked', true);
+      $('#parts-input').hide();
+    }
+  }
 
   $('#parts_list_checkbox').click(function () {
     if ($(this).is(':checked')) {
