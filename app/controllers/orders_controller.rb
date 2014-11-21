@@ -48,7 +48,7 @@ class OrdersController < ApplicationController
 
     @order = Order.new
     @order.order_groups.build
-    @order.order_groups[0].parts.build
+    @order.order_groups[0].parts.build(quantity: 1)
     @files_uploaded = nil
     @parts_list_uploaded = "false"
     respond_to do |format|
@@ -137,7 +137,7 @@ class OrdersController < ApplicationController
         @content = Question.raw_list
 
         @order.order_groups.build if @order.order_groups.empty?
-        @order.order_groups[0].parts.build if @order.order_groups[0].parts.empty?
+        @order.order_groups[0].parts.build(quantity: 1) if @order.order_groups[0].parts.empty?
 
         @order_uploads = params["order_uploads"]
         @files_uploaded = ( (params["files_uploaded"] == "true") ? "true" : nil )
