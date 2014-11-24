@@ -212,6 +212,7 @@ class OrdersController < ApplicationController
     @textfields = setup_textfields
     @numberfields = setup_numberfields
 
+    @order.process_confidence = params[:process_confidence]
     @order.recommendation = params[:recommendation]
     @order.notes = params[:notes]
     @order.columns_shown = params[:columns_shown]
