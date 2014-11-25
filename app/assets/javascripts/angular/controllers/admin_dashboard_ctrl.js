@@ -31,6 +31,7 @@ App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http)
     ]
 
     orderAttributes = [
+        'process_confidence',
         'recommendation',
         'notes',
         'columns_shown',

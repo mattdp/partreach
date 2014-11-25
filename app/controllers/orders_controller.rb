@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
     @user = User.find(@order.user_id)
     @total_quantity = @order.total_quantity
     @recommended = @dialogues.select{|d| (d.recommended? and d.opener_sent)} if @dialogues = @order.dialogues
-    track("order","viewed",@order.id)
     if @order.columns_shown
       @columns = OrderColumn.get_columns(@order.columns_shown.to_sym)
     else
@@ -118,8 +117,6 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if did_user_work && did_order_save
-        track("order","created",@order.id)
-        track("order","created_by_repeat_user",@order.id) if existed_already
         note = "#{brand_name}: Order created by #{current_user.lead.lead_contact.email}, order number #{@order.id}. Go get quotes!"
         if Rails.env.production?
           text_notification(note)
@@ -202,6 +199,7 @@ class OrdersController < ApplicationController
     @textfields = setup_textfields
     @numberfields = setup_numberfields
 
+    @order.process_confidence = params[:process_confidence]
     @order.recommendation = params[:recommendation]
     @order.notes = params[:notes]
     @order.columns_shown = params[:columns_shown]
