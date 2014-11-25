@@ -46,7 +46,6 @@ class SuppliersController < ApplicationController
     @tags = @supplier.visible_tags
     @machines_quantity_hash = @supplier.machines_quantity_hash
     @point_structure = Supplier.get_in_use_point_structure
-    track("supplier","viewed_edit_page",@supplier.id)
   end
 
   def admin_edit
@@ -98,7 +97,6 @@ class SuppliersController < ApplicationController
       "Supplier profile edit: #{@supplier.name}",
       "They changed their suggested description, machines, services, or preferences. #{admin_edit_url(@supplier.name_for_link)}"
       )
-    track("supplier","submitted_profile_edits",@supplier.id)
 
     redirect_to edit_supplier_path(@supplier), notice: "Suggestions received! We'll be in touch once they're reviewed."
   end
