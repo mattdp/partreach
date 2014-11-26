@@ -24,26 +24,14 @@ $(document).ready(function() {
   $(".s3-uploader").S3Uploader();
 
   $('.s3-uploader').bind('s3_upload_complete', function(e, content) {
-    var orderGroupId = $('#order_group_id')[0].value;
-    $.ajax({
-      url : "/parts/create_with_external",
-      type: "POST",
-      data: { 'order_group_id': orderGroupId, 'filename': content.filename, 'url': content.url },
-      success: function(data, textStatus, jqXHR)
-      {
-        if ( $('#uploaded_file_list').length) {
-          if ( $('.uploaded-file-placeholder').length ) {
-            $('.uploaded-file-placeholder').remove();
-          }
-          $('#uploaded_file_list').append( "<li>" + content.filename + "</li>" );
-          $('#files_uploaded').val("true")
+        if ( $('#uploaded-file-placeholder').length ) {
+          $('#uploaded-file-placeholder').remove();
         }
-      },
-      error: function (jqXHR, textStatus, errorThrown)
-      {
-        alert("An error occurred during upload (" + jqXHR.status + ")")
-      }
-    });
+        $('#order_uploads').append(
+          '<input type="hidden" name="order_uploads[][url]" value="' + content.url + '"> \
+           <input type="hidden" name="order_uploads[][original_filename]" value="' + content.filename + '">');
+        $('#files_uploaded').val("true")
+        $('#uploaded_file_list').append('<li>' + content.filename + '</li>');
   });
 
   $('.s3-uploader-page-refresh').bind('s3_uploads_complete', function(e, content) {
@@ -51,22 +39,29 @@ $(document).ready(function() {
     window.location.reload(true);
   });
 
+  if ($('#parts_list_uploaded').length > 0) {
+    if ($('#parts_list_uploaded')[0].value == "true") {
+      $('#parts_list_checkbox').prop('checked', true);
+      $('#parts-input').hide();
+    }
+  }
+
+  $('#parts_list_checkbox').click(function () {
+    if ($(this).is(':checked')) {
+      $('#parts_list_uploaded')[0].value = true;
+      $('#parts-input').hide();
+    } else {
+      $('#parts_list_uploaded')[0].value = false;
+      $('#parts-input').show();
+    }
+  });
+
   // run client-side validations (using jquery.validate)
   $("#new-order").validate({
-    ignore: [],
+    ignore: [], // without this, hidden fields are not validated
     rules: {
-      files_uploaded: {
-        required: true
-      },
-      stated_quantity: {
-        required: true
-      },
-      units: {
-        required: true
-      },
-      material_message: {
-        required: true
-      },
+      files_uploaded: "required",
+      "order[units]": "required",
       user_email: {
         require_from_group: [2, ".signup-signin-group"]
       },
@@ -83,8 +78,17 @@ $(document).ready(function() {
     groups: {
       signup_signin: "user_email user_password signin_email signin_password"
     },
+    errorPlacement: function(error, element) {
+     if (element.attr("name") == "user_email") {
+        error.insertAfter(".sign_in_toggle");
+      } else {
+        error.insertAfter(element);
+      }
+    },
     messages: {
+      "signup_signin": "special",
       "files_uploaded": "Please upload at least one file",
+      "order[units]": "Please enter units (mm., in., etc.)",
       "user_email": "Please enter email and password",
       "user_password": "Please enter email and password",
       "signin_email": "Please enter email and password",
@@ -98,62 +102,54 @@ $(document).ready(function() {
     $(this).closest('label').toggleClass('checked', $(this).is(':checked'));
   });
 
-  $('.questions__columns input').change(function() {
-    $(this).parents('td').find('label').removeClass('checked');
-    $(this).closest('label').toggleClass('checked', $(this).is(':checked'));
-  });
-
   $('#questions_experience_experienced').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_experience')[0].value = $('#questions_experience_experienced')[0].value;
+      $('#order_stated_experience')[0].value = $('#questions_experience_experienced')[0].value;
     }
   });
 
   $('#questions_experience_rookie').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_experience')[0].value = $('#questions_experience_rookie')[0].value;
+      $('#order_stated_experience')[0].value = $('#questions_experience_rookie')[0].value;
     }
   });
 
   $('#questions_priority_speed').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_priority')[0].value = $('#questions_priority_speed')[0].value;
+      $('#order_stated_priority')[0].value = $('#questions_priority_speed')[0].value;
     }
   });
 
 
   $('#questions_priority_quality').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_priority')[0].value = $('#questions_priority_quality')[0].value;
+      $('#order_stated_priority')[0].value = $('#questions_priority_quality')[0].value;
     }
   });
 
 
   $('#questions_priority_cost').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_priority')[0].value = $('#questions_priority_cost')[0].value;
+      $('#order_stated_priority')[0].value = $('#questions_priority_cost')[0].value;
     }
   });
 
   $('#questions_manufacturing_printing').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_manufacturing')[0].value = $('#questions_manufacturing_printing')[0].value;
+      $('#order_stated_manufacturing')[0].value = $('#questions_manufacturing_printing')[0].value;
     }
   });
 
   $('#questions_manufacturing_other').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_manufacturing')[0].value = $('#questions_manufacturing_other')[0].value;
+      $('#order_stated_manufacturing')[0].value = $('#questions_manufacturing_other')[0].value;
     }
   });
 
   $('#questions_manufacturing_unknown').click(function () {
     if ($(this).is(':checked')) {
-      $('#stated_manufacturing')[0].value = $('#questions_manufacturing_unknown')[0].value;
+      $('#order_stated_manufacturing')[0].value = $('#questions_manufacturing_unknown')[0].value;
     }
   });
 
 });
-
-
-

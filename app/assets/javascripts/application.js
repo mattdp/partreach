@@ -24,6 +24,7 @@
 //= require jquery.validate
 //= require chosen.jquery.min
 //= require additional-methods
+//= require jquery_nested_form
 
 //= require_tree ./angular
 //= require_tree ./bootstrap
