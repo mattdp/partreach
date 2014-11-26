@@ -15,8 +15,7 @@
     <h2 class="inline">Tell us about your order.</h2>
   </div>
 
-  <h2 class="main-header">Upload your files</h2>
-  <p class="step-desc">Maximum 300Mb each, all filetypes accepted.</p>
+  <h2 class="main-header">Upload your files (CAD drawings, parts list, etc.)</h2>
   <%= s3_uploader_form  id: "s3-uploader", class: "s3-uploader",
                         max_file_size: 300.megabytes,
                         key_starts_with: "externals/",
@@ -29,41 +28,77 @@
       <div class="progress"><div class="bar" style="width: 0%"></div></div>
     </div>
   </script>
-
+  <p class="step-desc">
+    Maximum 300Mb each, all file types accepted.
+    <br>
+    <%= check_box_tag :parts_list_checkbox %>
+    <%= label_tag(:parts_list_checkbox, "Check here") %> if uploading a parts list (CSV. spreadsheet, or text format), to skip entering individual parts below.
+  </p>
   <div>
     <h3 class="step-header uploaded-file-header">Uploaded files:</h3>
-    <p class="step-desc uploaded-file-placeholder">No files uploaded yet.</p>
     <ul id='uploaded_file_list'>
+      <% if @order_uploads %>
+        <% @order_uploads.each do |upload| %>
+          <li><%= upload["original_filename"] %></li>
+        <% end %>
+      <% else %>
+        <li id="uploaded-file-placeholder" class="step-desc">No files uploaded yet.</li>
+      <% end %>
     </ul>
   </div>
 
-
-  <%= form_tag order_path(@order), id: 'new-order' do %>
-    <%= hidden_field_tag "files_uploaded" %>
-    <%= hidden_field_tag "order_group_id", @order_group.id %>
-    <%= hidden_field_tag "stated_experience", @experience %>
-    <%= hidden_field_tag "stated_priority", @priority %>
-    <%= hidden_field_tag "stated_manufacturing", @manufacturing %>
+  <%= nested_form_for(@order, html: {id: 'new-order'}) do |order_form| %>
+    <div id='order_uploads'>
+      <% if @order_uploads %>
+        <% @order_uploads.each do |upload| %>
+          <%= hidden_field_tag 'order_uploads[][url]', upload["url"] %>
+          <%= hidden_field_tag 'order_uploads[][original_filename]', upload["original_filename"] %>
+        <% end %>
+      <% end %>
+    </div>
+    <%= hidden_field_tag "files_uploaded", @files_uploaded %>
+    <%= hidden_field_tag "parts_list_uploaded", @parts_list_uploaded %>
+    <%= order_form.hidden_field :stated_experience, value: @experience %>
+    <%= order_form.hidden_field :stated_priority, value: @priority %>
+    <%= order_form.hidden_field :stated_manufacturing, value: @manufacturing %>
 
     <div class="triplets">
       <div class="col">
-        <%= label_tag 'stated_quantity', 'Quantity' %>
-        <%= number_field_tag 'stated_quantity', '1', min: '1', :class => 'left-half' %>
-        <p class="detail-text">If you upload multiple parts, please put total quantity.</p>
-      </div>
-      <div class="col">
-        <%= label_tag 'units', 'Drawing units' %>
-        <%= text_field_tag 'units', nil, :placeholder => 'mm./in.', :class => 'right-half' %>
-      </div>
-      <div class="col">
-        <%= label_tag 'material_message', 'Material' %>
-        <%= text_field_tag 'material_message', nil, :placeholder => 'ABS, stainless steel, etc.' %>
+        <%= order_form.label :units, 'Drawing units (for all parts)' %>
+        <%= order_form.text_field :units, placeholder: 'mm./in.', :class => 'right-half' %>
       </div>
     </div>
+
+    <div class="triplets" id="parts-input">
+      <div class="col">
+        <label>Part name</label>
+      </div>
+      <div class="col">
+        <label>Quantity</label>
+      </div>
+      <div class="col">
+        <label>Material</label>
+      </div>
+      <%= order_form.fields_for :order_groups do |order_groups_form| %>
+        <%= order_groups_form.fields_for :parts do |part_form| %>
+          <div class="col">
+            <%= part_form.text_field :name %>
+          </div>
+          <div class="col">
+            <%= part_form.number_field :quantity, min: "1" %>
+          </div>
+          <div class="col">
+            <%= part_form.text_field :material, placeholder: 'ABS, stainless steel, etc.' %>
+          </div>
+        <% end %>
+        <%= order_groups_form.link_to_add 'Add another part', :parts, :model_object => Part.new(quantity: 1) %>
+      <% end %>
+    </div>
+
     <div class="triplets">
       <div class="col">
-        <%= label_tag 'deadline', 'Deadline (date and time)' %>
-        <%= text_field_tag 'deadline', nil %>
+        <%= order_form.label :deadline, 'Deadline (date and time)' %>
+        <%= order_form.text_field :deadline %>
       </div>
       <div class="col">
       </div>
@@ -71,13 +106,13 @@
 
     <div class="triplets">
       <div class="two-col">
-        <%= label_tag 'order_description', 'Order description' %>
-        <%= text_area_tag 'order_description', nil, :rows => 5, :placeholder => "We are starting the next build iteration for a next-generation spork..." %>
+        <%= order_form.label :order_description, 'Order description' %>
+        <%= order_form.text_area :order_description, :rows => 5, :placeholder => "We are starting the next build iteration for a next-generation spork..." %>
       </div>
 
       <div class="two-col">
-        <%= label_tag 'supplier_message', 'Technical notes' %>
-        <%= text_area_tag 'supplier_message', nil, :rows => 5, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)" %>
+        <%= order_form.label :supplier_message, 'Technical notes' %>
+        <%= order_form.text_area :supplier_message, :rows => 5, :placeholder => "If you have time constraints, tolerance instructions, etc., let suppliers know (optional)" %>
       </div>
     </div>
 
@@ -114,7 +149,7 @@
 
     <div class="triplets">
       <div class="col">
-        <%= submit_tag "Create order", :disable_with => "Creating...", :id => "create_button" %>
+      <%= order_form.submit "Create order", :disable_with => "Creating...", :id => "create_button" %>
         <p class="detail-text">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
       </div>
     </div>

@@ -17,12 +17,13 @@ class OrderGroup < ActiveRecord::Base
 
   belongs_to :order
   has_many :parts, dependent: :destroy
+  accepts_nested_attributes_for :parts, reject_if: proc { |attributes| attributes[:name].blank? && attributes[:material].blank? }
   has_many :dialogues, dependent: :destroy
 
   validates :name, presence: true
 
-  def self.create_default
-    OrderGroup.create!({name: "Default"})
+  def init_default
+    self.name = 'Default'
   end
 
   def parts_snippet_generator

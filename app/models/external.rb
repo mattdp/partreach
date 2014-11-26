@@ -9,6 +9,7 @@
 #  consumer_id   :integer
 #  consumer_type :string(255)
 #  units         :string(255)
+#  original_filename :string(255)
 #
 
 class External < ActiveRecord::Base

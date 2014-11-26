@@ -77,8 +77,6 @@ Partreach::Application.routes.draw do
 
   resources :password_resets
 
-  match '/parts/create_with_external', to: 'parts#create_with_external', via: :post, as: 'create_with_external'
-
   resources :parts, only: [:create]
 
   resources :reviews, only: [:new, :create]

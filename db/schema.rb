@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141106234422) do
+ActiveRecord::Schema.define(version: 20141122002634) do
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -130,11 +130,12 @@ ActiveRecord::Schema.define(version: 20141106234422) do
 
   create_table "externals", force: true do |t|
     t.string   "url"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "consumer_id"
     t.string   "consumer_type"
     t.string   "units"
+    t.string   "original_filename"
   end
 
   create_table "filters", force: true do |t|
@@ -241,6 +242,7 @@ ActiveRecord::Schema.define(version: 20141106234422) do
     t.string   "units"
     t.string   "view_token"
     t.text     "order_description"
+    t.string   "process_confidence"
   end
 
   create_table "owners", force: true do |t|
@@ -259,6 +261,8 @@ ActiveRecord::Schema.define(version: 20141106234422) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "bom_identifier"
+    t.text     "material"
+    t.text     "notes"
   end
 
   create_table "reviews", force: true do |t|

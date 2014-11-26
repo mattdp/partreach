@@ -19,7 +19,6 @@ gem 'bloggy', '0.2.2'
 gem 'sitemap_generator', '4.2.0' #https://github.com/kjvarga/sitemap_generator
 gem 'fog', '1.15.0' #for remote sitemap_generator uploads
 gem 'bugsnag', '1.6.1' #https://devcenter.heroku.com/articles/bugsnag#using-with-rails-3-x-4
-gem 'analytics-ruby', '<1.0' #https://segment.io/libraries/ruby
 gem 'delayed_job_active_record', '4.0.0'
 gem 'nokogiri', '1.6.0'
 gem 'domainatrix', '0.0.11'
@@ -30,6 +29,13 @@ gem 'angular-ui-bootstrap-rails'
 gem 'gon'
 gem 'jbuilder'
 gem "d3-rails"
+#
+# nested_form: latest released version is 0.3.2, from Apr 5, 2013
+# but we need fix from pull request #266  https://github.com/ryanb/nested_form/pull/266,
+# merged Jun 18, 2013  https://github.com/ryanb/nested_form/commit/42028bc06e72a848d297edc1467a969a7c9def57
+# plus possibly additional fix made Nov 8, 2013 https://github.com/ryanb/nested_form/commit/35a2cf060680280413880337a3f89bdec469301c
+# subsequent commits as of Nov 14, 2014 revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a are documentation updates only
+gem 'nested_form', github: 'ryanb/nested_form'
 
 
 #old assets block

@@ -29,6 +29,10 @@
 
       <form class="manipulate_dialogues_form" novalidate>
         <div class="form-group">
+          <label for="pc-field">Confidence sourcing this manufacturing process</label>
+          <input type="text" id="pc-field" ng-model="order.process_confidence" placeholder="With this initial project information, there are # suppliers in our network that match this job.">
+        </div>
+        <div class="form-group">
           <label for="rec-field">Recommendation</label>
           <textarea id="rec-field" ng-model="order.recommendation"></textarea>
         </div>
@@ -41,8 +45,8 @@
           <textarea id="na-field" ng-model="order.next_action_date"></textarea>
         </div>
         <div class="form-group">
-          <label for="on-field">Internal notes on order</label>
-          <textarea id="on-field" ng-model="order.notes"></textarea>
+          <label for="in-field">Internal notes on order</label>
+          <textarea id="in-field" ng-model="order.notes"></textarea>
         </div>
         <div class="form-group">
           <label for="sl-field">Shareable link (for viewing only)</label>
@@ -59,15 +63,7 @@
           <p><strong>Parts:</strong></p>
           <ul>
             <li ng-repeat="part in order_group.parts">
-              <span ng-if="part.external">
-                Quantity {{part.quantity}} of "{{part.name}}" (Units: {{part.external.units}}
-              </span>
-              <span ng-if="!part.external">
-                WARNING - PART HAS NO EXTERNAL LINK. TROUBLESHOOT.
-              </span>
-              <span>
-                ) [Part ID: {{part.id}}, BOM ID: {{part.bom_identifier}}]
-              </span>
+              Quantity {{part.quantity}} of "{{part.name}}" (Material: {{part.material}}) [Part ID: {{part.id}}]
             </li>
           </ul>
 

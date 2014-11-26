@@ -42,6 +42,11 @@ task :add_tag_groups => :environment do
   TagGroup.create(group_name: "machine")
 end
 
+desc "add product tag_group"
+task :add_product_tag_group => :environment do
+  TagGroup.create(group_name: "product")
+end
+
 desc "add initial set of tag_relationship_types"
 # assumes associated source_group and related_group already exist
 task :add_tag_relationship_types => :environment do

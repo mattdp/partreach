@@ -38,12 +38,16 @@ class Order < ActiveRecord::Base
   
   belongs_to :user
   has_many :order_groups, -> { order(:created_at) }, dependent: :destroy
+  accepts_nested_attributes_for :order_groups, reject_if: :all_blank
   has_many :dialogues, through: :order_groups, dependent: :destroy
   has_many :parts, through: :order_groups, dependent: :destroy
+  has_many :externals, :as => :consumer, :dependent => :destroy
 
-  validates :user_id, presence: {message: "needs a name, valid email, and >= 6 character password"}
-  validates :material_message, presence: true, length: {minimum: 2}
+  validates :units, presence: true
   validates :columns_shown, presence: true
+  validates :user, presence: true
+  validates :order_groups, presence: true
+  # validates :externals, presence: true
 
   PARTS_SNIPPETS_PLACEHOLDER = "<[$PARTS$]>"
   IMAGES_SNIPPETS_PLACEHOLDER = "<[$IMAGES$]>"
@@ -273,6 +277,32 @@ See the note from client for details on what exactly they're looking for.</p>
 
 #{Order::IMAGES_SNIPPETS_PLACEHOLDER}
     HTML
+
+    if self.externals.present?
+      order_id = self.id
+
+      snippet += <<-HTML
+---------- EXTERNALS ----------
+      HTML
+
+      self.externals.each do |external|
+        suffix = external.url.split(".").last.upcase
+        unless suffix.in? ["PNG", "JPG", "ZIP"]
+          snippet += <<-HTML
+(<a href="#{external.url}"><strong>Link to #{suffix} file</strong></a>)
+          HTML
+        end
+
+        if suffix.in? ["PNG", "JPG"]
+          snippet += <<-HTML
+<p><a href="#{external.url}" alt="SupplyBetter RFQ#{order_id}" target="_blank">
+<img src="#{external.url}" alt="SupplyBetter RFQ#{order_id}" width="460"></a></p>
+          HTML
+        end
+      end
+    end
+
+    snippet
   end
 
   def self.metrics(interval,tracking_start_date)

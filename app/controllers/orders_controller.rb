@@ -26,7 +26,6 @@ class OrdersController < ApplicationController
     @user = User.find(@order.user_id)
     @total_quantity = @order.total_quantity
     @recommended = @dialogues.select{|d| (d.recommended? and d.opener_sent)} if @dialogues = @order.dialogues
-    track("order","viewed",@order.id)
     if @order.columns_shown
       @columns = OrderColumn.get_columns(@order.columns_shown.to_sym)
     else
@@ -41,25 +40,16 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    blanks = "__________"
     @questions = params["questions"]
-    [:experience, :priority, :manufacturing].each do |summary_var|
-      value = blanks
-      if @questions.present? and @questions[summary_var].present?
-        option_details = Question.get_option_details(summary_var,@questions[summary_var])
-        if option_details
-          value = option_details[:summary]
-          instance_variable_set("@#{summary_var}",@questions[summary_var])
-        end
-      end
-    end
     @content = Question.raw_list
 
     @approximate_next_order_id = next_order_id
 
     @order = Order.new
-    @order_group = OrderGroup.create_default
-
+    @order.order_groups.build
+    @order.order_groups[0].parts.build(quantity: 1)
+    @files_uploaded = nil
+    @parts_list_uploaded = "false"
     respond_to do |format|
       format.html { render layout: "orders_new" } # new.html.erb
       format.json { render json: @order }
@@ -71,11 +61,11 @@ class OrdersController < ApplicationController
   # consider making the whole thing a transaction
   #
   def create
+    @order = Order.new(order_params)
     existed_already = false
     did_user_work = false
-    @order = Order.new
-    @order_group = OrderGroup.find(params['order_group_id'])
     did_order_save = false
+
     if current_user.nil?
       #they've filled out the signin form
       if params[:signin_email].present? && params[:signin_password].present?
@@ -117,28 +107,16 @@ class OrdersController < ApplicationController
     end
 
     if did_user_work
-      @order.user_id = current_user.id
+      @user.create_or_update_address({ zip: params[:zip] }) if params[:zip].present?
 
-      @order.columns_shown = "all"
-      @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
-      @order.view_token = SecureRandom.hex
-      @order.assign_attributes(order_params)
-      if (params[:zip].present? || params[:country].present?)
-        @user.create_or_update_address({ zip: params[:zip], country: params[:country] })
-      end
-
-      @order.order_groups << @order_group
-
-      did_order_save = @order.save
+      did_order_save = validate_and_create
       logger.debug "Order saving: #{did_order_save}"
     else
       @order.errors.messages[:Sign_up_or_sign_in] = ["needs a valid email and password"]
     end
 
     respond_to do |format|
-      if did_user_work and did_order_save
-        track("order","created",@order.id)
-        track("order","created_by_repeat_user",@order.id) if existed_already
+      if did_user_work && did_order_save
         note = "#{brand_name}: Order created by #{current_user.lead.lead_contact.email}, order number #{@order.id}. Go get quotes!"
         if Rails.env.production?
           text_notification(note)
@@ -149,8 +127,19 @@ class OrdersController < ApplicationController
         format.json { render json: @order, status: :created, location: @order }
       else
         logger.debug "ERRORS: #{@order.errors.full_messages}"
-        @approximate_next_order_id = next_order_id
+        @questions = {}
+        @questions[:experience] = params["order"]["stated_experience"]
+        @questions[:priority] = params["order"]["stated_priority"]
+        @questions[:manufacturing] = params["order"]["stated_manufacturing"]
         @content = Question.raw_list
+
+        @order.order_groups.build if @order.order_groups.empty?
+        @order.order_groups[0].parts.build(quantity: 1) if @order.order_groups[0].parts.empty?
+
+        @order_uploads = params["order_uploads"]
+        @files_uploaded = ( (params["files_uploaded"] == "true") ? "true" : nil )
+        @parts_list_uploaded = params["parts_list_uploaded"]
+
         format.html { render action: "new", layout: "orders_new" }
         format.json { render json: @order.errors.full_messages, status: 400 }
       end
@@ -175,18 +164,16 @@ class OrdersController < ApplicationController
 
   def initial_email_update
     @order = Order.find(params[:id])
-    @order.update_attributes(order_params)
+    @order.update(email_snippet: params["email_snippet"])
 
     params["order_group_parts_snippets"].each do |id,text|
       order_group = OrderGroup.find(id)
-      order_group.parts_snippet = text
-      order_group.save
+      order_group.update(parts_snippet: text)
     end
 
     params["order_group_images_snippets"].each do |id,text|
       order_group = OrderGroup.find(id)
-      order_group.images_snippet = text
-      order_group.save
+      order_group.update(images_snippet: text)
     end
 
     redirect_to initial_email_edit_path(@order), notice: "Master email saves attempted."
@@ -212,6 +199,7 @@ class OrdersController < ApplicationController
     @textfields = setup_textfields
     @numberfields = setup_numberfields
 
+    @order.process_confidence = params[:process_confidence]
     @order.recommendation = params[:recommendation]
     @order.notes = params[:notes]
     @order.columns_shown = params[:columns_shown]
@@ -287,11 +275,49 @@ class OrdersController < ApplicationController
   private
 
     def order_params
-      params.permit(:name,:material_message,:suggested_suppliers, :deadline, \
-        :stated_experience,:stated_priority,:stated_manufacturing,:supplier_message, \
-        :order_description, \
-        :email_snippet, :stated_quantity, :units)
+      params.require(:order).permit(
+        :stated_experience, :stated_priority, :stated_manufacturing,
+        :units, :deadline, :order_description, :supplier_message,
+        order_groups_attributes: [:id, :name, parts_attributes: [:id, :name, :quantity, :material, :notes]]
+      )
     end
+
+  def validate_and_create
+    # validate that parts have been added (unless user checked that a parts list was uploaded)
+    unless @order.order_groups[0] && @order.order_groups[0].parts.present?
+      unless params["parts_list_uploaded"] == "true"
+        @order.errors.messages[:parts] = [": Please enter name, quantity, and material for at least one part."]
+        return false
+      end
+    end
+
+    @order.user_id = current_user.id
+    @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
+    @order.view_token = SecureRandom.hex
+    @order.order_groups[0].init_default
+
+    # create order, along with nested order_group and parts
+    return false unless @order.save
+
+    # create externals and associate with order
+    if params["order_uploads"]
+      params["order_uploads"].each do |upload|
+        @order.externals.build(url: upload["url"], original_filename: upload["original_filename"])
+      end
+
+      # causes externals to be saved, with polymorphic reference to order set appropriately
+      return false unless @order.save
+    end
+
+    # validate that at least one file was uploaded
+    if @order.externals.empty?
+      @order.errors.messages[:uploads] = [": Please upload least one file."]
+      return false
+    end
+
+    # it's all good
+    return true
+  end
 
     def correct_user
       @order = Order.find_by_id(params[:id])
@@ -347,8 +373,6 @@ class OrdersController < ApplicationController
       # "programmatic links to the files won't have the race conditions this creates" MDP -- huh?
       Order.max_id + 1
     end
-
-  #private doesn't 'end'
 
 end
 
