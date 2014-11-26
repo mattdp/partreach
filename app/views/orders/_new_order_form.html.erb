@@ -91,7 +91,7 @@
             <%= part_form.text_field :material, placeholder: 'ABS, stainless steel, etc.' %>
           </div>
         <% end %>
-        <p><%= order_groups_form.link_to_add 'Add another part', :parts %></p>
+        <%= order_groups_form.link_to_add 'Add another part', :parts, :model_object => Part.new(quantity: 1) %>
       <% end %>
     </div>
 
