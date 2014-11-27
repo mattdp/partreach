@@ -29,16 +29,6 @@ class OrderColumn
         code: "d.process_name",
         css_class: "center"
       },
-      process_cost: {
-        header: "Process cost" ,
-        code: "currencyize(d.process_cost, d.currency)",
-        css_class: "right"
-      },
-      shipping_cost: {
-        header: "Shipping cost",
-        code: "currencyize(d.shipping_cost, d.currency)",
-        css_class: "right"
-      },
       notes: {
         header: "Notes",
         code: "notarize(d.shipping_name,d.notes)",
@@ -59,8 +49,8 @@ class OrderColumn
   def self.set_to_names_map
     hash = {}
     hash[:all] = OrderColumn.all.keys
-    hash[:speed] = [:bid_status,:total_cost,:process_time,:notes]
-    hash[:cost] = [:bid_status,:total_cost,:process_time,:process_cost,:shipping_cost,:notes]
+    hash[:speed] =   [:bid_status,:total_cost,:process_time,:notes]
+    hash[:cost] =    [:bid_status,:total_cost,:process_time,:notes]
     hash[:quality] = [:bid_status,:total_cost,:process,:process_time,:notes]
     return hash
   end
