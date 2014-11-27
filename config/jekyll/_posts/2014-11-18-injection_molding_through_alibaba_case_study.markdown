@@ -3,28 +3,18 @@ layout: post
 author: Rob
 title: Injection Molding through Alibaba | Case Study
 published: true
+meta_description: SupplyBetter helped produce an injection molded custom part for Saturday Morning Breakfast Cereal (SMBC). Case study here. 
 ---
 <div style="display:inline-block; max-width:100%; float:left">
 <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-01.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-01.jpg"></a>
 </div>
 <div class="footer" align="bottom">Old Gulpo (right), New Gulpo (left)</div>
 
-Tone:
-MORE PASSION
-Not "down the rabbit hole"
-Not "heart of darkness"
-Not bland. 
-Competence, audacity, high moral compass, reassurance, informative, compelling. Complete. Relevant. 
-
-------
-
 <h1>Intro</h1>
 
-People like to say that "Manufacturing is hard". I've noticed recently that this is the frequent go-to answer for really anyone making a hardware product. The problem I have with this statement is that "manufacturing is hard" doesn't give any hint as to why. The only proper response to assertions like this is to nod your head with eyes glazed over and put on a consoling "you're so brave" look on your face. 
+This post is about one, relatively simple, hardware product and how SupplyBetter helped get it made. Our goal is to provide as detailed an account of the steps involved so that those currently in the middle of (or about to embark on) a serious hardware project can learn from our experience. Finding a company to make the parts for a custom product that can't be bought from a website or catalog (a.k.a "outsourcing") can be incredibly difficult because it is the intersection of engineering and business. You can be skilled in engineering or a solid business developer, but if you're not good at both you can quickly find yourself ill-equipped to address the tradeoffs that need to be made in order to manufacture your product.
 
-Well I'm here to say that, yes, of course manufacturing is hard, but it's not impossible. Building a hardware product doesn't need to be a task for just masochists and martyrs like we're led to believe. It requires difficult decisions, attention to detail, and an ability to handle taking on business-level risks. 
-
-This post is about one, relatively simple, hardware product and how SupplyBetter helped get it made. Our goal is to provide as detailed an account of the steps involved so that those currently in the middle of or about to embark on a serious hardware project can see just what's involved. From our perspective this is a near-ideal case study of showing the risks involved, difficult decisions that have to made, and attention to detail necessary to source any hardware product. While the product itself was seemingly simple, the insights gained and lessons learned apply to anyone looking to get into hardware. This is neither a cautionary tale nor a glamor piece. Just a straightforward account of what it took to solve source a single hardware component. 
+From our perspective we had the privilege of taking on a near-ideal case study that shows the risks involved, difficult decisions that have to made, and attention to detail necessary (on both a business and technical front) to source any hardware product. While the product itself was relatively simple, the insights gained and lessons learned apply to anyone looking to get into hardware. 
 
 <h1>Project Background</h1>
 
@@ -42,23 +32,45 @@ Laser cutting for prototyping: Gulpo Version 1 was laser cut from black plastic 
 
 Laser cutting for production: Laser cutting's initial blessing of having a negligible setup cost quickly becomes a curse once production quantities begin approaching larger volumes. Laser cutting is a fixed-time manufacturing process, which means that the time-per-Gulpo for QTY 1 is the same as QTY 500. In other words, the cost of making Gulpo is relatively fixed, regardless of the quantity being produced. Considering that SMBC only broke even with the last batch, they wouldn't expect their margins to improve by order a large amount*. If SMBC really wanted Gulpo to make sense as a retail product, they were going to need to find a different way to produce them. 
 
-Aesthetics: As mentioned before, the main goal of the initial batch of Gulpos was to validate that people actually wanted to purchase this product. Aethetic were not a concern as long as they were good enough to validate this assumption (what is commonly referred to as the Minimum Viable Product a.k.a. MVP). Now that their initial assumption was firmly validated, SMBC wanted the next Gulpo to look as much like a car emblem you'd see in the wild as possible. This required a smooth and glossy chrome-on-black surface finish and an adhesive backing that would not fall off a car bumper regularly exposed to the elements. While laser cutting was able to produce a chrome against black surface finish, the results were not smooth or glossy. The surface finish wasn't smooth mainly due to the resolution of the laser cutter used, which etches the material by burning the surface line by line. While there are some great optimizations that can be done to improve the quality of images raster etched via laser cutting, you're not going to be able to produce a surface finish smooth enough to be glossy without a fair amount of post processing (i.e. sanding and/or polishing). Adding post processing as an additional step would only increase the price per unit. 
+Aesthetics: As mentioned before, the main goal of the initial batch of Gulpos was to validate that people actually wanted to purchase this product. Aesthetic were not a concern as long as they were good enough to validate this assumption (what is commonly referred to as the Minimum Viable Product a.k.a. MVP). Now that their initial assumption was firmly validated, SMBC wanted the next Gulpo to look as much like a car emblem you'd see in the wild as possible. This required a smooth and glossy chrome-on-black surface finish and an adhesive backing that would not fall off a car bumper regularly exposed to the elements. While laser cutting was able to produce a chrome against black surface finish, the results were not smooth or glossy. The surface finish wasn't smooth mainly due to the resolution of the laser cutter used, which etches the material by burning the surface line by line. While there are some great optimizations that can be done to improve the quality of images raster etched via laser cutting, you're not going to be able to produce a surface finish smooth enough to be glossy without a fair amount of post processing (i.e. sanding and/or polishing). Adding post processing as an additional step would only increase the price per unit. 
 
 Simply put, if SMBC wanted a better product for cheaper they would need to take a fundamentally different approach.
 
 <h1>Solution</h1>
 
-tl;dr: SupplyBetter needed to find a shop with the right capabilities in China in order to meet their project needs.
+tl;dr: SupplyBetter needed to find a shop with the right capabilities in (likely overseas) in order to meet their project needs.
+
+For those who would like to keep track, here is a typical outline of steps taken to outsource a production part:
+
+<ol>
+  <li>Characterize the project</li>
+  <li>Identify Suppliers</li>
+  <li>Initial Supplier Reachout</li>
+  <li>Create RFQ Package</li>
+  <li>Send RFQ Package</li>
+  <li>Evaluate Quotes</li>
+  <li>Order Samples</li>
+  <li>Evaluate Samples</li>
+  <li>Ask for buyer references (see if there is anyone else who has used them we can speak with)</li>
+  <li>Enter into NDA with supplier (optional)</li>
+  <li>Re-quote with final file</li>
+  <li>Negotiate finance terms (e.g. establish escrow, % payment up front, etc)</li>
+  <li>Order first articles (mold fee, QTY 10 units, shipping of first batch)</li>
+  <li>Evaluate first articles</li>
+  <li>Proceed with full production</li>
+  <li>Final Quality Control</li>
+  <li>Profit</li>
+</ol>
 
 To better understand the decision made in making Version 2 Gulpo, here is a summary of specifications from the previous section:
 
-Technical specification
+Technical requirements
 Same 2D design as Version 1 Gulpo (e.g. letter font, outer dimensions, etc)
 A smooth and glossy surface finish
 Colors to be used are silver chrome and glossy black
 Durable enough material and strong enough adhesive backing to withstand exposure to the elements while affixed to the back of a car
 
-Business specification
+Buyer Business requirements
 Want the ability to produce in batches of 1500+ 
 Per-unit cost to SMBC needs to be low enough to make financial sense to sell at their current price
 
@@ -66,7 +78,7 @@ Given the above specs, an injection molded body with a die-cut adhesive backing 
 
 Given the above technical specs, we get a picture of who the ideal supplier would be for this project:
 
-Capability specification
+Supplier Capability requirements
 Injection molding
 Mold polishing
 Two color painting
@@ -79,58 +91,54 @@ Willing to send product samples
 Can work with an Minimum Order Quantity (MOQ) of ~1000 pieces
 Willing to work off of milestone payments (vs. timelines)
 
+Rough manufacturing process outline:
+Mill the injection mold tooling
+Polish the tooling (to achieve a glossy surface finish on the parts)
+Paint chrome (all over the part)
+Paint matte black in recessed areas of design
+Die cut the adhesive backing
+Assembly adhesive backing and painted piece
+
 Now that we knew what kind of supplier we were looking for, it was time to actually go out there and find them. 
 
-<h1>Discovery</h1>
+<h1>Identify Suppliers</h1>
 
-SupplyBetter prides itself in finding the handful of suppliers who are exact matches for the job. It's more than simply knowing which suppliers are "good" and which suppliers are "bad". You need to determine which suppliers are the most capable to work on your project. We believe that parts will be better and cheaper if you start your vendor relationship with a company that already as the equipment necessary and understands nuances of the manufacturing processes involved. Manufacturing vendors are more than just machines with spare capacity, it's the engineers and tradesmen behind them that truly make your products great. 
+SupplyBetter prides itself in finding that handful of suppliers who are the exact match for the job. It's more than simply knowing which suppliers are "good" and which suppliers are "bad". You need to determine which suppliers are the most capable to work on your project. We believe that parts will be better and cheaper if you start your vendor relationship with a company that already as the equipment necessary and understands nuances of the manufacturing processes involved. Manufacturing vendors are more than just machines with spare capacity, it's the engineers and tradesmen behind them that truly make your products great. 
 
-That said, we did not yet have a supplier network established overseas. So where do you go when you need a consumer product made overseas? Alibaba. 
+That said, we did not yet have a supplier network established overseas. So where do you go right now when you need a consumer product made overseas? Alibaba. 
 
-Alibaba is ridiculously intimidating. A common perception held by hardware designers is that reaching out to suppliers on Alibaba is sometimes akin to directly emailing scammers to let them know that you're their newest victim.While there are indeed quality suppliers to be found on Alibaba's marketplace, with and entire ocean and legal system between you and the people you're sending money to there is very little, if any recourse to be had for manufacturing deals gone awry. The suspicion that you may be dealing with a fraudulent company is not unfounded.[cite] This why the in-person Asian factory tour is such a common to occurrence with hardware companies sourcing overseas. For excellent first-person accounts of what the manufacturing ecosystem looks like, I highly recommend bunnie's blog (for electronics) and The Open Company's blog (for sourcing and how it affects local culture) [cite bunnie and TOC].
+Alibaba can be ridiculously intimidating. A common perception held by hardware designers is that reaching out to suppliers on Alibaba can be akin to directly emailing scammers to let them know you're their newest victim. While there are indeed quality suppliers to be found on Alibaba's marketplace, having an entire ocean and legal system between you and the people you're sending money to means there is very little recourse to be had for manufacturing deals gone awry. The suspicion that you may be dealing with a fraudulent company is not unfounded.[cite] This why the in-person Asian factory tour is such a common to occurrence with hardware companies sourcing overseas. For excellent first-person accounts of what the manufacturing ecosystem looks like, I highly recommend bunnie's blog (for electronics) and The Open Company's blog (for sourcing and how it affects local culture) [cite bunnie and TOC].
 
 Neither SMBC nor SupplyBetter was willing to jump on a plane and go on a factory tour simply to make this one part. The cost of the plane tickets alone would likely amount to more than the cost of the entire production run. For this project we were stuck with online resources and our wits.
 
+Alibaba is best navigated by searching for similar products currently made by manufacturers (vs. just finding everyone who does "injection molding", or has a certain type of machine built for injection molding). We initially thought to searching for "custom car decals", but that query was too vague and returned hundreds of shops making everything from bumper stickers to name plates. We decided to swing the pendulum the opposite way and get as specific as possible. Oddly enough, there were a handful of suppliers who were advertising as producers of "Icthys-themed novelty car emblems" (try it!). Vendors often post pictures of parts they make, and we were seeing examples of the Christian fish, Darwin evolution emblem, and Flying Spaghetti Monster. [find the screenshots/links sent to SMBC]
 
+With our search term figured out, it was time to start checking boxes. Alibaba has a bevy of filters you can use to narrow your search result even further, and the general advice we'd gotten from those experienced with Alibaba or Aliexpress was to just check all of them. Once done, we were down to 6 suppliers. This was as good as we were going to get. 
 
-
-
-"find that perfect supplier", only to realize that they're often not much more informed on the ground as they were online. Simply put, sourcing in Asia from the US is difficult, and doing it through Alibaba is risky. There are plenty of reputable companies to be found on their site, but Alibaba's effort to keep scammers away has not assuaged anyone's fears. 
-
-Oddly enough, there are a handful of suppliers who are advertising as producers of "Icthys-themed novelty car emblems" (try it!).  (vs. just finding everyone who does "injection molding"), so this was perfect for us. 
-
-This is why we wanted to do escrow. It's Alibaba's service that allows for us to commit the cash upfront to signal to supplier that we're good for the money, while reducing the risk of potentially dealing with a fraudulent supplier.
-
-Well, that didn't go so well for us, but not in the way we expected. 
-
-bricks motorcycle aftermarket parts. 
-
-
+<h1>What we'll cover in Part II</h1>
 <p><strong>The Road to Gulpo</strong></p>
 <ol>
-  <li>Identify Suppliers</li>
-  <li>Initial Reachout (do they exist)</li>
-  <li>Create RFQ Package (with scrubbed file)</li>
+  <li><strikethrough>Characterize the project</strikethrough></li>
+  <li><strikethrough>Identify Suppliers</strikethrough></li>
+  <li>Initial Supplier Reachout</li>
+  <li>Create RFQ Package</li>
   <li>Send RFQ Package</li>
-  <li>Evaluate Quotes for Validity</li>
+  <li>Evaluate Quotes</li>
   <li>Order Samples</li>
   <li>Evaluate Samples</li>
   <li>Ask for buyer references (see if there is anyone else who has used them we can speak with)</li>
   <li>Enter into NDA with supplier (optional)</li>
   <li>Re-quote with final file</li>
-  <li>If good, negotiate finance terms (e.g. establish escrow, % payment up front, etc)</li>
-  <li>Order first article (mold fee, QTY 10 units, shipping of first batch)</li>
-  <li>Evaluate first article</li>
-  <li>Resolve outstanding balance with SupplyBetter</li>
-  <li>Order rest of set with Ever Greater (50% deposit , 50% before delivery)</li>
+  <li>Negotiate finance terms (e.g. establish escrow, % payment up front, etc)</li>
+  <li>Order first articles (mold fee, QTY 10 units, shipping of first batch)</li>
+  <li>Evaluate first articles</li>
+  <li>Proceed with full production</li>
+  <li>Final Quality Control</li>
   <li>Profit</li>
 </ol>
 
-17
-18
-19
-20
-21
+
+---------------------------------
 
 <h1>Quoting</h1>
 <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-06.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-06.png"></a>
@@ -206,7 +214,7 @@ Old code:
 </div>
 <div class="footer" align="bottom">(Left) Front view of "Collar 2," an original necklace design by <a href="https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6" target="_blank">Madeline Gannon</a> printed with SLS. (Right) <a href="https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL" target="_blank">Reverse view</a> of the same piece. Used under <a href="https://creativecommons.org/licenses/by-nc/2.0/legalcode" target="_blank">CC BY-NC 2.0.</a></div>
 
-
+<!-- 
 [] make sure Ever Greater holds onto the mold for SMBC
 
 *A supplier's only incentive in providing a discount for a large quantity order is the business advantage of having a longer term contract on the books
@@ -217,7 +225,38 @@ Old code:
 
 
 ------
+
+
+As a mechanical engineer living and working in San Francisco, it's phenomenal to experience first hand the upswell in interest with making hardware products. This upswell is being manifested in different forms such as the "Maker Revolution", "Internet of Things", and "Hardware Renaissance". There is one phrase that seems to bind these different facets of hardware, and that phrase de jure right now is that "Manufacturing is hard".
+
+<!-- People like to say that "Manufacturing is hard". I've noticed recently that this is the frequent go-to answer for really anyone making a hardware product. The problem I have with this statement is that "manufacturing is hard" doesn't give any hint as to why. The only proper response to assertions like this is to nod your head with eyes glazed over and put on a consoling "you're so brave" look on your face.  -->
+
+So why is manufacturing hard? There are many reasons, but the one I want to focus on is sourcing. 
+
+Well I'm here to say that, yes, of course manufacturing is hard, but it's not impossible. Building a hardware product doesn't need to be a task for just masochists and martyrs like we're led to believe. It requires difficult decisions, attention to detail, and an ability to handle taking on business-level risks. 
+
+This is neither a cautionary tale nor a glamor piece. Just a straightforward account of what it took to solve source a single hardware product. 
+
 China guide. http://www.chinaimportal.com/blog/sea-freight-shipping-from-china-guide/
+
+bricks motorcycle aftermarket parts. 
+
 Mention The Open Company when talking bout Alibaba. 
 
+"find that perfect supplier", only to realize that they're often not much more informed on the ground as they were online. Simply put, sourcing in Asia from the US is difficult, and doing it through Alibaba is risky. There are plenty of reputable companies to be found on their site, but Alibaba's effort to keep scammers away has not assuaged anyone's fears. 
 
+This is why we wanted to do escrow. It's Alibaba's service that allows for us to commit the cash upfront to signal to supplier that we're good for the money, while reducing the risk of potentially dealing with a fraudulent supplier.
+
+Well, that didn't go so well for us, but not in the way we expected. 
+
+Tone:
+MORE PASSION
+Not "down the rabbit hole"
+Not "heart of darkness"
+Not bland. 
+Competence, audacity, high moral compass, reassurance, informative, compelling. Complete. Relevant. 
+Trustworthy, loyal, helpful friendly, courteous, kind, obedient, cheerful, thrifty, brave, clean, and reverent 
+
+------
+
+ -->
