@@ -6,7 +6,7 @@ published: true
 meta_description: SupplyBetter helped produce an injection molded custom part for Saturday Morning Breakfast Cereal (SMBC). Case study here. 
 ---
 <div style="display:inline-block; max-width:100%; float:left">
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-01.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-01.jpg"></a>
+<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-20.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-18.png"></a>
 </div>
 <div class="footer" align="bottom">Old Gulpo (right), New Gulpo (left)</div>
 
@@ -17,22 +17,40 @@ This post is about one, relatively simple, hardware product and how SupplyBetter
 From our perspective we had the privilege of taking on a near-ideal case study that shows the risks involved, difficult decisions that have to made, and attention to detail necessary (on both a business and technical front) to source any hardware product. While the product itself was relatively simple, the insights gained and lessons learned apply to anyone looking to get into hardware. 
 
 <h1>Project Background</h1>
+<div style="display:inline-block; max-width:50%; float:left">
+  <a href="http://www.smbc-comics.com/?id=2094" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/Saturday_Morning_Breakfast_Cereal-small.png"></a>
+</div>
+<div style="display:inline-block; max-width:50%; float:left">
+  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-21.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-21.jpg"></a>
+</div>
+<div class="footer" align="bottom">(Left) The comic that started it all. (Right) The original, laser cut Gulpo.</div>
 
 People love Gulpo. And so do we. 
 
-Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal team. After Gulpo made its debut on their daily-updated webcomic [cite], there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, Gulpo went on sale in the winter of 2013-14 and quickly sold out. [cite 2013] Gulpo was a success. 
+Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal team. After Gulpo made its debut on their <a href="http://www.smbc-comics.com/?id=2094" target="_blank">daily-updated webcomic</a> in late 2010, there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, Gulpo went on sale in the winter of 2013-14 and quickly sold out. Gulpo was a success. 
 
 <h1>The Problem</h1>
 
 tl;dr: SMBC could not make larger batches due to the limitations imposed by the manufacturing process used to produce the first batch of Gulpos.
 
+<div style="display:inline-block; max-width:50%; float:left">
+  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph-large.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph-medium.png"></a>
+</div>
+<div style="display:inline-block; max-width:50%; float:left">
+ <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-large.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-small.png"></a>
+</div>
+<div class="footer" align="bottom">(Left) The manufacturing chosen for Gulpo isn't suitable for larger volumes. Compared to injection molding, the transition point occurs at around QTY 50.(Right) Problem with the original Gulpo design. </div>
+
 Despite the success of the first run of Gulpos, it didn't make sense to produce another run. Not including their time spent sourcing and managing the first production run, SMBC just barely broke even selling Gulpo Version 1. It was too expensive to manufacture given their current method, and the product didn't look as good as they wanted it to. Their choice of laser cutting as the manufacturing process for this first run of Gulpos was not suitable going forward for two reasons. 
 
-Laser cutting for prototyping: Gulpo Version 1 was laser cut from black plastic with a chrome front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is 2D and there is very little setup cost to cut the design. This is important because if SMBC was going to sell this product, they needed to validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an Icthys-themed novelty car emblem wouldn't matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually make the fish.  
+<h3>Benefits of Laser cutting for prototyping</h3> 
+Gulpo Version 1 was laser cut from black plastic with a chrome front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is 2D and there is very little setup cost to cut the design. This is important because if SMBC was going to sell this product, they needed to validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an Icthys-themed novelty car emblem wouldn't matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually make the fish.  
 
-Laser cutting for production: Laser cutting's initial blessing of having a negligible setup cost quickly becomes a curse once production quantities begin approaching larger volumes. Laser cutting is a fixed-time manufacturing process, which means that the time-per-Gulpo for QTY 1 is the same as QTY 500. In other words, the cost of making Gulpo is relatively fixed, regardless of the quantity being produced. Considering that SMBC only broke even with the last batch, they wouldn't expect their margins to improve by order a large amount*. If SMBC really wanted Gulpo to make sense as a retail product, they were going to need to find a different way to produce them. 
+<h3>Drawbacks of Laser cutting for production</h3> 
+Laser cutting's initial blessing of having a negligible setup cost quickly becomes a curse once production quantities begin approaching larger volumes. Laser cutting is a fixed-time manufacturing process, which means that the time-per-Gulpo for QTY 1 is the same as QTY 500. In other words, the cost of making Gulpo is relatively fixed, regardless of the quantity being produced. Considering that SMBC only broke even with the last batch, they wouldn't expect their margins to improve by order a large amount*. If SMBC really wanted Gulpo to make sense as a retail product, they were going to need to find a different way to produce them. 
 
-Aesthetics: As mentioned before, the main goal of the initial batch of Gulpos was to validate that people actually wanted to purchase this product. Aesthetic were not a concern as long as they were good enough to validate this assumption (what is commonly referred to as the Minimum Viable Product a.k.a. MVP). Now that their initial assumption was firmly validated, SMBC wanted the next Gulpo to look as much like a car emblem you'd see in the wild as possible. This required a smooth and glossy chrome-on-black surface finish and an adhesive backing that would not fall off a car bumper regularly exposed to the elements. While laser cutting was able to produce a chrome against black surface finish, the results were not smooth or glossy. The surface finish wasn't smooth mainly due to the resolution of the laser cutter used, which etches the material by burning the surface line by line. While there are some great optimizations that can be done to improve the quality of images raster etched via laser cutting, you're not going to be able to produce a surface finish smooth enough to be glossy without a fair amount of post processing (i.e. sanding and/or polishing). Adding post processing as an additional step would only increase the price per unit. 
+<h3>Improvement on Aesthetics</h3> 
+As mentioned before, the main goal of the initial batch of Gulpos was to validate that people actually wanted to purchase this product. Aesthetic were not a concern as long as they were good enough to validate this assumption (what is commonly referred to as the Minimum Viable Product a.k.a. MVP). Now that their initial assumption was firmly validated, SMBC wanted the next Gulpo to look as much like a car emblem you'd see in the wild as possible. This required a smooth and glossy chrome-on-black surface finish and an adhesive backing that would not fall off a car bumper regularly exposed to the elements. While laser cutting was able to produce a chrome against black surface finish, the results were not smooth or glossy. The surface finish wasn't smooth mainly due to the resolution of the laser cutter used, which etches the material by burning the surface line by line. While there are some great optimizations that can be done to improve the quality of images raster etched via laser cutting, you're not going to be able to produce a surface finish smooth enough to be glossy without a fair amount of post processing (i.e. sanding and/or polishing). Adding post processing as an additional step would only increase the price per unit. 
 
 Simply put, if SMBC wanted a better product for cheaper they would need to take a fundamentally different approach.
 
@@ -40,68 +58,50 @@ Simply put, if SMBC wanted a better product for cheaper they would need to take 
 
 tl;dr: SupplyBetter needed to find a shop with the right capabilities in (likely overseas) in order to meet their project needs.
 
-For those who would like to keep track, here is a typical outline of steps taken to outsource a production part:
-
-<ol>
-  <li>Characterize the project</li>
-  <li>Identify Suppliers</li>
-  <li>Initial Supplier Reachout</li>
-  <li>Create RFQ Package</li>
-  <li>Send RFQ Package</li>
-  <li>Evaluate Quotes</li>
-  <li>Order Samples</li>
-  <li>Evaluate Samples</li>
-  <li>Ask for buyer references (see if there is anyone else who has used them we can speak with)</li>
-  <li>Enter into NDA with supplier (optional)</li>
-  <li>Re-quote with final file</li>
-  <li>Negotiate finance terms (e.g. establish escrow, % payment up front, etc)</li>
-  <li>Order first articles (mold fee, QTY 10 units, shipping of first batch)</li>
-  <li>Evaluate first articles</li>
-  <li>Proceed with full production</li>
-  <li>Final Quality Control</li>
-  <li>Profit</li>
-</ol>
-
 To better understand the decision made in making Version 2 Gulpo, here is a summary of specifications from the previous section:
 
-Technical requirements
-Same 2D design as Version 1 Gulpo (e.g. letter font, outer dimensions, etc)
-A smooth and glossy surface finish
-Colors to be used are silver chrome and glossy black
-Durable enough material and strong enough adhesive backing to withstand exposure to the elements while affixed to the back of a car
+<h3>Technical requirements</h3>
+<ul>
+<li>Same 2D design as Version 1 Gulpo (e.g. letter font, outer dimensions, etc)</li>
+<li>A smooth and glossy surface finish</li>
+<li>Colors to be used are silver chrome and glossy black</li>
+<li>Durable enough material and strong enough adhesive backing to withstand exposure to the elements while affixed to the back of a car</li>
+</ul>
+<h3>Buyer Business requirements</h3>
+<ul>
+<li>Want the ability to produce in batches of 1500+ </li>
+<li>Per-unit cost to SMBC needs to be low enough to make financial sense to sell at their current price</li>
+</ul>
+<h3>Supplier Capability requirements</h3>
+<ul>
+<li>Injection molding</li>
+<li>Mold polishing</li>
+<li>Two color painting</li>
+<li>Die cutting</li>
+<li>Large batch production</li>
+</ul>
+<h3>Business specification</h3>
+<ul>
+<li>Already makes products similar to Gulpo</li>
+<li>Willing to send product samples</li>
+<li>Can work with an Minimum Order Quantity (MOQ) of ~1000 pieces</li>
+<li>Willing to work off of milestone payments (vs. timelines)</li>
+</ul>
+<h3>Rough manufacturing process outline</h3>
+<ol>
+<li>Mill the injection mold tooling</li>
+<li>Polish the tooling (to achieve a glossy surface finish on the parts)</li>
+<li>Paint chrome (all over the part)</li>
+<li>Paint matte black in recessed areas of design</li>
+<li>Die cut the adhesive backing</li>
+<li>Assembly adhesive backing and painted piece</li>
+</ol>
 
-Buyer Business requirements
-Want the ability to produce in batches of 1500+ 
-Per-unit cost to SMBC needs to be low enough to make financial sense to sell at their current price
-
-Given the above specs, an injection molded body with a die-cut adhesive backing made the most sense as the manufacturing methods of choice. Injection molding is fantastically suited for high-volume production of thermoplastics, which is why you see it being used in the majority of consumer products today. Chances are whatever device you're using to read this has an injection molded component in it. This would be the most critical process to source around. 
-
-Given the above technical specs, we get a picture of who the ideal supplier would be for this project:
-
-Supplier Capability requirements
-Injection molding
-Mold polishing
-Two color painting
-Die cutting
-Large batch production
-
-Business specification
-Already makes products similar to Gulpo
-Willing to send product samples
-Can work with an Minimum Order Quantity (MOQ) of ~1000 pieces
-Willing to work off of milestone payments (vs. timelines)
-
-Rough manufacturing process outline:
-Mill the injection mold tooling
-Polish the tooling (to achieve a glossy surface finish on the parts)
-Paint chrome (all over the part)
-Paint matte black in recessed areas of design
-Die cut the adhesive backing
-Assembly adhesive backing and painted piece
-
-Now that we knew what kind of supplier we were looking for, it was time to actually go out there and find them. 
+Given the above specs, an injection molded body with a die-cut adhesive backing made the most sense as the manufacturing methods of choice. Injection molding is fantastically suited for high-volume production of thermoplastics, which is why you see it being used in the majority of consumer products today. Chances are whatever device you're using to read this has an injection molded component in it. This would be the most critical process to source around. Now that we knew what kind of supplier we were looking for, it was time to actually go out there and find them. 
 
 <h1>Identify Suppliers</h1>
+
+<a href="http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg" target="_blank"><img src="http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg"></a>
 
 SupplyBetter prides itself in finding that handful of suppliers who are the exact match for the job. It's more than simply knowing which suppliers are "good" and which suppliers are "bad". You need to determine which suppliers are the most capable to work on your project. We believe that parts will be better and cheaper if you start your vendor relationship with a company that already as the equipment necessary and understands nuances of the manufacturing processes involved. Manufacturing vendors are more than just machines with spare capacity, it's the engineers and tradesmen behind them that truly make your products great. 
 
@@ -118,8 +118,8 @@ With our search term figured out, it was time to start checking boxes. Alibaba h
 <h1>What we'll cover in Part II</h1>
 <p><strong>The Road to Gulpo</strong></p>
 <ol>
-  <li><strikethrough>Characterize the project</strikethrough></li>
-  <li><strikethrough>Identify Suppliers</strikethrough></li>
+  <li><s>Characterize the project</s></li>
+  <li><s>Identify Suppliers</s></li>
   <li>Initial Supplier Reachout</li>
   <li>Create RFQ Package</li>
   <li>Send RFQ Package</li>
@@ -137,126 +137,5 @@ With our search term figured out, it was time to start checking boxes. Alibaba h
   <li>Profit</li>
 </ol>
 
-
----------------------------------
-
-<h1>Quoting</h1>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-06.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-06.png"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-17.jpg"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-20.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-18.png"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-19.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-19.jpg"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-20.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-20.jpg"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-21.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-21.jpg"></a>
-
-<h1>Samples</h1>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-04.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-04.png"></a>
-
-<h1>Ordering First Articles</h1>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-09.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-09.png"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-10.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-10.png"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-05.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-05.png"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-02.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-02.png"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-08.gif" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-08.gif"></a>
-
-<h1>Evaluating First Articles</h1>
-
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-11.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-11.jpg"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-13.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-13.jpg"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-14.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-14.png"></a>
-<a href="https://gfycat.com/ImpureIllustriousBlacklab" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-15.png"></a>
-
-<h1>Final Order</h1>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-07.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-07.jpg"></a>
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-12.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-12.jpg"></a>
-
-----
-
-
-
-
-<a href="https://gfycat.com/ImpureIllustriousBlacklab" target="_blank">Trying to pry Gulpo</a>
-
-Image Assets:
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-01.jpg
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-02.png
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-03.png
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-04.png
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-05.png
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-06.png
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-07.jpg
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-08.gif
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-09.png
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-10.png
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-11.jpg
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-12.jpg
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-13.jpg
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-14.png
-https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-15.png
-
-Other resources:
-
-Injection molding
-http://www.protolabs.com/injection-molding/fundamentals-of-molding/molding-surface-finishes
-http://www.quickparts.com/learningcenter/basicsofinjectionmoldingdesign.aspx
-http://info.crescentind.com/
-http://books.google.com/books?id=l5jqDRauKNYC&pg=PA349&lpg=PA349&dq=injection+molding+tool+marks&source=bl&ots=O-RTpGiRr7&sig=wCYGACJ88kXZbb7fqgJ2YxPtpkw&hl=en&sa=X&ei=_WRiVM7FEe7ziAKU6oCgBw&ved=0CFgQ6AEwCw#v=onepage&q=injection%20molding%20tool%20marks&f=false
-http://www.glstpes.com/resources_im_md.php
-http://www.protolabs.com/resources/injection-molding-design-tips/united-states/2007-05/
-http://www.toolingu.com/class-500255-principles-of-injection-molding-255.html
-http://www.protolabs.com/resources/injection-molding-design-tips/united-states/2010-06/default.htm
-
-Old code:
-<div style="display:inline-block; max-width:50%; float:left">
-  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover+copy-extra_small.jpg"></a>
-</div>
-<div style="display:inline-block; max-width:50%; float:left">
-  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back.jpg"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover_back+copy-extra_small.jpg"></a>
-</div>
-<div class="footer" align="bottom">(Left) Front view of "Collar 2," an original necklace design by <a href="https://www.flickr.com/photos/53730604@N06/12076178515/in/photolist-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL-irD87Q-n2huR6" target="_blank">Madeline Gannon</a> printed with SLS. (Right) <a href="https://www.flickr.com/photos/53730604@N06/12076178275/in/photolist-jp8z5g-3HaURx-jp8z9p-eWvTQf-26pkpw-dwzeKj-2jfZaw-jpaBN7-dwzg5G-4qrWTc-aRzfAD-ejcnvR-boThZW-9HZMiW-7fCpB3-d6quSy-bfJA1a-2mv2ij-dwtJDk-bA3QmZ-3HUyDd-j7TLHm-j7TRPy-ccBX83-j7PxuV-3KtQcJ-e6jUQ7-4qhNAY-8CZN4b-hVZX2M-eJQCXi-d6qrLN-d6qs79-d6qzNS-d6qAWy-d6qdF7-d6qrm7-eajiyj-n2oDE-P5iYB-7PTr8M-4JyRQA-3Hf6M3-5iZpB4-nfR49F-6mFeJw-4y8FLP-anKaYf-o1Tmry-cGWnBL" target="_blank">Reverse view</a> of the same piece. Used under <a href="https://creativecommons.org/licenses/by-nc/2.0/legalcode" target="_blank">CC BY-NC 2.0.</a></div>
-
-<!-- 
-[] make sure Ever Greater holds onto the mold for SMBC
-
-*A supplier's only incentive in providing a discount for a large quantity order is the business advantage of having a longer term contract on the books
-
-
-
-
-
-
-------
-
-
-As a mechanical engineer living and working in San Francisco, it's phenomenal to experience first hand the upswell in interest with making hardware products. This upswell is being manifested in different forms such as the "Maker Revolution", "Internet of Things", and "Hardware Renaissance". There is one phrase that seems to bind these different facets of hardware, and that phrase de jure right now is that "Manufacturing is hard".
-
-<!-- People like to say that "Manufacturing is hard". I've noticed recently that this is the frequent go-to answer for really anyone making a hardware product. The problem I have with this statement is that "manufacturing is hard" doesn't give any hint as to why. The only proper response to assertions like this is to nod your head with eyes glazed over and put on a consoling "you're so brave" look on your face.  -->
-
-So why is manufacturing hard? There are many reasons, but the one I want to focus on is sourcing. 
-
-Well I'm here to say that, yes, of course manufacturing is hard, but it's not impossible. Building a hardware product doesn't need to be a task for just masochists and martyrs like we're led to believe. It requires difficult decisions, attention to detail, and an ability to handle taking on business-level risks. 
-
-This is neither a cautionary tale nor a glamor piece. Just a straightforward account of what it took to solve source a single hardware product. 
-
-China guide. http://www.chinaimportal.com/blog/sea-freight-shipping-from-china-guide/
-
-bricks motorcycle aftermarket parts. 
-
-Mention The Open Company when talking bout Alibaba. 
-
-"find that perfect supplier", only to realize that they're often not much more informed on the ground as they were online. Simply put, sourcing in Asia from the US is difficult, and doing it through Alibaba is risky. There are plenty of reputable companies to be found on their site, but Alibaba's effort to keep scammers away has not assuaged anyone's fears. 
-
-This is why we wanted to do escrow. It's Alibaba's service that allows for us to commit the cash upfront to signal to supplier that we're good for the money, while reducing the risk of potentially dealing with a fraudulent supplier.
-
-Well, that didn't go so well for us, but not in the way we expected. 
-
-Tone:
-MORE PASSION
-Not "down the rabbit hole"
-Not "heart of darkness"
-Not bland. 
-Competence, audacity, high moral compass, reassurance, informative, compelling. Complete. Relevant. 
-Trustworthy, loyal, helpful friendly, courteous, kind, obedient, cheerful, thrifty, brave, clean, and reverent 
-
-------
-
- -->
+Cheers,
+Rob
