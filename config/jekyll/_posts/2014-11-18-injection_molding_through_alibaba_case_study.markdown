@@ -17,7 +17,6 @@ This is the story of how one relatively simple hardware product got made, and Su
 With this project we can keep discussion of engineering requirements to a minimum, in order to illustrate the business risks involved, and the attention to detail necessary to successfully outsource custom mechanical parts (here's a short list of the kinds of engineering details we're thankful we don't have to discuss: <a href="http://en.wikipedia.org/wiki/Geometric_dimensioning_and_tolerancing" targer="_blank">GD&T</a> interpretation; <a href="http://en.wikipedia.org/wiki/Statistical_process_control" target="_blank">Statistical Process Control (SPC)</a>; Intellectual Property (IP) concerns; certifications (e.g. UL, CE, etc); and technical/engineering language barriers). Even though the particular details may not apply to your product, the insights gained and lessons learned apply to anyone developing hardware. 
 
 <h1>Project Background</h1>
-People love Gulpo. And so do we. 
 
 <div style="display:inline-block; max-width:50%; float:left">
   <a href="http://www.smbc-comics.com/?id=2094" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/Saturday_Morning_Breakfast_Cereal-small.png"></a>
@@ -27,21 +26,23 @@ People love Gulpo. And so do we.
 </div>
 <div class="footer" align="bottom">(Left) The comic that started it all. (Right) The original, laser cut Gulpo.</div>
 
+People love Gulpo. And so do we. 
+
 Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal (SMBC) team. After Gulpo made its debut on their <a href="http://www.smbc-comics.com/?id=2094" target="_blank">daily-updated webcomic</a> in late 2010, there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, the product went on sale and was sold out in 2013. Gulpo was a success. 
 
 <h1>The Problem</h1>
 
-Tl;dr: SMBC could not profitably scale up to meet demand, due to the limitations imposed by the manufacturing process used to produce the original run of Gulpos.
+<strong>tl;dr:</strong> SMBC could not profitably scale up to meet demand, due to the limitations imposed by the manufacturing process used to produce the original run of Gulpos.
 
 <div>
 <div style="display:inline-block; max-width:50%; float:left">
-  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph-large.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph-medium.png"></a>
+  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph-large.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph_resized+copy-small.png"></a>
 </div>
 <div style="display:inline-block; max-width:50%; float:left">
  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-large.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-small.png"></a>
 </div>
 </div>
-<div class="footer" align="bottom">(Left) Laser cutting, manufacturing process chosen for Gulpo isn't suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 50.(Right) Aesthetic details looking to be improved on the original Gulpo design. </div>
+<div class="footer" align="bottom" style="display:block;">(Left) Laser cutting, manufacturing process chosen for Gulpo isn't suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 50.(Right) Aesthetic details looking to be improved on the original Gulpo design. </div>
 
 <h3>Benefits of Laser Cutting for Prototyping</h3> 
 Gulpo Mark I was laser cut from black plastic with a brushed metallic front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is basically 2D and there is very little setup cost to actually cut it out. This is important because if SMBC was going to mass produce this product, they needed to first validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an Icthys-themed novelty car emblem wouldn't matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually produce the design.  
@@ -59,7 +60,7 @@ Simply put, if SMBC wanted a better product for cheaper they would need to take 
 
 <h1>Solution</h1>
 
-tl;dr: SupplyBetter needed to find a shop with the right capabilities (likely overseas) in order to meet SMBC's project needs.
+<strong>tl;dr:</strong> SupplyBetter needed to find a shop with the right capabilities (likely overseas) in order to meet SMBC's project needs.
 
 To better understand the decisions made in making Gulpo Mark II, here are the "lessons learned" from the first batch, composed into a summary of requirements:
 
@@ -105,7 +106,10 @@ Given the above specs, an injection molded body with a die-cut adhesive backing 
 
 <h1>Identifying Suppliers on Alibaba</h1>
 
+<strong>tl;dr:</strong> While it is certainly possible to find quality suppliers via Alibaba, you must exercise caution and understand the risks involved. 
+
 <a href="http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg" target="_blank"><img src="http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg"></a>
+<div class="footer" align="bottom" style="display:block;">Alibaba, a household name for anyone who has ever been faced with sourcing custom hardware overseas.</div>
 
 SupplyBetter prides itself in finding that handful of suppliers who are the exact match for the job. The information necessary to judge a service bureau goes far beyond simply trying to understand which suppliers may be "good" and which suppliers may be "bad". We believe that parts will be better and cheaper if you start a vendor relationship with a company that already possesses the equipment necessary and understands the nuances of the manufacturing processes involved. Custom manufacturing vendors are more than just warehouses with spare capacity on their machines. It's the engineers and tradesmen behind them that can turn good designs into great products.
 
