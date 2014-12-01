@@ -93,6 +93,9 @@
                 <div ng-if="d.supplier.rfq_contact.phone">{{d.supplier.rfq_contact.phone}}</div>
                 <div ng-if="d.supplier.internally_hidden_preferences">{{d.supplier.internally_hidden_preferences}}</div>
               </td>
+              <td>
+                <select ng-model="d.past_experience" ng-options="p for p in pastExperienceOptions"></select>
+              </td>
             </tr>
           </table>
         </div> <!-- End ng-repeat of order_groups -->
