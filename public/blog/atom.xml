@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-12-01T13:20:02-05:00</updated>
+ <updated>2014-12-01T13:25:28-05:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -32,6 +32,11 @@
 &lt;p&gt;This post is about one, relatively simple, hardware product and how SupplyBetter helped get it made. Our goal is to provide as detailed an account of the steps involved so that those currently in the middle of (or about to embark on) a serious hardware project can learn from our experience. Finding a company to make the parts for a custom product that can&#39;t be bought from a website or catalog (a.k.a &quot;outsourcing&quot;) is often challenging since the effort necessary for success involves the intersection of two very different skillsets: engineering and business. If you&#39;re not good at both you can quickly find yourself &lt;a href=&quot;http://money.cnn.com/2012/12/18/technology/innovation/kickstarter-ship-delay/index.html&quot; target=&quot;_blank&quot;&gt;ill-equipped to address the tradeoffs&lt;/a&gt; that need to be made in order to manufacture your product.&lt;/p&gt;
 
 &lt;p&gt;With this project we can keep discussion of engineering requirements to a minimum while being able to effectively illustrate the business risks involved and attention to detail necessary to outsource custom mechanical parts*. While the following indiviual details may only be useful on a case-by-case basis, the insights gained and lessons learned apply to anyone developing hardware.&lt;/p&gt;
+
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;*In case you&#39;re wondering just which kinds of engineering details we&#39;re thankful we don&#39;t have to discuss, here is a short list: &lt;a href=&quot;http://en.wikipedia.org/wiki/Geometric_dimensioning_and_tolerancing&quot; targer=&quot;_blank&quot;&gt;GD&amp;T&lt;/a&gt; interpretation, &lt;a href=&quot;http://en.wikipedia.org/wiki/Statistical_process_control&quot; target=&quot;_blank&quot;&gt;Statistical Process Control (SPC)&lt;/a&gt;, Intellectual Property (IP) concerns, certifications (e.g. UL, CE, etc), and technical/engineering language barriers. &lt;/div&gt;
+
+
+
 
 &lt;h1&gt;Project Background&lt;/h1&gt;
 
@@ -210,8 +215,6 @@ As mentioned before, the main goal of the initial batch of Gulpos was to validat
 
 &lt;p&gt;Cheers,
 Rob&lt;/p&gt;
-
-&lt;p&gt;*In case you&#39;re wondering just which kinds of engineering details we&#39;re thankful we don&#39;t have to discuss, here is a short list: &lt;a href=&quot;http://en.wikipedia.org/wiki/Geometric_dimensioning_and_tolerancing&quot; targer=&quot;_blank&quot;&gt;GD&amp;amp;T&lt;/a&gt; interpretation, &lt;a href=&quot;http://en.wikipedia.org/wiki/Statistical_process_control&quot; target=&quot;_blank&quot;&gt;Statistical Process Control (SPC)&lt;/a&gt;, Intellectual Property (IP) concerns, certifications (e.g. UL, CE, etc), and technical/engineering language barriers.&lt;/p&gt;
 </content>
  </entry>
  
