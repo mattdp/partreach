@@ -3,7 +3,7 @@ layout: post
 author: Rob
 title: Injection Molding through Alibaba | Case Study
 published: true
-meta_description: SupplyBetter helped produce an injection molded custom part for Saturday Morning Breakfast Cereal (SMBC). Case study here. 
+meta_description: Learn about how SupplyBetter helped produce an injection molded custom part for Saturday Morning Breakfast Cereal (SMBC). 
 ---
 <div style="display:inline-block; max-width:100%; float:left">
 <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-20.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-18.png"></a>
@@ -131,22 +131,15 @@ Now it was just a matter of figuring out the correct one to use for Gulpo Mark I
 <p><strong>The Road to Gulpo</strong></p>
 <ol>
   <li><s>Characterize the project</s></li>
-  <li><s>Identify Suppliers</s></li>
-  <li>Initial Supplier Reachout</li>
-  <li>Create RFQ Package</li>
-  <li>Send RFQ Package</li>
-  <li>Evaluate Quotes</li>
-  <li>Order Samples</li>
-  <li>Evaluate Samples</li>
+  <li><s>Identify suppliers</s></li>
+  <li>Create and send RFQ package</li>
+  <li>Evaluate quotes from suppliers</li>
+  <li>Order and evaluate samples</li>
   <li>Ask for buyer references (see if there is anyone else who has used them we can speak with)</li>
-  <li>Enter into NDA with supplier (optional)</li>
-  <li>Re-quote with final file</li>
+  <li>Enter into NDA with supplier and re-quote with final file</li>
   <li>Negotiate finance terms (e.g. establish escrow, % payment up front, etc)</li>
-  <li>Order first articles (mold fee, QTY 10 units, shipping of first batch)</li>
-  <li>Evaluate first articles</li>
+  <li>Order and evaluate first articles (mold fee, QTY 10 units, shipping of first batch)</li>
   <li>Proceed with full production</li>
-  <li>Final Quality Control</li>
-  <li>Profit</li>
 </ol>
 
 Cheers,
