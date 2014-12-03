@@ -10,12 +10,6 @@ meta_description: Learn about how SupplyBetter helped produce an injection molde
 </div>
 <div class="footer" align="bottom">Gulpo, the fish that was injection molded in China.</div>
 
-<h1>Intro</h1>
-
-This is the story of how one relatively simple hardware product got made, and SupplyBetter's part in that process. Our goal in this two-part post is to provide a detailed account of the steps involved, so those currently in the middle of (or about to embark on) a serious hardware project can learn from our experience. Finding a company to make a product with custom parts that can't be bought from a website or catalog (a.k.a "outsourcing") is often challenging, since the effort necessary for success involves the intersection of two very different skillsets: engineering and business. If you're not good at both, you can quickly find yourself <a href="http://money.cnn.com/2012/12/18/technology/innovation/kickstarter-ship-delay/index.html" target="_blank">ill-equipped to address the tradeoffs</a> that need to be made in order to manufacture your product.
-
-With this project we can keep discussion of engineering requirements to a minimum, in order to illustrate the business risks involved, and the attention to detail necessary to successfully outsource custom mechanical parts (here's a short list of the kinds of engineering details we're thankful we don't have to discuss: <a href="http://en.wikipedia.org/wiki/Geometric_dimensioning_and_tolerancing" targer="_blank">GD&T</a> interpretation; <a href="http://en.wikipedia.org/wiki/Statistical_process_control" target="_blank">Statistical Process Control (SPC)</a>; Intellectual Property (IP) concerns; certifications (e.g. UL, CE, etc); and technical/engineering language barriers). Even though the particular details may not apply to your product, the insights gained and lessons learned apply to anyone developing hardware. 
-
 <h1>Project Background</h1>
 
 <div style="display:inline-block; max-width:50%; float:left">
@@ -28,11 +22,17 @@ With this project we can keep discussion of engineering requirements to a minimu
 
 People love Gulpo. And so do we. 
 
-Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal (SMBC) team. After Gulpo made its debut on their <a href="http://www.smbc-comics.com/?id=2094" target="_blank">daily-updated webcomic</a> in late 2010, there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, the product went on sale and was sold out in 2013. Gulpo was a success. 
+Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal (SMBC) team. After Gulpo made its debut on their <a href="http://www.smbc-comics.com/?id=2094" target="_blank">daily webcomic</a> in late 2010, there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, the product went on sale and was sold out in 2013. Gulpo was a success. 
 
-<h1>The Problem</h1>
+<h1>Focus</h1>
 
-<strong>tl;dr:</strong> SMBC could not profitably scale up to meet demand, due to the limitations imposed by the manufacturing process used to produce the original run of Gulpos.
+This is the story of how one relatively simple hardware product was made, and SupplyBetter's part in that process. Our goal in this two-part post is to provide a detailed account of the steps involved going from a design to physical part, so readers currently in the middle of (or about to embark on) a serious hardware project can learn from our experience. When you need custom parts, parts that can't be bought from a website or catalog, finding the right company to make them is often challenging. The effort necessary for success involves the intersection of two very different skillsets: engineering and business. If you're not good at both, you can quickly find yourself <a href="http://money.cnn.com/2012/12/18/technology/innovation/kickstarter-ship-delay/index.html" target="_blank">ill-equipped to address the tradeoffs</a> that need to be made in order to manufacture your product.
+
+With this project we'll keep discussion of engineering requirements to a minimum, in order to focus on the business risks involved, and the attention to detail necessary to successfully outsource custom mechanical parts (here's a short list of the kinds of engineering details we're thankful we don't have to discuss: <a href="http://en.wikipedia.org/wiki/Geometric_dimensioning_and_tolerancing" targer="_blank">GD&T</a> interpretation; <a href="http://en.wikipedia.org/wiki/Statistical_process_control" target="_blank">Statistical Process Control (SPC)</a>; Intellectual Property (IP) concerns; certifications (e.g. UL, CE, etc); and technical/engineering language barriers). Even though the particular details of this project may not directly apply to your product, the insights gained and lessons learned apply to anyone developing hardware. 
+
+<h1>Gulpo Mark I and the Limitations of Laser Cutting</h1>
+
+<strong>tl;dr:</strong> SMBC could not profitably scale up to meet demand, due to the financial and quality limitations imposed by the manufacturing process used to produce the original run of Gulpos.
 
 <div>
 <div style="display:inline-block; max-width:50%; float:left">
@@ -42,15 +42,15 @@ Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Mor
  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-large.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-small.png"></a>
 </div>
 </div>
-<div class="footer" align="bottom" style="display:block;">(Left) Laser cutting, manufacturing process chosen for Gulpo isn't suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 50.(Right) Aesthetic details looking to be improved on the original Gulpo design. </div>
+<div class="footer" align="bottom" style="display:block;">(Left) Laser cutting, the manufacturing process chosen for Gulpo isn't suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 50.(Right) Aesthetic details the client wanted to improve in the next Gulpo design. </div>
 
-<h3>Benefits of Laser Cutting for Prototyping</h3> 
+<h3>Background on Gulpo Mark I</h3> 
 Gulpo Mark I was laser cut from black plastic with a brushed metallic front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is basically 2D and there is very little setup cost to actually cut it out. This is important because if SMBC was going to mass produce this product, they needed to first validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an Icthys-themed novelty car emblem wouldn't matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually produce the design.  
 
 <h3>Drawbacks of Laser Cutting for Production</h3> 
 Laser cutting's initial blessing of having a negligible setup cost quickly becomes a curse once production quantities begin to approach larger volumes. Laser cutting is a fixed-time manufacturing process, which means that the time-per-Gulpo for QTY 1 is the same as QTY 500. In other words, the cost of making Gulpo is relatively fixed, regardless of the quantity being produced. Considering that SMBC only broke even with the last batch, they wouldn't expect their margins to improve just by ordering a larger amount. If SMBC really wanted Gulpo to make sense as a retail product, they were going to need to find a different way to produce them. 
 
-<h3>Improvement on Aesthetics</h3> 
+<h3>Desired Improvement on Aesthetics</h3> 
 The main goal of the initial batch of Gulpos was to validate that people actually wanted to purchase this product. Aesthetics were not a concern as long as they were good enough to validate this assumption - what is commonly referred to as the Minimum Viable Product (MVP). Now that their initial assumption was firmly validated, SMBC wanted the next Gulpo to look and feel like a normal car emblem. This required a smooth and glossy chrome-on-black surface finish as well as an adhesive backing that would not fall off a car bumper regularly exposed to the elements. While laser cutting was able to produce a chrome-on-black-ish surface finish, the results were neither smooth nor glossy. The surface finish wasn't smooth mainly due to the resolution of the laser cutter used, which etches the material by burning the surface line by line. While there are some great optimizations that can be done to improve the quality of images raster etched via laser cutting, you're not going to be able to produce a surface finish smooth enough to be glossy without a fair amount of post processing (i.e. sanding and polishing). Adding post processing as an additional step in manufacturing Gulpo would only increase the price per unit.
 
 <h3>Manufacturing at Scale</h3> 
@@ -58,23 +58,24 @@ Despite the success of the first run of Gulpos, it didn't make sense to produce 
 
 Simply put, if SMBC wanted a better product for cheaper they would need to take a fundamentally different approach.
 
-<h1>Solution</h1>
+<h1>The Path Forward for Gulpo Mark II</h1>
 
 <strong>tl;dr:</strong> SupplyBetter needed to find a shop with the right capabilities (likely overseas) in order to meet SMBC's project needs.
 
-To better understand the decisions made in making Gulpo Mark II, here are the "lessons learned" from the first batch, composed into a summary of requirements:
+To better understand the decisions made in manufacturing Gulpo Mark II, here are the "lessons learned" from the first batch, composed into a summary of requirements:
 
 <h3>Technical Requirements</h3>
 <ul>
 <li>Same 2D design as Gulpo Mark I (e.g. profile, letter font, outer dimensions, etc)</li>
-<li>A smooth and glossy surface finish</li>
-<li>Colors are silver chrome and glossy black</li>
+<li>Smooth and glossy surface finish</li>
+<li>Silver chrome and glossy black colors</li>
 <li>Materials (both main body and adhesive backing) must be durable and strong enough to withstand exposure to the elements while affixed to the back of a car</li>
 </ul>
 <h3>Buyer Business Requirements</h3>
 <ul>
 <li>SMBC wants the ability to produce in batches of 1500+ </li>
-<li>Per-unit cost to SMBC needs to be low enough to make financial sense to sell at their current price without any sacrifice in quality</li>
+<li>Per-unit cost to SMBC needs to be low enough to make financial sense to sell at their current price</li>
+<li>Per-unit cost cannot sacrifice quality/aesthetics</li>
 </ul>
 <h3>Supplier Capability Requirements</h3>
 <ul>
@@ -85,14 +86,14 @@ To better understand the decisions made in making Gulpo Mark II, here are the "l
 <li>Large batch production</li>
 <li>Assembly</li>
 </ul>
-<h3>Supplier Business specification</h3>
+<h3>Supplier Business Specification</h3>
 <ul>
 <li>Already makes products similar to Gulpo (i.e. produces novelty car emblems)</li>
 <li>Willing to send product samples</li>
 <li>Can work with an Minimum Order Quantity (MOQ) of ~1000 pieces</li>
 <li>Willing to work off of milestone payments (vs. timelines)</li>
 </ul>
-<h3>Rough manufacturing process outline</h3>
+<h3>Rough Manufacturing Process Outline</h3>
 <ol>
 <li>Mill/EDM the injection mold tooling</li>
 <li>Polish the tooling (to achieve a glossy surface finish on the parts)</li>
@@ -121,7 +122,7 @@ Neither SMBC nor SupplyBetter was willing to jump on a plane and go on a factory
 
 <h3>Pro-tip on Alibaba Supplier Discovery</h3>
 
-Alibaba is best navigated by searching for similar products currently made by manufacturers (vs. just finding everyone who does "injection molding", or has a certain type of machine built for injection molding). We initially thought to search for "custom car decals", but that query was too vague and returned hundreds of shops making everything from bumper stickers to name plates. We decided to swing the pendulum the opposite way and get as specific as possible. Oddly enough, there were a handful of suppliers who were advertising as producers of Icthys-themed novelty car emblems. Vendors often post pictures of parts they make, and when we started to see examples of the Christian fish, Darwin evolution emblem, and Flying Spaghetti Monster we knew we were on the right track.
+Alibaba is best navigated by searching for similar products currently made by manufacturers (vs. just finding everyone who does "injection molding", or has a certain type of machine built for injection molding). We initially thought to search for "custom car decals", but that query was too vague and returned hundreds of shops making everything from bumper stickers to name plates. We decided to swing the pendulum the opposite way and get as specific as possible. Oddly enough, there were a handful of suppliers who were advertising as producers of Icthys-themed novelty car emblems. Vendors often post pictures of parts they make, and when we started to see examples of the Christian fish, the Darwin evolution emblem, and the Flying Spaghetti Monster we knew we were on the right track.
 
 With our search term figured out, it was time to start checking boxes. Alibaba has a bevy of filters you can use to narrow your search result even further, and the general advice we'd gotten from those experienced with Alibaba or Aliexpress was to just check all of them (e.g. "Gold Supplier", "Verified", etc). Once done, we were down to 6 suppliers. This was as good as we were going to get. 
 
