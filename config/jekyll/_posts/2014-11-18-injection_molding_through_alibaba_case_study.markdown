@@ -6,7 +6,7 @@ published: true
 meta_description: Learn about how SupplyBetter helped produce an injection molded custom part for Saturday Morning Breakfast Cereal (SMBC). 
 ---
 <div style="display:inline-block; max-width:100%; float:left">
-<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-20.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-18.png"></a>
+<a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-20.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-18-fixed.png"></a>
 </div>
 <div class="footer" align="bottom">Gulpo, the fish that was injection molded in China.</div>
 
