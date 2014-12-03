@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-12-03T12:25:33-08:00</updated>
+ <updated>2014-12-03T14:19:22-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -43,7 +43,7 @@
 &lt;/div&gt;
 
 
-&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;(Left) The comic that started it all. (Right) The original, laser cut Gulpo (Mark I).&lt;/div&gt;
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;(Left) The Saturday Morning Breakfast Cereal (SMBC) comic that started it all. (Right) The original, laser cut Gulpo (Mark I).&lt;/div&gt;
 
 
 
@@ -62,7 +62,7 @@
 
 &lt;div&gt;
 &lt;div style=&quot;display:inline-block; max-width:50%; float:left&quot;&gt;
-  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph-large.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph_resized+copy-small.png&quot;&gt;&lt;/a&gt;
+  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/lasercutting_vs_injectionmolding-fixed2.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-25.png&quot;&gt;&lt;/a&gt;
 &lt;/div&gt;
 &lt;div style=&quot;display:inline-block; max-width:50%; float:left&quot;&gt;
  &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-large.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-small.png&quot;&gt;&lt;/a&gt;
@@ -70,7 +70,7 @@
 &lt;/div&gt;
 
 
-&lt;div class=&quot;footer&quot; align=&quot;bottom&quot; style=&quot;display:block;&quot;&gt;(Left) Laser cutting, the manufacturing process chosen for Gulpo isn&#39;t suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 50.(Right) Aesthetic details the client wanted to improve in the next Gulpo design. &lt;/div&gt;
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot; style=&quot;display:block;&quot;&gt;(Left) Laser cutting, the manufacturing process chosen for Gulpo isn&#39;t suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 125 (for this particular project). (Right) Aesthetic details the client wanted to improve in the next Gulpo design. &lt;/div&gt;
 
 
 
@@ -157,7 +157,7 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 
 
 &lt;ol&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=N_30vIImy7Q#t=27&quot; target=&quot;_blank&quot;&gt;Mill/EDM&lt;/a&gt; the &lt;a href=&quot;http://www.protolabs.com/injection-molding/fundamentals-of-molding/simple-straight-pull-parts&quot; targer=&quot;_blank&quot;&gt;injection mold tooling for a &quot;straight-pull&quot; mold&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=N_30vIImy7Q#t=27&quot; target=&quot;_blank&quot;&gt;Mill/EDM&lt;/a&gt; the injection mold tooling for a &lt;a href=&quot;http://www.protolabs.com/injection-molding/fundamentals-of-molding/simple-straight-pull-parts&quot; targer=&quot;_blank&quot;&gt;&quot;straight-pull&quot; mold&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=54jGpAzhzU8#t=30&quot; targer=&quot;_blank&quot;&gt;Polish the tooling&lt;/a&gt; (to achieve a glossy surface finish on the parts)&lt;/li&gt;
   &lt;li&gt;Paint chrome (all over the part)&lt;/li&gt;
   &lt;li&gt;Paint matte black in recessed areas of design and on outer-facing edge&lt;/li&gt;
@@ -173,7 +173,10 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 
 &lt;p&gt;&lt;strong&gt;tl;dr:&lt;/strong&gt; While it is certainly possible to find quality suppliers via Alibaba, you must exercise caution and understand the risks involved.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
+  &lt;a href=&quot;http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
+
 
 &lt;div class=&quot;footer&quot; align=&quot;bottom&quot; style=&quot;display:block;&quot;&gt;Alibaba, a household name for anyone who has ever been faced with sourcing custom hardware overseas.&lt;/div&gt;
 

@@ -22,7 +22,7 @@ Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Mor
 <div style="display:inline-block; max-width:50%; float:left">
   <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-21.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-21.jpg"></a>
 </div>
-<div class="footer" align="bottom">(Left) The comic that started it all. (Right) The original, laser cut Gulpo (Mark I).</div>
+<div class="footer" align="bottom">(Left) The Saturday Morning Breakfast Cereal (SMBC) comic that started it all. (Right) The original, laser cut Gulpo (Mark I).</div>
 
 <h1>Focus</h1>
 
@@ -36,13 +36,13 @@ With this project we'll keep discussion of engineering requirements to a minimum
 
 <div>
 <div style="display:inline-block; max-width:50%; float:left">
-  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph-large.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/gulpo_graph_resized+copy-small.png"></a>
+  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/lasercutting_vs_injectionmolding-fixed2.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-25.png"></a>
 </div>
 <div style="display:inline-block; max-width:50%; float:left">
  <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-large.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-17-fixed-small.png"></a>
 </div>
 </div>
-<div class="footer" align="bottom" style="display:block;">(Left) Laser cutting, the manufacturing process chosen for Gulpo isn't suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 50.(Right) Aesthetic details the client wanted to improve in the next Gulpo design. </div>
+<div class="footer" align="bottom" style="display:block;">(Left) Laser cutting, the manufacturing process chosen for Gulpo isn't suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 125 (for this particular project). (Right) Aesthetic details the client wanted to improve in the next Gulpo design. </div>
 
 <h3>Background on Gulpo Mark I</h3> 
 Gulpo Mark I was laser cut from black plastic with a brushed metallic front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is basically 2D and there is very little setup cost to actually cut it out. This is important because if SMBC was going to mass produce this product, they needed to first validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an <a href="http://en.wikipedia.org/wiki/Ichthys" target="_blank">Icthys-themed</a> novelty car emblem wouldn't matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually produce the design.  
@@ -108,8 +108,9 @@ Given the above specs, an injection molded body with a die-cut adhesive backing 
 <h1>Identifying Suppliers on Alibaba</h1>
 
 <strong>tl;dr:</strong> While it is certainly possible to find quality suppliers via Alibaba, you must exercise caution and understand the risks involved. 
-
-<a href="http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg" target="_blank"><img src="http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg"></a>
+<div style="display:inline-block; max-width:100%; float:left">
+  <a href="http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg" target="_blank"><img src="http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg"></a>
+</div>
 <div class="footer" align="bottom" style="display:block;">Alibaba, a household name for anyone who has ever been faced with sourcing custom hardware overseas.</div>
 
 SupplyBetter prides itself in finding that handful of suppliers who are the exact match for the job. The information necessary to judge a service bureau goes far beyond simply trying to understand which suppliers may be "good" and which suppliers may be "bad". We believe that parts will be better and cheaper if you start a vendor relationship with a company that already possesses the equipment necessary and understands the nuances of the manufacturing processes involved. Custom manufacturing vendors are more than just warehouses with spare capacity on their machines. It's the engineers and tradesmen behind them that can turn good designs into great products.
