@@ -95,7 +95,7 @@ To better understand the decisions made in manufacturing Gulpo Mark II, here are
 </ul>
 <h3>Rough Manufacturing Process Outline</h3>
 <ol>
-  <li><a href="https://www.youtube.com/watch?v=N_30vIImy7Q#t=27" target="_blank">Mill/EDM</a> the injection mold tooling</li>
+<li><a href="https://www.youtube.com/watch?v=N_30vIImy7Q#t=27" target="_blank">Mill/EDM</a> the injection mold tooling for a <a href="http://www.protolabs.com/injection-molding/fundamentals-of-molding/simple-straight-pull-parts" targer="_blank">"straight-pull" mold</a></li>
   <li><a href="https://www.youtube.com/watch?v=54jGpAzhzU8#t=30" targer="_blank">Polish the tooling</a> (to achieve a glossy surface finish on the parts)</li>
   <li>Paint chrome (all over the part)</li>
   <li>Paint matte black in recessed areas of design and on outer-facing edge</li>

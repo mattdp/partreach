@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-12-03T12:07:50-08:00</updated>
+ <updated>2014-12-03T12:25:33-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -157,7 +157,7 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 
 
 &lt;ol&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=N_30vIImy7Q#t=27&quot; target=&quot;_blank&quot;&gt;Mill/EDM&lt;/a&gt; the injection mold tooling&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=N_30vIImy7Q#t=27&quot; target=&quot;_blank&quot;&gt;Mill/EDM&lt;/a&gt; the &lt;a href=&quot;http://www.protolabs.com/injection-molding/fundamentals-of-molding/simple-straight-pull-parts&quot; targer=&quot;_blank&quot;&gt;injection mold tooling for a &quot;straight-pull&quot; mold&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=54jGpAzhzU8#t=30&quot; targer=&quot;_blank&quot;&gt;Polish the tooling&lt;/a&gt; (to achieve a glossy surface finish on the parts)&lt;/li&gt;
   &lt;li&gt;Paint chrome (all over the part)&lt;/li&gt;
   &lt;li&gt;Paint matte black in recessed areas of design and on outer-facing edge&lt;/li&gt;
