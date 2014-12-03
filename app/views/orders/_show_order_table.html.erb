@@ -2,8 +2,7 @@
 
   <tr class="order_table_header_row">
     <th>Name</th>
-
-    <% columns.each do |name,details| %>
+    <% @columns.each do |name,details| %>
       <th><%= "#{details[:header]}" %></th>
     <% end %>
 
@@ -13,7 +12,7 @@
   </tr>
 
   <% rows.each do |d| %>
-    <tr>
+    <tr class=<%= color_coding_css_class(d.past_experience) %> >
 
     <% s = Supplier.find(d.supplier_id) %>
     <td>

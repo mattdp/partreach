@@ -10,6 +10,22 @@
 
       <% if @order_groups and @order.dialogues.count > 0 %>
 
+        <h4>Legend</h4>
+        <table class="order_table" cellspacing="0">
+          <tr class="experience-positive">
+            <td>We've worked with this supplier on a similar job, and it went well.</td>
+          </tr>
+          <tr class="experience-provisional">
+            <td>We've worked with this supplier before on a different process, and it went well.</td>
+          </tr>
+          <tr class="experience-mixed">
+            <td>We, or someone we know, has had a mixed experience with this supplier. Talk to us for details.</td>
+          </tr>
+          <tr class="experience-unknown">
+            <td>We've never worked with this supplier before. We don't know their quality.</td>
+          </tr>
+        </table>
+
         <% @order_groups.each do |order_group| %>
 
           <h3 class="bit-of-space">
@@ -19,7 +35,7 @@
 
           <% visibles = order_group.sort_visible_dialogues %>
           <% if visibles.present? %>
-            <%= render partial: "orders/show_order_table", locals: {rows: visibles, columns: @columns} %>
+            <%= render partial: "orders/show_order_table", locals: {rows: visibles} %>
           <% else %>
             <p>No quotes have been received for this group of parts yet! We will notify you as soon as suppliers respond.</p>
           <% end %>

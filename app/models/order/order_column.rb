@@ -4,6 +4,11 @@ class OrderColumn
   def self.all
     
     list = {
+      past_experience: {
+        header: "Confidence rating",
+        code: "d.past_experience",
+        css_class: "center"
+      },
       bid_status: {
         header: "Bid status",
         code: "bid_status(d)",
