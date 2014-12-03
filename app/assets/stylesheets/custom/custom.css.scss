@@ -558,22 +558,17 @@ label {
     tr:last-child td {
       border-bottom: none;
     }
-    tr {
-      &.experience-unknown {
-        background-color: $unknownColor
-      }
-      &.experience-positive {
-        background-color: $positiveColor
-      }
-      &.experience-provisional {
-        background-color: $provisionalColor
-      }
-      &.experience-mixed {
-        background-color: $mixedColor
-      }
-      &.recommended {
-        background-color: $recommendedColor;
-      }
+    .experience-unknown {
+      background-color: $unknownColor
+    }
+    .experience-positive {
+      background-color: $positiveColor
+    }
+    .experience-provisional {
+      background-color: $provisionalColor
+    }
+    .experience-mixed {
+      background-color: $mixedColor
     }
    .recommended {
       background-color: $recommendedColor;
