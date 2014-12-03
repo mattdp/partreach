@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-12-01T18:20:39-05:00</updated>
+ <updated>2014-12-03T12:07:50-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -14,29 +14,24 @@
  <entry>
    <title>Injection Molding through Alibaba | Case Study</title>
    <link href="YOUR_URL/injection_molding_through_alibaba_case_study.html"/>
-   <updated>2014-11-18T00:00:00-05:00</updated>
+   <updated>2014-11-18T00:00:00-08:00</updated>
    <id>BLOG_URL/injection_molding_through_alibaba_case_study</id>
    <content type="html">&lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
-&lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-20.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-18.png&quot;&gt;&lt;/a&gt;
+&lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-20.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-18-fixed.png&quot;&gt;&lt;/a&gt;
 &lt;/div&gt;
 
 
-&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;Gulpo, the fish that was injection molded in China.&lt;/div&gt;
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;Gulpo (Mark II), the fish that was injection molded in China.&lt;/div&gt;
 
 
 
-
-&lt;h1&gt;Intro&lt;/h1&gt;
-
-
-&lt;p&gt;This is the story of how one relatively simple hardware product got made, and SupplyBetter&#39;s part in that process. Our goal in this two-part post is to provide a detailed account of the steps involved, so those currently in the middle of (or about to embark on) a serious hardware project can learn from our experience. Finding a company to make a product with custom parts that can&#39;t be bought from a website or catalog (a.k.a &quot;outsourcing&quot;) is often challenging, since the effort necessary for success involves the intersection of two very different skillsets: engineering and business. If you&#39;re not good at both, you can quickly find yourself &lt;a href=&quot;http://money.cnn.com/2012/12/18/technology/innovation/kickstarter-ship-delay/index.html&quot; target=&quot;_blank&quot;&gt;ill-equipped to address the tradeoffs&lt;/a&gt; that need to be made in order to manufacture your product.&lt;/p&gt;
-
-&lt;p&gt;With this project we can keep discussion of engineering requirements to a minimum, in order to illustrate the business risks involved, and the attention to detail necessary to successfully outsource custom mechanical parts (here&#39;s a short list of the kinds of engineering details we&#39;re thankful we don&#39;t have to discuss: &lt;a href=&quot;http://en.wikipedia.org/wiki/Geometric_dimensioning_and_tolerancing&quot; targer=&quot;_blank&quot;&gt;GD&amp;amp;T&lt;/a&gt; interpretation; &lt;a href=&quot;http://en.wikipedia.org/wiki/Statistical_process_control&quot; target=&quot;_blank&quot;&gt;Statistical Process Control (SPC)&lt;/a&gt;; Intellectual Property (IP) concerns; certifications (e.g. UL, CE, etc); and technical/engineering language barriers). Even though the particular details may not apply to your product, the insights gained and lessons learned apply to anyone developing hardware.&lt;/p&gt;
 
 &lt;h1&gt;Project Background&lt;/h1&gt;
 
 
+&lt;p&gt;&lt;strong&gt;People love Gulpo. And so do we. &lt;/strong&gt;&lt;/p&gt;
 
+&lt;p&gt;Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal (SMBC) team. After Gulpo made its debut on their &lt;a href=&quot;http://www.smbc-comics.com/?id=2094&quot; target=&quot;_blank&quot;&gt;daily webcomic&lt;/a&gt; in late 2010, there was large demand from SMBC&#39;s fanbase to actually produce these car emblems for sale on SMBC&#39;s website. After finding someone who could produce a small batch, the product went on sale and was sold out in 2013. Gulpo was a success.&lt;/p&gt;
 
 &lt;div style=&quot;display:inline-block; max-width:50%; float:left&quot;&gt;
   &lt;a href=&quot;http://www.smbc-comics.com/?id=2094&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/Saturday_Morning_Breakfast_Cereal-small.png&quot;&gt;&lt;/a&gt;
@@ -48,17 +43,22 @@
 &lt;/div&gt;
 
 
-&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;(Left) The comic that started it all. (Right) The original, laser cut Gulpo.&lt;/div&gt;
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;(Left) The comic that started it all. (Right) The original, laser cut Gulpo (Mark I).&lt;/div&gt;
 
 
-&lt;p&gt;People love Gulpo. And so do we.&lt;/p&gt;
-
-&lt;p&gt;Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal (SMBC) team. After Gulpo made its debut on their &lt;a href=&quot;http://www.smbc-comics.com/?id=2094&quot; target=&quot;_blank&quot;&gt;daily-updated webcomic&lt;/a&gt; in late 2010, there was large demand from SMBC&#39;s fanbase to actually produce these car emblems for sale on SMBC&#39;s website. After finding someone who could produce a small batch, the product went on sale and was sold out in 2013. Gulpo was a success.&lt;/p&gt;
-
-&lt;h1&gt;The Problem&lt;/h1&gt;
 
 
-&lt;p&gt;&lt;strong&gt;tl;dr:&lt;/strong&gt; SMBC could not profitably scale up to meet demand, due to the limitations imposed by the manufacturing process used to produce the original run of Gulpos.&lt;/p&gt;
+&lt;h1&gt;Focus&lt;/h1&gt;
+
+
+&lt;p&gt;This is the story of how one relatively simple hardware product was made, and SupplyBetter&#39;s part in that process. Our goal in this two-part post is to provide a detailed account of the steps involved going from a design to physical part, so readers currently in the middle of (or about to embark on) a serious hardware project can learn from our experience. When you need custom parts, parts that can&#39;t be bought from a website or catalog, finding the right company to make them is often challenging. The effort necessary for success involves the intersection of two very different skillsets: engineering and business. If you&#39;re not good at both, you can quickly find yourself &lt;a href=&quot;http://money.cnn.com/2012/12/18/technology/innovation/kickstarter-ship-delay/index.html&quot; target=&quot;_blank&quot;&gt;ill-equipped to address the tradeoffs&lt;/a&gt; that need to be made in order to manufacture your product.&lt;/p&gt;
+
+&lt;p&gt;With this project we&#39;ll keep discussion of engineering requirements to a minimum, in order to focus on the business risks involved, and the attention to detail necessary to successfully outsource custom mechanical parts (here&#39;s a short list of the kinds of engineering details we&#39;re thankful we don&#39;t have to discuss: &lt;a href=&quot;http://en.wikipedia.org/wiki/Geometric_dimensioning_and_tolerancing&quot; targer=&quot;_blank&quot;&gt;GD&amp;amp;T&lt;/a&gt; interpretation; &lt;a href=&quot;http://en.wikipedia.org/wiki/Statistical_process_control&quot; target=&quot;_blank&quot;&gt;Statistical Process Control (SPC)&lt;/a&gt;; Intellectual Property (IP) concerns; certifications (e.g. UL, CE, etc); and technical/engineering language barriers). Even though the particular details of this project may not directly apply to your product, the insights gained and lessons learned apply to anyone developing hardware.&lt;/p&gt;
+
+&lt;h1&gt;Gulpo Mark I and the Limitations of Laser Cutting&lt;/h1&gt;
+
+
+&lt;p&gt;&lt;strong&gt;tl;dr:&lt;/strong&gt; SMBC could not profitably scale up to meet demand, due to the financial and quality limitations imposed by the manufacturing process used to produce the original run of Gulpos.&lt;/p&gt;
 
 &lt;div&gt;
 &lt;div style=&quot;display:inline-block; max-width:50%; float:left&quot;&gt;
@@ -70,16 +70,16 @@
 &lt;/div&gt;
 
 
-&lt;div class=&quot;footer&quot; align=&quot;bottom&quot; style=&quot;display:block;&quot;&gt;(Left) Laser cutting, manufacturing process chosen for Gulpo isn&#39;t suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 50.(Right) Aesthetic details looking to be improved on the original Gulpo design. &lt;/div&gt;
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot; style=&quot;display:block;&quot;&gt;(Left) Laser cutting, the manufacturing process chosen for Gulpo isn&#39;t suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 50.(Right) Aesthetic details the client wanted to improve in the next Gulpo design. &lt;/div&gt;
 
 
 
 
-&lt;h3&gt;Benefits of Laser Cutting for Prototyping&lt;/h3&gt;
+&lt;h3&gt;Background on Gulpo Mark I&lt;/h3&gt;
 
 
 &lt;p&gt;
-Gulpo Mark I was laser cut from black plastic with a brushed metallic front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is basically 2D and there is very little setup cost to actually cut it out. This is important because if SMBC was going to mass produce this product, they needed to first validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an Icthys-themed novelty car emblem wouldn&#39;t matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually produce the design.&lt;/p&gt;
+Gulpo Mark I was laser cut from black plastic with a brushed metallic front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is basically 2D and there is very little setup cost to actually cut it out. This is important because if SMBC was going to mass produce this product, they needed to first validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an &lt;a href=&quot;http://en.wikipedia.org/wiki/Ichthys&quot; target=&quot;_blank&quot;&gt;Icthys-themed&lt;/a&gt; novelty car emblem wouldn&#39;t matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually produce the design.&lt;/p&gt;
 
 &lt;h3&gt;Drawbacks of Laser Cutting for Production&lt;/h3&gt;
 
@@ -87,7 +87,7 @@ Gulpo Mark I was laser cut from black plastic with a brushed metallic front face
 &lt;p&gt;
 Laser cutting&#39;s initial blessing of having a negligible setup cost quickly becomes a curse once production quantities begin to approach larger volumes. Laser cutting is a fixed-time manufacturing process, which means that the time-per-Gulpo for QTY 1 is the same as QTY 500. In other words, the cost of making Gulpo is relatively fixed, regardless of the quantity being produced. Considering that SMBC only broke even with the last batch, they wouldn&#39;t expect their margins to improve just by ordering a larger amount. If SMBC really wanted Gulpo to make sense as a retail product, they were going to need to find a different way to produce them.&lt;/p&gt;
 
-&lt;h3&gt;Improvement on Aesthetics&lt;/h3&gt;
+&lt;h3&gt;Desired Improvement on Aesthetics&lt;/h3&gt;
 
 
 &lt;p&gt;
@@ -101,20 +101,20 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 
 &lt;p&gt;Simply put, if SMBC wanted a better product for cheaper they would need to take a fundamentally different approach.&lt;/p&gt;
 
-&lt;h1&gt;Solution&lt;/h1&gt;
+&lt;h1&gt;The Path Forward for Gulpo Mark II&lt;/h1&gt;
 
 
 &lt;p&gt;&lt;strong&gt;tl;dr:&lt;/strong&gt; SupplyBetter needed to find a shop with the right capabilities (likely overseas) in order to meet SMBC&#39;s project needs.&lt;/p&gt;
 
-&lt;p&gt;To better understand the decisions made in making Gulpo Mark II, here are the &quot;lessons learned&quot; from the first batch, composed into a summary of requirements:&lt;/p&gt;
+&lt;p&gt;To better understand the decisions made in manufacturing Gulpo Mark II, here are the &quot;lessons learned&quot; from the first batch, composed into a summary of requirements:&lt;/p&gt;
 
 &lt;h3&gt;Technical Requirements&lt;/h3&gt;
 
 
 &lt;ul&gt;
 &lt;li&gt;Same 2D design as Gulpo Mark I (e.g. profile, letter font, outer dimensions, etc)&lt;/li&gt;
-&lt;li&gt;A smooth and glossy surface finish&lt;/li&gt;
-&lt;li&gt;Colors are silver chrome and glossy black&lt;/li&gt;
+&lt;li&gt;Smooth and glossy surface finish&lt;/li&gt;
+&lt;li&gt;Silver chrome and glossy black colors&lt;/li&gt;
 &lt;li&gt;Materials (both main body and adhesive backing) must be durable and strong enough to withstand exposure to the elements while affixed to the back of a car&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -124,7 +124,8 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 
 &lt;ul&gt;
 &lt;li&gt;SMBC wants the ability to produce in batches of 1500+ &lt;/li&gt;
-&lt;li&gt;Per-unit cost to SMBC needs to be low enough to make financial sense to sell at their current price without any sacrifice in quality&lt;/li&gt;
+&lt;li&gt;Per-unit cost to SMBC needs to be low enough to make financial sense to sell at their current price&lt;/li&gt;
+&lt;li&gt;Per-unit cost cannot sacrifice quality/aesthetics&lt;/li&gt;
 &lt;/ul&gt;
 
 
@@ -141,7 +142,7 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Supplier Business specification&lt;/h3&gt;
+&lt;h3&gt;Supplier Business Specification&lt;/h3&gt;
 
 
 &lt;ul&gt;
@@ -152,16 +153,16 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 &lt;/ul&gt;
 
 
-&lt;h3&gt;Rough manufacturing process outline&lt;/h3&gt;
+&lt;h3&gt;Rough Manufacturing Process Outline&lt;/h3&gt;
 
 
 &lt;ol&gt;
-&lt;li&gt;Mill/EDM the injection mold tooling&lt;/li&gt;
-&lt;li&gt;Polish the tooling (to achieve a glossy surface finish on the parts)&lt;/li&gt;
-&lt;li&gt;Paint chrome (all over the part)&lt;/li&gt;
-&lt;li&gt;Paint matte black in recessed areas of design and on outer-facing edge&lt;/li&gt;
-&lt;li&gt;Die cut the adhesive backing&lt;/li&gt;
-&lt;li&gt;Assemble adhesive backing and painted piece&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=N_30vIImy7Q#t=27&quot; target=&quot;_blank&quot;&gt;Mill/EDM&lt;/a&gt; the injection mold tooling&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=54jGpAzhzU8#t=30&quot; targer=&quot;_blank&quot;&gt;Polish the tooling&lt;/a&gt; (to achieve a glossy surface finish on the parts)&lt;/li&gt;
+  &lt;li&gt;Paint chrome (all over the part)&lt;/li&gt;
+  &lt;li&gt;Paint matte black in recessed areas of design and on outer-facing edge&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=sY8ubb4AClY&quot; targer=&quot;_blank&quot;&gt;Die cut the adhesive backing&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Assemble adhesive backing and painted piece&lt;/li&gt;
 &lt;/ol&gt;
 
 
@@ -174,6 +175,9 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 
 &lt;p&gt;&lt;a href=&quot;http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://styledemocracy.com/wp-content/uploads/2014/07/alibaba-logo.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot; style=&quot;display:block;&quot;&gt;Alibaba, a household name for anyone who has ever been faced with sourcing custom hardware overseas.&lt;/div&gt;
+
+
 &lt;p&gt;SupplyBetter prides itself in finding that handful of suppliers who are the exact match for the job. The information necessary to judge a service bureau goes far beyond simply trying to understand which suppliers may be &quot;good&quot; and which suppliers may be &quot;bad&quot;. We believe that parts will be better and cheaper if you start a vendor relationship with a company that already possesses the equipment necessary and understands the nuances of the manufacturing processes involved. Custom manufacturing vendors are more than just warehouses with spare capacity on their machines. It&#39;s the engineers and tradesmen behind them that can turn good designs into great products.&lt;/p&gt;
 
 &lt;p&gt;That said, we did not yet have a supplier network established overseas for the supplier profile discussed in the previous section. So where do you go right now when you need a consumer product made overseas? Alibaba.&lt;/p&gt;
@@ -185,7 +189,7 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 &lt;h3&gt;Pro-tip on Alibaba Supplier Discovery&lt;/h3&gt;
 
 
-&lt;p&gt;Alibaba is best navigated by searching for similar products currently made by manufacturers (vs. just finding everyone who does &quot;injection molding&quot;, or has a certain type of machine built for injection molding). We initially thought to search for &quot;custom car decals&quot;, but that query was too vague and returned hundreds of shops making everything from bumper stickers to name plates. We decided to swing the pendulum the opposite way and get as specific as possible. Oddly enough, there were a handful of suppliers who were advertising as producers of Icthys-themed novelty car emblems. Vendors often post pictures of parts they make, and when we started to see examples of the Christian fish, Darwin evolution emblem, and Flying Spaghetti Monster we knew we were on the right track.&lt;/p&gt;
+&lt;p&gt;Alibaba is best navigated by searching for similar products currently made by manufacturers (vs. just finding everyone who does &quot;injection molding&quot;, or has a certain type of machine built for injection molding). We initially thought to search for &quot;custom car decals&quot;, but that query was too vague and returned hundreds of shops making everything from bumper stickers to name plates. We decided to swing the pendulum the opposite way and get as specific as possible. Oddly enough, there were a handful of suppliers who were advertising as producers of Icthys-themed novelty car emblems. Vendors often post pictures of parts they make, and when we started to see examples of the Christian fish, the Darwin evolution emblem, and the Flying Spaghetti Monster we knew we were on the right track.&lt;/p&gt;
 
 &lt;p&gt;With our search term figured out, it was time to start checking boxes. Alibaba has a bevy of filters you can use to narrow your search result even further, and the general advice we&#39;d gotten from those experienced with Alibaba or Aliexpress was to just check all of them (e.g. &quot;Gold Supplier&quot;, &quot;Verified&quot;, etc). Once done, we were down to 6 suppliers. This was as good as we were going to get.&lt;/p&gt;
 
@@ -199,22 +203,15 @@ Despite the success of the first run of Gulpos, it didn&#39;t make sense to prod
 
 &lt;ol&gt;
   &lt;li&gt;&lt;s&gt;Characterize the project&lt;/s&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;s&gt;Identify Suppliers&lt;/s&gt;&lt;/li&gt;
-  &lt;li&gt;Initial Supplier Reachout&lt;/li&gt;
-  &lt;li&gt;Create RFQ Package&lt;/li&gt;
-  &lt;li&gt;Send RFQ Package&lt;/li&gt;
-  &lt;li&gt;Evaluate Quotes&lt;/li&gt;
-  &lt;li&gt;Order Samples&lt;/li&gt;
-  &lt;li&gt;Evaluate Samples&lt;/li&gt;
+  &lt;li&gt;&lt;s&gt;Identify suppliers&lt;/s&gt;&lt;/li&gt;
+  &lt;li&gt;Create and send RFQ package&lt;/li&gt;
+  &lt;li&gt;Evaluate quotes from suppliers&lt;/li&gt;
+  &lt;li&gt;Order and evaluate samples&lt;/li&gt;
   &lt;li&gt;Ask for buyer references (see if there is anyone else who has used them we can speak with)&lt;/li&gt;
-  &lt;li&gt;Enter into NDA with supplier (optional)&lt;/li&gt;
-  &lt;li&gt;Re-quote with final file&lt;/li&gt;
+  &lt;li&gt;Enter into NDA with supplier and re-quote with final file&lt;/li&gt;
   &lt;li&gt;Negotiate finance terms (e.g. establish escrow, % payment up front, etc)&lt;/li&gt;
-  &lt;li&gt;Order first articles (mold fee, QTY 10 units, shipping of first batch)&lt;/li&gt;
-  &lt;li&gt;Evaluate first articles&lt;/li&gt;
+  &lt;li&gt;Order and evaluate first articles (mold fee, QTY 10 units, shipping of first batch)&lt;/li&gt;
   &lt;li&gt;Proceed with full production&lt;/li&gt;
-  &lt;li&gt;Final Quality Control&lt;/li&gt;
-  &lt;li&gt;Profit&lt;/li&gt;
 &lt;/ol&gt;
 
 
@@ -226,7 +223,7 @@ Rob&lt;/p&gt;
  <entry>
    <title>SLS Services | Overview</title>
    <link href="YOUR_URL/sls-services-overview.html"/>
-   <updated>2014-10-23T00:00:00-04:00</updated>
+   <updated>2014-10-23T00:00:00-07:00</updated>
    <id>BLOG_URL/sls-services-overview</id>
    <content type="html">&lt;div style=&quot;display:inline-block; max-width:50%; float:left&quot;&gt;
   &lt;a href=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover.jpg&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/sls_cover+copy-extra_small.jpg&quot;&gt;&lt;/a&gt;
@@ -409,7 +406,7 @@ Rob&lt;/p&gt;
  <entry>
    <title>How UPS 3D Printing Compares to a Dedicated Service Bureau</title>
    <link href="YOUR_URL/how-ups-3d-printing-compares-to-a-dedicated-service-bureau.html"/>
-   <updated>2014-09-26T00:00:00-04:00</updated>
+   <updated>2014-09-26T00:00:00-07:00</updated>
    <id>BLOG_URL/how-ups-3d-printing-compares-to-a-dedicated-service-bureau</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
 &lt;caption align=&quot;bottom&quot;&gt;Example of functional 3D printed brackets printed using Fused Deposition Modeling (FDM) on a Stratasys 3D printer. &lt;/caption&gt;
@@ -506,7 +503,7 @@ Rob&lt;/p&gt;
  <entry>
    <title>The 6 Ways to Not Burn a New Supplier</title>
    <link href="YOUR_URL/the-6-ways-to-not-burn-a-new-supplier.html"/>
-   <updated>2014-07-21T00:00:00-04:00</updated>
+   <updated>2014-07-21T00:00:00-07:00</updated>
    <id>BLOG_URL/the-6-ways-to-not-burn-a-new-supplier</id>
    <content type="html">&lt;table class=&quot;image&quot; style=&quot;margin: auto;&quot;&gt;
 &lt;caption align=&quot;bottom&quot;&gt;Molten steel being prepped for casting (credit: &lt;a href=&quot;http://upload.wikimedia.org/wikipedia/commons/4/48/Gussmetallschmelze.jpg&quot; target=&quot;_blank&quot;&gt;Wikipedia&lt;/a&gt;)&lt;/caption&gt;
@@ -612,7 +609,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
  <entry>
    <title>Differences between major commercial 3D printing types</title>
    <link href="YOUR_URL/differences-between-major-commercial-3d-printing-types.html"/>
-   <updated>2014-04-16T00:00:00-04:00</updated>
+   <updated>2014-04-16T00:00:00-07:00</updated>
    <id>BLOG_URL/differences-between-major-commercial-3d-printing-types</id>
    <content type="html">&lt;p&gt;Customers, both new and experienced, often ask us for an overview of 3D printing technologies. Luckily, our specialty is helping people understand which 3D printing methods are useful right now for making parts. Here is a practical overview highlighting the different commercial 3D printing technologies currently accessible on the market. Enjoy!&lt;/p&gt;
 
@@ -768,7 +765,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
  <entry>
    <title>Shapeways vs. SupplyBetter</title>
    <link href="YOUR_URL/shapeways-vs-supplybetter.html"/>
-   <updated>2014-03-04T00:00:00-05:00</updated>
+   <updated>2014-03-04T00:00:00-08:00</updated>
    <id>BLOG_URL/shapeways-vs-supplybetter</id>
    <content type="html">&lt;p&gt;&lt;a href=&quot;https://www.flickr.com/photos/rileyporter/10372004816/&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/raspberry_pi_case.jpg&quot;  alt=&quot;Example of how to use 3D printing using the FFF printing method for a custom hardware enclosure: shapeways vs. supplybetter.&quot; width=&quot;49%&quot;&gt;&lt;/a&gt;
 &lt;a href=&quot;https://www.flickr.com/photos/fluidforms/sets/72157616076676394&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/3395305728_1b1119b5e9_b.jpg&quot; alt=&quot;Example of how to use SLS 3D printing for a custom themed lamp: shapeways vs. supplybetter&quot; width=&quot;49%&quot;&gt;&lt;/a&gt;&lt;/p&gt;
@@ -846,7 +843,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
  <entry>
    <title>When to choose hobby vs. commercial level 3D printers - Materials</title>
    <link href="YOUR_URL/choosing-fff-vs-fdm.html"/>
-   <updated>2013-11-01T00:00:00-04:00</updated>
+   <updated>2013-11-01T00:00:00-07:00</updated>
    <id>BLOG_URL/choosing-fff-vs-fdm</id>
    <content type="html">&lt;p&gt;&lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/8592837554_e02715f7b1_c.jpg&quot; width=&quot;49%&quot;&gt;
 &lt;img src=&quot;https://s3.amazonaws.com/partreach_initial_bucket/uploads/DFM_FDM_photo.JPG&quot; width=&quot;49%&quot;&gt;&lt;/p&gt;
@@ -987,7 +984,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
  <entry>
    <title>California descriptions and navigating the supplier index</title>
    <link href="YOUR_URL/california-descriptions-and-navigating-the-supplier-index.html"/>
-   <updated>2013-10-17T00:00:00-04:00</updated>
+   <updated>2013-10-17T00:00:00-07:00</updated>
    <id>BLOG_URL/california-descriptions-and-navigating-the-supplier-index</id>
    <content type="html">&lt;p&gt;We&#39;ve been working closely with our Californian suppliers to create the best matching experience for custom manufacturing, and to show some love we&#39;ve added basic company descriptions for &lt;a href=&quot;http://www.supplybetter.com/guides/unitedstates-california-3dprinting&quot;&gt;all 3D printing suppliers based in the Golden State&lt;/a&gt;. People from all over the world submit RFQs through SupplyBetter, and supplier descriptions are just one way to help find the right match for their projects. Since our last update we&#39;ve worked with suppliers to add equipment data, as well as reviews. To help buyers navigate our &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;supplier index&lt;/a&gt; we&#39;ve added a key to quickly illustrate which kinds of information are available for each supplier.&lt;/p&gt;
 
@@ -1006,7 +1003,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
  <entry>
    <title>SupplyBetter wins 2nd place at the NetIP Fast Pitch Competition</title>
    <link href="YOUR_URL/supplybetter-wins-2nd-place-at-the-netip-fast-pitch-competition.html"/>
-   <updated>2013-09-29T00:00:00-04:00</updated>
+   <updated>2013-09-29T00:00:00-07:00</updated>
    <id>BLOG_URL/supplybetter-wins-2nd-place-at-the-netip-fast-pitch-competition</id>
    <content type="html">&lt;p&gt;We&#39;re proud to report that SupplyBetter recently placed 2nd at the &lt;a href=&quot;http://www.netip.org/blog/2013/09/17/fast-pitch-competition-draws-in-a-huge-crowd/&quot;&gt;NetIP Fast Pitch Competition&lt;/a&gt; here in San Francisco. We had the pleasure of competing against companies working on solving some really interesting problems such as &lt;a href=&quot;http://www.airpost.io/&quot;&gt;Airpost&lt;/a&gt; (1st place) and &lt;a href=&quot;https://campbx.com/&quot;&gt;CampBX&lt;/a&gt; (3rd Place). Thank you NetIP for letting us compete and &lt;a href=&quot;http://www.rackspace.com/&quot;&gt;Rackspace&lt;/a&gt; for sponsoring the event. With our 2nd place standing we&#39;ve won $1000/month credit on the Rackspace US Cloud portfolio for 12 months. We&#39;re excited to make the switch from Heroku to Rackspace, and we&#39;ll be sure to let you know how switching goes.&lt;/p&gt;
 
@@ -1019,7 +1016,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
  <entry>
    <title>Suppliers can now claim and edit their company profiles</title>
    <link href="YOUR_URL/suppliers-can-now-claim-and-edit-their-company-profiles.html"/>
-   <updated>2013-08-30T00:00:00-04:00</updated>
+   <updated>2013-08-30T00:00:00-07:00</updated>
    <id>BLOG_URL/suppliers-can-now-claim-and-edit-their-company-profiles</id>
    <content type="html">&lt;p&gt;The SupplyBetter team is constantly working to maintain the most comprehensive database of 3D printing suppliers, and we are pleased to announce that suppliers can now claim and edit their own profiles in our &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;Supplier Index&lt;/a&gt;. By uploading custom company descriptions, details about their machines, and company photos suppliers can use this support material to really make their profile stand on its own. Doing so allows our customers to better understand each company and improves the intelligence of how SupplyBetter matches. &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;Submit an RFQ&lt;/a&gt; today and discover the best suppliers to make your custom parts.&lt;/p&gt;
 
@@ -1032,7 +1029,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
  <entry>
    <title>Announcing the Launch of Supplier Profiles</title>
    <link href="YOUR_URL/announcing-the-launch-of-supplier-profiles.html"/>
-   <updated>2013-07-15T00:00:00-04:00</updated>
+   <updated>2013-07-15T00:00:00-07:00</updated>
    <id>BLOG_URL/announcing-the-launch-of-supplier-profiles</id>
    <content type="html">&lt;p&gt;&lt;strong&gt;We’re excited to announce that we’re launching &lt;a href=&quot;http://www.supplybetter.com/suppliers&quot;&gt;supplier profiles&lt;/a&gt; for 3D Printing.&lt;/strong&gt; We’ve been hard at work these past few months helping people get their custom mechanical parts made and this is just one more way we hope to make the experience better.&lt;/p&gt;
 
@@ -1056,7 +1053,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
  <entry>
    <title>Tips to Improve Your RFQs</title>
    <link href="YOUR_URL/tips-to-improve-your-requests-for-quotes.html"/>
-   <updated>2013-07-02T00:00:00-04:00</updated>
+   <updated>2013-07-02T00:00:00-07:00</updated>
    <id>BLOG_URL/tips-to-improve-your-requests-for-quotes</id>
    <content type="html">&lt;p&gt;Filling out a proper &lt;a href=&quot;http://www.supplybetter.com/orders/new&quot;&gt;Request for Quote (RFQ)&lt;/a&gt; is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter.&lt;/p&gt;
 
@@ -1097,7 +1094,7 @@ Thank you to Charles Overy of LGM 3D, Shain Terry of Make-Parts, Alex Huckstepp 
  <entry>
    <title>The Blog</title>
    <link href="YOUR_URL/the-blog.html"/>
-   <updated>2013-06-12T00:00:00-04:00</updated>
+   <updated>2013-06-12T00:00:00-07:00</updated>
    <id>BLOG_URL/the-blog</id>
    <content type="html">&lt;p&gt;Here at SupplyBetter, we aim to give buyers the best way to decide among suppliers, and to help suppliers by offering them the opportunity to quote the type of work that fits them best. We&#39;re starting off in 3D printing, and expanding to other manufacturing processes once we&#39;re ready.&lt;/p&gt;
 

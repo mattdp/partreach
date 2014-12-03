@@ -8,9 +8,13 @@ meta_description: Learn about how SupplyBetter helped produce an injection molde
 <div style="display:inline-block; max-width:100%; float:left">
 <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-20.png" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-medium-18-fixed.png"></a>
 </div>
-<div class="footer" align="bottom">Gulpo, the fish that was injection molded in China.</div>
+<div class="footer" align="bottom">Gulpo (Mark II), the fish that was injection molded in China.</div>
 
 <h1>Project Background</h1>
+
+<strong>People love Gulpo. And so do we. </strong>
+
+Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal (SMBC) team. After Gulpo made its debut on their <a href="http://www.smbc-comics.com/?id=2094" target="_blank">daily webcomic</a> in late 2010, there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, the product went on sale and was sold out in 2013. Gulpo was a success. 
 
 <div style="display:inline-block; max-width:50%; float:left">
   <a href="http://www.smbc-comics.com/?id=2094" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/Saturday_Morning_Breakfast_Cereal-small.png"></a>
@@ -18,11 +22,7 @@ meta_description: Learn about how SupplyBetter helped produce an injection molde
 <div style="display:inline-block; max-width:50%; float:left">
   <a href="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-large-21.jpg" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/141107-gulpo_case_study/supplybetter-gulpo-manufacturing-case-study-small-21.jpg"></a>
 </div>
-<div class="footer" align="bottom">(Left) The comic that started it all. (Right) The original, laser cut Gulpo.</div>
-
-People love Gulpo. And so do we. 
-
-Gulpo is a novelty car emblem conceived by Zach Weinersmith and the Saturday Morning Breakfast Cereal (SMBC) team. After Gulpo made its debut on their <a href="http://www.smbc-comics.com/?id=2094" target="_blank">daily webcomic</a> in late 2010, there was large demand from SMBC's fanbase to actually produce these car emblems for sale on SMBC's website. After finding someone who could produce a small batch, the product went on sale and was sold out in 2013. Gulpo was a success. 
+<div class="footer" align="bottom">(Left) The comic that started it all. (Right) The original, laser cut Gulpo (Mark I).</div>
 
 <h1>Focus</h1>
 
@@ -45,7 +45,7 @@ With this project we'll keep discussion of engineering requirements to a minimum
 <div class="footer" align="bottom" style="display:block;">(Left) Laser cutting, the manufacturing process chosen for Gulpo isn't suitable for larger volumes. When compared to injection molding, the transition point occurs at around QTY 50.(Right) Aesthetic details the client wanted to improve in the next Gulpo design. </div>
 
 <h3>Background on Gulpo Mark I</h3> 
-Gulpo Mark I was laser cut from black plastic with a brushed metallic front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is basically 2D and there is very little setup cost to actually cut it out. This is important because if SMBC was going to mass produce this product, they needed to first validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an Icthys-themed novelty car emblem wouldn't matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually produce the design.  
+Gulpo Mark I was laser cut from black plastic with a brushed metallic front face. The adhesive backing was also laser cut to match the profile of the design. Laser cutting was a great choice for the initial batch of Gulpos since the design is basically 2D and there is very little setup cost to actually cut it out. This is important because if SMBC was going to mass produce this product, they needed to first validate that there was actually a market willing to buy them at a price that made sense. Putting in the effort and money needed to produce a Gulpo that exactly matched the aesthetics of an <a href="http://en.wikipedia.org/wiki/Ichthys" target="_blank">Icthys-themed</a> novelty car emblem wouldn't matter if no one wanted to buy it. Thus, choosing laser cutting as their manufacturing process meant they could validate their biggest assumption while minimizing their upfront costs to actually produce the design.  
 
 <h3>Drawbacks of Laser Cutting for Production</h3> 
 Laser cutting's initial blessing of having a negligible setup cost quickly becomes a curse once production quantities begin to approach larger volumes. Laser cutting is a fixed-time manufacturing process, which means that the time-per-Gulpo for QTY 1 is the same as QTY 500. In other words, the cost of making Gulpo is relatively fixed, regardless of the quantity being produced. Considering that SMBC only broke even with the last batch, they wouldn't expect their margins to improve just by ordering a larger amount. If SMBC really wanted Gulpo to make sense as a retail product, they were going to need to find a different way to produce them. 
@@ -95,12 +95,12 @@ To better understand the decisions made in manufacturing Gulpo Mark II, here are
 </ul>
 <h3>Rough Manufacturing Process Outline</h3>
 <ol>
-<li>Mill/EDM the injection mold tooling</li>
-<li>Polish the tooling (to achieve a glossy surface finish on the parts)</li>
-<li>Paint chrome (all over the part)</li>
-<li>Paint matte black in recessed areas of design and on outer-facing edge</li>
-<li>Die cut the adhesive backing</li>
-<li>Assemble adhesive backing and painted piece</li>
+  <li><a href="https://www.youtube.com/watch?v=N_30vIImy7Q#t=27" target="_blank">Mill/EDM</a> the injection mold tooling</li>
+  <li><a href="https://www.youtube.com/watch?v=54jGpAzhzU8#t=30" targer="_blank">Polish the tooling</a> (to achieve a glossy surface finish on the parts)</li>
+  <li>Paint chrome (all over the part)</li>
+  <li>Paint matte black in recessed areas of design and on outer-facing edge</li>
+  <li><a href="https://www.youtube.com/watch?v=sY8ubb4AClY" targer="_blank">Die cut the adhesive backing</a></li>
+  <li>Assemble adhesive backing and painted piece</li>
 </ol>
 
 Given the above specs, an injection molded body with a die-cut adhesive backing made the most sense as the manufacturing method of choice. Injection molding is fantastically suited for high-volume production of thermoplastics, which is why you see it being used in the majority of consumer products today. This meant that injection molding would be the most critical process to look for as a first filter when evaluating suppliers. Now that we knew the profile of suppliers we were looking for, it was time to actually go out there and find them. 
