@@ -2,14 +2,13 @@ require "spec_helper"
 
 describe "/orders requests" do
 
-  before do
-    @user = FactoryGirl.create :admin_user
-
-    # sign in as registered user
-    post sessions_path, { :session => { :email => @user.lead.lead_contact.email, :password => @user.password } }
-  end
-
   describe "New order" do
+    before do
+      @user = FactoryGirl.create :user
+      # sign in as registered user
+      post sessions_path, { :session => { :email => @user.lead.lead_contact.email, :password => @user.password } }
+    end
+
     it "with valid input, creates a new order" do
       post "/orders",
         "order_uploads"=>
@@ -151,6 +150,40 @@ describe "/orders requests" do
 
       new_order = Order.last
       expect(new_order.order_groups[0].parts.size).to eq 0
+    end
+  end
+
+  describe "New order" do
+    it "logs the event when an order is viewed by its owner" do
+      user = FactoryGirl.create :user
+      order = FactoryGirl.create :order, user: user
+      post sessions_path, { :session => { :email => user.lead.lead_contact.email, :password => user.password } }
+
+      get "orders/#{order.id}"
+
+      new_event = Event.last
+      expect(new_event.model_id).to eq order.id
+      expect(new_event.happening).to eq "order viewed by owner"
+    end
+
+    it "logs the event when an order is viewed using the share link" do
+      order = FactoryGirl.create :order
+
+      get "orders/view/#{order.id}/#{order.view_token}"
+
+      new_event = Event.last
+      expect(new_event.model_id).to eq order.id
+      expect(new_event.happening).to eq "order viewed using share link"
+    end
+
+    it "does not log an event when an order is viewed by an admin user" do
+      order = FactoryGirl.create :order
+      admin_user = FactoryGirl.create :admin_user
+      post sessions_path, { :session => { :email => admin_user.lead.lead_contact.email, :password => admin_user.password } }
+
+      get "orders/#{order.id}"
+
+      expect(Event.all.size).to eq 0
     end
   end
 

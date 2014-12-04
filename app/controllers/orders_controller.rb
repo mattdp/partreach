@@ -32,6 +32,14 @@ class OrdersController < ApplicationController
       @columns = OrderColumn.get_columns(:all)
     end
 
+    unless current_user && current_user.admin
+      if current_user == @order.user
+        Event.add_event("Order", @order.id, "order viewed by owner")
+      else
+        Event.add_event("Order", @order.id, "order viewed using share link")
+      end
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @order }
@@ -293,7 +301,6 @@ class OrdersController < ApplicationController
 
     @order.user_id = current_user.id
     @order.notes = "#{params[:user_phone]} is user contact number for rush order" if params[:user_phone].present?
-    @order.view_token = SecureRandom.hex
     @order.order_groups[0].init_default
 
     # create order, along with nested order_group and parts
