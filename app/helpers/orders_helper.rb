@@ -62,10 +62,10 @@ module OrdersHelper
     case past_experience
     when "Unknown"
       css_class = "experience-unknown"
-    when "Positive"
-      css_class = "experience-positive"
-    when "Provisional"
-      css_class = "experience-provisional"
+    when "Qualified"
+      css_class = "experience-qualified"
+    when "Promising"
+      css_class = "experience-promising"
     when "Mixed"
       css_class = "experience-mixed"
     end

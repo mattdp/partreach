@@ -41,10 +41,10 @@ App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http)
     ]
 
     $scope.pastExperienceOptions = [
-        "Unknown",
-        "Positive",
-        "Provisional",
-        "Mixed"
+        "Qualified",
+        "Promising",
+        "Mixed",
+        "Unknown"
     ]
 
     $scope.orderStatusOptions = [

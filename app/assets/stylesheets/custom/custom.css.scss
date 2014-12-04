@@ -14,8 +14,8 @@
 
 $recommendedColor: #b6d7a8;
 $unknownColor: #dadde2;
-$positiveColor: #24d839;
-$provisionalColor: #97d69e;
+$qualifiedColor: #24d839;
+$promisingColor: #97d69e;
 $mixedColor: #ecd473;
 $wideAngleBackground: #dadde2;
 $mainAreaBackground: #f6f6f6;
@@ -561,11 +561,11 @@ label {
     .experience-unknown {
       background-color: $unknownColor
     }
-    .experience-positive {
-      background-color: $positiveColor
+    .experience-qualified {
+      background-color: $qualifiedColor
     }
-    .experience-provisional {
-      background-color: $provisionalColor
+    .experience-promising {
+      background-color: $promisingColor
     }
     .experience-mixed {
       background-color: $mixedColor
