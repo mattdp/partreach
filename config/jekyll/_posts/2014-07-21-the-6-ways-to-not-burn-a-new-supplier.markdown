@@ -3,6 +3,7 @@ layout: post
 author: Rob
 title: The 6 Ways to Not Burn a New Supplier
 published: true
+meta_description: Maintaining positive relationships with your manufacturing suppliers and maintaning a supply chain are one in the same. 
 ---
 
 <table class="image" style="margin: auto;">

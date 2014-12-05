@@ -3,6 +3,7 @@ layout: post
 author: Rob
 title: When to choose hobby vs. commercial level 3D printers - Materials
 published: true
+meta_description: A concise guide detailing the differences between Fused Deposition Modeling (FDM) and Fused Filament Fabriation (FFF) 3D printing technologies.   
 ---
 <img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/8592837554_e02715f7b1_c.jpg" width="49%">
 <img src="https://s3.amazonaws.com/partreach_initial_bucket/uploads/DFM_FDM_photo.JPG" width="49%">

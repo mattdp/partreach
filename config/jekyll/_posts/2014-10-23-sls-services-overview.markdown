@@ -3,6 +3,7 @@ layout: post
 author: Rob
 title: SLS Services | Overview
 published: true
+meta_description: Selective Laser Sintering (SLS) 3D printing is a commercial manufacturing process with nuances that need to be considered when designing your next custom part. 
 ---
 
 <div style="display:inline-block; max-width:50%; float:left">
