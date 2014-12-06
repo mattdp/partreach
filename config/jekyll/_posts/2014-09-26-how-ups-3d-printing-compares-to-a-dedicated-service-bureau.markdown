@@ -3,6 +3,7 @@ layout: post
 author: Rob
 title: How UPS 3D Printing Compares to a Dedicated Service Bureau
 published: true
+meta_description: UPS has launched a 3D printing service. Learn how we compare this new custom 3D printing option to dedicated service bureaus. 
 ---
 
 <table class="image" style="margin: auto;">

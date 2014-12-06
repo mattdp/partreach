@@ -3,6 +3,7 @@ layout: post
 author: Rob
 title: Announcing the Launch of Supplier Profiles
 published: true
+meta_description: We've made finding manufacturing servies easier by publishing a public directory of 3D printing companies currently offering contract manufacturing services. 
 ---
 
 **We’re excited to announce that we’re launching [supplier profiles](http://www.supplybetter.com/suppliers) for 3D Printing.** We’ve been hard at work these past few months helping people get their custom mechanical parts made and this is just one more way we hope to make the experience better. 

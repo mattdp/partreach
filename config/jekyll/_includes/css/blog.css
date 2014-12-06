@@ -122,7 +122,7 @@ strong {
         color: #c3c8d9; }
 
 .content {
-  background: #f6f6f6; }
+  background: #fff; }
   .content.features, .content.forms, .content.sign-in {
     background: #dadde2; }
   .content.header, .content.hero, .content.footer {
