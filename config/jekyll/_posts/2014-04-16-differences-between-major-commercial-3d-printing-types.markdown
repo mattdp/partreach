@@ -3,7 +3,7 @@ layout: post
 author: Rob
 title: Differences between major commercial 3D printing types
 published: true
-meta_description: Understanding the differences of using Shapeways vs. SupplyBetter for 3D printing is a great first step for sourcing your next 3D printing prototype.
+meta_description: Understanding the differences between the major commercial 3D printing technologies is a great way to start designing better 3D printed custom parts. 
 ---
 
 <p>Customers, both new and experienced, often ask us for an overview of 3D printing technologies. Luckily, our specialty is helping people understand which 3D printing methods are useful right now for making parts. Here is a practical overview highlighting the different commercial 3D printing technologies currently accessible on the market. Enjoy!</p>

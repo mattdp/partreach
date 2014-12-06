@@ -3,6 +3,7 @@ layout: post
 author: Rob
 title: Tips to Improve Your RFQs
 published: true
+meta_description: Understand how to construct a great Request for Quote (RFQ) will greatly improve your ability to find the best manufacturing services for custom parts.
 ---
 
 Filling out a proper [Request for Quote (RFQ)](http://www.supplybetter.com/orders/new) is the often the first contact a potential customer has with a supplier. To give our users the greatest chance at success, here’s our advice for how to get the most out of our RFQ service here at SupplyBetter. 
