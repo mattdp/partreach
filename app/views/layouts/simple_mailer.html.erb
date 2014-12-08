@@ -8,7 +8,7 @@
     <div>
       <%= yield %>
     </div>
-    <div style="border-top:1px dashed #fff; padding:30px 10px; text-align:center; font-size:10px; font-weight:bold; color:#333; text-decoration:none">
+    <div>
       <p>
         <% if supplier %>
           You are receiving this email because your email address was linked to <%= supplier.name %> on SupplyBetter.com.
@@ -16,13 +16,14 @@
           
         <% end %>
       </p>
+    </div>
+    <div>
       <a href="www.supplybetter.com/testimonials" style="color:#333;text-decoration:none;padding:0 3px 0 0;font-size:10px" target="_blank">Testimonials</a>|
       <a href="www.supplybetter.com/be_a_supplier" style="color:#333;text-decoration:none;padding:0 3px 0 0;font-size:10px" target="_blank">Be a Supplier</a>|
       <a style="text-decoration: none;color:#333" target="_blank" href="mailto:unsubscribe@supplybetter.com?body=I%20no%20longer%20wish%20to%20receive%20SupplyBetter%20emails.&amp;subject=Please%20unsubscribe%20me%20from%20future%20emails">Unsubscribe</a>
     </div>
-    <div style="font-size:10px; font-weight:normal;color:#888;text-shadow:none;padding-bottom:45px;">
-        &nbsp;<a style="text-decoration: none;color:#888" href="www.supplybetter.com" target="_blank">SupplyBetter, Inc.</a>&nbsp;&bull; 237 Kearney Street, #256, San Francisco, CA 94108
+    <div>
+      <p>SupplyBetter, Inc.&nbsp;&bull; 237 Kearney Street, #256, San Francisco, CA 94108</p>
     </div>
-    <br>
   </body>    
 </html>
