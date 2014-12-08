@@ -1,7 +1,3 @@
-###
-# FUTURE BLAST MAIL NEEDS TO TAKE LEAD AND USER EMAIL UNSUBS INTO ACCOUNT
-###
-
 class BlastMailer < ActionMailer::Base
   default from: "noreply@supplybetter.com"
   include SessionsHelper

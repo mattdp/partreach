@@ -2,24 +2,14 @@
 <html>
   <head>     
     <meta property="og:title" content="<%= title %>"/>
-    <title><%= title %></title> 
+    <title><%= @title %></title> 
   </head>
   <body>
     <div>
       <%= yield %>
     </div>
     <div>
-      <p>
-        <% if supplier %>
-          You are receiving this email because your email address was linked to <%= supplier.name %> on SupplyBetter.com.
-        <% else %>
-          
-        <% end %>
-      </p>
-    </div>
-    <div>
       <a href="www.supplybetter.com/testimonials" style="color:#333;text-decoration:none;padding:0 3px 0 0;font-size:10px" target="_blank">Testimonials</a>|
-      <a href="www.supplybetter.com/be_a_supplier" style="color:#333;text-decoration:none;padding:0 3px 0 0;font-size:10px" target="_blank">Be a Supplier</a>|
       <a style="text-decoration: none;color:#333" target="_blank" href="mailto:unsubscribe@supplybetter.com?body=I%20no%20longer%20wish%20to%20receive%20SupplyBetter%20emails.&amp;subject=Please%20unsubscribe%20me%20from%20future%20emails">Unsubscribe</a>
     </div>
     <div>
