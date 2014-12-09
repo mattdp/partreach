@@ -90,11 +90,20 @@ meta_description: Selective Laser Sintering (SLS) 3D printing is a commercial ma
 <p>Cheers,</p>
 <p>Rob</p>
 
-<iframe src="https://gfycat.com/ifr/FittingSlushyAmazonparrot" frameborder="0" scrolling="no" width="700" height="394" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
-<div class="footer" align="bottom">The same SLS nylon 3D print of the clothes pin from earlier in the post</div>
+<strong>UPDATE (Dec 8, 2014):</strong> To make this page load faster, we've replaced the GIF videos originally rendered on this page with still images that link to the GIFs. Click the images to see the GIF. Enjoy!
 
-<iframe src="https://gfycat.com/ifr/QuarterlyJitteryAmericanwigeon" frameborder="0" scrolling="no" width="700" height="394" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
-<div class="footer" align="bottom">SLS nylon 3D print of a custom bracket printed by <a href="https://www.supplybetter.com/suppliers/unitedstates/newyork/finnovation" target="_blank">Finnovation PD</a></div>
+<div style="display:inline-block; max-width:100%; float:left">
+  <a href="https://gfycat.com/FittingSlushyAmazonparrot" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter_Demonstrating_Flexibility_of_a_Part_3D_Printed_using_SLS_Services_-_Gfycat.png"></a>
+</div>
+<div class="footer" align="bottom">(Click image for video) The same SLS nylon 3D print of the clothes pin from earlier in the post</div>
 
-<iframe src="https://gfycat.com/ifr/SecondhandImpeccableCardinal" frameborder="0" scrolling="no" width="700" height="394" style="-webkit-backface-visibility: hidden;-webkit-transform: scale(1);" ></iframe>
-<div class="footer" align="bottom">Destructively testing the same SLS nylon 3D print</div>
+<div style="display:inline-block; max-width:100%; float:left">
+  <a href="https://gfycat.com/QuarterlyJitteryAmericanwigeon" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter_Demonstrating_Plastic_Deformation_of_a_Part_Printed_Using_SLS_3D_Printing_-_Gfycat.png"></a>
+</div>
+<div class="footer" align="bottom">(Click image for video) SLS nylon 3D print of a custom bracket printed by <a href="https://www.supplybetter.com/suppliers/unitedstates/newyork/finnovation" target="_blank">Finnovation PD</a></div>
+
+<div style="display:inline-block; max-width:100%; float:left">
+  <a href="https://gfycat.com/SecondhandImpeccableCardinal" target="_blank"><img src="https://s3.amazonaws.com/supplybetter_images/Blog+Images/Gfycat_-_jiffier_gifs_through_HTML5_Video_Conversion__Fast__simple_gif_hosting_without_size_limits_.png
+"></a>
+</div>
+<div class="footer" align="bottom">(Click image for video) Destructively testing the same SLS nylon 3D print</div>

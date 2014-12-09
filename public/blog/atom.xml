@@ -4,7 +4,7 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-12-05T11:11:22-08:00</updated>
+ <updated>2014-12-08T14:20:36-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
@@ -380,28 +380,35 @@ Rob&lt;/p&gt;
 &lt;p&gt;Rob&lt;/p&gt;
 
 
+&lt;p&gt;&lt;strong&gt;UPDATE (Dec 8, 2014):&lt;/strong&gt; To make this page load faster, we&#39;ve replaced the GIF videos originally rendered on this page with still images that link to the GIFs. Click the images to see the GIF. Enjoy!&lt;/p&gt;
+
+&lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
+  &lt;a href=&quot;https://gfycat.com/FittingSlushyAmazonparrot&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter_Demonstrating_Flexibility_of_a_Part_3D_Printed_using_SLS_Services_-_Gfycat.png&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
 
 
-&lt;iframe src=&quot;https://gfycat.com/ifr/FittingSlushyAmazonparrot&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; width=&quot;700&quot; height=&quot;394&quot; style=&quot;-webkit-backface-visibility: hidden;-webkit-transform: scale(1);&quot; &gt;&lt;/iframe&gt;
-
-
-&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;The same SLS nylon 3D print of the clothes pin from earlier in the post&lt;/div&gt;
-
-
-
-
-&lt;iframe src=&quot;https://gfycat.com/ifr/QuarterlyJitteryAmericanwigeon&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; width=&quot;700&quot; height=&quot;394&quot; style=&quot;-webkit-backface-visibility: hidden;-webkit-transform: scale(1);&quot; &gt;&lt;/iframe&gt;
-
-
-&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;SLS nylon 3D print of a custom bracket printed by &lt;a href=&quot;https://www.supplybetter.com/suppliers/unitedstates/newyork/finnovation&quot; target=&quot;_blank&quot;&gt;Finnovation PD&lt;/a&gt;&lt;/div&gt;
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;(Click image for video) The same SLS nylon 3D print of the clothes pin from earlier in the post&lt;/div&gt;
 
 
 
 
-&lt;iframe src=&quot;https://gfycat.com/ifr/SecondhandImpeccableCardinal&quot; frameborder=&quot;0&quot; scrolling=&quot;no&quot; width=&quot;700&quot; height=&quot;394&quot; style=&quot;-webkit-backface-visibility: hidden;-webkit-transform: scale(1);&quot; &gt;&lt;/iframe&gt;
+&lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
+  &lt;a href=&quot;https://gfycat.com/QuarterlyJitteryAmericanwigeon&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/SupplyBetter_Demonstrating_Plastic_Deformation_of_a_Part_Printed_Using_SLS_3D_Printing_-_Gfycat.png&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
 
 
-&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;Destructively testing the same SLS nylon 3D print&lt;/div&gt;
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;(Click image for video) SLS nylon 3D print of a custom bracket printed by &lt;a href=&quot;https://www.supplybetter.com/suppliers/unitedstates/newyork/finnovation&quot; target=&quot;_blank&quot;&gt;Finnovation PD&lt;/a&gt;&lt;/div&gt;
+
+
+
+
+&lt;div style=&quot;display:inline-block; max-width:100%; float:left&quot;&gt;
+  &lt;a href=&quot;https://gfycat.com/SecondhandImpeccableCardinal&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://s3.amazonaws.com/supplybetter_images/Blog+Images/Gfycat_-_jiffier_gifs_through_HTML5_Video_Conversion__Fast__simple_gif_hosting_without_size_limits_.png
+&quot;&gt;&lt;/a&gt;
+&lt;/div&gt;
+
+
+&lt;div class=&quot;footer&quot; align=&quot;bottom&quot;&gt;(Click image for video) Destructively testing the same SLS nylon 3D print&lt;/div&gt;
 
 </content>
  </entry>
