@@ -28,7 +28,7 @@
 class Supplier < ActiveRecord::Base
   belongs_to :user
 
-  before_create :append_http_to_url
+  before_save :prepend_http_to_url
 
   has_many :dialogues, :dependent => :destroy
   has_one :address, :as => :place, :dependent => :destroy
@@ -546,7 +546,7 @@ class Supplier < ActiveRecord::Base
     return "Other non-datadump suppliers with names starting with #{char.upcase}: #{screened_suppliers.map{|s| s.name}.sort}"
   end
 
-  def append_http_to_url
+  def prepend_http_to_url
     if self.url_main
       self.url_main = /^http/.match(self.url_main) ? self.url_main : "http://#{self.url_main}"
     end
