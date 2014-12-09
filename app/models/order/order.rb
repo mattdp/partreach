@@ -32,6 +32,9 @@
 require 'csv'
 
 class Order < ActiveRecord::Base
+
+  before_save :create_view_token
+
   has_attached_file :drawing,
                     :url => "/:attachment/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
@@ -393,6 +396,10 @@ See the note from client for details on what exactly they're looking for.</p>
     partition[:placed_bid] = dialogues.select{|d| d.response_received and d.total_cost and d.total_cost > 0}
     partition[:no_response_or_refused] = dialogues.reject{|d| partition[:won].include?(d) or partition[:placed_bid].include?(d)}
     return partition
+  end
+
+  def create_view_token
+    self.view_token = SecureRandom.hex
   end
 
 end
