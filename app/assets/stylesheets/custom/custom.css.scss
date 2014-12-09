@@ -13,6 +13,10 @@
 /* mixins, variables, etc. */
 
 $recommendedColor: #b6d7a8;
+$unknownColor: #dadde2;
+$qualifiedColor: #43d33f;
+$promisingColor: #94da9b;
+$mixedColor: #ecd473;
 $wideAngleBackground: #dadde2;
 $mainAreaBackground: #f6f6f6;
 $subHeaderMuted: #999999;
@@ -554,11 +558,17 @@ label {
     tr:last-child td {
       border-bottom: none;
     }
-    tr:nth-child(even) {
-      background: #eee;
-      &.recommended {
-        background-color: $recommendedColor;
-      }
+    .experience-unknown {
+      background-color: $unknownColor
+    }
+    .experience-qualified {
+      background-color: $qualifiedColor
+    }
+    .experience-promising {
+      background-color: $promisingColor
+    }
+    .experience-mixed {
+      background-color: $mixedColor
     }
    .recommended {
       background-color: $recommendedColor;

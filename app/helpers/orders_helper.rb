@@ -57,5 +57,19 @@ module OrdersHelper
       HTML
     end
   end
-  
+
+  def color_coding_css_class(past_experience)
+    case past_experience
+    when "Unknown"
+      css_class = "experience-unknown"
+    when "Qualified"
+      css_class = "experience-qualified"
+    when "Promising"
+      css_class = "experience-promising"
+    when "Mixed"
+      css_class = "experience-mixed"
+    end
+    css_class
+  end
+
 end

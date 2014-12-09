@@ -10,10 +10,21 @@
 
       <% if @order_groups and @order.dialogues.count > 0 %>
 
-        <% if @recommended.present? and @order_groups.length > 1 %>
-          <h3 class="bit-of-space">Summary: recommendations across all part groupings</h3>
-          <%= render partial: "orders/show_order_table", locals: {rows: @recommended, columns: @columns} %>
-        <% end %>
+        <h4>Confidence Rating Legend</h4>
+        <table class="order_table" cellspacing="0">
+          <tr>
+            <td class="experience-qualified">Qualified</td><td>We've worked with this supplier on a similar job, and it went well.</td>
+          </tr>
+          <tr>
+            <td class="experience-promising">Promising</td><td>We've worked with this supplier before on a different process, and it went well.</td>
+          </tr>
+          <tr>
+            <td class="experience-mixed">Mixed</td><td>We have had mixed experience with this supplier. Talk to us for details.</td>
+          </tr>
+          <tr>
+            <td class="experience-unknown">Unknown</td><td>We've never worked with this supplier before. We don't know their quality.</td>
+          </tr>
+        </table>
 
         <% @order_groups.each do |order_group| %>
 
@@ -24,7 +35,7 @@
 
           <% visibles = order_group.sort_visible_dialogues %>
           <% if visibles.present? %>
-            <%= render partial: "orders/show_order_table", locals: {rows: visibles, columns: @columns} %>
+            <%= render partial: "orders/show_order_table", locals: {rows: visibles} %>
           <% else %>
             <p>No quotes have been received for this group of parts yet! We will notify you as soon as suppliers respond.</p>
           <% end %>

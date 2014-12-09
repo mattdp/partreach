@@ -219,7 +219,6 @@ class OrdersController < ApplicationController
     @order.next_action_date = params[:next_action_date]
     @order.save ? logger.debug("Order #{@order.id} saved.") : logger.debug("Order #{@order.id} didn't save.")
     @dialogues.each do |d|
-
       if !params[d.id.to_s].nil?
         d_params = params[d.id.to_s]
 
@@ -228,7 +227,6 @@ class OrdersController < ApplicationController
               d[field.to_s] = d_params[field.to_s]
           end
         end
-
       end
       d.save
     end
@@ -361,7 +359,7 @@ class OrdersController < ApplicationController
     end
 
     def setup_textfields
-      textfields = [:material, :process_name, :process_time, :shipping_name, :notes, :currency, :internal_notes]
+      textfields = [:material, :process_name, :process_time, :shipping_name, :notes, :currency, :internal_notes, :past_experience]
     end
 
     def setup_numberfields

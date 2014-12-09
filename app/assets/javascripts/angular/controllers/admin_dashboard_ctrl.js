@@ -40,6 +40,13 @@ App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http)
         'next_action_date',
     ]
 
+    $scope.pastExperienceOptions = [
+        "Qualified",
+        "Promising",
+        "Mixed",
+        "Unknown"
+    ]
+
     $scope.orderStatusOptions = [
         "Needs work",
         "Waiting for supplier",
@@ -86,6 +93,7 @@ App.controller('AdminDashboardCtrl', ['$scope', '$http', function($scope, $http)
                 angular.forEach($scope.headers, function(hHash, index){
                     updateParams[dialogue.id][hHash.attribute] = dialogue[hHash.attribute]
                 });
+                updateParams[dialogue.id]["past_experience"] = dialogue.past_experience
             });
         });
         return updateParams
