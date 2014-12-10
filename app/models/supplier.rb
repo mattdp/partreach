@@ -426,25 +426,11 @@ class Supplier < ActiveRecord::Base
 
   #this will be slow, need to store it somewhere
   def self.visible_set_for_index(filter)
-    return false if filter.nil?
-    holder = []
-    Supplier.find_each do |supplier|
-      if Supplier.index_validation(supplier, filter)
-        holder << supplier
-      end
-    end
-    return holder
-  end
-
-  def self.index_validation(supplier, filter)
-    return false unless supplier.tags.present?
-    test_visibility = supplier.profile_visible
-    geo = filter.geography
-    test_geography = (supplier.address.attributes["#{geo.level}_id"] == geo.id)
-    test_has_tag = supplier.has_tag?(filter.has_tag.id)
-    test_has_not_tag = !supplier.has_tag?(filter.has_not_tag.id)
-
-    return (test_visibility and test_geography and test_has_tag and test_has_not_tag)
+    Supplier.
+      where(profile_visible: true).
+      joins(:address).references(:address).where(addresses: {state_id: filter.geography.id}).
+      joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_tag.id}).
+      where.not( id: Supplier.joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_not_tag.id}) )
   end
 
   def array_for_sorting
@@ -460,12 +446,13 @@ class Supplier < ActiveRecord::Base
 
   def self.visible_profiles_sorted(filter)
 
-    profiles = Supplier.visible_set_for_index(filter)
-    count = 0
     order = ActiveSupport::OrderedHash.new
-    chaos = {}
+    count = 0
 
-    if !(profiles.nil? or profiles == [] or profiles == false)
+    profiles = Supplier.visible_set_for_index(filter)
+    if profiles.present?
+      chaos = {}
+
       countable = profiles.find_all {|supplier| !supplier.existence_questionable?}
       count = countable.count
       profiles.each do |s|  
