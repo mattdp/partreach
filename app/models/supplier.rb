@@ -424,13 +424,23 @@ class Supplier < ActiveRecord::Base
     Review.where('supplier_id = ? and displayable = true', self.id)
   end
 
-  #this will be slow, need to store it somewhere
   def self.visible_set_for_index(filter)
-    Supplier.
+    relation = Supplier.
       where(profile_visible: true).
-      joins(:address).references(:address).where(addresses: {state_id: filter.geography.id}).
-      joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_tag.id}).
-      where.not( id: Supplier.joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_not_tag.id}) )
+      joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
+      where.not( id:
+        Supplier.
+        where(profile_visible: true).
+        joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
+        joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_not_tag_id})
+      )
+
+    if filter.geography.level == "country"
+      relation.joins(:address).references(:address).where(addresses: {country_id: filter.geography_id})
+    else
+      relation.joins(:address).references(:address).where(addresses: {state_id: filter.geography_id})
+    end
+
   end
 
   def array_for_sorting
@@ -441,15 +451,13 @@ class Supplier < ActiveRecord::Base
   end
 
   #return nested, ordered arrays of [country][state][supplier,machine_count,review_count,claimed,out_of_business,country_link,state_link]
-  #super slow, relies on caching
   #unknown for country -> supplier direct stuff
-
   def self.visible_profiles_sorted(filter)
 
     order = ActiveSupport::OrderedHash.new
     count = 0
-
     profiles = Supplier.visible_set_for_index(filter)
+
     if profiles.present?
       chaos = {}
 
