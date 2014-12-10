@@ -359,13 +359,8 @@ class Supplier < ActiveRecord::Base
   end
 
   def has_tag?(tag_id)
-    t = Tag.find_by_id(tag_id)
-    return false if t.nil?    
-    if self.tags.include?(t)
-      return true
-    else
-      return false
-    end
+    exists = Tag.joins(:taggings).where(taggings: {taggable_type: "Supplier"}).where(taggings: {taggable_id: id}).where(id: tag_id).exists?
+    exists ? true : false
   end
 
   def add_machine(machine_id, quantity=1)
@@ -427,18 +422,19 @@ class Supplier < ActiveRecord::Base
   def self.visible_set_for_index(filter)
     relation = Supplier.
       where(profile_visible: true).
-      joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
+      includes([{ address: :country }, { address: :state }]).
+      joins(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
       where.not( id:
         Supplier.
         where(profile_visible: true).
-        joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
-        joins(:taggings).references(:taggings).where(taggings: {tag_id: filter.has_not_tag_id})
+        joins(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
+        joins(:taggings).where(taggings: {tag_id: filter.has_not_tag_id})
       )
 
     if filter.geography.level == "country"
-      relation.joins(:address).references(:address).where(addresses: {country_id: filter.geography_id})
+      relation.where(addresses: {country_id: filter.geography_id})
     else
-      relation.joins(:address).references(:address).where(addresses: {state_id: filter.geography_id})
+      relation.where(addresses: {state_id: filter.geography_id})
     end
 
   end
@@ -463,7 +459,7 @@ class Supplier < ActiveRecord::Base
 
       countable = profiles.find_all {|supplier| !supplier.existence_questionable?}
       count = countable.count
-      profiles.each do |s|  
+      profiles.each do |s|
         country = s.address.country.short_name
         state = s.address.state.short_name
         array_for_sorting = s.array_for_sorting
