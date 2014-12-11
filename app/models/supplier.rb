@@ -254,11 +254,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def existence_questionable?
-    risky_tag_ids = Tag.tag_set(:risky,:id)
-    risky_tag_ids.each do |tag_id|
-      return true if self.has_tag?(tag_id)
-    end
-    return false    
+    Tag.tag_set(:risky, :id).any? { |t_id| self.has_tag?(t_id) }
   end
 
   def claim_profile(user_id)
@@ -423,7 +419,7 @@ class Supplier < ActiveRecord::Base
     relation = Supplier.
       where(profile_visible: true).
       includes([{ address: :country }, { address: :state }]).
-      joins(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
+      includes(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
       where.not( id:
         Supplier.
         where(profile_visible: true).
@@ -442,10 +438,10 @@ class Supplier < ActiveRecord::Base
   end
 
   def array_for_sorting
-    out_of_business = Tag.tag_set(:risky,:id).any?{ |t_id| self.has_tag?(t_id) }
+    out_of_business = existence_questionable?
     country_link = address.country.name_for_link
     state_link = address.state.name_for_link
-    return [self, owners.size, reviews.size, claimed, out_of_business, country_link, state_link]
+    return [self, owners.size, reviews.size, claimed, out_of_business, country_link, state_link], out_of_business
   end
 
   #return nested, ordered arrays of [country][state][supplier,machine_count,review_count,claimed,out_of_business,country_link,state_link]
@@ -458,12 +454,11 @@ class Supplier < ActiveRecord::Base
     if profiles.present?
       chaos = {}
 
-      countable = profiles.find_all {|supplier| !supplier.existence_questionable?}
-      count = countable.count
       profiles.each do |s|
         country = s.address.country.short_name
         state = s.address.state.short_name
-        array_for_sorting = s.array_for_sorting
+        array_for_sorting, out_of_business = s.array_for_sorting
+        count += 1 unless out_of_business
         chaos[country] = {} if chaos[country].nil?
         if chaos[country][state].nil?
           chaos[country][state] = [array_for_sorting]
