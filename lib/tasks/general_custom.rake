@@ -107,11 +107,6 @@ task :daily_cache_reset => :environment do
     Rails.cache.write(key,eval(method_string),:expires_in => expires_hours.hours)
   end
 
-  Filter.all.each do |filter|
-    puts "#{filter.name} being written"
-    Rails.cache.write("#{filter.name}-adjacencies",filter.adjacencies)
-  end
-
 end
 
 desc 'Setup URL names for suppliers and tags'
