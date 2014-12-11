@@ -197,10 +197,7 @@ class SuppliersController < ApplicationController
         @filter.adjacencies
       end
 
-      @visibles, @supplier_count = Rails.cache.fetch @filter.name, :expires_in => 25.hours do |key|
-        logger.debug "Cache miss: #{@filter.name}"
-        Supplier.visible_profiles_sorted(@filter)
-      end
+      @visibles, @supplier_count = Supplier.visible_profiles_sorted(@filter)
     end
 
     render "supplier_index"
