@@ -429,7 +429,9 @@ class Supplier < ActiveRecord::Base
         where(profile_visible: true).
         joins(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
         joins(:taggings).where(taggings: {tag_id: filter.has_not_tag_id})
-      )
+      ).
+      includes(:owners).
+      includes(:reviews)
 
     if filter.geography.level == "country"
       relation.where(addresses: {country_id: filter.geography_id})
@@ -443,13 +445,12 @@ class Supplier < ActiveRecord::Base
     out_of_business = Tag.tag_set(:risky,:id).any?{ |t_id| self.has_tag?(t_id) }
     country_link = address.country.name_for_link
     state_link = address.state.name_for_link
-    return [self, owners.count, reviews.count, claimed, out_of_business, country_link, state_link]
+    return [self, owners.size, reviews.size, claimed, out_of_business, country_link, state_link]
   end
 
   #return nested, ordered arrays of [country][state][supplier,machine_count,review_count,claimed,out_of_business,country_link,state_link]
   #unknown for country -> supplier direct stuff
   def self.visible_profiles_sorted(filter)
-
     order = ActiveSupport::OrderedHash.new
     count = 0
     profiles = Supplier.visible_set_for_index(filter)
