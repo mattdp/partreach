@@ -29,6 +29,24 @@ class Tag < ActiveRecord::Base
   validates :name_for_link, presence: true
   validates_presence_of :tag_group
 
+  @@tag_sets = {}
+  set_categories = {
+    risky: %w(e0_out_of_business e1_existence_doubtful),
+    network: %w(n6_signedAndNDAd n5_signed_only),
+    new_supplier: %w(b0_none_sent n1_no_contact e2_existence_unknown),
+    csv_import: %w(b0_none_sent n1_no_contact e3_existence_confirmed)
+  }
+  set_categories.each do |key, values|
+    @@tag_sets[key] = {}
+    @@tag_sets[key][:name] = values
+    @@tag_sets[key][:id] = values.map { |n| Tag.find_by_name(n).id }
+    @@tag_sets[key][:object] = values.map { |n| Tag.find_by_name(n) }
+  end
+
+  def self.tag_set(category,attribute)
+    @@tag_sets[category][attribute]
+  end
+
   def self.find_or_create!(name, tag_group)
     tag = Tag.where("LOWER(readable) = ?", name.downcase).first
     unless tag
@@ -43,24 +61,6 @@ class Tag < ActiveRecord::Base
 
   def self.all_by_group
     Tag.includes(:tag_group).order('tag_groups.id, tags.id')
-  end
-
-  def self.tag_set(category,attribute)
-    sets = {
-      risky: %w(e0_out_of_business e1_existence_doubtful),
-      network: %w(n6_signedAndNDAd n5_signed_only),
-      new_supplier: %w(b0_none_sent n1_no_contact e2_existence_unknown),
-      csv_import: %w(b0_none_sent n1_no_contact e3_existence_confirmed)
-    }
-    if attribute == :name
-      return sets[category]
-    elsif attribute == :id
-      return sets[category].map { |n| Tag.find_by_name(n).id }
-    elsif attribute == :object 
-      return sets[category].map { |n| Tag.find_by_name(n) }
-    else
-      return "This should never happen"
-    end
   end
 
   #return hash of {group1_name=>[tag1, tag2, ...], group2_name=>[tag3, tag4, ...], ...}
