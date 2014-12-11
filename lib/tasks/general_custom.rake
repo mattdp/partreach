@@ -93,27 +93,6 @@ task :tag_tree => :environment do
 
 end
 
-desc 'Reset cache daily for expensive computations we don\'t want users to hit'
-task :daily_cache_reset => :environment do
-
-  expires_hours = 25
-  
-  to_reset = {
-    "us_states_of_visible_profiles" => 'Address.us_states_of_visible_profiles',
-  }
-
-  to_reset.each do |key,method_string|
-    puts "#{key} being written"
-    Rails.cache.write(key,eval(method_string),:expires_in => expires_hours.hours)
-  end
-
-  Filter.all.each do |filter|
-    puts "#{filter.name} being written"
-    Rails.cache.write("#{filter.name}-adjacencies",filter.adjacencies)
-  end
-
-end
-
 desc 'Setup URL names for suppliers and tags'
 task :supplier_url_creation => :environment do
   Supplier.find_each do |s|
