@@ -11,8 +11,6 @@ gem 's3_direct_upload'
 gem 'paperclip', '3.5.1' #https://github.com/thoughtbot/paperclip
 gem 'pg', '0.17.1' #http://blog.willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/
 gem 'twilio-ruby', '3.10.1'
-gem 'dalli', '2.6.4' #https://devcenter.heroku.com/articles/building-a-rails-3-application-with-memcache
-gem 'memcachier', '0.0.2' #https://devcenter.heroku.com/articles/building-a-rails-3-application-with-memcache
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'jquery-rails', '3.0.4'
 gem 'bloggy', '0.2.2'
