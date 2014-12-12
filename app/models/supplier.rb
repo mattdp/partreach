@@ -355,8 +355,8 @@ class Supplier < ActiveRecord::Base
   end
 
   def has_tag?(tag_id)
-    exists = Tag.joins(:taggings).where(taggings: {taggable_type: "Supplier"}).where(taggings: {taggable_id: id}).where(id: tag_id).exists?
-    exists ? true : false
+    supplier_tags = taggings.map {|tg| tg.tag_id}
+    supplier_tags.include? tag_id
   end
 
   def add_machine(machine_id, quantity=1)
