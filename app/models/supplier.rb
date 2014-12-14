@@ -418,14 +418,19 @@ class Supplier < ActiveRecord::Base
   def self.visible_set_for_index(filter)
     relation = Supplier.
       where(profile_visible: true).
-      includes([{ address: :country }, { address: :state }]).
-      includes(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
+      where( id:
+        Supplier.
+        where(profile_visible: true).
+        joins(:taggings).where(taggings: {tag_id: filter.has_tag_id})
+      ).
       where.not( id:
         Supplier.
         where(profile_visible: true).
         joins(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
         joins(:taggings).where(taggings: {tag_id: filter.has_not_tag_id})
       ).
+      includes([{ address: :country }, { address: :state }]).
+      includes(:taggings).
       includes(:owners).
       includes(:reviews)
 
