@@ -41,15 +41,6 @@ class Address < ActiveRecord::Base
     suppliers = Supplier.find(addresses.map{|a| a.place_id})
   end
 
-  def self.us_states_of_visible_profiles
-    states = []
-    suppliers = Supplier.visible_profiles
-    suppliers.each do |s|
-      states << s.address.state.short_name.upcase if s.address.state.level == "state" and s.address.state.short_name and s.address.country.short_name == "US"
-    end
-    return states.uniq.sort
-  end
-
   #allows, from console, quick geo consolidation
   def self.geo_merge_and_destroy(destroyed_id,remaining_id)
     Address.find_each do |a|

@@ -254,11 +254,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def existence_questionable?
-    risky_tag_ids = Tag.tag_set(:risky,:id)
-    risky_tag_ids.each do |tag_id|
-      return true if self.has_tag?(tag_id)
-    end
-    return false    
+    Tag.tag_set(:risky, :id).any? { |t_id| self.has_tag?(t_id) }
   end
 
   def claim_profile(user_id)
@@ -359,13 +355,8 @@ class Supplier < ActiveRecord::Base
   end
 
   def has_tag?(tag_id)
-    t = Tag.find_by_id(tag_id)
-    return false if t.nil?    
-    if self.tags.include?(t)
-      return true
-    else
-      return false
-    end
+    supplier_tags = taggings.map {|tg| tg.tag_id}
+    supplier_tags.include? tag_id
   end
 
   def add_machine(machine_id, quantity=1)
@@ -424,54 +415,55 @@ class Supplier < ActiveRecord::Base
     Review.where('supplier_id = ? and displayable = true', self.id)
   end
 
-  #this will be slow, need to store it somewhere
   def self.visible_set_for_index(filter)
-    return false if filter.nil?
-    holder = []
-    Supplier.find_each do |supplier|
-      if Supplier.index_validation(supplier, filter)
-        holder << supplier
-      end
+    relation = Supplier.
+      where(profile_visible: true).
+      where( id:
+        Supplier.
+        where(profile_visible: true).
+        joins(:taggings).where(taggings: {tag_id: filter.has_tag_id})
+      ).
+      where.not( id:
+        Supplier.
+        where(profile_visible: true).
+        joins(:taggings).where(taggings: {tag_id: filter.has_tag_id}).
+        joins(:taggings).where(taggings: {tag_id: filter.has_not_tag_id})
+      ).
+      includes([{ address: :country }, { address: :state }]).
+      includes(:taggings).
+      includes(:owners).
+      includes(:reviews)
+
+    if filter.geography.level == "country"
+      relation.where(addresses: {country_id: filter.geography_id})
+    else
+      relation.where(addresses: {state_id: filter.geography_id})
     end
-    return holder
-  end
 
-  def self.index_validation(supplier, filter)
-    return false unless supplier.tags.present?
-    test_visibility = supplier.profile_visible
-    geo = filter.geography
-    test_geography = (supplier.address.attributes["#{geo.level}_id"] == geo.id)
-    test_has_tag = supplier.has_tag?(filter.has_tag.id)
-    test_has_not_tag = !supplier.has_tag?(filter.has_not_tag.id)
-
-    return (test_visibility and test_geography and test_has_tag and test_has_not_tag)
   end
 
   def array_for_sorting
-    out_of_business = Tag.tag_set(:risky,:id).any?{ |t_id| self.has_tag?(t_id) }
+    out_of_business = existence_questionable?
     country_link = address.country.name_for_link
     state_link = address.state.name_for_link
-    return [self, owners.count, reviews.count, claimed, out_of_business, country_link, state_link]
+    return [self, owners.size, reviews.size, claimed, out_of_business, country_link, state_link], out_of_business
   end
 
   #return nested, ordered arrays of [country][state][supplier,machine_count,review_count,claimed,out_of_business,country_link,state_link]
-  #super slow, relies on caching
   #unknown for country -> supplier direct stuff
-
   def self.visible_profiles_sorted(filter)
-
-    profiles = Supplier.visible_set_for_index(filter)
-    count = 0
     order = ActiveSupport::OrderedHash.new
-    chaos = {}
+    count = 0
+    profiles = Supplier.visible_set_for_index(filter)
 
-    if !(profiles.nil? or profiles == [] or profiles == false)
-      countable = profiles.find_all {|supplier| !supplier.existence_questionable?}
-      count = countable.count
-      profiles.each do |s|  
+    if profiles.present?
+      chaos = {}
+
+      profiles.each do |s|
         country = s.address.country.short_name
         state = s.address.state.short_name
-        array_for_sorting = s.array_for_sorting
+        array_for_sorting, out_of_business = s.array_for_sorting
+        count += 1 unless out_of_business
         chaos[country] = {} if chaos[country].nil?
         if chaos[country][state].nil?
           chaos[country][state] = [array_for_sorting]

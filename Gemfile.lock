@@ -75,7 +75,6 @@ GEM
     coffee-script-source (1.6.3)
     d3-rails (3.4.4)
       railties (>= 3.1)
-    dalli (2.6.4)
     database_cleaner (1.2.0)
     delayed_job (4.0.0)
       activesupport (>= 3.0, < 4.1)
@@ -155,7 +154,6 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     maruku (0.7.0)
-    memcachier (0.0.2)
     method_source (0.8.2)
     mime-types (1.25)
     mini_portile (0.5.2)
@@ -288,7 +286,6 @@ DEPENDENCIES
   capybara (= 2.1.0)
   coffee-rails (~> 4.0.0)
   d3-rails
-  dalli (= 2.6.4)
   database_cleaner (= 1.2.0)
   delayed_job_active_record (= 4.0.0)
   domainatrix (= 0.0.11)
@@ -302,7 +299,6 @@ DEPENDENCIES
   jbuilder
   jquery-rails (= 3.0.4)
   launchy (= 2.4.0)
-  memcachier (= 0.0.2)
   neat
   nested_form!
   newrelic_rpm (= 3.6.6.147)
