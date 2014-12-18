@@ -26,7 +26,9 @@
   <span class="index_quantity" ng-if="order.user.address !== null && order.user.address.zip.length > 0"><strong>Zip Code: </strong>{{order.user.address.zip}}</span>
   <strong>Material requested: </strong>{{order.material_message}}
   <br>
-  <strong ng-if="order.supplier_message !== null && order.supplier_message !== ''">Message to suppliers: </strong>{{order.supplier_message}}
+  <strong ng-if="order.order_description !== null && order.order_description !== ''">Order description: </strong>{{order.order_description}}
+  <br>
+  <strong ng-if="order.supplier_message !== null && order.supplier_message !== ''">Technical notes: </strong>{{order.supplier_message}}
   <br>
   <strong ng-if="order.recommendation !== null && order.recomendation !== ''">Our recommendation: </strong>{{order.recommendation}}
   <br>
