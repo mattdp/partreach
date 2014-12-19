@@ -56,6 +56,7 @@
               <th>Part Name</th>
               <th>Order Group</th>
               <th>Quantity</th>
+              <th>Material</th>
               <th>HTML Snippet (for master email)</th>
               <th>View File</th>
             </tr>
@@ -66,7 +67,8 @@
                   <td><%= "#{part.id}" %></td>
                   <td><%= "#{part.name}" %></td>
                   <td><%= part_fields.collection_select(:order_group_id, @order_groups, :id, :name) %></td>
-                  <td><%= part_fields.text_field :quantity, size: "5" %></td>
+                  <td><%= part_fields.text_field :quantity, size: "4" %></td>
+                  <td><%= part_fields.text_field :material %></td>
                   <% if (external = part.external) %>
                     <%= part_fields.fields_for :external, index: external.id do |external_fields| %>
                       <td><%= text_field_tag 'snippet', html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
