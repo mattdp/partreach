@@ -8,32 +8,41 @@
       <p><%= link_to "Manipulate dialogues", manipulate_path(@order) %> - edit order group names here.</p>
       <p><%= link_to "Order show", order_path(@order) %></p>
       <p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
-      <p>Upload a new part / file</p>
+      <h3>Upload additional files</h3>
 
-      <table>
-        <tr>
-          <th>Order Group</th>
-          <th>File</th>
-        <tr>
-          <td><%= select_tag(:order_group_id, options_from_collection_for_select(@order_groups, :id, :name)) %></td>
-          <td>
-            <%= s3_uploader_form id: "s3-uploader", class: "s3-uploader s3-uploader-page-refresh",
-              key_starts_with: "externals/",
-              key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
-                <%= file_field_tag :file, multiple: true %>
-              <% end %>
-            <script id="template-upload" type="text/x-tmpl">
-            <div id="file-{%=o.unique_id%}" class="upload">
-              {%=o.name%}
-              <div class="progress"><div class="bar" style="width: 0%"></div></div>
-            </div>
-            </script>
-          </td>
-        </tr>
-      </table>
+  <%= s3_uploader_form  id: "s3-uploader", class: "s3-uploader",
+                        max_file_size: 300.megabytes,
+                        key_starts_with: "externals/",
+                        key: "externals/#{@approximate_next_order_id}-#{SecureRandom.hex}/${filename}" do %>
+                          <%= file_field_tag :file, multiple: true %>
+                        <% end %>
+  <script id="template-upload" type="text/x-tmpl">
+    <div id="file-{%=o.unique_id%}" class="upload">
+      <div class="filename">{%=o.name%}</div>
+      <div class="progress"><div class="bar" style="width: 0%"></div></div>
+    </div>
+  </script>
+  <div>
+    <ul id='uploaded_file_list'>
+      <% if @order_uploads %>
+        <% @order_uploads.each do |upload| %>
+          <li><%= upload["original_filename"] %></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
 
       <%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |order_form| %>
         <%= hidden_field_tag "id", @order.id %>
+
+        <div id='order_uploads'>
+          <% if @order_uploads %>
+            <% @order_uploads.each do |upload| %>
+              <%= hidden_field_tag 'order_uploads[][url]', upload["url"] %>
+              <%= hidden_field_tag 'order_uploads[][original_filename]', upload["original_filename"] %>
+            <% end %>
+          <% end %>
+        </div>
 
         <table>
           <% @order_groups.sort.each do |order_group| %>

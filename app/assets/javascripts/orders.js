@@ -34,11 +34,6 @@ $(document).ready(function() {
         $('#uploaded_file_list').append('<li>' + content.filename + '</li>');
   });
 
-  $('.s3-uploader-page-refresh').bind('s3_uploads_complete', function(e, content) {
-    alert("All Uploads completed")
-    window.location.reload(true);
-  });
-
   if ($('#parts_list_uploaded').length > 0) {
     if ($('#parts_list_uploaded')[0].value == "true") {
       $('#parts_list_checkbox').prop('checked', true);

@@ -250,10 +250,16 @@ class OrdersController < ApplicationController
   def update_parts
     @order = Order.find(params[:id])
 
+    # create externals and associate with order
+    if params["order_uploads"]
+      params["order_uploads"].each do |upload|
+        @order.externals.build(url: upload["url"], original_filename: upload["original_filename"])
+      end
+      @order.save
+    end
+
     parts=params["order"]["part"]
-    externals=parts.delete("external_attributes")
     Part.update(parts.keys, parts.values)
-    External.update(externals.keys, externals.values)
 
     # TODO: redirect somewhere else (@orders?); add error handling
     # for now, redirect back to manipulate parts page
