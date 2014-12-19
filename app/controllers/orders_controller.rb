@@ -141,6 +141,8 @@ class OrdersController < ApplicationController
         @questions[:manufacturing] = params["order"]["stated_manufacturing"]
         @content = Question.raw_list
 
+        @approximate_next_order_id = next_order_id
+
         @order.order_groups.build if @order.order_groups.empty?
         @order.order_groups[0].parts.build(quantity: 1) if @order.order_groups[0].parts.empty?
 
