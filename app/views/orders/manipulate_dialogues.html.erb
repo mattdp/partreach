@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-      <h1>Changes to RFQ {{order.id}}</h1>  
+      <h1>Changes to <%= link_to "RFQ {{order.id}}", order_path, class: "h1link" %></h1>
 
       <p><strong>User: </strong><a href="/leads/{{order.user.lead.id}}/edit">{{order.user.lead.lead_contact.full_name_untrusted}}</a></p>
       <%= render "layouts/angular_order_basics" %>
