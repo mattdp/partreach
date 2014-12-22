@@ -70,10 +70,8 @@
                   <td><%= part_fields.text_field :quantity, size: "4" %></td>
                   <td><%= part_fields.text_field :material %></td>
                   <% if (external = part.external) %>
-                    <%= part_fields.fields_for :external, index: external.id do |external_fields| %>
-                      <td><%= text_field_tag 'snippet', html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
-                      <td class="center"><%= link_to "@", "#{external.url}", target: "_blank" %></td>
-                    <% end %>
+                    <td><%= text_field_tag 'snippet', html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
+                    <td class="center"><%= link_to "@", "#{external.url}", target: "_blank" %></td>
                   <% end %>
                 </tr>
               <% end %>
