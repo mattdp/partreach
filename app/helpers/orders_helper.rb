@@ -68,6 +68,8 @@ module OrdersHelper
       css_class = "experience-promising"
     when "Mixed"
       css_class = "experience-mixed"
+    else
+      css_class = "experience-not-specified"
     end
     css_class
   end
