@@ -340,13 +340,19 @@ class Supplier < ActiveRecord::Base
   def add_tag(tag_id)
     tag = Tag.find_by_id(tag_id)
     return false if self.tags.include?(tag)
+
     if tag.tag_group.exclusive
       self.tags.each do |t|
         self.tags.destroy(t) if t.tag_group_id == tag.tag_group_id
       end
     end
+
+    if Tag.tag_set(:network,:id).include?(tag.id) &&
+        (Event.where(model: "Supplier").where(model_id: id).where(happening: "joined_network").count == 0)
+      Event.add_event("Supplier",self.id,"joined_network")
+    end
+
     self.tags << tag
-    Event.add_event("Supplier",self.id,"joined_network")if Tag.tag_set(:network,:name).include?(tag.name)
     return true
   end
 

@@ -14,6 +14,8 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
+
+    create_tag_sets
   end
 
   # not sure i need this for now, since mostly interested in between-run errors
