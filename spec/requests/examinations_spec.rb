@@ -2,7 +2,7 @@ require "spec_helper"
 
 describe "/examinations requests" do
 
-  before do
+  before :each do
     @admin = FactoryGirl.create :admin_user
 
     # sign in as admin user
@@ -23,15 +23,6 @@ describe "/examinations requests" do
   describe "Supplier search result examination" do
     before do
       @wsr = FactoryGirl.create :web_search_result
-
-      # populate database with needed tags
-      exclusive_group = FactoryGirl.create(:tag_group, exclusive: true)
-      # new_supplier tags
-      @b0_none_sent = FactoryGirl.create(:tag, name: 'b0_none_sent')
-      @n1_no_contact = FactoryGirl.create(:tag, name: 'n1_no_contact')
-      @e2_existence_unknown = FactoryGirl.create(:tag, name: 'e2_existence_unknown', tag_group: exclusive_group)
-      # datadump tag
-      @datadump = FactoryGirl.create(:tag, name: 'datadump', tag_group: exclusive_group)
     end
 
     it "displays the Supplier Search Result Examination page" do
@@ -54,7 +45,8 @@ describe "/examinations requests" do
       expect(new_supplier.url_main).to eq 'http://derived_url.com'
       expect(new_supplier.source).to eq 'supplier_search_result_examination'
       expect(new_supplier.profile_visible).to be_false
-      expect(new_supplier.tags).to match_array([@b0_none_sent, @n1_no_contact, @datadump])
+      expected_tags = Tag.tag_set(:new_supplier, :object) << Tag.find_by_name("datadump")
+      expect(new_supplier.tags).to match_array(expected_tags)
     end
   end
 
