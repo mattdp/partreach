@@ -20,6 +20,15 @@ class LeadsController < ApplicationController
     redirect_to next_step
   end
 
+  def blog_create
+    @lead = Lead.create_or_update_lead({
+      lead: {source: "blog_email_collector"},
+      lead_contact: {email: params[:email_field]}
+    })
+    
+    redirect_to "/blog"
+  end
+
   def admin_create
     @lead = Lead.create(lead_params)
     @lead.lead_contact = LeadContact.create(lead_contact_params)
