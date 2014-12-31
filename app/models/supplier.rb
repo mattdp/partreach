@@ -298,11 +298,11 @@ class Supplier < ActiveRecord::Base
     quantity = Tagging.all.count if quantity == "all"
     combos = Tagging.where("tag_id = ?", tag_id).take(quantity)
     return [] if combos == []
-    suppliers = Supplier.find(combos.map{|c| c.taggable_id})
-    suppliers = suppliers.delete_if{|s| s.address.country.short_name != country} if country
-    return [] if suppliers == []
-    suppliers = suppliers.delete_if{|s| s.address.state.short_name != state} if state    
-    return suppliers
+    suppliers_array = Supplier.find(combos.map{|c| c.taggable_id}).to_a
+    suppliers_array = suppliers_array.delete_if{|s| s.address.country.short_name != country} if country
+    return [] if suppliers_array == []
+    suppliers_array = suppliers_array.delete_if{|s| s.address.state.short_name != state} if state    
+    return suppliers_array
   end
 
   # return suppliers missing state, zip, email, or phone
