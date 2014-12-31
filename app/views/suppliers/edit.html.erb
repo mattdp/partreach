@@ -55,7 +55,7 @@
           <%= text_area_tag 'suggested_preferences', @supplier.suggested_preferences %>
           <br>
 
-          <%= submit_tag "Suggest edits", :disable_with => "Creating...", :id => "create_button" %>
+          <%= submit_tag "Suggest edits", data: { disable_with: 'Creating...' }, :id => "create_button" %>
         <% end %>    
       </div>
 

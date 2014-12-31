@@ -35,7 +35,7 @@
         </div>
       <% end %>
 
-      <%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
+      <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :class => "save-button" %>
     <% end %>
 
     </div>

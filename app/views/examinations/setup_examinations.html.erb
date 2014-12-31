@@ -12,7 +12,7 @@
               <%= render partial: "examinations/#{@name}_examination", locals: {@name.to_sym => questionable} %>
             </tr>
           <% end %>
-          <tr><td><%= submit_tag "Submit examinations", :disable_with => "Saving..." %></td></tr>
+          <tr><td><%= submit_tag "Submit examinations", data: { disable_with: 'Saving...' } %></td></tr>
         </table>
         <p>Note: more than one user submitting this screen at a time will cause problems.</p>
       <% end %>
