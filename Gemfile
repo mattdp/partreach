@@ -44,7 +44,7 @@ gem 'neat'
 
 group :development, :test do
   gem 'rspec-rails', '2.14.0'
-  gem 'shoulda-matchers', '2.3.0'
+  gem 'shoulda-matchers'
   gem 'pry', '0.9.12.2'
   gem 'pry-rails', '0.3.2'
   gem 'pry-nav', '0.2.3'
