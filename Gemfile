@@ -2,7 +2,7 @@
 source 'https://rubygems.org'
 ruby "2.0.0"
 
-gem 'rails', '4.0.0'
+gem 'rails', '~> 4.1.0'
 gem 'webrick', '= 1.3.1' #https://github.com/JumpstartLab/curriculum/issues/373
 gem 'bootstrap-sass', '3.0.2.1'
 gem 'faker', '1.2.0'
@@ -17,7 +17,7 @@ gem 'bloggy', '0.2.2'
 gem 'sitemap_generator', '4.2.0' #https://github.com/kjvarga/sitemap_generator
 gem 'fog', '1.15.0' #for remote sitemap_generator uploads
 gem 'bugsnag', '1.6.1' #https://devcenter.heroku.com/articles/bugsnag#using-with-rails-3-x-4
-gem 'delayed_job_active_record', '4.0.0'
+gem 'delayed_job_active_record'
 gem 'nokogiri', '1.6.0'
 gem 'domainatrix', '0.0.11'
 gem 'rb-readline', '0.5.1'
