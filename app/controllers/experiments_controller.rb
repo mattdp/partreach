@@ -48,4 +48,8 @@ class ExperimentsController < ApplicationController
     @title = "SLS vs FDM"
   end
 
+  def solid_concepts
+
+  end
+
 end
