@@ -107,18 +107,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         
       <footer class="footer content">
         <div class="container">
-          <ul class="pull-left nav">
-            <li><a href="/">Home</a></li>
-            <li><a href="/blog">Blog</a></li>
-            <li><a href="/suppliers">Suppliers</a></li>
-            <li><a href="/getting_started">Getting started</a></li>
-            <li><a href="/materials">Materials</a></li>
-            <li><a href="">Terms</a></li>
-            <li><a href="">Privacy</a></li>
-          </ul>
-          <p class="pull-right nav">
-        &copy; 2013 SupplyBetter
-          </p>
+          <div class="pull-left nav">
+            <ul class="pull-left nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="/blog">Blog</a></li>
+              <li><a href="/suppliers">Suppliers</a></li>
+              <li><a href="/getting_started">Getting started</a></li>
+              <li><a href="/materials">Materials</a></li>
+              <li><a href="">Terms</a></li>
+              <li><a href="">Privacy</a></li>
+            </ul>
+            <p>&copy; 2013 SupplyBetter</p>
+          </div>
+          <div class="pull-right nav">
+            <form accept-charset="UTF-8" action="/leads/blog_create" method="post">
+              <input id="email-submit-field" name="email_field" placeholder="Enter email for updates!" type="email">
+              <input id="email-submit-button" name="commit" value="Sign up" type="submit">
+            </form>
+          </div>
         </div>
       </footer>
     </div>

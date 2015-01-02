@@ -48,6 +48,7 @@ Partreach::Application.routes.draw do
     }
 
   resources :leads, only: [:new, :create, :edit, :index, :update]
+  match '/leads/blog_create', to: 'leads#blog_create', as: 'blog_create_lead', via: :post
   match '/leads/admin_create', to: 'leads#admin_create', as: 'admin_create_lead', via: :post
 
   resources :machines, only: [:new, :create, :edit, :update]
