@@ -49,7 +49,19 @@ class ExperimentsController < ApplicationController
   end
 
   def solid_concepts
+    @supplier = Supplier.find_by_name_for_link("solidconcepts")
 
+    @tags = @supplier.visible_tags if @supplier
+    @machines_quantity_hash = @supplier.machines_quantity_hash
+    @num_machines = @machines_quantity_hash.sum{|k,v| v}
+    @num_reviews = @supplier.visible_reviews.count
+
+    @meta = ""
+    @meta += "Tags for #{@supplier.name} include " + andlist(@tags.take(3).map{ |t| "\"#{t.readable}\""}) + ". " if @tags.present?
+    profile_factors = andlist(meta_for_supplier(@supplier))
+    @meta += "The #{@supplier.name} profile has " + andlist(meta_for_supplier(@supplier)) + ". " if profile_factors.present?
+    @meta = @meta.present? ? @meta : "#{@supplier.name} - Supplier profile"
+    render "profile"
   end
 
 end
