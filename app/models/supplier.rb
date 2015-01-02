@@ -121,8 +121,8 @@ class Supplier < ActiveRecord::Base
 
   def self.suppliers_for_new_dialogue
     suppliers =
-      Supplier.includes(:tags).references(:tags).where.not(tags: {name: 'datadump'}).
-      includes([{ address: :country }, { address: :state }]).
+      Supplier.includes(:tags).includes([{ address: :country }, { address: :state }]).
+      where.not(id: Supplier.joins(:tags).where(tags: {name: 'datadump'})).references(:tags).
       order("lower(suppliers.name)")
   end
 
