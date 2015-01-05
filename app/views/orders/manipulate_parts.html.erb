@@ -46,7 +46,7 @@
         </div>
 
         <table>
-          <% @order_groups.sort.each do |order_group| %>
+          <% @order_groups.each do |order_group| %>
             <tr>
               <td colspan="6"><h4><%= link_to "#{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
             </tr>
@@ -61,7 +61,7 @@
               <th>View File</th>
             </tr>
 
-            <% order_group.parts.sort.each do |part| %>
+            <% order_group.parts.each do |part| %>
               <%= order_form.fields_for part, index: part.id do |part_fields| %>
                 <tr>
                   <td><%= "#{part.id}" %></td>
@@ -70,7 +70,7 @@
                   <td><%= part_fields.text_field :quantity, size: "4" %></td>
                   <td><%= part_fields.text_field :material %></td>
                   <% if (external = part.external) %>
-                    <td><%= text_field_tag 'snippet', html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
+                    <td><%= text_field_tag nil, html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
                     <td class="center"><%= link_to "@", "#{external.url}", target: "_blank" %></td>
                   <% end %>
                 </tr>

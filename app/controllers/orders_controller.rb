@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
 
     @order = Order.new
     @order.order_groups.build
-    @order.order_groups[0].parts.build(quantity: 1)
+    @order.order_groups[0].parts.build
     @files_uploaded = nil
     @parts_list_uploaded = "false"
     respond_to do |format|
@@ -246,7 +246,7 @@ class OrdersController < ApplicationController
 
   def manipulate_parts
     @order = Order.find(params[:id])
-    @order_groups = @order.order_groups.order("created_at")
+    @order_groups = @order.order_groups
   end
 
   def update_parts
@@ -297,12 +297,11 @@ class OrdersController < ApplicationController
     end
 
   def validate_and_create
-    # validate that parts have been added (unless user checked that a parts list was uploaded)
-    unless @order.order_groups[0] && @order.order_groups[0].parts.present?
-      unless params["parts_list_uploaded"] == "true"
-        @order.errors.messages[:parts] = [": Please enter name, quantity, and material for at least one part."]
-        return false
-      end
+    # validate that parts have been added, or that user checked that a parts list was uploaded
+    unless (params["parts_list_uploaded"] == "true") ||
+           (@order.order_groups[0] && @order.order_groups[0].parts.present?)
+      @order.errors.messages[:parts] = [": Please enter name, quantity, and material for at least one part."]
+      return false
     end
 
     @order.user_id = current_user.id
