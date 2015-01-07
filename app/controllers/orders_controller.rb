@@ -246,7 +246,6 @@ class OrdersController < ApplicationController
 
   def manipulate_parts
     @order = Order.find(params[:id])
-    @order_groups = @order.order_groups
   end
 
   def update_parts
@@ -257,11 +256,9 @@ class OrdersController < ApplicationController
       params["order_uploads"].each do |upload|
         @order.externals.build(url: upload["url"], original_filename: upload["original_filename"])
       end
-      @order.save
     end
 
-    parts=params["order"]["part"]
-    Part.update(parts.keys, parts.values)
+    @order.update(order_params)
 
     # TODO: redirect somewhere else (@orders?); add error handling
     # for now, redirect back to manipulate parts page

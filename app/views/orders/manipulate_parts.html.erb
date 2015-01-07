@@ -33,8 +33,7 @@
     </ul>
   </div>
 
-      <%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |order_form| %>
-        <%= hidden_field_tag "id", @order.id %>
+      <%= nested_form_for @order, url: {controller: 'orders', action: 'update_parts', id: @order.id} do |order_form| %>
 
         <div id='order_uploads'>
           <% if @order_uploads %>
@@ -46,9 +45,10 @@
         </div>
 
         <table>
-          <% @order_groups.each do |order_group| %>
+          <%= order_form.fields_for :order_groups do |order_group_form| %>
+            <% order_group = order_group_form.object %>
             <tr>
-              <td colspan="6"><h4><%= link_to "#{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
+              <td colspan="7"><h4><%= link_to "#{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
             </tr>
 
             <tr>
@@ -61,20 +61,19 @@
               <th>View File</th>
             </tr>
 
-            <% order_group.parts.each do |part| %>
-              <%= order_form.fields_for part, index: part.id do |part_fields| %>
-                <tr>
-                  <td><%= "#{part.id}" %></td>
-                  <td><%= "#{part.name}" %></td>
-                  <td><%= part_fields.collection_select(:order_group_id, @order_groups, :id, :name) %></td>
-                  <td><%= part_fields.text_field :quantity, size: "4" %></td>
-                  <td><%= part_fields.text_field :material %></td>
-                  <% if (external = part.external) %>
-                    <td><%= text_field_tag nil, html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
-                    <td class="center"><%= link_to "@", "#{external.url}", target: "_blank" %></td>
-                  <% end %>
-                </tr>
-              <% end %>
+            <%= order_group_form.fields_for :parts do |part_form| %>
+              <% part = part_form.object %>
+              <tr>
+                <td><%= "#{part.id}" %></td>
+                <td><%= "#{part.name}" %></td>
+                <td><%= part_form.collection_select(:order_group_id, @order.order_groups, :id, :name) %></td>
+                <td><%= part_form.number_field :quantity, min: "1" %></td>
+                <td><%= part_form.text_field :material %></td>
+                <% if (external = part.external) %>
+                  <td><%= text_field_tag nil, html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
+                  <td class="center"><%= link_to "@", "#{external.url}", target: "_blank" %></td>
+                <% end %>
+              </tr>
             <% end %>
           <% end %>
         </table>

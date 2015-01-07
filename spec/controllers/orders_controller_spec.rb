@@ -9,14 +9,21 @@ RSpec.describe OrdersController do
     let(:order) { FactoryGirl.create :order }
     let(:part) { order.parts[0] }
     let(:params) {
-      { id: order.id,
-        order: {
-          part: {
-            part.id => { order_group_id: part.order_group_id, quantity: 2, material: "aluminum" }
+      { order:
+        { order_groups_attributes:
+          { "0"=>
+            { parts_attributes:
+              { "0"=>
+                { order_group_id: part.order_group_id, quantity: "2", material: "aluminum", id: part.id }
+              },
+              id: part.order_group_id
+            }
           }
-        }
+        },
+        id: order.id
       }
     }
+
 
     describe "manipulate_parts" do
       it "returns http success" do
@@ -42,8 +49,7 @@ RSpec.describe OrdersController do
 
       context "invalid attributes" do 
         it "does not update part attributes" do
-          # params[:order][:part][4][:material] = ""
-          params[:order][:part][part.id][:material] = ""
+          params[:order][:order_groups_attributes]["0"][:parts_attributes]["0"][:material] = ""
           patch :update_parts, params
           updated_part = Part.find part.id
           expect(updated_part.quantity).to eq part.quantity
@@ -56,9 +62,6 @@ RSpec.describe OrdersController do
         end
       end
     end
-
-# expect{ post :create, contact: Factory.attributes_for(:invalid_contact) }.to_not change(Contact,:count)
-
 
   end
 end

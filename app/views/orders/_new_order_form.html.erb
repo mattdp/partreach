@@ -80,8 +80,8 @@
       <div class="col">
         <label>Material</label>
       </div>
-      <%= order_form.fields_for :order_groups do |order_groups_form| %>
-        <%= order_groups_form.fields_for :parts do |part_form| %>
+      <%= order_form.fields_for :order_groups do |order_group_form| %>
+        <%= order_group_form.fields_for :parts do |part_form| %>
           <div class="col">
             <%= part_form.text_field :name %>
           </div>
@@ -92,7 +92,7 @@
             <%= part_form.text_field :material, placeholder: 'ABS, stainless steel, etc.' %>
           </div>
         <% end %>
-        <%= order_groups_form.link_to_add 'Add another part', :parts, :model_object => Part.new(quantity: 1) %>
+        <%= order_group_form.link_to_add 'Add another part', :parts, :model_object => Part.new(quantity: 1) %>
       <% end %>
     </div>
 
