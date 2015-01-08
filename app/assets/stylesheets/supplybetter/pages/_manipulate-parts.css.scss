@@ -1,0 +1,29 @@
+.manipulate_parts_fields {
+  @include media($tablet) {
+    @include outer-container();
+
+    .name_field {
+      float: left;
+      padding: 0 10px;
+      width: 30%;
+    }
+
+    .quantity_field {
+      float: left;
+      padding: 0 10px;
+      width: 10%;
+    }
+
+    .material_field {
+      float: left;
+      padding: 0 10px;
+      width: 30%;
+    }
+
+    .order_group_field {
+      float: left;
+      padding: 6px 10px;
+      width: 30%;
+    }
+  }
+}

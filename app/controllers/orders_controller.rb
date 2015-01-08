@@ -246,6 +246,7 @@ class OrdersController < ApplicationController
 
   def manipulate_parts
     @order = Order.find(params[:id])
+    render layout: "orders_new"
   end
 
   def update_parts
@@ -260,12 +261,7 @@ class OrdersController < ApplicationController
 
     @order.update(order_params)
 
-    # TODO: redirect somewhere else (@orders?); add error handling
-    # for now, redirect back to manipulate parts page
-    respond_to do |format|
-      format.html { redirect_to manipulate_parts_path(@order), notice: 'Order manipulated.' }
-      format.json { head :no_content}
-    end
+    redirect_to manipulate_parts_path(@order), notice: 'Order manipulated.'
   end
 
   def purchase
@@ -289,7 +285,10 @@ class OrdersController < ApplicationController
       params.require(:order).permit(
         :stated_experience, :stated_priority, :stated_manufacturing,
         :units, :deadline, :order_description, :supplier_message,
-        order_groups_attributes: [:id, :name, parts_attributes: [:id, :name, :quantity, :material, :notes]]
+        order_groups_attributes:
+          [:id, :name, parts_attributes:
+            [:id, :name, :order_group_id, :quantity, :material, :notes]
+          ]
       )
     end
 

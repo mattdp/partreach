@@ -1,11 +1,9 @@
 <% provide(:title,"Part manipulation for order #{@order.id}") %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+<div class="new-order">
 
       <h1 class="center">View and edit parts for order <%= "#{@order.id}" %></h1>
-      <p><%= link_to "Manipulate dialogues", manipulate_path(@order) %> - edit order group names here.</p>
+      <p><%= link_to "Manipulate dialogues", manipulate_path(@order) %></p>
       <p><%= link_to "Order show", order_path(@order) %></p>
       <p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
       <h3>Upload additional files</h3>
@@ -33,7 +31,7 @@
     </ul>
   </div>
 
-      <%= nested_form_for @order, url: {controller: 'orders', action: 'update_parts', id: @order.id} do |order_form| %>
+      <%= nested_form_for @order, url: {controller: 'orders', action: 'update_parts', id: @order.id}, html: {id: 'new-order'} do |order_form| %>
 
         <div id='order_uploads'>
           <% if @order_uploads %>
@@ -44,45 +42,40 @@
           <% end %>
         </div>
 
-        <table>
+
           <%= order_form.fields_for :order_groups do |order_group_form| %>
             <% order_group = order_group_form.object %>
-            <tr>
-              <td colspan="7"><h4><%= link_to "#{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
-            </tr>
 
-            <tr>
-              <th>Part Id</th>
-              <th>Part Name</th>
-              <th>Order Group</th>
-              <th>Quantity</th>
-              <th>Material</th>
-              <th>HTML Snippet (for master email)</th>
-              <th>View File</th>
-            </tr>
+            <h4>Order group: <%= link_to "#{order_group.name}", edit_order_group_path(order_group) %></h4>
 
-            <%= order_group_form.fields_for :parts do |part_form| %>
-              <% part = part_form.object %>
-              <tr>
-                <td><%= "#{part.id}" %></td>
-                <td><%= "#{part.name}" %></td>
-                <td><%= part_form.collection_select(:order_group_id, @order.order_groups, :id, :name) %></td>
-                <td><%= part_form.number_field :quantity, min: "1" %></td>
-                <td><%= part_form.text_field :material %></td>
-                <% if (external = part.external) %>
-                  <td><%= text_field_tag nil, html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
-                  <td class="center"><%= link_to "@", "#{external.url}", target: "_blank" %></td>
-                <% end %>
-              </tr>
-            <% end %>
+            <div class="manipulate_parts_fields">
+              <div class="name_field"><label>Part Name</label></div>
+              <div class="quantity_field"><label>Quantity</label></div>
+              <div class="material_field"><label>Material</label></div>
+              <div class="order_group_field"><label>Order Group</label></div>
+            </div>
+
+              <%= order_group_form.fields_for :parts do |part_form| %>
+                <% part = part_form.object %>
+            <div class="manipulate_parts_fields">
+                  <div class="name_field"><%= part_form.text_field :name %></div>
+                  <div class="quantity_field"><%= part_form.number_field :quantity, min: "1" %></div>
+                  <div class="material_field"><%= part_form.text_field :material %></div>
+                  <div class="order_group_field"><%= part_form.collection_select(:order_group_id, @order.order_groups, :id, :name) %></div>
+            </div>
+              <% end %>
+
+            <div>
+              <%= order_group_form.link_to_add 'Add another part', :parts, :model_object => Part.new(quantity: 1) %>
+            </div>
           <% end %>
-        </table>
 
-        <div class="clear">
-          <%= submit_tag "Save changes", :disable_with => "Saving...", :class => "save-button" %>
+        <div class="triplets">
+          <div class="col">
+            <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "create_button" %>
+          </div>
         </div>
+
       <% end %> 
 
-    </div>
-  </div>
 </div>
