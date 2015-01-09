@@ -1,6 +1,6 @@
 <% provide(:title,"Part manipulation for order #{@order.id}") %>
 
-<div class="new-order">
+<div class="manipulate-parts">
 
       <h1 class="center">View and edit parts for order <%= "#{@order.id}" %></h1>
       <p><%= link_to "Manipulate dialogues", manipulate_path(@order) %></p>
@@ -31,7 +31,7 @@
     </ul>
   </div>
 
-      <%= nested_form_for @order, url: {controller: 'orders', action: 'update_parts', id: @order.id}, html: {id: 'new-order'} do |order_form| %>
+      <%= nested_form_for @order, url: {controller: 'orders', action: 'update_parts', id: @order.id}, html: {id: 'manipulate-parts'} do |order_form| %>
 
         <div id='order_uploads'>
           <% if @order_uploads %>
@@ -48,7 +48,7 @@
 
             <h4>Order group: <%= link_to "#{order_group.name}", edit_order_group_path(order_group) %></h4>
 
-            <div class="manipulate_parts_fields">
+            <div class="manipulate-parts-fields">
               <div class="name_field"><label>Part Name</label></div>
               <div class="quantity_field"><label>Quantity</label></div>
               <div class="material_field"><label>Material</label></div>
@@ -57,7 +57,7 @@
 
               <%= order_group_form.fields_for :parts do |part_form| %>
                 <% part = part_form.object %>
-            <div class="manipulate_parts_fields">
+            <div class="manipulate-parts-fields">
                   <div class="name_field"><%= part_form.text_field :name %></div>
                   <div class="quantity_field"><%= part_form.number_field :quantity, min: "1" %></div>
                   <div class="material_field"><%= part_form.text_field :material %></div>
@@ -72,7 +72,7 @@
 
         <div class="triplets">
           <div class="col">
-            <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "create_button" %>
+            <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button" %>
           </div>
         </div>
 

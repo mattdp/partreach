@@ -12,7 +12,7 @@
   height: 100%;
 }
 
-.questions, .new-order {
+.questions, .new-order, .manipulate-parts {
   @include outer-container();
   max-width: 1024px;
   padding: 40px 0;
@@ -128,7 +128,7 @@
   }
 }
 
-.new-order {
+.new-order, .manipulate-parts {
   .step-header {
     font-family: $serif;
     font-size: 16px;
@@ -156,7 +156,7 @@
   padding: 10px 0;
 }
 
-#new-order {
+#new-order, #manipulate-parts {
   p {
     line-height: 1.7;
   }
@@ -237,7 +237,7 @@
     }
   }
 
-  #create_button {
+  #create_button, #save_button {
     background: #3cb878;
     border: 2px solid #31a76a;
     border-radius: 2px;
