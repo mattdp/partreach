@@ -22,11 +22,10 @@
     </div>
   </script>
   <div>
+    <h3 class="step-header uploaded-file-header">Uploaded files:</h3>
     <ul id='uploaded_file_list'>
-      <% if @order_uploads %>
-        <% @order_uploads.each do |upload| %>
-          <li><%= upload["original_filename"] %></li>
-        <% end %>
+      <% @order.externals.each do |external| %>
+        <li><%= external.original_filename %></li>
       <% end %>
     </ul>
   </div>
