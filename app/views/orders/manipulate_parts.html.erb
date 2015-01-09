@@ -1,14 +1,12 @@
 <% provide(:title,"Part manipulation for order #{@order.id}") %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+<div class="manipulate-parts">
 
-      <h1 class="center">View and edit parts for order <%= "#{@order.id}" %></h1>
-      <p><%= link_to "Manipulate dialogues", manipulate_path(@order) %> - edit order group names here.</p>
-      <p><%= link_to "Order show", order_path(@order) %></p>
-      <p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
-      <h3>Upload additional files</h3>
+  <h1 class="center">View and edit parts for order <%= "#{@order.id}" %></h1>
+  <p><%= link_to "Manipulate dialogues", manipulate_path(@order) %></p>
+  <p><%= link_to "Order show", order_path(@order) %></p>
+  <p><%= link_to "Add an order group", new_order_group_path(order_id: @order.id) %></p>
+  <h3>Upload additional files</h3>
 
   <% order_id = @order.id %>
   <%= s3_uploader_form  id: "s3-uploader", class: "s3-uploader",
@@ -24,66 +22,60 @@
     </div>
   </script>
   <div>
+    <h3 class="step-header uploaded-file-header">Uploaded files:</h3>
     <ul id='uploaded_file_list'>
-      <% if @order_uploads %>
-        <% @order_uploads.each do |upload| %>
-          <li><%= upload["original_filename"] %></li>
-        <% end %>
+      <% @order.externals.each do |external| %>
+        <li><%= external.original_filename %></li>
       <% end %>
     </ul>
   </div>
 
-      <%= form_for @order, :url => {:controller => 'orders', :action => 'update_parts'} do |order_form| %>
-        <%= hidden_field_tag "id", @order.id %>
+  <%= nested_form_for @order, url: {controller: 'orders', action: 'update_parts', id: @order.id},
+    html: {id: 'manipulate-parts'} do |order_form| %>
 
-        <div id='order_uploads'>
-          <% if @order_uploads %>
-            <% @order_uploads.each do |upload| %>
-              <%= hidden_field_tag 'order_uploads[][url]', upload["url"] %>
-              <%= hidden_field_tag 'order_uploads[][original_filename]', upload["original_filename"] %>
-            <% end %>
-          <% end %>
-        </div>
-
-        <table>
-          <% @order_groups.sort.each do |order_group| %>
-            <tr>
-              <td colspan="6"><h4><%= link_to "#{order_group.name}", edit_order_group_path(order_group) %> <%= "order group" %></h4></td>
-            </tr>
-
-            <tr>
-              <th>Part Id</th>
-              <th>Part Name</th>
-              <th>Order Group</th>
-              <th>Quantity</th>
-              <th>Material</th>
-              <th>HTML Snippet (for master email)</th>
-              <th>View File</th>
-            </tr>
-
-            <% order_group.parts.sort.each do |part| %>
-              <%= order_form.fields_for part, index: part.id do |part_fields| %>
-                <tr>
-                  <td><%= "#{part.id}" %></td>
-                  <td><%= "#{part.name}" %></td>
-                  <td><%= part_fields.collection_select(:order_group_id, @order_groups, :id, :name) %></td>
-                  <td><%= part_fields.text_field :quantity, size: "4" %></td>
-                  <td><%= part_fields.text_field :material %></td>
-                  <% if (external = part.external) %>
-                    <td><%= text_field_tag 'snippet', html_snippet_helper(external.url, @order.id), size: "60", readonly: "readonly" %></td>
-                    <td class="center"><%= link_to "@", "#{external.url}", target: "_blank" %></td>
-                  <% end %>
-                </tr>
-              <% end %>
-            <% end %>
-          <% end %>
-        </table>
-
-        <div class="clear">
-          <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :class => "save-button" %>
-        </div>
-      <% end %> 
-
+    <div id='order_uploads'>
+      <% if @order_uploads %>
+        <% @order_uploads.each do |upload| %>
+          <%= hidden_field_tag 'order_uploads[][url]', upload["url"] %>
+          <%= hidden_field_tag 'order_uploads[][original_filename]', upload["original_filename"] %>
+        <% end %>
+      <% end %>
     </div>
-  </div>
+
+    <%= order_form.fields_for :order_groups do |order_group_form| %>
+      <% order_group = order_group_form.object %>
+
+      <h4>Order group: <%= link_to "#{order_group.name}", edit_order_group_path(order_group) %></h4>
+
+      <div class="manipulate-parts-fields">
+        <div class="name_field"><label>Part Name</label></div>
+        <div class="quantity_field"><label>Quantity</label></div>
+        <div class="material_field"><label>Material</label></div>
+        <div class="order_group_field"><label>Order Group</label></div>
+      </div>
+
+      <%= order_group_form.fields_for :parts do |part_form| %>
+        <% part = part_form.object %>
+        <div class="manipulate-parts-fields">
+          <div class="name_field"><%= part_form.text_field :name %></div>
+          <div class="quantity_field"><%= part_form.number_field :quantity, min: "1" %></div>
+          <div class="material_field"><%= part_form.text_field :material %></div>
+          <div class="order_group_field">
+            <%= part_form.collection_select(:order_group_id, @order.order_groups, :id, :name) %>
+          </div>
+        </div>
+      <% end %>
+
+      <div>
+        <%= order_group_form.link_to_add 'Add another part', :parts, :model_object => Part.new(quantity: 1) %>
+      </div>
+    <% end %>
+
+    <div class="triplets">
+      <div class="col">
+        <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button" %>
+      </div>
+    </div>
+  <% end %> 
+
 </div>

@@ -153,7 +153,7 @@ describe "/orders requests" do
     end
   end
 
-  describe "New order" do
+  describe "Show order" do
     it "logs the event when an order is viewed by its owner" do
       user = FactoryGirl.create :user
       order = FactoryGirl.create :order, user: user
