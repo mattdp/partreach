@@ -56,7 +56,7 @@ class Filter < ActiveRecord::Base
 
   #return array, possibly empty, of same-geo different-tag filters
   def same_geo_adjacencies(quantity_max = 5)
-    possibles = Filter.where("geography_id = ?",self.geography.id) #will always return at least self
+    possibles = Filter.where("geography_id = ?",self.geography.id).to_a #will always return at least self
     possibles = possibles.delete_if{|filter| filter.id == self.id}
     return possibles.take(quantity_max)
   end
