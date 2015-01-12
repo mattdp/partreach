@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
 
     @order = Order.new
     @order.order_groups.build
-    @order.order_groups[0].parts.build(quantity: 1)
+    @order.order_groups[0].parts.build
     @files_uploaded = nil
     @parts_list_uploaded = "false"
     respond_to do |format|
@@ -246,7 +246,7 @@ class OrdersController < ApplicationController
 
   def manipulate_parts
     @order = Order.find(params[:id])
-    @order_groups = @order.order_groups.order("created_at")
+    render layout: "orders_new"
   end
 
   def update_parts
@@ -257,18 +257,11 @@ class OrdersController < ApplicationController
       params["order_uploads"].each do |upload|
         @order.externals.build(url: upload["url"], original_filename: upload["original_filename"])
       end
-      @order.save
     end
 
-    parts=params["order"]["part"]
-    Part.update(parts.keys, parts.values)
+    @order.update(order_params)
 
-    # TODO: redirect somewhere else (@orders?); add error handling
-    # for now, redirect back to manipulate parts page
-    respond_to do |format|
-      format.html { redirect_to manipulate_parts_path(@order), notice: 'Order manipulated.' }
-      format.json { head :no_content}
-    end
+    redirect_to manipulate_parts_path(@order), notice: 'Order manipulated.'
   end
 
   def purchase
@@ -292,17 +285,19 @@ class OrdersController < ApplicationController
       params.require(:order).permit(
         :stated_experience, :stated_priority, :stated_manufacturing,
         :units, :deadline, :order_description, :supplier_message,
-        order_groups_attributes: [:id, :name, parts_attributes: [:id, :name, :quantity, :material, :notes]]
+        order_groups_attributes:
+          [:id, :name, parts_attributes:
+            [:id, :name, :order_group_id, :quantity, :material, :notes]
+          ]
       )
     end
 
   def validate_and_create
-    # validate that parts have been added (unless user checked that a parts list was uploaded)
-    unless @order.order_groups[0] && @order.order_groups[0].parts.present?
-      unless params["parts_list_uploaded"] == "true"
-        @order.errors.messages[:parts] = [": Please enter name, quantity, and material for at least one part."]
-        return false
-      end
+    # validate that parts have been added, or that user checked that a parts list was uploaded
+    unless (params["parts_list_uploaded"] == "true") ||
+           (@order.order_groups[0] && @order.order_groups[0].parts.present?)
+      @order.errors.messages[:parts] = [": Please enter name, quantity, and material for at least one part."]
+      return false
     end
 
     @order.user_id = current_user.id

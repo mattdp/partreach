@@ -33,8 +33,18 @@ FactoryGirl.define do
   factory :rfq_contact, parent: :contact, class: "RfqContact" do |c|  
   end 
 
+  factory :part do
+    sequence(:name)   { |n| "Part #{n}" }
+    quantity          1
+    material          "ABS"
+    order_group
+  end
+
   factory :order_group do
     sequence(:name)   { |n| "Order Group #{n}" }
+    after(:build) do |order_group|
+      order_group.parts << create_list(:part, 1, order_group: order_group)
+    end
     order
   end
 

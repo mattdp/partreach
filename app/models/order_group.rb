@@ -16,7 +16,7 @@
 class OrderGroup < ActiveRecord::Base
 
   belongs_to :order
-  has_many :parts, dependent: :destroy
+  has_many :parts, -> { order(:created_at) }, dependent: :destroy
   accepts_nested_attributes_for :parts, reject_if: proc { |attributes| attributes[:name].blank? && attributes[:material].blank? }
   has_many :dialogues, dependent: :destroy
 
