@@ -150,7 +150,7 @@
 
     <div class="triplets">
       <div class="col">
-      <%= order_form.submit "Create order", :disable_with => "Creating...", :id => "create_button" %>
+      <%= order_form.submit "Create order", data: { disable_with: 'Creating...' }, :id => "create_button" %>
         <p class="detail-text">Your email address and order information will be shared with suppliers we select for this RFQ. We will not share your information with any other parties.</p>
       </div>
     </div>

@@ -6,9 +6,6 @@
 #  created_at             :datetime
 #  updated_at             :datetime
 #  user_id                :integer
-#  drawing_content_type   :string(255)
-#  drawing_file_size      :integer
-#  drawing_updated_at     :datetime
 #  name                   :string(255)
 #  deadline               :string(255)
 #  supplier_message       :text
@@ -35,10 +32,6 @@ class Order < ActiveRecord::Base
 
   before_save :create_view_token
 
-  has_attached_file :drawing,
-                    :url => "/:attachment/:id/:style/:basename.:extension",
-                    :path => ":rails_root/public/:attachment/:id/:style/:basename.:extension"
-  
   belongs_to :user
   has_many :order_groups, -> { order(:created_at) }, dependent: :destroy
   accepts_nested_attributes_for :order_groups, reject_if: :all_blank

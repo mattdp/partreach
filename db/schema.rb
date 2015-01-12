@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141127002335) do
+ActiveRecord::Schema.define(version: 20141231192549) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "addresses", force: true do |t|
     t.string   "street"
@@ -220,9 +223,6 @@ ActiveRecord::Schema.define(version: 20141127002335) do
     t.datetime "created_at",                                                             null: false
     t.datetime "updated_at",                                                             null: false
     t.integer  "user_id"
-    t.string   "drawing_content_type"
-    t.integer  "drawing_file_size"
-    t.datetime "drawing_updated_at"
     t.string   "name"
     t.string   "deadline"
     t.text     "supplier_message"
