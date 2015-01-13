@@ -392,7 +392,7 @@ See the note from client for details on what exactly they're looking for.</p>
   end
 
   def create_view_token
-    self.view_token = SecureRandom.hex
+    self.view_token = SecureRandom.hex unless self.view_token
   end
 
 end
