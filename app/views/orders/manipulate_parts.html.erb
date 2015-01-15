@@ -22,10 +22,13 @@
     </div>
   </script>
   <div>
-    <h3 class="step-header uploaded-file-header">Uploaded files:</h3>
+    <h3 class="step-header uploaded-file-header">(NOTE - will not be saved with order until "Save Changes" button is clicked)</h3>
     <ul id='uploaded_file_list'>
+    </ul>
+    <h3 class="step-header uploaded-file-header">Previously uploaded files:</h3>
+    <ul>
       <% @order.externals.each do |external| %>
-        <li><%= external.original_filename %></li>
+        <li><%= link_to external.original_filename, external.url, target: "_blank" %></li>
       <% end %>
     </ul>
   </div>
