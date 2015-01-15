@@ -10,7 +10,7 @@ gem 'newrelic_rpm', '3.6.6.147'
 gem 's3_direct_upload'
 gem 'pg', '0.17.1' #http://blog.willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/
 gem 'twilio-ruby', '3.10.1'
-gem 'bcrypt-ruby'
+gem 'bcrypt'
 gem 'jquery-rails', '3.0.4'
 gem 'bloggy', '0.2.2'
 gem 'sitemap_generator', '4.2.0' #https://github.com/kjvarga/sitemap_generator
