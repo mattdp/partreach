@@ -1,3 +1,5 @@
+require "open-uri"
+
 desc 'import suppliers from csv'
 task :supplier_csv_import => :environment do
   # expected field layout: website,name,email,phone,street_address,city,state,zip,country
