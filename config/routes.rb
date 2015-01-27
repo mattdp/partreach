@@ -2,6 +2,8 @@ Partreach::Application.routes.draw do
 
   root :to => 'static_pages#home', via: :get
 
+  get '/factory-survey', to: redirect('http://fluidsurveys.com/surveys/supplybetter/factory-survey')
+
   get '/analytics', to: 'analytics#home', as: 'analytics_home'
   get '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
   get '/analytics/suppliers', to: 'analytics#suppliers', as: 'analytics_suppliers'
