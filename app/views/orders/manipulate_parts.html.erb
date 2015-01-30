@@ -30,6 +30,13 @@
       <% @order.externals.each do |external| %>
         <li><%= link_to external.original_filename, external.url, target: "_blank" %></li>
       <% end %>
+      <% # handle "old" orders %>
+      <% @order.parts.each do |part| %>
+        <% external = part.external %>
+        <% if external %>
+          <li><%= link_to external.original_filename, external.url, target: "_blank" %></li>
+        <% end %>
+      <% end %>
     </ul>
   </div>
 
