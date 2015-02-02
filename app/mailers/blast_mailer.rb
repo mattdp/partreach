@@ -47,23 +47,25 @@ class BlastMailer < ActionMailer::Base
 
   #targets: array of contacts, whose contactables are models that communications can attach to
   #method: way of calling the single email sender for this mail
-  #ex: BlastMailer.general_sender([Contact.find_by_email("mdpfwds@gmail.com")],:cold_reachout_1412_MiddleGround,false)
+  #ex: BlastMailer.general_sender([Contact.find_by_email("mdpfwds@gmail.com")],:c_reachout_1412_MiddleGround,false)
   def general_sender(contacts,method,validate=true)
     contacts.each do |contact|
+      contactable = contact.contactable
       if !validate || (
-          (contactable = contact.contactable) &&
           contact.email_valid &&
           contact.email_subscribed &&
-          !Communication.has_communication?(contactable,method.to_s)
+          !Communication.has_communication?(contactable, method.to_s)
           )
         letter = BlastMailer.send(method,contact)
         letter.deliver
-        Communication.create({
-          means_of_interaction: 'email',
-          interaction_title: method.to_s,
-          communicator_type: contactable.class.to_s,
-          communicator_id: contactable.id
-          })
+        if contactable
+          Communication.create({
+            means_of_interaction: 'email',
+            interaction_title: method.to_s,
+            communicator_type: contactable.class.to_s,
+            communicator_id: contactable.id
+            })
+        end
       else
         logger.debug "Not sending to #{contactable.class.to_s} #{contactable.id}, communication shows it was sent already"
       end
