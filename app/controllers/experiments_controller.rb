@@ -1,5 +1,16 @@
 class ExperimentsController < ApplicationController
 
+  #HAX PROTOTYPING BLOCK
+  #----
+
+  def index
+  end
+
+  def profile
+  end
+
+  #----
+
   def sde
 
     #make sure to link to suppliers that have it in v2, after benchmarking

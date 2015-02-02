@@ -1,0 +1,75 @@
+<% provide(:title,"Teams - sample index") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
+    <h1>What kind of supplier are you looking for?</h1>
+
+    <ul>
+      <li><%= link_to "CNC Machining" %></li>
+      <li><%= link_to "Laser Cutting" %></li>
+    </ul>
+
+    <hr>
+
+    <div>
+      <h2>CNC Machining</h2>
+      <table>
+        <tr>
+          <th>Verified?</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Purchase Orders</th>
+          <th>Factory Visits</th>
+          <th>Comments</th>
+          <th>Site</th>
+        </tr>
+        <tr>
+          <td>Someone's called or visited</td>
+          <td>Click for details</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Yes</td>
+          <td>FactoryCo</td>
+          <td>Zhongshan</td>
+          <td>3</td>
+          <td></td>
+          <td>3</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <td>Yes</td>
+          <td>Making Place</td>
+          <td>Shenzhen</td>
+          <td>1</td>
+          <td></td>
+          <td></td>
+          <td><%= link_to "Link", "http://www.reddit.com" %></td>
+        </tr>
+        <tr>
+          <td>No</td>
+          <td>Cool Party</td>
+          <td>Chicago</td>
+          <td>2</td>
+          <td>2</td>
+          <td>2</td>
+          <td><%= link_to "Link", "http://www.reddit.com" %></td>
+        </tr>                
+      </table>
+      <%= link_to "Back to list of supplier types" %>
+    </div>
+
+    <div>
+      <h2>Laser Cutting</h2>
+      <p>...</p>
+    </div>
+
+    </div>
+  </div>
+</div>
