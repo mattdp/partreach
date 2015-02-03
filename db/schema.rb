@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141231192549) do
+ActiveRecord::Schema.define(version: 20150203033559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -264,6 +264,26 @@ ActiveRecord::Schema.define(version: 20141231192549) do
     t.string   "bom_identifier"
     t.text     "material"
     t.text     "notes"
+  end
+
+  create_table "providers", force: true do |t|
+    t.string   "name"
+    t.string   "url_main"
+    t.string   "source",            default: "manual"
+    t.string   "name_for_link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "tag_laser_cutting", default: false
+    t.boolean  "tag_cnc_machining", default: false
+    t.string   "contact_qq"
+    t.string   "contact_wechat"
+    t.string   "contact_phone"
+    t.string   "contact_email"
+    t.string   "contact_name"
+    t.string   "contact_role"
+    t.boolean  "verified",          default: false
+    t.string   "city"
+    t.text     "address"
   end
 
   create_table "reviews", force: true do |t|
