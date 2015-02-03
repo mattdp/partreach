@@ -6,8 +6,8 @@
 #  initial_select      :boolean
 #  opener_sent         :boolean
 #  response_received   :boolean
-#  created_at          :datetime
-#  updated_at          :datetime
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #  supplier_id         :integer
 #  further_negotiation :boolean
 #  won                 :boolean
@@ -26,6 +26,9 @@
 #  order_group_id      :integer
 #  supplier_working    :boolean
 #  email_snippet       :text
+#  close_email_body    :text
+#  billable            :boolean          default(FALSE)
+#  past_experience     :string(255)
 #
 
 class Dialogue < ActiveRecord::Base

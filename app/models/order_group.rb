@@ -2,14 +2,14 @@
 #
 # Table name: order_groups
 #
-#  id            :integer          not null, primary key
-#  order_id      :integer
-#  name          :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
-#  process       :string(255)
-#  material      :string(255)
-#  parts_snippet :text
+#  id             :integer          not null, primary key
+#  order_id       :integer
+#  name           :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  process        :string(255)
+#  material       :string(255)
+#  parts_snippet  :text
 #  images_snippet :text
 #
 

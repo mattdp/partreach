@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: tag_relationships
+#
+#  id                       :integer          not null, primary key
+#  source_tag_id            :integer          not null
+#  related_tag_id           :integer          not null
+#  created_at               :datetime
+#  updated_at               :datetime
+#  tag_relationship_type_id :integer          not null
+#
+
 class TagRelationship < ActiveRecord::Base
   belongs_to :source_tag, class_name: 'Tag'
   belongs_to :relationship, foreign_key: "tag_relationship_type_id", class_name: 'TagRelationshipType'

@@ -20,6 +20,7 @@
 #  linkedin_url     :string(255)
 #  email_valid      :boolean          default(TRUE)
 #  email_subscribed :boolean          default(TRUE)
+#  cc_emails        :text             default("")
 #
 
 class RfqContact < Contact

@@ -6,7 +6,7 @@
 #  level         :string(255)
 #  short_name    :string(255)
 #  long_name     :string(255)
-#  name_for_link :string(255)
+#  name_for_link :string(255)      not null
 #  geography_id  :integer
 #  created_at    :datetime
 #  updated_at    :datetime
