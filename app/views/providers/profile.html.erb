@@ -4,37 +4,43 @@
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-      <%= link_to "Back to suppliers", teams_index_path %>
+      <%= link_to "Back to providers", teams_index_path %>
 
-      <h1>SupplierCo</h1>
+      <h1><%= @provider.name %></h1>
 
-      <%= link_to "Their website" %>
+      <%= link_to "Their website", @provider.url_main %>
 
+      <h3>Processes they do</h3>
       <ul>
-        <li>CNC Machining</li>
-        <li>Laser Cutting</li>
+        <li>NEED TO DO THIS</li>
       </ul>
 
+      <h3>Contact information</h3>
       <ul>
-        <li><strong>QQ: </strong>129031820121</li>
-        <li><strong>Phone: </strong>129031820121</li>
-        <li><strong>Email: </strong>129031820121@spam.biz</li>
+        <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
+        <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
+        <li><strong>Email: </strong><%= @provider.contact_email %></li>
       </ul>    
 
-      <p>Best contact: Lisa (role: Account Manager)</p>
+      <% if @provider.contact_name %>
+        <p><strong>Best contact:</strong> <%= @provider.contact_name %> 
+        <% if @provider.contact_role %>
+          (role: <%= @provider.contact_role %>)
+        <% end %>
+        </p>
+      <% end %> 
 
-      <p>15 Huan Mao 1 Road Zhongshan Torch Development Zone Guangdong Province, 528437 People’s Republic of China</p>
+      <%if @provider.address %>
+        <p><%= "Location: #{@provider.address}" %></p>
+      <% elsif @provider.city %>
+        <p><%= "Location: #{@provider.city}" %></p>
+      <% else %>
+        <%= "No location information" %>
+      <% end %>
 
       <%= mail_to "founders@supplybetter.com", "Let us know what we need to add or change to this profile!" %>
 
-      <p>Things that should be buttons:</p>
-      <ul>
-        <li>This profile made me more likely to check out this supplier</li>
-        <li>This profile scared me away from this supplier</li>
-        <li>This profile wasn't useful</li>
-      </ul>
-
-      <h2>Details</h2>
+      <h2>Details - not implemented</h2>
 
       <hr>
 

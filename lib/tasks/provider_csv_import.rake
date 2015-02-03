@@ -12,7 +12,6 @@ task :provider_csv_import => :environment do
       provider_params[attribute] = row["#{attribute.to_s}"].strip if row["#{attribute.to_s}"]
     end
 
-
     if provider_params[:id_within_source]
       existing_provider = Provider.where("id_within_source = ?",provider_params[:id_within_source])
     else

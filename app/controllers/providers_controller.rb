@@ -4,7 +4,8 @@ class ProvidersController < ApplicationController
     @provider_hash = Provider.providers_hash_by_process
   end
 
-  def show
+  def profile
+    @provider = Provider.find_by_name_for_link(params[:name_for_link])
   end
 
 end
