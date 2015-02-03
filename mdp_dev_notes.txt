@@ -2,11 +2,7 @@
 [] step: styling
 [] step: auth system sealing off from the world at large
 [] step: importation of real data
-  [x] testable csv importer
-  [x] see if tab-separated data works OK
-  [x] get test working and use to fix rest of webpage
-    [x] exclude bad rows
-    [] apply tags
+  [] apply tags
   [] find flaws in data
     [] Xiangrun(3) - why #? why url not good?
   [] delete all data and reimport from cleaner data
