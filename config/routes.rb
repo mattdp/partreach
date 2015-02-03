@@ -1,5 +1,6 @@
 Partreach::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root :to => 'static_pages#home', via: :get
 
   get '/factory-survey', to: redirect('http://fluidsurveys.com/surveys/supplybetter/factory-survey/', status: 302)
