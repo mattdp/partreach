@@ -40,6 +40,15 @@ class Provider < ActiveRecord::Base
     end
   end
 
+  def self.providers_hash_by_process
+    hash = {}
+
+    hash[:laser_cutting] = Provider.all.select{|p| p.tag_laser_cutting}
+    hash[:cnc_machining] = Provider.all.select{|p| p.tag_cnc_machining}
+
+    return hash
+  end
+
   #TO DO
 
   def add_flag(flag_name)

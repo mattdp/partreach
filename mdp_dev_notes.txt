@@ -8,6 +8,10 @@
   [x] add city
   [x] add addrxess
 [] step: have a decent first page that responds to suppliers existing
+  [x] responsive title and content blocks
+  [x] works without suppliers in the category
+  [] content block content
+  [] anchor movement correct
 [] step: have comments/visits/purchases - Detail
 [] step: have buttons on more/less/not useful
 [] step: importation of real data
