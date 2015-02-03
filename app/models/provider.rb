@@ -20,6 +20,7 @@
 #  verified          :boolean          default(FALSE)
 #  city              :string(255)
 #  address           :text
+#  id_within_source  :integer
 #
 
 class Provider < ActiveRecord::Base

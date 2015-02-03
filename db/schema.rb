@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203033559) do
+ActiveRecord::Schema.define(version: 20150203042815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -284,6 +284,7 @@ ActiveRecord::Schema.define(version: 20150203033559) do
     t.boolean  "verified",          default: false
     t.string   "city"
     t.text     "address"
+    t.integer  "id_within_source"
   end
 
   create_table "reviews", force: true do |t|
