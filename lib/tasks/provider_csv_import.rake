@@ -20,11 +20,14 @@ task :provider_csv_import => :environment do
     end  
 
     begin
-      if existing_provider.present?
+      if existing_provider.present? and false
         puts "***** FOUND EXISTING PROVIDER. ID WITHIN SOURCE: #{existing_provider[0].id_within_source} NAME: #{existing_provider[0].name}"
+      elsif not(row['name'].present? and row['url_main'].present?)
+        puts "***** SKIPPING, LACKS NAME OR LACKS URL."        
       else
         new_provider = Provider.new(provider_params)
         new_provider.name_for_link = Provider.proper_name_for_link(row['name'])
+        binding.pry
         new_provider.tag_laser_cutting = true if row['flag'] == "laser_cutting"
         new_provider.tag_cnc_machining = true if row['flag'] == "cnc_machining"
 

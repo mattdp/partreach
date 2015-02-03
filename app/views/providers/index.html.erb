@@ -8,15 +8,15 @@
 
     <ul>
       <% @provider_hash.keys.each do |key| %>
-        <li><%= link_to "#{key.to_s.titleize}" %></li>
+        <li><%= link_to "#{key.to_s.titleize}", "##{key}" %></li>
       <% end %>
     </ul>
 
     <hr>
 
-    <% @provider_hash.keys.each do |key, providers| %>
+    <% @provider_hash.each do |key, providers| %>
       <div>
-        <h2><%= "#{key.to_s.titleize}" %></h2>
+        <h2><a id="#{key}"></a><%= "#{key.to_s.titleize}" %></h2>
         <% if providers %> 
           <%= mail_to "founders@supplybetter.com", "Something missing? Submit a supplier." %>
           <table>
@@ -40,18 +40,18 @@
             </tr>
             <% providers.each do |provider| %>
               <tr>
-                <td>Yes</td>
-                <td><%= link_to "FactoryCo" %></td>
-                <td>Zhongshan</td>
-                <td>3</td>
-                <td></td>
-                <td>3</td>
-                <td>N/A</td>
+                <td><%= "#{provider.verified}" %></td>
+                <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
+                <td><%= "#{provider.city}" %></td>
+                <td>WIP</td>
+                <td>WIP</td>
+                <td>WIP</td>
+                <td><%= link_to "Site", "#{provider.url_main}" %></td>
               </tr>
             <% end %>    
           </table>
         <% else %>
-        <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybeter.com", "submitting one now" %>!</p>
+          <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
         <% end %>
         <p><%= link_to "Back to list of supplier types" %></p>
       </div>

@@ -1,30 +1,23 @@
-[x] step 1: model - Provider
-  [x] supplier model stripdown
-  [x] add 2 tags as booleans to supplier model
-  [x] add various contact types as fields
-    qq wechat phone email
-  [x] add contact_name and contact_role
-  [x] add verified
-  [x] add city
-  [x] add address
+[] step: have comments/visits/purchases - Detail
+[] step: have buttons on more/less/not useful
+[] step: styling
+[] step: auth system sealing off from the world at large
 [] step: importation of real data
   [x] testable csv importer
   [x] see if tab-separated data works OK
-  [] get test working and use to fix rest of webpage
-    [] exclude bad rows
+  [x] get test working and use to fix rest of webpage
+    [x] exclude bad rows
+    [] apply tags
   [] find flaws in data
+    [] Xiangrun(3) - why #? why url not good?
   [] delete all data and reimport from cleaner data
   [] figure out how import on prod, since it's a filepath on local
-[] step: have a decent first page that responds to suppliers existing
-  [x] responsive title and content blocks
-  [x] works without suppliers in the category
-  [] content block content
-  [] anchor movement correct
-
-[] step: have comments/visits/purchases - Detail
-[] step: have buttons on more/less/not useful
-
-[] step: styling
-[] step: auth system sealing off from the world at large
 
 whenever done, handoff to james in detail so he can pick up where left off
+
+handoff
+  [] anchor movement correct
+    want to anchor the top of the page to the headers, currently have messed up links in there
+
+eventual potential issues
+  Provider may be an overloaded name
