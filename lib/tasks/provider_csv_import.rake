@@ -3,15 +3,15 @@ require "open-uri"
 #current sheet: https://docs.google.com/a/supplybetter.com/spreadsheets/d/1B3PBeMXKGvT6lUuDdt5v7VrbxBKva0SAEcRgppDZqIc/edit#gid=469578003
 
 desc 'import providers from csv'
-task :supplier_csv_import => :environment do
-  # expected field layout: website,name,email,phone,street_address,city,state,zip,country
-  CSV.new(open(ENV['url']), headers: true).each do |row|
+task :provider_csv_import => :environment do
+  CSV.new(open('/Users/matt/Downloads/hax_suppliers.tsv'), {headers: true, col_sep: "\t"}).each do |row|
     puts "***** IMPORT DATA: #{row.to_csv}"
 
     provider_params = {}
-    [:id_within_source,:flag,:verified,:name,:city,:url_main,:contact_phone,:contact_qq,:contact_email,:address].each do |attribute|
-      provider_params[attribute] = row['"#{attribute.to_s}"'].strip if row['"#{attribute.to_s}"']
+    [:id_within_source,:verified,:name,:city,:url_main,:contact_phone,:contact_qq,:contact_email,:address].each do |attribute|
+      provider_params[attribute] = row["#{attribute.to_s}"].strip if row["#{attribute.to_s}"]
     end
+
 
     if provider_params[:id_within_source]
       existing_provider = Provider.where("id_within_source = ?",provider_params[:id_within_source])
@@ -21,10 +21,12 @@ task :supplier_csv_import => :environment do
 
     begin
       if existing_provider.present?
-        puts "***** FOUND EXISTING PROVIDER. ID: #{provider.id} NAME: #{provider.name}"
+        puts "***** FOUND EXISTING PROVIDER. ID WITHIN SOURCE: #{existing_provider[0].id_within_source} NAME: #{existing_provider[0].name}"
       else
         new_provider = Provider.new(provider_params)
         new_provider.name_for_link = Provider.proper_name_for_link(row['name'])
+        new_provider.tag_laser_cutting = true if row['flag'] == "laser_cutting"
+        new_provider.tag_cnc_machining = true if row['flag'] == "cnc_machining"
 
         new_provider.source = 'hax_sheet_import'
 

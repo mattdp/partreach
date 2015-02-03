@@ -6,15 +6,24 @@
   [x] add contact_name and contact_role
   [x] add verified
   [x] add city
-  [x] add addrxess
+  [x] add address
+[] step: importation of real data
+  [x] testable csv importer
+  [x] see if tab-separated data works OK
+  [] get test working and use to fix rest of webpage
+    [] exclude bad rows
+  [] find flaws in data
+  [] delete all data and reimport from cleaner data
+  [] figure out how import on prod, since it's a filepath on local
 [] step: have a decent first page that responds to suppliers existing
   [x] responsive title and content blocks
   [x] works without suppliers in the category
   [] content block content
   [] anchor movement correct
+
 [] step: have comments/visits/purchases - Detail
 [] step: have buttons on more/less/not useful
-[] step: importation of real data
+
 [] step: styling
 [] step: auth system sealing off from the world at large
 
