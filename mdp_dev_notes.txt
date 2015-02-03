@@ -1,4 +1,4 @@
-[] step 1: model - Provider
+[x] step 1: model - Provider
   [x] supplier model stripdown
   [x] add 2 tags as booleans to supplier model
   [x] add various contact types as fields
@@ -12,5 +12,6 @@
 [] step: have buttons on more/less/not useful
 [] step: importation of real data
 [] step: styling
+[] step: auth system sealing off from the world at large
 
 whenever done, handoff to james in detail so he can pick up where left off

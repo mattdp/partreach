@@ -34,8 +34,6 @@ Partreach::Application.routes.draw do
   get '/experiments/sla', to: 'experiments#sla', as: "experiments_sla"
   get '/experiments/ultem', to: 'experiments#ultem', as: "experiments_ultem"
   get '/experiments/sls_vs_fdm', to: 'experiments#sls_vs_fdm', as: "experiments_sls_vs_fdm"
-  get '/teams/index', to: 'experiments#index', as: "teams_index"
-  get '/teams/profile', to: 'experiments#profile', as: "teams_profile"
 
   get '/guides/:country/:state/:tag', to: redirect("/suppliers/%{country}/%{state}/%{tag}")
   get '/guides/:country/:tag', to: redirect("/suppliers/%{country}/all/%{tag}")
@@ -63,6 +61,9 @@ Partreach::Application.routes.draw do
   get '/profiles/:supplier_name', to: 'profiles#supplier_profile_redirect', as: 'supplier_profile'
   get '/submit_ask/', to: 'profiles#submit_ask'
   
+  get '/teams/hax/', to: 'providers#index', as: "teams_index"
+  get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
+
   resources :orders, only: [:index, :show, :new, :create, :destroy]
   get '/orders/view/:id/:view_token', to: 'orders#show', as: 'view_order'
   resources :transfer_orders, only: [:create]
