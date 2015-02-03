@@ -1,15 +1,14 @@
-adapt general sender to take communications
+[] step 1: model - Provider
+  [] supplier model stripdown
+  [] add 5 tags as booleans to supplier model
+  [] add various contact types as fields
+  [] add contact_name and contact_role
+  [] add verified
+  [] add city
+  [] add address
+[] step 2: have comments/visits/purchases - Detail
+[] step 3: have buttons on more/less/not useful
+[] step 4: importation of real data
+[] step 5: styling
 
-should have a method purely to find the targets, then use the general sender to dispatch them
-
-#targets - list of lead_contacts w/o comm
-general_event_sender(targets,,nil,false)
-
-make into a communication sender
-
-
-complexity since need to test Lead and add communications to it, but get email from leadcontact
-
-think should have relevant classes implementing a contact method, taking to contact directly.
-could instead have a method mapping models to getting their contact. 
-ask james.
+whenever done, handoff to james in detail so he can pick up where left off
