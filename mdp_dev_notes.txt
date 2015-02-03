@@ -1,14 +1,16 @@
 [] step 1: model - Provider
-  [] supplier model stripdown
-  [] add 5 tags as booleans to supplier model
-  [] add various contact types as fields
-  [] add contact_name and contact_role
-  [] add verified
-  [] add city
-  [] add address
-[] step 2: have comments/visits/purchases - Detail
-[] step 3: have buttons on more/less/not useful
-[] step 4: importation of real data
-[] step 5: styling
+  [x] supplier model stripdown
+  [x] add 2 tags as booleans to supplier model
+  [x] add various contact types as fields
+    qq wechat phone email
+  [x] add contact_name and contact_role
+  [x] add verified
+  [x] add city
+  [x] add addrxess
+[] step: have a decent first page that responds to suppliers existing
+[] step: have comments/visits/purchases - Detail
+[] step: have buttons on more/less/not useful
+[] step: importation of real data
+[] step: styling
 
 whenever done, handoff to james in detail so he can pick up where left off
