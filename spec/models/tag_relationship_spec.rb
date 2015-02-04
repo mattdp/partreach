@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: tag_relationships
+#
+#  id                       :integer          not null, primary key
+#  source_tag_id            :integer          not null
+#  related_tag_id           :integer          not null
+#  created_at               :datetime
+#  updated_at               :datetime
+#  tag_relationship_type_id :integer          not null
+#
+
 require 'spec_helper'
 
 describe TagRelationship do

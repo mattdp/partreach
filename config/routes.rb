@@ -1,5 +1,6 @@
 Partreach::Application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root :to => 'static_pages#home', via: :get
 
   get '/factory-survey', to: redirect('http://fluidsurveys.com/surveys/supplybetter/factory-survey/', status: 302)
@@ -61,6 +62,9 @@ Partreach::Application.routes.draw do
   get '/profiles/:supplier_name', to: 'profiles#supplier_profile_redirect', as: 'supplier_profile'
   get '/submit_ask/', to: 'profiles#submit_ask'
   
+  get '/teams/hax/', to: 'providers#index', as: "teams_index"
+  get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
+
   resources :orders, only: [:index, :show, :new, :create, :destroy]
   get '/orders/view/:id/:view_token', to: 'orders#show', as: 'view_order'
   resources :transfer_orders, only: [:create]

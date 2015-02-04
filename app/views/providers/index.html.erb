@@ -1,0 +1,62 @@
+<% provide(:title,"Teams - sample index") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
+    <h1>What kind of supplier are you looking for?</h1>
+
+    <ul>
+      <% @provider_hash.keys.each do |key| %>
+        <li><%= link_to "#{key.to_s.titleize}", "##{key}" %></li>
+      <% end %>
+    </ul>
+
+    <hr>
+
+    <% @provider_hash.each do |key, providers| %>
+      <div>
+        <h2><a id='<%="#{key}"%>' name='<%="#{key}"%>'><%= "#{key.to_s.titleize}" %></a></h2>
+        <% if providers %> 
+          <%= mail_to "founders@supplybetter.com", "Something missing? Submit a supplier." %>
+          <table>
+            <tr>
+              <th>Verified?</th>
+              <th>Name</th>
+              <th>City</th>
+              <th>Purchase Orders</th>
+              <th>Factory Visits</th>
+              <th>Comments</th>
+              <th>Site</th>
+            </tr>
+            <tr>
+              <td><i>Someone's called or visited</i></td>
+              <td><i>Click for details</i></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <% providers.each do |provider| %>
+              <tr>
+                <td><%= "#{provider.verified}" %></td>
+                <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
+                <td><%= "#{provider.city}" %></td>
+                <td>WIP</td>
+                <td>WIP</td>
+                <td>WIP</td>
+                <td><%= link_to "Site", "#{provider.url_main}" %></td>
+              </tr>
+            <% end %>    
+          </table>
+        <% else %>
+          <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
+        <% end %>
+        <p><%= link_to "Back to list of supplier types" %></p>
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</div>

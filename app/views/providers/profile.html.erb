@@ -1,0 +1,72 @@
+<% provide(:title,"Teams - sample profile") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
+      <%= link_to "Back to providers", teams_index_path %>
+
+      <h1><%= @provider.name %></h1>
+
+      <%= link_to "Their website", @provider.url_main %>
+
+      <h3>Processes they do</h3>
+      <ul>
+        <li>NEED TO DO THIS</li>
+      </ul>
+
+      <h3>Contact information</h3>
+      <ul>
+        <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
+        <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
+        <li><strong>Email: </strong><%= @provider.contact_email %></li>
+      </ul>    
+
+      <% if @provider.contact_name %>
+        <p><strong>Best contact:</strong> <%= @provider.contact_name %> 
+        <% if @provider.contact_role %>
+          (role: <%= @provider.contact_role %>)
+        <% end %>
+        </p>
+      <% end %> 
+
+      <%if @provider.address %>
+        <p><%= "Location: #{@provider.address}" %></p>
+      <% elsif @provider.city %>
+        <p><%= "Location: #{@provider.city}" %></p>
+      <% else %>
+        <%= "No location information" %>
+      <% end %>
+
+      <%= mail_to "founders@supplybetter.com", "Let us know what we need to add or change to this profile!" %>
+
+      <h2>Details - not implemented</h2>
+
+      <hr>
+
+      <%= mail_to "founders@supplybetter.com", "Add a purchase order, factory visit, or comment" %>
+
+      <p><strong>Peter: </strong>This place seems legit</p>
+      <p><strong>Aaron: </strong>Factory Name  Jetta
+        Which process/product are you looking for?  CNC machined aluminum, "looks-like" prototype enclosures, rapid prototyping, PCBA, injection molding, final assembly
+        Did you meet senior management?  Yes
+        Is tooling done in house?  Yes
+        Would you be happy taking your top customer here?  Yes
+        What is the overall technical ability of the people you met with?  5
+        How well do they understand your product?  3
+        How close does one of their existing products match your own?  2
+        How well do you think you would work together?  4
+        Who is the best person to contact when reaching out to this company? | Name  Virginia Lam
+        Who is the best person to contact when reaching out to this company? | Role  Assistant Director of Account mAnagement
+        Who is the best person to contact when reaching out to this company? | Contact info  virlam@jetta.com.hk
+        Anything else HAX6 should know about this factory?  Their engineering services for product development seem really great. It would be great to chat with a company that has used this (I'm thinking Sphero) to ask them how to process was. Looking back would they have preferred to have owned the design process? How well did Jetta's work match their original vision?
+        Are you going to continue vetting this company?  Yes
+      </p>
+
+      <hr>
+
+      <%= link_to "Back to suppliers", teams_index_path %>
+
+    </div>
+  </div>
+</div>
