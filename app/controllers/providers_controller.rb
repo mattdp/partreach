@@ -1,4 +1,5 @@
 class ProvidersController < ApplicationController
+  before_filter :admin_user
 
   include SessionsHelper
   

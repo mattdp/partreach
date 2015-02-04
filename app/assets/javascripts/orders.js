@@ -31,7 +31,7 @@ $(document).ready(function() {
           '<input type="hidden" name="order_uploads[][url]" value="' + content.url + '"> \
            <input type="hidden" name="order_uploads[][original_filename]" value="' + content.filename + '">');
         $('#files_uploaded').val("true")
-        $('#uploaded_file_list').append('<li>' + content.filename + '</li>');
+        $('#uploaded_file_list').append('<li><a href="' + content.url + '" target="_blank">' + content.filename + '</a></li>');
   });
 
   if ($('#parts_list_uploaded').length > 0) {
