@@ -26,7 +26,7 @@
 #
 
 class Supplier < ActiveRecord::Base
-  belongs_to :user
+  has_one :user
 
   before_save :prepend_http_to_url
 
