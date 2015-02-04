@@ -14,8 +14,8 @@
 
 class Event < ActiveRecord::Base
 
-  def self.add_event(model,model_id,happening)
-    event = Event.new(model: model, model_id: model_id, happening: happening)
+  def self.add_event(model,model_id,happening,target_model=nil,target_model_id=nil)
+    event = Event.new(model: model, model_id: model_id, happening: happening, target_model: target_model, target_model_id: target_model_id)
     return event.save
   end
 
