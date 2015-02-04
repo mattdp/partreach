@@ -2,12 +2,14 @@
 #
 # Table name: events
 #
-#  id         :integer          not null, primary key
-#  model      :string(255)
-#  happening  :string(255)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  model_id   :integer
+#  id              :integer          not null, primary key
+#  model           :string(255)
+#  happening       :string(255)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  model_id        :integer
+#  target_model    :string(255)
+#  target_model_id :integer
 #
 
 class Event < ActiveRecord::Base
