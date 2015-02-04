@@ -28,9 +28,29 @@
   }
 }
 
-////////////////////////ALL HAX RELATED STUFF IS HERE////////////////
+/*////////////////////////ALL HAX RELATED STUFF IS HERE////////////////*/
 
+h1 {
+  -webkit-padding-start: 40px;
+}
 
+h2 {
+  -webkit-padding-start: 40px;
+}
+
+.heading_navigation{
+  font-size: small;
+  font-weight: normal;
+}
+
+/*begin list styling*/
+ul {
+  list-style:none;
+}
+/*end list styling*/
+
+/*start provider table styling*/
+/*this table is not my own. I ripped it from here: http://cssmenumaker.com/blog/stylish-css-tables-tutorial*/
 table { 
 color: #333;
 /*font-family: Helvetica, Arial, sans-serif;*/
@@ -62,3 +82,5 @@ tr:nth-child(even) td { background: #F1F1F1; }
 tr:nth-child(odd) td { background: #FEFEFE; }  
 
 tr td:hover { background: #666; color: #FFF; } /* Hover cell effect! */
+/*end table styling*/
+

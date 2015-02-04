@@ -4,19 +4,39 @@
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
 
-    <h1 class="hax">HAX SUPPLIERS (don't put a mess)</h1>
+    <h1>HAX SUPPLIERS</h1>
 
     <ul>
+    Contents (click to jump to a section)
       <% @provider_hash.keys.each do |key| %>
         <li><%= link_to "#{key.to_s.titleize}", "##{key}" %></li>
       <% end %>
     </ul>
 
+<!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
+
+<!-- <table class="header">
+<tr><td>Enjoy</td><td>Make a good usage of this list and find the right supplier!</td></tr>
+<tr><td>Contribute</td><td>Please (please) update this list with your contacts / vertical in particular. You don't want to have Cyril after your ass. You don't.</td></tr>
+<tr><td>Connect</td><td>If you are listed as a connector you may get inquired about reaching out. You don't have to - it's up to you to make the connection</td></tr>
+</table>
+
+<table class="header">
+<tr><td>DON'T</td><td>DO</td></tr>
+<tr><td>Do not share this list with anyone. Ever.</td><td>Get intros ; be thoughtful of the scalability issue here.</td></tr>
+<tr><td>Do nothing else but adding stuff.</td><td>Add your name if you are a 'connector'.</td></tr>
+</table> -->
+
+
     <hr>
 
     <% @provider_hash.each do |key, providers| %>
       <div>
-        <h2><a id='<%="#{key}"%>' name='<%="#{key}"%>'><%= "#{key.to_s.titleize}" %></a></h2>
+        <h2>
+          <span id='<%="#{key}"%>' name='<%="#{key}"%>'><%= "#{key.to_s.titleize}" %></span>
+          <span class="heading_navigation">[<%= link_to "Back to top" %>]</span>
+        </h2>
+        
         <% if providers %> 
           
           <table>
@@ -36,18 +56,19 @@
                 <td><%= "#{provider.verified}" %></td>
                 <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
                 <td><%= "#{provider.city}" %></td>
-                <td>0</td>
+                <td></td>
                 <td>1</td>
                 <td>2</td>
                 <!-- <td><%= link_to "Site", "#{provider.url_main}" %></td> -->
-              </tr>
-            <% end %>    
+              </tr>              
+            <% end %>  
+            <tr>
+              <td><%= mail_to "founders@supplybetter.com", "[Add to this list]" %></td>
+            </tr>  
           </table>
         <% else %>
           <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
-        <% end %>
-        <p><%= mail_to "founders@supplybetter.com", "Add to this list!" %></p>
-        <p><%= link_to "[Back to top]" %></p>
+        <% end %>        
       </div>
     <% end %>
 
