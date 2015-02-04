@@ -27,3 +27,103 @@
     }
   }
 }
+
+/*////////////////////////ALL HAX RELATED STUFF IS HERE////////////////*/
+
+h1 {
+  -webkit-padding-start: 40px;
+}
+
+h2 {
+  -webkit-padding-start: 40px;
+}
+
+.heading_navigation{
+  font-size: small;
+  font-weight: normal;
+}
+
+/*begin list styling*/
+ul {
+  list-style:none;
+}
+/*end list styling*/
+
+/*start provider table styling*/
+/*this table is not my own. I ripped it from here: http://cssmenumaker.com/blog/stylish-css-tables-tutorial*/
+.stylish table { 
+color: #333;
+/*font-family: Helvetica, Arial, sans-serif;*/
+width: 100%; 
+border-collapse: 
+collapse; border-spacing: 0; 
+}
+
+.stylish td, th { 
+border: 1px solid transparent; /* No more visible border */
+height: 30px; 
+transition: all 0.3s;  /* Simple transition for hover effect */
+}
+
+.stylish th {
+background: #DFDFDF;  /* Darken header a bit */
+font-weight: bold;
+}
+
+.stylish td {
+background: #FAFAFA;
+text-align: center;
+}
+
+/* Cells in even rows (2,4,6...) are one color */ 
+.stylish tr:nth-child(even) td { background: #F1F1F1; }   
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */ 
+.stylish tr:nth-child(odd) td { background: #FEFEFE; }  
+
+.stylish tr td:hover { background: #666; color: #FFF; } /* Hover cell effect! */
+/*end table styling*/
+
+/*header table styling*/
+.table-header {
+  float: right;
+}
+
+.table-header table { 
+  font-family: Helvetica, Arial, sans-serif;
+  width: 800px;
+  /* Table reset stuff */
+  border-collapse: collapse; border-spacing: 0; 
+}
+    
+.table-header td, th {
+  border: 0 none; 
+  height: 30px; 
+}
+      
+.table-header th {
+  color: #FFF; 
+  font-weight: bold;
+  height: 40px;
+}
+    
+
+.table-header td { 
+  background: #FAFAFA; 
+  text-align: left; 
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+#hax-color1 {
+  background-color: #5dbab5;
+  color: white;
+}
+#hax-color2 {
+  background-color: #ff742c;
+  color: white;
+}
+#hax-color3 {
+  background-color: #151c27;
+  color: white;
+}
