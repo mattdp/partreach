@@ -30,14 +30,6 @@
 
 /*////////////////////////ALL HAX RELATED STUFF IS HERE////////////////*/
 
-h1 {
-  -webkit-padding-start: 40px;
-}
-
-h2 {
-  -webkit-padding-start: 40px;
-}
-
 .heading_navigation{
   font-size: small;
   font-weight: normal;
@@ -87,6 +79,7 @@ text-align: center;
 /*header table styling*/
 .table-header {
   float: right;
+  max-width: 800px;
 }
 
 .table-header table { 
@@ -126,4 +119,27 @@ text-align: center;
 #hax-color3 {
   background-color: #151c27;
   color: white;
+}
+
+/*provider profile specific css*/
+
+.profile-spacing {
+  -webkit-padding-start: 40px;
+}
+
+.profile-spacing h2 {
+  margin-top: 0;
+}
+
+.address {
+  max-width: 300px;
+}
+
+.verified {
+  color: #4EF579;
+  font-size: 32px;
+}
+
+h3 {
+  margin-bottom: 0px;
 }
