@@ -16,7 +16,7 @@
 
     <% @provider_hash.each do |key, providers| %>
       <div>
-        <h2><a id="#{key}"></a><%= "#{key.to_s.titleize}" %></h2>
+        <h2><a id='<%="#{key}"%>' name='<%="#{key}"%>'><%= "#{key.to_s.titleize}" %></a></h2>
         <% if providers %> 
           <%= mail_to "founders@supplybetter.com", "Something missing? Submit a supplier." %>
           <table>
