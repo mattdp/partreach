@@ -16,9 +16,14 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
+  # only allow admin users
   config.authorize_with do |controller|
     redirect_to main_app.root_path unless current_user.try(:admin?)
   end
+
+  # exclude irrelevant modules and model classes from auto-discovery
+  config.excluded_models = 
+    ["Admin", "Crawlers", "DataAnalysis", "DataEntry", "Order::OrderColumn", "Order::OrderTransferor", "RakeHelper"]
 
   config.actions do
     dashboard                     # mandatory
