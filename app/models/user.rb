@@ -13,6 +13,7 @@
 #  password_reset_sent_at :datetime
 #  examiner               :boolean          default(FALSE)
 #  supplier_id            :integer
+#  team_id                :integer
 #
 
 class User < ActiveRecord::Base
@@ -23,6 +24,7 @@ class User < ActiveRecord::Base
   has_many :reviews
   has_one :address, :as => :place, :dependent => :destroy
   belongs_to :supplier
+  belongs_to :team
   has_one :lead, dependent: :destroy
   has_many :web_search_results, :foreign_key => "action_taken_by_id"
 

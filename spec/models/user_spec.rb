@@ -13,6 +13,7 @@
 #  password_reset_sent_at :datetime
 #  examiner               :boolean          default(FALSE)
 #  supplier_id            :integer
+#  team_id                :integer
 #
 
 require 'spec_helper'
