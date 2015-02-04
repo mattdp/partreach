@@ -4,7 +4,7 @@ require "open-uri"
 
 desc 'import providers from csv'
 task :provider_csv_import => :environment do
-  CSV.new(open('/Users/matt/Downloads/hax_suppliers.tsv'), {headers: true, col_sep: "\t"}).each do |row|
+  CSV.new(open(ENV['datafile']), {headers: true, col_sep: "\t"}).each do |row|
     puts "***** IMPORT DATA: #{row.to_csv}"
 
     provider_params = {}
@@ -26,7 +26,6 @@ task :provider_csv_import => :environment do
       else
         new_provider = Provider.new(provider_params)
         new_provider.name_for_link = Provider.proper_name_for_link(row['name'])
-        binding.pry
         new_provider.tag_laser_cutting = true if row['flag'] == "laser_cutting"
         new_provider.tag_cnc_machining = true if row['flag'] == "cnc_machining"
 
