@@ -21,7 +21,7 @@ task :provider_csv_import => :environment do
     begin
       if existing_provider.present? and false
         puts "***** FOUND EXISTING PROVIDER. ID WITHIN SOURCE: #{existing_provider[0].id_within_source} NAME: #{existing_provider[0].name}"
-      elsif not(row['name'].present? and row['url_main'].present?)
+      elsif not(row['name'].present? and row['url_main'].present? and row['tag'].present?)
         puts "***** SKIPPING, LACKS NAME OR LACKS URL."        
       else
         new_provider = Provider.new(provider_params)
@@ -33,6 +33,9 @@ task :provider_csv_import => :environment do
 
         new_provider.save!
         puts "***** ADDED PROVIDER: #{new_provider.name} (#{new_provider.id})"
+
+        Tagging.create(taggable_id: new_provider.id, taggable_type: "Provider", tag_id: Tag.find_by_name(row['tag'])) 
+
       end
     rescue ActiveRecord::ActiveRecordError => e
       puts "***** ERROR attempting to add or update: #{e.message}"
