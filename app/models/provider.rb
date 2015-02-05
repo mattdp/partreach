@@ -38,7 +38,7 @@ class Provider < ActiveRecord::Base
   end
 
   def prepend_http_to_url
-    if self.url_main
+    if self.url_main.present?
       self.url_main = /^http/.match(self.url_main) ? self.url_main : "http://#{self.url_main}"
     end
   end
