@@ -56,7 +56,7 @@
               <% providers.each do |provider| %>
                 <tr>
                   <% comments = provider.comments %>
-                  <td><%= "#{provider.verified}" %></td>
+                  <td><%= provider.verified ? "Yes" : "No" %></td>
                   <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
                   <td><%= "#{provider.city}" %></td>
                   <td>
