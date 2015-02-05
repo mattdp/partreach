@@ -19,6 +19,7 @@
 #  city             :string(255)
 #  address          :text
 #  id_within_source :integer
+#  contact_skype    :string(255)
 #
 
 class Provider < ActiveRecord::Base

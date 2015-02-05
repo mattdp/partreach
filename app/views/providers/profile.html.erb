@@ -18,19 +18,12 @@
           <ul>
             <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
             <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
-            <li><strong>Phone: </strong><%= @provider.contact_skype %></li>
+            <li><strong>Skype: </strong><%= @provider.contact_skype %></li>
             <li><strong>Email: </strong><%= @provider.contact_email %></li>
             <li><strong>Website: </strong>
               <%= link_to "Link", @provider.url_main if @provider.url_main %>
+            <li><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%>
           </ul>    
-
-          <% if @provider.contact_name %>
-            <p><strong>Best contact:</strong> <%= @provider.contact_name %> 
-            <% if @provider.contact_role %>
-              (role: <%= @provider.contact_role %>)
-            <% end %>
-            </p>
-          <% end %> 
         </div>
 
         <h1>
