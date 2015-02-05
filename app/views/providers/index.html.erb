@@ -30,8 +30,6 @@
       <% end %>
     </ul>
 
-
-
     <hr>
 
     <% @provider_hash.each do |key, providers| %>
@@ -57,13 +55,22 @@
             </tr>
             <% providers.each do |provider| %>
               <tr>
+                <% comments = provider.comments %>
                 <td><%= "#{provider.verified}" %></td>
                 <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
                 <td><%= "#{provider.city}" %></td>
-                <td></td>
-                <td>1</td>
-                <td>2</td>
-                <!-- <td><%= link_to "Site", "#{provider.url_main}" %></td> -->
+                <td>
+                  <% shown = comments.select{|c| c.comment_type == "purchase_order"}.count %>
+                  <%= shown == 0 ? "" : shown %>
+                </td>
+                <td>
+                  <% shown = comments.select{|c| c.comment_type == "factory_visit"}.count %>
+                  <%= shown == 0 ? "" : shown %>
+                </td>
+                <td>
+                  <% shown = comments.select{|c| c.comment_type == "comment"}.count %>
+                  <%= shown == 0 ? "" : shown %>
+                </td>
               </tr>              
             <% end %>  
             <tr>
