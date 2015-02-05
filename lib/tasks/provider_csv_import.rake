@@ -16,7 +16,7 @@ task :provider_csv_import => :environment do
     puts "***** IMPORT DATA: #{row.to_csv}"
 
     provider_params = {}
-    [:id_within_source,:verified,:name,:city,:url_main,:contact_phone,:contact_qq,:contact_email,:address].each do |attribute|
+    [:id_within_source,:verified,:name,:city,:url_main,:contact_phone,:contact_skype,:contact_qq,:contact_email,:address].each do |attribute|
       provider_params[attribute] = row["#{attribute.to_s}"].strip if row["#{attribute.to_s}"]
     end
 
