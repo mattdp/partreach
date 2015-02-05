@@ -34,8 +34,6 @@ task :provider_csv_import => :environment do
       else
         new_provider = Provider.new(provider_params)
         new_provider.name_for_link = Provider.proper_name_for_link(row['name'])
-        new_provider.tag_laser_cutting = true if row['tag'] == "laser_cutting"
-        new_provider.tag_cnc_machining = true if row['tag'] == "cnc_machining"
 
         new_provider.source = 'hax_sheet_import'
 
