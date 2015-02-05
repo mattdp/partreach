@@ -4,6 +4,14 @@ require "open-uri"
 
 desc 'import providers from csv'
 task :provider_csv_import => :environment do
+
+  c = Contact.where("email = ?","peter@fakeemailforsetup.com")
+  if c.present?
+    u = c.contactable.user
+  else
+    u = User.create_for_hax_v1_launch("HAX","peter@fakeemailforsetup.com","Peter",last_name=nil)
+  end
+
   CSV.new(open(ENV['datafile']), {headers: true, col_sep: "\t"}).each do |row|
     puts "***** IMPORT DATA: #{row.to_csv}"
 
@@ -35,6 +43,10 @@ task :provider_csv_import => :environment do
         puts "***** ADDED PROVIDER: #{new_provider.name} (#{new_provider.id})"
 
         Tagging.create(taggable_id: new_provider.id, taggable_type: "Provider", tag_id: Tag.find_by_name(row['tag'])) 
+
+        if row['peter_comment'].present?
+          Comment.create(provider: new_provider, user: u, payload: row['peter_comment'])
+        end
 
       end
     rescue ActiveRecord::ActiveRecordError => e
