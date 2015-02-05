@@ -1,5 +1,5 @@
 class ProvidersController < ApplicationController
-  before_filter :admin_user
+  before_filter :hax_access_only
   
   def index
     @provider_hash = Provider.providers_hash_by_process
