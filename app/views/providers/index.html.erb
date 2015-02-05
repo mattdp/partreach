@@ -26,7 +26,7 @@
     <ul>
     Contents (click to jump to a section)
       <% @provider_hash.keys.each do |key| %>
-        <li><%= link_to "#{key.to_s.titleize}", "##{key}" %></li>
+        <li><%= link_to "#{key.readable}", "##{key.name}" %></li>
       <% end %>
     </ul>
 
@@ -35,7 +35,7 @@
     <% @provider_hash.each do |key, providers| %>
       <div>
         <h2 class="profile-spacing">
-          <span id='<%="#{key}"%>' name='<%="#{key}"%>'><%= "#{key.to_s.titleize}" %></span>
+          <span id='<%="#{key.name}"%>' name='<%="#{key.name}"%>'><%= "#{key.readable}" %></span>
           <span class="heading_navigation">[<%= link_to "Back to top" %>]</span>
         </h2>
         
