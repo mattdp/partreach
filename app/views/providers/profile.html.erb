@@ -3,48 +3,86 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+    <div class="profile-spacing">
+      <p><%= link_to "Back to HAX SUPPLIERS", teams_index_path %></p>
 
-      <%= link_to "Back to providers", teams_index_path %>
+      <div class="table-header">
+        <h2><%= "#{@provider.city}" %>, Guandong, China</h2>
+        <%if @provider.address %>
+          <p>
+            Full Address
+            <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+          </p>
+          <div class="address">
+            <p><%= "#{@provider.address}" %></p>
+            <% elsif @provider.city %>
+              <p><%= "Rough Area: #{@provider.city}" %></p>
+            <% else %>
+              <%= "No location information" %>
+            <% end %>
+          </div>
 
-      <h1><%= @provider.name %></h1>
+        Contact Information <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+        <ul> 
+          <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
+          <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
+          <li><strong>Email: </strong><%= @provider.contact_email %></li>
+          <li><%= link_to "website link", @provider.url_main %>
+        </ul>    
 
-      <%= link_to "Their website", @provider.url_main %>
+        <% if @provider.contact_name %>
+          <p><strong>Best contact:</strong> <%= @provider.contact_name %> 
+          <% if @provider.contact_role %>
+            (role: <%= @provider.contact_role %>)
+          <% end %>
+          </p>
+        <% end %> 
+      </div>
 
-      <h3>Processes they do</h3>
+      <h2>
+      <%= @provider.name %>
+      <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+      </h2>
+      <div class="verified">
+        <img class="supplier-index-indicator" alt="Verified icon" src="/assets/check59.svg" title="This provider has been verified to exist" >
+        Verified
+      </div>
+      <h3>
+        What they can do for you
+       <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+       </h3>
       <ul>
-        <li>NEED TO DO THIS</li>
+        <li>CNC Machining</li>
+        <li>Laser Cutting</li>
+        <li>PCB Fabrication</li>
+        <li>PCB Assembly</li>
+        <li>Contract Manufacturing</li>
       </ul>
 
-      <h3>Contact information</h3>
+      <h3>
+        Purchase Orders
+       <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+       </h3>  
+       <ul>
+        <li>Peter Wang</li>
+        <li>Cyril E.</li>
+        <li>Duncan Turner</li>
+      </ul>
+
+      <h3>
+        Factory Visits
+       <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+       </h3>
       <ul>
-        <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
-        <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
-        <li><strong>Email: </strong><%= @provider.contact_email %></li>
-      </ul>    
+        <li>Peter Wang</li>
+        <li>Matt Du Pont</li>
+        <li>Sally Wu</li>
+      </ul>
 
-      <% if @provider.contact_name %>
-        <p><strong>Best contact:</strong> <%= @provider.contact_name %> 
-        <% if @provider.contact_role %>
-          (role: <%= @provider.contact_role %>)
-        <% end %>
-        </p>
-      <% end %> 
-
-      <%if @provider.address %>
-        <p><%= "Location: #{@provider.address}" %></p>
-      <% elsif @provider.city %>
-        <p><%= "Location: #{@provider.city}" %></p>
-      <% else %>
-        <%= "No location information" %>
-      <% end %>
-
-      <%= mail_to "founders@supplybetter.com", "Let us know what we need to add or change to this profile!" %>
-
-      <h2>Details</h2>
-
-      <hr>
-
-      <%= mail_to "founders@supplybetter.com", "Add a purchase order, factory visit, or comment" %>
+      <h2>
+        Comments
+        <span class="heading_navigation">[<%= link_to "add a comment" %>]</span>
+      </h2>
 
       <% @comments.each do |comment| %>
         <% contact = comment.user.lead.lead_contact %>
@@ -52,9 +90,7 @@
       <% end %>
     
       <hr>
-
-      <%= link_to "Back to suppliers", teams_index_path %>
-
+      </div>
     </div>
   </div>
 </div>
