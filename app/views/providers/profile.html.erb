@@ -73,9 +73,13 @@
         <span class="heading_navigation">[<%= link_to "add a comment" %>]</span>
       </h2>
 
-      <% @comments.each do |comment| %>
-        <% contact = comment.user.lead.lead_contact %>
-        <p><strong><%= "#{contact.first_name_and_team}: " %></strong><%= raw(comment.payload) %></p>
+      <% if @comments.present? %>
+        <% @comments.each do |comment| %>
+          <% contact = comment.user.lead.lead_contact %>
+          <p><strong><%= "#{contact.first_name_and_team}: " %></strong><%= raw(comment.payload) %></p>
+        <% end %>
+      <% else %>
+        <p>No information yet - be the first to add some!</p>
       <% end %>
     
       </div>
