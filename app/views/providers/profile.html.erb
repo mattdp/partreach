@@ -7,27 +7,18 @@
       <p><%= link_to "Back to HAX SUPPLIERS", teams_index_path %></p>
 
       <div class="table-header">
-        <h2><%= "#{@provider.city}" %>, Guandong, China</h2>
-        <%if @provider.address %>
-          <p>
-            Full Address
-            <span class="heading_navigation">[<%= link_to "edit" %>]</span>
-          </p>
-          <div class="address">
-            <p><%= "#{@provider.address}" %></p>
-            <% elsif @provider.city %>
-              <p><%= "Rough Area: #{@provider.city}" %></p>
-            <% else %>
-              <%= "No location information" %>
-            <% end %>
-          </div>
+        <h2>Address information <span class="heading_navigation">[<%= link_to "Edit" %>]</span></h2>
+        <ul>
+          <li><strong>City: </strong><%= "#{@provider.city}" %></li>
+          <li><strong>Full address: </strong><%= "#{@provider.address}" %></li>
+        </ul>
 
-        Contact Information <span class="heading_navigation">[<%= link_to "edit" %>]</span>
-        <ul> 
+        <h2>Contact information <span class="heading_navigation">[<%= link_to "edit" %>]</span></h2>
+        <ul>
           <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
           <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
           <li><strong>Email: </strong><%= @provider.contact_email %></li>
-          <li><%= link_to "website link", @provider.url_main %>
+          <li><strong>Website: </strong><%= link_to "Link", @provider.url_main %>
         </ul>    
 
         <% if @provider.contact_name %>
@@ -58,7 +49,7 @@
       <% end %>
 
       <h3>
-        Purchase Orders
+        Purchase orders
        <span class="heading_navigation">[<%= link_to "add a purchase" %>]</span>
        </h3>  
        <ul>
@@ -68,7 +59,7 @@
       </ul>
 
       <h3>
-        Factory Visits
+        Factory visits
        <span class="heading_navigation">[<%= link_to "add a visit" %>]</span>
        </h3>
       <ul>
