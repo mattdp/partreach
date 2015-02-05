@@ -52,7 +52,7 @@ class Provider < ActiveRecord::Base
     tags = tags.sort_by{|t| t.name}
 
     tags.each do |tag|
-      hash[tag] = Tagging.where("tag_id = ? and taggable_type = 'Provider'",tag.id).map{|tgg| tgg.taggable}
+      hash[tag] = Tagging.where("tag_id = ? and taggable_type = 'Provider'",tag.id).map{|tgg| tgg.taggable}.sort_by{|provider| provider.name}
     end
 
     return hash
