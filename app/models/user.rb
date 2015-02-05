@@ -4,8 +4,8 @@
 #
 #  id                     :integer          not null, primary key
 #  admin                  :boolean          default(FALSE)
-#  created_at             :datetime
-#  updated_at             :datetime
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #  address_id             :integer
 #  password_digest        :string(255)
 #  remember_token         :string(255)
@@ -13,6 +13,7 @@
 #  password_reset_sent_at :datetime
 #  examiner               :boolean          default(FALSE)
 #  supplier_id            :integer
+#  team_id                :integer
 #
 
 class User < ActiveRecord::Base
@@ -22,7 +23,8 @@ class User < ActiveRecord::Base
   has_many :dialogues, :through => :orders, :dependent => :destroy
   has_many :reviews
   has_one :address, :as => :place, :dependent => :destroy
-  has_one :supplier
+  belongs_to :supplier
+  belongs_to :team
   has_one :lead, dependent: :destroy
   has_many :web_search_results, :foreign_key => "action_taken_by_id"
 

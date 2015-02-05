@@ -1,4 +1,4 @@
-  # == Schema Information
+# == Schema Information
 #
 # Table name: contacts
 #
@@ -20,8 +20,9 @@
 #  linkedin_url     :string(255)
 #  email_valid      :boolean          default(TRUE)
 #  email_subscribed :boolean          default(TRUE)
+#  cc_emails        :text             default("")
 #
 
-class BillingContact < Contact
-  
+class LeadContact < Contact
+
 end

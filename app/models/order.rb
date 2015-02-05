@@ -3,8 +3,8 @@
 # Table name: orders
 #
 #  id                     :integer          not null, primary key
-#  created_at             :datetime
-#  updated_at             :datetime
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #  user_id                :integer
 #  name                   :string(255)
 #  deadline               :string(255)
@@ -19,11 +19,14 @@
 #  stated_priority        :string(255)
 #  stated_manufacturing   :string(255)
 #  notes                  :text
-#  override_average_value :decimal(, )
+#  override_average_value :decimal(10, 2)
 #  columns_shown          :string(255)      default("all")
 #  email_snippet          :text
 #  stated_quantity        :integer
 #  units                  :string(255)
+#  view_token             :string(255)
+#  order_description      :text
+#  process_confidence     :string(255)
 #
 
 require 'csv'

@@ -5,8 +5,8 @@
 #  id                            :integer          not null, primary key
 #  name                          :string(255)
 #  url_main                      :string(255)
-#  created_at                    :datetime
-#  updated_at                    :datetime
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
 #  description                   :text
 #  url_materials                 :string(255)
 #  source                        :string(255)      default("manual")
@@ -26,7 +26,7 @@
 #
 
 class Supplier < ActiveRecord::Base
-  belongs_to :user
+  has_one :user
 
   before_save :prepend_http_to_url
 

@@ -9,6 +9,8 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  bom_identifier :string(255)
+#  material       :text
+#  notes          :text
 #
 
 class Part < ActiveRecord::Base

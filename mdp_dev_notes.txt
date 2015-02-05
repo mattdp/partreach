@@ -1,15 +1,36 @@
-adapt general sender to take communications
+[] step: have a rough approximation of the second page
+[] step: styling
+[] step: auth system sealing off from the world at large
+[] step: importation of real data
+  [] apply tags
+  [] find flaws in data
+    [] Xiangrun(3) - why #? why url not good?
+  [] delete all data and reimport from cleaner data
+  [] figure out how import on prod, since it's a filepath on local
+[] step: have comments/visits/purchases - Detail
 
-should have a method purely to find the targets, then use the general sender to dispatch them
+[] pull in james branch
+[] verify rails_admin works for tags
+[] train rob on making tags for each thing
 
-#targets - list of lead_contacts w/o comm
-general_event_sender(targets,,nil,false)
+whenever done, handoff to james in detail so he can pick up where left off
 
-make into a communication sender
+handoff
+  [] anchor movement correct
+    want to anchor the top of the page to the headers, currently have messed up links in there
 
+eventual potential issues
+  [] same supplier shows up many times with different tags
+  [] Provider may be an overloaded name
+  [] not taking suppliers with no URL on the uploader right now
+  [] capitalization of mfg processes not good for CNC, BOM etc with titleize
+  [] life is clumsy without tags, can't tell if it'd be more or less work to have them
 
-complexity since need to test Lead and add communications to it, but get email from leadcontact
-
-think should have relevant classes implementing a contact method, taking to contact directly.
-could instead have a method mapping models to getting their contact. 
-ask james.
+later version thoughts
+  [] step: have buttons on more/less/not useful
+    <p>WIP Things that should be buttons:</p>
+    <ul>
+      <li>This profile made me more likely to check out this supplier</li>
+      <li>This profile scared me away from this supplier</li>
+      <li>This profile wasn't useful</li>
+    </ul>

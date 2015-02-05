@@ -1,12 +1,15 @@
 # == Schema Information
 #
-# Table name: search_exclusions
+# Table name: organizations
 #
 #  id         :integer          not null, primary key
-#  domain     :string(255)
+#  name       :string(255)
 #  created_at :datetime
 #  updated_at :datetime
 #
 
-class SearchExclusion < ActiveRecord::Base
+class Organization < ActiveRecord::Base
+
+  has_many :teams
+
 end

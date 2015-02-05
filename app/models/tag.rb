@@ -6,12 +6,13 @@
 #  name          :string(255)
 #  family        :string(255)
 #  note          :text
-#  created_at    :datetime
-#  updated_at    :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #  exclusive     :boolean          default(FALSE)
 #  visible       :boolean          default(TRUE)
 #  readable      :string(255)
 #  name_for_link :string(255)
+#  tag_group_id  :integer
 #
 
 class Tag < ActiveRecord::Base
@@ -19,6 +20,7 @@ class Tag < ActiveRecord::Base
   belongs_to :tag_group
   has_many :taggings
   has_many :suppliers, :through => :taggings, :source => :taggable, :source_type => 'Supplier'
+  has_many :providers, :through => :taggings, :source => :taggable, :source_type => 'Provider'
   has_many :tag_relationships, foreign_key: "source_tag_id", class_name: "TagRelationship"
   has_many :related_tags, :through => :tag_relationships
   has_many :reverse_tag_relationships, foreign_key: "related_tag_id", class_name: "TagRelationship"

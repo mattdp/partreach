@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: web_search_results
+#
+#  id                 :integer          not null, primary key
+#  position           :string(255)
+#  domain             :string(255)
+#  link               :text
+#  title              :string(255)
+#  snippet            :text
+#  created_at         :datetime
+#  updated_at         :datetime
+#  web_search_item_id :integer
+#  action             :string(255)
+#  action_taken_by_id :integer
+#  supplier_id        :integer
+#
+
 class WebSearchResult < ActiveRecord::Base
 
   belongs_to :web_search_item

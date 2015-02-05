@@ -1,3 +1,30 @@
+# == Schema Information
+#
+# Table name: suppliers
+#
+#  id                            :integer          not null, primary key
+#  name                          :string(255)
+#  url_main                      :string(255)
+#  created_at                    :datetime         not null
+#  updated_at                    :datetime         not null
+#  description                   :text
+#  url_materials                 :string(255)
+#  source                        :string(255)      default("manual")
+#  profile_visible               :boolean          default(FALSE)
+#  name_for_link                 :string(255)
+#  claimed                       :boolean          default(FALSE)
+#  suggested_description         :text
+#  suggested_machines            :text
+#  suggested_preferences         :text
+#  internally_hidden_preferences :text
+#  suggested_services            :text
+#  suggested_address             :text
+#  suggested_url_main            :string(255)
+#  points                        :integer          default(0)
+#  next_contact_date             :date
+#  next_contact_content          :string(255)
+#
+
 require 'spec_helper'
 
 describe "Supplier" do

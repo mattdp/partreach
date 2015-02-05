@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141231192549) do
+ActiveRecord::Schema.define(version: 20150204101820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20141231192549) do
   end
 
   add_index "combos", ["supplier_id"], name: "index_combos_on_supplier_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "provider_id"
+    t.string   "comment_type"
+    t.text     "payload"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "communications", force: true do |t|
     t.string   "means_of_interaction"
@@ -127,9 +136,11 @@ ActiveRecord::Schema.define(version: 20141231192549) do
   create_table "events", force: true do |t|
     t.string   "model"
     t.string   "happening"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "model_id"
+    t.string   "target_model"
+    t.integer  "target_model_id"
   end
 
   create_table "externals", force: true do |t|
@@ -246,6 +257,12 @@ ActiveRecord::Schema.define(version: 20141231192549) do
     t.string   "process_confidence"
   end
 
+  create_table "organizations", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "owners", force: true do |t|
     t.integer  "supplier_id"
     t.integer  "machine_id"
@@ -264,6 +281,27 @@ ActiveRecord::Schema.define(version: 20141231192549) do
     t.string   "bom_identifier"
     t.text     "material"
     t.text     "notes"
+  end
+
+  create_table "providers", force: true do |t|
+    t.string   "name"
+    t.string   "url_main"
+    t.string   "source",            default: "manual"
+    t.string   "name_for_link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "tag_laser_cutting", default: false
+    t.boolean  "tag_cnc_machining", default: false
+    t.string   "contact_qq"
+    t.string   "contact_wechat"
+    t.string   "contact_phone"
+    t.string   "contact_email"
+    t.string   "contact_name"
+    t.string   "contact_role"
+    t.boolean  "verified",          default: false
+    t.string   "city"
+    t.text     "address"
+    t.integer  "id_within_source"
   end
 
   create_table "reviews", force: true do |t|
@@ -386,6 +424,13 @@ ActiveRecord::Schema.define(version: 20141231192549) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
   add_index "tags", ["tag_group_id"], name: "index_tags_on_tag_group_id", using: :btree
 
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.boolean  "admin",                  default: false
     t.datetime "created_at",                             null: false
@@ -397,6 +442,7 @@ ActiveRecord::Schema.define(version: 20141231192549) do
     t.datetime "password_reset_sent_at"
     t.boolean  "examiner",               default: false
     t.integer  "supplier_id"
+    t.integer  "team_id"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

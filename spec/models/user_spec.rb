@@ -4,8 +4,8 @@
 #
 #  id                     :integer          not null, primary key
 #  admin                  :boolean          default(FALSE)
-#  created_at             :datetime
-#  updated_at             :datetime
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #  address_id             :integer
 #  password_digest        :string(255)
 #  remember_token         :string(255)
@@ -13,6 +13,7 @@
 #  password_reset_sent_at :datetime
 #  examiner               :boolean          default(FALSE)
 #  supplier_id            :integer
+#  team_id                :integer
 #
 
 require 'spec_helper'

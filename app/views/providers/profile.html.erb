@@ -1,0 +1,60 @@
+<% provide(:title,"Teams - sample profile") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+
+      <%= link_to "Back to providers", teams_index_path %>
+
+      <h1><%= @provider.name %></h1>
+
+      <%= link_to "Their website", @provider.url_main %>
+
+      <h3>Processes they do</h3>
+      <ul>
+        <li>NEED TO DO THIS</li>
+      </ul>
+
+      <h3>Contact information</h3>
+      <ul>
+        <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
+        <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
+        <li><strong>Email: </strong><%= @provider.contact_email %></li>
+      </ul>    
+
+      <% if @provider.contact_name %>
+        <p><strong>Best contact:</strong> <%= @provider.contact_name %> 
+        <% if @provider.contact_role %>
+          (role: <%= @provider.contact_role %>)
+        <% end %>
+        </p>
+      <% end %> 
+
+      <%if @provider.address %>
+        <p><%= "Location: #{@provider.address}" %></p>
+      <% elsif @provider.city %>
+        <p><%= "Location: #{@provider.city}" %></p>
+      <% else %>
+        <%= "No location information" %>
+      <% end %>
+
+      <%= mail_to "founders@supplybetter.com", "Let us know what we need to add or change to this profile!" %>
+
+      <h2>Details - not implemented</h2>
+
+      <hr>
+
+      <%= mail_to "founders@supplybetter.com", "Add a purchase order, factory visit, or comment" %>
+
+      <% @comments.each do |comment| %>
+        <% contact = comment.user.lead.lead_contact %>
+        <p><strong><%= "#{contact.full_name_untrusted}: " %></strong><%= raw(comment.payload) %></p>
+      <% end %>
+    
+      <hr>
+
+      <%= link_to "Back to suppliers", teams_index_path %>
+
+    </div>
+  </div>
+</div>

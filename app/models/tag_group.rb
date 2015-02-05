@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: tag_groups
+#
+#  id         :integer          not null, primary key
+#  group_name :string(255)      not null
+#  exclusive  :boolean          default(FALSE)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class TagGroup < ActiveRecord::Base
   has_many :tags
   has_many :taggable_types

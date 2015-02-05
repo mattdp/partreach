@@ -1,0 +1,82 @@
+<% provide(:title,"Teams - sample index") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+<!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
+
+<div class="table-header">
+  <table>
+  <tr id="hax-outline1"><td id="hax-color1">Enjoy</td><td>Make a good usage of this list and find the right supplier!</td></tr>
+  <tr id="hax-outline2"><td id="hax-color2">Contribute</td><td>Please (please) update this list with your contacts / vertical in particular. You don't want to have Cyril after your ass. You don't.</td></tr>
+  <tr id="hax-outline3"><td id="hax-color3">Connect</td><td>If you are listed as a connector you may get inquired about reaching out. You don't have to - it's up to you to make the connection</td></tr>
+  </table>
+</div>
+
+<!-- <div>
+  <table class="table-header">
+  <tr><td>DON'T</td><td>DO</td></tr>
+  <tr><td>Do not share this list with anyone. Ever.</td><td>Get intros ; be thoughtful of the scalability issue here.</td></tr>
+  <tr><td>Do nothing else but adding stuff.</td><td>Add your name if you are a 'connector'.</td></tr>
+  </table>
+</div> -->
+
+    <h1>HAX SUPPLIERS</h1>
+
+    <ul>
+    Contents (click to jump to a section)
+      <% @provider_hash.keys.each do |key| %>
+        <li><%= link_to "#{key.to_s.titleize}", "##{key}" %></li>
+      <% end %>
+    </ul>
+
+
+
+    <hr>
+
+    <% @provider_hash.each do |key, providers| %>
+      <div>
+        <h2>
+          <span id='<%="#{key}"%>' name='<%="#{key}"%>'><%= "#{key.to_s.titleize}" %></span>
+          <span class="heading_navigation">[<%= link_to "Back to top" %>]</span>
+        </h2>
+        
+        <% if providers %> 
+          <div class="stylish">
+          <table>
+            <tr>
+              <th>Existence Verified</th>
+              <th>Company Name</th>
+              <th>City</th>
+              <th>Purchase Orders</th>
+              <th>Factory Visits</th>
+              <th>Comments</th>
+            </tr>
+            <tr>
+              
+            </tr>
+            <% providers.each do |provider| %>
+              <tr>
+                <td><%= "#{provider.verified}" %></td>
+                <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
+                <td><%= "#{provider.city}" %></td>
+                <td></td>
+                <td>1</td>
+                <td>2</td>
+                <!-- <td><%= link_to "Site", "#{provider.url_main}" %></td> -->
+              </tr>              
+            <% end %>  
+            <tr>
+              <td><%= mail_to "founders@supplybetter.com", "[Add to this list]" %></td>
+            </tr>  
+          </table>
+          </div>
+        <% else %>
+          <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
+        <% end %>        
+      </div>
+    <% end %>
+
+    </div>
+  </div>
+</div>
