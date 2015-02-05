@@ -46,23 +46,11 @@
 
       <%= mail_to "founders@supplybetter.com", "Add a purchase order, factory visit, or comment" %>
 
-      <p><strong>Peter: </strong>This place seems legit</p>
-      <p><strong>Aaron: </strong>Factory Name  Jetta
-        Which process/product are you looking for?  CNC machined aluminum, "looks-like" prototype enclosures, rapid prototyping, PCBA, injection molding, final assembly
-        Did you meet senior management?  Yes
-        Is tooling done in house?  Yes
-        Would you be happy taking your top customer here?  Yes
-        What is the overall technical ability of the people you met with?  5
-        How well do they understand your product?  3
-        How close does one of their existing products match your own?  2
-        How well do you think you would work together?  4
-        Who is the best person to contact when reaching out to this company? | Name  Virginia Lam
-        Who is the best person to contact when reaching out to this company? | Role  Assistant Director of Account mAnagement
-        Who is the best person to contact when reaching out to this company? | Contact info  virlam@jetta.com.hk
-        Anything else HAX6 should know about this factory?  Their engineering services for product development seem really great. It would be great to chat with a company that has used this (I'm thinking Sphero) to ask them how to process was. Looking back would they have preferred to have owned the design process? How well did Jetta's work match their original vision?
-        Are you going to continue vetting this company?  Yes
-      </p>
-
+      <% @comments.each do |comment| %>
+        <% contact = comment.user.lead.lead_contact %>
+        <p><strong><%= "#{contact.full_name_untrusted}: " %></strong><%= raw(comment.payload) %></p>
+      <% end %>
+    
       <hr>
 
       <%= link_to "Back to suppliers", teams_index_path %>

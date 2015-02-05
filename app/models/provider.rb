@@ -27,6 +27,10 @@ class Provider < ActiveRecord::Base
 
   before_save :prepend_http_to_url
 
+  has_many :comments
+  has_many :taggings, :as => :taggable, :dependent => :destroy
+  has_many :tags, :through => :taggings
+
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
   validates :url_main, uniqueness: {case_sensitive: false}, allow_nil: true

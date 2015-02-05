@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150203042815) do
+ActiveRecord::Schema.define(version: 20150204101820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20150203042815) do
   end
 
   add_index "combos", ["supplier_id"], name: "index_combos_on_supplier_id", using: :btree
+
+  create_table "comments", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "provider_id"
+    t.string   "comment_type"
+    t.text     "payload"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "communications", force: true do |t|
     t.string   "means_of_interaction"
@@ -127,9 +136,11 @@ ActiveRecord::Schema.define(version: 20150203042815) do
   create_table "events", force: true do |t|
     t.string   "model"
     t.string   "happening"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "model_id"
+    t.string   "target_model"
+    t.integer  "target_model_id"
   end
 
   create_table "externals", force: true do |t|
@@ -244,6 +255,12 @@ ActiveRecord::Schema.define(version: 20150203042815) do
     t.string   "view_token"
     t.text     "order_description"
     t.string   "process_confidence"
+  end
+
+  create_table "organizations", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "owners", force: true do |t|
@@ -407,6 +424,13 @@ ActiveRecord::Schema.define(version: 20150203042815) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
   add_index "tags", ["tag_group_id"], name: "index_tags_on_tag_group_id", using: :btree
 
+  create_table "teams", force: true do |t|
+    t.string   "name"
+    t.integer  "organization_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.boolean  "admin",                  default: false
     t.datetime "created_at",                             null: false
@@ -418,6 +442,7 @@ ActiveRecord::Schema.define(version: 20150203042815) do
     t.datetime "password_reset_sent_at"
     t.boolean  "examiner",               default: false
     t.integer  "supplier_id"
+    t.integer  "team_id"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree

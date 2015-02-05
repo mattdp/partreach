@@ -25,9 +25,9 @@ gem 'angularjs-rails'
 gem 'angular-ui-bootstrap-rails'
 gem 'gon'
 gem 'jbuilder'
-gem "d3-rails"
+gem 'd3-rails'
+gem 'premailer-rails'
 gem 'rails_admin'
-#
 # nested_form: latest released version is 0.3.2, from Apr 5, 2013
 # but we need fix from pull request #266  https://github.com/ryanb/nested_form/pull/266,
 # merged Jun 18, 2013  https://github.com/ryanb/nested_form/commit/42028bc06e72a848d297edc1467a969a7c9def57
