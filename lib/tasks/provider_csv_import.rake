@@ -7,7 +7,7 @@ task :provider_csv_import => :environment do
 
   c = Contact.where("email = ?","peter@fakeemailforsetup.com")
   if c.present?
-    u = c.contactable.user
+    u = c[0].contactable.user
   else
     u = User.create_for_hax_v1_launch("HAX","peter@fakeemailforsetup.com","Peter",last_name=nil)
   end
@@ -30,19 +30,19 @@ task :provider_csv_import => :environment do
       if existing_provider.present? and false
         puts "***** FOUND EXISTING PROVIDER. ID WITHIN SOURCE: #{existing_provider[0].id_within_source} NAME: #{existing_provider[0].name}"
       elsif not(row['name'].present? and row['url_main'].present? and row['tag'].present?)
-        puts "***** SKIPPING, LACKS NAME OR LACKS URL."        
+        puts "***** SKIPPING, LACKS NAME OR LACKS URL OR LACKS TAG."        
       else
         new_provider = Provider.new(provider_params)
         new_provider.name_for_link = Provider.proper_name_for_link(row['name'])
-        new_provider.tag_laser_cutting = true if row['flag'] == "laser_cutting"
-        new_provider.tag_cnc_machining = true if row['flag'] == "cnc_machining"
+        new_provider.tag_laser_cutting = true if row['tag'] == "laser_cutting"
+        new_provider.tag_cnc_machining = true if row['tag'] == "cnc_machining"
 
         new_provider.source = 'hax_sheet_import'
 
         new_provider.save!
         puts "***** ADDED PROVIDER: #{new_provider.name} (#{new_provider.id})"
 
-        Tagging.create(taggable_id: new_provider.id, taggable_type: "Provider", tag_id: Tag.find_by_name(row['tag'])) 
+        Tagging.create(taggable_id: new_provider.id, taggable_type: "Provider", tag_id: Tag.find_by_name(row['tag']).id) 
 
         if row['peter_comment'].present?
           Comment.create(provider: new_provider, user: u, payload: row['peter_comment'])
