@@ -59,22 +59,22 @@
 
       <h3>
         Purchase Orders
-       <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+       <span class="heading_navigation">[<%= link_to "add a purchase" %>]</span>
        </h3>  
        <ul>
-        <li>Peter Wang</li>
-        <li>Cyril E.</li>
-        <li>Duncan Turner</li>
+        <% @po_names.each do |name| %>
+          <li><%= "#{name}" %></li>
+        <% end %>
       </ul>
 
       <h3>
         Factory Visits
-       <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+       <span class="heading_navigation">[<%= link_to "add a visit" %>]</span>
        </h3>
       <ul>
-        <li>Peter Wang</li>
-        <li>Matt Du Pont</li>
-        <li>Sally Wu</li>
+        <% @fv_names.each do |name| %>
+          <li><%= "#{name}" %></li>
+        <% end %>
       </ul>
 
       <h2>
@@ -84,10 +84,9 @@
 
       <% @comments.each do |comment| %>
         <% contact = comment.user.lead.lead_contact %>
-        <p><strong><%= "#{contact.full_name_untrusted}: " %></strong><%= raw(comment.payload) %></p>
+        <p><strong><%= "#{contact.first_name_and_team}: " %></strong><%= raw(comment.payload) %></p>
       <% end %>
     
-      <hr>
       </div>
     </div>
   </div>
