@@ -18,6 +18,7 @@ class ProvidersController < ApplicationController
   end
 
   def suggested_edit
+    Event.add_event("User",current_user.id,params[:clicked])
     render layout: "orders_new"
   end
 

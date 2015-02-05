@@ -8,13 +8,13 @@
         <p><%= link_to "Back to HAX SUPPLIERS", teams_index_path %></p>
 
         <div class="table-header">
-          <h3>Address information <span class="heading_navigation">[<%= link_to "Edit" %>]</span></h3>
+          <h3>Address information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_address_from_profile") %>]</span></h3>
           <ul>
             <li><strong>City: </strong><%= "#{@provider.city}" %></li>
             <li><strong>Full address: </strong><%= "#{@provider.address}" %></li>
           </ul>
 
-          <h3>Contact information <span class="heading_navigation">[<%= link_to "edit" %>]</span></h3>
+          <h3>Contact information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_contactinfo_from_profile") %>]</span></h3>
           <ul>
             <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
             <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
@@ -33,7 +33,7 @@
 
         <h1>
         <%= @provider.name %>
-        <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+        <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_providername_from_profile") %>]</span>
         </h1>
 
         <div class="verified">
@@ -43,7 +43,7 @@
 
         <h3>
           What they can do for you
-         <span class="heading_navigation">[<%= link_to "edit" %>]</span>
+         <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_whatcantheydo_from_profile") %>]</span>
         </h3>
         <% @tags.each do |tag| %>
           <ul>
@@ -53,7 +53,7 @@
 
         <h3>
           Purchase orders
-         <span class="heading_navigation">[<%= link_to "add a purchase" %>]</span>
+         <span class="heading_navigation">[<%= link_to "add a purchase", teams_suggested_edit_path("add_po_from_profile") %>]</span>
          </h3>  
          <ul>
           <% @po_names.each do |name| %>
@@ -63,7 +63,7 @@
 
         <h3>
           Factory visits
-         <span class="heading_navigation">[<%= link_to "add a visit" %>]</span>
+         <span class="heading_navigation">[<%= link_to "add a visit", teams_suggested_edit_path("add_visit_from_profile") %>]</span>
          </h3>
         <ul>
           <% @fv_names.each do |name| %>
@@ -73,7 +73,7 @@
 
         <h3>
           Comments
-          <span class="heading_navigation">[<%= link_to "add a comment" %>]</span>
+          <span class="heading_navigation">[<%= link_to "add a comment", teams_suggested_edit_path("add_comment_from_profile") %>]</span>
         </h3>
 
         <% if @comments.present? %>
