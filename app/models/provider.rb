@@ -2,25 +2,23 @@
 #
 # Table name: providers
 #
-#  id                :integer          not null, primary key
-#  name              :string(255)
-#  url_main          :string(255)
-#  source            :string(255)      default("manual")
-#  name_for_link     :string(255)
-#  created_at        :datetime
-#  updated_at        :datetime
-#  tag_laser_cutting :boolean          default(FALSE)
-#  tag_cnc_machining :boolean          default(FALSE)
-#  contact_qq        :string(255)
-#  contact_wechat    :string(255)
-#  contact_phone     :string(255)
-#  contact_email     :string(255)
-#  contact_name      :string(255)
-#  contact_role      :string(255)
-#  verified          :boolean          default(FALSE)
-#  city              :string(255)
-#  address           :text
-#  id_within_source  :integer
+#  id               :integer          not null, primary key
+#  name             :string(255)
+#  url_main         :string(255)
+#  source           :string(255)      default("manual")
+#  name_for_link    :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  contact_qq       :string(255)
+#  contact_wechat   :string(255)
+#  contact_phone    :string(255)
+#  contact_email    :string(255)
+#  contact_name     :string(255)
+#  contact_role     :string(255)
+#  verified         :boolean          default(FALSE)
+#  city             :string(255)
+#  address          :text
+#  id_within_source :integer
 #
 
 class Provider < ActiveRecord::Base
@@ -33,7 +31,6 @@ class Provider < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
-  validates :url_main, uniqueness: {case_sensitive: false}, allow_nil: true
 
   def self.proper_name_for_link(name)
     return name.downcase.gsub(/\W+/, "")
@@ -48,21 +45,14 @@ class Provider < ActiveRecord::Base
   def self.providers_hash_by_process
     hash = {}
 
-    hash[:laser_cutting] = Provider.all.select{|p| p.tag_laser_cutting}
-    hash[:cnc_machining] = Provider.all.select{|p| p.tag_cnc_machining}
+    tags = Tag.distinct.joins(:taggings).where(taggings: {taggable_type: 'Provider'}).distinct
+    tags = tags.sort_by{|t| t.name}
+
+    tags.each do |tag|
+      hash[tag] = Tagging.where("tag_id = ? and taggable_type = 'Provider'",tag.id).map{|tgg| tgg.taggable}.sort_by{|provider| provider.name}
+    end
 
     return hash
-  end
-
-  #TO DO
-
-  def add_flag(flag_name)
-  end
-
-  def remove_flag(flag_name)
-  end
-
-  def has_flag?(flag_name)
   end
 
 end

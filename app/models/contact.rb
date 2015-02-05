@@ -56,6 +56,19 @@ class Contact < ActiveRecord::Base
     end
   end 
 
+  def first_name_and_team
+    team = self.contactable.user.team
+    if team.present?
+      if self.first_name.present?
+        return "#{self.first_name} (#{team.name})"
+      else
+        return "#{self.full_name_untrusted} (#{team.name})"
+      end
+    else
+      return self.full_name_untrusted
+    end
+  end
+
   def salutation
     return "Hi #{self.first_name}," if self.first_name.present?
     return "Hi,"
