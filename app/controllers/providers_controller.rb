@@ -17,4 +17,7 @@ class ProvidersController < ApplicationController
     render layout: "orders_new"
   end
 
+  def suggested_edit
+  end
+
 end

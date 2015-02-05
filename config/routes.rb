@@ -64,6 +64,7 @@ Partreach::Application.routes.draw do
   
   get '/teams/hax/', to: 'providers#index', as: "teams_index"
   get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
+  get '/teams/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
 
   resources :orders, only: [:index, :show, :new, :create, :destroy]
   get '/orders/view/:id/:view_token', to: 'orders#show', as: 'view_order'
