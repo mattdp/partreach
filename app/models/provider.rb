@@ -31,7 +31,6 @@ class Provider < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
-  validates :url_main, uniqueness: {case_sensitive: false}, allow_nil: true
 
   def self.proper_name_for_link(name)
     return name.downcase.gsub(/\W+/, "")
@@ -54,17 +53,6 @@ class Provider < ActiveRecord::Base
     end
 
     return hash
-  end
-
-  #TO DO
-
-  def add_flag(flag_name)
-  end
-
-  def remove_flag(flag_name)
-  end
-
-  def has_flag?(flag_name)
   end
 
 end
