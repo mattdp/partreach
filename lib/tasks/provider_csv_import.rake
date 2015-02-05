@@ -45,7 +45,7 @@ task :provider_csv_import => :environment do
         Tagging.create(taggable_id: new_provider.id, taggable_type: "Provider", tag_id: Tag.find_by_name(row['tag']).id) 
 
         if row['peter_comment'].present?
-          Comment.create(provider: new_provider, user: u, payload: row['peter_comment'])
+          Comment.create(provider: new_provider, user: u, payload: row['peter_comment'], comment_type: "comment")
         end
 
       end
