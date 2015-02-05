@@ -50,14 +50,12 @@
       <h3>
         What they can do for you
        <span class="heading_navigation">[<%= link_to "edit" %>]</span>
-       </h3>
-      <ul>
-        <li>CNC Machining</li>
-        <li>Laser Cutting</li>
-        <li>PCB Fabrication</li>
-        <li>PCB Assembly</li>
-        <li>Contract Manufacturing</li>
-      </ul>
+      </h3>
+      <% @tags.each do |tag| %>
+        <ul>
+          <li><%= "#{tag.readable}" %></li>
+        </ul>
+      <% end %>
 
       <h3>
         Purchase Orders
