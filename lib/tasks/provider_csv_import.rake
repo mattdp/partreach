@@ -21,14 +21,13 @@ task :provider_csv_import => :environment do
     end
 
     if provider_params[:id_within_source]
-      existing_provider = Provider.where("id_within_source = ?",row['id_within_source'])
+      existing_provider = Provider.where("id_within_source = ?",provider_params[:id_within_source])
     else
       existing_provider = nil
     end  
 
     begin
-      if existing_provider.present? and row['peter_comment'].present?
-        Comment.create(provider: existing_provider[0], user: u, payload: row['peter_comment'], comment_type: "comment")
+      if existing_provider.present? 
         puts "***** FOUND EXISTING PROVIDER. ID WITHIN SOURCE: #{existing_provider[0].id_within_source} NAME: #{existing_provider[0].name}"
       elsif not(row['name'].present? and row['tag'].present?)
         puts "***** SKIPPING, LACKS NAME OR LACKS TAG."        
