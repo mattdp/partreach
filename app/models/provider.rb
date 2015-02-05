@@ -49,6 +49,7 @@ class Provider < ActiveRecord::Base
     hash = {}
 
     tags = Tag.distinct.joins(:taggings).where(taggings: {taggable_type: 'Provider'}).distinct
+    tags = tags.sort_by{|t| t.name}
 
     tags.each do |tag|
       hash[tag.name] = Tagging.where("tag_id = ? and taggable_type = 'Provider'",tag.id).map{|tgg| tgg.taggable}
