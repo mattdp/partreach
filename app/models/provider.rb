@@ -48,8 +48,11 @@ class Provider < ActiveRecord::Base
   def self.providers_hash_by_process
     hash = {}
 
-    hash[:laser_cutting] = Provider.all.select{|p| p.tag_laser_cutting}
-    hash[:cnc_machining] = Provider.all.select{|p| p.tag_cnc_machining}
+    tags = Tag.distinct.joins(:taggings).where(taggings: {taggable_type: 'Provider'}).distinct
+
+    tags.each do |tag|
+      hash[tag.name] = Tagging.where("tag_id = ? and taggable_type = 'Provider'",tag.id).map{|tgg| tgg.taggable}
+    end
 
     return hash
   end
