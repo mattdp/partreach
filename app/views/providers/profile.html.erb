@@ -31,10 +31,12 @@
         <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_providername_from_profile") %>]</span>
         </h1>
 
-        <div class="verified">
-          <img class="supplier-index-indicator" alt="Verified icon" src="/assets/check59.svg" title="This provider has been verified to exist" >
-          Verified
-        </div>
+        <% if @provider.verified %>
+          <div class="verified">
+            <img class="supplier-index-indicator" alt="Verified icon" src="/assets/check59.svg" title="This provider has been verified to exist" >
+            Verified
+          </div>
+        <% end %>
 
         <h3>
           What they can do for you

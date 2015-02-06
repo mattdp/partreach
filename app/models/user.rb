@@ -67,6 +67,14 @@ class User < ActiveRecord::Base
     t.save
   end
 
+  def organization
+    team.organization if team
+  end
+
+  def in_hax_organization?
+    try(:organization).try(:hax?) || false
+  end
+
   #can cause some serious overlap problems if abused
   def self.create_and_link_to_supplier(name,email,supplier_id)
     user = User.create_with_dummy_password(name,email)
