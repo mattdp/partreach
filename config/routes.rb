@@ -3,7 +3,7 @@ Partreach::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root :to => 'static_pages#home', via: :get
 
-  get '/factory-survey', to: redirect('http://fluidsurveys.com/surveys/supplybetter/factory-survey/', status: 302)
+  get '/factory-survey', to: 'providers#signin', as: 'teams_signin'
 
   get '/analytics', to: 'analytics#home', as: 'analytics_home'
   get '/analytics/rfqs', to: 'analytics#rfqs', as: 'analytics_rfqs'
