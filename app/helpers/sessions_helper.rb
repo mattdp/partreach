@@ -45,7 +45,11 @@ module SessionsHelper
   end
 
   def hax_access_only
-    redirect_to(root_path) unless current_user.try(:in_hax_organization?) || current_user.try(:admin?)
+    redirect_to(root_path) unless hax_access_allowed
+  end
+
+  def hax_access_allowed
+    current_user.try(:in_hax_organization?) || current_user.try(:admin?)
   end
 
   def examiner_user
