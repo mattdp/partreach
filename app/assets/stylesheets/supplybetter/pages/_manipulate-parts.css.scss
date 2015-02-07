@@ -38,6 +38,7 @@
 /*begin list styling*/
 ul {
   list-style:none;
+  margin-top: 0px;
 }
 /*end list styling*/
 
@@ -145,15 +146,17 @@ h3 {
 }
 
 #keyword-list {
-    height: 175px;
-    -moz-columns: 5 150px;
-    -webkit-columns: 5 150px;
-    columns: 5 150px;
+    /*height: 175px;*/
+    -moz-columns: 5;
+    -webkit-columns: 5;
+    columns: 5;
 }
 
 .text-block {
   background: #f6f5f2;
   width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px; 
 }
 
 /*!
