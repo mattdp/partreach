@@ -7,7 +7,8 @@
 
       <div class="row">
         <div class="col-md-6">
-          <h1 class="profile-spacing">HAX SUPPLIERS</h1>
+        <h1> HAX SUPPLIERS </h1>
+          <!-- <img src="http://www.haxlr8r.com/images/logo-big.png"> -->
         </div>
         <div class="col-md-6">
           <h1> Privately collaborate with HAX teams about manufacturing, sourcing, China, and quad copters</h1>
@@ -15,22 +16,26 @@
       </div>
       
       <div class="row">
-      Contents (click to jump to a section)
+        <div class="col-md-6">
+          Contents (click to jump to a section)
+        </div>
       </div>
       
-      <div id="keyword-list">
-        <ul>
-          <% @provider_hash.keys.each do |key| %>
-            <li><%= link_to "#{key.readable}", "##{key.name}" %></li>
-          <% end %>
-        </ul>
+      <div class="row">
+        <div id="keyword-list">
+          <ul>
+            <% @provider_hash.keys.each do |key| %>
+              <li><%= link_to "#{key.readable}", "##{key.name}" %></li>
+            <% end %>
+          </ul>
+        </div>
       </div>
 
       <hr>
 
       <% @provider_hash.each do |key, providers| %>
-        <div>
-          <h2 class="profile-spacing">
+        <div class="col-md-12">
+          <h2>
             <span id='<%="#{key.name}"%>' name='<%="#{key.name}"%>'><%= "#{key.readable}" %></span>
             <span class="heading_navigation">[<%= link_to "Back to top" %>]</span>
           </h2>
