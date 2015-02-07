@@ -24,6 +24,7 @@ module SessionsHelper
   def sign_out
     self.current_user = nil
     cookies.delete(:remember_token)
+    session[:return_to] = nil
   end
 
   def signed_in_user
@@ -45,10 +46,11 @@ module SessionsHelper
   end
 
   def hax_access_only
-    redirect_to(root_path) unless hax_access_allowed
+    store_location
+    redirect_to teams_signin_url, notice: "Please sign in." unless hax_access_allowed?
   end
 
-  def hax_access_allowed
+  def hax_access_allowed?
     current_user.try(:in_hax_organization?) || current_user.try(:admin?)
   end
 

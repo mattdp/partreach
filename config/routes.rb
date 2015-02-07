@@ -62,6 +62,7 @@ Partreach::Application.routes.draw do
   get '/profiles/:supplier_name', to: 'profiles#supplier_profile_redirect', as: 'supplier_profile'
   get '/submit_ask/', to: 'profiles#submit_ask'
   
+  get '/teams/signin', to: 'providers#signin', as: 'teams_signin'
   get '/teams/hax/', to: 'providers#index', as: "teams_index"
   get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
   get '/teams/hax/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
