@@ -2,11 +2,8 @@ class ProvidersController < ApplicationController
   before_filter :hax_access_only, except: :signin
   
   def signin
-    if hax_access_allowed
-      redirect_to teams_index_path
-    else
-      render "sessions/new", layout: "provider"
-    end
+    sign_out
+    render "sessions/new", layout: "provider"
   end
 
   def index
