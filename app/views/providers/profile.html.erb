@@ -2,88 +2,101 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
-    
-      <div class="profile-spacing">
-        <p><%= link_to "Back to HAX SUPPLIERS", teams_index_path %></p>
-
-        <div class="table-header">
-          <h3>Address information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_address_from_profile") %>]</span></h3>
-          <ul>
-            <li><strong>City: </strong><%= "#{@provider.city}" %></li>
-            <li><strong>Full address: </strong><%= "#{@provider.address}" %></li>
-          </ul>
-
-          <h3>Contact information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_contactinfo_from_profile") %>]</span></h3>
-          <ul>
-            <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
-            <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
-            <li><strong>Skype: </strong><%= @provider.contact_skype %></li>
-            <li><strong>Email: </strong><%= @provider.contact_email %></li>
-            <li><strong>Website: </strong>
-              <%= link_to "Link", @provider.url_main if @provider.url_main %>
-            <li><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%>
-          </ul>    
-        </div>
-
-        <h1>
-        <%= @provider.name %>
-        <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_providername_from_profile") %>]</span>
-        </h1>
-
-        <% if @provider.verified %>
-          <div class="verified">
-            <img class="supplier-index-indicator" alt="Verified icon" src="/assets/check59.svg" title="This provider has been verified to exist" >
-            Verified
-          </div>
-        <% end %>
-
-        <h3>
-          What they can do for you
-         <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_whatcantheydo_from_profile") %>]</span>
-        </h3>
-        <% @tags.each do |tag| %>
-          <ul>
-            <li><%= "#{tag.readable}" %></li>
-          </ul>
-        <% end %>
-
-        <h3>
-          Purchase orders
-         <span class="heading_navigation">[<%= link_to "add a purchase", teams_suggested_edit_path("add_po_from_profile") %>]</span>
-         </h3>  
-         <ul>
-          <% @po_names.each do |name| %>
-            <li><%= "#{name}" %></li>
-          <% end %>
-        </ul>
-
-        <h3>
-          Factory visits
-         <span class="heading_navigation">[<%= link_to "add a visit", teams_suggested_edit_path("add_visit_from_profile") %>]</span>
-         </h3>
-        <ul>
-          <% @fv_names.each do |name| %>
-            <li><%= "#{name}" %></li>
-          <% end %>
-        </ul>
-
-        <h3>
-          Comments
-          <span class="heading_navigation">[<%= link_to "add a comment", teams_suggested_edit_path("add_comment_from_profile") %>]</span>
-        </h3>
-
-        <% if @comments.present? %>
-          <% @comments.each do |comment| %>
-            <% contact = comment.user.lead.lead_contact %>
-            <p><strong><%= "#{contact.first_name_and_team}: " %></strong><%= raw(comment.payload) %></p>
-          <% end %>
-        <% else %>
-          <p>No information yet - be the first to add some!</p>
-        <% end %>
-
-      </div>
-
+     <div class="col-md-4">
+      <p><%= link_to "Back to HAX SUPPLIERS", teams_index_path %></p>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-8">
+      
+      <!-- COMPANY NAME -->
+      <h1>
+      <%= @provider.name %>
+      <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_providername_from_profile") %>]</span>
+      </h1>
+
+      <!-- EXISTENCE VERIFIED -->
+      <% if @provider.verified %>
+        <div class="verified">
+          <img class="supplier-index-indicator" alt="Verified icon" src="/assets/check59.svg" title="This provider has been verified to exist" >
+          Verified
+        </div>
+      <% end %>
+
+      <!-- CATEGORIES -->
+      <h3>
+        What they can do for you
+       <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_whatcantheydo_from_profile") %>]</span>
+      </h3>
+      <% @tags.each do |tag| %>
+        <ul>
+          <li><%= "#{tag.readable}" %></li>
+        </ul>
+      <% end %>
+
+      <!-- PURCHASE ORDERS -->
+      <h3>
+        Purchase orders
+       <span class="heading_navigation">[<%= link_to "add a purchase", teams_suggested_edit_path("add_po_from_profile") %>]</span>
+       </h3>  
+       <ul>
+        <% @po_names.each do |name| %>
+          <li><%= "#{name}" %></li>
+        <% end %>
+      </ul>
+
+      <!-- FACTORY VISITS -->
+      <h3>
+        Factory visits
+       <span class="heading_navigation">[<%= link_to "add a visit", teams_suggested_edit_path("add_visit_from_profile") %>]</span>
+       </h3>
+      <ul>
+        <% @fv_names.each do |name| %>
+          <li><%= "#{name}" %></li>
+        <% end %>
+      </ul>
+      </div>
+
+      <!-- BEGIN RIGHT COLUMN -->
+      <div class="col-md-4">
+      
+      <!-- ADDRESS SECTION -->
+      <div class="table-header">
+        <h3>Address information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_address_from_profile") %>]</span></h3>
+        <ul>
+          <li><strong>City: </strong><%= "#{@provider.city}" %></li>
+          <li><strong>Full address: </strong><%= "#{@provider.address}" %></li>
+        </ul>
+
+        <h3>Contact information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_contactinfo_from_profile") %>]</span></h3>
+        <ul>
+          <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
+          <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
+          <li><strong>Skype: </strong><%= @provider.contact_skype %></li>
+          <li><strong>Email: </strong><%= @provider.contact_email %></li>
+          <li><strong>Website: </strong><%= link_to "Link", @provider.url_main if @provider.url_main %></li>
+          <li><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></li>
+        </ul>    
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+    <h3>
+      Comments
+      <span class="heading_navigation">[<%= link_to "add a comment", teams_suggested_edit_path("add_comment_from_profile") %>]</span>
+    </h3>
+    <% if @comments.present? %>
+      <% @comments.each do |comment| %>
+        <% contact = comment.user.lead.lead_contact %>
+        <p><strong><%= "#{contact.first_name_and_team}: " %></strong><%= raw(comment.payload) %></p>
+      <% end %>
+    <% else %>
+      <p>No information yet - be the first to add some!</p>
+    <% end %>
+    </div>
+  </div>
+
 </div>
