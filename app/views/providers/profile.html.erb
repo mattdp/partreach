@@ -7,13 +7,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-4">
       
       <!-- COMPANY NAME -->
-      <h1>
-      <%= @provider.name %>
-      <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_providername_from_profile") %>]</span>
-      </h1>
+      <div class="profile-spacing">
+        <h1>
+        <%= @provider.name %>
+        <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_providername_from_profile") %>]</span>
+        </h1>
+      </div>
 
       <!-- EXISTENCE VERIFIED -->
       <% if @provider.verified %>
@@ -57,11 +59,38 @@
       </ul>
       </div>
 
+      <!-- BEGIN MIDDLE COLUMN -->
+      <div class="col-md-4 photo-gallery">
+        <div class="row">
+          <img style="width:100%;" src="/assets/IMG_4502.JPG"/>
+        </div>
+          <ul class="row photo-gallery">
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4480-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4482-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4484-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4485-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4486-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4487-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4488-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4489-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4490-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4491-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4492-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4493-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4494-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4495-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4510-thumb.JPG"/></li>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4516-thumb.JPG"/></li>
+          </ul>
+      </div>
+
+
       <!-- BEGIN RIGHT COLUMN -->
       <div class="col-md-4">
       
       <!-- ADDRESS SECTION -->
       <div class="table-header">
+      <iframe width="390" height="267" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=3008%20Shennan%20Middle%20Road%2C%20Futian%20District%2C%20Shenzhen%20518031%2C%20China&key=AIzaSyAVFaXqivNKzaOZ6Ta8H2X_adVX39JRJZc"></iframe>
         <h3>Address information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_address_from_profile") %>]</span></h3>
         <ul>
           <li><strong>City: </strong><%= "#{@provider.city}" %></li>
