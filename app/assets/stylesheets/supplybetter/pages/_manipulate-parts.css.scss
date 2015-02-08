@@ -36,7 +36,7 @@
 }
 
 /*begin list styling*/
-ul {
+.container ul {
   list-style:none;
   margin-top: 0px;
 }
@@ -138,6 +138,7 @@ text-align: center;
 }
 
 h3 {
+  margin-top: 0px;
   margin-bottom: 0px;
 }
 
@@ -879,3 +880,4 @@ ul.photo-gallery li img {
     cursor: pointer;
     width: 100%;
 }
+
