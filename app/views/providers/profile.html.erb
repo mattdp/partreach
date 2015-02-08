@@ -1,13 +1,5 @@
 <% provide(:title,"Teams - sample profile") %>
 
-<script type="text/javascript"> 
-  $(':radio').change(
-  function(){
-    $('.choice').text( this.value + ' stars' );
-  } 
-)
-</script>
-
 <div class="container">
   <div class="row">
      <div class="col-md-4">
@@ -33,7 +25,8 @@
         </div>
       <% end %>
 
-      <div class="row">
+      <!-- STAR RATINGS -->
+      <!-- <div class="row">
         <span class="star-rating">
           <input type="radio" name="rating" value="1"><i></i>
           <input type="radio" name="rating" value="2"><i></i>
@@ -42,7 +35,8 @@
           <input type="radio" name="rating" value="5"><i></i>
         </span>
         <strong class="choice">Choose a rating</strong>
-      </div>
+      </div> -->
+      
       <!-- CATEGORIES -->
       <h3>
         What they can do for you
@@ -78,30 +72,37 @@
       </div>
 
       <!-- BEGIN MIDDLE COLUMN -->
-      <div class="col-md-4 photo-gallery">
-        <div class="row">
-          <img style="width:100%;" src="/assets/IMG_4502.JPG"/>
-        </div>
-          <ul class="row photo-gallery">
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4480-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4482-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4484-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4485-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4486-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4487-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4488-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4489-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4490-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4491-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4492-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4493-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4494-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4495-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4510-thumb.JPG"/></li>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4516-thumb.JPG"/></li>
-          </ul>
+      <!-- PHOTO GALLERY -->
+      <div class="col-md-4">
+        <ul class="row photo-gallery">
+          <li><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4502-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4480-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4482-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4484-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4485-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4486-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4487-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4488-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4489-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4490-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4491-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4492-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4493-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4494-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4495-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4510-midsize.JPG"/></li>
+          <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/provider_profile-photo_gallery/IMG_4516-midsize.JPG"/></li>
+        </ul>
       </div>
 
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">         
+            <div class="modal-body">                
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
 
       <!-- BEGIN RIGHT COLUMN -->
       <div class="col-md-4">
@@ -115,7 +116,7 @@
       <div class="google-maps">
         <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=3008%20Shennan%20Middle%20Road%2C%20Futian%20District%2C%20Shenzhen%20518031%2C%20China&key=AIzaSyAVFaXqivNKzaOZ6Ta8H2X_adVX39JRJZc"></iframe>
       </div>
-      
+
       <!-- ADDRESS SECTION -->
         <h3>Address information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_address_from_profile") %>]</span></h3>
         <ul>
@@ -135,7 +136,6 @@
       </div>
       </div>
     </div>
-  </div>
 
   <div class="row">
     <div class="col-md-12">
@@ -155,3 +155,79 @@
   </div>
 
 </div>
+
+<!-- PHOTO GALLERY -->
+<script>
+$(document).ready(function(){        
+    $('li img').on('click',function(){
+        var src = $(this).attr('src');
+        var img = '<img src="' + src + '" class="img-responsive"/>';
+        
+        //start of new code new code
+        var index = $(this).parent('li').index();   
+        
+        var html = '';
+        html += img;                
+        html += '<div style="height:25px;clear:both;display:block;">';
+        html += '<a class="controls next" href="'+ (index+2) + '">next &raquo;</a>';
+        html += '<a class="controls previous" href="' + (index) + '">&laquo; prev</a>';
+        html += '</div>';
+        
+        $('#myModal').modal();
+        $('#myModal').on('shown.bs.modal', function(){
+            $('#myModal .modal-body').html(html);
+            //new code
+            $('a.controls').trigger('click');
+        })
+        $('#myModal').on('hidden.bs.modal', function(){
+            $('#myModal .modal-body').html('');
+        });    
+   });
+
+})
+
+//new code
+$(document).on('click', 'a.controls', function(){
+    var index = $(this).attr('href');
+    var src = $('ul.row li:nth-child('+ index +') img').attr('src');             
+    
+    $('.modal-body img').attr('src', src);
+    
+    var newPrevIndex = parseInt(index) - 1; 
+    var newNextIndex = parseInt(newPrevIndex) + 2; 
+    
+    if($(this).hasClass('previous')){               
+        $(this).attr('href', newPrevIndex); 
+        $('a.next').attr('href', newNextIndex);
+    }else{
+        $(this).attr('href', newNextIndex); 
+        $('a.previous').attr('href', newPrevIndex);
+    }
+    
+    var total = $('ul.row li').length + 1; 
+    //hide next button
+    if(total === newNextIndex){
+        $('a.next').hide();
+    }else{
+        $('a.next').show()
+    }            
+    //hide previous button
+    if(newPrevIndex === 0){
+        $('a.previous').hide();
+    }else{
+        $('a.previous').show()
+    }
+    
+    
+    return false;
+});                         
+</script>
+
+<!-- JS TO ALLOW RATINGS TO WORK -->
+// <script type="text/javascript"> 
+//   $(':radio').change(
+//   function(){
+//     $('.choice').text( this.value + ' stars' );
+//   } 
+// )
+// </script>
