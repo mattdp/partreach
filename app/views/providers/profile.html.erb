@@ -1,5 +1,13 @@
 <% provide(:title,"Teams - sample profile") %>
 
+<script type="text/javascript"> 
+  $(':radio').change(
+  function(){
+    $('.choice').text( this.value + ' stars' );
+  } 
+)
+</script>
+
 <div class="container">
   <div class="row">
      <div class="col-md-4">
@@ -25,6 +33,16 @@
         </div>
       <% end %>
 
+      <div class="row">
+        <span class="star-rating">
+          <input type="radio" name="rating" value="1"><i></i>
+          <input type="radio" name="rating" value="2"><i></i>
+          <input type="radio" name="rating" value="3"><i></i>
+          <input type="radio" name="rating" value="4"><i></i>
+          <input type="radio" name="rating" value="5"><i></i>
+        </span>
+        <strong class="choice">Choose a rating</strong>
+      </div>
       <!-- CATEGORIES -->
       <h3>
         What they can do for you
@@ -88,9 +106,17 @@
       <!-- BEGIN RIGHT COLUMN -->
       <div class="col-md-4">
       
-      <!-- ADDRESS SECTION -->
+      
       <div class="table-header">
-      <iframe width="390" height="267" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=3008%20Shennan%20Middle%20Road%2C%20Futian%20District%2C%20Shenzhen%20518031%2C%20China&key=AIzaSyAVFaXqivNKzaOZ6Ta8H2X_adVX39JRJZc"></iframe>
+        
+      <!-- GOOGLE MAPS EMBED
+      https://developers.google.com/maps/documentation/embed/guide#embedding_the_map -->
+      <!-- Height=450px; Width=600px -->
+      <div class="google-maps">
+        <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=3008%20Shennan%20Middle%20Road%2C%20Futian%20District%2C%20Shenzhen%20518031%2C%20China&key=AIzaSyAVFaXqivNKzaOZ6Ta8H2X_adVX39JRJZc"></iframe>
+      </div>
+      
+      <!-- ADDRESS SECTION -->
         <h3>Address information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_address_from_profile") %>]</span></h3>
         <ul>
           <li><strong>City: </strong><%= "#{@provider.city}" %></li>
