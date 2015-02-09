@@ -96,7 +96,7 @@
     <div class="col-md-12">
     <h3>
       Comments
-      <span class="heading_navigation">[<%= link_to "add a comment", teams_suggested_edit_path("add_comment_from_profile") %>]</span>
+      <span class="heading_navigation">[<%= link_to "add a comment", new_comment_path(@provider.id) %>]</span>
     </h3>
     <% if @comments.present? %>
       <% @comments.each do |comment| %>
@@ -110,13 +110,3 @@
   </div>
 
 </div>
-
-
-<!-- JS TO ALLOW RATINGS TO WORK -->
-<script type="text/javascript"> 
-  $(':radio').change(
-  function(){
-    $('.choice').text( this.value + ' stars' );
-  } 
-)
-</script>

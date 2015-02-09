@@ -15,6 +15,9 @@ Partreach::Application.routes.draw do
   get '/analytics/phone', to: 'analytics#phone', as: 'analytics_phone'
   get '/analytics/web_search_results', to: 'analytics#web_search_results', as: 'analytics_web_search_results'
 
+  resources :comments, only: [:create]
+  get '/comments/new/:provider_id', to: 'comments#new', as: 'new_comment'
+
   resources :communications, only: [:new, :create]
 
   resources :dialogues, only: [:new, :create, :destroy]
