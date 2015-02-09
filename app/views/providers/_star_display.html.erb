@@ -1,0 +1,13 @@
+<div class="row">
+  <% if score > 0 %>
+    <span class="star-display">
+      <% 5.times do |num| %>
+       <input type="radio">
+      <% end %>
+      <%#= search "TERRIBLE NOT DRY WAY TO RENDER" in css to see rationale for below %>
+      <% score.times do |num| %>
+        <i></i>
+      <% end %>
+    </span>
+  <% end %>
+</div>

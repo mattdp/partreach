@@ -1,4 +1,4 @@
-<% provide(:title,"Teams - sample index") %>
+<% provide(:title,"Provider index") %>
 
 <div class="container hax-body-styling">
   <div class="row">
@@ -47,9 +47,8 @@
                 <th>Existence Verified</th>
                 <th>Company Name</th>
                 <th>City</th>
-                <th>Purchase Orders</th>
-                <th>Factory Visits</th>
-                <th>Comments</th>
+                <th>Rating</th>
+                <th># of comments</th>
               </tr>
               <tr>
                 
@@ -61,16 +60,10 @@
                   <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
                   <td><%= "#{provider.city}" %></td>
                   <td>
-                    <% shown = comments.select{|c| c.comment_type == "purchase_order"}.count %>
-                    <%= shown == 0 ? "" : shown %>
+                    <%= render partial: "providers/star_display", locals: {score: provider.average_score} %>
                   </td>
                   <td>
-                    <% shown = comments.select{|c| c.comment_type == "factory_visit"}.count %>
-                    <%= shown == 0 ? "" : shown %>
-                  </td>
-                  <td>
-                    <% shown = comments.select{|c| c.comment_type == "comment"}.count %>
-                    <%= shown == 0 ? "" : shown %>
+                    <%= provider.comments.count == 0 ? "" : provider.comments.count %>
                   </td>
                 </tr>              
               <% end %>  
