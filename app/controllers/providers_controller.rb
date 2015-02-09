@@ -3,7 +3,7 @@ class ProvidersController < ApplicationController
   
   def signin
     sign_out
-    render "sessions/new", layout: "provider"
+    render layout: "provider"
   end
 
   def index
