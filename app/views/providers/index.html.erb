@@ -47,9 +47,8 @@
                 <th>Existence Verified</th>
                 <th>Company Name</th>
                 <th>City</th>
-                <th>Purchase Orders</th>
-                <th>Factory Visits</th>
-                <th>Comments</th>
+                <th>Rating</th>
+                <th># of ratings</th>
               </tr>
               <tr>
                 
@@ -60,17 +59,9 @@
                   <td><%= provider.verified ? "Yes" : "No" %></td>
                   <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
                   <td><%= "#{provider.city}" %></td>
+                  <td></td>
                   <td>
-                    <% shown = comments.select{|c| c.comment_type == "purchase_order"}.count %>
-                    <%= shown == 0 ? "" : shown %>
-                  </td>
-                  <td>
-                    <% shown = comments.select{|c| c.comment_type == "factory_visit"}.count %>
-                    <%= shown == 0 ? "" : shown %>
-                  </td>
-                  <td>
-                    <% shown = comments.select{|c| c.comment_type == "comment"}.count %>
-                    <%= shown == 0 ? "" : shown %>
+                    <%= provider.comments.count %>
                   </td>
                 </tr>              
               <% end %>  
