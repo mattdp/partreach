@@ -120,7 +120,7 @@ text-align: center;
   font-size: 32px;
 }
 
-.hax-body-styling h3 {
+.hax-body-styling .profile-heading h3 {
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -834,14 +834,13 @@ img.banner-message {
   position: fixed;
 }*/
 
-
 /*RATING SYSTEM 
 http://rog.ie/blog/css-star-rater*/
 .star-rating {
   font-size: 0;
   white-space: nowrap;
   display: inline-block;
-  width: 250px;
+  width: 250px; /*75 15 in rob design */
   height: 50px;
   overflow: hidden;
   position: relative;
@@ -958,4 +957,33 @@ replacement -mdp */
 .choice {
   padding: 20px;
   display: block;
+}
+
+/*COMMENTS*/
+
+.avatar-profile {
+  height: 84px;
+  width: 84px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: gray;
+  background-color: #e5e5e5;
+}
+
+.comment p {
+  margin-top: 0px;
+}
+
+.comment-snippet {
+  margin-bottom: 0px;
+  font-style: italic;
+}
+
+.comment-smalltext {
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.comment-profile p {
+  margin-bottom: 0px;
 }
