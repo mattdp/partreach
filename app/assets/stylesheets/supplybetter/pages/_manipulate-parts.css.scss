@@ -120,7 +120,7 @@ text-align: center;
   font-size: 32px;
 }
 
-.hax-body-styling h3 {
+.hax-body-styling .profile-heading h3 {
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -840,8 +840,8 @@ http://rog.ie/blog/css-star-rater*/
   font-size: 0;
   white-space: nowrap;
   display: inline-block;
-  width: 250px;
-  height: 50px;
+  width: 75px;
+  height: 15px;
   overflow: hidden;
   position: relative;
   background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
@@ -887,6 +887,35 @@ http://rog.ie/blog/css-star-rater*/
   width: 100%;
 }
 .choice {
-  padding: 20px;
+  /*padding: 20px;*/
   display: block;
+}
+
+/*COMMENTS*/
+
+.avatar-profile {
+  height: 84px;
+  width: 84px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: gray;
+  background-color: #e5e5e5;
+}
+
+.comment p {
+  margin-top: 0px;
+}
+
+.comment-snippet {
+  margin-bottom: 0px;
+  font-style: italic;
+}
+
+.comment-smalltext {
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.comment-profile p {
+  margin-bottom: 0px;
 }
