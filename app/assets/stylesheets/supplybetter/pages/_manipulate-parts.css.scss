@@ -838,7 +838,7 @@ img.banner-message {
 /*RATING SYSTEM 
 http://rog.ie/blog/css-star-rater*/
 .star-rating {
-  font-size: 0;
+  font-size: 1;
   white-space: nowrap;
   display: inline-block;
   width: 250px;
@@ -849,7 +849,7 @@ http://rog.ie/blog/css-star-rater*/
   background-size: contain;
 }
 .star-rating i {
-  opacity: 0;
+  opacity: 1;
   position: absolute;
   left: 0;
   top: 0;
@@ -862,7 +862,7 @@ http://rog.ie/blog/css-star-rater*/
 .star-rating input {
   -moz-appearance: none;
   -webkit-appearance: none;
-  opacity: 0;
+  opacity: 1;
   display: inline-block;
   width: 20%;
   height: 100%;
@@ -871,6 +871,7 @@ http://rog.ie/blog/css-star-rater*/
   z-index: 2;
   position: relative;
 }
+
 .star-rating input:hover + i,
 .star-rating input:checked + i {
   opacity: 1;
