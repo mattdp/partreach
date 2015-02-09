@@ -40,7 +40,7 @@
   $(':radio').change(
   function(){
     $('.choice').text( this.value + ' stars' );
-    $('.overall_score').text( this.value );
+    $('.overall_score').val( this.value );
   } 
 )
 </script>
