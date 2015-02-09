@@ -102,6 +102,7 @@
       <% if @comments.present? %>
         <% @comments.each do |comment| %>
           <hr>
+          <div class="row">
           <div class="col-md-3">
             <div class="row">
               <div class="avatar-profile"></div>
@@ -133,7 +134,7 @@
               <p><%= raw(comment.payload) %></p>
             </div>
           </div>
-          
+         </div>
         <% end %>
         <% else %>
 
