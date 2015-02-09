@@ -56,4 +56,12 @@ class Provider < ActiveRecord::Base
     return hash
   end
 
+  #needs to return 0-5 inclusive integer
+  def average_score
+    numbers_without_zeros = self.comments.map{|comment| comment.overall_score}.reject{|n| n==0}
+    return 0 if numbers_without_zeros == []
+    preround = numbers_without_zeros.inject(:+)/numbers_without_zeros.count.to_f
+    return preround.round
+  end
+
 end
