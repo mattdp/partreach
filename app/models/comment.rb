@@ -10,6 +10,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #  overall_score :integer          default(0)
+#  title         :string(255)
 #
 
 class Comment < ActiveRecord::Base
