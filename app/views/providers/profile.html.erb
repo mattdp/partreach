@@ -7,13 +7,15 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-4">
       
       <!-- COMPANY NAME -->
-      <h1>
-      <%= @provider.name %>
-      <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_providername_from_profile") %>]</span>
-      </h1>
+      <div class="profile-spacing">
+        <h1>
+        <%= @provider.name %>
+        <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_providername_from_profile") %>]</span>
+        </h1>
+      </div>
 
       <!-- EXISTENCE VERIFIED -->
       <% if @provider.verified %>
@@ -22,7 +24,7 @@
           Verified
         </div>
       <% end %>
-
+      
       <!-- CATEGORIES -->
       <h3>
         What they can do for you
@@ -57,11 +59,17 @@
       </ul>
       </div>
 
+      <!-- BEGIN MIDDLE COLUMN -->
+      <div class="col-md-4">
+      </div>
+
       <!-- BEGIN RIGHT COLUMN -->
       <div class="col-md-4">
       
-      <!-- ADDRESS SECTION -->
+      
       <div class="table-header">
+
+      <!-- ADDRESS SECTION -->
         <h3>Address information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_address_from_profile") %>]</span></h3>
         <ul>
           <li><strong>City: </strong><%= "#{@provider.city}" %></li>
@@ -80,7 +88,6 @@
       </div>
       </div>
     </div>
-  </div>
 
   <div class="row">
     <div class="col-md-12">
