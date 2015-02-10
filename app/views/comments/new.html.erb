@@ -2,6 +2,7 @@
 
 <div class="container hax-body-styling">
   <div class="row">
+    <div class="col-md-8">
 
       <h1><%= "Adding comment for '#{@provider.name}'" %></h1>
 
@@ -17,7 +18,7 @@
 
         <div class="field">
           <%= label_tag :payload, "Your comment" %><br>
-          <%= text_area_tag :payload %>
+          <%= text_area_tag :payload, nil, rows: 5 %>
         </div>
 
         <div class="field">
@@ -36,6 +37,7 @@
 
       <% end %>
 
+    </div>
   </div>
 </div>
 
