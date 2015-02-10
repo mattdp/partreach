@@ -82,6 +82,30 @@ text-align: center;
 .stylish tr td:hover { background: #666; color: #FFF; } /* Hover cell effect! */
 /*end table styling*/
 
+.stylish th:first-child, td:first-child {
+  width: 15%;
+}
+
+.stylish th:nth-child(2) , td:nth-child(2) {
+  width: 35%;
+}
+
+.stylish th:nth-child(3) , td:nth-child(3) {
+  width: 20%;
+}
+
+.stylish th:nth-child(4) , td:nth-child(4) {
+  width: 15%;
+}
+
+.stylish th:nth-child(5) , td:nth-child(5) {
+  width: 15%;
+}
+
+/*.stylish th:nth-child(6) , td:nth-child(6) {
+  width: 10%;
+}*/
+
 
 /*#hax-color1 {
   background-color: #5dbab5;
