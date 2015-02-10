@@ -138,7 +138,7 @@
         <% end %>
         <% else %>
 
-          <p>No information yet - [<%= link_to "add a review", teams_suggested_edit_path("add_visit_from_profile") %>]</p>
+          <p>No information yet - <%= link_to "add the first comment", new_comment_path(@provider.id) %>!</p>
         <% end %>
       </div>
     </div>
