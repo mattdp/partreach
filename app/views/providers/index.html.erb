@@ -60,7 +60,7 @@
                   <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
                   <td><%= "#{provider.city}" %></td>
                   <td>
-                    <%= render partial: "providers/star_display", locals: {score: provider.average_score} %>
+                    <div class="row"><%= render partial: "providers/star_display", locals: {score: provider.average_score} %></div>
                   </td>
                   <td>
                     <%= provider.comments.count == 0 ? "" : provider.comments.count %>
