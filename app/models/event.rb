@@ -18,6 +18,14 @@ class Event < ActiveRecord::Base
     Event.where(model: 'User').where(model_id: user.id).order(:created_at)
   end
 
+  def self.hax_happenings
+    ["loaded index","loaded profile","attempted comment create for",
+      "loaded new comment page for", "edit_providername_from_profile",
+      "edit_whatcantheydo_from_profile", "add_po_from_profile",
+      "add_visit_from_profile","edit_address_from_profile",
+      "edit_contactinfo_from_profile"]
+  end
+
   # happenings: an array of strings
   # start_date/end_date: strings in the form '2015-02-10'
   def self.in_date_range(happenings, start_date, end_date)
