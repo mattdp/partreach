@@ -2,12 +2,15 @@ class CommentsController < ApplicationController
   before_filter :hax_access_only
 
   def new
-    @provider = Provider.find(params[:provider_id])
+    @provider = Provider.find(params[:provider_id])    
+    Event.add_event("User",current_user.id,"loaded new comment page for","Provider",@provider.id)
     @comment = Comment.new
     render layout: "provider"
   end
 
   def create
+    provider = Provider.find(params[:provider_id])
+    Event.add_event("User",current_user.id,"attempted comment create for","Provider",provider.id) 
     @comment = Comment.new(comment_params)
     @comment.comment_type = "comment"
     @comment.user_id = current_user.id
@@ -20,7 +23,6 @@ class CommentsController < ApplicationController
       note = "Saving problem."
     end
 
-    provider = Provider.find(params[:provider_id])
     redirect_to teams_profile_path(provider.name_for_link), notice: note
   end
 
