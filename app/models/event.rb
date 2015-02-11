@@ -18,6 +18,17 @@ class Event < ActiveRecord::Base
     Event.where(model: 'User').where(model_id: user.id).order(:created_at)
   end
 
+  # happenings: an array of strings
+  # start_date/end_date: strings in the form '2015-02-10'
+  def self.in_date_range(happenings, start_date, end_date)
+    start_datetime = DateTime.parse(start_date)
+    end_datetime = DateTime.parse(end_date)
+    Event.
+      where(happening: happenings).
+      where(created_at: (start_datetime)..(end_datetime + 1)).
+      where(model: 'User').where.not(model_id: User.select(:id).where(admin: true))
+  end
+
   def self.add_event(model,model_id,happening,target_model=nil,target_model_id=nil)
     event = Event.new(model: model, model_id: model_id, happening: happening, target_model: target_model, target_model_id: target_model_id)
     return event.save
