@@ -14,6 +14,10 @@
 
 class Event < ActiveRecord::Base
 
+  def self.for_user(user)
+    Event.where(model: 'User').where(model_id: user.id).order(:created_at)
+  end
+
   def self.add_event(model,model_id,happening,target_model=nil,target_model_id=nil)
     event = Event.new(model: model, model_id: model_id, happening: happening, target_model: target_model, target_model_id: target_model_id)
     return event.save
