@@ -26,7 +26,9 @@
       <% end %>
       
       <!-- STAR RATINGS -->
+      <div class="row">
       <%= render partial: "providers/star_display", locals: {score: @provider.average_score} %>
+      </div>
 
       <!-- CATEGORIES -->
       <h3 class=".profile-heading">
@@ -115,6 +117,7 @@
           </div>
 
           <div class="col-md-9 comment">
+            
             <div class="row">
               <% if comment.title.present? %>
                 <h3 class="comment-snippet">
@@ -122,6 +125,7 @@
                 </h3>
               <% end %>
             </div>
+
             <div class="row">
               <% if comment.overall_score > 0 %>
                 <%= render partial: "providers/star_display", locals: {score: comment.overall_score} %>
@@ -130,9 +134,11 @@
                 <%= "Reviewed #{comment.created_at.strftime('%Y-%m-%d')}" %>
               </span>
             </div>
+
             <div class="row">
               <p><%= raw(comment.payload) %></p>
             </div>
+
           </div>
          </div>
         <% end %>
