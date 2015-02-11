@@ -75,6 +75,12 @@ class User < ActiveRecord::Base
     try(:organization).try(:hax?) || false
   end
 
+  def get_events
+    Event.for_user(self).each do |event|
+      p "#{event.created_at.strftime("%m/%d/%Y %H:%M")}: #{event.happening} #{event.target_model} #{event.target_model_id}"
+    end
+  end
+
   #can cause some serious overlap problems if abused
   def self.create_and_link_to_supplier(name,email,supplier_id)
     user = User.create_with_dummy_password(name,email)
