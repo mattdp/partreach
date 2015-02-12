@@ -1,0 +1,279 @@
+/*************** ALL HAX RELATED STUFF IS HERE *****************/
+
+.heading_navigation{
+  font-size: small;
+  font-weight: normal;
+}
+
+.hax-body-styling {
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+/*begin list styling*/
+.hax-body-styling ul {
+  list-style:none;
+  margin-top: 0px;
+}
+
+/*start provider table styling*/
+/*this table is not my own. I ripped it from here: http://cssmenumaker.com/blog/stylish-css-tables-tutorial*/
+.stylish table { 
+color: #333;
+/*font-family: Helvetica, Arial, sans-serif;*/
+width: 100%; 
+border-collapse: 
+collapse; border-spacing: 0; 
+}
+
+.stylish td, th { 
+border: 1px solid transparent; /* No more visible border */
+height: 30px; 
+transition: all 0.3s;  /* Simple transition for hover effect */
+}
+
+.stylish th {
+background: #DFDFDF;  /* Darken header a bit */
+font-weight: bold;
+}
+
+.stylish td {
+background: #FAFAFA;
+text-align: center;
+}
+
+/* Cells in even rows (2,4,6...) are one color */ 
+.stylish tr:nth-child(even) td { background: #F1F1F1; }   
+
+/* Cells in odd rows (1,3,5...) are another (excludes header cells)  */ 
+.stylish tr:nth-child(odd) td { background: #FEFEFE; }  
+
+.stylish tr td:hover { background: #666; color: #FFF; } /* Hover cell effect! */
+/*end table styling*/
+
+.stylish th:first-child, td:first-child {
+  width: 15%;
+}
+
+.stylish th:nth-child(2) , td:nth-child(2) {
+  width: 35%;
+}
+
+.stylish th:nth-child(3) , td:nth-child(3) {
+  width: 20%;
+}
+
+.stylish th:nth-child(4) , td:nth-child(4) {
+  width: 15%;
+}
+
+.stylish th:nth-child(5) , td:nth-child(5) {
+  width: 15%;
+}
+
+/*#hax-color1 {
+  background-color: #5dbab5;
+  color: white;
+}
+#hax-color2 {
+  background-color: #ff742c;
+  color: white;
+}
+#hax-color3 {
+  background-color: #151c27;
+  color: white;
+}*/
+
+#keyword-list {
+    -moz-columns: 5;
+    -webkit-columns: 5;
+    columns: 5;
+}
+
+.text-block {
+  background: #f6f5f2;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px; 
+}
+
+/*PROVIDER PROFILE*/
+
+.profile-spacing h1 {
+  margin-top: 0;
+}
+
+.verified {
+  color: #4EF579;
+  font-size: 32px;
+}
+
+.hax-body-styling .profile-heading h3 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/*styling for suggested edits page*/
+img.banner-message {
+  vertical-align: middle;
+}
+
+/*RATING SYSTEM 
+http://rog.ie/blog/css-star-rater*/
+.star-rating {
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+  width: 250px; /*75 15 in rob design */
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-rating i {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-rating input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  opacity: 0;
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  position: relative;
+}
+
+.star-rating input:hover + i,
+.star-rating input:checked + i {
+  opacity: 1;
+}
+.star-rating i ~ i {
+  width: 40%;
+}
+.star-rating i ~ i ~ i {
+  width: 60%;
+}
+.star-rating i ~ i ~ i ~ i {
+  width: 80%;
+}
+.star-rating i ~ i ~ i ~ i ~ i {
+  width: 100%;
+}
+.choice {
+  padding: 20px;
+  display: block;
+}
+
+/* TERRIBLE NOT DRY WAY TO RENDER */
+
+/* for some reason, this setup (same code as above, 
+different class names, opacities to 1) works OK.
+for each <i></i> in the html, another star renders. i don't
+know why or how. it makes me sad. 
+
+finally, this lags hard when you have to render it a lot of times.
+not an issue till we get a bunch of reviews, but it'll need
+replacement -mdp */
+
+.star-display {
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+  width: 250px;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-display i {
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-display input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  opacity: 1;
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  position: relative;
+}
+
+.star-display input:hover + i,
+.star-display input:checked + i {
+  opacity: 1;
+}
+.star-display i ~ i {
+  width: 40%;
+}
+.star-display i ~ i ~ i {
+  width: 60%;
+}
+.star-display i ~ i ~ i ~ i {
+  width: 80%;
+}
+.star-display i ~ i ~ i ~ i ~ i {
+  width: 100%;
+}
+.choice {
+  padding: 20px;
+  display: block;
+}
+
+/*COMMENTS*/
+
+.avatar-profile {
+  height: 84px;
+  width: 84px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: gray;
+  background-color: #e5e5e5;
+}
+
+.comment p {
+  margin-top: 0px;
+}
+
+.comment-snippet {
+  margin-bottom: 0px;
+  font-style: italic;
+}
+
+.comment-smalltext {
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.comment-profile p {
+  margin-bottom: 0px;
+}
+
+.comment-rating-stars {
+  width: 75px;
+  height: 15px;
+}
