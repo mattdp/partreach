@@ -1,5 +1,40 @@
 <%= form_tag :action => form_action, :controller => 'providers' do %>
 
+  <h2>Basics</h2>
+
+  <%= label_tag 'name', 'Provider name' %>
+  <%= text_field_tag 'name', @provider.name %>
+
+  <%= label_tag 'organization', 'Private to users in organization' %>
+  <%#= hardcode purposeful %>
+  <%= text_field_tag 'organization', "HAX" %>
+
+  <%= label_tag 'verified', 'Has someone verified this provider exists in person or on the phone?' %>
+  <%= check_box_tag 'verified', @provider.verified %>
+
+  <h2>Address information</h2>
+
+  <%= label_tag 'city', 'City' %>
+  <%= text_field_tag 'city', @provider.city %>
+  <%= label_tag 'address', 'Full address' %>
+  <%= text_area_tag 'address', @provider.address %>
+
+  <h2>Contact information</h2>
+
+  <%= label_tag '', '' %>
+  <%= text_field_tag '', @provider.contact_qq %>
+  <%= label_tag '', '' %>
+  <%= text_field_tag '', @provider.contact_phone %>
+  <%= label_tag '', '' %>
+  <%= text_field_tag '', @provider.contact_skype %>
+  <%= label_tag '', '' %>
+  <%= text_field_tag '', @provider.contact_email %>
+
+  <%= label_tag '', '' %>
+  <%= text_field_tag '', @provider.contact_name %>
+  <%= label_tag '', '' %>
+  <%= text_field_tag '', @provider.contact_role %>
+
   <%= submit_tag "Submit" %>
 
 <% end %>
