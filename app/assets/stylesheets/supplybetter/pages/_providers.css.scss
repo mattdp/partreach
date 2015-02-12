@@ -86,9 +86,9 @@ text-align: center;
 }*/
 
 #keyword-list {
-    -moz-columns: 5;
-    -webkit-columns: 5;
-    columns: 5;
+  -moz-columns: 5;
+  -webkit-columns: 5;
+  columns: 5;
 }
 
 .text-block {
@@ -285,4 +285,8 @@ replacement -mdp */
 
 .provider-edit-input input, textarea {
   width: 100%;
+}
+
+.provider-tags ul {
+  padding-left: 0px;
 }

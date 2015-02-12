@@ -1,196 +1,196 @@
 <%= form_tag :action => form_action, :controller => 'providers' do %>
-  
-  <div class="col-md-8 col-md-offset-1">
 
-  <hr>
+<div class="col-md-8 col-md-offset-1">
 
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag 'name', 'Business name' %>
-    </div>
-
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-      <%= text_field_tag 'name', @provider.name %>
-      </span>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag 'url_main', 'Website' %>
-    </div>
-  
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-      <%= text_field_tag 'url_main', @provider.url_main %>
-      </span>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag 'organization', 'Share Details With' %>
-    </div>
-
-
-  <%#= hardcode purposeful %>
-    <div class="col-md-9">
-      <span>
-        <!-- <%= text_field_tag 'organization', "HAX" %> -->
-        HAXLR8R
-      </span>
-      <span class="provider-edit-details">
-        (Information will not be shared beyond this group)
-      </span>
-    </div>
-  </div>
-
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-      <%= label_tag 'verified', 'Existence Verified'%>
-  </div>
-
-    <div class="col-md-9">
-      <span>
-        <%= check_box_tag 'verified', @provider.verified %>
-      </span>
-      <span class="provider-edit-details">
-        (You have verified this provider exists in person or on the phone)
-      </span>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag 'city', 'District, City' %>
-    </div>
-
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-        <%= text_field_tag 'city', @provider.city %>
-        </span>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag 'address', 'Full address' %>
-    </div>
-
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-        <%= text_area_tag 'address', @provider.address %>
-        </span>
-    </div>
-  </div>
-
-
-  <h2>Contact information</h2>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag '', 'Contact Name' %>
-    </div>
-
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-        <%= text_field_tag '', @provider.contact_name %>
-      </span>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag '', 'Contact Role' %>
-    </div>
-
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-        <%= text_field_tag '', @provider.contact_role %>
-      </span>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag '', 'QQ' %>
-    </div>
-
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-        <%= text_field_tag '', @provider.contact_qq %>
-        </span>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag '', 'Phone' %>
-    </div>
-
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-        <%= text_field_tag '', @provider.contact_phone %>
-        </span>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag '', 'Skype Username' %>
-    </div>
-
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-        <%= text_field_tag '', @provider.contact_skype %>
-      </span>
-    </div>
-  </div>
-
-  <hr>
-
-  <div class="row">
-    <div class="col-md-3">
-    <%= label_tag '', 'Email' %>
-    </div>
-
-    <div class="col-md-9">
-      <span class="provider-edit-input">
-        <%= text_field_tag '', @provider.contact_email %>
-      </span>
-    </div>
-  </div>
-
-  <hr>
-
-  </div>
+<hr>
 
 <div class="row">
-  <div class="col-md-12">
-  <h2>Tags</h2>
-    <div id="keyword-list">
+  <div class="col-md-3">
+  <%= label_tag 'name', 'Business name' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+    <%= text_field_tag 'name', @provider.name %>
+    </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag 'url_main', 'Website' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+    <%= text_field_tag 'url_main', @provider.url_main %>
+    </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag 'organization', 'Share Details With' %>
+  </div>
+
+
+<%#= hardcode purposeful %>
+  <div class="col-md-9">
+    <span>
+      <!-- <%= text_field_tag 'organization', "HAX" %> -->
+      HAXLR8R
+    </span>
+    <span class="provider-edit-details">
+      (Information will not be shared beyond this group)
+    </span>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+    <%= label_tag 'verified', 'Existence Verified'%>
+</div>
+
+  <div class="col-md-9">
+    <span>
+      <%= check_box_tag 'verified', @provider.verified %>
+    </span>
+    <span class="provider-edit-details">
+      (You have verified this provider exists in person or on the phone)
+    </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag 'city', 'District, City' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_field_tag 'city', @provider.city %>
+      </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag 'address', 'Full address' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_area_tag 'address', @provider.address %>
+      </span>
+  </div>
+</div>
+
+
+<h2>Contact information</h2>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag '', 'Contact Name' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_field_tag '', @provider.contact_name %>
+    </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag '', 'Contact Role' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_field_tag '', @provider.contact_role %>
+    </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag '', 'QQ' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_field_tag '', @provider.contact_qq %>
+      </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag '', 'Phone' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_field_tag '', @provider.contact_phone %>
+      </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag '', 'Skype Username' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_field_tag '', @provider.contact_skype %>
+    </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag '', 'Email' %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_field_tag '', @provider.contact_email %>
+    </span>
+  </div>
+</div>
+
+<hr>
+
+</div>
+
+<div class="row">
+  <div class="col-md-11 col-md-offset-1">
+    <h2>Tags</h2>
+    <div id="keyword-list" class="provider-tags">
       <ul>
         <% @tags.each do |tag| %>
           <li>
@@ -199,14 +199,37 @@
         <% end %>
       </ul>
     </div>
-
-
-  <%= label_tag 'new_tag_name_1', "Add up to 3 new tags that aren't on the list" %>
-  <%= text_field_tag 'new_tag_1' %>  
-  <%= text_field_tag 'new_tag_2' %>  
-  <%= text_field_tag 'new_tag_3' %>  
-
-  <%= submit_tag "Submit" %>
-<% end %>
+    <div class="row">
+      <%= label_tag 'new_tag_name_1', "Tag isn't here? Add it to the list! (tags will be added to this business as well)" %>
+      <div class="row">
+        <div class="col-md-4">
+        New Tag (optional)
+        </div>
+        <div class="col-md-6">
+        <%= text_field_tag 'new_tag_1' %>  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+        New Tag (optional)
+        </div>
+        <div class="col-md-6">
+        <%= text_field_tag 'new_tag_2' %>  
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+        New Tag (optional)
+        </div>
+        <div class="col-md-6">
+        <%= text_field_tag 'new_tag_3' %>  
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    <%= submit_tag "Submit" %>
+    <% end %>
+    </div>
   </div>
 </div>
+
