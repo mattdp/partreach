@@ -1,6 +1,22 @@
 class ProvidersController < ApplicationController
   before_filter :hax_access_only, except: :signin
   
+  def new
+    @provider = Provider.new
+    render layout: "provider"
+  end
+
+  def create
+  end
+
+  def edit
+    @provider = Provider.find(params[:id])
+    render layout: "provider"
+  end
+
+  def update
+  end
+
   def signin
     sign_out
     render layout: "provider"
