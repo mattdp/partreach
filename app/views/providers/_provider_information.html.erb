@@ -9,6 +9,7 @@
   <%= text_field_tag 'url_main', @provider.url_main %>
 
   <%= label_tag 'organization', 'Private to users in organization' %>
+
   <%#= hardcode purposeful %>
   <%= text_field_tag 'organization', "HAX" %>
 
@@ -40,9 +41,13 @@
 
   <h2>Tags</h2>
 
-  <% @tags.each do |tag| %>
-    <%= check_box_tag 'tags[tag.name]' %><%= tag.readable %>
-  <% end %>
+  <ul>
+    <% @tags.each do |tag| %>
+      <li>
+      <%= check_box_tag 'tags[tag.name]' %><%= tag.readable %>
+      </li>
+    <% end %>
+  </ul>
 
   <%= label_tag 'new_tag_name', 'Add a new tag' %>
   <%= text_field_tag 'new_tag_name' %>  
