@@ -44,7 +44,7 @@
   <ul>
     <% @tags.each do |tag| %>
       <li>
-      <%= check_box_tag 'tags[tag.name]' %><%= tag.readable %>
+      <%= check_box_tag 'tag_selection[]', tag.id, @checked_tags.include?(tag) %><%= tag.readable %>
       </li>
     <% end %>
   </ul>

@@ -4,6 +4,7 @@ class ProvidersController < ApplicationController
   def new
     @provider = Provider.new
     @tags = Provider.providers_hash_by_process.keys
+    @checked_tags = []
 
     if params[:event_name].present? 
       Event.add_event("User","#{current_user.id}","#{params[:event_name]}")
@@ -19,7 +20,7 @@ class ProvidersController < ApplicationController
     @provider.name_for_link = Provider.proper_name_for_link(@provider.name)
     @provider.source = "User #{current_user.id}"
    
-    saved_ok = @provider.save and true #update tags here next
+    saved_ok = @provider.save and @provider.update_tags(params[:tag_selection])
 
     if saved_ok
       note = "Saved OK!" 
@@ -39,6 +40,7 @@ class ProvidersController < ApplicationController
   def edit
     @provider = Provider.find(params[:id])
     @tags = Provider.providers_hash_by_process.keys
+    @checked_tags = @provider.tags
 
     if params[:event_name].present? 
       Event.add_event("User","#{current_user.id}","#{params[:event_name]}","Provider","#{@provider.id}")
@@ -51,7 +53,7 @@ class ProvidersController < ApplicationController
 
   def update
     @provider = Provider.find(params[:id])   
-    saved_ok = @provider.update(editable_provider_params) and true #update tags here next
+    saved_ok = @provider.update(editable_provider_params) and @provider.update_tags(params[:tag_selection])
 
     if saved_ok
       note = "Saved OK!" 
