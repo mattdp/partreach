@@ -88,6 +88,7 @@ Partreach::Application.routes.draw do
 
   resources :providers, only: [:new, :create, :edit, :update]
   get '/providers/new/:event_name', to: 'providers#new', as: 'new_provider_with_event'
+  get '/providers/:id/edit/:event_name/', to: 'providers#edit', as: 'edit_provider_with_event'
   get '/teams/signin', to: 'providers#signin', as: 'teams_signin'
   get '/teams/hax/', to: 'providers#index', as: "teams_index"
   get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
