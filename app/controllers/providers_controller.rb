@@ -29,7 +29,7 @@ class ProvidersController < ApplicationController
 
     if saved_ok
       Event.add_event("User","#{current_user.id}","created a provider","Provider","#{@provider.id}")
-      redirect_to teams_profile(@provider.name_for_link)
+      redirect_to teams_profile_path(@provider.name_for_link)
     else 
       Event.add_event("User","#{current_user.id}","attempted provider create - ERROR")      
       redirect_to teams_index_path, note: note
@@ -61,7 +61,7 @@ class ProvidersController < ApplicationController
 
     if saved_ok
       Event.add_event("User","#{current_user.id}","updated a provider","Provider","#{@provider.id}")
-      redirect_to teams_profile(@provider.name_for_link)
+      redirect_to teams_profile_path(@provider.name_for_link)
     else 
       Event.add_event("User","#{current_user.id}","attempted provider update - ERROR")      
       redirect_to teams_index_path, note: note
