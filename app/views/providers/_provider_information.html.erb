@@ -199,37 +199,46 @@
         <% end %>
       </ul>
     </div>
+  </div>
+</div>
+
+
+  <div class="col-md-8 col-md-offset-1">
+    <%= label_tag 'new_tag_name_1', "Tag isn't here? Add it to the list! (tags will be added to this business as well)" %>
     <div class="row">
-      <%= label_tag 'new_tag_name_1', "Tag isn't here? Add it to the list! (tags will be added to this business as well)" %>
-      <div class="row">
-        <div class="col-md-4">
-        New Tag (optional)
-        </div>
-        <div class="col-md-6">
+      <div class="col-md-3">
+      New Tag (optional)
+      </div>
+      <div class="col-md-4">
+        <span class="provider-edit-input">
         <%= text_field_tag 'new_tag_1' %>  
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-        New Tag (optional)
-        </div>
-        <div class="col-md-6">
-        <%= text_field_tag 'new_tag_2' %>  
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4">
-        New Tag (optional)
-        </div>
-        <div class="col-md-6">
-        <%= text_field_tag 'new_tag_3' %>  
-        </div>
+        </span>
       </div>
     </div>
     <div class="row">
-    <%= submit_tag "Submit" %>
+      <div class="col-md-3">
+      New Tag (optional)
+      </div>
+      <div class="col-md-4">
+        <span class="provider-edit-input">
+        <%= text_field_tag 'new_tag_2' %>  
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+      New Tag (optional)
+      </div>
+      <div class="col-md-4">
+        <span class="provider-edit-input">
+        <%= text_field_tag 'new_tag_3' %>  
+        </span>
+      </div>
+    </div>
+    <div class="row">
+    <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button" %>
     <% end %>
     </div>
   </div>
-</div>
+
 
