@@ -35,6 +35,14 @@
   <%= label_tag '', '' %>
   <%= text_field_tag '', @provider.contact_role %>
 
-  <%= submit_tag "Submit" %>
+  <h2>Tags</h2>
 
+  <% @tags.each do |tag| %>
+    <%= check_box_tag 'tags[tag.name]' %><%= tag.readable %>
+  <% end %>
+
+  <%= label_tag 'new_tag_name', 'Add a new tag' %>
+  <%= text_field_tag 'new_tag_name' %>  
+
+  <%= submit_tag "Submit" %>
 <% end %>

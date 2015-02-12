@@ -3,6 +3,7 @@ class ProvidersController < ApplicationController
   
   def new
     @provider = Provider.new
+    @tags = Provider.providers_hash_by_process.keys
     render layout: "provider"
   end
 
@@ -11,6 +12,7 @@ class ProvidersController < ApplicationController
 
   def edit
     @provider = Provider.find(params[:id])
+    @tags = Provider.providers_hash_by_process.keys
     render layout: "provider"
   end
 
