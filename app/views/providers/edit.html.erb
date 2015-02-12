@@ -1,15 +1,13 @@
 <% provide(:title,"Edit provider: '#{@provider.name}'") %>
 
 <div class="container hax-body-styling">
-  <div class="row">
-    <div class="main-area-contrast override">
-
-      <%= link_to "Return to profile of #{@provider.name}", teams_profile_path(@provider.name_for_link) %>
-
-      <h1>Edit provider: '<%= "#{@provider.name}'" %></h1>
-
-      <%= render :partial => "providers/provider_information", locals: {form_action: "update"} %>
-
+    <div class="row">
+      <div class="col-md-11 col-md-offset-1">
+        <!-- <%= "#{@provider.name}'" %> -->
+        <h1>Update Business Details</h1>
+      </div>
     </div>
-  </div>
+    <div class="row">
+      <%= render :partial => "providers/provider_information", locals: {form_action: "update"} %>
+    </div>
 </div>

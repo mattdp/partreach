@@ -1,56 +1,210 @@
 <%= form_tag :action => form_action, :controller => 'providers' do %>
+  
+  <div class="col-md-8 col-md-offset-1">
 
-  <h2>Basics</h2>
+  <hr>
 
-  <%= label_tag 'name', 'Provider name' %>
-  <%= text_field_tag 'name', @provider.name %>
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'name', 'Business name' %>
+    </div>
 
-  <%= label_tag 'url_main', 'Website' %>
-  <%= text_field_tag 'url_main', @provider.url_main %>
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+      <%= text_field_tag 'name', @provider.name %>
+      </span>
+    </div>
+  </div>
 
-  <%= label_tag 'organization', 'Private to users in organization' %>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'url_main', 'Website' %>
+    </div>
+  
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+      <%= text_field_tag 'url_main', @provider.url_main %>
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'organization', 'Share Details With' %>
+    </div>
+
 
   <%#= hardcode purposeful %>
-  <%= text_field_tag 'organization', "HAX" %>
+    <div class="col-md-9">
+      <span>
+        <!-- <%= text_field_tag 'organization', "HAX" %> -->
+        HAXLR8R
+      </span>
+      <span class="provider-edit-details">
+        (Information will not be shared beyond this group)
+      </span>
+    </div>
+  </div>
 
-  <%= label_tag 'verified', 'Has someone verified this provider exists in person or on the phone?' %>
-  <%= check_box_tag 'verified', @provider.verified %>
 
-  <h2>Address information</h2>
+  <hr>
 
-  <%= label_tag 'city', 'City' %>
-  <%= text_field_tag 'city', @provider.city %>
-  <%= label_tag 'address', 'Full address' %>
-  <%= text_area_tag 'address', @provider.address %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= label_tag 'verified', 'Existence Verified'%>
+  </div>
+
+    <div class="col-md-9">
+      <span>
+        <%= check_box_tag 'verified', @provider.verified %>
+      </span>
+      <span class="provider-edit-details">
+        (You have verified this provider exists in person or on the phone)
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'city', 'District, City' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag 'city', @provider.city %>
+        </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'address', 'Full address' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_area_tag 'address', @provider.address %>
+        </span>
+    </div>
+  </div>
+
 
   <h2>Contact information</h2>
 
-  <%= label_tag '', '' %>
-  <%= text_field_tag '', @provider.contact_qq %>
-  <%= label_tag '', '' %>
-  <%= text_field_tag '', @provider.contact_phone %>
-  <%= label_tag '', '' %>
-  <%= text_field_tag '', @provider.contact_skype %>
-  <%= label_tag '', '' %>
-  <%= text_field_tag '', @provider.contact_email %>
+  <hr>
 
-  <%= label_tag '', '' %>
-  <%= text_field_tag '', @provider.contact_name %>
-  <%= label_tag '', '' %>
-  <%= text_field_tag '', @provider.contact_role %>
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag '', 'Contact Name' %>
+    </div>
 
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag '', @provider.contact_name %>
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag '', 'Contact Role' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag '', @provider.contact_role %>
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag '', 'QQ' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag '', @provider.contact_qq %>
+        </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag '', 'Phone' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag '', @provider.contact_phone %>
+        </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag '', 'Skype Username' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag '', @provider.contact_skype %>
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag '', 'Email' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag '', @provider.contact_email %>
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  </div>
+
+<div class="row">
+  <div class="col-md-12">
   <h2>Tags</h2>
+    <div id="keyword-list">
+      <ul>
+        <% @tags.each do |tag| %>
+          <li>
+          <%= check_box_tag 'tag_selection[]', tag.id, @checked_tags.include?(tag) %><%= tag.readable %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
 
-  <ul>
-    <% @tags.each do |tag| %>
-      <li>
-      <%= check_box_tag 'tag_selection[]', tag.id, @checked_tags.include?(tag) %><%= tag.readable %>
-      </li>
-    <% end %>
-  </ul>
 
   <%= label_tag 'new_tag_name', 'Add a new tag' %>
   <%= text_field_tag 'new_tag_name' %>  
 
   <%= submit_tag "Submit" %>
 <% end %>
+  </div>
+</div>
