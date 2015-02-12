@@ -4,6 +4,13 @@ class ProvidersController < ApplicationController
   def new
     @provider = Provider.new
     @tags = Provider.providers_hash_by_process.keys
+
+    if params[:event_name].present? 
+      Event.add_event("User","#{current_user.id}","#{params[:event_name]}")
+    else
+      Event.add_event("User","#{current_user.id}","loaded new profile page from unknown source")
+    end
+
     render layout: "provider"
   end
 
@@ -32,6 +39,13 @@ class ProvidersController < ApplicationController
   def edit
     @provider = Provider.find(params[:id])
     @tags = Provider.providers_hash_by_process.keys
+
+    if params[:event_name].present? 
+      Event.add_event("User","#{current_user.id}","#{params[:event_name]}","Provider","#{@provider.id}")
+    else
+      Event.add_event("User","#{current_user.id}","loaded edit page from unknown source","Provider","#{@provider.id}")
+    end
+
     render layout: "provider"
   end
 
