@@ -5,6 +5,9 @@
   <%= label_tag 'name', 'Provider name' %>
   <%= text_field_tag 'name', @provider.name %>
 
+  <%= label_tag 'url_main', 'Website' %>
+  <%= text_field_tag 'url_main', @provider.url_main %>
+
   <%= label_tag 'organization', 'Private to users in organization' %>
   <%#= hardcode purposeful %>
   <%= text_field_tag 'organization', "HAX" %>

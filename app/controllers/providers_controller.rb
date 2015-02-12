@@ -8,6 +8,25 @@ class ProvidersController < ApplicationController
   end
 
   def create
+    @provider = Provider.new(editable_provider_params)
+    @provider.name_for_link = Provider.proper_name_for_link(@provider.name)
+    @provider.source = "User #{current_user.id}"
+   
+    saved_ok = @provider.save and true #update tags here next
+
+    if saved_ok
+      note = "Saved OK!" 
+    else 
+      note = "Saving problem."
+    end
+
+    if saved_ok
+      Event.add_event("User","#{current_user.id}","created a provider","Provider","#{@provider.id}")
+      redirect_to teams_profile(@provider.name_for_link)
+    else 
+      Event.add_event("User","#{current_user.id}","attempted provider create - ERROR")      
+      redirect_to teams_index_path, note: note
+    end
   end
 
   def edit
@@ -17,6 +36,22 @@ class ProvidersController < ApplicationController
   end
 
   def update
+    @provider = Provider.find(params[:id])   
+    saved_ok = @provider.update(editable_provider_params) and true #update tags here next
+
+    if saved_ok
+      note = "Saved OK!" 
+    else 
+      note = "Saving problem."
+    end
+
+    if saved_ok
+      Event.add_event("User","#{current_user.id}","updated a provider","Provider","#{@provider.id}")
+      redirect_to teams_profile(@provider.name_for_link)
+    else 
+      Event.add_event("User","#{current_user.id}","attempted provider update - ERROR")      
+      redirect_to teams_index_path, note: note
+    end    
   end
 
   def signin
@@ -44,5 +79,13 @@ class ProvidersController < ApplicationController
     Event.add_event("User",current_user.id,params[:clicked])
     render layout: "provider"
   end
+
+  private
+
+    def editable_provider_params
+      params.permit(:name,:url_main,:contact_qq, \
+        :contact_wechat,:contact_phone,:contact_email,:contact_name, \
+        :contact_role,:verified,:city,:address,:contact_skype)
+    end
 
 end
