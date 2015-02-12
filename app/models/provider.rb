@@ -71,11 +71,14 @@ class Provider < ActiveRecord::Base
         next
       elsif Tag.where("name = ?",tag_name).present?
         self.add_tag(Tag.where("name = ?",tag_name)[0].id)
+        Event.add_event("User","#{current_user.id}","attempted to add an existing tag")
       elsif Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name)).present?
         self.add_tag(Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name))[0].id)
+        Event.add_event("User","#{current_user.id}","attempted to add an existing tag")
       else
         t = Tag.create(name: tag_name, readable: tag_name, name_for_link: Tag.proper_name_for_link(tag_name), tag_group_id: TagGroup.find_by_group_name("provider type").id)
         self.add_tag(t.id)
+        Event.add_event("User","#{current_user.id}","added a new tag")
       end
     end
     return true
