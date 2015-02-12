@@ -64,6 +64,23 @@ class Provider < ActiveRecord::Base
     return preround.round
   end
 
+  #user facing, for hax for now
+  def tag_creator(tags)
+    tags.each do |tag_name|
+      if tag_name.blank?
+        next
+      elsif Tag.where("name = ?",tag_name).present?
+        self.add_tag(Tag.where("name = ?",tag_name)[0].id)
+      elsif Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name)).present?
+        self.add_tag(Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name))[0].id)
+      else
+        t = Tag.create(name: tag_name, readable: tag_name, name_for_link: Tag.proper_name_for_link(tag_name), tag_group_id: TagGroup.find_by_group_name("provider type").id)
+        self.add_tag(t.id)
+      end
+    end
+    return true
+  end
+
   #modified from supplier version
   def add_tag(tag_id)
     tag = Tag.find_by_id(tag_id)

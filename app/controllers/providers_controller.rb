@@ -20,7 +20,8 @@ class ProvidersController < ApplicationController
     @provider.name_for_link = Provider.proper_name_for_link(@provider.name)
     @provider.source = "User #{current_user.id}"
    
-    saved_ok = @provider.save and @provider.update_tags(params[:tag_selection])
+    new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
+    saved_ok = @provider.save and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags)
 
     if saved_ok
       note = "Saved OK!" 
@@ -52,8 +53,9 @@ class ProvidersController < ApplicationController
   end
 
   def update
-    @provider = Provider.find(params[:id])   
-    saved_ok = @provider.update(editable_provider_params) and @provider.update_tags(params[:tag_selection])
+    @provider = Provider.find(params[:id])  
+    new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
+    saved_ok = @provider.update(editable_provider_params) and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags)
 
     if saved_ok
       note = "Saved OK!" 
