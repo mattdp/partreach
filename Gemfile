@@ -5,7 +5,7 @@ ruby "2.0.0"
 gem 'rails', '~> 4.1.0'
 gem 'webrick', '= 1.3.1' #https://github.com/JumpstartLab/curriculum/issues/373
 gem 'bootstrap-sass', '3.0.2.1'
-gem 'faker', '1.2.0'
+gem 'faker'
 gem 'newrelic_rpm', '3.6.6.147'
 gem 's3_direct_upload'
 gem 'pg', '0.17.1' #http://blog.willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/
