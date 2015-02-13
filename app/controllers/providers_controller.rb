@@ -21,7 +21,7 @@ class ProvidersController < ApplicationController
     @provider.source = "User #{current_user.id}"
    
     new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
-    saved_ok = @provider.save and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags)
+    saved_ok = @provider.save and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags,current_user.id)
 
     if saved_ok
       note = "Saved OK!" 
@@ -55,7 +55,7 @@ class ProvidersController < ApplicationController
   def update
     @provider = Provider.find(params[:id])  
     new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
-    saved_ok = @provider.update(editable_provider_params) and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags)
+    saved_ok = @provider.update(editable_provider_params) and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags, current_user.id)
 
     if saved_ok
       note = "Saved OK!" 

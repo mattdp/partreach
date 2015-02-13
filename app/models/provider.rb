@@ -65,20 +65,22 @@ class Provider < ActiveRecord::Base
   end
 
   #user facing, for hax for now
-  def tag_creator(tags)
+  def tag_creator(tags,user_id=nil)
     tags.each do |tag_name|
       if tag_name.blank?
         next
       elsif Tag.where("name = ?",tag_name).present?
-        self.add_tag(Tag.where("name = ?",tag_name)[0].id)
-        Event.add_event("User","#{current_user.id}","attempted to add an existing tag")
+        tag = Tag.where("name = ?",tag_name)[0]
+        self.add_tag(tag.id)
+        Event.add_event("User","#{user_id}","attempted to add an existing tag","Tag",tag.id)
       elsif Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name)).present?
-        self.add_tag(Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name))[0].id)
-        Event.add_event("User","#{current_user.id}","attempted to add an existing tag")
+        tag = Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name))[0]
+        self.add_tag(tag.id)
+        Event.add_event("User","#{user_id}","attempted to add an existing tag","Tag",tag.id)
       else
         t = Tag.create(name: tag_name, readable: tag_name, name_for_link: Tag.proper_name_for_link(tag_name), tag_group_id: TagGroup.find_by_group_name("provider type").id)
         self.add_tag(t.id)
-        Event.add_event("User","#{current_user.id}","added a new tag")
+        Event.add_event("User","#{user_id}","added a new tag")
       end
     end
     return true
