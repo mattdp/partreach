@@ -75,12 +75,14 @@ class DialoguesController < ApplicationController
     end
   end
 
-  #this isn't a real destroy method yet, as we wanted to orphan them first.  Likely will become one.
   def destroy
+    # doesn't permanently delete dialogue from database --
+    # instead, "orphans" it by removing the references to the associated order & supplier
     @dialogue = Dialogue.find(params[:id])
-    @dialogue.order_group_id = 0
+    @dialogue.order_group_id = nil
+    @dialogue.supplier_id = nil
     respond_to do |format|
-      if @dialogue.save
+      if @dialogue.save validate: false
         format.json {render json: {success: true}}
       else
         format.json {render json: {success: false}}
