@@ -361,8 +361,8 @@ class Supplier < ActiveRecord::Base
   end
 
   def has_tag?(tag_id)
-    supplier_tags = taggings.map {|tg| tg.tag_id}
-    supplier_tags.include? tag_id
+    tags = taggings.map {|tg| tg.tag_id}
+    tags.include? tag_id
   end
 
   def add_machine(machine_id, quantity=1)

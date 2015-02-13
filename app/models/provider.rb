@@ -64,4 +64,73 @@ class Provider < ActiveRecord::Base
     return preround.round
   end
 
+  #user facing, for hax for now
+  def tag_creator(tags)
+    tags.each do |tag_name|
+      if tag_name.blank?
+        next
+      elsif Tag.where("name = ?",tag_name).present?
+        self.add_tag(Tag.where("name = ?",tag_name)[0].id)
+        Event.add_event("User","#{current_user.id}","attempted to add an existing tag")
+      elsif Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name)).present?
+        self.add_tag(Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name))[0].id)
+        Event.add_event("User","#{current_user.id}","attempted to add an existing tag")
+      else
+        t = Tag.create(name: tag_name, readable: tag_name, name_for_link: Tag.proper_name_for_link(tag_name), tag_group_id: TagGroup.find_by_group_name("provider type").id)
+        self.add_tag(t.id)
+        Event.add_event("User","#{current_user.id}","added a new tag")
+      end
+    end
+    return true
+  end
+
+  #modified from supplier version
+  def add_tag(tag_id)
+    tag = Tag.find_by_id(tag_id)
+    return false if self.tags.include?(tag)
+    self.tags << tag
+    return true
+  end
+
+#---
+# TAG STUFF COPIED FROM SUPPLIER DIRECTLY
+#---
+
+  def remove_tags(tag_id)
+    self.tags.destroy(tag_id)
+  end
+
+  def has_tag?(tag_id)
+    tags = taggings.map {|tg| tg.tag_id}
+    tags.include? tag_id
+  end
+
+  def update_tags(submitted_tag_ids)
+    saved_ok = true
+    
+    if(submitted_tag_ids and submitted_tag_ids.size > 0)
+
+      current_tag_ids = self.tags.map{|t| "#{t.id}"}
+      add_tag_ids = []
+      remove_tag_ids = []
+
+      submitted_tag_ids.map{|t| add_tag_ids << t if !t.in?(current_tag_ids)}
+      current_tag_ids.map{|t| remove_tag_ids << t if !t.in?(submitted_tag_ids)}
+
+      if add_tag_ids.size > 0
+        add_tag_ids.each do |id|
+          saved_ok = false unless self.add_tag(id)
+        end
+      end
+
+      if remove_tag_ids.size > 0
+        remove_tag_ids.each do |id|
+          saved_ok = false unless self.remove_tags(id)
+        end
+      end
+    end
+
+    return saved_ok
+  end  
+
 end

@@ -13,7 +13,7 @@
       <div class="profile-spacing">
         <h1>
         <%= @provider.name %>
-        <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_providername_from_profile") %>]</span>
+        <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id,"edit_providername_from_profile") %>]</span>
         </h1>
       </div>
 
@@ -33,7 +33,7 @@
       <!-- CATEGORIES -->
       <h3 class=".profile-heading">
         What they can do for you
-       <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_whatcantheydo_from_profile") %>]</span>
+       <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
       </h3>
       <% @tags.each do |tag| %>
         <ul>
@@ -75,13 +75,13 @@
       <div class="table-header">
 
       <!-- ADDRESS SECTION -->
-        <h3 class=".profile-heading">Address information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_address_from_profile") %>]</span></h3>
+        <h3 class=".profile-heading">Address information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_address_from_profile") %>]</span></h3>
         <ul>
           <li><strong>City: </strong><%= "#{@provider.city}" %></li>
           <li><strong>Full address: </strong><%= "#{@provider.address}" %></li>
         </ul>
 
-        <h3 class=".profile-heading">Contact information <span class="heading_navigation">[<%= link_to "Edit", teams_suggested_edit_path("edit_contactinfo_from_profile") %>]</span></h3>
+        <h3 class=".profile-heading">Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
         <ul>
           <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
           <li><strong>Phone: </strong><%= @provider.contact_phone %></li>

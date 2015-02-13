@@ -1,0 +1,15 @@
+<% provide(:title, "Create new provider") %>
+
+<div class="container hax-body-styling">
+  <div class="row">
+    <div class="main-area-contrast override">
+
+      <%= link_to "Return to provider index", teams_index_path %>
+
+      <h1>Create new provider</h1>
+
+      <%= render :partial => "providers/provider_information", locals: {form_action: "create"} %>
+
+    </div>
+  </div>
+</div>

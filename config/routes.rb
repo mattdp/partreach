@@ -65,11 +65,6 @@ Partreach::Application.routes.draw do
   get '/profiles/:supplier_name', to: 'profiles#supplier_profile_redirect', as: 'supplier_profile'
   get '/submit_ask/', to: 'profiles#submit_ask'
   
-  get '/teams/signin', to: 'providers#signin', as: 'teams_signin'
-  get '/teams/hax/', to: 'providers#index', as: "teams_index"
-  get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
-  get '/teams/hax/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
-
   resources :orders, only: [:index, :show, :new, :create, :destroy]
   get '/orders/view/:id/:view_token', to: 'orders#show', as: 'view_order'
   resources :transfer_orders, only: [:create]
@@ -90,6 +85,15 @@ Partreach::Application.routes.draw do
   resources :password_resets
 
   resources :parts, only: [:create]
+
+  resources :providers, only: [:new, :create, :edit]
+  get '/providers/new/:event_name', to: 'providers#new', as: 'new_provider_with_event'
+  get '/providers/:id/edit/:event_name/', to: 'providers#edit', as: 'edit_provider_with_event'
+  match 'providers/:id', to: 'providers#update', as: 'provider', via: :post
+  get '/teams/signin', to: 'providers#signin', as: 'teams_signin'
+  get '/teams/hax/', to: 'providers#index', as: "teams_index"
+  get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
+  get '/teams/hax/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
 
   resources :reviews, only: [:new, :create]
 
