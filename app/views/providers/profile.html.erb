@@ -112,7 +112,7 @@
             <div class="row comment-profile">
               <% contact = comment.user.lead.lead_contact %>
               <p><strong><%= "#{contact.first_name} " %></strong></p>
-              <p class="comment-smalltext"><%= "Team: #{contact.contactable.user.team.name}" %></p>
+              <p class="comment-smalltext"><%= "Team: #{contact.contactable.user.team.name}" if contact.contactable.user.team.present? %></p>
             </div>
           </div>
 
