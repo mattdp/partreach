@@ -6,12 +6,12 @@
 
 <div class="row">
   <div class="col-md-3">
-  <%= label_tag 'name', 'Business name' %>
+    <%= label_tag 'name', 'Business name' %>
   </div>
 
   <div class="col-md-9">
     <span class="provider-edit-input">
-    <%= text_field_tag 'name', @provider.name %>
+      <%= text_field_tag 'name', @provider.name %>
     </span>
   </div>
 </div>
@@ -20,12 +20,12 @@
 
 <div class="row">
   <div class="col-md-3">
-  <%= label_tag 'url_main', 'Website' %>
+    <%= label_tag 'url_main', 'Website' %>
   </div>
 
   <div class="col-md-9">
     <span class="provider-edit-input">
-    <%= text_field_tag 'url_main', @provider.url_main %>
+      <%= text_field_tag 'url_main', @provider.url_main %>
     </span>
   </div>
 </div>
@@ -34,7 +34,7 @@
 
 <div class="row">
   <div class="col-md-3">
-  <%= label_tag 'organization', 'Share Details With' %>
+    <%= label_tag 'organization', 'Share Details With' %>
   </div>
 
 
@@ -194,7 +194,7 @@
       <ul>
         <% @tags.each do |tag| %>
           <li>
-          <%= check_box_tag 'tag_selection[]', tag.id, @checked_tags.include?(tag) %><%= tag.readable %>
+            <%= check_box_tag 'tag_selection[]', tag.id, @checked_tags.include?(tag) %><%= tag.readable %>
           </li>
         <% end %>
       </ul>
@@ -238,6 +238,7 @@
     <div class="row">
     <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button" %>
     <% end %>
+
     </div>
   </div>
 
