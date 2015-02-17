@@ -23,9 +23,8 @@
 //= require s3_direct_upload
 //= require jquery.validate
 //= require additional-methods
-//= require jquery_nested_form
 //= require chosen-jquery
-//= require enable-chosen-jquery
+//= require jquery_nested_form
 
 //= require_tree ./angular
 //= require_tree ./bootstrap
