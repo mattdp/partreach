@@ -23,7 +23,7 @@
             <div class="index-search">
             <%= form_tag filter_providers_path do%>
               <!-- <%= label_tag :tags, 'What service do you need? ' %> -->
-              <%= select_tag(:tags, options_from_collection_for_select(@provider_hash.keys, :id, :readable), multiple: true, class: 'tag-select') %>
+              <%= select_tag(:tags, options_from_collection_for_select(@provider_hash.keys, :readable, :readable), multiple: true, class: 'tag-select') %>
               <%= submit_tag 'Search' %>
             <% end %>
             </div>
