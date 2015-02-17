@@ -25,6 +25,8 @@
 //= require chosen.jquery.min
 //= require additional-methods
 //= require jquery_nested_form
+//= require chosen-jquery
+//= require enable-chosen-jquery
 
 //= require_tree ./angular
 //= require_tree ./bootstrap
