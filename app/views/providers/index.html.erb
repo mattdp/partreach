@@ -6,19 +6,32 @@
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
 
       <div class="row text-block">
-        <div class="col-md-5 col-md-offset-1">
-          <img src="/assets/hax-logo-big.png">
-        </div>
-        <div class="col-md-6">
-          <h1> Privately collaborate with HAX teams about manufacturing, sourcing, China, and quadcopters</h1>
+        <row class="row">
+          <!-- <div class="col-md-5 col-md-offset-1">
+            <img src="/assets/hax-logo-big.png">
+          </div> -->
+          <div class="col-md-6 col-md-offset-3">
+            <!-- <h1> Privately collaborate with HAX teams about manufacturing, sourcing, China, and quadcopters</h1> -->
+            <div class="header-text-block">
+              <h1> Get connected to the right supplier</h1>
+              <h4>Access institutional knowledge and relationships from 6 HAX classes.</h4>
+            </div>
+          </div>
+    
+        <div class="row bottom-search-area">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="index-search">
+            <%= form_tag filter_providers_path do%>
+              <!-- <%= label_tag :tags, 'What service do you need? ' %> -->
+              <%= select_tag(:tags, options_from_collection_for_select(@provider_hash.keys, :id, :readable), multiple: true, class: 'chosen-select') %>
+              <%= submit_tag 'Search' %>
+            <% end %>
+            </div>
+          </div>
         </div>
       </div>
 
-      <%= form_tag filter_providers_path do%>
-        <%= label_tag :tags, 'Only show suppliers tagged with: ' %>
-        <%= select_tag(:tags, options_from_collection_for_select(@provider_hash.keys, :id, :readable), multiple: true, class: 'chosen-select') %>
-        <%= submit_tag 'Apply' %>
-      <% end %>
+      
       
       <div class="row">
         <div class="col-md-6">
