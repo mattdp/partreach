@@ -106,6 +106,13 @@
       
       <div class="table-header">
 
+      <!-- GOOGLE MAPS EMBED
+      https://developers.google.com/maps/documentation/embed/guide#embedding_the_map -->
+      <!-- Height=450px; Width=600px -->
+      <div class="google-maps">
+        <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=3008%20Shennan%20Middle%20Road%2C%20Futian%20District%2C%20Shenzhen%20518031%2C%20China&key=AIzaSyAVFaXqivNKzaOZ6Ta8H2X_adVX39JRJZc"></iframe>
+      </div>
+
       <!-- ADDRESS SECTION -->
         <h3 class=".profile-heading">Address information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_address_from_profile") %>]</span></h3>
         <ul>
