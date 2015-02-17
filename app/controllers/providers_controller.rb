@@ -83,6 +83,10 @@ class ProvidersController < ApplicationController
     render layout: "provider"
   end
 
+  def filter
+    redirect_to teams_index_path #temporary
+  end
+
   def profile
     @provider = Provider.find_by_name_for_link(params[:name_for_link])
     @comments = @provider.comments

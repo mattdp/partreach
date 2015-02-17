@@ -13,6 +13,12 @@
           <h1> Privately collaborate with HAX teams about manufacturing, sourcing, China, and quadcopters</h1>
         </div>
       </div>
+
+      <%= form_tag filter_providers_path do%>
+        <%= label_tag :tags, 'Only show suppliers tagged with: ' %>
+        <%= select_tag(:tags, options_from_collection_for_select(@provider_hash.keys, :id, :readable), multiple: true, class: 'chosen-select') %>
+        <%= submit_tag 'Apply' %>
+      <% end %>
       
       <div class="row">
         <div class="col-md-6">
