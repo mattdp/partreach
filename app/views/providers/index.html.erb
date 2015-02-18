@@ -6,23 +6,17 @@
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
 
       <div class="row text-block">
-        <!-- <row class="row"> -->
-          <!-- <div class="col-md-5 col-md-offset-1">
-            <img src="/assets/hax-logo-big.png">
-          </div> -->
-          <div class="col-md-6 col-md-offset-3">
-            <!-- <h1> Privately collaborate with HAX teams about manufacturing, sourcing, China, and quadcopters</h1> -->
-            <div class="header-text-block">
-              <h1> Get connected to the right supplier</h1>
-              <h4>Access institutional knowledge and relationships from 6 HAX classes.</h4>
-            </div>
+        <div class="col-md-6 col-md-offset-3">
+          <div class="header-text-block">
+            <h1> Get connected to the right supplier</h1>
+            <h4>Access institutional knowledge and relationships from 6 HAX classes.</h4>
           </div>
+        </div>
     
         <div class="row bottom-search-area">
           <div class="col-md-6 col-md-offset-3">
             <div class="index-search">
             <%= form_tag providers_search_results_path, method: :get do%>
-              <!-- <%= label_tag :tags, 'What service do you need? ' %> -->
               <%= select_tag(:tags, options_from_collection_for_select(@provider_hash.keys, :readable, :readable), multiple: true, class: 'tag-select') %>
               <%= submit_tag 'Search' %>
             <% end %>
