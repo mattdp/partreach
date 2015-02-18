@@ -1,0 +1,35 @@
+          <% if providers %> 
+            <div class="stylish">
+            <table>
+              <tr>
+                <th>Existence Verified</th>
+                <th>Company Name</th>
+                <th>City</th>
+                <th>Rating</th>
+                <th># of comments</th>
+              </tr>
+              <tr>
+                
+              </tr>
+              <% providers.each do |provider| %>
+                <tr>
+                  <% comments = provider.comments %>
+                  <td><%= provider.verified ? "Yes" : "No" %></td>
+                  <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
+                  <td><%= "#{provider.city}" %></td>
+                  <td>
+                    <div class="row"><%= render partial: "providers/star_display", locals: {score: provider.average_score} %></div>
+                  </td>
+                  <td>
+                    <%= provider.comments.count == 0 ? "" : provider.comments.count %>
+                  </td>
+                </tr>              
+              <% end %>  
+              <tr>
+                <td><%= link_to "[Add to this list]" , new_provider_with_event_path("add_provider_from_index")%></td>
+              </tr>  
+            </table>
+            </div>
+          <% else %>
+            <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
+          <% end %>
