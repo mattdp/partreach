@@ -83,12 +83,14 @@ class ProvidersController < ApplicationController
     render layout: "provider"
   end
 
-  def filter
-    @tag_filters = params[:tags]
-    @providers = Provider.joins(taggings: :tag).where(tags: {readable: @tag_filters}).
-                 group('providers.id').having("count(*) >= #{@tag_filters.size}")
-
-    redirect_to teams_index_path #temporary
+  def search_results
+    if @tag_filters = params[:tags]
+      @providers = Provider.joins(taggings: :tag).where(tags: {readable: @tag_filters}).
+                   group('providers.id').having("count(*) >= #{@tag_filters.size}")
+      render layout: "provider"
+    else
+      redirect_to teams_index_path
+    end
   end
 
   def profile

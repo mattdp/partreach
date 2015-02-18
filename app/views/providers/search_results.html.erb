@@ -1,4 +1,4 @@
-<% provide(:title,"Provider index") %>
+<% provide(:title,"Provider search results") %>
 
 <div class="container hax-body-styling">
   <div class="row">
@@ -6,57 +6,22 @@
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
 
       <div class="row text-block">
-        <!-- <row class="row"> -->
-          <!-- <div class="col-md-5 col-md-offset-1">
-            <img src="/assets/hax-logo-big.png">
-          </div> -->
           <div class="col-md-6 col-md-offset-3">
-            <!-- <h1> Privately collaborate with HAX teams about manufacturing, sourcing, China, and quadcopters</h1> -->
             <div class="header-text-block">
               <h1> Get connected to the right supplier</h1>
               <h4>Access institutional knowledge and relationships from 6 HAX classes.</h4>
             </div>
           </div>
-    
-        <div class="row bottom-search-area">
-          <div class="col-md-6 col-md-offset-3">
-            <div class="index-search">
-            <%= form_tag providers_search_results_path, method: :get do%>
-              <!-- <%= label_tag :tags, 'What service do you need? ' %> -->
-              <%= select_tag(:tags, options_from_collection_for_select(@provider_hash.keys, :readable, :readable), multiple: true, class: 'tag-select') %>
-              <%= submit_tag 'Search' %>
-            <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          Contents (click to jump to a section)
-        </div>
-      </div>
-      
-      <div class="row">
-        <div id="keyword-list">
-          <ul>
-            <% @provider_hash.keys.each do |key| %>
-              <li><%= link_to "#{key.readable}", "##{key.name}" %></li>
-            <% end %>
-            <li><%= link_to "[Add to this list]" , teams_suggested_edit_path("add_provider_from_index")%></li>
-          </ul>
-        </div>
       </div>
 
       <hr>
 
-      <% @provider_hash.each do |key, providers| %>
         <div class="col-md-12">
           <h2>
-            <span id='<%="#{key.name}"%>' name='<%="#{key.name}"%>'><%= "#{key.readable}" %></span>
-            <span class="heading_navigation">[<%= link_to "Back to top" %>]</span>
+            <span><%= @tag_filters.join(" & ") %></span>
           </h2>
           
+          <% providers = @providers %>
           <% if providers %> 
             <div class="stylish">
             <table>
@@ -93,7 +58,6 @@
             <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
           <% end %>        
         </div>
-      <% end %>
 
     </div>
   </div>

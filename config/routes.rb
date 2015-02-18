@@ -94,7 +94,7 @@ Partreach::Application.routes.draw do
   get '/teams/hax/', to: 'providers#index', as: "teams_index"
   get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
   get '/teams/hax/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
-  post '/teams/hax/providers/filter', to: 'providers#filter', as: 'filter_providers'
+  get '/teams/hax/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
 
   resources :reviews, only: [:new, :create]
 
