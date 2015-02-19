@@ -10,6 +10,7 @@
 #  model_id        :integer
 #  target_model    :string(255)
 #  target_model_id :integer
+#  info            :text
 #
 
 class Event < ActiveRecord::Base
