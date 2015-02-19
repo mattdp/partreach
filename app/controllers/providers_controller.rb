@@ -88,6 +88,7 @@ class ProvidersController < ApplicationController
       @provider_tags = Tag.by_taggable_type('Provider')
       @providers = Provider.joins(taggings: :tag).where(tags: {readable: @tag_filters}).
                    group('providers.id').having("count(*) >= #{@tag_filters.size}")
+      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @tag_filters.join(" & "))
       render layout: "provider"
     else
       redirect_to teams_index_path

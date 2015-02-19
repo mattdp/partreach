@@ -24,7 +24,7 @@ class Event < ActiveRecord::Base
       "loaded new comment page for", "edit_providername_from_profile",
       "edit_whatcantheydo_from_profile", "add_po_from_profile",
       "add_visit_from_profile","edit_address_from_profile",
-      "edit_contactinfo_from_profile"]
+      "edit_contactinfo_from_profile", "searched providers by tags"]
   end
 
   # happenings: an array of strings
@@ -38,8 +38,10 @@ class Event < ActiveRecord::Base
       where(model: 'User').where.not(model_id: User.select(:id).where(admin: true))
   end
 
-  def self.add_event(model,model_id,happening,target_model=nil,target_model_id=nil)
-    event = Event.new(model: model, model_id: model_id, happening: happening, target_model: target_model, target_model_id: target_model_id)
+  def self.add_event(model, model_id, happening, target_model=nil, target_model_id=nil, info=nil)
+    event = Event.new(model: model, model_id: model_id, happening: happening,
+                      target_model: target_model, target_model_id: target_model_id,
+                      info: info)
     return event.save
   end
 
