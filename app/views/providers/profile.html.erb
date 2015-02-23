@@ -66,6 +66,31 @@
 
       <!-- BEGIN MIDDLE COLUMN -->
       <div class="col-md-4">
+
+  <%= hidden_field_tag "provider_id", @provider.id %>
+
+  <%= s3_uploader_form  id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
+                        max_file_size: 10.megabytes,
+                        key_starts_with: "externals/",
+                        key: "externals/provider-#{@provider.id}-#{SecureRandom.hex}/${filename}" do %>
+                          <%= file_field_tag :file, multiple: true %>
+                        <% end %>
+  <script id="template-upload" type="text/x-tmpl">
+    <div id="file-{%=o.unique_id%}" class="upload">
+      <div class="filename">{%=o.name%}</div>
+      <div class="progress"><div class="bar" style="width: 0%"></div></div>
+    </div>
+  </script>
+
+  <div>
+    <h3>Uploaded photos:</h3>
+    <ul id="uploaded-photo-list">
+      <% @provider.externals.each do |external| %>
+        <li><%= link_to external.original_filename, external.url, target: "_blank" %></li>
+      <% end %>
+    </ul>
+  </div>
+
       </div>
 
       <!-- BEGIN RIGHT COLUMN -->
