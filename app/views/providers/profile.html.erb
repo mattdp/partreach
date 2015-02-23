@@ -67,8 +67,25 @@
       <!-- BEGIN MIDDLE COLUMN -->
       <div class="col-md-4">
 
-  <%= hidden_field_tag "provider_id", @provider.id %>
+        <!-- PHOTO GALLERY -->
+        <div>
+          <ul id="uploaded-photo-list" class="row photo-gallery">
+          <% @provider.externals.each_with_index do |external, index| %>
+          <% if index == 0 %>
+            <li>
+          <% else %>
+            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">
+          <% end %>
+              <%= image_tag(external.url) %>
+            </li>
+          <% end %>
+        </ul>
+        </div>
 
+        <%= hidden_field_tag "provider_id", @provider.id %>
+
+        <div>
+          <span class="heading_navigation">[add a photo:]</span>
   <%= s3_uploader_form  id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
                         max_file_size: 10.megabytes,
                         key_starts_with: "externals/",
@@ -81,15 +98,7 @@
       <div class="progress"><div class="bar" style="width: 0%"></div></div>
     </div>
   </script>
-
-  <div>
-    <h3>Uploaded photos:</h3>
-    <ul id="uploaded-photo-list">
-      <% @provider.externals.each do |external| %>
-        <li><%= link_to external.original_filename, external.url, target: "_blank" %></li>
-      <% end %>
-    </ul>
-  </div>
+        </div>
 
       </div>
 

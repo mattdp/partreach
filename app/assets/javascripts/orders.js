@@ -61,7 +61,12 @@ $(document).ready(function() {
       success: function(data, textStatus, jqXHR)
       {
         if ( $('#uploaded-photo-list').length) {
-          $('#uploaded-photo-list').append('<li><a href="' + content.url + '" target="_blank">' + content.filename + '</a></li>');
+          if ($('#uploaded-photo-list')[0].childElementCount == 0) {
+            li = '<li>'
+          } else {
+            li = '<li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">'
+          }
+          $('#uploaded-photo-list').append(li + '<img src="' + content.url + '"</li>');
         }
       },
       error: function (jqXHR, textStatus, errorThrown)
