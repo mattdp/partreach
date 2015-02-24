@@ -51,8 +51,7 @@ class Provider < ActiveRecord::Base
   def self.providers_hash_by_process
     hash = {}
 
-    tags = Tag.distinct.joins(:taggings).where(taggings: {taggable_type: 'Provider'}).distinct
-    tags = tags.sort_by{|t| t.name}
+    tags = Tag.by_taggable_type('Provider')
 
     tags.each do |tag|
       hash[tag] = Tagging.where("tag_id = ? and taggable_type = 'Provider'",tag.id).map{|tgg| tgg.taggable}.sort_by{|provider| provider.name}

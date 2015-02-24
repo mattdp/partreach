@@ -79,6 +79,10 @@ class Tag < ActiveRecord::Base
     answers
   end
 
+  def self.by_taggable_type(type)
+    Tag.joins(:taggings).where(taggings: {taggable_type: type}).distinct.order(:readable)
+  end
+
   #takes array of 1-n tags and a country
   def self.total_suppliers_tagged(tags, country = nil)
     counter = 0
