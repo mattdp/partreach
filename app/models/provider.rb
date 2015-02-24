@@ -29,9 +29,14 @@ class Provider < ActiveRecord::Base
   has_many :comments
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
+  has_many :externals, :as => :consumer, :dependent => :destroy
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+
+  def add_external(url, filename)
+    externals.create!(url: url, original_filename: filename)
+  end
 
   def self.proper_name_for_link(name)
     return name.downcase.gsub(/\W+/, "")

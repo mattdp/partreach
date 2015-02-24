@@ -110,6 +110,12 @@ class ProvidersController < ApplicationController
     render layout: "provider"
   end
 
+  def upload_photo
+    provider = Provider.find(params[:provider_id])
+    provider.add_external(params['url'], params['filename'])
+    render nothing: true
+  end
+
   private
 
     def editable_provider_params

@@ -51,6 +51,31 @@ $(document).ready(function() {
     }
   });
 
+  $('.s3-provider-photo-upload').S3Uploader();
+
+  $('.s3-provider-photo-upload').bind('s3_upload_complete', function(e, content) {
+    $.ajax({
+      url : "/provider/upload_photo",
+      type: "POST",
+      data: { 'provider_id': $('#provider_id')[0].value, 'url': content.url, 'filename': content.filename },
+      success: function(data, textStatus, jqXHR)
+      {
+        if ( $('#uploaded-photo-list').length) {
+          if ($('#uploaded-photo-list')[0].childElementCount == 0) {
+            li = '<li>'
+          } else {
+            li = '<li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">'
+          }
+          $('#uploaded-photo-list').append(li + '<img src="' + content.url + '"</li>');
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+        alert("An error occurred during upload (" + jqXHR.status + ")")
+      }
+    });
+  });
+
   // run client-side validations (using jquery.validate)
   $("#new-order").validate({
     ignore: [], // without this, hidden fields are not validated
