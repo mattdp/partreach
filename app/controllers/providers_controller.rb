@@ -83,6 +83,17 @@ class ProvidersController < ApplicationController
     render layout: "provider"
   end
 
+  def search_results
+    if @tag_filters = params[:tags]
+      @provider_tags = Tag.by_taggable_type('Provider')
+      @providers = Provider.joins(taggings: :tag).where(tags: {readable: @tag_filters}).
+                   group('providers.id').having("count(*) >= #{@tag_filters.size}")
+      render layout: "provider"
+    else
+      redirect_to teams_index_path
+    end
+  end
+
   def profile
     @provider = Provider.find_by_name_for_link(params[:name_for_link])
     @comments = @provider.comments
