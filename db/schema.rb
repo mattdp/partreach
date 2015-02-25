@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150219212445) do
+ActiveRecord::Schema.define(version: 20150225004920) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 20150219212445) do
   end
 
   add_index "combos", ["supplier_id"], name: "index_combos_on_supplier_id", using: :btree
+
+  create_table "comment_ratings", force: true do |t|
+    t.integer  "comment_id"
+    t.integer  "user_id"
+    t.boolean  "helpful"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comment_ratings", ["comment_id"], name: "index_comment_ratings_on_comment_id", using: :btree
+  add_index "comment_ratings", ["user_id"], name: "index_comment_ratings_on_user_id", using: :btree
 
   create_table "comments", force: true do |t|
     t.integer  "user_id"

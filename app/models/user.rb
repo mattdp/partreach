@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   has_one :lead, dependent: :destroy
   has_many :web_search_results, :foreign_key => "action_taken_by_id"
   has_many :comments
+  has_many :comment_ratings
 
   before_save :create_remember_token
 
