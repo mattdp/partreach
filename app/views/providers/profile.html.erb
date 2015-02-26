@@ -160,7 +160,13 @@
           </div>
 
           <div class="col-md-9 comment">
-            
+
+            <div class="row">
+              <% if comment.ratings_count.present? && comment.ratings_count > 0 %>
+                <%= "#{comment.helpful_count} of #{comment.ratings_count} users found this comment helpful" %>
+              <% end %>
+            </div>
+
             <div class="row">
               <% if comment.title.present? %>
                 <h3 class="comment-snippet">
