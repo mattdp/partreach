@@ -16,13 +16,15 @@ class CommentRating < ActiveRecord::Base
 
   def self.add_rating(comment_id, user, helpful)
     comment_rating = CommentRating.new(comment_id: comment_id, user: user, helpful: helpful)
-    saved_ok = comment_rating.save
-    
-    # maintain denormalized count of total ratings and helpful ratings in Comment
-    helpful_increment = ( helpful ? 1 : 0 )
-    Comment.update_counters(comment_id, ratings_count: 1, helpful_count: helpful_increment)
+    if comment_rating.save
+      # maintain denormalized count of total ratings and helpful ratings in Comment
+      counters = {}
+      counters[:ratings_count] = 1
+      counters[:helpful_count] = 1 if helpful
+      Comment.update_counters(comment_id, counters)
+    end
 
-    saved_ok
+    comment_rating.id
   end
 
 end
