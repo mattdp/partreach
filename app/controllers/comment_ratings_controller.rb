@@ -8,7 +8,7 @@ class CommentRatingsController < ApplicationController
 
     comment_rating_id = CommentRating.add_rating(comment_id, current_user, helpful)
     if comment_rating_id
-      Event.add_event("User", current_user.id, "added comment rating", "CommentRating", comment_rating_id)
+      Event.add_event("User", current_user.id, "added rating on comment", "Comment", comment_id)
     else
       note = "Sorry, unable to save your comment rating"
     end
