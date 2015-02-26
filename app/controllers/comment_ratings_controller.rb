@@ -3,8 +3,13 @@ class CommentRatingsController < ApplicationController
 
   def create
     provider = Provider.find(params[:provider_id])
+    comment_id = params[:comment_id]
     helpful = ( params[:commit] == 'Yes' )
-    unless CommentRating.add_rating(params[:comment_id], current_user, helpful)
+
+    comment_rating_id = CommentRating.add_rating(comment_id, current_user, helpful)
+    if comment_rating_id
+      Event.add_event("User", current_user.id, "added rating on comment", "Comment", comment_id)
+    else
       note = "Sorry, unable to save your comment rating"
     end
 

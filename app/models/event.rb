@@ -24,7 +24,9 @@ class Event < ActiveRecord::Base
       "loaded new comment page for", "edit_providername_from_profile",
       "edit_whatcantheydo_from_profile", "add_po_from_profile",
       "add_visit_from_profile","edit_address_from_profile",
-      "edit_contactinfo_from_profile", "searched providers by tags"]
+      "edit_contactinfo_from_profile", "searched providers by tags",
+      "added comment rating"
+    ]
   end
 
   # happenings: an array of strings
