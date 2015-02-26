@@ -182,13 +182,29 @@
               <p><%= raw(comment.payload) %></p>
             </div>
 
+            <div>
+              <% rating = comment.rating_by current_user %>
+              <% if rating.nil? %>
+                <%= form_tag comment_ratings_path do %>
+                  Was this comment helpful to you?
+                  <%= hidden_field_tag :provider_id, @provider.id %>
+                  <%= hidden_field_tag :comment_id, comment.id %>
+                  <%= submit_tag "Yes" %>
+                  <%= submit_tag "No" %>
+                <% end %>
+              <% elsif rating.helpful %>
+                <em>You found this comment helpful</em>
+              <% else %>
+                <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a>
+              <% end %>
+            </div>
+
           </div>
          </div>
         <% end %>
-        <% else %>
-
+      <% else %>
           <p>No information yet - <%= link_to "add the first comment", new_comment_path(@provider.id) %>!</p>
-        <% end %>
+      <% end %>
       </div>
     </div>
 

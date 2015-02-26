@@ -18,6 +18,8 @@ Partreach::Application.routes.draw do
   resources :comments, only: [:create]
   get '/comments/new/:provider_id', to: 'comments#new', as: 'new_comment'
 
+  resources :comment_ratings, only: [:create]
+  
   resources :communications, only: [:new, :create]
 
   resources :dialogues, only: [:new, :create, :destroy]
