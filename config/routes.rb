@@ -93,11 +93,13 @@ Partreach::Application.routes.draw do
   get '/providers/:id/edit/:event_name/', to: 'providers#edit', as: 'edit_provider_with_event'
   match 'providers/:id', to: 'providers#update', as: 'provider', via: :post
   get '/teams/signin', to: 'providers#signin', as: 'teams_signin'
-  get '/teams/hax/', to: 'providers#index', as: "teams_index"
-  get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
-  get '/teams/hax/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
+  get '/teams', to: 'providers#index', as: "teams_index"
+  get '/teams/hax', to: 'providers#index'
+  get '/teams/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
+  get '/teams/hax/providers/:name_for_link', to: 'providers#profile'
+  get '/teams/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
   post '/provider/upload_photo', to: 'providers#upload_photo'
-  get '/teams/hax/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
+  get '/teams/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
 
   resources :reviews, only: [:new, :create]
 
