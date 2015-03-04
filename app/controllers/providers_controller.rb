@@ -1,5 +1,5 @@
 class ProvidersController < ApplicationController
-  before_filter :hax_access_only, except: :signin
+  before_filter :org_access_only, except: :signin
   
   def new
     @provider = Provider.new

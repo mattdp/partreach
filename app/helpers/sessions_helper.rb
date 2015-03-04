@@ -45,13 +45,13 @@ module SessionsHelper
     redirect_to(root_path) unless (current_user && current_user.admin?)
   end
 
-  def hax_access_only
+  def org_access_only
     store_location
-    redirect_to teams_signin_url, notice: "Please sign in." unless hax_access_allowed?
+    redirect_to teams_signin_url, notice: "Please sign in." unless org_access_allowed?
   end
 
-  def hax_access_allowed?
-    current_user.try(:in_hax_organization?) || current_user.try(:admin?)
+  def org_access_allowed?
+    current_user.try(:in_organization?) || current_user.try(:admin?)
   end
 
   def examiner_user

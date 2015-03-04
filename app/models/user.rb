@@ -73,8 +73,8 @@ class User < ActiveRecord::Base
     team.organization if team
   end
 
-  def in_hax_organization?
-    try(:organization).try(:hax?) || false
+  def in_organization?
+    organization.present?
   end
 
   def get_events

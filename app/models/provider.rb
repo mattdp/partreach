@@ -68,7 +68,7 @@ class Provider < ActiveRecord::Base
     return preround.round
   end
 
-  #user facing, for hax for now
+  #user facing for org users
   def tag_creator(tags,user_id=nil)
     tags.each do |tag_name|
       if tag_name.blank?

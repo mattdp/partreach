@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
   private
 
   def redirect_to_initial_page
-    if current_user.in_hax_organization?
+    if current_user.in_organization?
       initial_page_path = session[:return_to] || teams_index_path
       redirect_to initial_page_path
     else

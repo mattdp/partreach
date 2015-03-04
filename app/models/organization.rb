@@ -12,8 +12,4 @@ class Organization < ActiveRecord::Base
 
   has_many :teams
 
-  def hax?
-    name == "HAX"
-  end
-
 end
