@@ -12,7 +12,7 @@ unless Rails.env.production? # don't allow this to run in production environment
   end
 
   def obfuscate_team_user
-    User.where.not(team: nil).each do |user|
+    User.where.not(team: nil).where(admin: false).each do |user|
       begin
         user.password = "changemeplease"
         user.password_confirmation = "changemeplease"
