@@ -97,7 +97,7 @@ class ProvidersController < ApplicationController
 
   def profile
     @provider = Provider.find_by_name_for_link(params[:name_for_link])
-    @comments = @provider.comments
+    @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
     @tags = @provider.tags
     @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
     @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
