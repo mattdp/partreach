@@ -30,9 +30,11 @@ class Provider < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
   has_many :externals, :as => :consumer, :dependent => :destroy
+  belongs_to :organization
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates :organization, presence: true
 
   def add_external(url, filename)
     externals.create!(url: url, original_filename: filename)

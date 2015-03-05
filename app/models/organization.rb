@@ -11,5 +11,6 @@
 class Organization < ActiveRecord::Base
 
   has_many :teams
+  has_many :providers
 
 end
