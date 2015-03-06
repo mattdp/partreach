@@ -54,6 +54,10 @@ module SessionsHelper
     current_user.try(:in_organization?) || current_user.try(:admin?)
   end
 
+  def current_organization
+    @current_user.organization if @current_user
+  end
+
   def examiner_user
     redirect_to(root_path) unless (current_user && (current_user.admin? || current_user.examiner?))
   end
