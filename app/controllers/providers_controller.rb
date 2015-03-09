@@ -19,6 +19,7 @@ class ProvidersController < ApplicationController
     @provider = Provider.new(editable_provider_params)
     @provider.name_for_link = Provider.proper_name_for_link(@provider.name)
     @provider.source = "User #{current_user.id}"
+    @provider.organization = current_organization
    
     new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
     saved_ok = @provider.save and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags,current_user.id)
@@ -39,7 +40,7 @@ class ProvidersController < ApplicationController
   end
 
   def edit
-    @provider = Provider.find(params[:id])
+    @provider = Provider.for_organization(current_organization).find(params[:id])
     @tags = Provider.tags
     @checked_tags = @provider.tags
 
@@ -53,7 +54,7 @@ class ProvidersController < ApplicationController
   end
 
   def update
-    @provider = Provider.find(params[:id])  
+    @provider = Provider.for_organization(current_organization).find(params[:id])
     new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
     saved_ok = @provider.update(editable_provider_params) and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags, current_user.id)
 
@@ -86,7 +87,8 @@ class ProvidersController < ApplicationController
   def search_results
     if @tag_filters = params[:tags]
       @provider_tags = Tag.by_taggable_type('Provider')
-      @providers = Provider.joins(taggings: :tag).where(tags: {readable: @tag_filters}).
+      @providers = Provider.for_organization(current_organization).
+                   joins(taggings: :tag).where(tags: {readable: @tag_filters}).
                    group('providers.id').having("count(*) >= #{@tag_filters.size}")
       Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @tag_filters.join(" & "))
       render layout: "provider"
@@ -96,7 +98,7 @@ class ProvidersController < ApplicationController
   end
 
   def profile
-    @provider = Provider.find_by_name_for_link(params[:name_for_link])
+    @provider = Provider.for_organization(current_organization).find_by_name_for_link(params[:name_for_link])
     @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
     @tags = @provider.tags
     @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
@@ -111,7 +113,7 @@ class ProvidersController < ApplicationController
   end
 
   def upload_photo
-    provider = Provider.find(params[:provider_id])
+    provider = Provider.for_organization(current_organization).find(params[:provider_id])
     provider.add_external(params['url'], params['filename'])
     render nothing: true
   end
