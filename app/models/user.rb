@@ -77,6 +77,16 @@ class User < ActiveRecord::Base
     organization.present?
   end
 
+  def self.create_team_user(team, email, first_name, last_name=nil)
+    User.transaction do
+      user = User.create!(team: team, password: "changemeplease", password_confirmation: "changemeplease")
+      lead = Lead.create!(user: user)
+      name = first_name
+      name += " #{last_name}" if last_name
+      LeadContact.create!(contactable: lead, name: name, email: email, first_name: first_name, last_name: last_name)
+    end
+  end
+
   def get_events
     Event.for_user(self).each do |event|
       p "#{event.created_at.strftime("%m/%d/%Y %H:%M")}: #{event.happening} #{event.target_model} #{event.target_model_id}"
