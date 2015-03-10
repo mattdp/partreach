@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  before_filter :allow_staging_access
+
   def home
     render :layout => "home"
 

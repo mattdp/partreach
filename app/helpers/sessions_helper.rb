@@ -2,6 +2,7 @@ module SessionsHelper
 
   def sign_in(user)
     cookies.permanent[:remember_token] = user.remember_token
+    cookies.permanent[:allow_staging_access] = 'true'
     self.current_user = user
   end
 
@@ -32,6 +33,17 @@ module SessionsHelper
     redirect_to signin_url, notice: "Please sign in." unless signed_in?
   end
 
+  def allow_staging_access
+    # okay to proceed in environments other than staging
+    return unless Rails.env.staging?
+    # allow signed_in user to proceed in staging
+    return if signed_in?
+    # allow non-signed-in user to proceed in staging, if allow_staging_access cookie is set to true
+    return if cookies[:allow_staging_access] == 'true'
+    # otherwise, require signin
+    redirect_to teams_signin_url
+  end
+
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)
@@ -47,7 +59,7 @@ module SessionsHelper
 
   def org_access_only
     store_location
-    redirect_to teams_signin_url, notice: "Please sign in." unless org_access_allowed?
+    redirect_to teams_signin_url unless org_access_allowed?
   end
 
   def org_access_allowed?

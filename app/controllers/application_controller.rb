@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
+  include SessionsHelper
   protect_from_forgery
   after_filter :set_csrf_cookie_for_ng
-  include SessionsHelper
 
 #http://stackoverflow.com/questions/128450/best-practices-for-reusing-code-between-controllers-in-ruby-on-rails/130821#130821
 
