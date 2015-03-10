@@ -73,8 +73,18 @@ class User < ActiveRecord::Base
     team.organization if team
   end
 
-  def in_hax_organization?
-    try(:organization).try(:hax?) || false
+  def in_organization?
+    organization.present?
+  end
+
+  def self.create_team_user(team, email, first_name, last_name=nil)
+    User.transaction do
+      user = User.create!(team: team, password: "changemeplease", password_confirmation: "changemeplease")
+      lead = Lead.create!(user: user)
+      name = first_name
+      name += " #{last_name}" if last_name
+      LeadContact.create!(contactable: lead, name: name, email: email, first_name: first_name, last_name: last_name)
+    end
   end
 
   def get_events
