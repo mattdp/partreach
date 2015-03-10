@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :hax_access_only
+  before_filter :org_access_only
 
   def new
     @provider = Provider.find(params[:provider_id])    
