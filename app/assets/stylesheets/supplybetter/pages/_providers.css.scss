@@ -36,6 +36,7 @@ transition: all 0.3s;  /* Simple transition for hover effect */
 .stylish th {
 background: #DFDFDF;  /* Darken header a bit */
 font-weight: bold;
+text-align: center;
 }
 
 .stylish td {
@@ -246,13 +247,23 @@ replacement -mdp */
 
 /*COMMENTS*/
 
-.avatar-profile {
+/*.avatar-profile {
   height: 84px;
   width: 84px;
   border-width: 3px;
   border-style: solid;
   border-color: gray;
   background-color: #e5e5e5;
+}*/
+
+.avatar-profile {
+  /*background-image: url("https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/avatar+copy-small.gif");*/
+  background-image: url("/assets/avatar copy-small.gif");
+  background-repeat: no-repeat;
+  height: 84px;
+  width: 84px;
+  margin: 0;
+  padding: 0;
 }
 
 .comment p {
