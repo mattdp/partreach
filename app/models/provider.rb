@@ -30,9 +30,11 @@ class Provider < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
   has_many :externals, :as => :consumer, :dependent => :destroy
+  belongs_to :organization
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates :organization, presence: true
 
   def add_external(url, filename)
     externals.create!(url: url, original_filename: filename)
@@ -48,16 +50,22 @@ class Provider < ActiveRecord::Base
     end
   end
 
-  def self.providers_hash_by_process
+  def self.tags
+    Tag.by_taggable_type('Provider')
+  end
+
+  def self.for_organization(organization)
+    Provider.where(organization: organization)
+  end
+
+  def self.providers_hash_by_process(organization)
     hash = {}
 
-    tags = Tag.by_taggable_type('Provider')
-
-    tags.each do |tag|
-      hash[tag] = Tagging.where("tag_id = ? and taggable_type = 'Provider'",tag.id).map{|tgg| tgg.taggable}.sort_by{|provider| provider.name}
+    Provider.tags.each do |tag|
+      hash[tag] = Provider.for_organization(organization).joins(:tags).where(tags: {id: tag.id}).order(:name)
     end
 
-    return hash
+    hash
   end
 
   #needs to return 0-5 inclusive integer
@@ -68,7 +76,7 @@ class Provider < ActiveRecord::Base
     return preround.round
   end
 
-  #user facing, for hax for now
+  #user facing for org users
   def tag_creator(tags,user_id=nil)
     tags.each do |tag_name|
       if tag_name.blank?
