@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_action :allow_staging_access, only: [:new, :create]
 
   def new
   end

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+  before_action :allow_staging_access
   protect_from_forgery
   after_filter :set_csrf_cookie_for_ng
 
