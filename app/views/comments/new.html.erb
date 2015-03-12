@@ -9,6 +9,7 @@
       <%= form_tag comments_path do %>
 
         <%= hidden_field_tag :provider_id, @provider.id %>
+        <%= hidden_field_tag :comment_type, @comment_type %>
         <%= hidden_field_tag :overall_score, 0, {:class => "overall_score"} %>
 
         <div class="field">
