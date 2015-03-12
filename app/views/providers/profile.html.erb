@@ -44,7 +44,7 @@
       <!-- PURCHASE ORDERS -->
       <h3 class=".profile-heading">
         Purchase orders
-       <span class="heading_navigation">[<%= link_to "add a purchase", teams_suggested_edit_path("add_po_from_profile") %>]</span>
+       <span class="heading_navigation">[<%= link_to "add a purchase", new_purchase_order_comment_path(@provider.id) %>]</span>
        </h3>  
        <ul>
         <% @po_names.each do |name| %>
@@ -55,7 +55,7 @@
       <!-- FACTORY VISITS -->
       <h3 class=".profile-heading">
         Factory visits
-       <span class="heading_navigation">[<%= link_to "add a visit", teams_suggested_edit_path("add_visit_from_profile") %>]</span>
+       <span class="heading_navigation">[<%= link_to "add a visit", new_factory_visit_comment_path(@provider.id) %>]</span>
        </h3>
       <ul>
         <% @fv_names.each do |name| %>
