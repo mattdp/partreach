@@ -44,7 +44,7 @@
       <!-- PURCHASE ORDERS -->
       <h3 class=".profile-heading">
         Purchase orders
-       <span class="heading_navigation">[<%= link_to "add a purchase", teams_suggested_edit_path("add_po_from_profile") %>]</span>
+       <span class="heading_navigation">[<%= link_to "add a purchase", new_purchase_order_comment_path(@provider.id) %>]</span>
        </h3>  
        <ul>
         <% @po_names.each do |name| %>
@@ -55,7 +55,7 @@
       <!-- FACTORY VISITS -->
       <h3 class=".profile-heading">
         Factory visits
-       <span class="heading_navigation">[<%= link_to "add a visit", teams_suggested_edit_path("add_visit_from_profile") %>]</span>
+       <span class="heading_navigation">[<%= link_to "add a visit", new_factory_visit_comment_path(@provider.id) %>]</span>
        </h3>
       <ul>
         <% @fv_names.each do |name| %>
@@ -162,9 +162,11 @@
           <div class="col-md-9 comment">
 
             <div class="row">
-              <% if comment.ratings_count.present? && comment.ratings_count > 0 %>
-                <%= "#{comment.helpful_count} of #{comment.ratings_count} users found this comment helpful" %>
-              <% end %>
+              <span class="comment-smalltext"> 
+                <% if comment.ratings_count.present? && comment.ratings_count > 0 %>
+                  <%= "#{comment.helpful_count} of #{comment.ratings_count} users found this comment helpful" %>
+                <% end %>
+              </span>
             </div>
 
             <div class="row">
@@ -192,16 +194,22 @@
               <% rating = comment.rating_by current_user %>
               <% if rating.nil? %>
                 <%= form_tag comment_ratings_path do %>
+                <span class="comment-smalltext"> 
                   Was this comment helpful to you?
+                </span>
                   <%= hidden_field_tag :provider_id, @provider.id %>
                   <%= hidden_field_tag :comment_id, comment.id %>
                   <%= submit_tag "Yes" %>
                   <%= submit_tag "No" %>
                 <% end %>
               <% elsif rating.helpful %>
+              <span class="comment-smalltext"> 
                 <em>You found this comment helpful</em>
+              </span>
               <% else %>
-                <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a>
+              <span class="comment-smalltext"> 
+                <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
+              </span>
               <% end %>
             </div>
 

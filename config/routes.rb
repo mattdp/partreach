@@ -16,7 +16,9 @@ Partreach::Application.routes.draw do
   get '/analytics/web_search_results', to: 'analytics#web_search_results', as: 'analytics_web_search_results'
 
   resources :comments, only: [:create]
-  get '/comments/new/:provider_id', to: 'comments#new', as: 'new_comment'
+  get '/comments/new_comment/:provider_id', to: 'comments#new_comment', as: 'new_comment'
+  get '/comments/new_factory_visit_comment/:provider_id', to: 'comments#new_factory_visit_comment', as: 'new_factory_visit_comment'
+  get '/comments/new_purchase_order_comment/:provider_id', to: 'comments#new_purchase_order_comment', as: 'new_purchase_order_comment'
 
   resources :comment_ratings, only: [:create]
   
