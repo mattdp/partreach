@@ -1,6 +1,7 @@
 class ProvidersController < ApplicationController
-  before_filter :org_access_only, except: :signin
-  
+  before_action :org_access_only, except: :signin
+  skip_before_action :allow_staging_access, only: :signin
+
   def new
     @provider = Provider.new
     @tags = Provider.tags
