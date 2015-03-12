@@ -5,8 +5,8 @@
  */
 
 /*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=30df4db9ddae11d61976)
- * Config saved to config.json and https://gist.github.com/30df4db9ddae11d61976
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=69d76c9bb0153c3a2994)
+ * Config saved to config.json and https://gist.github.com/69d76c9bb0153c3a2994
  */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /*html {
@@ -958,6 +958,43 @@ hr {
     margin-left: 0%;
   }
 }
+.fade {
+  opacity: 0;
+  -webkit-transition: opacity 0.15s linear;
+  -o-transition: opacity 0.15s linear;
+  transition: opacity 0.15s linear;
+}
+.fade.in {
+  opacity: 1;
+}
+.collapse {
+  display: none;
+  visibility: hidden;
+}
+.collapse.in {
+  display: block;
+  visibility: visible;
+}
+tr.collapse.in {
+  display: table-row;
+}
+tbody.collapse.in {
+  display: table-row-group;
+}
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  -webkit-transition-property: height, visibility;
+  -o-transition-property: height, visibility;
+     transition-property: height, visibility;
+  -webkit-transition-duration: 0.35s;
+  -o-transition-duration: 0.35s;
+     transition-duration: 0.35s;
+  -webkit-transition-timing-function: ease;
+  -o-transition-timing-function: ease;
+     transition-timing-function: ease;
+}
 .modal-open {
   overflow: hidden;
 }
@@ -1100,7 +1137,7 @@ hr {
 .modal-footer:after {
   clear: both;
 }
-/*.center-block {
+.center-block {
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -1133,4 +1170,4 @@ hr {
 }
 .affix {
   position: fixed;
-}*/
+}
