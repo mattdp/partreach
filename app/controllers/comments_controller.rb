@@ -3,16 +3,19 @@ class CommentsController < ApplicationController
 
   def new_comment
     @comment_type = "comment"
+    @comment_type_text = "comment"
     render_new_comment_form
   end
 
   def new_factory_visit_comment
     @comment_type = "factory_visit"
+    @comment_type_text = "factory visit comment"
     render_new_comment_form
   end
 
   def new_purchase_order_comment
     @comment_type = "purchase_order"
+    @comment_type_text = "purchase order comment"
     render_new_comment_form
   end
 
