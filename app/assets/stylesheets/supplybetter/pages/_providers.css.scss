@@ -1,7 +1,8 @@
 /*************** ALL HAX RELATED STUFF IS HERE *****************/
 
-/*AUDIT MADE IT AS FAR AS HERE*/
+/*WTF PHOTO GALLERY STYLING*/
 
+/*I don't know why, but for some reason the rating system styling needs to be above the bootstrap css*/
 /*RATING SYSTEM 
 http://rog.ie/blog/css-star-rater*/
 .star-rating {
@@ -5182,50 +5183,6 @@ text-align: center;
   width: 15%;
 }
 
-/*header table styling*/
-/*.table-header {
-  float: right;
-  max-width: 800px;
-}
-
-.table-header table { 
-  font-family: Helvetica, Arial, sans-serif;
-  width: 800px;
-  Table reset stuff
-  border-collapse: collapse; border-spacing: 0; 
-}
-    
-.table-header td, th {
-  border: 0 none; 
-  height: 30px; 
-}
-      
-.table-header th {
-  color: #FFF; 
-  font-weight: bold;
-  height: 40px;
-}
-    
-.table-header td { 
-  background: #FAFAFA; 
-  text-align: left; 
-  padding-left: 10px;
-  padding-right: 10px;
-}*/
-
-/*#hax-color1 {
-  background-color: #5dbab5;
-  color: white;
-}
-#hax-color2 {
-  background-color: #ff742c;
-  color: white;
-}
-#hax-color3 {
-  background-color: #151c27;
-  color: white;
-}*/
-
 #keyword-list {
     -moz-columns: 5;
     -webkit-columns: 5;
@@ -5258,22 +5215,6 @@ text-align: center;
 /*styling for suggested edits page*/
 img.banner-message {
   vertical-align: middle;
-}
-
-/*GOOGLE MAPS RESPONSIVE STYLING*/
-/*http://www.labnol.org/internet/embed-responsive-google-maps/28333/*/
-.google-maps {
-  position: relative;
-  padding-bottom: 75%; /* This is the aspect ratio*/
-  height: 0;
-  overflow: hidden;
-}
-.google-maps iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100% !important;
-  height: 100% !important;
 }
 
 /*photo gallery styling starts here 
@@ -5309,65 +5250,6 @@ ul.photo-gallery li:first-child img{
     float:right;
     text-align:right;
 }
-
-
-/*RATING SYSTEM 
-http://rog.ie/blog/css-star-rater*/
-.star-rating {
-  font-size: 0;
-  white-space: nowrap;
-  display: inline-block;
-  width: 250px;
-  height: 50px;
-  overflow: hidden;
-  position: relative;
-  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-  background-size: contain;
-}
-.star-rating i {
-  opacity: 0;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 20%;
-  z-index: 1;
-  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-  background-size: contain;
-}
-.star-rating input {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  opacity: 0;
-  display: inline-block;
-  width: 20%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  z-index: 2;
-  position: relative;
-}
-.star-rating input:hover + i,
-.star-rating input:checked + i {
-  opacity: 1;
-}
-.star-rating i ~ i {
-  width: 40%;
-}
-.star-rating i ~ i ~ i {
-  width: 60%;
-}
-.star-rating i ~ i ~ i ~ i {
-  width: 80%;
-}
-.star-rating i ~ i ~ i ~ i ~ i {
-  width: 100%;
-}
-.choice {
-  padding: 20px;
-  display: block;
-}
-
 
 /*INDEX TAG SEARCH*/
 .header-text-block {
