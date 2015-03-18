@@ -1,0 +1,15 @@
+<% provide(:title, "Provider profile not found") %>
+
+<div class="container hax-body-styling">
+  <div class="row">
+     <div class="col-md-4">
+      <p><%= link_to "Back to Suppliers List", teams_index_path %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <p>There is no profile for that supplier yet.</p>
+      <p><%= link_to "Add supplier profile" , new_provider_with_event_path("add_provider_from_profile_not_found")%></p>
+    </div>
+  </div>
+</div>

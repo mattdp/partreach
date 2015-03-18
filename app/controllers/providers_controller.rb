@@ -100,12 +100,16 @@ class ProvidersController < ApplicationController
 
   def profile
     @provider = Provider.for_organization(current_organization).find_by_name_for_link(params[:name_for_link])
-    @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
-    @tags = @provider.tags
-    @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
-    @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
-    Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
-    render layout: "provider"
+    if @provider
+      @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
+      @tags = @provider.tags
+      @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
+      @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
+      Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
+      render layout: "provider"
+    else
+      render template: "providers/profile_not_found", layout: "provider"
+    end
   end
 
   def suggested_edit

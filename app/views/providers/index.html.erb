@@ -19,7 +19,7 @@
             <% @provider_hash.keys.each do |key| %>
               <li><%= link_to "#{key.readable}", "##{key.name}" %></li>
             <% end %>
-            <li><%= link_to "[Add to this list]" , teams_suggested_edit_path("add_provider_from_index")%></li>
+            <li><%= link_to "[Add to this list]" , teams_suggested_edit_path("add_provider_tag_from_index")%></li>
           </ul>
         </div>
       </div>
