@@ -11,8 +11,8 @@
 #  updated_at    :datetime
 #  overall_score :integer          default(0)
 #  title         :string(255)
-#  ratings_count :integer
-#  helpful_count :integer
+#  ratings_count :integer          default(0)
+#  helpful_count :integer          default(0)
 #
 
 class Comment < ActiveRecord::Base

@@ -20,6 +20,7 @@
 #  address          :text
 #  id_within_source :integer
 #  contact_skype    :string(255)
+#  organization_id  :integer          not null
 #
 
 class Provider < ActiveRecord::Base
