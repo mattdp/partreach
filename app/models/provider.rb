@@ -55,15 +55,11 @@ class Provider < ActiveRecord::Base
     Tag.by_taggable_type('Provider')
   end
 
-  def self.for_organization(organization)
-    Provider.where(organization: organization)
-  end
-
   def self.providers_hash_by_process(organization)
     hash = {}
 
     Provider.tags.each do |tag|
-      hash[tag] = Provider.for_organization(organization).joins(:tags).where(tags: {id: tag.id}).order(:name)
+      hash[tag] = organization.providers.joins(:tags).where(tags: {id: tag.id}).order(:name)
     end
 
     hash

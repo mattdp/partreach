@@ -9,7 +9,13 @@
 #
 
 class Organization < ActiveRecord::Base
+
   has_many :teams
   has_many :providers
   has_many :tags
+
+  def providers
+    Provider.where(organization: self)
+  end
+
 end
