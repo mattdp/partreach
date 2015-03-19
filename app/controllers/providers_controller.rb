@@ -126,6 +126,7 @@ class ProvidersController < ApplicationController
   private
 
     def editable_provider_params
+      params[:verified] = params[:verified].present? ? true : false
       params.permit(:name,:url_main,:contact_qq, \
         :contact_wechat,:contact_phone,:contact_email,:contact_name, \
         :contact_role,:verified,:city,:address,:contact_skype)
