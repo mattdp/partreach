@@ -51,20 +51,6 @@ class Provider < ActiveRecord::Base
     end
   end
 
-  def self.tags
-    Tag.by_taggable_type('Provider')
-  end
-
-  def self.providers_hash_by_process(organization)
-    hash = {}
-
-    Provider.tags.each do |tag|
-      hash[tag] = organization.providers.joins(:tags).where(tags: {id: tag.id}).order(:name)
-    end
-
-    hash
-  end
-
   #needs to return 0-5 inclusive integer
   def average_score
     numbers_without_zeros = self.comments.map{|comment| comment.overall_score}.reject{|n| n==0}

@@ -4,7 +4,7 @@ class ProvidersController < ApplicationController
 
   def new
     @provider = Provider.new
-    @tags = Provider.tags
+    @tags = current_organization.provider_tags
     @checked_tags = []
 
     if params[:event_name].present? 
@@ -42,7 +42,7 @@ class ProvidersController < ApplicationController
 
   def edit
     @provider = current_organization.providers.find(params[:id])
-    @tags = Provider.tags
+    @tags = current_organization.provider_tags
     @checked_tags = @provider.tags
 
     if params[:event_name].present? 
@@ -80,7 +80,7 @@ class ProvidersController < ApplicationController
   end
 
   def index
-    @provider_hash = Provider.providers_hash_by_process(current_organization)
+    @provider_hash = current_organization.providers_hash_by_tag
     Event.add_event("User",current_user.id,"loaded index")
     render layout: "provider"
   end
