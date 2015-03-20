@@ -87,7 +87,7 @@ class ProvidersController < ApplicationController
 
   def search_results
     if @tag_filters = params[:tags]
-      @provider_tags = Tag.by_taggable_type('Provider')
+      @provider_tags = current_organization.provider_tags
       @providers = current_organization.providers.
                    joins(taggings: :tag).where(tags: {readable: @tag_filters}).
                    group('providers.id').having("count(*) >= #{@tag_filters.size}")
