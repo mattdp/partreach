@@ -22,8 +22,11 @@ class ProvidersController < ApplicationController
     @provider.source = "User #{current_user.id}"
     @provider.organization = current_organization
    
-    new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
-    saved_ok = @provider.save and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags,current_user.id)
+    new_tag_names = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
+    new_tag_names.select! {|tag_name| tag_name.present? }
+    saved_ok = @provider.save and 
+               @provider.update_tags(params[:tag_selection]) and 
+               @provider.tag_creator(new_tag_names, current_user)
 
     if saved_ok
       note = "Saved OK!" 
@@ -56,8 +59,11 @@ class ProvidersController < ApplicationController
 
   def update
     @provider = current_organization.providers.find(params[:id])
-    new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
-    saved_ok = @provider.update(editable_provider_params) and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags, current_user.id)
+    new_tag_names = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
+    new_tag_names.select! {|tag_name| tag_name.present? }
+    saved_ok = @provider.update(editable_provider_params) and 
+               @provider.update_tags(params[:tag_selection]) and 
+               @provider.tag_creator(new_tag_names, current_user)
 
     if saved_ok
       note = "Saved OK!" 

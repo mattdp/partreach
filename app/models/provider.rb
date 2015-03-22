@@ -60,24 +60,32 @@ class Provider < ActiveRecord::Base
   end
 
   #user facing for org users
-  def tag_creator(tags,user_id=nil)
-    tags.each do |tag_name|
-      if tag_name.blank?
-        next
-      elsif Tag.where("name = ?",tag_name).present?
-        tag = Tag.where("name = ?",tag_name)[0]
-        self.add_tag(tag.id)
-        Event.add_event("User","#{user_id}","attempted to add an existing tag","Tag",tag.id)
-      elsif Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name)).present?
-        tag = Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name))[0]
-        self.add_tag(tag.id)
-        Event.add_event("User","#{user_id}","attempted to add an existing tag","Tag",tag.id)
+  def tag_creator(new_tag_names, user)
+    provider_tags = organization.provider_tags
+    organization = user.organization
+    provider_tag_group = TagGroup.find_by_group_name("provider type")
+
+    new_tag_names.each do |tag_name|
+      found = provider_tags.select do |tag|
+        (tag.name_for_link == Tag.proper_name_for_link(tag_name)) || (tag.name == tag_name)
+      end
+      existing_tag = found.first
+
+      if existing_tag
+        self.add_tag(existing_tag.id)
+        Event.add_event("User","#{user.id}","attempted to add an existing tag","Tag", existing_tag.id)
       else
-        t = Tag.create(name: tag_name, readable: tag_name, name_for_link: Tag.proper_name_for_link(tag_name), tag_group_id: TagGroup.find_by_group_name("provider type").id)
-        self.add_tag(t.id)
-        Event.add_event("User","#{user_id}","added a new tag")
+        new_tag = Tag.create(
+          name: tag_name, 
+          readable: tag_name, 
+          name_for_link: Tag.proper_name_for_link(tag_name), 
+          tag_group: provider_tag_group,
+          organization: organization)
+        self.add_tag(new_tag.id)
+        Event.add_event("User","#{user.id}" ,"added a new tag", "Tag", new_tag.id)
       end
     end
+
     return true
   end
 
