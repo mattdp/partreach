@@ -4,7 +4,7 @@ class ProvidersController < ApplicationController
 
   def new
     @provider = Provider.new
-    @tags = Provider.tags
+    @tags = current_organization.provider_tags
     @checked_tags = []
 
     if params[:event_name].present? 
@@ -22,8 +22,11 @@ class ProvidersController < ApplicationController
     @provider.source = "User #{current_user.id}"
     @provider.organization = current_organization
    
-    new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
-    saved_ok = @provider.save and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags,current_user.id)
+    new_tag_names = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
+    new_tag_names.select! {|tag_name| tag_name.present? }
+    saved_ok = @provider.save and 
+               @provider.update_tags(params[:tag_selection]) and 
+               @provider.tag_creator(new_tag_names, current_user)
 
     if saved_ok
       note = "Saved OK!" 
@@ -41,8 +44,8 @@ class ProvidersController < ApplicationController
   end
 
   def edit
-    @provider = Provider.for_organization(current_organization).find(params[:id])
-    @tags = Provider.tags
+    @provider = current_organization.providers.find(params[:id])
+    @tags = current_organization.provider_tags
     @checked_tags = @provider.tags
 
     if params[:event_name].present? 
@@ -55,9 +58,12 @@ class ProvidersController < ApplicationController
   end
 
   def update
-    @provider = Provider.for_organization(current_organization).find(params[:id])
-    new_tags = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
-    saved_ok = @provider.update(editable_provider_params) and @provider.update_tags(params[:tag_selection]) and @provider.tag_creator(new_tags, current_user.id)
+    @provider = current_organization.providers.find(params[:id])
+    new_tag_names = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
+    new_tag_names.select! {|tag_name| tag_name.present? }
+    saved_ok = @provider.update(editable_provider_params) and 
+               @provider.update_tags(params[:tag_selection]) and 
+               @provider.tag_creator(new_tag_names, current_user)
 
     if saved_ok
       note = "Saved OK!" 
@@ -80,15 +86,15 @@ class ProvidersController < ApplicationController
   end
 
   def index
-    @provider_hash = Provider.providers_hash_by_process(current_organization)
+    @provider_hash = current_organization.providers_hash_by_tag
     Event.add_event("User",current_user.id,"loaded index")
     render layout: "provider"
   end
 
   def search_results
     if @tag_filters = params[:tags]
-      @provider_tags = Tag.by_taggable_type('Provider')
-      @providers = Provider.for_organization(current_organization).
+      @provider_tags = current_organization.provider_tags
+      @providers = current_organization.providers.
                    joins(taggings: :tag).where(tags: {readable: @tag_filters}).
                    group('providers.id').having("count(*) >= #{@tag_filters.size}")
       Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @tag_filters.join(" & "))
@@ -99,6 +105,7 @@ class ProvidersController < ApplicationController
   end
 
   def profile
+    @provider = current_organization.providers.find_by_name_for_link(params[:name_for_link])
     @provider = Provider.for_organization(current_organization).find_by_name_for_link(params[:name_for_link])
     if @provider
       @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
@@ -118,7 +125,7 @@ class ProvidersController < ApplicationController
   end
 
   def upload_photo
-    provider = Provider.for_organization(current_organization).find(params[:provider_id])
+    provider = current_organization.providers.find(params[:provider_id])
     provider.add_external(params['url'], params['filename'])
     render nothing: true
   end

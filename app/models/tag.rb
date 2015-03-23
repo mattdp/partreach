@@ -2,22 +2,24 @@
 #
 # Table name: tags
 #
-#  id            :integer          not null, primary key
-#  name          :string(255)
-#  family        :string(255)
-#  note          :text
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  exclusive     :boolean          default(FALSE)
-#  visible       :boolean          default(TRUE)
-#  readable      :string(255)
-#  name_for_link :string(255)
-#  tag_group_id  :integer
+#  id              :integer          not null, primary key
+#  name            :string(255)
+#  family          :string(255)
+#  note            :text
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  exclusive       :boolean          default(FALSE)
+#  visible         :boolean          default(TRUE)
+#  readable        :string(255)
+#  name_for_link   :string(255)
+#  tag_group_id    :integer
+#  organization_id :integer
 #
 
 class Tag < ActiveRecord::Base
 
   belongs_to :tag_group
+  belongs_to :organization
   has_many :taggings
   has_many :suppliers, :through => :taggings, :source => :taggable, :source_type => 'Supplier'
   has_many :providers, :through => :taggings, :source => :taggable, :source_type => 'Provider'
