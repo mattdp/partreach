@@ -1,4 +1,5 @@
 class PasswordResetsController < ApplicationController
+  skip_before_action :allow_staging_access, only: [:new, :create, :edit, :update]
   
   HOURS_ALLOWED = 48
 

@@ -106,12 +106,17 @@ class ProvidersController < ApplicationController
 
   def profile
     @provider = current_organization.providers.find_by_name_for_link(params[:name_for_link])
-    @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
-    @tags = @provider.tags
-    @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
-    @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
-    Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
-    render layout: "provider"
+    @provider = Provider.for_organization(current_organization).find_by_name_for_link(params[:name_for_link])
+    if @provider
+      @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
+      @tags = @provider.tags
+      @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
+      @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
+      Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
+      render layout: "provider"
+    else
+      render template: "providers/profile_not_found", layout: "provider"
+    end
   end
 
   def suggested_edit
@@ -128,6 +133,7 @@ class ProvidersController < ApplicationController
   private
 
     def editable_provider_params
+      params[:verified] = params[:verified].present? ? true : false
       params.permit(:name,:url_main,:contact_qq, \
         :contact_wechat,:contact_phone,:contact_email,:contact_name, \
         :contact_role,:verified,:city,:address,:contact_skype)
