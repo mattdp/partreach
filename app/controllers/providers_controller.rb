@@ -106,7 +106,6 @@ class ProvidersController < ApplicationController
 
   def profile
     @provider = current_organization.providers.find_by_name_for_link(params[:name_for_link])
-    @provider = Provider.for_organization(current_organization).find_by_name_for_link(params[:name_for_link])
     if @provider
       @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
       @tags = @provider.tags
