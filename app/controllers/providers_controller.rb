@@ -108,6 +108,8 @@ class ProvidersController < ApplicationController
     @provider = current_organization.providers.find_by_name_for_link(params[:name_for_link])
     if @provider
       @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
+      @total_comments_for_user = Comment.joins(:user).group('users.id').count
+      @purchase_order_comments_for_user = Comment.where(comment_type: 'purchase_order').joins(:user).group('users.id').count
       @tags = @provider.tags
       @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
