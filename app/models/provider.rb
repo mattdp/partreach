@@ -59,44 +59,6 @@ class Provider < ActiveRecord::Base
     return preround.round
   end
 
-  #user facing for org users
-  def tag_creator(new_tag_names, user)
-    provider_tags = organization.provider_tags
-    organization = user.organization
-    provider_tag_group = TagGroup.find_by_group_name("provider type")
-
-    new_tag_names.each do |tag_name|
-      found = provider_tags.select do |tag|
-        (tag.name_for_link == Tag.proper_name_for_link(tag_name)) || (tag.name == tag_name)
-      end
-      existing_tag = found.first
-
-      if existing_tag
-        self.add_tag(existing_tag.id)
-        Event.add_event("User","#{user.id}","attempted to add an existing tag","Tag", existing_tag.id)
-      else
-        new_tag = Tag.create(
-          name: tag_name, 
-          readable: tag_name, 
-          name_for_link: Tag.proper_name_for_link(tag_name), 
-          tag_group: provider_tag_group,
-          organization: organization)
-        self.add_tag(new_tag.id)
-        Event.add_event("User","#{user.id}" ,"added a new tag", "Tag", new_tag.id)
-      end
-    end
-
-    return true
-  end
-
-  #modified from supplier version
-  def add_tag(tag_id)
-    tag = Tag.find_by_id(tag_id)
-    return false if self.tags.include?(tag)
-    self.tags << tag
-    return true
-  end
-
 #---
 # TAG STUFF COPIED FROM SUPPLIER DIRECTLY
 #---
