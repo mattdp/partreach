@@ -26,7 +26,7 @@ class ProvidersController < ApplicationController
     new_tag_names.select! {|tag_name| tag_name.present? }
     saved_ok = @provider.save and 
                @provider.update_tags(params[:tag_selection]) and 
-               @provider.tag_creator(new_tag_names, current_user)
+               current_organization.tag_creator(new_tag_names, current_user)
 
     if saved_ok
       note = "Saved OK!" 
@@ -63,7 +63,7 @@ class ProvidersController < ApplicationController
     new_tag_names.select! {|tag_name| tag_name.present? }
     saved_ok = @provider.update(editable_provider_params) and 
                @provider.update_tags(params[:tag_selection]) and 
-               @provider.tag_creator(new_tag_names, current_user)
+               current_organization.tag_creator(new_tag_names, current_user)
 
     if saved_ok
       note = "Saved OK!" 
@@ -78,6 +78,20 @@ class ProvidersController < ApplicationController
       Event.add_event("User","#{current_user.id}","attempted provider update - ERROR")      
       redirect_to teams_index_path, note: note
     end    
+  end
+
+  def create_tag
+    if params[:new_tag].present?
+      saved_ok = current_organization.tag_creator([ params[:new_tag] ], current_user)
+
+      if saved_ok
+        note = "Saved OK!" 
+      else 
+        note = "Saving problem."
+      end
+    end
+
+    redirect_to teams_index_path, note: note
   end
 
   def signin
