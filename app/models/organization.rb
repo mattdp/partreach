@@ -41,7 +41,6 @@ class Organization < ActiveRecord::Base
       existing_tag = found.first
 
       if existing_tag
-        add_tag(existing_tag.id)
         Event.add_event("User","#{user.id}","attempted to add an existing tag","Tag", existing_tag.id)
       else
         new_tag = Tag.create(
@@ -50,19 +49,10 @@ class Organization < ActiveRecord::Base
           name_for_link: Tag.proper_name_for_link(tag_name), 
           tag_group: TagGroup.find_by_group_name("provider type"),
           organization: self)
-        add_tag(new_tag.id)
         Event.add_event("User","#{user.id}" ,"added a new tag", "Tag", new_tag.id)
       end
     end
 
-    return true
-  end
-
-  #modified from supplier version
-  def add_tag(tag_id)
-    tag = Tag.find_by_id(tag_id)
-    return false if tags.include?(tag)
-    tags << tag
     return true
   end
 
