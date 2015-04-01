@@ -28,8 +28,8 @@ class Tag < ActiveRecord::Base
   has_many :reverse_tag_relationships, foreign_key: "related_tag_id", class_name: "TagRelationship"
   has_many :source_tags, :through => :reverse_tag_relationships
  
-  validates :name, presence: true, uniqueness: {case_sensitive: false}
-  validates :readable, presence: true, uniqueness: {case_sensitive: false}
+  validates :name, presence: true
+  validates :readable, presence: true
   validates :name_for_link, presence: true
   validates_presence_of :tag_group
 
