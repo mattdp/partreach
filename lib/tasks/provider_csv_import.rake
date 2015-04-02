@@ -40,7 +40,7 @@ task :provider_csv_import => :environment do
         new_provider.save!
         puts "***** ADDED PROVIDER: #{new_provider.name} (#{new_provider.id})"
 
-        Tagging.create(taggable_id: new_provider.id, taggable_type: "Provider", tag_id: Tag.find_by_name(row['tag']).id) 
+        Tagging.create(taggable_id: new_provider.id, taggable_type: "Provider", tag_id: Tag.predefined(row['tag']).id) 
 
         if row['peter_comment'].present?
           Comment.create(provider: new_provider, user: u, payload: row['peter_comment'], comment_type: "comment")
