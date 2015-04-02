@@ -8,7 +8,7 @@ class ExaminationsController < ApplicationController
       @questionables = Review.quantity_for_examination(20)
     when "supplier"
       @name = "supplier"
-      @questionables = Supplier.quantity_by_tag_id(20,Tag.find_by_name("datadump").id)
+      @questionables = Supplier.quantity_by_tag_id(20,Tag.predefined("datadump").id)
     when "supplier_search_result"
       @name = "supplier_search_result"
       @questionables = WebSearchResult.quantity_for_examination(20)
@@ -21,7 +21,7 @@ class ExaminationsController < ApplicationController
   def submit_examinations
     note = "Didn't submit to a model name. Error in code."
     if params[:model_examined] == "supplier"
-      datadump_id = Tag.find_by_name("datadump").id
+      datadump_id = Tag.predefined("datadump").id
       if params[:suppliers]
         params[:suppliers].each do |s_id,v|
           supplier = Supplier.find(s_id)

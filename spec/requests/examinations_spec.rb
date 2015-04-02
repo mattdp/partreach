@@ -45,7 +45,7 @@ describe "/examinations requests" do
       expect(new_supplier.url_main).to eq 'http://derived_url.com'
       expect(new_supplier.source).to eq 'supplier_search_result_examination'
       expect(new_supplier.profile_visible).to be_false
-      expected_tags = Tag.tag_set(:new_supplier, :object) << Tag.find_by_name("datadump")
+      expected_tags = Tag.tag_set(:new_supplier, :object) << Tag.predefined("datadump")
       expect(new_supplier.tags).to match_array(expected_tags)
     end
   end

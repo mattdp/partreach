@@ -183,7 +183,7 @@ class Supplier < ActiveRecord::Base
     Tag.tag_set(:new_supplier,:id).each do |id|
       new_supplier.add_tag(id)
     end
-    new_supplier.add_tag(Tag.find_by_name("datadump").id)
+    new_supplier.add_tag(Tag.predefined("datadump").id)
     new_supplier
   end
 
@@ -525,7 +525,7 @@ class Supplier < ActiveRecord::Base
   end   
 
   def get_supporting_info
-    datadump_id = Tag.find_by_name("datadump").id
+    datadump_id = Tag.predefined("datadump").id
     if self.address.nil? or self.address.country.short_name != "US" or self.address.state.short_name.nil?
       return self.supplier_names_by_first_character
     else
@@ -537,7 +537,7 @@ class Supplier < ActiveRecord::Base
   end
 
   def supplier_names_by_first_character
-    datadump_id = Tag.find_by_name("datadump").id
+    datadump_id = Tag.predefined("datadump").id
     char = self.name[0].downcase
     suppliers = Supplier.where("LOWER(LEFT(name,1)) = ?", char)
     screened_suppliers = suppliers.reject{|s| s.has_tag?(datadump_id)}
