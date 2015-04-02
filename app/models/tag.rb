@@ -29,6 +29,7 @@ class Tag < ActiveRecord::Base
   has_many :source_tags, :through => :reverse_tag_relationships
  
   validates :name, presence: true
+  validates_uniqueness_of :name, scope: :organization_id
   validates :readable, presence: true
   validates :name_for_link, presence: true
   validates_presence_of :tag_group
