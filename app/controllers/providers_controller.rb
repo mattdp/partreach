@@ -21,26 +21,7 @@ class ProvidersController < ApplicationController
     @provider.name_for_link = Provider.proper_name_for_link(@provider.name)
     @provider.source = "User #{current_user.id}"
     @provider.organization = current_organization
-   
-    new_tag_names = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
-    new_tag_names.select! {|tag_name| tag_name.present? }
-    saved_ok = @provider.save and 
-               @provider.update_tags(params[:tag_selection]) and 
-               current_organization.tag_creator(new_tag_names, current_user)
-
-    if saved_ok
-      note = "Saved OK!" 
-    else 
-      note = "Saving problem."
-    end
-
-    if saved_ok
-      Event.add_event("User","#{current_user.id}","created a provider","Provider","#{@provider.id}")
-      redirect_to teams_profile_path(@provider.name_for_link)
-    else 
-      Event.add_event("User","#{current_user.id}","attempted provider create - ERROR")      
-      redirect_to teams_index_path, note: note
-    end
+    create_or_update_provider
   end
 
   def edit
@@ -59,25 +40,35 @@ class ProvidersController < ApplicationController
 
   def update
     @provider = current_organization.providers.find(params[:id])
-    new_tag_names = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]]
-    new_tag_names.select! {|tag_name| tag_name.present? }
-    saved_ok = @provider.update(editable_provider_params) and 
-               @provider.update_tags(params[:tag_selection]) and 
-               current_organization.tag_creator(new_tag_names, current_user)
+    create_or_update_provider
+  end
 
-    if saved_ok
-      note = "Saved OK!" 
-    else 
-      note = "Saving problem."
+  def create_or_update_provider
+    saved_ok = false
+    loop do
+      break unless @provider.save
+      break unless @provider.update_tags(params[:tag_selection])
+      new_tag_names = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]].select {|tag_name| tag_name.present? }
+      new_tag_names.each do |tag_name|
+        tag = current_organization.find_existing_tag(tag_name)
+        unless tag
+          tag = current_organization.create_tag(tag_name, current_user)
+        end
+        break unless tag.valid?
+        @provider.tags << tag
+      end
+
+      saved_ok = true
+      break
     end
 
     if saved_ok
-      Event.add_event("User","#{current_user.id}","updated a provider","Provider","#{@provider.id}")
-      redirect_to teams_profile_path(@provider.name_for_link)
+      Event.add_event("User","#{current_user.id}","created a provider","Provider","#{@provider.id}")
+      redirect_to teams_profile_path(@provider.name_for_link), note: "Saved OK!" 
     else 
-      Event.add_event("User","#{current_user.id}","attempted provider update - ERROR")      
-      redirect_to teams_index_path, note: note
-    end    
+      Event.add_event("User","#{current_user.id}","attempted provider create - ERROR")      
+      redirect_to teams_index_path, note: "Saving problem."
+    end
   end
 
   def create_tag
