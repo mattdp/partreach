@@ -73,9 +73,9 @@ class ProvidersController < ApplicationController
 
   def create_tag
     if params[:new_tag].present?
-      saved_ok = current_organization.tag_creator([ params[:new_tag] ], current_user)
+      new_tag = current_organization.create_tag(params[:new_tag], current_user)
 
-      if saved_ok
+      if new_tag.valid?
         note = "Saved OK!" 
       else 
         note = "Saving problem."
