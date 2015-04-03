@@ -28,8 +28,9 @@ class Tag < ActiveRecord::Base
   has_many :reverse_tag_relationships, foreign_key: "related_tag_id", class_name: "TagRelationship"
   has_many :source_tags, :through => :reverse_tag_relationships
  
-  validates :name, presence: true, uniqueness: {case_sensitive: false}
-  validates :readable, presence: true, uniqueness: {case_sensitive: false}
+  validates :name, presence: true
+  validates_uniqueness_of :name, scope: :organization_id
+  validates :readable, presence: true
   validates :name_for_link, presence: true
   validates_presence_of :tag_group
 
@@ -46,14 +47,18 @@ class Tag < ActiveRecord::Base
     set_categories.each do |key, values|
       @@tag_sets[key] = {}
       @@tag_sets[key][:name] = values
-      @@tag_sets[key][:id] = values.map { |n| Tag.find_by_name(n).id }
-      @@tag_sets[key][:object] = values.map { |n| Tag.find_by_name(n) }
+      @@tag_sets[key][:id] = values.map { |tag_name| Tag.predefined(tag_name).id }
+      @@tag_sets[key][:object] = values.map { |tag_name| Tag.predefined(tag_name) }
     end
   end
 
   def self.tag_set(category,attribute)
     Tag.initialize_tag_sets unless @@tag_sets
     @@tag_sets[category][attribute]
+  end
+
+  def self.predefined(name)
+    Tag.where(name: name).where(organization_id: nil).first
   end
 
   def self.find_or_create!(name, tag_group)

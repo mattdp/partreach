@@ -59,6 +59,14 @@ class Provider < ActiveRecord::Base
     return preround.round
   end
 
+  #modified from supplier version
+  def add_tag(tag_id)
+    tag = Tag.find_by_id(tag_id)
+    return false if tags.include?(tag)
+    tags << tag
+    return true
+  end
+
 #---
 # TAG STUFF COPIED FROM SUPPLIER DIRECTLY
 #---
@@ -98,6 +106,6 @@ class Provider < ActiveRecord::Base
     end
 
     return saved_ok
-  end  
+  end
 
 end

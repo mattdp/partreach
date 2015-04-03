@@ -7,7 +7,7 @@ task populate: :environment do
   User.create_with_dummy_password("Rob","rob@supplybetter.com",true)
   User.create_with_dummy_password("Nonadmin","nobody@fake.spam.biz")
 
-  tag_3dp = Tag.find_by_name("3d_printing")
+  tag_3dp = Tag.predefined("3d_printing")
   manufacturer = Manufacturer.create_or_reference_manufacturer({name: "Platysys"})
   m1 = Machine.create_or_reference_machine({name: "Printerizer", manufacturer_id: manufacturer.id})
   m2 = Machine.create_or_reference_machine({name: "Extrudinator", manufacturer_id: manufacturer.id})

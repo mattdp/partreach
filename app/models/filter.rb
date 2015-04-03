@@ -26,9 +26,9 @@ class Filter < ActiveRecord::Base
     us_and_states = Geography.all_us_states.concat([Geography.locate("US",:short_name,"country")])
     tag_names = ["SLS","SLA","FDM","FFF","3d_printing","cnc_machining"]
 
-    has_not_tag = Tag.find_by_name("datadump")
+    has_not_tag = Tag.predefined("datadump")
     tag_names.each do |t_name|
-      has_tag = Tag.find_by_name(t_name)
+      has_tag = Tag.predefined(t_name)
       us_and_states.each do |geography|
         f = Filter.new({geography_id: geography.id, has_tag_id: has_tag.id, has_not_tag_id: has_not_tag.id})
         f.name = f.name_formatter

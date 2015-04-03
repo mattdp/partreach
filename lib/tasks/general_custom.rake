@@ -23,7 +23,7 @@ task :crawler_dispatcher => :environment do
     next if (short_name == "NY" or short_name == "NH" or short_name == "CA")
 
     geo_id = state.id
-    tag_id = Tag.find_by_name("3d_printing").id
+    tag_id = Tag.predefined("3d_printing").id
 
     filter = Filter.where("has_tag_id = ? AND geography_id = ?",tag_id,geo_id).first #assumed this is a state-level filter
     suppliers = Supplier.quantity_by_tag_id("all",Tag.find(filter.has_tag_id),filter.geography.geography.short_name,filter.geography.short_name)
@@ -58,8 +58,8 @@ task :us_suppliers_public => :environment do
     s.profile_visible = false
     #practicing blocks; yes, this should be more lines. meant to test if 'have' tags are on supplier and 'have_nots' aren't.
     if s.address and s.address.country.short_name == "US" and !( 
-       haves.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(false) or
-       have_nots.map{ |h| s.has_tag?(Tag.find_by_name(h).id) }.include?(true)
+       haves.map{ |h| s.has_tag?(Tag.predefined(h).id) }.include?(false) or
+       have_nots.map{ |h| s.has_tag?(Tag.predefined(h).id) }.include?(true)
        )
       s.profile_visible = true
     end
@@ -78,8 +78,8 @@ task :tag_tree => :environment do
   }
 
   automatics.keys.each do |k|
-    primary = Tag.find_by_name(k).id
-    secondaries = automatics[k].map { |t| t = Tag.find_by_name(t).id }
+    primary = Tag.predefined(k).id
+    secondaries = automatics[k].map { |t| t = Tag.predefined(t).id }
 
     Supplier.find_each do |s|
       if !s.has_tag?(primary) #ok that this falses a lot, though could be more efficient
