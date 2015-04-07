@@ -22,7 +22,7 @@ class CrawlerSynapseWiki
 
   #goal of this method is to take an individual source file and create the correct information in synapse's org
   def self.upload_wiki_page
-    
+    # https://s3.amazonaws.com/temp_for_uploading/1.html (4 files)   
 
   end
 
