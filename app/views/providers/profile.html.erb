@@ -158,11 +158,11 @@
               <p class="comment-smalltext"><%= "Team: #{contact.contactable.user.team.name}" if contact.contactable.user.team.present? %></p>
               <% total_comments = @total_comments_for_user[comment.user.id] %>
               <% if total_comments %>
-                <p><%= "#{total_comments} comments" %></p>
+                <p><%= "#{pluralize(total_comments, 'comment')}" %></p>
               <% end %>
               <% purchase_order_comments = @purchase_order_comments_for_user[comment.user.id] %>
               <% if purchase_order_comments %>
-                <p><%= "#{purchase_order_comments} purchase order comments" %></p>
+                <p><%= "#{pluralize(purchase_order_comments, 'purchase order comment')}" %></p>
               <% end %>
             </div>
           </div>
