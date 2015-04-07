@@ -4,6 +4,7 @@ class PasswordResetsController < ApplicationController
   HOURS_ALLOWED = 48
 
   def new
+    render layout: "provider"
   end
 
   def create
