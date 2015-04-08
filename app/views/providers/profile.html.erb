@@ -195,6 +195,17 @@
             </div>
 
             <div class="row">
+              <% po = comment.purchase_order %>
+              <% if po %>
+                <% po.tags.each do |tag| %>
+                  <%= tag.name %>
+                <% end %>
+                <%= "Quantity: #{po.quantity}" if po.quantity %>
+                <%= "Price: #{po.price}" if po.price %>
+              <% end %>
+            </div>
+
+            <div class="row">
               <p><%= raw(comment.payload) %></p>
             </div>
 
