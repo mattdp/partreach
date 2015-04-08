@@ -44,6 +44,13 @@ class CommentsController < ApplicationController
     redirect_to teams_profile_path(provider.name_for_link), notice: note
   end
 
+  def edit_purchase_order_comment
+    @comment = Comment.find params[:id]
+    @provider = @comment.provider
+    Event.add_event("User",current_user.id,"loaded edit comment page for","Comment",@comment.id)
+    render "edit", layout: "provider"
+  end
+
   def comment_params
     params.permit(:overall_score,:payload,:provider_id,:title)
   end
