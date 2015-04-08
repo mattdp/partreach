@@ -23,6 +23,7 @@ class Tag < ActiveRecord::Base
   has_many :taggings
   has_many :suppliers, :through => :taggings, :source => :taggable, :source_type => 'Supplier'
   has_many :providers, :through => :taggings, :source => :taggable, :source_type => 'Provider'
+  has_many :purchase_orders, :through => :taggings, :source => :taggable, :source_type => 'PurchaseOrder'
   has_many :tag_relationships, foreign_key: "source_tag_id", class_name: "TagRelationship"
   has_many :related_tags, :through => :tag_relationships
   has_many :reverse_tag_relationships, foreign_key: "related_tag_id", class_name: "TagRelationship"
