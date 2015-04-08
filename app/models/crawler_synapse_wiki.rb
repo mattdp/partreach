@@ -24,12 +24,19 @@ class CrawlerSynapseWiki
   #using a bunch of iteration and checking instead of regex, since that's not available via xpath in Rails
   def self.upload_wiki_pages
 
+    #missing
+    # => synapsers that used this one
+    # => company descriptions
+    # => logging of when non compete used
+    # => notes at bottom
+
     example_urls = ["https://s3.amazonaws.com/temp_for_uploading/1.html",
       "https://s3.amazonaws.com/temp_for_uploading/2.html",
       "https://s3.amazonaws.com/temp_for_uploading/3.html",
       "https://s3.amazonaws.com/temp_for_uploading/4.html"]
 
-    urls = [example_urls[0]] #so everything else works once we have the real ones
+    urls = example_urls #so everything else works once we have the real ones
+    carrier = []
 
     urls.each do |url|
       page = Nokogiri::HTML(open(url))
@@ -37,7 +44,10 @@ class CrawlerSynapseWiki
       div_wiki_content_headers = div_wiki_content.css("h2")
       warnings = []
 
-      #DONE bullet points under capabilities, to make into tags
+      #who updated, when was last update
+      update = page.css("li.page-metadata-modification-info").text.strip
+
+      #bullet points under capabilities, to make into tags
       tags_from_capabilities = [] 
       capability_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("Capabilities")}.first
       capability_list = capability_header.next_element
@@ -46,22 +56,65 @@ class CrawlerSynapseWiki
       end
       warnings >> "No tags from capabilties" if tags_from_capabilities.empty? 
       
-      #flag if noncompete content 
-      div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("DoNotCompeteWith")}.first
-      #need to check for content and flag it, after question
-        
+      #flag if noncompete content, handle manually
+      nocompete_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("DoNotCompeteWith")}.first
+      warnings >> "Noncompete text present" if (nocompete_header.present? and nocompete_header.next_element.text.present? and nocompete_header.next_element.text != "&nbsp")
+
+      #need to check for longform content
+      synopsis_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("CompanySynopsis")}.first
+      synopsis_text = synopsis_header.next_element.text.strip
+      (synopsis_text.present? and synopsis_text != "&nbsp") ? synopsis = synopsis_text : synopsis = nil
+
+      focus_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("CoreFocus")}.first
+      focus_text = focus_header.next_element.text.strip
+      (focus_text.present? and focus_text != "&nbsp") ? focus = focus_text : focus = nil
+
+      history_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("HistoryInformation")}.first
+      history_text = history_header.next_element.text.strip
+      (history_text.present? and history_text != "&nbsp") ? history = history_text : history = nil
+
       #flag if no contact information, otherwise get it
-      
-      #DONE labels should become tags
+      contact = {}
+      contact_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("ContactInformation")}.first
+      contact_paragraph = contact_header.next_element.text
+
+      contact[:name] = contact_paragraph.scan(/Contact: (.*)/) if contact_paragraph.scan(/Contact: (.*)/).present?
+      contact[:phone] = contact_paragraph.scan(/Phone: (.*)/) if contact_paragraph.scan(/Phone: (.*)/).present?
+      contact[:fax] = contact_paragraph.scan(/Fax: (.*)/) if contact_paragraph.scan(/Fax: (.*)/).present?
+      contact[:mobile] = contact_paragraph.scan(/Mobile: (.*)/) if contact_paragraph.scan(/Mobile: (.*)/).present?
+      contact[:address] = contact_paragraph.scan(/Address: (.*)/) if contact_paragraph.scan(/Address: (.*)/).present?
+      contact[:email] = contact_paragraph.scan(/E-mail: (.*)/) if contact_paragraph.scan(/E-mail: (.*)/).present?
+      contact[:website] = contact_paragraph.scan(/Website: (.*)/) if contact_paragraph.scan(/Website: (.*)/).present?
+
+      no_contact_info_flag = true
+      contact.each do |key,value|
+        if (value.empty? or !value[0][0].present?)
+          contact[key] = nil
+        else
+          contact[key] = value[0][0].strip
+          no_contact_info_flag = false
+        end
+      end
+      warnings << "No contact information" if no_contact_info_flag
+
+      #labels should become tags, warn if no labels
       label_links = page.css(".label-list > .label-container > .label")
       tags_from_labels = []
       label_links.each do |label_link|
         tags_from_labels << label_link.text.strip if label_link.text.present?
       end
-      warnings >> "No tags from labels" if tags_from_capabilities.empty? 
+      warnings << "No tags from labels" if tags_from_capabilities.empty? 
 
-      return tags_from_capabilities.concat(tags_from_labels), warnings
-    end 
+      carrier << {tags: tags_from_capabilities.concat(tags_from_labels), 
+              warnings: warnings,
+              contact: contact,
+              url: url,
+              update: update,
+              longform: "Wiki history: #{history} Wiki focus: #{focus} Wiki synopsis: #{synopsis}"
+            }
+    end
+
+    return carrier 
 
   end
 
