@@ -1,0 +1,62 @@
+<div class="container hax-body-styling">
+  <div class="row">
+    <div class="col-md-8">
+
+      <h1><%= heading %></h1>
+
+      <%= form_tag(path, method: method) do %>
+
+        <%= hidden_field_tag :provider_id, @provider.id %>
+        <%= hidden_field_tag :comment_type, @comment_type %>
+        <%= hidden_field_tag :overall_score, 0, {:class => "overall_score"} %>
+
+        <div class="field comment-title">
+              <% po = @comment.purchase_order %>
+              <% if po %>
+                <% po.tags.each do |tag| %>
+                  <%= tag.name %>
+                <% end %>
+                <%= "Quantity: #{po.quantity}" if po.quantity %>
+                <%= "Price: #{po.price}" if po.price %>
+              <% end %>
+        </div>
+
+        <div class="field comment-title">
+          <%= label_tag :title, "Your comment title (optional)" %><br>
+          <%= text_field_tag :title, @comment.title %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :payload, "Your comment" %><br>
+          <%= text_area_tag :payload, @comment.payload, rows: 5 %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :overall_score, "How do you like this supplier overall? (optional)" %><br>
+          <span class="star-rating">
+            <input type="radio" name="rating" value="1"><i></i>
+            <input type="radio" name="rating" value="2"><i></i>
+            <input type="radio" name="rating" value="3"><i></i>
+            <input type="radio" name="rating" value="4"><i></i>
+            <input type="radio" name="rating" value="5"><i></i>
+          </span>
+          <strong class="choice">Rating not yet selected</strong>
+        </div>
+
+        <%= submit_tag "Submit", class: "save-button" %>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<!-- JS TO ALLOW RATINGS TO WORK -->
+<script type="text/javascript"> 
+  $(':radio').change(
+  function(){
+    $('.choice').text( this.value + ' stars' );
+    $('.overall_score').val( this.value );
+  } 
+)
+</script>
