@@ -158,11 +158,11 @@
               <p class="comment-smalltext"><%= "Team: #{contact.contactable.user.team.name}" if contact.contactable.user.team.present? %></p>
               <% total_comments = @total_comments_for_user[comment.user.id] %>
               <% if total_comments %>
-                <p><%= "#{pluralize(total_comments, 'comment')}" %></p>
+                <p class="comment-smalltext"><%= "#{pluralize(total_comments, 'comment')}" %></p>
               <% end %>
               <% purchase_order_comments = @purchase_order_comments_for_user[comment.user.id] %>
               <% if purchase_order_comments %>
-                <p><%= "#{pluralize(purchase_order_comments, 'purchase order comment')}" %></p>
+                <p class="comment-smalltext"><%= "#{pluralize(purchase_order_comments, 'purchase order')}" %></p>
               <% end %>
             </div>
           </div>
@@ -199,7 +199,7 @@
             </div>
 
             <!-- should rewrite this to only render if PO exists for the comment -->
-            <div class="row">
+            <div class="row comment-smalltext">
             <div>About this order:</div>
               <% po = comment.purchase_order %>
               <% if po %>
