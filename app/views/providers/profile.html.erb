@@ -195,18 +195,25 @@
             </div>
 
             <div class="row">
-              <% po = comment.purchase_order %>
-              <% if po %>
-                <% po.tags.each do |tag| %>
-                  <%= tag.name %>
-                <% end %>
-                <%= "Quantity: #{po.quantity}" if po.quantity %>
-                <%= "Price: #{po.price}" if po.price %>
-              <% end %>
+              <p><%= raw(comment.payload) %></p>
             </div>
 
+            <!-- should rewrite this to only render if PO exists for the comment -->
             <div class="row">
-              <p><%= raw(comment.payload) %></p>
+            <p>About this order:</p>
+              <% po = comment.purchase_order %>
+              <% if po %>
+                <div class="col-md-8">
+                  <% po.tags.each do |tag| %>
+                    <div class="col-md-3"><%= tag.family %>: </div>
+                    <div class="col-md-9"><%= tag.readable %></div>
+                  <% end %>
+                </div>
+                <div class="col-md-4">
+                  <div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
+                  <div><%= "Price: $#{po.price}" if po.price %></div>
+                </div>
+              <% end %>
             </div>
 
             <div>
