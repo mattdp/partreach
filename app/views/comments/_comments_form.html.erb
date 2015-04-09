@@ -1,6 +1,6 @@
 <div class="container hax-body-styling">
   <div class="row">
-    <div id="any-form" class="col-md-8">
+    <div class="col-md-8 any-form">
 
       <h1><%= heading %></h1>
 
@@ -43,8 +43,9 @@
           <strong class="choice">Rating not yet selected</strong>
         </div>
    
-              <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
-
+        <div class="col-md-4">
+          <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
+        </div>
 
       <% end %>
 
