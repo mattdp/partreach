@@ -14,6 +14,8 @@ class PasswordResetsController < ApplicationController
       user.send_password_reset if user
     end
     redirect_to root_url, :notice => "Email sent with password reset instructions."
+
+    render layout: "provider"
   end
 
   def edit
@@ -33,6 +35,8 @@ class PasswordResetsController < ApplicationController
     else
       render :edit
     end
+
+    render layout: "provider"
   end
 
   private
