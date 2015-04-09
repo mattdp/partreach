@@ -24,11 +24,15 @@ class CrawlerSynapseWiki
   #using a bunch of iteration and checking instead of regex, since that's not available via xpath in Rails
   def self.upload_wiki_pages
 
+    #not doing
+    # => noncompete (bret says no idea what for)
+
+    #manually will do
+    # => attachments
+    # => prospective suppliers sheet
+
     #missing
     # => synapsers that used this one
-    # => company descriptions
-    # => logging of when non compete used
-    # => notes at bottom
 
     example_urls = ["https://s3.amazonaws.com/temp_for_uploading/1.html",
       "https://s3.amazonaws.com/temp_for_uploading/2.html",
@@ -55,11 +59,7 @@ class CrawlerSynapseWiki
         tags_from_capabilities << li.text.strip if li.text.present?
       end
       warnings >> "No tags from capabilties" if tags_from_capabilities.empty? 
-      
-      #flag if noncompete content, handle manually
-      nocompete_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("DoNotCompeteWith")}.first
-      warnings >> "Noncompete text present" if (nocompete_header.present? and nocompete_header.next_element.text.present? and nocompete_header.next_element.text != "&nbsp")
-
+    
       #need to check for longform content
       synopsis_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("CompanySynopsis")}.first
       synopsis_text = synopsis_header.next_element.text.strip
