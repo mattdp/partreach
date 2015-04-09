@@ -19,6 +19,8 @@ class PasswordResetsController < ApplicationController
   def edit
     @user = User.find_by_password_reset_token(params[:id])
     @hours_allowed = HOURS_ALLOWED
+
+    render layout: "provider"
   end
 
   def update
