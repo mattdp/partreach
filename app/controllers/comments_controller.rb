@@ -46,9 +46,19 @@ class CommentsController < ApplicationController
 
   def edit_purchase_order_comment
     @comment = Comment.find params[:id]
+    @comment_type_text = "purchase order comment"
     @provider = @comment.provider
-    Event.add_event("User",current_user.id,"loaded edit comment page for","Comment",@comment.id)
+    Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
     render "edit", layout: "provider"
+  end
+
+  def update
+    @comment = Comment.find params[:id]
+    @comment.user_id = current_user.id
+    provider = @comment.provider
+    Event.add_event("User", current_user.id, "attempted comment update for", "Comment", @comment.id) 
+    note = (@comment.update_attributes(comment_params) ? "Saved OK!" : "Saving problem.")
+    redirect_to teams_profile_path(provider.name_for_link), notice: note
   end
 
   def comment_params

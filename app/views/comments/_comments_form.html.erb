@@ -4,7 +4,7 @@
 
       <h1><%= heading %></h1>
 
-      <%= form_tag comments_path do %>
+      <%= form_tag(path, method: method) do %>
 
         <%= hidden_field_tag :provider_id, @provider.id %>
         <%= hidden_field_tag :comment_type, @comment_type %>
@@ -23,12 +23,12 @@
 
         <div class="field comment-title">
           <%= label_tag :title, "Your comment title (optional)" %><br>
-          <%= text_field_tag :title %>
+          <%= text_field_tag :title, @comment.title %>
         </div>
 
         <div class="field">
           <%= label_tag :payload, "Your comment" %><br>
-          <%= text_area_tag :payload, nil, rows: 5 %>
+          <%= text_area_tag :payload, @comment.payload, rows: 5 %>
         </div>
 
         <div class="field">

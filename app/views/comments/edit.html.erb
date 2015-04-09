@@ -1,4 +1,4 @@
 <% provide(:title, "Edit comment") %>
 
 <% heading = "Editing #{@comment_type_text} for '#{@provider.name}'" %>
-<%= render partial: 'comments/comments_form', locals: {heading: heading} %>
+<%= render partial: 'comments/comments_form', locals: {heading: heading, path: comment_path(@comment), method: :patch} %>
