@@ -198,14 +198,13 @@
               <p><%= raw(comment.payload) %></p>
             </div>
 
-            <!-- should rewrite this to only render if PO exists for the comment -->
             <div class="row comment-smalltext">
-            <div>About this order:</div>
               <% po = comment.purchase_order %>
               <% if po %>
+              <div>About this order:</div>
                 <div class="col-md-8">
                   <% po.tags.each do |tag| %>
-                    <div class="col-md-3"><%= tag.family %>: </div>
+                    <div class="col-md-3"><%= tag.tag_group.group_name %>: </div>
                     <div class="col-md-9"><%= tag.readable %></div>
                   <% end %>
                 </div>
