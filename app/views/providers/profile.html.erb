@@ -210,7 +210,7 @@
                 </div>
                 <div class="col-md-4">
                   <div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
-                  <div><%= "Price: $#{po.price}" if po.price %></div>
+                  <div><%= "Price: $#{number_to_currency(po.price)}" if po.price %></div>
                 </div>
               <% end %>
             </div>

@@ -17,7 +17,7 @@
                   <%= tag.name %>
                 <% end %>
                 <%= "Quantity: #{po.quantity}" if po.quantity %>
-                <%= "Price: #{po.price}" if po.price %>
+                <%= "Price: #{number_to_currency(po.price)}" if po.price %>
               <% end %>
         </div>
 
