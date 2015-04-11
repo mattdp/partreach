@@ -114,6 +114,18 @@ class Tag < ActiveRecord::Base
     self.readable.nil? ? self.name : self.readable
   end
 
+  def coalesce(old_tag)
+    Tagging.where(tag_id: old_tag.id).update_all(tag_id: self.id)
+    TagRelationship.where(source_tag_id: old_tag.id).update_all(source_tag_id: self.id)
+    TagRelationship.where(source_tag_id: old_tag.id).update_all(related_tag_id: self.id)
+    
+    self.update_attribute(:note, old_tag.note) unless note.present?
+
+    old_tag.delete # NOT #destroy -- don't want to perform validations, cascade deletes, etc.
+
+    Event.add_event("Tag", id, "merged tag '#{old_tag.readable}' (id=#{old_tag.id}) into '#{readable}' (id=#{id})")
+  end
+
   # Recursively get all the related_tags (descendants) of a tag
   def descendants(node = self, nodes = [])
     # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
