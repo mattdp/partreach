@@ -7,6 +7,7 @@
     </div>
   </div>
   <div class="row">
+    <!-- BEGIN LEFT COLUMN -->
     <div class="col-md-4">
       
       <!-- COMPANY NAME -->
@@ -16,22 +17,23 @@
         <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id,"edit_providername_from_profile") %>]</span>
         </h1>
       </div>
-
-      <!-- EXISTENCE VERIFIED -->
-      <% if @provider.verified %>
-        <div class="verified">
-          <img class="supplier-index-indicator" alt="Verified icon" src="/assets/check59.svg" title="This provider has been verified to exist" >
-          Verified
-        </div>
-      <% end %>
       
       <!-- STAR RATINGS -->
+      <!-- need to add an if statement to handle the case when there are no comments (and prompt the user to add a comment) -->
       <div class="row">
-      <%= render partial: "providers/star_display", locals: {score: @provider.average_score} %>
+        <%= render partial: "providers/star_display", locals: {score: @provider.average_score} %>
+        <span class="heading_navigation">
+          <a href="#comments">
+            <% total_provider_comments = @provider.comments.count %>
+            <% if total_provider_comments %>
+              <%= "#{pluralize(total_provider_comments, 'comment')}" %>
+            <% end %>
+          </a>
+        </span>
       </div>
 
       <!-- CATEGORIES -->
-      <h3 class=".profile-heading">
+      <h3 class="profile-heading">
         What they can do for you
        <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
       </h3>
@@ -42,7 +44,7 @@
       <% end %>
 
       <!-- PURCHASE ORDERS -->
-      <h3 class=".profile-heading">
+      <h3 class="profile-heading">
         Purchase orders
        <span class="heading_navigation">[<%= link_to "add a purchase", new_purchase_order_comment_path(@provider.id) %>]</span>
        </h3>  
@@ -53,7 +55,7 @@
       </ul>
 
       <!-- FACTORY VISITS -->
-      <h3 class=".profile-heading">
+      <!-- <h3 class="profile-heading">
         Factory visits
        <span class="heading_navigation">[<%= link_to "add a visit", new_factory_visit_comment_path(@provider.id) %>]</span>
        </h3>
@@ -62,7 +64,8 @@
           <li><%= "#{name}" %></li>
         <% end %>
       </ul>
-      </div>
+      -->
+      </div> 
 
       <!-- BEGIN MIDDLE COLUMN -->
       <div class="col-md-4">
@@ -95,51 +98,86 @@
 
         <div>
           <span class="heading_navigation">[add a photo:]</span>
-  <%= s3_uploader_form  id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
-                        max_file_size: 10.megabytes,
-                        key_starts_with: "externals/",
-                        key: "externals/provider-#{@provider.id}-#{SecureRandom.hex}/${filename}" do %>
-                          <%= file_field_tag :file, multiple: true %>
-                        <% end %>
-  <script id="template-upload" type="text/x-tmpl">
-    <div id="file-{%=o.unique_id%}" class="upload">
-      <div class="filename">{%=o.name%}</div>
-      <div class="progress"><div class="bar" style="width: 0%"></div></div>
-    </div>
-  </script>
+          <%= s3_uploader_form  id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
+            max_file_size: 10.megabytes,
+            key_starts_with: "externals/",
+            key: "externals/provider-#{@provider.id}-#{SecureRandom.hex}/${filename}" do %>
+              <%= file_field_tag :file, multiple: true %>
+            <% end %>
+          <script id="template-upload" type="text/x-tmpl">
+            <div id="file-{%=o.unique_id%}" class="upload">
+              <div class="filename">{%=o.name%}</div>
+              <div class="progress"><div class="bar" style="width: 0%"></div></div>
+            </div>
+          </script>
         </div>
 
       </div>
 
       <!-- BEGIN RIGHT COLUMN -->
       <div class="col-md-4">
-      
-      
-      <div class="table-header">
-
-      <!-- ADDRESS SECTION -->
-        <h3 class=".profile-heading">Address information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_address_from_profile") %>]</span></h3>
-        <ul>
-          <li><strong>City: </strong><%= "#{@provider.city}" %></li>
-          <li><strong>Full address: </strong><%= "#{@provider.address}" %></li>
-        </ul>
-
-        <h3 class=".profile-heading">Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
-        <ul>
-          <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
-          <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
-          <li><strong>Skype: </strong><%= @provider.contact_skype %></li>
-          <li><strong>Email: </strong><%= @provider.contact_email %></li>
-          <li><strong>Website: </strong><%= link_to "Link", @provider.url_main if @provider.url_main %></li>
-          <li><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></li>
-        </ul>    
+        <div class="table-header">
+        <!-- ADDRESS SECTION -->
+          <h3 class="profile-heading">Address information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_address_from_profile") %>]</span></h3>
+          <ul>
+            <li><strong>City: </strong><%= "#{@provider.city}" %></li>
+            <li><strong>Full address: </strong><%= "#{@provider.address}" %></li>
+          </ul>
+          <h3 class="profile-heading">Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
+          <ul>
+            <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
+            <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
+            <li><strong>Skype: </strong><%= @provider.contact_skype %></li>
+            <li><strong>Email: </strong><%= @provider.contact_email %></li>
+            <li><strong>Website: </strong><%= link_to "Link", @provider.url_main if @provider.url_main %></li>
+            <li><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></li>
+          </ul>    
+        </div>
       </div>
-      </div>
+    </div>
+
+    <div class="row col-md-12">
+    <hr>
+    <h3 class="profile-heading">Company Description</h3>
+    <!-- <p>
+      Gillaspie Mfg. Inc. is recognized as a high quality, full service manufacturer of small custom Precision Metal Stampings, Tooling, Precision Thin Sheet Metal parts, CNC Vertical Machined parts and Value Added Assembly since 1982. We offer DFM assistance, with the capability to provide prototypes as well and we also design & build our own in-house Tooling. We continue to embrace new technology in the equipment and software that we purchase. We have well established Quality and Environmental policies in place and continually strive to improve in all areas.
+
+      Gillaspie Mfg. Inc. has the Quality disciplines in place to ensure "Total Customer Satisfaction" from quote to "On-Time" delivery via different JIT and Kanban programs. Our quality system provides FAI, Process Capability Study reports, In-process and Final Inspection. (Source: Gillaspie Manufacturing website)
+    </p> -->
+    <p>
+    Since 1989, Moeller Design has provided rapid state of the art technologies to solve demanding product development problems. Our experience and capacity in Stereolithography , RTV molds, CNC machining and Cast Urethane have created solutions for products as notable as the 2002 Olympic Torch to high precision patterns for titanium investment castings, and everything in between.
+
+    From rapid prototyping to high value/low volume production, our clients know that when they need to call on a partner for a product development solution, they call Moeller. (Source: Moeller Design & Development, Inc. website)
+    </p>
+    </div>
+
+    <div class="row col-md-12">
+    <h3 class="profile-heading">Synapse Internal Notes</h3>
+    <ol>
+      <li><p>
+      Moeller is now a part of 3D proparts, which means they have much more capabilities and their prices have come down. They also now have an online quoting process for SLA and SLS parts. Visit their quoting website here: http://rapid-prototyping.3dproparts.com/login.aspx?ReturnUrl=%2fDefault.aspx
+      </p></li>
+      <li><p>
+      CAVEAT: Since Moeller is now owned by 3D ProParts/Quickparts, they also won't be doing all of their work locally. Make sure to ask where your parts will be made, if proximity/lead time is important to you. Also, expect that you'll be handed off to a QuickParts PM, not dealing directly with Brian throughout the project.
+      </p></li>
+      <li><p>
+      Jake says: These guys actually dimensionally inspect their SLAs and deliver parts that fit. I know, who would of thunk. Not the cheapest, but pretty darn fast and accurate.
+      </p></li>
+      <li><p>
+      2012.03.15 - Quotes came in 2.5x - 3.5x more than Concept Reality. (Aron)
+      </p></li>
+      <li><p>
+      2012.01.19  Giancarlo:  Lots of good feedback on quality, but reiterated by several people that they are very expensive.
+      </p></li>
+      <li><p>
+      2012.04.06 Sean: Very quick on quoting, willing to work with out short lead times on large parts. Job ended up getting sent out to a remote shop (not in Seattle), which is affecting our ability to deal with changes to schedule and client demands. Slightly regretting not sending this job to someone who would've kept the job local.
+      </p></li>
+    </ol>
     </div>
 
   <div class="row">
     <div class="col-md-8">
-      <h3 class="profile-heading">
+      <h3 id="comments" class="profile-heading">
         Comments
         <span class="heading_navigation">[<%= link_to "add a comment", new_comment_path(@provider.id) %>]</span>
       </h3>
