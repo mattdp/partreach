@@ -1,5 +1,6 @@
 class CrawlerSynapseWiki
   require 'mechanize'
+  require 'uri'
 
 
 
@@ -43,6 +44,11 @@ class CrawlerSynapseWiki
   #using a bunch of iteration and checking instead of regex, since that's not available via xpath in Rails
   def self.upload_wiki_pages
 
+    #to do 
+    # => something that actually imports providers using the data
+    # => data cleaning strategy - how using the warnings
+    # => data cleaning
+
     #not doing
     # => noncompete (bret says no idea what for)
     # => synapsers that used this one (checked 15, don't have content)
@@ -50,8 +56,6 @@ class CrawlerSynapseWiki
     #manually will do
     # => attachments
     # => everything in 'revisit'
-
-    #missing
 
     skip = [ 
 "https://s3.amazonaws.com/supplybetter-synpgs/Introduction_of_the_Vendor_Information_for_Confluence_2_3_",
@@ -68,7 +72,10 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/Potential_ME_Vendors_List",
 "https://s3.amazonaws.com/supplybetter-synpgs/RPDG_Rapid_Product_Development_Group_Inc_", #dupe
 "https://s3.amazonaws.com/supplybetter-synpgs/Pathway_Designs", #dupe
-"https://s3.amazonaws.com/supplybetter-synpgs/Vendor_Visits_in_SF"
+"https://s3.amazonaws.com/supplybetter-synpgs/Vendor_Visits_in_SF",
+"https://s3.amazonaws.com/supplybetter-synpgs/Feedback_on_Coxon", #coxon is supplier
+"https://s3.amazonaws.com/supplybetter-synpgs/Jemco", #error
+"https://wiki.synapse.com/display/Vendors/Altaflex+-+ME+Vendor+Page"
 ]
 
     urls = [
@@ -95,7 +102,6 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/Alljack",
 "https://s3.amazonaws.com/supplybetter-synpgs/Allpak_Container",
 "https://s3.amazonaws.com/supplybetter-synpgs/All_West_Components_amp_Fasteners_Inc_",
-"https://s3.amazonaws.com/supplybetter-synpgs/Altaflex_ME_Vendor_Page",
 "https://s3.amazonaws.com/supplybetter-synpgs/Alternative_Molding_Concepts",
 "https://s3.amazonaws.com/supplybetter-synpgs/American_Precision_Protoyping_APP_",
 "https://s3.amazonaws.com/supplybetter-synpgs/AmTouch_ME_Vendor_Page",
@@ -177,7 +183,6 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/Fastenix",
 "https://s3.amazonaws.com/supplybetter-synpgs/Fast_Signs",
 "https://s3.amazonaws.com/supplybetter-synpgs/Fathom",
-"https://s3.amazonaws.com/supplybetter-synpgs/Feedback_on_Coxon",
 "https://s3.amazonaws.com/supplybetter-synpgs/Ferrera_Tooling_Inc_",
 "https://s3.amazonaws.com/supplybetter-synpgs/Ferro_Ceramic_Grinding_Inc_",
 "https://s3.amazonaws.com/supplybetter-synpgs/Finishing_Unlimited_Inc",
@@ -218,7 +223,6 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/Innovation_Fabrication",
 "https://s3.amazonaws.com/supplybetter-synpgs/INTA_Technologies_Inc_",
 "https://s3.amazonaws.com/supplybetter-synpgs/Italix",
-"https://s3.amazonaws.com/supplybetter-synpgs/Jemco",
 "https://s3.amazonaws.com/supplybetter-synpgs/Jet_City_Laser",
 "https://s3.amazonaws.com/supplybetter-synpgs/JetEdge",
 "https://s3.amazonaws.com/supplybetter-synpgs/Jimani_Inc_",
@@ -372,7 +376,7 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/Zeus_Industries",
     ]
 
-#test = ["https://s3.amazonaws.com/supplybetter-synpgs/Buyken_Metal_Products"]
+test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_"]
 
     carrier = []
 
@@ -394,16 +398,18 @@ class CrawlerSynapseWiki
         #bullet points under capabilities, to make into tags
         tags_from_capabilities = [] 
         capability_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("Capabilities")}.first
-        capability_list = capability_header.next_element
-        capability_list.css("li").each do |li|
-          tags_from_capabilities << li.text.strip if li.text.present?
+        if capability_header.present?
+          capability_list = capability_header.next_element
+          capability_list.css("li").each do |li|
+            tags_from_capabilities << li.text.strip if li.text.present?
+          end
         end
         warnings << "No tags from capabilities" if tags_from_capabilities.empty? 
       
         #need to check for longform content
         clients_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("Clients")}.first
         clients_text = clients_header.next_element.text.strip if clients_header.present?
-        (clients_header.present? and clients_text.present? and clients_text != "&nbsp") ? clients = synopsis_text : synopsis = nil
+        (clients_header.present? and clients_text.present? and clients_text != "&nbsp") ? clients = clients_text : clients = nil
 
         synopsis_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("CompanySynopsis")}.first
         synopsis_text = synopsis_header.next_element.text.strip if synopsis_header.present?
@@ -413,22 +419,33 @@ class CrawlerSynapseWiki
         focus_text = focus_header.next_element.text.strip if focus_header.present?
         (focus_header.present? and focus_text.present? and focus_text != "&nbsp") ? focus = focus_text : focus = nil
 
+        #last element on page, can have a nil next_element, unlike other categories
         history_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("HistoryInformation")}.first
-        history_text = history_header.next_element.text.strip if history_header.present?
+        history_text_element = history_header.next_element if history_header.present?
+        history_text = history_text_element.text.strip if history_text_element.present?
         (history_header.present? and history_text.present? and history_text != "&nbsp") ? history = history_text : history = nil
 
         #flag if no contact information, otherwise get it
         contact = {}
         contact_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("ContactInformation")}.first
-        contact_paragraph = contact_header.next_element.text
+        if contact_header.present?
+          contact_paragraph = contact_header.next_element
+          if contact_paragraph.present? and contact_paragraph.children.present?
+            contact_paragraph.children.each do |child|
 
-        contact[:name] = contact_paragraph.scan(/Contact: (.*)/) if contact_paragraph.scan(/Contact: (.*)/).present?
-        contact[:phone] = contact_paragraph.scan(/Phone: (.*)/) if contact_paragraph.scan(/Phone: (.*)/).present?
-        contact[:fax] = contact_paragraph.scan(/Fax: (.*)/) if contact_paragraph.scan(/Fax: (.*)/).present?
-        contact[:mobile] = contact_paragraph.scan(/Mobile: (.*)/) if contact_paragraph.scan(/Mobile: (.*)/).present?
-        contact[:address] = contact_paragraph.scan(/Address: (.*)/) if contact_paragraph.scan(/Address: (.*)/).present?
-        contact[:email] = contact_paragraph.scan(/E-mail: (.*)/) if contact_paragraph.scan(/E-mail: (.*)/).present?
-        contact[:website] = contact_paragraph.scan(/Website: (.*)/) if contact_paragraph.scan(/Website: (.*)/).present?
+              text = child.text
+              contact[:name] = text.scan(/Contact: (.*)/) if text.scan(/Contact: (.*)/).present?
+              contact[:phone] = text.scan(/Phone: (.*)/) if text.scan(/Phone: (.*)/).present?
+              contact[:fax] = text.scan(/Fax: (.*)/) if text.scan(/Fax: (.*)/).present?
+              contact[:mobile] = text.scan(/Mobile: (.*)/) if text.scan(/Mobile: (.*)/).present?
+              contact[:address] = text.scan(/Address: (.*)/) if text.scan(/Address: (.*)/).present?
+              contact[:email] = text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})\s/i) if text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})\s/i).present?
+              # http://stackoverflow.com/questions/1141848/regex-to-match-url
+              contact[:website] = text.scan(/(\S+\.(com|net|org|edu|gov|cn)(\/\S+)?)/) if text.scan(/(\S+\.(com|net|org|edu|gov)(\/\S+)?)/).present?
+          
+            end
+          end
+        end
 
         no_contact_info_flag = true
         contact.each do |key,value|
@@ -449,23 +466,28 @@ class CrawlerSynapseWiki
         end
         warnings << "No tags from labels" if tags_from_capabilities.empty? 
 
-        longform = ""
-        longform += "Synapse wiki 'history': #{history}" if history.present?
-        longform += "Synapse wiki 'clients': #{clients}" if clients.present?
-        longform += "Synapse wiki 'focus': #{focus}" if focus.present?
-        longform += "Synapse wiki 'synopsis': #{synopsis}" if synopsis.present?
+        external_longform = ""
+        external_longform += "<p>Synapse wiki 'synopsis': #{synopsis}</p>" if synopsis.present?
+
+        internal_longform = ""
+        internal_longform += "<p>Synapse wiki 'history': #{history}</p>" if history.present?
+        internal_longform += "<p>Synapse wiki 'clients': #{clients}</p>" if clients.present?
+        internal_longform += "<p>Synapse wiki 'focus': #{focus}</p>" if focus.present?
 
         carrier << {
                 warnings: warnings,
                 name: name,
                 contact: contact,
-                longform: longform,
+                external_longform: external_longform,
+                internal_longform: internal_longform,
                 tags: tags_from_capabilities.concat(tags_from_labels), 
                 url: url,
                 update: update
               }
-      rescue
-        puts "error processing #{url}"
+
+        puts "processed #{url}"
+      rescue StandardError => e
+        puts "error processing #{url} - exception #{e.backtrace}"
       end
     end
 
