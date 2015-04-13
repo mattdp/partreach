@@ -2,25 +2,27 @@
 #
 # Table name: providers
 #
-#  id               :integer          not null, primary key
-#  name             :string(255)
-#  url_main         :string(255)
-#  source           :string(255)      default("manual")
-#  name_for_link    :string(255)
-#  created_at       :datetime
-#  updated_at       :datetime
-#  contact_qq       :string(255)
-#  contact_wechat   :string(255)
-#  contact_phone    :string(255)
-#  contact_email    :string(255)
-#  contact_name     :string(255)
-#  contact_role     :string(255)
-#  verified         :boolean          default(FALSE)
-#  city             :string(255)
-#  address          :text
-#  id_within_source :integer
-#  contact_skype    :string(255)
-#  organization_id  :integer          not null
+#  id                         :integer          not null, primary key
+#  name                       :string(255)
+#  url_main                   :string(255)
+#  source                     :string(255)      default("manual")
+#  name_for_link              :string(255)
+#  created_at                 :datetime
+#  updated_at                 :datetime
+#  contact_qq                 :string(255)
+#  contact_wechat             :string(255)
+#  contact_phone              :string(255)
+#  contact_email              :string(255)
+#  contact_name               :string(255)
+#  contact_role               :string(255)
+#  verified                   :boolean          default(FALSE)
+#  city                       :string(255)
+#  address                    :text
+#  id_within_source           :integer
+#  contact_skype              :string(255)
+#  organization_id            :integer          not null
+#  organization_private_notes :text
+#  external_notes             :text
 #
 
 class Provider < ActiveRecord::Base
