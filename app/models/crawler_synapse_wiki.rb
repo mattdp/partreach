@@ -380,7 +380,7 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
 
     carrier = []
 
-    urls.each do |url|
+    test.each do |url|
       begin
         page = Nokogiri::HTML(open(url))
         div_wiki_content = page.css('#content > div.wiki-content')
@@ -515,10 +515,10 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
         # => X throwing away fax, mobile - OK for now
     carrier.each do |wiki_content|
       begin
-        provider = Provider.create(name: wiki_content[:name], name_for_link: Provider.proper_name_for_link(wiki_content[:name]), organization_id: organization.id)
+        provider = Provider.new(name: wiki_content[:name], name_for_link: Provider.proper_name_for_link(wiki_content[:name]), organization_id: organization.id)
         
         contact = wiki_content[:contact]
-        provider.url = contact[:website]
+        provider.url_main = contact[:website]
         provider.address = contact[:address]
         provider.contact_name = contact[:name]
         provider.contact_phone = contact[:phone]
@@ -529,18 +529,19 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
         provider.import_warnings = wiki_content[:warnings].join("\n") if wiki_content[:warnings].present?
         provider.supplybetter_private_notes = wiki_content[:update]
 
-        provider.source = url
+        provider.source = wiki_content[:url]
 
         provider.save
 
-        tag_group = TagGroup.find_by_name("provider_type")
-        carrier[:tags].each do |tag_name|
-          tag = Tag.find_or_create(tag_name,tag_group)
+        tag_group = TagGroup.find_by_group_name("provider type")
+        wiki_content[:tags].each do |tag_name|
+          tag = Tag.find_or_create!(tag_name,tag_group)
           provider.add_tag(tag.id)
+          puts "Tag #{tag_name} didn't error"
         end
 
       rescue StandardError => e
-        puts "error processing #{url} in create_provider_from_wiki - exception #{e.backtrace}"
+        puts "error processing #{wiki_content[:name]} in create_provider_from_wiki - exception #{e.backtrace}"
       end
     end
   end
