@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413025322) do
+ActiveRecord::Schema.define(version: 20150413194632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -321,6 +321,8 @@ ActiveRecord::Schema.define(version: 20150413025322) do
     t.integer  "organization_id",                               null: false
     t.text     "organization_private_notes"
     t.text     "external_notes"
+    t.text     "import_warnings"
+    t.text     "supplybetter_private_notes"
   end
 
   add_index "providers", ["organization_id"], name: "index_providers_on_organization_id", using: :btree

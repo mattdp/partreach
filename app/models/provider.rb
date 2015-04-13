@@ -23,6 +23,8 @@
 #  organization_id            :integer          not null
 #  organization_private_notes :text
 #  external_notes             :text
+#  import_warnings            :text
+#  supplybetter_private_notes :text
 #
 
 class Provider < ActiveRecord::Base

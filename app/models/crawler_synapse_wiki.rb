@@ -498,39 +498,50 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
   def self.create_provider_from_wiki_data(carrier,organization)
 
         # carrier << {
-        #         warnings: warnings,
+        #         X warnings: warnings,
         #         X name: name,
         #         X contact: contact,
         #         X external_longform: external_longform,
         #         X internal_longform: internal_longform,
-        #         tags: tags_from_capabilities.concat(tags_from_labels), 
+        #         X tags: tags_from_capabilities.concat(tags_from_labels), 
         #         X url: url,
-        #         update: update
+        #         X update: update
         #       }
 
         # TO DO, ASIDE FROM ABOVE
-        # => save update data private to supplybetter
+        # => X save update data private to supplybetter
         # => X save source of import private to supplybetter
-        # => save warnings private to supplybetter
+        # => X save warnings private to supplybetter
         # => X throwing away fax, mobile - OK for now
+    carrier.each do |wiki_content|
+      begin
+        provider = Provider.create(name: wiki_content[:name], name_for_link: Provider.proper_name_for_link(wiki_content[:name]), organization_id: organization.id)
+        
+        contact = wiki_content[:contact]
+        provider.url = contact[:website]
+        provider.address = contact[:address]
+        provider.contact_name = contact[:name]
+        provider.contact_phone = contact[:phone]
+        provider.contact_email = contact[:email]
 
-    begin
-      provider = Provider.create(name: carrier[:name], name_for_link: Provider.proper_name_for_link(carrier[:name]), organization_id: organization.id)
-      
-      contact = carrier[:contact]
-      provider.url = contact[:website]
-      provider.address = contact[:address]
-      provider.contact_name = contact[:name]
-      provider.contact_phone = contact[:phone]
-      provider.contact_email = contact[:email]
+        provider.external_notes = wiki_content[:external_longform]
+        provider.organization_private_notes = wiki_content[:internal_longform]
+        provider.import_warnings = wiki_content[:warnings].join("\n") if wiki_content[:warnings].present?
+        provider.supplybetter_private_notes = wiki_content[:update]
 
-      provider.external_notes = carrier[:external_longform]
-      provider.organization_private_notes = carrier[:internal_longform]
+        provider.source = url
 
-      provider.source = url
+        provider.save
 
-    rescue StandardError => e
-      puts "error processing #{url} in create_provider_from_wiki - exception #{e.backtrace}"
+        tag_group = TagGroup.find_by_name("provider_type")
+        carrier[:tags].each do |tag_name|
+          tag = Tag.find_or_create(tag_name,tag_group)
+          provider.add_tag(tag.id)
+        end
+
+      rescue StandardError => e
+        puts "error processing #{url} in create_provider_from_wiki - exception #{e.backtrace}"
+      end
     end
   end
 
