@@ -376,7 +376,12 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/Zeus_Industries",
     ]
 
-test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_"]
+test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_",
+"https://s3.amazonaws.com/supplybetter-synpgs/3M",
+"https://s3.amazonaws.com/supplybetter-synpgs/ABC_Imaging",
+"https://s3.amazonaws.com/supplybetter-synpgs/Abrisa_Technologies",
+"https://s3.amazonaws.com/supplybetter-synpgs/A_Brite_Plating",
+"https://s3.amazonaws.com/supplybetter-synpgs/Absolute_Manufacturing"]
 
     carrier = []
 
@@ -519,7 +524,6 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
 
         tag_group = TagGroup.find_by_group_name("provider type")
         wiki_content[:tags].each do |tag_name|
-          binding.pry
           tag = organization.find_or_create_tag!(tag_name,user)
           provider.add_tag(tag.id)
           puts "Tag #{tag_name} didn't error"
