@@ -115,6 +115,29 @@ class Tag < ActiveRecord::Base
     self.readable.nil? ? self.name : self.readable
   end
 
+  def assimilate(old_tag)
+    if old_tag.organization == organization
+      Tagging.connection.exec_query(
+        "delete from taggings where id in
+         (select old.id from taggings old 
+          inner join taggings new on old.taggable_id=new.taggable_id and old.taggable_type=new.taggable_type 
+          where old.tag_id=#{old_tag.id} and new.tag_id=#{self.id})"
+      )
+      Tagging.where(tag_id: old_tag.id).update_all(tag_id: self.id)
+      
+      TagRelationship.where(source_tag_id: old_tag.id).update_all(source_tag_id: self.id)
+      TagRelationship.where(source_tag_id: old_tag.id).update_all(related_tag_id: self.id)
+      
+      self.update_attribute(:note, old_tag.note) unless note.present?
+
+      old_tag.delete # NOT #destroy -- don't want to perform validations, cascade deletes, etc.
+
+      Event.add_event("Tag", id, "merged tag '#{old_tag.readable}' (id=#{old_tag.id}) into '#{readable}' (id=#{id})")
+    else
+      Event.add_event("Tag", id, "unable to merge tags belonging to different organizations '#{old_tag.readable}' (id=#{old_tag.id}) into '#{readable}' (id=#{id})")
+    end
+  end
+
   # Recursively get all the related_tags (descendants) of a tag
   def descendants(node = self, nodes = [])
     # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
