@@ -32,6 +32,14 @@ class Organization < ActiveRecord::Base
     hash
   end
 
+  def find_or_create_tag!(name,user)
+    tag = self.find_existing_tag(name)
+    unless tag.present?
+      tag = self.create_tag(name,user)
+    end
+    return tag
+  end
+
   def find_existing_tag(tag_name)
     tags = provider_tags
     found = tags.select do |tag|

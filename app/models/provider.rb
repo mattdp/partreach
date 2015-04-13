@@ -64,7 +64,8 @@ class Provider < ActiveRecord::Base
     return preround.round
   end
 
-  #modified from supplier version
+  #modified from supplier version - MAKE SURE TO LOOK AT ORGANIZATION TAG METHODS FIRST
+  #this isn't good with tag groups
   def add_tag(tag_id)
     tag = Tag.find_by_id(tag_id)
     return false if tags.include?(tag)
@@ -73,7 +74,8 @@ class Provider < ActiveRecord::Base
   end
 
 #---
-# TAG STUFF COPIED FROM SUPPLIER DIRECTLY
+# TAG STUFF COPIED FROM SUPPLIER DIRECTLY - MAKE SURE TO LOOK AT ORGANIZATION TAG METHODS FIRST
+# this isn't good with tag groups
 #---
 
   def remove_tags(tag_id)

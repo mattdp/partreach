@@ -495,24 +495,8 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
 
   end
 
-  def self.create_provider_from_wiki_data(carrier,organization)
+  def self.create_provider_from_wiki_data(carrier,organization,user)
 
-        # carrier << {
-        #         X warnings: warnings,
-        #         X name: name,
-        #         X contact: contact,
-        #         X external_longform: external_longform,
-        #         X internal_longform: internal_longform,
-        #         X tags: tags_from_capabilities.concat(tags_from_labels), 
-        #         X url: url,
-        #         X update: update
-        #       }
-
-        # TO DO, ASIDE FROM ABOVE
-        # => X save update data private to supplybetter
-        # => X save source of import private to supplybetter
-        # => X save warnings private to supplybetter
-        # => X throwing away fax, mobile - OK for now
     carrier.each do |wiki_content|
       begin
         provider = Provider.new(name: wiki_content[:name], name_for_link: Provider.proper_name_for_link(wiki_content[:name]), organization_id: organization.id)
@@ -535,7 +519,8 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
 
         tag_group = TagGroup.find_by_group_name("provider type")
         wiki_content[:tags].each do |tag_name|
-          tag = Tag.find_or_create!(tag_name,tag_group)
+          binding.pry
+          tag = organization.find_or_create_tag!(tag_name,user)
           provider.add_tag(tag.id)
           puts "Tag #{tag_name} didn't error"
         end
