@@ -156,7 +156,7 @@
   padding: 10px 0;
 }
 
-#new-order, #manipulate-parts {
+#new-order, #manipulate-parts, #any-form, .any-form{
   p {
     line-height: 1.7;
   }
@@ -243,5 +243,6 @@
     border-radius: 2px;
     color: white;
     height: 40px;
+    margin-bottom: 10px;
   }
 }
