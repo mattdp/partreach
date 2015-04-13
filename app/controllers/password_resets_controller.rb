@@ -4,6 +4,7 @@ class PasswordResetsController < ApplicationController
   HOURS_ALLOWED = 48
 
   def new
+    render layout: "provider"
   end
 
   def create
@@ -13,11 +14,15 @@ class PasswordResetsController < ApplicationController
       user.send_password_reset if user
     end
     redirect_to root_url, :notice => "Email sent with password reset instructions."
+
+    render layout: "provider"
   end
 
   def edit
     @user = User.find_by_password_reset_token(params[:id])
     @hours_allowed = HOURS_ALLOWED
+
+    render layout: "provider"
   end
 
   def update
@@ -30,6 +35,8 @@ class PasswordResetsController < ApplicationController
     else
       render :edit
     end
+
+    render layout: "provider"
   end
 
   private

@@ -25,7 +25,7 @@ class Organization < ActiveRecord::Base
   def providers_hash_by_tag
     hash = {}
 
-    provider_tags.each do |tag|
+    provider_tags.sort_by { |t| t.readable}.each do |tag|
       hash[tag] = providers.joins(:tags).where(tags: {id: tag.id}).order(:name)
     end
 

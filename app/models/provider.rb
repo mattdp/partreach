@@ -28,6 +28,7 @@ class Provider < ActiveRecord::Base
   before_save :prepend_http_to_url
 
   has_many :comments
+  has_many :purchase_orders
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
   has_many :externals, :as => :consumer, :dependent => :destroy

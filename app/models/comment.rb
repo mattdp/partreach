@@ -18,7 +18,8 @@
 class Comment < ActiveRecord::Base
 
   belongs_to :user
-  belongs_to :provider 
+  belongs_to :provider
+  belongs_to :purchase_order
   has_many :comment_ratings
 
   #comment_type should be "purchase_order", "factory_visit", or "comment"
