@@ -377,27 +377,27 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/Zeus_Industries",
     ]
 
-    test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_",
-"https://s3.amazonaws.com/supplybetter-synpgs/3M",
-"https://s3.amazonaws.com/supplybetter-synpgs/ABC_Imaging",
-"https://s3.amazonaws.com/supplybetter-synpgs/Abrisa_Technologies",
-"https://s3.amazonaws.com/supplybetter-synpgs/A_Brite_Plating",
-"https://s3.amazonaws.com/supplybetter-synpgs/Absolute_Manufacturing",
-"https://s3.amazonaws.com/supplybetter-synpgs/Accellent",
-"https://s3.amazonaws.com/supplybetter-synpgs/Accuratus_Corporation",
-"https://s3.amazonaws.com/supplybetter-synpgs/ACM_Holding",
-"https://s3.amazonaws.com/supplybetter-synpgs/Acrylic_Concepts",
-"https://s3.amazonaws.com/supplybetter-synpgs/Acteron_Corp",
-"https://s3.amazonaws.com/supplybetter-synpgs/Acu_Line_Corporation",
-"https://s3.amazonaws.com/supplybetter-synpgs/Adhesa_Plate",
-"https://s3.amazonaws.com/supplybetter-synpgs/Advanced_Molding_Technologies",
-"https://s3.amazonaws.com/supplybetter-synpgs/Advanced_Prototype_Technologies_Inc_",
-"https://s3.amazonaws.com/supplybetter-synpgs/Aetna_Plating",
-"https://s3.amazonaws.com/supplybetter-synpgs/AIMMco"]
+#     test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_",
+# "https://s3.amazonaws.com/supplybetter-synpgs/3M",
+# "https://s3.amazonaws.com/supplybetter-synpgs/ABC_Imaging",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Abrisa_Technologies",
+# "https://s3.amazonaws.com/supplybetter-synpgs/A_Brite_Plating",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Absolute_Manufacturing",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Accellent",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Accuratus_Corporation",
+# "https://s3.amazonaws.com/supplybetter-synpgs/ACM_Holding",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Acrylic_Concepts",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Acteron_Corp",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Acu_Line_Corporation",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Adhesa_Plate",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Advanced_Molding_Technologies",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Advanced_Prototype_Technologies_Inc_",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Aetna_Plating",
+# "https://s3.amazonaws.com/supplybetter-synpgs/AIMMco"]
 
     carrier = []
 
-    test.each do |url|
+    urls.each do |url|
       begin
         page = Nokogiri::HTML(open(url))
         div_wiki_content = page.css('#content > div.wiki-content')
