@@ -377,12 +377,14 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/Zeus_Industries",
     ]
 
-test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_",
-"https://s3.amazonaws.com/supplybetter-synpgs/3M",
-"https://s3.amazonaws.com/supplybetter-synpgs/ABC_Imaging",
-"https://s3.amazonaws.com/supplybetter-synpgs/Abrisa_Technologies",
-"https://s3.amazonaws.com/supplybetter-synpgs/A_Brite_Plating",
-"https://s3.amazonaws.com/supplybetter-synpgs/Absolute_Manufacturing"]
+test = ["https://s3.amazonaws.com/supplybetter-synpgs/3M"]
+
+# test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_",
+# "https://s3.amazonaws.com/supplybetter-synpgs/3M",
+# "https://s3.amazonaws.com/supplybetter-synpgs/ABC_Imaging",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Abrisa_Technologies",
+# "https://s3.amazonaws.com/supplybetter-synpgs/A_Brite_Plating",
+# "https://s3.amazonaws.com/supplybetter-synpgs/Absolute_Manufacturing"]
 
     carrier = []
 
@@ -406,8 +408,11 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
         capability_header = div_wiki_content_headers.select{|header| header.attributes["id"].value.include?("Capabilities")}.first
         if capability_header.present?
           capability_list = capability_header.next_element
-          capability_list.css("li").each do |li|
-            tags_from_capabilities << li.text.strip if li.text.present?
+          while capability_list.name == "ul"
+            capability_list.css("li > text()").each do |li|
+              tags_from_capabilities << li.text.strip if li.text.present?
+            end
+            capability_list = capability_list.next_element
           end
         end
         warnings << "No tags from capabilities" if tags_from_capabilities.empty? 
