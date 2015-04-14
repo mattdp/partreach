@@ -175,6 +175,17 @@
     </ol>
     </div>
 
+  <div class="row col-md-12">
+    <hr>
+    <h3 class="profile-heading">How they describe themselves</h3>
+    <%= raw(@provider.external_notes) %>
+  </div>
+
+  <div class="row col-md-12">
+    <h3 class="profile-heading"><%= @organization.name %> internal notes</h3>
+    <%= raw(@provider.organization_private_notes) %>
+  </div>
+
   <div class="row">
     <div class="col-md-8">
       <h3 id="comments" class="profile-heading">

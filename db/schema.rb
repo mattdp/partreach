@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407133657) do
+ActiveRecord::Schema.define(version: 20150413025322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -303,7 +303,7 @@ ActiveRecord::Schema.define(version: 20150407133657) do
   create_table "providers", force: true do |t|
     t.string   "name"
     t.string   "url_main"
-    t.string   "source",           default: "manual"
+    t.string   "source",                     default: "manual"
     t.string   "name_for_link"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -313,12 +313,14 @@ ActiveRecord::Schema.define(version: 20150407133657) do
     t.string   "contact_email"
     t.string   "contact_name"
     t.string   "contact_role"
-    t.boolean  "verified",         default: false
+    t.boolean  "verified",                   default: false
     t.string   "city"
     t.text     "address"
     t.integer  "id_within_source"
     t.string   "contact_skype"
-    t.integer  "organization_id",                     null: false
+    t.integer  "organization_id",                               null: false
+    t.text     "organization_private_notes"
+    t.text     "external_notes"
   end
 
   add_index "providers", ["organization_id"], name: "index_providers_on_organization_id", using: :btree

@@ -35,6 +35,7 @@ gem 'premailer-rails'
 # plus possibly additional fix made Nov 8, 2013 https://github.com/ryanb/nested_form/commit/35a2cf060680280413880337a3f89bdec469301c
 # subsequent commits as of Nov 14, 2014 revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a are documentation updates only
 gem 'nested_form', github: 'ryanb/nested_form'
+gem 'mechanize'
 
 
 #old assets block
