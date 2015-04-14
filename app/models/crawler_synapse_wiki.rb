@@ -52,6 +52,7 @@ class CrawlerSynapseWiki
     #not doing
     # => noncompete (bret says no idea what for)
     # => synapsers that used this one (checked 15, don't have content)
+    # => multiple contacts
 
     #manually will do
     # => attachments
@@ -436,6 +437,7 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
         if contact_header.present?
           contact_paragraph = contact_header.next_element
           if contact_paragraph.present? and contact_paragraph.children.present?
+
             contact_paragraph.children.each do |child|
 
               text = child.text
@@ -444,7 +446,7 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Mo
               contact[:fax] = text.scan(/Fax: (.*)/) if text.scan(/Fax: (.*)/).present?
               contact[:mobile] = text.scan(/Mobile: (.*)/) if text.scan(/Mobile: (.*)/).present?
               contact[:address] = text.scan(/Address: (.*)/) if text.scan(/Address: (.*)/).present?
-              contact[:email] = text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})\s/i) if text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})\s/i).present?
+              contact[:email] = text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})/i) if text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})/i).present?
               # http://stackoverflow.com/questions/1141848/regex-to-match-url
               contact[:website] = text.scan(/(\S+\.(com|net|org|edu|gov|cn)(\/\S+)?)/) if text.scan(/(\S+\.(com|net|org|edu|gov)(\/\S+)?)/).present?
           
