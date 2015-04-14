@@ -390,11 +390,9 @@ class CrawlerSynapseWiki
 # "https://s3.amazonaws.com/supplybetter-synpgs/Aetna_Plating",
 # "https://s3.amazonaws.com/supplybetter-synpgs/AIMMco"]
 
-test = ["https://s3.amazonaws.com/supplybetter-synpgs/Ellsworth"]
-
     carrier = []
 
-    test.each do |url|
+    urls.each do |url|
       begin
         page = Nokogiri::HTML(open(url))
         div_wiki_content = page.css('#content > div.wiki-content')
@@ -540,6 +538,10 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/Ellsworth"]
         puts "error processing #{wiki_content[:name]} in create_provider_from_wiki - exception #{e.backtrace}"
       end
     end
+  end
+
+  def self.full_upload_wrapper(organization,user)
+    CrawlerSynapseWiki.create_provider_from_wiki_data(CrawlerSynapseWiki.upload_wiki_pages,organization,user)
   end
 
 end
