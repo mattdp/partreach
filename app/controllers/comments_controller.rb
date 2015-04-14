@@ -46,7 +46,7 @@ class CommentsController < ApplicationController
   end
 
   def edit_purchase_order_comment
-    # @comment = Comment.find params[:id] # initialized in correct_user before_filter
+    # note: @comment initialized in correct_user before_filter
     @comment_type_text = "purchase order comment"
     @provider = @comment.provider
     Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
@@ -54,7 +54,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    # @comment = Comment.find params[:id] # initialized in correct_user before_filter
+    # note: @comment initialized in correct_user before_filter
     provider = @comment.provider
     Event.add_event("User", current_user.id, "attempted comment update for", "Comment", @comment.id) 
     note = (@comment.update_attributes(comment_params) ? "Saved OK!" : "Saving problem.")
@@ -64,7 +64,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:overall_score,:payload,:provider_id,:title)
+    params.permit(:overall_score, :quality_score, :cost_score, :speed_score, :payload, :provider_id, :title)
   end
 
   def correct_user

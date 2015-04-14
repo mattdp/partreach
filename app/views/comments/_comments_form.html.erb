@@ -8,7 +8,10 @@
 
         <%= hidden_field_tag :provider_id, @provider.id %>
         <%= hidden_field_tag :comment_type, @comment_type %>
-        <%= hidden_field_tag :overall_score, 0, {:class => "overall_score"} %>
+        <%= hidden_field_tag :overall_score, @comment.overall_score %>
+        <%= hidden_field_tag :quality_score, @comment.quality_score %>
+        <%= hidden_field_tag :cost_score, @comment.cost_score %>
+        <%= hidden_field_tag :speed_score, @comment.speed_score %>
 
         <div class="field comment-title">
               <% po = @comment.purchase_order %>
@@ -31,8 +34,44 @@
           <%= text_area_tag :payload, @comment.payload, rows: 5 %>
         </div>
 
-        <div class="field">
+        <div class="overall field">
           <%= label_tag :overall_score, "How do you like this supplier overall? (optional)" %><br>
+          <span class="star-rating">
+            <input type="radio" name="rating" value="1"><i></i>
+            <input type="radio" name="rating" value="2"><i></i>
+            <input type="radio" name="rating" value="3"><i></i>
+            <input type="radio" name="rating" value="4"><i></i>
+            <input type="radio" name="rating" value="5"><i></i>
+          </span>
+          <strong class="choice">Rating not yet selected</strong>
+        </div>
+
+        <div class="quality field">
+          <%= label_tag :quality_score, "How do you rate this supplier for quality? (optional)" %><br>
+          <span class="star-rating">
+            <input type="radio" name="rating" value="1"><i></i>
+            <input type="radio" name="rating" value="2"><i></i>
+            <input type="radio" name="rating" value="3"><i></i>
+            <input type="radio" name="rating" value="4"><i></i>
+            <input type="radio" name="rating" value="5"><i></i>
+          </span>
+          <strong class="choice">Rating not yet selected</strong>
+        </div>
+
+        <div class="cost field">
+          <%= label_tag :cost_score, "How do you rate this supplier for cost? (optional)" %><br>
+          <span class="star-rating">
+            <input type="radio" name="rating" value="1"><i></i>
+            <input type="radio" name="rating" value="2"><i></i>
+            <input type="radio" name="rating" value="3"><i></i>
+            <input type="radio" name="rating" value="4"><i></i>
+            <input type="radio" name="rating" value="5"><i></i>
+          </span>
+          <strong class="choice">Rating not yet selected</strong>
+        </div>
+
+        <div class="speed field">
+          <%= label_tag :speed_score, "How do you rate this supplier for speed? (optional)" %><br>
           <span class="star-rating">
             <input type="radio" name="rating" value="1"><i></i>
             <input type="radio" name="rating" value="2"><i></i>
@@ -55,10 +94,27 @@
 
 <!-- JS TO ALLOW RATINGS TO WORK -->
 <script type="text/javascript"> 
-  $(':radio').change(
+  $('.overall :radio').change(
   function(){
-    $('.choice').text( this.value + ' stars' );
-    $('.overall_score').val( this.value );
-  } 
-)
+    $('.overall .choice').text( this.value + ' stars' );
+    $('#overall_score').val( this.value );
+  });
+
+  $('.quality :radio').change(
+  function(){
+    $('.quality .choice').text( this.value + ' stars' );
+    $('#quality_score').val( this.value );
+  });
+
+  $('.cost :radio').change(
+  function(){
+    $('.cost .choice').text( this.value + ' stars' );
+    $('#cost_score').val( this.value );
+  });
+
+  $('.speed :radio').change(
+  function(){
+    $('.speed .choice').text( this.value + ' stars' );
+    $('#speed_score').val( this.value );
+  });
 </script>
