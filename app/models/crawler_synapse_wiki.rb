@@ -453,7 +453,7 @@ test = ["https://s3.amazonaws.com/supplybetter-synpgs/Ellsworth"]
               contact[:address] = text.scan(/Address: (.*)/) if text.scan(/Address: (.*)/).present?
               contact[:email] = text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})/i) if text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})/i).present?
               #not great, but don't want to engage with URI library when don't know which strings are url-ish
-              contact[:website] = text.scan(/([\w-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/) if (text.scan(/([\w\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/).present? and text.scan(/(@[\w\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/).empty?)          
+              contact[:website] = text.scan(/([\w\-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/) if (text.scan(/([\w\-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/).present? and text.scan(/(@[\w\-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/).empty?)          
             end
 
             contact_paragraph = contact_paragraph.next_element
