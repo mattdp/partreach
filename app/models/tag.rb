@@ -20,11 +20,11 @@ class Tag < ActiveRecord::Base
 
   belongs_to :tag_group
   belongs_to :organization
-  has_many :taggings
+  has_many :taggings, dependent: :destroy
   has_many :suppliers, :through => :taggings, :source => :taggable, :source_type => 'Supplier'
   has_many :providers, :through => :taggings, :source => :taggable, :source_type => 'Provider'
   has_many :purchase_orders, :through => :taggings, :source => :taggable, :source_type => 'PurchaseOrder'
-  has_many :tag_relationships, foreign_key: "source_tag_id", class_name: "TagRelationship"
+  has_many :tag_relationships, foreign_key: "source_tag_id", class_name: "TagRelationship", dependent: :destroy
   has_many :related_tags, :through => :tag_relationships
   has_many :reverse_tag_relationships, foreign_key: "related_tag_id", class_name: "TagRelationship"
   has_many :source_tags, :through => :reverse_tag_relationships
