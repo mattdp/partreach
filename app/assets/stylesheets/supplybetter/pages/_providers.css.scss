@@ -264,8 +264,10 @@ text-align: center;
 
 /*provider profile specific css*/
 
-.profile-spacing h1 {
+.profile-spacing {
   margin-top: 0;
+  margin-bottom: 0;
+  line-height: 10px;
 }
 
 .verified {
@@ -372,15 +374,22 @@ li.search-field input {
   width: 100%;
 }
 
-/*provider tag styling*/
+/*provider profile lists*/
+
+li p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+/*provider profile tag styling*/
 .tags-providerTags>a {
     font-size: 13px; /*this font size isn't consistent with the rest of the Providers profile page by certainly makes the tags present in a cleaner, more compact form*/
     line-height: 22px;
     display: inline-block;
-    color: rgba(0, 0, 0, 0.44);
-    background: #fafafa;
+    color: rgba(0, 0, 0, 0.74);
+    background: rgba(0, 0, 0, 0.02);
     border-radius: 2px;
-    border: 1px solid #f0f0f0;
+    border: 1px solid rgba(0, 0, 0, 0.15);
     padding: 3px 10px;
     /*margin-right: 8px;*/ /*spacing looks a little off compared to top/bottom spacing, but make the tag presentation much more compact*/
     margin-bottom: 8px;
