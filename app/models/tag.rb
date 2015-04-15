@@ -138,6 +138,12 @@ class Tag < ActiveRecord::Base
     end
   end
 
+  def assimilate_list(old_tag_id_array)
+    old_tag_id_array.each do |tag_id|
+      self.assimilate(Tag.find(tag_id))
+    end
+  end
+
   # Recursively get all the related_tags (descendants) of a tag
   def descendants(node = self, nodes = [])
     # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
