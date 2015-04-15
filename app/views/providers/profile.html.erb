@@ -51,11 +51,11 @@
           What they can do for you
          <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
         </h3>
-        <% @tags.each do |tag| %>
-          <ul>
-            <li><%= "#{tag.readable}" %></li>
-          </ul>
+        <div class="tags-providerTags">
+          <% @tags.each do |tag| %>
+            <a><%= "#{tag.readable}" %></a>
         <% end %>
+        </div>
       </div>        
 
       <!-- BEGIN RIGHT COLUMN -->
@@ -77,12 +77,12 @@
   <div class="row col-md-12">
     <hr>
     <h3 class="profile-heading">Company Synopsis</h3>
-    <%= raw(@provider.external_notes) %>
+    <p><%= raw(@provider.external_notes) %></p>
   </div>
 
   <div class="row col-md-12">
     <h3 class="profile-heading"><%= @organization.name %> internal notes</h3>
-    <%= raw(@provider.organization_private_notes) %>
+    <p><%= raw(@provider.organization_private_notes) %></p>
   </div>
 
   <div class="row">
