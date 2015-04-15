@@ -1,3 +1,4 @@
+
 class CrawlerSynapseWiki
   require 'mechanize'
   require 'uri'
@@ -390,6 +391,8 @@ class CrawlerSynapseWiki
 # "https://s3.amazonaws.com/supplybetter-synpgs/Aetna_Plating",
 # "https://s3.amazonaws.com/supplybetter-synpgs/AIMMco"]
 
+    test = ["https://s3.amazonaws.com/supplybetter-synpgs/Absolute_Manufacturing"]
+
     carrier = []
 
     urls.each do |url|
@@ -506,10 +509,11 @@ class CrawlerSynapseWiki
 
   end
 
+  #CrawlerSynapseWiki.create_provider_from_wiki_data(carrier,Organization.find(1),User.find(1))
   def self.create_provider_from_wiki_data(carrier,organization,user)
 
     carrier.each do |wiki_content|
-      begin
+      # begin
         provider = Provider.new(name: wiki_content[:name], name_for_link: Provider.proper_name_for_link(wiki_content[:name]), organization_id: organization.id)
         
         contact = wiki_content[:contact]
@@ -531,17 +535,28 @@ class CrawlerSynapseWiki
         tag_group = TagGroup.find_by_group_name("provider type")
         wiki_content[:tags].each do |tag_name|
           tag = organization.find_or_create_tag!(tag_name,user)
-          provider.add_tag(tag.id)
+          if tag.present?
+            provider.add_tag(tag.id)
+          else
+            puts "#{tag_name},#{provider.name} ::: warning - find or create tag returned nil."
+          end
         end
 
-      rescue StandardError => e
-        puts "error processing #{wiki_content[:name]} in create_provider_from_wiki - exception #{e.backtrace}"
-      end
+      # rescue StandardError => e
+      #   puts "error processing #{wiki_content[:name]} in create_provider_from_wiki - exception #{e.backtrace}"
+      # end
     end
   end
-
+  #UAT: CrawlerSynapseWiki.full_upload_wrapper(Organization.find(1),User.find(1))
   def self.full_upload_wrapper(organization,user)
     CrawlerSynapseWiki.create_provider_from_wiki_data(CrawlerSynapseWiki.upload_wiki_pages,organization,user)
   end
 
+  #for debugging, remove all recent tags and providers
+  def self.nuke(safety)
+    if safety == "off"
+      Provider.where("created_at > '2015-4-13'").map{|p| p.destroy}
+      Tag.where("created_at > '2015-4-13'").map{|p| p.destroy}
+    end
+  end
 end

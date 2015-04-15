@@ -19,7 +19,7 @@ class Organization < ActiveRecord::Base
   end
 
   def provider_tags
-    tags
+    Tag.where("organization_id = ?",self.id)
   end
 
   def providers_hash_by_tag
@@ -57,6 +57,8 @@ class Organization < ActiveRecord::Base
       tag_group: TagGroup.find_by_group_name("provider type"),
       organization: self)
     Event.add_event("User","#{user.id}" ,"added a new tag", "Tag", new_tag.id)
+
+    #binding.pry if tag_name == "machine_shops"
 
     new_tag
   end
