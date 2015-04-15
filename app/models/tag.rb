@@ -53,6 +53,19 @@ class Tag < ActiveRecord::Base
     end
   end
 
+  #does not change name for link
+  def change_name_and_readable(change_into_this)
+    old_name = self.name
+    old_readable = self.readable
+    self.name = change_into_this
+    self.readable = change_into_this
+    if self.save
+      puts "Name/readable both changed (from #{old_name}/#{old_readable}) to #{change_into_this}"
+    else
+      puts "FAILURE changing #{old_name}/#{old_readable} to #{change_into_this}. Are you sure those names aren't taken?"
+    end
+  end
+
   def self.tag_set(category,attribute)
     Tag.initialize_tag_sets unless @@tag_sets
     @@tag_sets[category][attribute]
