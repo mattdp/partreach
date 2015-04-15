@@ -324,6 +324,8 @@ ActiveRecord::Schema.define(version: 20150413232746) do
     t.integer  "organization_id",                               null: false
     t.text     "organization_private_notes"
     t.text     "external_notes"
+    t.text     "import_warnings"
+    t.text     "supplybetter_private_notes"
   end
 
   add_index "providers", ["organization_id"], name: "index_providers_on_organization_id", using: :btree

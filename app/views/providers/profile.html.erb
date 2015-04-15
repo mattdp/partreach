@@ -80,8 +80,13 @@
 
   <div class="row col-md-12">
     <hr>
+<<<<<<< HEAD
     <h3 class="profile-heading">Company Synopsis</h3>
     <p><%= raw(@provider.external_notes) %></p>
+=======
+    <h3 class="profile-heading">Company synopsis</h3>
+    <%= raw(@provider.external_notes) %>
+>>>>>>> uat-supplybetter
   </div>
 
   <div class="row col-md-12">
@@ -162,7 +167,7 @@
                 </div>
                 <div class="col-md-4">
                   <div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
-                  <div><%= "Price: $#{po.price}" if po.price %></div>
+                  <div><%= "Price: #{number_to_currency(po.price)}" if po.price %></div>
                 </div>
               <% end %>
             </div>

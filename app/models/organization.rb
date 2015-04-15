@@ -19,17 +19,25 @@ class Organization < ActiveRecord::Base
   end
 
   def provider_tags
-    tags
+    Tag.where("organization_id = ?",self.id)
   end
 
   def providers_hash_by_tag
     hash = {}
 
-    provider_tags.sort_by { |t| t.readable}.each do |tag|
+    provider_tags.sort_by { |t| t.readable.downcase}.each do |tag|
       hash[tag] = providers.joins(:tags).where(tags: {id: tag.id}).order(:name)
     end
 
     hash
+  end
+
+  def find_or_create_tag!(name,user)
+    tag = self.find_existing_tag(name)
+    unless tag.present?
+      tag = self.create_tag(name,user)
+    end
+    return tag
   end
 
   def find_existing_tag(tag_name)
@@ -42,6 +50,7 @@ class Organization < ActiveRecord::Base
 
   #user facing for org users
   def create_tag(tag_name, user)
+    tag_name = tag_name[0..200]
     new_tag = Tag.create(
       name: tag_name, 
       readable: tag_name, 
