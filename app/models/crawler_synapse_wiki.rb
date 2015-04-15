@@ -373,26 +373,6 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/Zeus_Industries",
     ]
 
-#     test = ["https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_",
-# "https://s3.amazonaws.com/supplybetter-synpgs/3M",
-# "https://s3.amazonaws.com/supplybetter-synpgs/ABC_Imaging",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Abrisa_Technologies",
-# "https://s3.amazonaws.com/supplybetter-synpgs/A_Brite_Plating",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Absolute_Manufacturing",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Accellent",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Accuratus_Corporation",
-# "https://s3.amazonaws.com/supplybetter-synpgs/ACM_Holding",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Acrylic_Concepts",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Acteron_Corp",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Acu_Line_Corporation",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Adhesa_Plate",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Advanced_Molding_Technologies",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Advanced_Prototype_Technologies_Inc_",
-# "https://s3.amazonaws.com/supplybetter-synpgs/Aetna_Plating",
-# "https://s3.amazonaws.com/supplybetter-synpgs/AIMMco"]
-
-    test = ["https://s3.amazonaws.com/supplybetter-synpgs/Absolute_Manufacturing"]
-
     carrier = []
 
     urls.each do |url|
@@ -513,7 +493,7 @@ class CrawlerSynapseWiki
   def self.create_provider_from_wiki_data(carrier,organization,user)
 
     carrier.each do |wiki_content|
-      # begin
+      begin
         provider = Provider.new(name: wiki_content[:name], name_for_link: Provider.proper_name_for_link(wiki_content[:name]), organization_id: organization.id)
         
         contact = wiki_content[:contact]
@@ -543,21 +523,23 @@ class CrawlerSynapseWiki
           end
         end
 
-      # rescue StandardError => e
-      #   puts "error processing #{wiki_content[:name]} in create_provider_from_wiki - exception #{e.backtrace}"
-      # end
+      rescue StandardError => e
+        puts "error processing #{wiki_content[:name]} in create_provider_from_wiki - exception #{e.backtrace}"
+      end
     end
   end
+
   #UAT: CrawlerSynapseWiki.full_upload_wrapper(Organization.find(1),User.find(1))
   def self.full_upload_wrapper(organization,user)
     CrawlerSynapseWiki.create_provider_from_wiki_data(CrawlerSynapseWiki.upload_wiki_pages,organization,user)
   end
 
   #for debugging, remove all recent tags and providers
-  def self.nuke(safety)
-    if safety == "off"
-      Provider.where("created_at > '2015-4-13'").map{|p| p.destroy}
-      Tag.where("created_at > '2015-4-13'").map{|p| p.destroy}
-    end
-  end
+  # def self.nuke(safety)
+  #   if safety == "off"
+  #     Provider.where("created_at > '2015-4-13'").map{|p| p.destroy}
+  #     Tag.where("created_at > '2015-4-13'").map{|p| p.destroy}
+  #   end
+  # end
+
 end
