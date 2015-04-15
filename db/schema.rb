@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413025322) do
+ActiveRecord::Schema.define(version: 20150413232746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -70,6 +70,9 @@ ActiveRecord::Schema.define(version: 20150413025322) do
     t.integer  "ratings_count",     default: 0
     t.integer  "helpful_count",     default: 0
     t.integer  "purchase_order_id"
+    t.integer  "cost_score",        default: 0
+    t.integer  "quality_score",     default: 0
+    t.integer  "speed_score",       default: 0
   end
 
   create_table "communications", force: true do |t|
@@ -321,6 +324,8 @@ ActiveRecord::Schema.define(version: 20150413025322) do
     t.integer  "organization_id",                               null: false
     t.text     "organization_private_notes"
     t.text     "external_notes"
+    t.text     "import_warnings"
+    t.text     "supplybetter_private_notes"
   end
 
   add_index "providers", ["organization_id"], name: "index_providers_on_organization_id", using: :btree
