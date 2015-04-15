@@ -59,8 +59,6 @@ class Organization < ActiveRecord::Base
       organization: self)
     Event.add_event("User","#{user.id}" ,"added a new tag", "Tag", new_tag.id)
 
-    #binding.pry if tag_name == "machine_shops"
-
     new_tag
   end
 
