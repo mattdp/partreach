@@ -14,6 +14,9 @@
 #  ratings_count     :integer          default(0)
 #  helpful_count     :integer          default(0)
 #  purchase_order_id :integer
+#  cost_score        :integer          default(0)
+#  quality_score     :integer          default(0)
+#  speed_score       :integer          default(0)
 #
 
 class Comment < ActiveRecord::Base
