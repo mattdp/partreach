@@ -534,12 +534,12 @@ class CrawlerSynapseWiki
     CrawlerSynapseWiki.create_provider_from_wiki_data(CrawlerSynapseWiki.upload_wiki_pages,organization,user)
   end
 
-  #for debugging, remove all recent tags and providers
-  # def self.nuke(safety)
-  #   if safety == "off"
-  #     Provider.where("created_at > '2015-4-13'").map{|p| p.destroy}
-  #     Tag.where("created_at > '2015-4-13'").map{|p| p.destroy}
-  #   end
-  # end
+  for debugging, remove all recent tags and providers
+  def self.nuke(safety)
+    if safety == "off"
+      Provider.where("created_at > '2015-4-13'").map{|p| p.destroy}
+      Tag.where("created_at > '2015-4-13'").map{|p| p.destroy}
+    end
+  end
 
 end
