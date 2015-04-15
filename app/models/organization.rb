@@ -50,6 +50,7 @@ class Organization < ActiveRecord::Base
 
   #user facing for org users
   def create_tag(tag_name, user)
+    tag_name = tag_name[0..200]
     new_tag = Tag.create(
       name: tag_name, 
       readable: tag_name, 

@@ -270,7 +270,8 @@ class Supplier < ActiveRecord::Base
   end
 
   def self.proper_name_for_link(name)
-    return name.downcase.gsub(/\W+/, "")
+    #some strings from tag importation are too long
+    return name.downcase.gsub(/\W+/, "")[0..200]
   end
 
   def from_notes(field, options = {})

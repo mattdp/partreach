@@ -509,7 +509,7 @@ class CrawlerSynapseWiki
 
   end
 
-  #CrawlerSynapseWiki.create_provider_from_wiki_data(carrier,Organization.find(1),User.find(1))
+  # CrawlerSynapseWiki.create_provider_from_wiki_data(carrier,Organization.find(1),User.find(1))
   def self.create_provider_from_wiki_data(carrier,organization,user)
 
     carrier.each do |wiki_content|
@@ -521,6 +521,7 @@ class CrawlerSynapseWiki
         provider.address = contact[:address]
         provider.contact_name = contact[:name]
         provider.contact_phone = contact[:phone]
+        provider.contact_phone = contact[:mobile] if contact[:mobile].present? and contact[:phone].empty?
         provider.contact_email = contact[:email]
 
         provider.external_notes = wiki_content[:external_longform]
