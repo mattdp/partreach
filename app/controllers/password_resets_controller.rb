@@ -13,9 +13,7 @@ class PasswordResetsController < ApplicationController
       user = lead_contact.contactable.user
       user.send_password_reset if user
     end
-    redirect_to root_url, :notice => "Email sent with password reset instructions."
-
-    render layout: "provider"
+    redirect_to teams_signin_url, :notice => "Email sent with password reset instructions."
   end
 
   def edit
