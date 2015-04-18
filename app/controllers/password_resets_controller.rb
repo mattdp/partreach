@@ -33,8 +33,6 @@ class PasswordResetsController < ApplicationController
     else
       render :edit
     end
-
-    render layout: "provider"
   end
 
   private
