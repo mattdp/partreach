@@ -76,6 +76,11 @@ class CrawlerSynapseWiki
 "https://wiki.synapse.com/display/Vendors/Altaflex+-+ME+Vendor+Page"
 ]
 
+    send_to_bret = [
+#information on how to design/use batteries
+"https://wiki.synapse.com/display/Vendors/Li-Polymer+Batteries+-+ME+Vendor+Page" 
+  ]
+
     urls = [
 "https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_",
 "https://s3.amazonaws.com/supplybetter-synpgs/3M",
