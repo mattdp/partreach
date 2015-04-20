@@ -62,23 +62,26 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/test",
 "https://s3.amazonaws.com/supplybetter-synpgs/ttteeesssttt",
 "https://s3.amazonaws.com/supplybetter-synpgs/Coxon",
+"https://s3.amazonaws.com/supplybetter-synpgs/Pathway_Designs", #dupe
 "https://s3.amazonaws.com/supplybetter-synpgs/The_empty_format_for_vendor_information_list"
     ]
 
+    revisited = ["https://s3.amazonaws.com/supplybetter-synpgs/Feedback_on_Coxon",
+      "https://s3.amazonaws.com/supplybetter-synpgs/Jemco", #error on upload
+      "https://wiki.synapse.com/display/Vendors/Altaflex+-+ME+Vendor+Page",
+      "https://s3.amazonaws.com/supplybetter-synpgs/RPDG_Rapid_Product_Development_Group_Inc_", #dupe
+      "https://s3.amazonaws.com/supplybetter-synpgs/Vendor_Visits_in_SF"
+] 
+
     revisit = [
 "https://s3.amazonaws.com/supplybetter-synpgs/SF_Shops_to_try",
-"https://s3.amazonaws.com/supplybetter-synpgs/Potential_ME_Vendors_List",
-"https://s3.amazonaws.com/supplybetter-synpgs/RPDG_Rapid_Product_Development_Group_Inc_", #dupe
-"https://s3.amazonaws.com/supplybetter-synpgs/Pathway_Designs", #dupe
-"https://s3.amazonaws.com/supplybetter-synpgs/Vendor_Visits_in_SF",
-"https://s3.amazonaws.com/supplybetter-synpgs/Feedback_on_Coxon", #coxon is supplier
-"https://s3.amazonaws.com/supplybetter-synpgs/Jemco", #error
-"https://wiki.synapse.com/display/Vendors/Altaflex+-+ME+Vendor+Page"
+"https://s3.amazonaws.com/supplybetter-synpgs/Potential_ME_Vendors_List"
 ]
 
     send_to_bret = [
 #information on how to design/use batteries
-"https://wiki.synapse.com/display/Vendors/Li-Polymer+Batteries+-+ME+Vendor+Page" 
+"https://wiki.synapse.com/display/Vendors/Li-Polymer+Batteries+-+ME+Vendor+Page",
+"https://wiki.synapse.com/display/Vendors/Altaflex+-+ME+Vendor+Page"
   ]
 
     urls = [
