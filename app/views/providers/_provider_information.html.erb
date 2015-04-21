@@ -53,7 +53,7 @@
 
   <div class="col-md-9">
     <span class="provider-edit-input">
-      <%= text_area_tag 'address', @provider.address %>
+      <%= text_area_tag 'address', @provider.address, rows: 2 %>
       </span>
   </div>
 </div>
@@ -126,7 +126,7 @@
 
   <div class="col-md-9">
     <span class="provider-edit-input">
-      <%= text_area_tag 'external_notes', @provider.external_notes %>
+      <%= text_area_tag 'external_notes', @provider.external_notes, rows: 4 %>
     </span>
   </div>
 </div>
@@ -140,7 +140,7 @@
 
   <div class="col-md-9">
     <span class="provider-edit-input">
-      <%= text_area_tag 'organization_private_notes', @provider.organization_private_notes %>
+      <%= text_area_tag 'organization_private_notes', @provider.organization_private_notes, rows: 4 %>
     </span>
   </div>
 </div>
