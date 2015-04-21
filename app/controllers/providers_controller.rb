@@ -102,7 +102,6 @@ class ProvidersController < ApplicationController
 
   def search_results
     if params[:tags].present?
-      
       tags = []
       params[:tags].each do |unsafe_string|
         possible_tag = Tag.find_by_name(unsafe_string)
@@ -110,18 +109,30 @@ class ProvidersController < ApplicationController
       end
 
       #adapted from organization.providers_hash_by_tag
-      @provider_hash = {}
+      @results_hash = {}
       tags.sort_by { |t| t.readable.downcase }.each do |tag|
-        @provider_hash[tag] = Tagging.where("taggable_type = ? and tag_id = ?","Provider",tag.id).map{|tg| Provider.find(tg.taggable_id)}
+        @results_hash[tag.name] = Tagging.where("taggable_type = ? and tag_id = ?","Provider",tag.id).map{|tg| Provider.find(tg.taggable_id)}
       end
 
-      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, tags.map{|t| t.name}.join(" & "))
+      @search_text = tags.map{|t| t.name}.join(" & ")
+      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @search_text)
       render layout: "provider"
 
-    elsif true #put the providers stuff here
+    elsif params[:providers].present?
+      providers = []
+      params[:providers].each do |unsafe_string|
+        possible_provider = Provider.find_by_name(unsafe_string)
+        providers << possible_provider if possible_provider.present?
+      end
+
+      @results_hash = {}
+      @results_hash["Providers"] = providers
+      
+      @search_text = providers.map{|p| p.name}.join(" & ")
+      Event.add_event("User", current_user.id, "searched providers by provider names", nil, nil, @search_text)
+      render layout: "provider"      
+    else
       redirect_to teams_index_path
-    else #error case
-      #error stuff here
     end
   end
 
