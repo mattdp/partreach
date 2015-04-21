@@ -176,7 +176,7 @@ replacement -mdp */
 
 /*NON-BOOTSTRAP STUFF HERE*/
 
-.heading_navigation{
+.heading_navigation, .heading_navigation input{
   font-size: small;
   font-weight: normal;
 }
@@ -412,4 +412,12 @@ li.search-choice {
 a.search-choice-close {
   top: 9px !important;
 
+}
+
+.comment-no-left-margin {
+  padding-left: 0px;
+}
+
+.comment-last-row {
+  padding-top: 10px;
 }
