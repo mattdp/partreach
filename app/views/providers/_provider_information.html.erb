@@ -2,147 +2,147 @@
 
 <div class="col-md-8 col-md-offset-1">
 
-<hr>
+  <hr>
 
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'name', 'Business name' %>
-  </div>
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'name', 'Business name' %>
+    </div>
 
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-    <%= text_field_tag 'name', @provider.name %>
-    </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'url_main', 'Website' %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-    <%= text_field_tag 'url_main', @provider.url_main %>
-    </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'organization', 'Share Details With' %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-details">
-      (Information will not be shared beyond <%= "#{@organization.name}" %>)
-    </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'address', 'Full address' %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_area_tag 'address', @provider.address, rows: 2 %>
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+      <%= text_field_tag 'name', @provider.name %>
       </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'external_notes', "Company synopsis - how they'd describe themselves. HTML format." %>
+    </div>
   </div>
 
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_area_tag 'external_notes', @provider.external_notes, rows: 4 %>
-    </span>
-  </div>
-</div>
+  <hr>
 
-<hr>
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'url_main', 'Website' %>
+    </div>
 
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'organization_private_notes', "#{@organization.name} internal notes - your view of the supplier. HTML format." %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_area_tag 'organization_private_notes', @provider.organization_private_notes, rows: 4 %>
-    </span>
-  </div>
-</div>
-
-<h2>Contact information</h2>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'contact_name', 'Contact Name' %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_field_tag 'contact_name', @provider.contact_name %>
-    </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'contact_role', 'Contact Role' %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_field_tag 'contact_role', @provider.contact_role %>
-    </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'contact_phone', 'Phone' %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_field_tag 'contact_phone', @provider.contact_phone %>
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+      <%= text_field_tag 'url_main', @provider.url_main %>
       </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'contact_email', 'Email' %>
+    </div>
   </div>
 
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_field_tag 'contact_email', @provider.contact_email %>
-    </span>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'organization', 'Share Details With' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-details">
+        (Information will not be shared beyond <%= "#{@organization.name}" %>)
+      </span>
+    </div>
   </div>
-</div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'address', 'Full address' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_area_tag 'address', @provider.address, rows: 2 %>
+        </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'external_notes', "Company synopsis - how they'd describe themselves. HTML format." %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_area_tag 'external_notes', @provider.external_notes, rows: 4 %>
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'organization_private_notes', "#{@organization.name} internal notes - your view of the supplier. HTML format." %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_area_tag 'organization_private_notes', @provider.organization_private_notes, rows: 4 %>
+      </span>
+    </div>
+  </div>
+
+  <h2>Contact information</h2>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'contact_name', 'Contact Name' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag 'contact_name', @provider.contact_name %>
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'contact_role', 'Contact Role' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag 'contact_role', @provider.contact_role %>
+      </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'contact_phone', 'Phone' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag 'contact_phone', @provider.contact_phone %>
+        </span>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-3">
+    <%= label_tag 'contact_email', 'Email' %>
+    </div>
+
+    <div class="col-md-9">
+      <span class="provider-edit-input">
+        <%= text_field_tag 'contact_email', @provider.contact_email %>
+      </span>
+    </div>
+  </div>
 
 </div>
 
@@ -162,42 +162,42 @@
 </div>
 
 
-  <div class="col-md-8 col-md-offset-1">
-    <%= label_tag 'new_tag_name_1', "Tag isn't here? Add it to the list! (tags will be added to this business as well)" %>
-    <div class="row">
-      <div class="col-md-3">
-      New Tag 1 (optional)
-      </div>
-      <div class="col-md-4">
-        <span class="provider-edit-input">
-        <%= text_field_tag 'new_tag_1' %>  
-        </span>
-      </div>
+<div class="col-md-8 col-md-offset-1">
+  <%= label_tag 'new_tag_name_1', "Tag isn't here? Add it to the list! (tags will be added to this business as well)" %>
+  <div class="row">
+    <div class="col-md-3">
+    New Tag 1 (optional)
     </div>
-    <div class="row">
-      <div class="col-md-3">
-      New Tag 2 (optional)
-      </div>
-      <div class="col-md-4">
-        <span class="provider-edit-input">
-        <%= text_field_tag 'new_tag_2' %>  
-        </span>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-3">
-      New Tag 3 (optional)
-      </div>
-      <div class="col-md-4">
-        <span class="provider-edit-input">
-        <%= text_field_tag 'new_tag_3' %>  
-        </span>
-      </div>
-    </div>
-    <div class="row">
-    <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button" %>
-    <% end %>
+    <div class="col-md-4">
+      <span class="provider-edit-input">
+      <%= text_field_tag 'new_tag_1' %>  
+      </span>
     </div>
   </div>
+  <div class="row">
+    <div class="col-md-3">
+    New Tag 2 (optional)
+    </div>
+    <div class="col-md-4">
+      <span class="provider-edit-input">
+      <%= text_field_tag 'new_tag_2' %>  
+      </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">
+    New Tag 3 (optional)
+    </div>
+    <div class="col-md-4">
+      <span class="provider-edit-input">
+      <%= text_field_tag 'new_tag_3' %>  
+      </span>
+    </div>
+  </div>
+  <div class="row">
+  <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button" %>
+  <% end %>
+  </div>
+</div>
 
 
