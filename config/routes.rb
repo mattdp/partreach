@@ -104,6 +104,7 @@ Partreach::Application.routes.draw do
   get '/teams/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
   post '/provider/upload_photo', to: 'providers#upload_photo'
   get '/teams/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
+  get '/teams/providers/tag_search/results', to: 'providers#tag_search_results', as: 'providers_tag_search_results'
 
   resources :reviews, only: [:new, :create]
 

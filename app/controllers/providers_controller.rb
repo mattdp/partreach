@@ -94,13 +94,15 @@ class ProvidersController < ApplicationController
   end
 
   def index
+    @providers_list = current_organization.providers_alpha_sort
     @provider_hash = current_organization.providers_hash_by_tag
     Event.add_event("User",current_user.id,"loaded index")
     render layout: "provider"
   end
 
-  def search_results
+  def tag_search_results
     if @tag_filters = params[:tags]
+      @providers_list = current_organization.providers_alpha_sort
       @provider_tags = current_organization.provider_tags
       @providers = current_organization.providers.
                    joins(taggings: :tag).where(tags: {readable: @tag_filters}).
