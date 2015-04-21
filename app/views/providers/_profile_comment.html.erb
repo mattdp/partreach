@@ -104,5 +104,9 @@
       <% end %>
     </div>
 
+    <% if comment.user == current_user %>
+      <%= link_to "Edit my comment", edit_comment_path(comment) %>
+    <% end %>
+
   </div>
 </div>
