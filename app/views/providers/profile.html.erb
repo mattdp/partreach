@@ -80,12 +80,18 @@
 
   <div class="row col-md-12">
     <hr>
-    <h3 class="profile-heading">Company Synopsis</h3>
+    <h3 class="profile-heading">
+      Company Synopsis
+      <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_synopsis_from_profile") %>]</span>
+    </h3>
     <p><%= raw(@provider.external_notes) %></p>
   </div>
 
   <div class="row col-md-12">
-    <h3 class="profile-heading"><%= @organization.name %> internal notes</h3>
+    <h3 class="profile-heading">
+      <%= @organization.name %> internal notes
+      <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_internalnotes_from_profile") %>]</span>
+    </h3>
     <p><%= raw(@provider.organization_private_notes) %></p>
   </div>
 
