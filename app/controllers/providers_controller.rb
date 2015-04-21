@@ -104,17 +104,17 @@ class ProvidersController < ApplicationController
     if params[:tags].present?
       tags = []
       params[:tags].each do |unsafe_string|
-        possible_tag = Tag.find_by_name(unsafe_string)
+        possible_tag = Tag.find_by_readable(unsafe_string)
         tags << possible_tag if possible_tag.present?
       end
 
       #adapted from organization.providers_hash_by_tag
       @results_hash = {}
       tags.sort_by { |t| t.readable.downcase }.each do |tag|
-        @results_hash[tag.name] = Tagging.where("taggable_type = ? and tag_id = ?","Provider",tag.id).map{|tg| Provider.find(tg.taggable_id)}
+        @results_hash[tag.readable] = Tagging.where("taggable_type = ? and tag_id = ?","Provider",tag.id).map{|tg| Provider.find(tg.taggable_id)}
       end
 
-      @search_text = tags.map{|t| t.name}.join(" & ")
+      @search_text = tags.map{|t| t.readable}.join(" & ")
       Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @search_text)
       render layout: "provider"
 
