@@ -4,19 +4,19 @@ class CommentsController < ApplicationController
 
   def new_comment
     @comment_type = "comment"
-    @comment_type_text = "comment"
+    @verbose_type = Comment.verbose_type(@comment_type)
     render_new_comment_form
   end
 
   def new_factory_visit_comment
     @comment_type = "factory_visit"
-    @comment_type_text = "factory visit comment"
+    @verbose_type = Comment.verbose_type(@comment_type)
     render_new_comment_form
   end
 
   def new_purchase_order_comment
     @comment_type = "purchase_order"
-    @comment_type_text = "purchase order comment"
+    @verbose_type = Comment.verbose_type(@comment_type)
     render_new_comment_form
   end
 
@@ -47,7 +47,7 @@ class CommentsController < ApplicationController
 
   def edit_purchase_order_comment
     # note: @comment initialized in correct_user before_filter
-    @comment_type_text = "purchase order comment"
+    @verbose_type = Comment.verbose_type(@comment.comment_type)
     @provider = @comment.provider
     Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
     render "edit", layout: "provider"
