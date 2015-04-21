@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_filter :org_access_only
-  before_filter :correct_user, only: [:edit_purchase_order_comment, :update]
+  before_filter :correct_user, only: [:edit, :update]
 
   def new_comment
     @comment_type = "comment"
@@ -45,7 +45,7 @@ class CommentsController < ApplicationController
     redirect_to teams_profile_path(provider.name_for_link), notice: note
   end
 
-  def edit_purchase_order_comment
+  def edit
     # note: @comment initialized in correct_user before_filter
     @verbose_type = Comment.verbose_type(@comment.comment_type)
     @provider = @comment.provider
