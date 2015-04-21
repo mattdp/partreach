@@ -2,24 +2,29 @@
 #
 # Table name: providers
 #
-#  id               :integer          not null, primary key
-#  name             :string(255)
-#  url_main         :string(255)
-#  source           :string(255)      default("manual")
-#  name_for_link    :string(255)
-#  created_at       :datetime
-#  updated_at       :datetime
-#  contact_qq       :string(255)
-#  contact_wechat   :string(255)
-#  contact_phone    :string(255)
-#  contact_email    :string(255)
-#  contact_name     :string(255)
-#  contact_role     :string(255)
-#  verified         :boolean          default(FALSE)
-#  city             :string(255)
-#  address          :text
-#  id_within_source :integer
-#  contact_skype    :string(255)
+#  id                         :integer          not null, primary key
+#  name                       :string(255)
+#  url_main                   :string(255)
+#  source                     :string(255)      default("manual")
+#  name_for_link              :string(255)
+#  created_at                 :datetime
+#  updated_at                 :datetime
+#  contact_qq                 :string(255)
+#  contact_wechat             :string(255)
+#  contact_phone              :string(255)
+#  contact_email              :string(255)
+#  contact_name               :string(255)
+#  contact_role               :string(255)
+#  verified                   :boolean          default(FALSE)
+#  city                       :string(255)
+#  address                    :text
+#  id_within_source           :integer
+#  contact_skype              :string(255)
+#  organization_id            :integer          not null
+#  organization_private_notes :text
+#  external_notes             :text
+#  import_warnings            :text
+#  supplybetter_private_notes :text
 #
 
 class Provider < ActiveRecord::Base
@@ -27,12 +32,15 @@ class Provider < ActiveRecord::Base
   before_save :prepend_http_to_url
 
   has_many :comments
+  has_many :purchase_orders
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
   has_many :externals, :as => :consumer, :dependent => :destroy
+  belongs_to :organization
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates :organization, presence: true
 
   def add_external(url, filename)
     externals.create!(url: url, original_filename: filename)
@@ -48,18 +56,6 @@ class Provider < ActiveRecord::Base
     end
   end
 
-  def self.providers_hash_by_process
-    hash = {}
-
-    tags = Tag.by_taggable_type('Provider')
-
-    tags.each do |tag|
-      hash[tag] = Tagging.where("tag_id = ? and taggable_type = 'Provider'",tag.id).map{|tgg| tgg.taggable}.sort_by{|provider| provider.name}
-    end
-
-    return hash
-  end
-
   #needs to return 0-5 inclusive integer
   def average_score
     numbers_without_zeros = self.comments.map{|comment| comment.overall_score}.reject{|n| n==0}
@@ -68,38 +64,18 @@ class Provider < ActiveRecord::Base
     return preround.round
   end
 
-  #user facing, for hax for now
-  def tag_creator(tags,user_id=nil)
-    tags.each do |tag_name|
-      if tag_name.blank?
-        next
-      elsif Tag.where("name = ?",tag_name).present?
-        tag = Tag.where("name = ?",tag_name)[0]
-        self.add_tag(tag.id)
-        Event.add_event("User","#{user_id}","attempted to add an existing tag","Tag",tag.id)
-      elsif Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name)).present?
-        tag = Tag.where("name_for_link = ?",Tag.proper_name_for_link(tag_name))[0]
-        self.add_tag(tag.id)
-        Event.add_event("User","#{user_id}","attempted to add an existing tag","Tag",tag.id)
-      else
-        t = Tag.create(name: tag_name, readable: tag_name, name_for_link: Tag.proper_name_for_link(tag_name), tag_group_id: TagGroup.find_by_group_name("provider type").id)
-        self.add_tag(t.id)
-        Event.add_event("User","#{user_id}","added a new tag")
-      end
-    end
-    return true
-  end
-
-  #modified from supplier version
+  #modified from supplier version - MAKE SURE TO LOOK AT ORGANIZATION TAG METHODS FIRST
+  #this isn't good with tag groups
   def add_tag(tag_id)
     tag = Tag.find_by_id(tag_id)
-    return false if self.tags.include?(tag)
-    self.tags << tag
+    return false if tags.include?(tag)
+    tags << tag
     return true
   end
 
 #---
-# TAG STUFF COPIED FROM SUPPLIER DIRECTLY
+# TAG STUFF COPIED FROM SUPPLIER DIRECTLY - MAKE SURE TO LOOK AT ORGANIZATION TAG METHODS FIRST
+# this isn't good with tag groups
 #---
 
   def remove_tags(tag_id)
@@ -137,6 +113,6 @@ class Provider < ActiveRecord::Base
     end
 
     return saved_ok
-  end  
+  end
 
 end

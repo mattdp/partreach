@@ -1,37 +1,46 @@
 <% provide(:title, "Reset password") %>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-4">
+    </div>
+    <!-- begin form -->
+    <div id="any-form" class="col-md-4">
 
-    <% if @user %>
-      <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
-        <% if @user.errors.any? %>
-          <div class="error_messages">
-            <h2>Form is invalid</h2>
-            <ul>
-              <% for message in @user.errors.full_messages %>
-                <li><%= message %></li>
-              <% end %>
-            </ul>
+      <% if @user %>
+        <%= form_for @user, :url => password_reset_path(params[:id]) do |f| %>
+          <% if @user.errors.any? %>
+            <div class="error_messages">
+              <h2>Form is invalid</h2>
+              <ul>
+                <% for message in @user.errors.full_messages %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+
+          <% end %>
+          <h1>Set your new password</h1>
+          
+          <div><em>Passwords should be at least 6 characters long.</em></div>
+
+          <div class="field">
+            <%= f.label :password %>
+            <%= f.password_field :password %>
           </div>
+
+          <div class="field">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
+          </div>
+
+          <div class="actions"><%= f.submit "Set Password", class: "save-button", :id => "save_button" %></div>
+
         <% end %>
-        <h1>Set or reset password</h1>
-        <p>This link is unique for your account, and expires within 48 hours. Passwords should be 6 characters or more.</p>
-        <div class="field">
-          <%= f.label :password %>
-          <%= f.password_field :password %>
-        </div>
-        <div class="field">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation %>
-        </div>
-        <div class="actions"><%= f.submit "Set Password", class: "save-button" %></div>
-      <% end %>
-    <% else %>
-      <h3 class="bit-of-space">Invalid password reset token.</h1>
-      <p>Try <%= link_to "resetting your password", new_password_reset_path %> again. Tokens are only valid for <%= "#{@hours_allowed}" %> hours.</p>
-    <% end %> 
+      <% else %>
+        <h3 class="bit-of-space">Invalid password reset token.</h1>
+        <div>Try <%= link_to "resetting your password", new_password_reset_path %> again. Tokens are only valid for <%= "#{@hours_allowed}" %> hours.</div>
+      <% end %> 
 
     </div>
   </div>

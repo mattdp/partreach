@@ -7,209 +7,107 @@
     </div>
   </div>
   <div class="row">
+    <!-- BEGIN LEFT COLUMN -->
     <div class="col-md-4">
       
       <!-- COMPANY NAME -->
-      <div class="profile-spacing">
+        <div class="profile-spacing">
         <h1>
         <%= @provider.name %>
         <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id,"edit_providername_from_profile") %>]</span>
         </h1>
-      </div>
-
-      <!-- EXISTENCE VERIFIED -->
-      <% if @provider.verified %>
-        <div class="verified">
-          <img class="supplier-index-indicator" alt="Verified icon" src="/assets/check59.svg" title="This provider has been verified to exist" >
-          Verified
         </div>
-      <% end %>
       
       <!-- STAR RATINGS -->
+      <!-- need to add an if statement to handle the case when there are no comments (and prompt the user to add a comment) -->
       <div class="row">
-      <%= render partial: "providers/star_display", locals: {score: @provider.average_score} %>
-      </div>
-
-      <!-- CATEGORIES -->
-      <h3 class=".profile-heading">
-        What they can do for you
-       <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
-      </h3>
-      <% @tags.each do |tag| %>
-        <ul>
-          <li><%= "#{tag.readable}" %></li>
-        </ul>
-      <% end %>
+        <%= render partial: "providers/star_display", locals: {score: @provider.average_score} %>
+        <span class="heading_navigation">
+          <a href="#comments">
+            <% total_provider_comments = @provider.comments.count %>
+            <% if total_provider_comments %>
+              <%= "#{pluralize(total_provider_comments, 'comment')}" %>
+            <% end %>
+          </a>
+        </span>
+      </div>      
 
       <!-- PURCHASE ORDERS -->
-      <h3 class=".profile-heading">
+      <h3 class="profile-heading">
         Purchase orders
-       <span class="heading_navigation">[<%= link_to "add a purchase", teams_suggested_edit_path("add_po_from_profile") %>]</span>
+       <span class="heading_navigation">[<%= link_to "add a purchase", new_purchase_order_comment_path(@provider.id) %>]</span>
        </h3>  
        <ul>
         <% @po_names.each do |name| %>
-          <li><%= "#{name}" %></li>
+          <li><p><%= "#{name}" %></p></li>
         <% end %>
       </ul>
-
-      <!-- FACTORY VISITS -->
-      <h3 class=".profile-heading">
-        Factory visits
-       <span class="heading_navigation">[<%= link_to "add a visit", teams_suggested_edit_path("add_visit_from_profile") %>]</span>
-       </h3>
-      <ul>
-        <% @fv_names.each do |name| %>
-          <li><%= "#{name}" %></li>
-        <% end %>
-      </ul>
-      </div>
+      </div> 
 
       <!-- BEGIN MIDDLE COLUMN -->
       <div class="col-md-4">
-
-        <!-- PHOTO GALLERY -->
-        <div>
-          <ul id="uploaded-photo-list" class="row photo-gallery">
-          <% @provider.externals.each_with_index do |external, index| %>
-            <% if index == 0 %>
-            <li>
-            <% else %>
-            <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">
-            <% end %>
-              <%= image_tag(external.url) %>
-            </li>
-            <% end %>
-          </ul>
+        <!-- CATEGORIES -->
+        <div class="profile-spacing">
+        <h3 class="profile-heading">
+          What they can do for you
+         <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
+        </h3>
         </div>
-
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-body">
-              </div>
-            </div><!-- /.modal-content -->
-          </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
-
-        <%= hidden_field_tag "provider_id", @provider.id %>
-
-        <div>
-          <span class="heading_navigation">[add a photo:]</span>
-  <%= s3_uploader_form  id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
-                        max_file_size: 10.megabytes,
-                        key_starts_with: "externals/",
-                        key: "externals/provider-#{@provider.id}-#{SecureRandom.hex}/${filename}" do %>
-                          <%= file_field_tag :file, multiple: true %>
-                        <% end %>
-  <script id="template-upload" type="text/x-tmpl">
-    <div id="file-{%=o.unique_id%}" class="upload">
-      <div class="filename">{%=o.name%}</div>
-      <div class="progress"><div class="bar" style="width: 0%"></div></div>
-    </div>
-  </script>
+        <div class="tags-providerTags">
+          <% @tags.each do |tag| %>
+            <a><%= "#{tag.readable}" %></a>
+        <% end %>
         </div>
-
-      </div>
+      </div>        
 
       <!-- BEGIN RIGHT COLUMN -->
       <div class="col-md-4">
-      
-      
-      <div class="table-header">
-
-      <!-- ADDRESS SECTION -->
-        <h3 class=".profile-heading">Address information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_address_from_profile") %>]</span></h3>
-        <ul>
-          <li><strong>City: </strong><%= "#{@provider.city}" %></li>
-          <li><strong>Full address: </strong><%= "#{@provider.address}" %></li>
-        </ul>
-
-        <h3 class=".profile-heading">Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
-        <ul>
-          <li><strong>QQ: </strong><%= @provider.contact_qq %></li>
-          <li><strong>Phone: </strong><%= @provider.contact_phone %></li>
-          <li><strong>Skype: </strong><%= @provider.contact_skype %></li>
-          <li><strong>Email: </strong><%= @provider.contact_email %></li>
-          <li><strong>Website: </strong><%= link_to "Link", @provider.url_main if @provider.url_main %></li>
-          <li><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></li>
-        </ul>    
-      </div>
+        <div class="table-header">
+        <!-- ADDRESS SECTION -->
+          <div class="profile-spacing">
+          <h3 class="profile-heading">Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
+          </div>
+          <ul>
+            <li><p><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p></li>
+            <li><p><strong>Phone: </strong><%= @provider.contact_phone %></p></li>
+            <li><p><strong>Email: </strong><%= @provider.contact_email %></p></li>
+            <li><p><strong>Website: </strong><%= link_to "Link", @provider.url_main if @provider.url_main %></p></li>            
+            <li><p><strong>Full address: </strong><%= "#{@provider.address}" %></p></li>
+          </ul>    
+        </div>
       </div>
     </div>
 
+  <div class="row col-md-12">
+    <hr>
+    <h3 class="profile-heading">
+      Company Synopsis
+      <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_synopsis_from_profile") %>]</span>
+    </h3>
+    <p><%= raw(@provider.external_notes) %></p>
+  </div>
+
+  <div class="row col-md-12">
+    <h3 class="profile-heading">
+      <%= @organization.name %> internal notes
+      <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_internalnotes_from_profile") %>]</span>
+    </h3>
+    <p><%= raw(@provider.organization_private_notes) %></p>
+  </div>
+
   <div class="row">
     <div class="col-md-8">
-      <h3 class="profile-heading">
+      <h3 id="comments" class="profile-heading">
         Comments
         <span class="heading_navigation">[<%= link_to "add a comment", new_comment_path(@provider.id) %>]</span>
       </h3>
 
       <% if @comments.present? %>
         <% @comments.each do |comment| %>
-          <hr>
-          <div class="row">
-          <div class="col-md-3">
-            <div class="row">
-              <div class="avatar-profile"></div>
-            </div>
-            <div class="row comment-profile">
-              <% contact = comment.user.lead.lead_contact %>
-              <p><strong><%= "#{contact.first_name} " %></strong></p>
-              <p class="comment-smalltext"><%= "Team: #{contact.contactable.user.team.name}" if contact.contactable.user.team.present? %></p>
-            </div>
-          </div>
-
-          <div class="col-md-9 comment">
-
-            <div class="row">
-              <% if comment.ratings_count.present? && comment.ratings_count > 0 %>
-                <%= "#{comment.helpful_count} of #{comment.ratings_count} users found this comment helpful" %>
-              <% end %>
-            </div>
-
-            <div class="row">
-              <% if comment.title.present? %>
-                <h3 class="comment-snippet">
-                  <%= comment.title %>
-                </h3>
-              <% end %>
-            </div>
-
-            <div class="row">
-              <% if comment.overall_score > 0 %>
-                <%= render partial: "providers/star_display", locals: {score: comment.overall_score} %>
-              <% end %>
-              <span class="comment-smalltext"> 
-                <%= "Reviewed #{comment.created_at.strftime('%Y-%m-%d')}" %>
-              </span>
-            </div>
-
-            <div class="row">
-              <p><%= raw(comment.payload) %></p>
-            </div>
-
-            <div>
-              <% rating = comment.rating_by current_user %>
-              <% if rating.nil? %>
-                <%= form_tag comment_ratings_path do %>
-                  Was this comment helpful to you?
-                  <%= hidden_field_tag :provider_id, @provider.id %>
-                  <%= hidden_field_tag :comment_id, comment.id %>
-                  <%= submit_tag "Yes" %>
-                  <%= submit_tag "No" %>
-                <% end %>
-              <% elsif rating.helpful %>
-                <em>You found this comment helpful</em>
-              <% else %>
-                <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a>
-              <% end %>
-            </div>
-
-          </div>
-         </div>
+          <%= render partial: "providers/profile_comment", locals: {comment: comment} %>
         <% end %>
       <% else %>
-          <p>No information yet - <%= link_to "add the first comment", new_comment_path(@provider.id) %>!</p>
+        <p>No information yet - <%= link_to "add the first comment", new_comment_path(@provider.id) %>!</p>
       <% end %>
       </div>
     </div>

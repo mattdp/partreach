@@ -15,8 +15,10 @@ Partreach::Application.routes.draw do
   get '/analytics/phone', to: 'analytics#phone', as: 'analytics_phone'
   get '/analytics/web_search_results', to: 'analytics#web_search_results', as: 'analytics_web_search_results'
 
-  resources :comments, only: [:create]
-  get '/comments/new/:provider_id', to: 'comments#new', as: 'new_comment'
+  resources :comments, only: [:create, :edit, :update]
+  get '/comments/new_comment/:provider_id', to: 'comments#new_comment', as: 'new_comment'
+  get '/comments/new_factory_visit_comment/:provider_id', to: 'comments#new_factory_visit_comment', as: 'new_factory_visit_comment'
+  get '/comments/new_purchase_order_comment/:provider_id', to: 'comments#new_purchase_order_comment', as: 'new_purchase_order_comment'
 
   resources :comment_ratings, only: [:create]
   
@@ -91,13 +93,16 @@ Partreach::Application.routes.draw do
   resources :providers, only: [:new, :create, :edit]
   get '/providers/new/:event_name', to: 'providers#new', as: 'new_provider_with_event'
   get '/providers/:id/edit/:event_name/', to: 'providers#edit', as: 'edit_provider_with_event'
+  post 'providers/create_tag', to: 'providers#create_tag', as: 'create_provider_tag'
   match 'providers/:id', to: 'providers#update', as: 'provider', via: :post
   get '/teams/signin', to: 'providers#signin', as: 'teams_signin'
-  get '/teams/hax/', to: 'providers#index', as: "teams_index"
-  get '/teams/hax/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
-  get '/teams/hax/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
+  get '/teams', to: 'providers#index', as: "teams_index"
+  get '/teams/hax', to: 'providers#index'
+  get '/teams/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
+  get '/teams/hax/providers/:name_for_link', to: 'providers#profile'
+  get '/teams/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
   post '/provider/upload_photo', to: 'providers#upload_photo'
-  get '/teams/hax/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
+  get '/teams/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
 
   resources :reviews, only: [:new, :create]
 

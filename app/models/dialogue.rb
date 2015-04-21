@@ -60,18 +60,18 @@ class Dialogue < ActiveRecord::Base
   def autotagger
     supplier = self.supplier
     if self.opener_sent
-      supplier.remove_tags(Tag.find_by_name('b0_none_sent'))
+      supplier.remove_tags(Tag.predefined('b0_none_sent'))
     end
     if self.won
-      tag_deal ||= Tag.find_by_name('b3_at_least_one_deal')
+      tag_deal ||= Tag.predefined('b3_at_least_one_deal')
       supplier.add_tag(tag_deal.id)
     end
     if self.response_received
-      tag_deal ||= Tag.find_by_name('b3_at_least_one_deal')
-      supplier.add_tag(Tag.find_by_name('b2_quoted_no_deal').id) unless supplier.has_tag?(tag_deal.id)
+      tag_deal ||= Tag.predefined('b3_at_least_one_deal')
+      supplier.add_tag(Tag.predefined('b2_quoted_no_deal').id) unless supplier.has_tag?(tag_deal.id)
 
-      tag_oob ||= Tag.find_by_name('e0_out_of_business')
-      supplier.add_tag(Tag.find_by_name('e3_existence_confirmed').id) unless supplier.has_tag?(tag_oob.id)
+      tag_oob ||= Tag.predefined('e0_out_of_business')
+      supplier.add_tag(Tag.predefined('e3_existence_confirmed').id) unless supplier.has_tag?(tag_oob.id)
     end
   end
 
@@ -105,10 +105,10 @@ class Dialogue < ActiveRecord::Base
     returnee[:body] = returnee[:body].sub(Order::IMAGES_SNIPPETS_PLACEHOLDER, images_information)
 
     #in paid network
-    if (supplier.has_tag?(Tag.find_by_name('n5_signed_only').id) or supplier.has_tag?(Tag.find_by_name('n6_signedAndNDAd').id))
+    if (supplier.has_tag?(Tag.predefined('n5_signed_only').id) or supplier.has_tag?(Tag.predefined('n6_signedAndNDAd').id))
       returnee[:body] += "<p>You're a SupplyBetter network member, and we work to bring you buyers that fit your goals. If you choose to bid, SupplyBetter will invoice you for 1% of the quote value. We will pass this bid along to the customer, and if they select you, we'll put you directly in touch so you can take conversation from there.</p>"
     #probably doesn't know what we do
-    elsif !(supplier.has_tag?(Tag.find_by_name('b2_quoted_no_deal').id) or supplier.has_tag?(Tag.find_by_name('b3_at_least_one_deal').id))
+    elsif !(supplier.has_tag?(Tag.predefined('b2_quoted_no_deal').id) or supplier.has_tag?(Tag.predefined('b3_at_least_one_deal').id))
       returnee[:body] += "<p>Your company, #{supplier.name}, was a match for a SupplyBetter customer searching for manufacturing services. Please let me know if you would like to learn more about <a href='http://www.supplybetter.com'>SupplyBetter</a> or how this process works.</p>"
     end
       

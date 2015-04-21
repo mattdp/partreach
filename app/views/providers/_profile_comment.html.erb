@@ -1,0 +1,113 @@
+<hr>
+<div class="row">
+  <div class="col-md-3">
+    <div class="row">
+      <img class="avatar-profile"/>
+    </div>
+    <div class="row comment-profile">
+      <% contact = comment.user.lead.lead_contact %>
+      <p><strong><%= "#{contact.first_name} " %></strong></p>
+      <p class="comment-smalltext"><%= "Team: #{contact.contactable.user.team.name}" if contact.contactable.user.team.present? %></p>
+      <% total_comments = @total_comments_for_user[comment.user.id] %>
+      <% if total_comments %>
+        <p class="comment-smalltext"><%= "#{pluralize(total_comments, 'comment')}" %></p>
+      <% end %>
+      <% purchase_order_comments = @purchase_order_comments_for_user[comment.user.id] %>
+      <% if purchase_order_comments %>
+        <p class="comment-smalltext"><%= "#{pluralize(purchase_order_comments, 'purchase order')}" %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-md-9 comment">
+
+    <div class="row">
+      <span class="comment-smalltext"> 
+        <% if comment.ratings_count.present? && comment.ratings_count > 0 %>
+          <%= "#{comment.helpful_count} of #{comment.ratings_count} users found this comment helpful" %>
+        <% end %>
+      </span>
+    </div>
+
+    <div class="row">
+      <% if comment.title.present? %>
+        <h3 class="comment-snippet">
+          <%= comment.title %>
+        </h3>
+      <% end %>
+    </div>
+
+    <div class="row">
+      <% if comment.overall_score > 0 %>
+        <span class="comment-smalltext">Overall:</span>
+        <%= render partial: "providers/star_display", locals: {score: comment.overall_score} %>
+      <% end %>
+      <span class="comment-smalltext"> 
+        <%= "Reviewed #{comment.created_at.strftime('%Y-%m-%d')}" %>
+      </span>
+    </div>
+
+    <div class="row">
+      <p><%= raw(comment.payload) %></p>
+    </div>
+
+    <div class="row comment-smalltext">
+      <% po = comment.purchase_order %>
+      <% if po %>
+      <div>About this order:</div>
+        <% if (comment.cost_score + comment.quality_score + comment.speed_score > 0) %>
+          <div class="row">
+            <span class="comment-smalltext">
+              <% ["cost_score","quality_score","speed_score"].each do |score| %>
+                <% if comment.attributes[score] > 0 %>
+                  <%= "#{score[0...score.length-6].capitalize}:" %>
+                  <%= render partial: "providers/star_display", locals: {score: comment.attributes[score]} %>
+                <% end %>
+              <% end %>
+            </span>
+          </div>
+        <% end %>
+        <div class="col-md-8">
+          <% po.tags.each do |tag| %>
+            <div class="col-md-3"><%= tag.tag_group.group_name %>: </div>
+            <div class="col-md-9"><%= tag.readable %></div>
+          <% end %>
+        </div>
+        <div class="col-md-4">
+          <div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
+          <div><%= "Price: #{number_to_currency(po.price)}" if po.price %></div>
+        </div>
+      <% end %>
+    </div>
+    <div class="row comment-last-row">
+      <div class="col-md-8 comment-no-left-margin">
+        <% rating = comment.rating_by current_user %>
+        <% if rating.nil? %>
+          <%= form_tag comment_ratings_path do %>
+          <span class="comment-smalltext"> 
+            Was this comment helpful to you?
+          </span>
+            <%= hidden_field_tag :provider_id, @provider.id %>
+            <%= hidden_field_tag :comment_id, comment.id %>
+            <%= submit_tag "Yes" %>
+            <%= submit_tag "No" %>
+          <% end %>
+        <% elsif rating.helpful %>
+        <span class="comment-smalltext"> 
+          <em>You found this comment helpful</em>
+        </span>
+        <% else %>
+        <span class="comment-smalltext"> 
+          <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
+        </span>
+        <% end %>
+      </div>
+      <% if comment.user == current_user %>
+      <div class="col-md-4">
+        <span class="comment-smalltext">[<%= link_to "Edit my comment", edit_comment_path(comment)%>]
+        </span>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

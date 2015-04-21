@@ -64,7 +64,7 @@ class SuppliersController < ApplicationController
       @contract_contact = @supplier.contract_contact
       @rfq_contact = @supplier.rfq_contact
     else
-      render template: "suppliers/profile_not_found", status: :not_found unless @supplier
+      render template: "suppliers/profile_not_found", status: :not_found
     end
   end
 
