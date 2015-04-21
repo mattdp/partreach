@@ -5,6 +5,7 @@ class ProvidersController < ApplicationController
   def new
     @provider = Provider.new
     @tags = current_organization.provider_tags
+    @organization = current_organization    
     @checked_tags = []
 
     if params[:event_name].present? 
@@ -27,6 +28,7 @@ class ProvidersController < ApplicationController
   def edit
     @provider = current_organization.providers.find(params[:id])
     @tags = current_organization.provider_tags
+    @organization = current_organization
     @checked_tags = @provider.tags
 
     if params[:event_name].present? 
@@ -141,9 +143,9 @@ class ProvidersController < ApplicationController
 
     def editable_provider_params
       params[:verified] = params[:verified].present? ? true : false
-      params.permit(:name,:url_main,:contact_qq, \
+      params.permit(:name,:url_main, \
         :contact_wechat,:contact_phone,:contact_email,:contact_name, \
-        :contact_role,:verified,:city,:address,:contact_skype)
+        :contact_role,:address)
     end
 
 end

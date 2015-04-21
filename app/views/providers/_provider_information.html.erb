@@ -39,40 +39,8 @@
 
   <div class="col-md-9">
     <span class="provider-edit-details">
-      (Information will not be shared beyond this group)
+      (Information will not be shared beyond <%= "#{@organization.name}" %>)
     </span>
-  </div>
-</div>
-
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-    <%= label_tag 'verified', 'Existence Verified'%>
-</div>
-
-  <div class="col-md-9">
-    <span>
-      <%= check_box_tag 'verified', 1, @provider.verified %>
-    </span>
-    <span class="provider-edit-details">
-      (You have verified this provider exists in person or on the phone)
-    </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'city', 'District, City' %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_field_tag 'city', @provider.city %>
-      </span>
   </div>
 </div>
 
@@ -125,20 +93,6 @@
 
 <div class="row">
   <div class="col-md-3">
-  <%= label_tag 'contact_qq', 'QQ' %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_field_tag 'contact_qq', @provider.contact_qq %>
-      </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
   <%= label_tag 'contact_phone', 'Phone' %>
   </div>
 
@@ -146,20 +100,6 @@
     <span class="provider-edit-input">
       <%= text_field_tag 'contact_phone', @provider.contact_phone %>
       </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'contact_skype', 'Skype Username' %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_field_tag 'contact_skype', @provider.contact_skype %>
-    </span>
   </div>
 </div>
 
