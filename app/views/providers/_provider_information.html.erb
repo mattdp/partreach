@@ -58,6 +58,33 @@
   </div>
 </div>
 
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag 'external_notes', "Company synopsis - how they'd describe themselves. HTML format." %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_area_tag 'external_notes', @provider.external_notes, rows: 4 %>
+    </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag 'organization_private_notes', "#{@organization.name} internal notes - your view of the supplier. HTML format." %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_area_tag 'organization_private_notes', @provider.organization_private_notes, rows: 4 %>
+    </span>
+  </div>
+</div>
 
 <h2>Contact information</h2>
 
@@ -113,34 +140,6 @@
   <div class="col-md-9">
     <span class="provider-edit-input">
       <%= text_field_tag 'contact_email', @provider.contact_email %>
-    </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'external_notes', "Company synopsis - how they'd describe themselves. HTML format." %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_area_tag 'external_notes', @provider.external_notes, rows: 4 %>
-    </span>
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-md-3">
-  <%= label_tag 'organization_private_notes', "#{@organization.name} internal notes - your view of the supplier. HTML format." %>
-  </div>
-
-  <div class="col-md-9">
-    <span class="provider-edit-input">
-      <%= text_area_tag 'organization_private_notes', @provider.organization_private_notes, rows: 4 %>
     </span>
   </div>
 </div>
