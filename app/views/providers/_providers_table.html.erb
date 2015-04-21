@@ -1,39 +1,37 @@
-          <% if providers %> 
-            <div class="stylish">
-            <table>
-              <tr>
-                <th>Company Name</th>
-                <th>City</th>
-                <th>State</th>
-                <th>Reviews</th>
-                <th>Purchase Orders</th>
-                <th>Most Recent PO</th>
-              </tr>
-              <tr>
-                
-              </tr>
-              <% providers.each do |provider| %>
-                <tr>
-                  <% comments = provider.comments %>
-                  <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
-                  <td><%= "#{provider.city}" %></td>
-                  <td><%= "" %></td>
-                  <td>
-                    <div class="row">
-                      <%= render partial: "providers/star_display", locals: {score: provider.average_score} %>
-                    </div>
-                  </td>
-                  <td>
-                    <%= link_to "#{provider.purchase_orders.count == 0 ? '' : provider.purchase_orders.count}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %>
-                  </td>
-                  <td><%= link_to "", teams_profile_path(provider.name_for_link, :anchor => 'comments') %></td>
-                </tr>              
-              <% end %>  
-              <tr>
-                <td><%= link_to "[Add to this list]" , new_provider_with_event_path("add_provider_from_index")%></td>
-              </tr>  
-            </table>
-            </div>
-          <% else %>
-            <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
-          <% end %>
+<% if providers %> 
+  <div class="stylish">
+  <table>
+    <tr>
+      <th>Company Name</th>
+      <th>Location</th>
+      <th>Reviews</th>
+      <th>Purchase Orders</th>
+      <th>Most Recent PO</th>
+    </tr>
+    <tr>
+      
+    </tr>
+    <% providers.each do |provider| %>
+      <tr>
+        <% comments = provider.comments %>
+        <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
+        <td><%= "#{provider.city}" %></td>
+        <td>
+          <div class="row">
+            <%= render partial: "providers/star_display", locals: {score: provider.average_score} %>
+          </div>
+        </td>
+        <td>
+          <%= link_to "#{provider.purchase_orders.count == 0 ? '' : provider.purchase_orders.count}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %>
+        </td>
+        <td><%= link_to "", teams_profile_path(provider.name_for_link, :anchor => 'comments') %></td>
+      </tr>              
+    <% end %>  
+    <tr>
+      <td><%= link_to "[Add to this list]" , new_provider_with_event_path("add_provider_from_index")%></td>
+    </tr>  
+  </table>
+  </div>
+<% else %>
+  <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
+<% end %>
