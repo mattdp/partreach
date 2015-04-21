@@ -1,4 +1,4 @@
 <% provide(:title, "Add a comment") %>
 
-<% heading = "Adding #{@comment_type_text} for '#{@provider.name}'" %>
+<% heading = "Adding #{@verbose_type} for '#{@provider.name}'" %>
 <%= render partial: 'comments/comments_form', locals: {heading: heading, path: comments_path, method: :post} %>

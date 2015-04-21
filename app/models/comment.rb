@@ -32,4 +32,18 @@ class Comment < ActiveRecord::Base
   def rating_by(user)
     CommentRating.where(comment: self).where(user: user).first
   end
+
+  def self.verbose_type(comment_type)
+    case comment_type
+    when "comment"
+      return "comment"
+    when "factory_visit"
+      return "factory visit comment"
+    when "purchase_order"
+      return "purchase order comment"
+    else
+      return "unknown comment type"
+    end
+  end
+
 end

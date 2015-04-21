@@ -42,7 +42,7 @@
         </div>
 
         <div class="quality field">
-          <%= label_tag :quality_score, "How do you like this supplier quality? (optional)" %><br>
+          <%= label_tag :quality_score, "How do you like this supplier in terms of  quality? (optional)" %><br>
           <span class="star-rating">
           <% (1..5).each do |value| %>
             <%= radio_button_tag("quality_score", "#{value}", checked = (value == @comment.quality_score)) %><i></i>
@@ -53,7 +53,7 @@
         </div>
 
         <div class="cost field">
-          <%= label_tag :cost_score, "How do you like this supplier cost? (optional)" %><br>
+          <%= label_tag :cost_score, "How do you like this supplier in terms of cost? (optional)" %><br>
           <span class="star-rating">
           <% (1..5).each do |value| %>
             <%= radio_button_tag("cost_score", "#{value}", checked = (value == @comment.cost_score)) %><i></i>
@@ -64,7 +64,7 @@
         </div>
 
         <div class="speed field">
-          <%= label_tag :speed_score, "How do you like this supplier speed? (optional)" %><br>
+          <%= label_tag :speed_score, "How do you like this supplier in terms of speed? (optional)" %><br>
           <span class="star-rating">
           <% (1..5).each do |value| %>
             <%= radio_button_tag("speed_score", "#{value}", checked = (value == @comment.speed_score)) %><i></i>
