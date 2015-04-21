@@ -17,7 +17,7 @@
 #  contact_role               :string(255)
 #  verified                   :boolean          default(FALSE)
 #  city                       :string(255)
-#  address                    :text
+#  location_string            :text
 #  id_within_source           :integer
 #  contact_skype              :string(255)
 #  organization_id            :integer          not null
@@ -36,6 +36,7 @@ class Provider < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
   has_many :externals, :as => :consumer, :dependent => :destroy
+  has_one :address, :as => :place, :dependent => :destroy
   belongs_to :organization
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
