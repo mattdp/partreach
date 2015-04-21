@@ -397,3 +397,23 @@ li p {
     border-color: #a9d8b2;
     background: rgba(87, 173, 104, 0.1);
 }
+
+
+/*There's a special place in hell for designers who attempt this*/
+li.search-choice {
+   font-size: 13px !important; 
+    line-height: 22px !important;
+    display: inline-block !important;
+    color: rgba(0, 0, 0, 0.74) !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+    border-radius: 2px !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    padding: 3px 20px 3px 10px !important;
+    margin-bottom: 6px !important;
+    margin-top: 6px !important;
+}
+
+a.search-choice-close {
+  top: 9px !important;
+
+}
