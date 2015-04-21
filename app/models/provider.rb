@@ -64,6 +64,13 @@ class Provider < ActiveRecord::Base
     return preround.round
   end
 
+  #returns nil or a parsed date string
+  def latest_purchase_order_date
+    return nil if self.purchase_orders.nil?
+    po = PurchaseOrder.where("provider_id = ?",self.id).order("created_at DESC").first
+    return po.created_at.strftime("%b %e, %Y")
+  end
+
   #modified from supplier version - MAKE SURE TO LOOK AT ORGANIZATION TAG METHODS FIRST
   #this isn't good with tag groups
   def add_tag(tag_id)
