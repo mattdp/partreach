@@ -100,17 +100,28 @@ class ProvidersController < ApplicationController
     render layout: "provider"
   end
 
-  def tag_search_results
-    if @tag_filters = params[:tags]
-      @providers_list = current_organization.providers_alpha_sort
-      @provider_tags = current_organization.provider_tags
-      @providers = current_organization.providers.
-                   joins(taggings: :tag).where(tags: {readable: @tag_filters}).
-                   group('providers.id').having("count(*) >= #{@tag_filters.size}")
-      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @tag_filters.join(" & "))
+  def search_results
+    if params[:tags].present?
+      
+      tags = []
+      params[:tags].each do |unsafe_string|
+        possible_tag = Tag.find_by_name(unsafe_string)
+        tags << possible_tag if possible_tag.present?
+      end
+
+      #adapted from organization.providers_hash_by_tag
+      @provider_hash = {}
+      tags.sort_by { |t| t.readable.downcase }.each do |tag|
+        @provider_hash[tag] = Tagging.where("taggable_type = ? and tag_id = ?","Provider",tag.id).map{|tg| Provider.find(tg.taggable_id)}
+      end
+
+      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, tags.map{|t| t.name}.join(" & "))
       render layout: "provider"
-    else
+
+    elsif true #put the providers stuff here
       redirect_to teams_index_path
+    else #error case
+      #error stuff here
     end
   end
 
