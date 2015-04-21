@@ -7,31 +7,6 @@
 
       <%= render :partial => "providers/providers_header", locals: {provider_tags: @provider_hash.keys} %>
 
-      <div class="row">
-        <div class="col-md-6">
-          Contents (click to jump to a section)
-        </div>
-      </div>
-      
-      <div class="row">
-        <div id="keyword-list">
-          <ul>
-            <% @provider_hash.keys.each do |key| %>
-              <li><%= link_to "#{key.readable}", "##{key.name}" %></li>
-            <% end %>
-          </ul>
-        </div>
-      </div>
-
-      <div class="row">
-        <%= form_tag create_provider_tag_path do %>
-          <%= text_field_tag 'new_tag' %>
-          <%= submit_tag "Add new tag", data: { disable_with: 'Saving...' }, :id => "save_button" %>
-        <% end %>
-      </div>
-
-      <hr>
-
       <% @provider_hash.each do |key, providers| %>
         <div class="col-md-12">
           <h2>
