@@ -69,7 +69,7 @@ class CommentsController < ApplicationController
 
   def correct_user
     @comment = Comment.find params[:id]
-    redirect_to teams_index_path unless @comment.user == current_user
+    redirect_to teams_index_path unless (@comment.user == current_user or @comment.user.admin)
   end
 
 end
