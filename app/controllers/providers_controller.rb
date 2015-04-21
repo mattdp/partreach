@@ -48,6 +48,7 @@ class ProvidersController < ApplicationController
   def create_or_update_provider
     saved_ok = false
     loop do
+      @provider.assign_attributes(editable_provider_params) #returns nil
       break unless @provider.save
       break unless @provider.update_tags(params[:tag_selection])
       new_tag_names = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]].select {|tag_name| tag_name.present? }
@@ -142,10 +143,9 @@ class ProvidersController < ApplicationController
   private
 
     def editable_provider_params
-      params[:verified] = params[:verified].present? ? true : false
       params.permit(:name,:url_main, \
         :contact_wechat,:contact_phone,:contact_email,:contact_name, \
-        :contact_role,:address)
+        :contact_role,:address,:external_notes,:organization_private_notes)
     end
 
 end

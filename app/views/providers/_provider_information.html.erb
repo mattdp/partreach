@@ -119,6 +119,32 @@
 
 <hr>
 
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag 'external_notes', "Company synopsis - how they'd describe themselves. HTML format." %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_area_tag 'external_notes', @provider.external_notes %>
+    </span>
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="col-md-3">
+  <%= label_tag 'organization_private_notes', "#{@organization.name} internal notes - your view of the supplier. HTML format." %>
+  </div>
+
+  <div class="col-md-9">
+    <span class="provider-edit-input">
+      <%= text_area_tag 'organization_private_notes', @provider.organization_private_notes %>
+    </span>
+  </div>
+</div>
+
 </div>
 
 <div class="row">
