@@ -94,19 +94,43 @@ class ProvidersController < ApplicationController
   end
 
   def index
+    @providers_list = current_organization.providers_alpha_sort
     @provider_hash = current_organization.providers_hash_by_tag
     Event.add_event("User",current_user.id,"loaded index")
     render layout: "provider"
   end
 
   def search_results
-    if @tag_filters = params[:tags]
-      @provider_tags = current_organization.provider_tags
-      @providers = current_organization.providers.
-                   joins(taggings: :tag).where(tags: {readable: @tag_filters}).
-                   group('providers.id').having("count(*) >= #{@tag_filters.size}")
-      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @tag_filters.join(" & "))
+    if params[:tags].present?
+      tags = []
+      params[:tags].each do |unsafe_string|
+        possible_tag = Tag.find_by_name(unsafe_string)
+        tags << possible_tag if possible_tag.present?
+      end
+
+      #adapted from organization.providers_hash_by_tag
+      @results_hash = {}
+      tags.sort_by { |t| t.readable.downcase }.each do |tag|
+        @results_hash[tag.name] = Tagging.where("taggable_type = ? and tag_id = ?","Provider",tag.id).map{|tg| Provider.find(tg.taggable_id)}
+      end
+
+      @search_text = tags.map{|t| t.name}.join(" & ")
+      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @search_text)
       render layout: "provider"
+
+    elsif params[:providers].present?
+      providers = []
+      params[:providers].each do |unsafe_string|
+        possible_provider = Provider.find_by_name(unsafe_string)
+        providers << possible_provider if possible_provider.present?
+      end
+
+      @results_hash = {}
+      @results_hash["Providers"] = providers
+      
+      @search_text = providers.map{|p| p.name}.join(" & ")
+      Event.add_event("User", current_user.id, "searched providers by provider names", nil, nil, @search_text)
+      render layout: "provider"      
     else
       redirect_to teams_index_path
     end
