@@ -98,7 +98,7 @@ class ProvidersController < ApplicationController
     @provider_hash = current_organization.providers_hash_by_tag
 
     @providers_tag_search_list = []
-    @provider_hash.each { |key, value| @providers_tag_search_list << [value.size, key.name] }
+    @provider_hash.each { |tag, providers| @providers_tag_search_list << [providers.size, tag.readable] }
     @providers_tag_search_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
     @providers_tag_search_list.each { |e| e[0] = "#{e[1]} [#{e[0]} providers]" }
 
