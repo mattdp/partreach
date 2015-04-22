@@ -23,7 +23,7 @@ class Organization < ActiveRecord::Base
   end
 
   def provider_tags
-    Tag.where("organization_id = ?",self.id)
+    Tag.where(organization_id: self.id)
   end
 
   def providers_hash_by_tag
