@@ -145,7 +145,7 @@ class ProvidersController < ApplicationController
     def editable_provider_params
       params.permit(:name,:url_main, \
         :contact_wechat,:contact_phone,:contact_email,:contact_name, \
-        :contact_role,:address,:external_notes,:organization_private_notes)
+        :contact_role,:location_string,:external_notes,:organization_private_notes)
     end
 
 end
