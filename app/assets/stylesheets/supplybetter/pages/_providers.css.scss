@@ -1,199 +1,85 @@
-/*************** ALL HAX RELATED STUFF IS HERE *****************/
 
-/*I don't know why, but for some reason the rating system styling needs to be above the bootstrap css*/
-/*RATING SYSTEM 
-http://rog.ie/blog/css-star-rater*/
-.star-rating {
-  font-size: 0;
-  white-space: nowrap;
-  display: inline-block;
-  width: 250px; /*75 15 in rob design */
-  height: 50px;
-  overflow: hidden;
-  position: relative;
-  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-  background-size: contain;
-}
-.star-rating i {
-  opacity: 0;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 20%;
-  z-index: 1;
-  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-  background-size: contain;
-}
-.star-rating input {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  opacity: 0;
-  display: inline-block;
-  width: 20%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  z-index: 2;
-  position: relative;
+/*BEGIN INDEX SEARCH BAR*/
+.header-text-block {
+  text-align: center;
 }
 
-.star-rating input:hover + i,
-.star-rating input:checked + i {
-  opacity: 1;
-}
-.star-rating i ~ i {
-  width: 40%;
-}
-.star-rating i ~ i ~ i {
-  width: 60%;
-}
-.star-rating i ~ i ~ i ~ i {
-  width: 80%;
-}
-.star-rating i ~ i ~ i ~ i ~ i {
+.text-block {
+  background: #f6f5f2;
   width: 100%;
-}
-.choice {
-  padding: 20px;
-  display: block;
+  padding-top: 10px;
 }
 
-/* TERRIBLE NOT DRY WAY TO RENDER */
-
-/* for some reason, this setup (same code as above, 
-different class names, opacities to 1) works OK.
-for each <i></i> in the html, another star renders. i don't
-know why or how. it makes me sad. 
-
-finally, this lags hard when you have to render it a lot of times.
-not an issue till we get a bunch of reviews, but it'll need
-replacement -mdp */
-
-.star-display {
-  font-size: 0;
-  white-space: nowrap;
-  display: inline-block;
-  width: 250px;
-  height: 50px;
-  overflow: hidden;
-  position: relative;
-  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-  background-size: contain;
-}
-.star-display i {
-  opacity: 1;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 20%;
-  z-index: 1;
-  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-  background-size: contain;
-}
-.star-display input {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  opacity: 1;
-  display: inline-block;
-  width: 20%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  z-index: 2;
-  position: relative;
-}
-
-.star-display input:hover + i,
-.star-display input:checked + i {
-  opacity: 1;
-}
-.star-display i ~ i {
-  width: 40%;
-}
-.star-display i ~ i ~ i {
-  width: 60%;
-}
-.star-display i ~ i ~ i ~ i {
-  width: 80%;
-}
-.star-display i ~ i ~ i ~ i ~ i {
+.bottom-search-area {
+  background: rgba(0,0,0,0.6);
   width: 100%;
-}
-.choice {
-  padding: 20px;
-  display: block;
-}
-
-/*COMMENTS*/
-
-.avatar-profile {
-  /*background-image: url("https://s3-ap-northeast-1.amazonaws.com/supplybetterprototyping/avatar+copy-small.gif");*/
-  background-image: url("/assets/avatar copy-small.gif");
-  background-repeat: no-repeat;
-  height: 84px;
-  width: 84px;
-  margin: 0;
-  padding: 0;
+  float: left;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
-.comment p {
-  margin-top: 0px;
-}
-
-.comment-snippet {
-  margin-bottom: 0px;
-  font-style: italic;
-}
-
-.comment-smalltext {
-  margin-top: 0px;
-  font-size: 15px;
-}
-
-.comment-profile p {
-  margin-bottom: 0px;
-}
-
-.comment-rating-stars {
-  width: 75px;
-  height: 15px;
-}
-
-/*PROVIDER EDIT PAGE*/
-.provider-edit-details {
-  float: right;
-}
-
-.provider-edit-input input, textarea {
-  width: 100%;
-}
-
-.provider-tags ul {
-  padding-left: 0px;
-}
-
-/*NON-BOOTSTRAP STUFF HERE*/
-
-.heading_navigation{
-  font-size: small;
-  font-weight: normal;
-}
-
-.hax-body-styling {
-  width: 100%;
+.index-search-bar {
   padding-right: 0px;
+}
+
+div.chosen-container-multi {
+  width: 100% !important;
+}
+
+.index-search-button {
   padding-left: 0px;
 }
 
-/*begin list styling*/
+#index_search_button {
+    background: #3cb878;
+    border: 2px solid #31a76a;
+    border-radius: 2px;
+    color: white;
+    height: 44px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+li.search-field input {
+  height: 2em !important;
+  font-size: 20px !important;
+}
+
+/*There's a special place in hell for designers who attempt this*/
+li.search-choice {
+   font-size: 13px !important; 
+    line-height: 22px !important;
+    display: inline-block !important;
+    color: rgba(0, 0, 0, 1) !important;
+    background: rgba(0, 0, 0, 0.02) !important;
+    border-radius: 2px !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    padding: 3px 20px 3px 10px !important;
+    margin-bottom: 6px !important;
+    margin-top: 6px !important;
+}
+
+a.search-choice-close {
+  top: 9px !important;
+}
+/*END INDEX SEARCH BAR*/
+
+/*BEGIN PROVIDER INDEX CATEGORY LIST*/
 .hax-body-styling ul {
   list-style:none;
   margin-top: 0px;
 }
 
-/*start provider table styling*/
+#keyword-list {
+    -moz-columns: 5;
+    -webkit-columns: 5;
+    columns: 5;
+}
+/*END PROVIDER INDEX CATEGORY LIST*/
+
+/*BEING PROVIDER INDEX TABLE*/
 /*this table is not my own. I ripped it from here: http://cssmenumaker.com/blog/stylish-css-tables-tutorial*/
 .stylish table { 
 color: #333;
@@ -248,44 +134,135 @@ text-align: center;
 .stylish th:nth-child(5) , td:nth-child(5) {
   width: 15%;
 }
+/*END PROVIDER INDEX TABLE*/
 
-#keyword-list {
-    -moz-columns: 5;
-    -webkit-columns: 5;
-    columns: 5;
+/* BEGIN STAR RATINGS */
+/*http://rog.ie/blog/css-star-rater
+
+for some reason, this setup (same code as above, 
+different class names, opacities to 1) works OK.
+for each <i></i> in the html, another star renders. i don't
+know why or how. it makes me sad. 
+
+finally, this lags hard when you have to render it a lot of times.
+not an issue till we get a bunch of reviews, but it'll need
+replacement -mdp */
+
+.star-rating, .star-display {
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+  width: 250px; 
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-rating i {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-rating input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  opacity: 0;
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  position: relative;
 }
 
-.text-block {
-  background: #f6f5f2;
+.star-rating input:hover + i,
+.star-rating input:checked + i,
+.star-display input:hover + i,
+.star-display input:checked + i {
+  opacity: 1;
+}
+.star-rating i ~ i,
+.star-display i ~ i {
+  width: 40%;
+}
+.star-rating i ~ i ~ i,
+.star-display i ~ i ~ i {
+  width: 60%;
+}
+.star-rating i ~ i ~ i ~ i,
+.star-display i ~ i ~ i ~ i {
+  width: 80%;
+}
+.star-rating i ~ i ~ i ~ i ~ i,
+.star-display i ~ i ~ i ~ i ~ i {
   width: 100%;
-  padding-top: 10px;
-  /*padding-bottom: 10px; */
+}
+.choice {
+  padding: 20px;
+  display: block;
 }
 
-/*provider profile specific css*/
+.star-display i {
+  opacity: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 20%;
+  z-index: 1;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjRkZERjg4IiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
+.star-display input {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  opacity: 1;
+  display: inline-block;
+  width: 20%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 2;
+  position: relative;
+}
+/*END STAR RATINGS*/
 
-.profile-spacing {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 10px;
+/*BEGIN PROVIDER EDIT PAGE*/
+/*there's a good chance a lot of this is either redundant or wholly unnecessary once .any-form is used*/
+.provider-edit-details {
+  float: right;
 }
 
-.verified {
-  color: #4EF579;
-  font-size: 32px;
+.provider-edit-input input, textarea {
+  width: 100%;
 }
 
-.hax-body-styling .profile-heading h3 {
-  margin-top: 0px;
-  margin-bottom: 0px;
+.provider-tags ul {
+  padding-left: 0px;
 }
 
-/*styling for suggested edits page*/
-img.banner-message {
-  vertical-align: middle;
+/*this class is being used in a bunch of places. should be moved into a more general section of this sheet*/
+.heading_navigation{
+  font-size: small;
+  font-weight: normal;
 }
 
-/*photo gallery styling starts here 
+.hax-body-styling {
+  width: 100%;
+  padding-right: 0px;
+  padding-left: 0px;
+}
+/*END PROVIDER EDIT PAGE*/
+
+/*BEGIN PHOTO GALLERY
 http://fearlessflyer.com/create-a-responsive-photo-gallery-with-bootstrap-framework/*/
 
 div.photo-gallery {
@@ -318,61 +295,26 @@ ul.photo-gallery li:first-child img{
     float:right;
     text-align:right;
 }
+/*END PHOTO GALLERY*/
 
-/*INDEX TAG SEARCH*/
-.header-text-block {
-  text-align: center;
-}
-
-.bottom-search-area {
-  background: rgba(0,0,0,0.6);
-  width: 100%;
-  float: left;
-  padding-top: 30px;
-  padding-bottom: 30px;
-}
-
-.index-search-bar {
-  padding-right: 0px;
-}
-
-div.chosen-container-multi {
-  width: 100% !important;
-}
-
-.index-search-button {
-  padding-left: 0px;
-}
-
-#index_search_button {
-    background: #3cb878;
-    border: 2px solid #31a76a;
-    border-radius: 2px;
-    color: white;
-    height: 44px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
-  }
-
-li.search-field input {
-  height: 2em !important;
-  font-size: 20px !important;
-}
-
+/*BEGIN EDIT COMMENT*/
 .comment-title input {
   width: 100%;
 }
+/*END EDIT COMMENT*/
 
-/*provider profile lists*/
+/*BEGIN PROVIDER PROFILE*/
+.profile-spacing {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 10px;
+}
 
 li p {
   margin-top: 0px;
   margin-bottom: 0px;
 }
 
-/*provider profile tag styling*/
 .tags-providerTags>a {
     font-size: 13px; /*this font size isn't consistent with the rest of the Providers profile page by certainly makes the tags present in a cleaner, more compact form*/
     line-height: 22px;
@@ -393,23 +335,44 @@ li p {
     border-color: #a9d8b2;
     background: rgba(87, 173, 104, 0.1);
 }
+/*END PROVIDER PROFILE*/
 
-
-/*There's a special place in hell for designers who attempt this*/
-li.search-choice {
-   font-size: 13px !important; 
-    line-height: 22px !important;
-    display: inline-block !important;
-    color: rgba(0, 0, 0, 1) !important;
-    background: rgba(0, 0, 0, 0.02) !important;
-    border-radius: 2px !important;
-    border: 1px solid rgba(0, 0, 0, 0.15) !important;
-    padding: 3px 20px 3px 10px !important;
-    margin-bottom: 6px !important;
-    margin-top: 6px !important;
+/*BEGIN COMMENT SECTION*/
+.avatar-profile {
+  background-image: url("/assets/avatar copy-small.gif");
+  background-repeat: no-repeat;
+  height: 84px;
+  width: 84px;
+  margin: 0;
+  padding: 0;
 }
 
-a.search-choice-close {
-  top: 9px !important;
+.comment p {
+  margin-top: 0px;
+}
 
+.comment-snippet {
+  margin-bottom: 0px;
+  font-style: italic;
+}
+
+.comment-smalltext {
+  margin-top: 0px;
+  font-size: 15px;
+}
+
+.comment-profile p {
+  margin-bottom: 0px;
+}
+
+.comment-rating-stars {
+  width: 75px;
+  height: 15px;
+}
+/*END COMMENT SECTION*/
+
+/*styling for suggested edits page*/
+/*This is only used once on suggested_edit.html.erb, which I don't believe is being served anymore*/
+img.banner-message { 
+  vertical-align: middle;
 }
