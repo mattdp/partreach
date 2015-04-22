@@ -102,11 +102,12 @@
         </span>
         <% end %>
       </div>
+      <% if comment.user == current_user %>
       <div class="col-md-4">
-        <span class="comment-smalltext">[<% if comment.user == current_user %><%= link_to "Edit my comment", edit_comment_path(comment)%>
-        <% end %>]
+        <span class="comment-smalltext">[<%= link_to "Edit my comment", edit_comment_path(comment)%>]
         </span>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
