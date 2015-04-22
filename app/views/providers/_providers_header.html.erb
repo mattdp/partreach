@@ -39,7 +39,7 @@
             <div class="row col-md-9">
               <%= form_tag providers_search_results_path, method: :get do%>
                 <div class="col-md-8 index-search-bar">
-                  <%= select_tag(:providers, options_from_collection_for_select(@providers_list, :name, :name), multiple: true, class: 'tag-select') %>
+                  <%= select_tag(:providers, options_from_collection_for_select(@providers_list, :name, :name), multiple: true, class: 'provider-select') %>
                 </div>
                 <div class="col-md-1 index-search-button">
                   <%= submit_tag "Search »", class: 'button--blue' %>
