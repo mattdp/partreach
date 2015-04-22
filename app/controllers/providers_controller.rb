@@ -110,8 +110,8 @@ class ProvidersController < ApplicationController
     if params[:tags].present?
       tags = []
       params[:tags].each do |unsafe_string|
-        possible_tag = Tag.find_by_readable(unsafe_string)
-        tags << possible_tag if possible_tag.present?
+        possible_tag = Tag.where("organization_id = ? and readable = ?",current_organization,unsafe_string)
+        tags << possible_tag[0] if possible_tag.present?
       end
 
       #adapted from organization.providers_hash_by_tag
