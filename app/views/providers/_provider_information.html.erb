@@ -48,12 +48,12 @@
 
   <div class="row">
     <div class="col-md-3">
-    <%= label_tag 'address', 'Full address' %>
+    <%= label_tag 'location_string', 'Full address' %>
     </div>
 
     <div class="col-md-9">
       <span class="provider-edit-input">
-        <%= text_area_tag 'address', @provider.address, rows: 2 %>
+        <%= text_area_tag 'location_string', @provider.location_string, rows: 2 %>
         </span>
     </div>
   </div>
