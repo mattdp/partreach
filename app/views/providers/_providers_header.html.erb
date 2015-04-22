@@ -1,32 +1,38 @@
       <div class="row text-block">
 
-        <div class="col-md-6 col-md-offset-3">
-          <div class="header-text-block">
-            <h1> Get connected to the right supplier</h1>
-            <h4>See who your colleagues are using to make parts.</h4>
+        <div class="col-md-8 col-md-offset-2">
+          <h2 class="section-headline">
+            Get connected to the right supplier
+          </h2>
+          <div class="start-quote">
+            <p>See who Synapsters are using to make parts</p>
           </div>
-        </div>
-    
-        <div class="row bottom-search-area any-form">
-          <div class="col-md-5 col-md-offset-3 index-search-bar">
-            <%= form_tag providers_search_results_path, method: :get do%>
-              <%= select_tag(:tags, options_for_select(@providers_tag_search_list), multiple: true, class: 'tag-select') %>
-          </div>
-          <div class="col-md-1 index-search-button">
-          <%= submit_tag "Search", :id => "index_search_button" %>
-          </div>
-          <% end %>
         </div>
 
-        <div class="row bottom-search-area any-form">
-          <div class="col-md-5 col-md-offset-3 index-search-bar">
+        <div class="row bottom-search-area">
+          <div class="row col-md-9 col-md-offset-2">
             <%= form_tag providers_search_results_path, method: :get do%>
-              <%= select_tag(:providers, options_from_collection_for_select(@providers_list, :name, :name), multiple: true, class: 'tag-select') %>
+              <div class="col-md-8 index-search-bar">
+                <%= select_tag(:tags, options_for_select(@providers_tag_search_list), multiple: true, class: 'tag-select') %>
+              </div>
+              <div class="col-md-1 index-search-button">
+                <%= submit_tag "Search »", class: 'button--blue' %>
+              </div>
+            <% end %>
           </div>
-          <div class="col-md-1 index-search-button">
-          <%= submit_tag "Search", :id => "index_search_button" %>
+        </div>
+
+        <div class="row bottom-search-area">
+          <div class="row col-md-9 col-md-offset-2">
+            <%= form_tag providers_search_results_path, method: :get do%>
+              <div class="col-md-8 index-search-bar">
+                <%= select_tag(:providers, options_from_collection_for_select(@providers_list, :name, :name), multiple: true, class: 'tag-select') %>
+              </div>
+              <div class="col-md-1 index-search-button">
+                <%= submit_tag "Search »", class: 'button--blue' %>
+              </div>
+            <% end %>
           </div>
-          <% end %>
         </div>
 
       </div>

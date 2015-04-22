@@ -8,49 +8,39 @@
 .header-text-block {
   text-align: center;
 }
-/*I don't know why, but for some reason the rating system styling needs to be above the bootstrap css*/
-
-/*RATING SYSTEM 
-http://rog.ie/blog/css-star-rater*/
-.star-rating {
-  font-size: 0;
-  white-space: nowrap;
-  display: inline-block;
-  width: 250px; /*75 15 in rob design */
-  height: 50px;
-  overflow: hidden;
-  position: relative;
-  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
-  background-size: contain;
-}
 
 .text-block {
-  background: #f6f5f2;
+  /*background: #f6f5f2;*/
   width: 100%;
   padding-top: 10px;
-}
+} 
 
 .bottom-search-area {
-  background: rgba(0,0,0,0.6);
+  background: #f8f8f8;
   width: 100%;
   float: left;
   padding-top: 30px;
   padding-bottom: 30px;
 }
 
-.index-search-bar {
-  padding-right: 0px;
+.start-quote p {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
-div.chosen-container-multi {
-  width: 100% !important;
+.index-search-bar {
+  padding-right: 0px;
 }
 
 .index-search-button {
   padding-left: 0px;
 }
 
-#index_search_button {
+div.chosen-container-multi {
+  width: 100% !important;
+}
+
+/*#index_search_button {
     background: #3cb878;
     border: 2px solid #31a76a;
     border-radius: 2px;
@@ -60,29 +50,29 @@ div.chosen-container-multi {
     margin-top: 0px;
     padding-top: 0px;
     padding-bottom: 0px;
-  }
+  }*/
 
 li.search-field input {
-  height: 2em !important;
+  height: 3.3em !important;
   font-size: 20px !important;
 }
 
 /*There's a special place in hell for designers who attempt this*/
 li.search-choice {
-   font-size: 13px !important; 
-    line-height: 22px !important;
-    display: inline-block !important;
-    color: rgba(0, 0, 0, 1) !important;
-    background: rgba(0, 0, 0, 0.02) !important;
-    border-radius: 2px !important;
-    border: 1px solid rgba(0, 0, 0, 0.5) !important;
-    padding: 3px 20px 3px 10px !important;
-    margin-bottom: 6px !important;
-    margin-top: 6px !important;
+  font-size: 13px !important; 
+  line-height: 26px !important;
+  display: inline-block !important;
+  color: rgba(0, 0, 0, 1) !important;
+  background: rgba(0, 0, 0, 0.02) !important;
+  border-radius: 2px !important;
+  border: 1px solid rgba(0, 0, 0, 0.5) !important;
+  padding: 3px 20px 3px 10px !important;
+  margin-bottom: 5px !important;
+  margin-top: 17px !important;
 }
 
 a.search-choice-close {
-  top: 9px !important;
+  top: 12px !important;
 }
 /*END INDEX SEARCH BAR*/
 
@@ -167,6 +157,17 @@ know why or how. it makes me sad.
 finally, this lags hard when you have to render it a lot of times.
 not an issue till we get a bunch of reviews, but it'll need
 replacement -mdp */
+.star-rating {
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+  width: 250px; /*75 15 in rob design */
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
+}
 
 .star-rating, .star-display {
   font-size: 0;
