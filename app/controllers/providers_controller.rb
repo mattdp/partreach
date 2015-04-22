@@ -117,7 +117,9 @@ class ProvidersController < ApplicationController
       #adapted from organization.providers_hash_by_tag
       @results_hash = {}
       tags.sort_by { |t| t.readable.downcase }.each do |tag|
-        @results_hash[tag.readable] = Tagging.where("taggable_type = ? and tag_id = ?","Provider",tag.id).map{|tg| Provider.find(tg.taggable_id)}
+        @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
+          .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
+          .order("lower(name)")
       end
 
       @search_text = tags.map{|t| t.readable}.join(" & ")
