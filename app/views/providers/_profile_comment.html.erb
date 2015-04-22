@@ -53,9 +53,10 @@
 
     <div class="row comment-smalltext">
       <% po = comment.purchase_order %>
-      <% if po %>
+      <% score_total = comment.cost_score + comment.quality_score + comment.speed_score %>
+      <% if (po.present? or score_total > 0) %>
       <div>About this order:</div>
-        <% if (comment.cost_score + comment.quality_score + comment.speed_score > 0) %>
+        <% if (score_total > 0 ) %>
           <div class="row">
             <span class="comment-smalltext">
               <% ["cost_score","quality_score","speed_score"].each do |score| %>
