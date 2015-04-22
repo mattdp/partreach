@@ -71,6 +71,18 @@ class Provider < ActiveRecord::Base
     return po.created_at.strftime("%b %e, %Y")
   end
 
+  def index_address
+    address = self.address
+    return nil if address.empty?
+    returnee = "#{address.city}"
+    if address.country.present? and address.country != Geography.locate("US",:short_name,"country")
+      returnee.present? ? returnee += returnee + ", #{address.country.short_name}" : returnee = "#{address.country.short_name}"
+    elsif address.state.present?
+      returnee.present? ? returnee += returnee + ", #{address.state.short_name}" : returnee = "#{address.state.short_name}"
+    end
+    return returnee
+  end
+
   #modified from supplier version - MAKE SURE TO LOOK AT ORGANIZATION TAG METHODS FIRST
   #this isn't good with tag groups
   def add_tag(tag_id)
