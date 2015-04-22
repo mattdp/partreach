@@ -55,7 +55,7 @@
       <% po = comment.purchase_order %>
       <% score_total = comment.cost_score + comment.quality_score + comment.speed_score %>
       <% if (po.present? or score_total > 0) %>
-      <div>About this order:</div>
+        <div>About this order:</div>
         <% if (score_total > 0 ) %>
           <div class="row">
             <span class="comment-smalltext">
@@ -68,16 +68,18 @@
             </span>
           </div>
         <% end %>
-        <div class="col-md-8">
-          <% po.tags.each do |tag| %>
-            <div class="col-md-3"><%= tag.tag_group.group_name %>: </div>
-            <div class="col-md-9"><%= tag.readable %></div>
-          <% end %>
-        </div>
-        <div class="col-md-4">
-          <div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
-          <div><%= "Price: #{number_to_currency(po.price)}" if po.price %></div>
-        </div>
+        <% if po.present? %>
+          <div class="col-md-8">
+            <% po.tags.each do |tag| %>
+              <div class="col-md-3"><%= tag.tag_group.group_name %>: </div>
+              <div class="col-md-9"><%= tag.readable %></div>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+            <div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
+            <div><%= "Price: #{number_to_currency(po.price)}" if po.price %></div>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div class="row comment-last-row">
