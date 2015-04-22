@@ -15,7 +15,7 @@
       <tr>
         <% comments = provider.comments %>
         <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
-        <td><%= "#{provider.city}" %></td>
+        <td><%= "#{provider.index_address}" %></td>
         <td>
           <div class="row">
             <%= render partial: "providers/star_display", locals: {score: provider.average_score} %>
