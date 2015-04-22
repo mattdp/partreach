@@ -85,29 +85,29 @@
         <% rating = comment.rating_by current_user %>
         <% if rating.nil? %>
           <%= form_tag comment_ratings_path do %>
-          <span class="comment-smalltext"> 
-            Was this comment helpful to you?
-          </span>
+            <span class="comment-smalltext"> 
+              Was this comment helpful to you?
+            </span>
             <%= hidden_field_tag :provider_id, @provider.id %>
             <%= hidden_field_tag :comment_id, comment.id %>
             <%= submit_tag "Yes" %>
             <%= submit_tag "No" %>
           <% end %>
         <% elsif rating.helpful %>
-        <span class="comment-smalltext"> 
-          <em>You found this comment helpful</em>
-        </span>
+          <span class="comment-smalltext"> 
+            <em>You found this comment helpful</em>
+          </span>
         <% else %>
-        <span class="comment-smalltext"> 
-          <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
-        </span>
+          <span class="comment-smalltext"> 
+            <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
+          </span>
         <% end %>
       </div>
       <% if comment.user == current_user %>
-      <div class="col-md-4">
-        <span class="comment-smalltext">[<%= link_to "Edit my comment", edit_comment_path(comment)%>]
-        </span>
-      </div>
+        <div class="col-md-4">
+          <span class="comment-smalltext">[<%= link_to "Edit my comment", edit_comment_path(comment)%>]
+          </span>
+        </div>
       <% end %>
     </div>
   </div>
