@@ -108,6 +108,7 @@ class ProvidersController < ApplicationController
 
   def search_results
     if params[:tags].present?
+
       tags = []
       params[:tags].each do |unsafe_string|
         possible_tag = Tag.where("organization_id = ? and readable = ?",current_organization,unsafe_string)
