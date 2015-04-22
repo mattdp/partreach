@@ -98,7 +98,7 @@ class ProvidersController < ApplicationController
     @provider_hash = current_organization.providers_hash_by_tag
 
     @providers_tag_search_list = []
-    @provider_hash.each { |key, value| @providers_tag_search_list << [value.size, key.name] }
+    @provider_hash.each { |tag, providers| @providers_tag_search_list << [providers.size, tag.readable] }
     @providers_tag_search_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
     @providers_tag_search_list.each { |e| e[0] = "#{e[1]} [#{e[0]} providers]" }
 
@@ -108,16 +108,19 @@ class ProvidersController < ApplicationController
 
   def search_results
     if params[:tags].present?
+
       tags = []
       params[:tags].each do |unsafe_string|
-        possible_tag = Tag.find_by_readable(unsafe_string)
-        tags << possible_tag if possible_tag.present?
+        possible_tag = Tag.where("organization_id = ? and readable = ?",current_organization,unsafe_string)
+        tags << possible_tag[0] if possible_tag.present?
       end
 
       #adapted from organization.providers_hash_by_tag
       @results_hash = {}
       tags.sort_by { |t| t.readable.downcase }.each do |tag|
-        @results_hash[tag.readable] = Tagging.where("taggable_type = ? and tag_id = ?","Provider",tag.id).map{|tg| Provider.find(tg.taggable_id)}
+        @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
+          .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
+          .order("lower(name)")
       end
 
       @search_text = tags.map{|t| t.readable}.join(" & ")

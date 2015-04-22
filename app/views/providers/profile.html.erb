@@ -72,7 +72,7 @@
             <li><p><strong>Phone: </strong><%= @provider.contact_phone %></p></li>
             <li><p><strong>Email: </strong><%= @provider.contact_email %></p></li>
             <li><p><strong>Website: </strong><%= link_to "Link", @provider.url_main if @provider.url_main %></p></li>            
-            <li><p><strong>Full address: </strong><%= "#{@provider.address}" %></p></li>
+            <li><p><strong>Full address: </strong><%= "#{@provider.location_string}" %></p></li>
           </ul>    
         </div>
       </div>
