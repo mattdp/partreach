@@ -36,7 +36,7 @@ gem 'premailer-rails'
 # subsequent commits as of Nov 14, 2014 revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a are documentation updates only
 gem 'nested_form', github: 'ryanb/nested_form'
 gem 'mechanize'
-
+gem 'StreetAddress', :require => "street_address"
 
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'

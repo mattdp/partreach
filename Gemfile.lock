@@ -7,6 +7,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    StreetAddress (1.0.6)
     actionmailer (4.1.8)
       actionpack (= 4.1.8)
       actionview (= 4.1.8)
@@ -332,6 +333,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  StreetAddress
   angular-ui-bootstrap-rails
   angularjs-rails
   annotate (= 2.5.0)
