@@ -53,9 +53,10 @@
 
     <div class="row comment-smalltext">
       <% po = comment.purchase_order %>
-      <% if po %>
-      <div>About this order:</div>
-        <% if (comment.cost_score + comment.quality_score + comment.speed_score > 0) %>
+      <% score_total = comment.cost_score + comment.quality_score + comment.speed_score %>
+      <% if (po.present? or score_total > 0) %>
+        <div>About this order:</div>
+        <% if (score_total > 0 ) %>
           <div class="row">
             <span class="comment-smalltext">
               <% ["cost_score","quality_score","speed_score"].each do |score| %>
@@ -67,16 +68,18 @@
             </span>
           </div>
         <% end %>
-        <div class="col-md-8">
-          <% po.tags.each do |tag| %>
-            <div class="col-md-3"><%= tag.tag_group.group_name %>: </div>
-            <div class="col-md-9"><%= tag.readable %></div>
-          <% end %>
-        </div>
-        <div class="col-md-4">
-          <div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
-          <div><%= "Price: #{number_to_currency(po.price)}" if po.price %></div>
-        </div>
+        <% if po.present? %>
+          <div class="col-md-8">
+            <% po.tags.each do |tag| %>
+              <div class="col-md-3"><%= tag.tag_group.group_name %>: </div>
+              <div class="col-md-9"><%= tag.readable %></div>
+            <% end %>
+          </div>
+          <div class="col-md-4">
+            <div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
+            <div><%= "Price: #{number_to_currency(po.price)}" if po.price %></div>
+          </div>
+        <% end %>
       <% end %>
     </div>
     <div class="row comment-last-row">
@@ -84,29 +87,29 @@
         <% rating = comment.rating_by current_user %>
         <% if rating.nil? %>
           <%= form_tag comment_ratings_path do %>
-          <span class="comment-smalltext"> 
-            Was this comment helpful to you?
-          </span>
+            <span class="comment-smalltext"> 
+              Was this comment helpful to you?
+            </span>
             <%= hidden_field_tag :provider_id, @provider.id %>
             <%= hidden_field_tag :comment_id, comment.id %>
             <%= submit_tag "Yes" %>
             <%= submit_tag "No" %>
           <% end %>
         <% elsif rating.helpful %>
-        <span class="comment-smalltext"> 
-          <em>You found this comment helpful</em>
-        </span>
+          <span class="comment-smalltext"> 
+            <em>You found this comment helpful</em>
+          </span>
         <% else %>
-        <span class="comment-smalltext"> 
-          <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
-        </span>
+          <span class="comment-smalltext"> 
+            <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
+          </span>
         <% end %>
       </div>
       <% if comment.user == current_user %>
-      <div class="col-md-4">
-        <span class="comment-smalltext">[<%= link_to "Edit my comment", edit_comment_path(comment)%>]
-        </span>
-      </div>
+        <div class="col-md-4">
+          <span class="comment-smalltext">[<%= link_to "Edit my comment", edit_comment_path(comment)%>]
+          </span>
+        </div>
       <% end %>
     </div>
   </div>

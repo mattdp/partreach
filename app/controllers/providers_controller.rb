@@ -66,10 +66,10 @@ class ProvidersController < ApplicationController
     end
 
     if saved_ok
-      Event.add_event("User","#{current_user.id}","created a provider","Provider","#{@provider.id}")
+      Event.add_event("User","#{current_user.id}","created or updated a provider","Provider","#{@provider.id}")
       redirect_to teams_profile_path(@provider.name_for_link), note: "Saved OK!" 
     else 
-      Event.add_event("User","#{current_user.id}","attempted provider create - ERROR")      
+      Event.add_event("User","#{current_user.id}","attempted provider create or update - ERROR")
       redirect_to teams_index_path, note: "Saving problem."
     end
   end
