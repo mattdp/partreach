@@ -362,7 +362,7 @@ DEPENDENCIES
   mechanize
   neat
   nested_form!
-  newrelic_rpm (= 3.6.6.147)
+  newrelic_rpm
   nokogiri (= 1.6.0)
   pg (= 0.17.1)
   premailer-rails
