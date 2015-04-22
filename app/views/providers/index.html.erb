@@ -5,7 +5,7 @@
     <div class="main-area-contrast override">
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
 
-      <%= render :partial => "providers/providers_header", locals: {provider_tags: @provider_hash.keys} %>
+      <%= render :partial => "providers/providers_header" %>
 
       <% @provider_hash.each do |key, providers| %>
         <div class="col-md-12">
