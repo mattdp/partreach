@@ -11,7 +11,7 @@
     <div class="col-md-4">
       
       <!-- COMPANY NAME -->
-        <div class="profile-spacing">
+        <div class="provider-profile">
         <h1>
         <%= @provider.name %>
         <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id,"edit_providername_from_profile") %>]</span>
@@ -33,7 +33,7 @@
       </div>      
 
       <!-- PURCHASE ORDERS -->
-      <h3 class="profile-heading">
+      <h3>
         Purchase orders
        <span class="heading_navigation">[<%= link_to "add a purchase", new_purchase_order_comment_path(@provider.id) %>]</span>
        </h3>  
@@ -48,7 +48,7 @@
       <div class="col-md-4">
         <!-- CATEGORIES -->
         <div class="profile-spacing">
-        <h3 class="profile-heading">
+        <h3>
           What they can do for you
          <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
         </h3>
@@ -65,7 +65,7 @@
         <div class="table-header">
         <!-- ADDRESS SECTION -->
           <div class="profile-spacing">
-          <h3 class="profile-heading">Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
+          <h3>Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
           </div>
           <ul>
             <li><p><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p></li>
@@ -80,7 +80,7 @@
 
   <div class="row col-md-12">
     <hr>
-    <h3 class="profile-heading">
+    <h3>
       Company Synopsis
       <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_synopsis_from_profile") %>]</span>
     </h3>
@@ -88,7 +88,7 @@
   </div>
 
   <div class="row col-md-12">
-    <h3 class="profile-heading">
+    <h3>
       <%= @organization.name %> internal notes
       <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_internalnotes_from_profile") %>]</span>
     </h3>
@@ -97,7 +97,7 @@
 
   <div class="row">
     <div class="col-md-8">
-      <h3 id="comments" class="profile-heading">
+      <h3 id="comments">
         Comments
         <span class="heading_navigation">[<%= link_to "add a comment", new_comment_path(@provider.id) %>]</span>
       </h3>
