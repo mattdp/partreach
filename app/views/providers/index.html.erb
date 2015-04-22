@@ -8,13 +8,15 @@
       <%= render :partial => "providers/providers_header" %>
 
       <% @provider_hash.each do |key, providers| %>
-        <div class="col-md-12">
-          <h2>
-            <span id='<%="#{key.name}"%>' name='<%="#{key.name}"%>'><%= "#{key.readable}" %></span>
-            <span class="heading_navigation">[<%= link_to "Back to top" %>]</span>
-          </h2>
-          <%= render :partial => "providers/providers_table", locals: {providers: providers} %>
-        </div>
+        <% if providers.count >= 5 %>
+          <div class="col-md-12">
+            <h2>
+              <span id='<%="#{key.name}"%>' name='<%="#{key.name}"%>'><%= "#{key.readable}" %></span>
+              <span class="heading_navigation">[<%= link_to "Back to top" %>]</span>
+            </h2>
+            <%= render :partial => "providers/providers_table", locals: {providers: providers} %>
+          </div>
+        <% end %>
       <% end %>
 
     </div>
