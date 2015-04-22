@@ -67,19 +67,19 @@ class Provider < ActiveRecord::Base
 
   #returns nil or a parsed date string
   def latest_purchase_order_date
-    return nil if self.purchase_orders.nil?
+    return nil if !self.purchase_orders.present?
     po = PurchaseOrder.where("provider_id = ?",self.id).order("created_at DESC").first
     return po.created_at.strftime("%b %e, %Y")
   end
 
   def index_address
     address = self.address
-    return nil if address.empty?
+    return nil if address.nil?
     returnee = "#{address.city}"
-    if address.country.present? and address.country != Geography.locate("US",:short_name,"country")
-      returnee.present? ? returnee += returnee + ", #{address.country.short_name}" : returnee = "#{address.country.short_name}"
-    elsif address.state.present?
-      returnee.present? ? returnee += returnee + ", #{address.state.short_name}" : returnee = "#{address.state.short_name}"
+    if address.country.present? and !(address.country.short_name == "US" or address.country.short_name == "unknown")
+      returnee.present? ? returnee += ", #{address.country.short_name}" : returnee = "#{address.country.short_name}"
+    elsif address.state.present? and !(address.state.short_name == "unknown")
+      returnee.present? ? returnee += ", #{address.state.short_name}" : returnee = "#{address.state.short_name}"
     end
     return returnee
   end
