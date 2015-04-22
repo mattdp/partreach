@@ -439,7 +439,7 @@ class CrawlerSynapseWiki
               contact[:phone] = text.scan(/Phone: (.*)/) if text.scan(/Phone: (.*)/).present?
               contact[:fax] = text.scan(/Fax: (.*)/) if text.scan(/Fax: (.*)/).present?
               contact[:mobile] = text.scan(/Mobile: (.*)/) if text.scan(/Mobile: (.*)/).present?
-              contact[:address] = text.scan(/Address: (.*)/) if text.scan(/Address: (.*)/).present?
+              contact[:location_string] = text.scan(/Address: (.*)/) if text.scan(/Address: (.*)/).present?
               contact[:email] = text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})/i) if text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})/i).present?
               #not great, but don't want to engage with URI library when don't know which strings are url-ish
               contact[:website] = text.scan(/([\w\-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/) if (text.scan(/([\w\-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/).present? and text.scan(/(@[\w\-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/).empty?)          
@@ -506,7 +506,7 @@ class CrawlerSynapseWiki
         
         contact = wiki_content[:contact]
         provider.url_main = contact[:website]
-        provider.address = contact[:address]
+        provider.location_string = contact[:address]
         provider.contact_name = contact[:name]
         provider.contact_phone = contact[:phone]
         provider.contact_phone = contact[:mobile] if contact[:mobile].present? and contact[:phone].empty?

@@ -1,7 +1,27 @@
+/*SUPER GENERAL*/
+
+.center {
+  text-align: center;
+}
 
 /*BEGIN INDEX SEARCH BAR*/
 .header-text-block {
   text-align: center;
+}
+/*I don't know why, but for some reason the rating system styling needs to be above the bootstrap css*/
+
+/*RATING SYSTEM 
+http://rog.ie/blog/css-star-rater*/
+.star-rating {
+  font-size: 0;
+  white-space: nowrap;
+  display: inline-block;
+  width: 250px; /*75 15 in rob design */
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjREREREREIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
+  background-size: contain;
 }
 
 .text-block {
@@ -250,7 +270,7 @@ replacement -mdp */
 }
 
 /*this class is being used in a bunch of places. should be moved into a more general section of this sheet*/
-.heading_navigation{
+.heading_navigation, .heading_navigation input{
   font-size: small;
   font-weight: normal;
 }
@@ -306,7 +326,7 @@ ul.photo-gallery li:first-child img{
 /*BEGIN PROVIDER PROFILE*/
 .provider-profile h1{
   margin-top: 0px;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
 }
 
 .profile-spacing h3{
@@ -379,4 +399,12 @@ li p {
 /*This is only used once on suggested_edit.html.erb, which I don't believe is being served anymore*/
 img.banner-message { 
   vertical-align: middle;
+}
+
+.comment-no-left-margin {
+  padding-left: 0px;
+}
+
+.comment-last-row {
+  padding-top: 10px;
 }
