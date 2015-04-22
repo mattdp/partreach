@@ -51,6 +51,18 @@ class Address < ActiveRecord::Base
     Geography.find(destroyed_id).destroy
   end
 
+  #nils for non-US strings; not great, but fairly easy for now
+  def self.parse_string_into_options(address_string)
+    parsed = StreetAddress::US.parse(address_string, informal: true)
+    options = {}
+    if parsed.present?
+      options[:city] = parsed.city
+      options[:state] = parsed.state
+      options[:zip] = parsed.postal_code
+    end
+    return options
+  end
+
   def self.create_or_update_address(owner, options)
     if owner.address
       address = owner.address
