@@ -1,6 +1,13 @@
 /*************** ALL HAX RELATED STUFF IS HERE *****************/
 
 /*I don't know why, but for some reason the rating system styling needs to be above the bootstrap css*/
+
+/*SUPER GENERAL*/
+
+.center {
+  text-align: center;
+}
+
 /*RATING SYSTEM 
 http://rog.ie/blog/css-star-rater*/
 .star-rating {
@@ -176,7 +183,7 @@ replacement -mdp */
 
 /*NON-BOOTSTRAP STUFF HERE*/
 
-.heading_navigation{
+.heading_navigation, .heading_navigation input{
   font-size: small;
   font-weight: normal;
 }
@@ -412,4 +419,12 @@ li.search-choice {
 a.search-choice-close {
   top: 9px !important;
 
+}
+
+.comment-no-left-margin {
+  padding-left: 0px;
+}
+
+.comment-last-row {
+  padding-top: 10px;
 }
