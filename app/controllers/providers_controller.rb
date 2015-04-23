@@ -3,6 +3,7 @@ class ProvidersController < ApplicationController
   skip_before_action :allow_staging_access, only: :signin
 
   def new
+    @organization = current_organization
     @provider = Provider.new
     @tags = current_organization.provider_tags
     @organization = current_organization    
@@ -26,6 +27,7 @@ class ProvidersController < ApplicationController
   end
 
   def edit
+    @organization = current_organization
     @provider = current_organization.providers.find(params[:id])
     @tags = current_organization.provider_tags
     @organization = current_organization
