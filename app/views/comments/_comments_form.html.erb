@@ -33,7 +33,7 @@
         </div>
 
         <div class="overall field">
-          <%= label_tag :overall_score, "How do you like this supplier overall? (optional)" %><br>
+          <p><strong>Overall,</strong> how do you like this supplier? (optional)</p>
           <span class="star-rating">
           <% (1..5).each do |value| %>
             <%= radio_button_tag("overall_score", "#{value}", checked = (value == @comment.overall_score)) %><i></i>
@@ -42,9 +42,9 @@
           <% rating_text = ((@comment.overall_score != 0) ? "#{@comment.overall_score} stars" : "Rating not yet selected") %>
           <strong class="choice"><%= rating_text %></strong>
         </div>
-
+        <hr>
         <div class="quality field">
-          <%= label_tag :quality_score, "How do you like this supplier in terms of  quality? (optional)" %><br>
+          <p>In terms of <strong>quality</strong>, how do you like this supplier? (optional)</p>
           <span class="star-rating">
           <% (1..5).each do |value| %>
             <%= radio_button_tag("quality_score", "#{value}", checked = (value == @comment.quality_score)) %><i></i>
@@ -53,9 +53,9 @@
           <% rating_text = ((@comment.quality_score != 0) ? "#{@comment.quality_score} stars" : "Rating not yet selected") %>
           <strong class="choice"><%= rating_text %></strong>
         </div>
-
+        <hr>
         <div class="cost field">
-          <%= label_tag :cost_score, "How do you like this supplier in terms of cost? (optional)" %><br>
+          <p>In terms of <strong>cost</strong>, how do you like this supplier? (optional)</p>
           <span class="star-rating">
           <% (1..5).each do |value| %>
             <%= radio_button_tag("cost_score", "#{value}", checked = (value == @comment.cost_score)) %><i></i>
@@ -64,9 +64,9 @@
           <% rating_text = ((@comment.cost_score != 0) ? "#{@comment.cost_score} stars" : "Rating not yet selected") %>
           <strong class="choice"><%= rating_text %></strong>
         </div>
-
+        <hr>
         <div class="speed field">
-          <%= label_tag :speed_score, "How do you like this supplier in terms of speed? (optional)" %><br>
+          <p>In terms of <strong>speed</strong>, how do you like this supplier? (optional)</p>
           <span class="star-rating">
           <% (1..5).each do |value| %>
             <%= radio_button_tag("speed_score", "#{value}", checked = (value == @comment.speed_score)) %><i></i>
