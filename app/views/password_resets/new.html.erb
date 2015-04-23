@@ -18,7 +18,7 @@
         <%= submit_tag "Reset Your Password", class: "save-button", :id => "save_button" %>
       <% end %>
       <div>
-        <em>You will receive an email with instructions on how to reset your password</em>
+        <em><%= @message_text %></em>
       </div>
     </div>
     <!-- end form -->
