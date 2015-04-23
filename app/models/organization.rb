@@ -28,9 +28,13 @@ class Organization < ActiveRecord::Base
 
   def providers_hash_by_tag
     hash = {}
-
-    provider_tags.sort_by { |t| t.readable.downcase }.each do |tag|
-      hash[tag] = providers.joins(:tags).where(tags: {id: tag.id}).order(:name)
+    tags_with_providers = provider_tags.includes(:providers).references(:providers)
+    tags_with_providers.sort_by {|tag| tag.readable.downcase }.each do |tag|
+      # puts "tag.readable: #{tag.readable}"
+      # tag.providers.sort_by {|provider| provider.name.downcase}.each do |provider|
+      #   puts "provider.name: #{provider.name}"
+      # end
+      hash[tag] = tag.providers.sort_by {|provider| provider.name.downcase}
     end
 
     hash
