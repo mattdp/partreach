@@ -1,9 +1,8 @@
 class PasswordResetsController < ApplicationController
-  skip_before_action :allow_staging_access, only: [:new, :create, :edit, :update]
+  skip_before_action :allow_staging_access, only: [:new, :create]
   
-  HOURS_ALLOWED = 48
-
   def new
+    @message_text = "You will receive an email with instructions on how to reset your password"
     render layout: "provider"
   end
 
@@ -12,35 +11,11 @@ class PasswordResetsController < ApplicationController
     if lead_contact 
       user = lead_contact.contactable.user
       user.send_password_reset if user
-    end
-    redirect_to teams_signin_url, :notice => "Email sent with password reset instructions."
-  end
-
-  def edit
-    @user = User.find_by_password_reset_token(params[:id])
-    @hours_allowed = HOURS_ALLOWED
-
-    render layout: "provider"
-  end
-
-  def update
-    @user = User.find_by_password_reset_token!(params[:id])
-    if @user.password_reset_sent_at < HOURS_ALLOWED.hours.ago
-      redirect_to new_password_reset_path, :alert => "Password reset has expired. For security, each reset is good for #{HOURS_ALLOWED} hours). Contact support@supplybetter.com to get another reset link."
-    elsif @user.update_attributes(password_reset_params)
-      sign_in @user
-      redirect_to orders_path, :notice => "Password has been set. You are now logged in."
+      @message_text = "Great! You should have an email with further instructions on how to reset your password. If there are any difficulties, please contact us at support@supplybetter.com"
     else
-      render :edit
+      @message_text = "Sorry, we can't locate that email address in our system."
     end
-
-    render layout: "provider"
+    render "new", layout: "provider"
   end
-
-  private
-
-    def password_reset_params
-      params.require(:user).permit(:password,:password_confirmation)
-    end
 
 end
