@@ -14,7 +14,7 @@ module Crawlers
   def printabase_csv_loader(url)
     
     CSV.new(open(url)).each do |row|
-      if row[PB_USE_ROW] == "TRUE" and Supplier.find_by_name(row[PB_COMPANY].downcase).nil?
+      if row[PB_USE_ROW] == "TRUE" and Supplier.predefined(row[PB_COMPANY].downcase).nil?
         
         s = Supplier.new
         s.name = row[PB_COMPANY]
@@ -70,7 +70,7 @@ module Crawlers
               s.add_tag(tag_id)
             end
           end
-          s.add_tag(Tag.find_by_name("datadump").id) #important to mark them as such
+          s.add_tag(Tag.predefined("datadump").id) #important to mark them as such
         end
       end
     end
@@ -95,7 +95,7 @@ module Crawlers
       "DOD" => "DOD"
     }
     translator = {}
-    translator_input.map{ |k,v| translator[k] = Tag.find_by_name(v).id }
+    translator_input.map{ |k,v| translator[k] = Tag.predefined(v).id }
     in_progress = split.map{|t| translator[t]}
     answer = in_progress.reject{|t| t.nil?} #get rid of no-returns
     return answer
@@ -120,7 +120,7 @@ module Crawlers
           s.create_or_update_address( country: "US",
                                       state: Geography.transform(:short_name,row[UTAH_POSSIBLE_STATE],:long_name,"state")
                                     )
-          s.add_tag(Tag.find_by_name("datadump").id) #important to mark them as such
+          s.add_tag(Tag.predefined("datadump").id) #important to mark them as such
         end
       end
     end

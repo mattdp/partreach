@@ -1,0 +1,110 @@
+<div class="container hax-body-styling">
+  <div class="row">
+    <div class="col-md-8 any-form">
+
+      <h1><%= heading %></h1>
+
+      <p><%= link_to "Back to provider profile", teams_profile_path(@provider.name_for_link) %></p>
+
+      <%= form_tag(path, method: method) do %>
+
+        <%= hidden_field_tag :provider_id, @provider.id %>
+        <%= hidden_field_tag :comment_type, @comment_type %>
+
+        <div class="field comment-title">
+              <% po = @comment.purchase_order %>
+              <% if po %>
+                <% po.tags.each do |tag| %>
+                  <%= tag.name %>
+                <% end %>
+                <%= "Quantity: #{po.quantity}" if po.quantity %>
+                <%= "Price: #{number_to_currency(po.price)}" if po.price %>
+              <% end %>
+        </div>
+
+        <div class="field comment-title">
+          <%= label_tag :title, "Your comment title (optional)" %><br>
+          <%= text_field_tag :title, @comment.title %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :payload, "Your comment" %><br>
+          <%= text_area_tag :payload, @comment.payload, rows: 5 %>
+        </div>
+
+        <div class="overall field">
+          <p><strong>Overall,</strong> how do you like this supplier? (optional)</p>
+          <span class="star-rating">
+          <% (1..5).each do |value| %>
+            <%= radio_button_tag("overall_score", "#{value}", checked = (value == @comment.overall_score)) %><i></i>
+          <% end %>
+          </span>
+          <% rating_text = ((@comment.overall_score != 0) ? "#{@comment.overall_score} stars" : "Rating not yet selected") %>
+          <strong class="choice"><%= rating_text %></strong>
+        </div>
+        <hr>
+        <div class="quality field">
+          <p>In terms of <strong>quality</strong>, how do you like this supplier? (optional)</p>
+          <span class="star-rating">
+          <% (1..5).each do |value| %>
+            <%= radio_button_tag("quality_score", "#{value}", checked = (value == @comment.quality_score)) %><i></i>
+          <% end %>
+          </span>
+          <% rating_text = ((@comment.quality_score != 0) ? "#{@comment.quality_score} stars" : "Rating not yet selected") %>
+          <strong class="choice"><%= rating_text %></strong>
+        </div>
+        <hr>
+        <div class="cost field">
+          <p>In terms of <strong>cost</strong>, how do you like this supplier? (optional)</p>
+          <span class="star-rating">
+          <% (1..5).each do |value| %>
+            <%= radio_button_tag("cost_score", "#{value}", checked = (value == @comment.cost_score)) %><i></i>
+          <% end %>
+          </span>
+          <% rating_text = ((@comment.cost_score != 0) ? "#{@comment.cost_score} stars" : "Rating not yet selected") %>
+          <strong class="choice"><%= rating_text %></strong>
+        </div>
+        <hr>
+        <div class="speed field">
+          <p>In terms of <strong>speed</strong>, how do you like this supplier? (optional)</p>
+          <span class="star-rating">
+          <% (1..5).each do |value| %>
+            <%= radio_button_tag("speed_score", "#{value}", checked = (value == @comment.speed_score)) %><i></i>
+          <% end %>
+          </span>
+          <% rating_text = ((@comment.speed_score != 0) ? "#{@comment.speed_score} stars" : "Rating not yet selected") %>
+          <strong class="choice"><%= rating_text %></strong>
+        </div>
+   
+        <div class="col-md-4">
+          <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
+        </div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+<!-- JS TO ALLOW RATINGS TO WORK -->
+<script type="text/javascript"> 
+  $('.overall :radio').change(
+  function(){
+    $('.overall .choice').text( this.value + ' stars' );
+  });
+
+  $('.quality :radio').change(
+  function(){
+    $('.quality .choice').text( this.value + ' stars' );
+  });
+
+  $('.cost :radio').change(
+  function(){
+    $('.cost .choice').text( this.value + ' stars' );
+  });
+
+  $('.speed :radio').change(
+  function(){
+    $('.speed .choice').text( this.value + ' stars' );
+  });
+</script>

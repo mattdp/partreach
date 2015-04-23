@@ -15,7 +15,7 @@ Partreach::Application.routes.draw do
   get '/analytics/phone', to: 'analytics#phone', as: 'analytics_phone'
   get '/analytics/web_search_results', to: 'analytics#web_search_results', as: 'analytics_web_search_results'
 
-  resources :comments, only: [:create]
+  resources :comments, only: [:create, :edit, :update]
   get '/comments/new_comment/:provider_id', to: 'comments#new_comment', as: 'new_comment'
   get '/comments/new_factory_visit_comment/:provider_id', to: 'comments#new_factory_visit_comment', as: 'new_factory_visit_comment'
   get '/comments/new_purchase_order_comment/:provider_id', to: 'comments#new_purchase_order_comment', as: 'new_purchase_order_comment'
@@ -86,13 +86,14 @@ Partreach::Application.routes.draw do
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'
   match '/owners/destroy/:supplier_id/:machine_id', to: 'owners#destroy', as: 'destroy_owner', via: :delete
 
-  resources :password_resets
+  resources :password_resets, only: [:new, :create]
 
   resources :parts, only: [:create]
 
   resources :providers, only: [:new, :create, :edit]
   get '/providers/new/:event_name', to: 'providers#new', as: 'new_provider_with_event'
   get '/providers/:id/edit/:event_name/', to: 'providers#edit', as: 'edit_provider_with_event'
+  post 'providers/create_tag', to: 'providers#create_tag', as: 'create_provider_tag'
   match 'providers/:id', to: 'providers#update', as: 'provider', via: :post
   get '/teams/signin', to: 'providers#signin', as: 'teams_signin'
   get '/teams', to: 'providers#index', as: "teams_index"
@@ -105,7 +106,7 @@ Partreach::Application.routes.draw do
 
   resources :reviews, only: [:new, :create]
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy, :edit, :update]
   get '/signin', to: 'sessions#new', as: 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
 

@@ -181,7 +181,7 @@ module DataEntry
     puts "first" if counter == 0
     n = row[TAG_NAME]
     if !n.nil? and n.length > 0 and counter > 0
-      t = Tag.find_by_name(n)
+      t = Tag.predefined(n)
       t = Tag.new if t.nil?
       t.name = n
       t.family = row[TAG_FAMILY]

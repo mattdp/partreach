@@ -68,7 +68,7 @@ describe "Supplier" do
 
   describe "pending_examination" do
     it "returns the count of suppliers tagged 'datadump'" do
-      @supplier.add_tag(Tag.find_by_name 'datadump')
+      @supplier.add_tag(Tag.predefined 'datadump')
       Supplier.pending_examination.should == 1
     end
   end

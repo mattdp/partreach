@@ -1,53 +1,5 @@
 <% provide(:title, "Add a comment") %>
 
-<div class="container hax-body-styling">
-  <div class="row">
-    <div class="col-md-8">
+<% heading = "Adding #{@verbose_type} for '#{@provider.name}'" %>
 
-      <h1><%= "Adding #{@comment_type_text} for '#{@provider.name}'" %></h1>
-
-      <%= form_tag comments_path do %>
-
-        <%= hidden_field_tag :provider_id, @provider.id %>
-        <%= hidden_field_tag :comment_type, @comment_type %>
-        <%= hidden_field_tag :overall_score, 0, {:class => "overall_score"} %>
-
-        <div class="field comment-title">
-          <%= label_tag :title, "Your comment title (optional)" %><br>
-          <%= text_field_tag :title %>
-        </div>
-
-        <div class="field">
-          <%= label_tag :payload, "Your comment" %><br>
-          <%= text_area_tag :payload, nil, rows: 5 %>
-        </div>
-
-        <div class="field">
-          <%= label_tag :overall_score, "How do you like this supplier overall? (optional)" %><br>
-          <span class="star-rating">
-            <input type="radio" name="rating" value="1"><i></i>
-            <input type="radio" name="rating" value="2"><i></i>
-            <input type="radio" name="rating" value="3"><i></i>
-            <input type="radio" name="rating" value="4"><i></i>
-            <input type="radio" name="rating" value="5"><i></i>
-          </span>
-          <strong class="choice">Rating not yet selected</strong>
-        </div>
-
-        <%= submit_tag "Submit", class: "save-button" %>
-
-      <% end %>
-
-    </div>
-  </div>
-</div>
-
-<!-- JS TO ALLOW RATINGS TO WORK -->
-<script type="text/javascript"> 
-  $(':radio').change(
-  function(){
-    $('.choice').text( this.value + ' stars' );
-    $('.overall_score').val( this.value );
-  } 
-)
-</script>
+<%= render partial: 'comments/comments_form', locals: {heading: heading, path: comments_path, method: :post} %>

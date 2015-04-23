@@ -50,6 +50,12 @@ class Geography < ActiveRecord::Base
     geo
   end
 
+  def self.output_readable_table
+    Geography.find_each do |g|
+      puts "#{g.id}: #{g.short_name} (#{g.long_name})"
+    end
+  end
+
   def self.locate(text,symbol,level)
     Geography.where(symbol => text, :level => level).first
   end

@@ -12,7 +12,7 @@ class ExperimentsController < ApplicationController
           why_buy_text: "We bought this machine so that we could 3D print objects",
           why_buy_supplier: "Fake Supplier Inc.",
           manufacturer: "Stratasys",
-          process_tags: [Tag.find_by_name("FDM")],
+          process_tags: [Tag.predefined("FDM")],
           materials: ["ABS M30","ABS ESD7"],
           filetypes: ["STL"],
           build_chamber_xyz: "3x4x5"
@@ -32,7 +32,7 @@ class ExperimentsController < ApplicationController
           why_buy_text: "We bought this machine so that we could 3D print objects",
           why_buy_supplier: "Not A Real Company Inc.",
           manufacturer: "3D Systems",
-          process_tags: [Tag.find_by_name("SLA")],
+          process_tags: [Tag.predefined("SLA")],
           materials: ["Accura Sapphire, Accura 55"],
           filetypes: ["STL","IGES"],
           build_chamber_xyz: "3x6x10"
