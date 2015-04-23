@@ -29,7 +29,7 @@ class Organization < ActiveRecord::Base
   def tags_and_providers
     connection = ActiveRecord::Base.connection
     sql = "
-    SELECT count(taggings.tag_id) AS COUNT, tags.readable
+    SELECT tags.readable, count(taggings.tag_id) AS COUNT
     FROM tags
     INNER JOIN taggings
     ON taggings.tag_id = tags.id 
