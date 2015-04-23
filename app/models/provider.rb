@@ -17,7 +17,7 @@
 #  contact_role               :string(255)
 #  verified                   :boolean          default(FALSE)
 #  city                       :string(255)
-#  address                    :text
+#  location_string            :text
 #  id_within_source           :integer
 #  contact_skype              :string(255)
 #  organization_id            :integer          not null
@@ -36,6 +36,7 @@ class Provider < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
   has_many :externals, :as => :consumer, :dependent => :destroy
+  has_one :address, :as => :place, :dependent => :destroy
   belongs_to :organization
 
   validates :name, presence: true, uniqueness: {case_sensitive: false}
@@ -62,6 +63,25 @@ class Provider < ActiveRecord::Base
     return 0 if numbers_without_zeros == []
     preround = numbers_without_zeros.inject(:+)/numbers_without_zeros.count.to_f
     return preround.round
+  end
+
+  #returns nil or a parsed date string
+  def latest_purchase_order_date
+    return nil if !self.purchase_orders.present?
+    po = PurchaseOrder.where("provider_id = ?",self.id).order("created_at DESC").first
+    return po.created_at.strftime("%b %e, %Y")
+  end
+
+  def index_address
+    address = self.address
+    return nil if address.nil?
+    returnee = "#{address.city}"
+    if address.country.present? and !(address.country.short_name == "US" or address.country.short_name == "unknown")
+      returnee.present? ? returnee += ", #{address.country.short_name}" : returnee = "#{address.country.short_name}"
+    elsif address.state.present? and !(address.state.short_name == "unknown")
+      returnee.present? ? returnee += ", #{address.state.short_name}" : returnee = "#{address.state.short_name}"
+    end
+    return returnee
   end
 
   #modified from supplier version - MAKE SURE TO LOOK AT ORGANIZATION TAG METHODS FIRST

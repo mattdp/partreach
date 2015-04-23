@@ -5,6 +5,7 @@ class ProvidersController < ApplicationController
   def new
     @provider = Provider.new
     @tags = current_organization.provider_tags
+    @organization = current_organization    
     @checked_tags = []
 
     if params[:event_name].present? 
@@ -27,6 +28,7 @@ class ProvidersController < ApplicationController
   def edit
     @provider = current_organization.providers.find(params[:id])
     @tags = current_organization.provider_tags
+    @organization = current_organization
     @checked_tags = @provider.tags
 
     if params[:event_name].present? 
@@ -46,6 +48,7 @@ class ProvidersController < ApplicationController
   def create_or_update_provider
     saved_ok = false
     loop do
+      @provider.assign_attributes(editable_provider_params) #returns nil
       break unless @provider.save
       break unless @provider.update_tags(params[:tag_selection])
       new_tag_names = [params[:new_tag_1],params[:new_tag_2],params[:new_tag_3]].select {|tag_name| tag_name.present? }
@@ -63,10 +66,10 @@ class ProvidersController < ApplicationController
     end
 
     if saved_ok
-      Event.add_event("User","#{current_user.id}","created a provider","Provider","#{@provider.id}")
+      Event.add_event("User","#{current_user.id}","created or updated a provider","Provider","#{@provider.id}")
       redirect_to teams_profile_path(@provider.name_for_link), note: "Saved OK!" 
     else 
-      Event.add_event("User","#{current_user.id}","attempted provider create - ERROR")      
+      Event.add_event("User","#{current_user.id}","attempted provider create or update - ERROR")
       redirect_to teams_index_path, note: "Saving problem."
     end
   end
@@ -91,19 +94,52 @@ class ProvidersController < ApplicationController
   end
 
   def index
+    @providers_list = current_organization.providers_alpha_sort
     @provider_hash = current_organization.providers_hash_by_tag
+
+    @providers_tag_search_list = []
+    @provider_hash.each { |tag, providers| @providers_tag_search_list << [providers.size, tag.readable] }
+    @providers_tag_search_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
+    @providers_tag_search_list.each { |e| e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]" }
+
     Event.add_event("User",current_user.id,"loaded index")
     render layout: "provider"
   end
 
   def search_results
-    if @tag_filters = params[:tags]
-      @provider_tags = current_organization.provider_tags
-      @providers = current_organization.providers.
-                   joins(taggings: :tag).where(tags: {readable: @tag_filters}).
-                   group('providers.id').having("count(*) >= #{@tag_filters.size}")
-      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @tag_filters.join(" & "))
+    if params[:tags].present?
+
+      tags = []
+      params[:tags].each do |unsafe_string|
+        possible_tag = Tag.where("organization_id = ? and readable = ?",current_organization,unsafe_string)
+        tags << possible_tag[0] if possible_tag.present?
+      end
+
+      #adapted from organization.providers_hash_by_tag
+      @results_hash = {}
+      tags.sort_by { |t| t.readable.downcase }.each do |tag|
+        @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
+          .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
+          .order("lower(name)")
+      end
+
+      @search_text = tags.map{|t| t.readable}.join(" & ")
+      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @search_text)
       render layout: "provider"
+
+    elsif params[:providers].present?
+      providers = []
+      params[:providers].each do |unsafe_string|
+        possible_provider = Provider.find_by_name(unsafe_string)
+        providers << possible_provider if possible_provider.present?
+      end
+
+      @results_hash = {}
+      @results_hash["Providers"] = providers
+      
+      @search_text = providers.map{|p| p.name}.join(" & ")
+      Event.add_event("User", current_user.id, "searched providers by provider names", nil, nil, @search_text)
+      render layout: "provider"      
     else
       redirect_to teams_index_path
     end
@@ -140,10 +176,9 @@ class ProvidersController < ApplicationController
   private
 
     def editable_provider_params
-      params[:verified] = params[:verified].present? ? true : false
-      params.permit(:name,:url_main,:contact_qq, \
+      params.permit(:name,:url_main, \
         :contact_wechat,:contact_phone,:contact_email,:contact_name, \
-        :contact_role,:verified,:city,:address,:contact_skype)
+        :contact_role,:location_string,:external_notes,:organization_private_notes)
     end
 
 end

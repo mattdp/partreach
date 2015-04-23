@@ -18,14 +18,18 @@ class Organization < ActiveRecord::Base
     Provider.where(organization: self)
   end
 
+  def providers_alpha_sort
+    providers.sort_by { |p| p.name.downcase }
+  end
+
   def provider_tags
-    Tag.where("organization_id = ?",self.id)
+    Tag.where(organization_id: self.id)
   end
 
   def providers_hash_by_tag
     hash = {}
 
-    provider_tags.sort_by { |t| t.readable.downcase}.each do |tag|
+    provider_tags.sort_by { |t| t.readable.downcase }.each do |tag|
       hash[tag] = providers.joins(:tags).where(tags: {id: tag.id}).order(:name)
     end
 

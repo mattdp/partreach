@@ -6,7 +6,7 @@ gem 'rails', '~> 4.1.0'
 gem 'webrick', '= 1.3.1' #https://github.com/JumpstartLab/curriculum/issues/373
 gem 'bootstrap-sass', '3.0.2.1'
 gem 'faker'
-gem 'newrelic_rpm', '3.6.6.147'
+gem 'newrelic_rpm'
 gem 's3_direct_upload'
 gem 'pg', '0.17.1' #http://blog.willj.net/2011/05/31/setting-up-postgresql-for-ruby-on-rails-development-on-os-x/
 gem 'twilio-ruby', '3.10.1'
@@ -36,7 +36,7 @@ gem 'premailer-rails'
 # subsequent commits as of Nov 14, 2014 revision: 1b0689dfb4d230ceabd278eba159fcb02f23c68a are documentation updates only
 gem 'nested_form', github: 'ryanb/nested_form'
 gem 'mechanize'
-
+gem 'StreetAddress', :require => "street_address"
 
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'

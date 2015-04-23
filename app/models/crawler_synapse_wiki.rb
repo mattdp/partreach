@@ -62,19 +62,27 @@ class CrawlerSynapseWiki
 "https://s3.amazonaws.com/supplybetter-synpgs/test",
 "https://s3.amazonaws.com/supplybetter-synpgs/ttteeesssttt",
 "https://s3.amazonaws.com/supplybetter-synpgs/Coxon",
+"https://s3.amazonaws.com/supplybetter-synpgs/Pathway_Designs", #dupe
 "https://s3.amazonaws.com/supplybetter-synpgs/The_empty_format_for_vendor_information_list"
     ]
 
+    revisited = ["https://s3.amazonaws.com/supplybetter-synpgs/Feedback_on_Coxon",
+      "https://s3.amazonaws.com/supplybetter-synpgs/Jemco", #error on upload
+      "https://wiki.synapse.com/display/Vendors/Altaflex+-+ME+Vendor+Page",
+      "https://s3.amazonaws.com/supplybetter-synpgs/RPDG_Rapid_Product_Development_Group_Inc_", #dupe
+      "https://s3.amazonaws.com/supplybetter-synpgs/Vendor_Visits_in_SF"
+] 
+
     revisit = [
 "https://s3.amazonaws.com/supplybetter-synpgs/SF_Shops_to_try",
-"https://s3.amazonaws.com/supplybetter-synpgs/Potential_ME_Vendors_List",
-"https://s3.amazonaws.com/supplybetter-synpgs/RPDG_Rapid_Product_Development_Group_Inc_", #dupe
-"https://s3.amazonaws.com/supplybetter-synpgs/Pathway_Designs", #dupe
-"https://s3.amazonaws.com/supplybetter-synpgs/Vendor_Visits_in_SF",
-"https://s3.amazonaws.com/supplybetter-synpgs/Feedback_on_Coxon", #coxon is supplier
-"https://s3.amazonaws.com/supplybetter-synpgs/Jemco", #error
-"https://wiki.synapse.com/display/Vendors/Altaflex+-+ME+Vendor+Page"
+"https://s3.amazonaws.com/supplybetter-synpgs/Potential_ME_Vendors_List"
 ]
+
+    send_to_bret = [
+#information on how to design/use batteries
+"https://wiki.synapse.com/display/Vendors/Li-Polymer+Batteries+-+ME+Vendor+Page",
+"https://wiki.synapse.com/display/Vendors/Altaflex+-+ME+Vendor+Page"
+  ]
 
     urls = [
 "https://s3.amazonaws.com/supplybetter-synpgs/3D_Systems_Inc_formerly_Moeller_Design_",
@@ -431,7 +439,7 @@ class CrawlerSynapseWiki
               contact[:phone] = text.scan(/Phone: (.*)/) if text.scan(/Phone: (.*)/).present?
               contact[:fax] = text.scan(/Fax: (.*)/) if text.scan(/Fax: (.*)/).present?
               contact[:mobile] = text.scan(/Mobile: (.*)/) if text.scan(/Mobile: (.*)/).present?
-              contact[:address] = text.scan(/Address: (.*)/) if text.scan(/Address: (.*)/).present?
+              contact[:location_string] = text.scan(/Address: (.*)/) if text.scan(/Address: (.*)/).present?
               contact[:email] = text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})/i) if text.scan(/([\w+\-.]+@[a-z\d\-.]+\.[a-z]{1,5})/i).present?
               #not great, but don't want to engage with URI library when don't know which strings are url-ish
               contact[:website] = text.scan(/([\w\-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/) if (text.scan(/([\w\-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/).present? and text.scan(/(@[\w\-\.]+\.(com|net|org|edu|gov|cn)(\/\S+)?)/).empty?)          
@@ -498,7 +506,7 @@ class CrawlerSynapseWiki
         
         contact = wiki_content[:contact]
         provider.url_main = contact[:website]
-        provider.address = contact[:address]
+        provider.location_string = contact[:address]
         provider.contact_name = contact[:name]
         provider.contact_phone = contact[:phone]
         provider.contact_phone = contact[:mobile] if contact[:mobile].present? and contact[:phone].empty?
