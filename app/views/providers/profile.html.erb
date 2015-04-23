@@ -43,41 +43,43 @@
       <% else %>
         <p>None yet!</p>
       <% end %>
-      </div> 
 
-      <!-- BEGIN MIDDLE COLUMN -->
-      <div class="col-md-4">
-        <!-- CATEGORIES -->
-        <div class="profile-spacing">
+    </div> 
+
+    <!-- BEGIN MIDDLE COLUMN -->
+    <div class="col-md-4">
+      <!-- CATEGORIES -->
+      <div class="profile-spacing">
         <h3>
           What they can do for you
-         <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
+          <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
         </h3>
-        </div>
-        <div class="tags-providerTags">
-          <% @tags.each do |tag| %>
-            <a><%= "#{tag.readable}" %></a>
-        <% end %>
-        </div>
-      </div>        
+      </div>
+      <div class="tags-providerTags">
+        <% @tags.each do |tag| %>
+          <a><%= "#{tag.readable}" %></a>
+      <% end %>
+      </div>
+    </div>        
 
-      <!-- BEGIN RIGHT COLUMN -->
-      <div class="col-md-4">
-        <div class="table-header">
-        <!-- ADDRESS SECTION -->
-          <div class="profile-spacing">
+    <!-- BEGIN RIGHT COLUMN -->
+    <div class="col-md-4">
+      <div class="table-header">
+      <!-- ADDRESS SECTION -->
+        <div class="profile-spacing">
           <h3>Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
-          </div>
-          <ul>
-            <li><p><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p></li>
-            <li><p><strong>Phone: </strong><%= @provider.contact_phone %></p></li>
-            <li><p><strong>Email: </strong><%= @provider.contact_email %></p></li>
-            <li><p><strong>Website: </strong><%= link_to "Link", @provider.url_main if @provider.url_main %></p></li>            
-            <li><p><strong>Full address: </strong><%= "#{@provider.location_string}" %></p></li>
-          </ul>    
         </div>
+        <ul>
+          <li><p><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p></li>
+          <li><p><strong>Phone: </strong><%= @provider.contact_phone %></p></li>
+          <li><p><strong>Email: </strong><%= @provider.contact_email %></p></li>
+          <li><p><strong>Website: </strong><%= link_to "Link", @provider.url_main if @provider.url_main %></p></li>            
+          <li><p><strong>Full address: </strong><%= "#{@provider.location_string}" %></p></li>
+        </ul>    
       </div>
     </div>
+    
+  </div>
 
   <div class="row col-md-12">
     <hr>
