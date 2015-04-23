@@ -19,7 +19,7 @@ class Organization < ActiveRecord::Base
   end
 
   def providers_alpha_sort
-    providers.sort_by { |p| p.name.downcase }
+    Provider.where(organization: self).order("lower(name)")
   end
 
   def provider_tags
