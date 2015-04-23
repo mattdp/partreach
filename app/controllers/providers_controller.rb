@@ -95,8 +95,7 @@ class ProvidersController < ApplicationController
 
   def index
     @providers_list = current_organization.providers_alpha_sort
-    @providers_tag_search_list = current_organization.tags_and_providers 
-    @providers_tag_search_list.each { |e| e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]" }
+    @providers_tag_search_list = current_organization.tags_and_providers.map{ |quantity,text| "#{text} [#{quantity} #{"company".pluralize(quantity.to_i)}]" }
 
     Event.add_event("User",current_user.id,"loaded index")
     render layout: "provider"
