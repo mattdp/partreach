@@ -86,7 +86,7 @@ Partreach::Application.routes.draw do
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'
   match '/owners/destroy/:supplier_id/:machine_id', to: 'owners#destroy', as: 'destroy_owner', via: :delete
 
-  resources :password_resets
+  resources :password_resets, only: [:new, :create]
 
   resources :parts, only: [:create]
 
@@ -106,7 +106,7 @@ Partreach::Application.routes.draw do
 
   resources :reviews, only: [:new, :create]
 
-  resources :sessions, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy, :edit, :update]
   get '/signin', to: 'sessions#new', as: 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
 
