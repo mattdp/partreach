@@ -26,14 +26,18 @@ class Organization < ActiveRecord::Base
     Tag.where(organization_id: self.id)
   end
 
-  def providers_hash_by_tag
-    hash = {}
-
-    provider_tags.sort_by { |t| t.readable.downcase }.each do |tag|
-      hash[tag] = providers.joins(:tags).where(tags: {id: tag.id}).order(:name)
-    end
-
-    hash
+  def tags_and_providers
+    connection = ActiveRecord::Base.connection
+    sql = "
+    SELECT count(taggings.tag_id) AS COUNT, tags.readable
+    FROM tags
+    INNER JOIN taggings
+    ON taggings.tag_id = tags.id 
+    WHERE tags.organization_id = #{self.id}
+    GROUP BY tags.readable
+    ORDER BY lower(tags.readable)
+    "
+    rows = connection.select_all(sql).rows
   end
 
   def find_or_create_tag!(name,user)

@@ -95,11 +95,7 @@ class ProvidersController < ApplicationController
 
   def index
     @providers_list = current_organization.providers_alpha_sort
-    @provider_hash = current_organization.providers_hash_by_tag
-
-    @providers_tag_search_list = []
-    @provider_hash.each { |tag, providers| @providers_tag_search_list << [providers.size, tag.readable] }
-    @providers_tag_search_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
+    @providers_tag_search_list = current_organization.tags_and_providers 
     @providers_tag_search_list.each { |e| e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]" }
 
     Event.add_event("User",current_user.id,"loaded index")
