@@ -11,12 +11,12 @@
     <div class="col-md-4">
       
       <!-- COMPANY NAME -->
-        <div class="provider-profile">
+      <div class="provider-profile">
         <h1>
-        <%= @provider.name %>
-        <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id,"edit_providername_from_profile") %>]</span>
+          <%= @provider.name %>
+          <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id,"edit_providername_from_profile") %>]</span>
         </h1>
-        </div>
+      </div>
       
       <!-- STAR RATINGS -->
       <!-- need to add an if statement to handle the case when there are no comments (and prompt the user to add a comment) -->
@@ -33,15 +33,16 @@
       </div>      
 
       <!-- PURCHASE ORDERS -->
-      <h3>
-        Purchase orders
-       <span class="heading_navigation">[<%= link_to "add a purchase", new_purchase_order_comment_path(@provider.id) %>]</span>
-       </h3>  
-       <ul>
-        <% @po_names.each do |name| %>
-          <li><p><%= "#{name}" %></p></li>
-        <% end %>
-      </ul>
+      <h3>Purchase orders</h3> 
+      <% if @po_names.present? %> 
+        <ul>
+          <% @po_names.each do |name| %>
+            <li><p><%= "#{name}" %></p></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>None yet!</p>
+      <% end %>
       </div> 
 
       <!-- BEGIN MIDDLE COLUMN -->
