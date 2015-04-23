@@ -19,21 +19,25 @@ class Organization < ActiveRecord::Base
   end
 
   def providers_alpha_sort
-    providers.sort_by { |p| p.name.downcase }
+    Provider.where(organization: self).order("lower(name)")
   end
 
   def provider_tags
     Tag.where(organization_id: self.id)
   end
 
-  def providers_hash_by_tag
-    hash = {}
-
-    provider_tags.sort_by { |t| t.readable.downcase }.each do |tag|
-      hash[tag] = providers.joins(:tags).where(tags: {id: tag.id}).order(:name)
-    end
-
-    hash
+  def tags_and_providers
+    connection = ActiveRecord::Base.connection
+    sql = "
+    SELECT tags.readable, count(taggings.tag_id) AS COUNT
+    FROM tags
+    INNER JOIN taggings
+    ON taggings.tag_id = tags.id 
+    WHERE tags.organization_id = #{self.id}
+    GROUP BY tags.readable
+    ORDER BY lower(tags.readable)
+    "
+    rows = connection.select_all(sql).rows
   end
 
   def find_or_create_tag!(name,user)
