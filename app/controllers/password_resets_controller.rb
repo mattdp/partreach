@@ -11,7 +11,7 @@ class PasswordResetsController < ApplicationController
     if lead_contact 
       user = lead_contact.contactable.user
       user.send_password_reset if user
-      @message_text = "An email has been sent with password reset instructions."
+      @message_text = "Great! You should have an email with further instructions on how to reset your password. If there are any difficulties, please contact us at support@supplybetter.com"
     else
       @message_text = "Sorry, we can't locate that email address in our system."
     end
