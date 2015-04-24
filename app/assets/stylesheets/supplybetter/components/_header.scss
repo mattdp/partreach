@@ -36,12 +36,17 @@
 
 .dropdown {
   position: relative;
+  min-width: 160px; /*to prevent dropdown menu for user running off the right side of the page*/
 
   &.open {
     .dropdown-menu {
       display: block;
     }
   }
+}
+
+.dropdown .username {
+  float:right;
 }
 
 .dropdown-menu {
