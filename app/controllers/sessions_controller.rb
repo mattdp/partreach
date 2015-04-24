@@ -28,13 +28,13 @@ class SessionsController < ApplicationController
   end
 
   def update
-    user = User.find_by_password_reset_token(params[:id])
-    if user.nil?
+    @user = User.find_by_password_reset_token(params[:id])
+    if @user.nil?
       redirect_to new_password_reset_path, :alert => "Invalid password reset token."
-    elsif user.password_reset_sent_at < HOURS_ALLOWED.hours.ago
+    elsif @user.password_reset_sent_at < HOURS_ALLOWED.hours.ago
       redirect_to new_password_reset_path, :alert => "Password reset has expired. For security, each reset is good for #{HOURS_ALLOWED} hours)."
-    elsif user.update_attributes(password_reset_params)
-      sign_in user
+    elsif @user.update_attributes(password_reset_params)
+      sign_in @user
       redirect_after_signin("Password has been set. You are now logged in.")
     else
       render :edit, layout: "provider"
