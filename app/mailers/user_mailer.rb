@@ -27,12 +27,13 @@ class UserMailer < ActionMailer::Base
     end_string = date.to_s + " 23:59:59"
 
     content = ""
-    # NOT IMPLEMENTED YET
-    address_changes = Event.where("created_at >= ? and created_at < ?",begin_string,end_string)
-    content += "<h2>Address changes - need to manual update</h2>"
-    address_changes.each do |event|
-      "NOT IMPLEMENTED YET"
-    end
+
+    # # NOT IMPLEMENTED YET
+    # address_changes = Event.where("created_at >= ? and created_at < ?",begin_string,end_string)
+    # content += "<h2>Address changes - need to manual update</h2>"
+    # address_changes.each do |event|
+    #   "NOT IMPLEMENTED YET"
+    # end
 
     events = Event.where("created_at >= ? and created_at < ? and model = 'User' and model_id IS NOT NULL",begin_string,end_string).order(:model_id)
     #don't want admin events polluting things
