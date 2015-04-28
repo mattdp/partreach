@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
-  before_filter :org_access_only
+  before_filter :org_access_only, except: [:later]
   before_filter :correct_user, only: [:edit, :update]
+  before_filter :admin_user, only: [:request_for_review]
 
   def new_comment
     @comment_type = "comment"
@@ -22,7 +23,8 @@ class CommentsController < ApplicationController
 
   def render_new_comment_form
     @comment = Comment.new
-    @provider = Provider.find(params[:provider_id])    
+    @provider = Provider.find(params[:provider_id])
+    @flavor = nil    
     Event.add_event("User",current_user.id,"loaded new comment page for","Provider",@provider.id)
     render "new", layout: "provider"
   end
@@ -49,7 +51,17 @@ class CommentsController < ApplicationController
     # note: @comment initialized in correct_user before_filter
     @verbose_type = Comment.verbose_type(@comment.comment_type)
     @provider = @comment.provider
+    @user = @comment.user
+
+    @flavor = params[:flavor]
+    if @flavor == "good"
+      Event.add_event("User", @user.id, "said job was good", "Comment", @comment.id)
+    elsif @flavor == "bad"
+      Event.add_event("User", @user.id, "said job was bad", "Comment", @comment.id)
+    end
+    
     Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
+    
     render "edit", layout: "provider"
   end
 
@@ -59,6 +71,18 @@ class CommentsController < ApplicationController
     Event.add_event("User", current_user.id, "attempted comment update for", "Comment", @comment.id) 
     note = (@comment.update_attributes(comment_params) ? "Saved OK!" : "Saving problem.")
     redirect_to teams_profile_path(provider.name_for_link), notice: note
+  end
+
+  def request_for_review
+    @comment = Comment.find(params[:id])
+    render layout: "provider"
+  end
+
+  def later
+    @comment = Comment.find(params[:id])
+    @user = @comment.user
+    Event.add_event("User", @user.id, "said contact me later", "Comment", @comment.id)
+    render layout: "provider"
   end
 
   private

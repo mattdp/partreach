@@ -2,9 +2,19 @@
   <div class="row">
     <div class="col-md-8 any-form">
 
+      <% if current_user.admin and @comment.present? and @comment.id.present? %>
+        <%= link_to "Admin only: email reminder for this comment", comments_request_for_review_path(@comment.id) %>
+      <% end %>
+
       <h1><%= heading %></h1>
 
       <p><%= link_to "Back to provider profile", teams_profile_path(@provider.name_for_link) %></p>
+
+      <% if @flavor == "good" %>
+        <p><strong>Glad to hear this job went well!</strong> Your colleagues might like to know what was great.</p>
+      <% elsif @flavor == "bad" %>
+        <p><strong>Sorry to hear this job didn't go well.</strong> Adding more detail might help your colleagues avoid similar situations.</p>        
+      <% end %>
 
       <%= form_tag(path, method: method) do %>
 
