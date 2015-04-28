@@ -10,6 +10,12 @@
 
       <p><%= link_to "Back to provider profile", teams_profile_path(@provider.name_for_link) %></p>
 
+      <% if @flavor == "good" %>
+        <p><strong>Glad to hear this job went well!</strong> Your colleagues might like to know what was great.</p>
+      <% elsif @flavor == "bad" %>
+        <p><strong>Sorry to hear this job didn't go well.</strong> Adding more detail might help your colleagues avoid similar situations.</p>        
+      <% end %>
+
       <%= form_tag(path, method: method) do %>
 
         <%= hidden_field_tag :provider_id, @provider.id %>

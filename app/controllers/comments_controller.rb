@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_filter :org_access_only
+  before_filter :org_access_only, except: [:later]
   before_filter :correct_user, only: [:edit, :update]
   before_filter :admin_user, only: [:request_for_review]
 
@@ -23,7 +23,8 @@ class CommentsController < ApplicationController
 
   def render_new_comment_form
     @comment = Comment.new
-    @provider = Provider.find(params[:provider_id])    
+    @provider = Provider.find(params[:provider_id])
+    @flavor = nil    
     Event.add_event("User",current_user.id,"loaded new comment page for","Provider",@provider.id)
     render "new", layout: "provider"
   end
@@ -50,6 +51,7 @@ class CommentsController < ApplicationController
     # note: @comment initialized in correct_user before_filter
     @verbose_type = Comment.verbose_type(@comment.comment_type)
     @provider = @comment.provider
+    @flavor = params[:flavor]
     Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
     render "edit", layout: "provider"
   end
@@ -63,7 +65,12 @@ class CommentsController < ApplicationController
   end
 
   def request_for_review
-    @comment = Comment.find(params[:comment_id])
+    @comment = Comment.find(params[:id])
+    render layout: "provider"
+  end
+
+  def later
+    @comment = Comment.find(params[:id])
     render layout: "provider"
   end
 
