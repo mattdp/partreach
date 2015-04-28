@@ -21,23 +21,40 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def daily_internal_update
-    rfqs_created = 1
-    rfqs_closed = 2
-    quote_value = 3
+  #takes a date object
+  def daily_update_2015(date)
+    begin_string = date.to_s + " 00:00:00"
+    end_string = date.to_s + " 23:59:59"
 
-    metrics_data = Order.metrics(:months,Date.new(2013,8,3))[:printout][0]
+    content = ""
 
-    subject = "#{metrics_data[rfqs_created]} RFQs created, #{metrics_data[rfqs_closed]} RFQs closed, $#{metrics_data[quote_value].to_i} quote value"
+    # # NOT IMPLEMENTED YET
+    # address_changes = Event.where("created_at >= ? and created_at < ?",begin_string,end_string)
+    # content += "<h2>Address changes - need to manual update</h2>"
+    # address_changes.each do |event|
+    #   "NOT IMPLEMENTED YET"
+    # end
 
-    INTERNAL_EMAIL_DISTRIBUTION_LIST.each do |e|
-      mail(to: e, subject: subject).deliver do |format|
-        format.html { render layout: "layouts/blast_mailer", 
-                    locals: { title: subject, 
-                              supplier: nil} 
-                            }
+    events = Event.where("created_at >= ? and created_at < ? and model = 'User' and model_id IS NOT NULL",begin_string,end_string).order(:model_id)
+    #don't want admin events polluting things
+    events.reject{|e| (e.model == "User" \
+      and User.find(e.model_id).present? \
+      and User.find(e.model_id).admin
+    )}
+
+    last_model_id = 0
+    events.each do |event|
+      if last_model_id != event.model_id
+        user = User.find(event.model_id)
+        organization = user.team.organization
+        contact = user.lead.contact
+        content += '<h2><%= "#{organization.name} - #{contact.name}" %></h2>'
       end
+      content += '<p><%= "#{event.happening}" %></p>'
+      last_model_id = event.model_id
     end
+
+    email_internal_team("Update for activity taking place on #{date.to_s}",content)
   end
 
   def welcome_email(user)
