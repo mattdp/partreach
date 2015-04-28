@@ -51,8 +51,17 @@ class CommentsController < ApplicationController
     # note: @comment initialized in correct_user before_filter
     @verbose_type = Comment.verbose_type(@comment.comment_type)
     @provider = @comment.provider
+    @user = @comment.user
+
     @flavor = params[:flavor]
+    if @flavor == "good"
+      Event.add_event("User", @user.id, "said job was good", "Comment", @comment.id)
+    elsif @flavor == "bad"
+      Event.add_event("User", @user.id, "said job was bad", "Comment", @comment.id)
+    end
+    
     Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
+    
     render "edit", layout: "provider"
   end
 
@@ -71,6 +80,8 @@ class CommentsController < ApplicationController
 
   def later
     @comment = Comment.find(params[:id])
+    @user = @comment.user
+    Event.add_event("User", @user.id, "said contact me later", "Comment", @comment.id)
     render layout: "provider"
   end
 
