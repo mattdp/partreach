@@ -40,6 +40,11 @@
   padding-left: 0px;
 }
 
+.left-grid-bare {
+  padding-left: 0px;
+  padding-top: 5px;
+}
+
 div.chosen-container-multi {
   width: 100% !important;
 }
@@ -81,6 +86,7 @@ a.search-choice-close {
 
 .search-help-text {
   margin-top: 0px;
+  font-weight: normal;
 }
 
 /*END INDEX SEARCH BAR*/
