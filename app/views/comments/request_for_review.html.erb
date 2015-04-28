@@ -12,9 +12,13 @@
 
       <p>You recently ordered QTY [QUANTITY] pieces from <%= @comment.provider.name %> on [DATE] for $[PRICE]. How'd it go? </p>
 
+      <p>[DETAILS/PROJECT NAME]</p>
+
       <ul>
         <li><%= link_to "My experience was awesome!", comments_edit_with_status_path(@comment.id,"good") %></li>
+        <br>
         <li><%= link_to "My experience wasn't very good.", comments_edit_with_status_path(@comment.id,"bad") %></li>
+        <br>
         <li><%= link_to "I haven't received the parts yet!", comments_later_path(@comment.id) %></li>
       </ul>
 
