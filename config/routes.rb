@@ -19,6 +19,9 @@ Partreach::Application.routes.draw do
   get '/comments/new_comment/:provider_id', to: 'comments#new_comment', as: 'new_comment'
   get '/comments/new_factory_visit_comment/:provider_id', to: 'comments#new_factory_visit_comment', as: 'new_factory_visit_comment'
   get '/comments/new_purchase_order_comment/:provider_id', to: 'comments#new_purchase_order_comment', as: 'new_purchase_order_comment'
+  get '/comments/edit/comments/:id/edit/:flavor', to: 'comments#edit', as: 'comments_edit_with_status'
+  get '/comments/later/:id', to: 'comments#later', as: 'comments_later'
+  get '/comments/request_for_review/:id', to: 'comments#request_for_review', as: 'comments_request_for_review'
 
   resources :comment_ratings, only: [:create]
   
