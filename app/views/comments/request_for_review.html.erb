@@ -1,0 +1,25 @@
+<% provide(:title,"Comment email for comment #{@comment.id}") %>
+
+<div class="container hax-body-styling">
+  <div class="row">
+    <div class="main-area-contrast override">
+
+      <h2>Comment # <%= "#{@comment.id}" %></h2>
+
+      <%= link_to "See the comment this email is about", edit_comment_path(@comment) %>
+
+      <p>Hi [NAME],</p>
+
+      <p>You recently ordered QTY [QUANTITY] pieces from <%= @comment.provider.name %> on [DATE] for $[PRICE]. How'd it go? </p>
+
+      <ul>
+        <li>My experience was awesome!</li>
+        <li>My experience wasn't very good.</li>
+        <li>I haven't received the parts yet!</li>
+      </ul>
+
+      <p>Finally, tell us your feedback – good and bad, we want it all :) Reply to this email or write to <%= mail_to "feedback@supplybetter.com" %>.</p>
+
+    </div>
+  </div>
+</div>

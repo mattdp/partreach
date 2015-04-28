@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_filter :org_access_only
   before_filter :correct_user, only: [:edit, :update]
+  before_filter :admin_user, only: [:request_for_review]
 
   def new_comment
     @comment_type = "comment"
@@ -59,6 +60,11 @@ class CommentsController < ApplicationController
     Event.add_event("User", current_user.id, "attempted comment update for", "Comment", @comment.id) 
     note = (@comment.update_attributes(comment_params) ? "Saved OK!" : "Saving problem.")
     redirect_to teams_profile_path(provider.name_for_link), notice: note
+  end
+
+  def request_for_review
+    @comment = Comment.find(params[:comment_id])
+    render layout: "provider"
   end
 
   private
