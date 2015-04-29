@@ -58,7 +58,8 @@ class Event < ActiveRecord::Base
   end
 
   #takes a date object
-  def self.daily_update_2015(date)
+  #mysteriously the first email sent doesn't format correctly, so sending it to robert@ rather than one of us
+  def self.daily_update_2015(date, admin_reject = true)
     begin_string = date.to_s + " 00:00:00"
     end_string = date.to_s + " 23:59:59"
 
@@ -73,11 +74,14 @@ class Event < ActiveRecord::Base
     # end
 
     events = Event.where("created_at >= ? and created_at < ? and model = 'User' and model_id IS NOT NULL",begin_string,end_string).order(:model_id)
-    #don't want admin events polluting things
-    events.reject{|e| (e.model == "User" \
-      and User.find(e.model_id).present? \
-      and User.find(e.model_id).admin
-    )}
+    
+    if (admin_reject)
+      #don't want admin events polluting things
+      events = events.reject{|e| (e.model == "User" \
+        and User.find(e.model_id).present? \
+        and User.find(e.model_id).admin
+      )}
+    end
 
     content += "<h1>No non-admin events today</h1>" if events.count == 0 
 
