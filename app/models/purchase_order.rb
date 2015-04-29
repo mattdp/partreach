@@ -10,6 +10,7 @@
 #  updated_at   :datetime
 #  description  :text
 #  project_name :string(255)
+#  issue_date   :date
 #
 
 class PurchaseOrder < ActiveRecord::Base
