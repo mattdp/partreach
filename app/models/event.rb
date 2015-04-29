@@ -79,6 +79,8 @@ class Event < ActiveRecord::Base
       and User.find(e.model_id).admin
     )}
 
+    content += "<h1>No non-admin events today</h1>" if events.count == 0 
+
     last_model_id = 0
     events.each do |event|
       if last_model_id != event.model_id
