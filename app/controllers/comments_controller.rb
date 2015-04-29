@@ -75,6 +75,10 @@ class CommentsController < ApplicationController
 
   def request_for_review
     @comment = Comment.find(params[:id])
+    @provider = @comment.provider
+    @purchase_order = @comment.purchase_order
+    @contact = nil
+    @contact = @comment.user.lead.lead_contact if (@comment.user.present? and @comment.user.lead.present?)
     render layout: "provider"
   end
 

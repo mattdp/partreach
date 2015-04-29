@@ -4,15 +4,25 @@
   <div class="row">
     <div class="main-area-contrast override">
 
-      <h2>Comment #<%= "#{@comment.id}" %></h2>
+      <h2 class="center">Comment #<%= "#{@comment.id}" %></h2>
 
       <%= link_to "See the comment this email is about", edit_comment_path(@comment) %>
 
-      <p>Hi [NAME],</p>
+      <h3>To</h3>
 
-      <p>You recently ordered QTY [QUANTITY] pieces from <%= @comment.provider.name %> on [DATE] for $[PRICE]. How'd it go? </p>
+      <%= @contact.email if @contact.present? %>
 
-      <p>[DETAILS/PROJECT NAME]</p>
+      <h3>Subject</h3>
+
+      <p>SupplyBetter review for your <%= @purchase_order.issue_date.present? ? "#{@purchase_order.issue_date.strftime("%m/%d")}" : "[DATE]" %> <%= @provider.name %> order</p>
+
+      <h3>Email body</h3>
+
+      <p>Hi <%= @contact.first_name.present? ? "#{@contact.first_name}" : "[NAME]" %>,</p>
+
+      <p>You recently ordered QTY <%= @purchase_order.quantity.present? ? "#{@purchase_order.quantity}" : "[QUANTITY]" %> pieces from <%= @comment.provider.name %> on <%= @purchase_order.issue_date.present? ? "#{@purchase_order.issue_date.strftime("%m/%d")}" : "[DATE]" %>  for <%= @purchase_order.quantity.present? ? currencyize(@purchase_order.price,"dollars") : "$[PRICE]" %>. How'd it go? </p>
+
+      <p>This was for "<%= @purchase_order.description.present? ? "#{@purchase_order.description}" : "[DESCRIPTION]" %>" and project "<%= @purchase_order.project_name.present? ? "#{@purchase_order.project_name}." : "[PROJECT NAME]." %>"</p>
 
       <ul>
         <li><%= link_to "My experience was awesome!", comments_edit_with_status_path(@comment.id,"good") %></li>
