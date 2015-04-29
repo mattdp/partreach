@@ -57,4 +57,45 @@ class Event < ActiveRecord::Base
       start_date, end_date, "Order", "closed_successfully")
   end
 
+  #takes a date object
+  def self.daily_update_2015(date)
+    begin_string = date.to_s + " 00:00:00"
+    end_string = date.to_s + " 23:59:59"
+
+    content = "<p>Format: each header is USER NAME-ORGANIZATION, and under it are the events the user did that day. This excludes admin actions.</p>"
+    content += "<p>This can be improved by having events link to relevant pages; file stories on what links you most need.</p>"
+
+    # # NOT IMPLEMENTED YET
+    # address_changes = Event.where("created_at >= ? and created_at < ?",begin_string,end_string)
+    # content += "<h2>Address changes - need to manual update</h2>"
+    # address_changes.each do |event|
+    #   "NOT IMPLEMENTED YET"
+    # end
+
+    events = Event.where("created_at >= ? and created_at < ? and model = 'User' and model_id IS NOT NULL",begin_string,end_string).order(:model_id)
+    #don't want admin events polluting things
+    events.reject{|e| (e.model == "User" \
+      and User.find(e.model_id).present? \
+      and User.find(e.model_id).admin
+    )}
+
+    content += "<h1>No non-admin events today</h1>" if events.count == 0 
+
+    last_model_id = 0
+    events.each do |event|
+      if last_model_id != event.model_id
+        user = User.find(event.model_id)
+        organization = user.team.organization
+        contact = user.lead.lead_contact
+        content += "<h2>#{organization.name} - #{contact.name}</h2>"
+      end
+      content += "<p>#{event.happening} (#{event.target_model} #{event.target_model_id})</p>"
+      last_model_id = event.model_id
+    end
+
+    UserMailer.email_internal_team("Update for activity taking place on #{date.to_s}",content)
+
+    return true
+  end
+
 end

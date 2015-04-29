@@ -34,7 +34,8 @@ end
 
 desc 'send daily update email'
 task :daily_internal_update => :environment do 
-  UserMailer.daily_internal_update
+  yesterday = Date.today-1
+  Event.daily_update_2015(yesterday)
 end
 
 desc 'update all suppliers points'
