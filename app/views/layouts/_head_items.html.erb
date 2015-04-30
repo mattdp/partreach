@@ -5,6 +5,5 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= render 'layouts/shim' %>
     <% if Rails.env.production? %>
-      <%#= render 'layouts/olark' %>
       <%= render 'layouts/google_tag_manager' %>
     <% end %>
