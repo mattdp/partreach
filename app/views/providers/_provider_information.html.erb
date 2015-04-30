@@ -144,66 +144,19 @@
       </div>
     </div>
 
-  </div>
+    <h2>Tags</h2>
 
-  <div class="row">
-    <div class="col-md-11 col-md-offset-1">
-      <% if false %>
-        <h2>Tags</h2>
-        <div id="keyword-list" class="provider-tags">
-          <ul>
-            <% @tags.each do |tag| %>
-              <li>
-              <%= check_box_tag 'tag_selection[]', tag.id, @checked_tags.include?(tag) %><%= tag.readable %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
-    </div>
-  </div>
-
-  <div class="col-md-8 col-md-offset-1">
-    <% if false %>
-      <%= label_tag 'new_tag_name_1', "Tag isn't here? Add it to the list! (tags will be added to this business as well)" %>
-      <div class="row">
-        <div class="col-md-3">
-          New Tag 1 (optional)
-        </div>
-        <div class="col-md-4">
-          <span class="provider-edit-input">
-            <%= text_field_tag 'new_tag_1' %>  
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          New Tag 2 (optional)
-        </div>
-        <div class="col-md-4">
-          <span class="provider-edit-input">
-            <%= text_field_tag 'new_tag_2' %>  
-          </span>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-3">
-          New Tag 3 (optional)
-        </div>
-        <div class="col-md-4">
-          <span class="provider-edit-input">
-            <%= text_field_tag 'new_tag_3' %>  
-          </span>
-        </div>
-      </div>
-    <% end %>
     <div class="row">
-      <h2>Looking to change the tags?</h2>
-      <p><%= @organization.name %> has thousands of tags, which isn't very friendly to manipulate as a long list. We're building the interface to let you change the tags right now, and will have it available by the end of April. Thanks for your patience!</p>
+      <div class="col-md-12 index-search-bar">
+        <%= select_tag(:tags, options_from_collection_for_select(@tags, :id, :readable, selected: @checked_tags.map(&:id)), multiple: true, class: 'tag-select') %>
+      </div>
     </div>
+
+    <br>
     <div class="row">
       <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button", :class => "margin-bottom" %>
     </div>
+
   </div>
 
 <% end %>
