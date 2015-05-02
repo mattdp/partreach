@@ -59,7 +59,7 @@ class ProvidersController < ApplicationController
           tag = current_organization.create_tag(tag_name, current_user)
         end
         break unless tag.valid?
-        @provider.tags << tag
+        @provider.tags << tag unless @provider.tags.include? tag
       end
 
       saved_ok = true
