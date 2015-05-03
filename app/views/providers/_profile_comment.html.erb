@@ -55,7 +55,7 @@
       <% po = comment.purchase_order %>
       <% score_total = comment.cost_score + comment.quality_score + comment.speed_score %>
       <% if (po.present? or score_total > 0) %>
-        <div>About this order:</div>
+        <div>About this order</div>                
         <% if (score_total > 0 ) %>
           <div class="row">
             <span class="comment-smalltext">
@@ -69,14 +69,19 @@
           </div>
         <% end %>
         <% if po.present? %>
+          <div class="row">
+            <div class="col-md-8 left-grid-bare">Project Name: <span><%= "#{po.project_name}" if po.project_name %></span></div>
+            <div class="col-md-4 po-padding">PO Issued: <span><%= "#{po.issue_date.strftime('%Y-%m-%d')}" if po.issue_date %></span></div>
+          </div>
+          <div>Description: <span><%= "#{po.description}" if po.description %></span></div>
           <div class="col-md-8 tags-providerTags left-grid-bare">
             <% po.tags.each do |tag| %>              
               <a><%= tag.readable %></a>
             <% end %>
           </div>
           <div class="col-md-4">
-            <div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
-            <div><%= "Price: #{number_to_currency(po.price)}" if po.price %></div>
+            <div>Quantity: <span><%= "#{po.quantity}" if po.quantity %></span></div>
+            <div>Price: <span><%= "#{number_to_currency(po.price)}" if po.price %></span></div>
           </div>
         <% end %>
       <% end %>
