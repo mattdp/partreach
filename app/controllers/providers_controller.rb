@@ -5,8 +5,7 @@ class ProvidersController < ApplicationController
   def new
     @organization = current_organization
     @provider = Provider.new
-    @tags = current_organization.provider_tags
-    @organization = current_organization    
+    @tags = current_organization.provider_tags.sort_by { |t| t.readable.downcase }
     @checked_tags = []
 
     if params[:event_name].present? 
@@ -29,8 +28,7 @@ class ProvidersController < ApplicationController
   def edit
     @organization = current_organization
     @provider = current_organization.providers.find(params[:id])
-    @tags = current_organization.provider_tags
-    @organization = current_organization
+    @tags = current_organization.provider_tags.sort_by { |t| t.readable.downcase }
     @checked_tags = @provider.tags
 
     if params[:event_name].present? 
@@ -50,6 +48,7 @@ class ProvidersController < ApplicationController
   def create_or_update_provider
     saved_ok = false
     loop do
+      # TODO wrap this in a db transaction
       @provider.assign_attributes(editable_provider_params) #returns nil
       break unless @provider.save
       break unless @provider.update_tags(params[:tag_selection])
@@ -60,7 +59,7 @@ class ProvidersController < ApplicationController
           tag = current_organization.create_tag(tag_name, current_user)
         end
         break unless tag.valid?
-        @provider.tags << tag
+        @provider.tags << tag unless @provider.tags.include? tag
       end
 
       saved_ok = true
@@ -154,7 +153,7 @@ class ProvidersController < ApplicationController
       @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
       @total_comments_for_user = Comment.joins(:user).group('users.id').count
       @purchase_order_comments_for_user = Comment.where(comment_type: 'purchase_order').joins(:user).group('users.id').count
-      @tags = @provider.tags
+      @tags = @provider.tags.sort_by { |t| t.readable.downcase }
       @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
