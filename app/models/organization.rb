@@ -2,10 +2,11 @@
 #
 # Table name: organizations
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id                :integer          not null, primary key
+#  name              :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#  people_are_called :string(255)
 #
 
 class Organization < ActiveRecord::Base
@@ -13,6 +14,12 @@ class Organization < ActiveRecord::Base
   has_many :teams
   has_many :providers
   has_many :tags
+
+  def colloquial_people_name
+    returnee = nil
+    self.people_are_called.present? ? returnee = self.people_are_called : returnee = self.name
+    return returnee
+  end
 
   def providers
     Provider.where(organization: self)
