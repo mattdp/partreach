@@ -41,7 +41,7 @@ module SessionsHelper
     # allow non-signed-in user to proceed in staging, if allow_staging_access cookie is set to true
     return if cookies[:allow_staging_access] == 'true'
     # otherwise, require signin
-    redirect_to teams_signin_url
+    redirect_to signin_url
   end
 
   def redirect_back_or(default)
@@ -59,7 +59,7 @@ module SessionsHelper
 
   def org_access_only
     store_location
-    redirect_to teams_signin_url unless org_access_allowed?
+    redirect_to signin_url unless org_access_allowed?
   end
 
   def org_access_allowed?

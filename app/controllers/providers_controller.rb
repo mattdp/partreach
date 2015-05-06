@@ -89,11 +89,6 @@ class ProvidersController < ApplicationController
     redirect_to teams_index_path, note: note
   end
 
-  def signin
-    sign_out
-    render layout: "provider"
-  end
-
   def index
     @providers_list = current_organization.providers_alpha_sort
     @provider_hash = current_organization.providers_hash_by_tag

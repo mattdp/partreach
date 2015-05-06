@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
   HOURS_ALLOWED = 48
 
   def new
+    sign_out
+    render layout: "provider"
   end
 
   def create
@@ -13,7 +15,7 @@ class SessionsController < ApplicationController
       redirect_after_signin
     else
       flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
+      render 'new', layout: "provider"
     end
   end
 
