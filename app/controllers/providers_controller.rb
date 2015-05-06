@@ -89,11 +89,6 @@ class ProvidersController < ApplicationController
     redirect_to teams_index_path, note: note
   end
 
-  def signin
-    sign_out
-    render layout: "provider"
-  end
-
   def index
     @people_called = current_organization.colloquial_people_name
 
