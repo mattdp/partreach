@@ -90,6 +90,8 @@ class ProvidersController < ApplicationController
   end
 
   def index
+    @people_called = current_organization.colloquial_people_name
+
     @providers_list = current_organization.providers_alpha_sort
     @provider_hash = current_organization.providers_hash_by_tag
 
