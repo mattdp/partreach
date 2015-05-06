@@ -26,7 +26,13 @@ class SessionsController < ApplicationController
 
   def edit
     @user = User.find_by_password_reset_token(params[:id])
-    render layout: "provider"
+    if @user.nil?
+      redirect_to new_password_reset_path, :alert => "Invalid password reset token."
+    elsif @user.password_reset_sent_at < HOURS_ALLOWED.hours.ago
+      redirect_to new_password_reset_path, :alert => "Password reset has expired. For security, each reset is good for #{HOURS_ALLOWED} hours)."
+    else
+      render layout: "provider"
+    end
   end
 
   def update
