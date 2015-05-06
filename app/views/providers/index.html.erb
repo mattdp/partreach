@@ -7,6 +7,19 @@
 
       <%= render :partial => "providers/providers_header" %>
 
+      <% if @results_hash.present? %>
+        <h2 class="center">Results of your search for <%= "#{@search_text}" %></h2>
+
+        <% @results_hash.each do |header, providers| %>
+          <div class="col-md-12">
+            <h2>
+              <span><%= header %></span>
+            </h2>
+            <%= render :partial => "providers/providers_table", locals: {providers: providers} %>
+          </div>
+        <% end %>
+      <% end %>
+
     </div>
   </div>
 </div>
