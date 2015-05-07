@@ -1,6 +1,10 @@
 class StaticPagesController < ApplicationController
   def home
-    render :layout => "home"
+    if org_access_allowed?
+      redirect_to teams_index_path, status: :moved_permanently
+    else
+      render :layout => "home"
+    end
 
     @testimonials = testimonial_array
     @testimonial = @testimonials[rand(0..@testimonials.length-1)]
