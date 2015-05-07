@@ -7,6 +7,12 @@
 
       <%= render :partial => "providers/providers_header" %>
 
+      <div>
+        <% @comments.each do |comment| %>
+          I'm comment <%= "#{comment.id}" %>
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>
