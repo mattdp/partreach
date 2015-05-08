@@ -90,13 +90,10 @@ class ProvidersController < ApplicationController
   end
 
   def index
-    org = current_organization
+    @people_called = current_organization.colloquial_people_name
 
-    @people_called = org.colloquial_people_name
-    @comments = org.comments_for_index
-
-    @providers_list = org.providers_alpha_sort
-    @provider_hash = org.providers_hash_by_tag
+    @providers_list = current_organization.providers_alpha_sort
+    @provider_hash = current_organization.providers_hash_by_tag
 
     @providers_tag_search_list = []
     @provider_hash.each { |tag, providers| @providers_tag_search_list << [providers.size, tag.readable] }

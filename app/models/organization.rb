@@ -15,11 +15,6 @@ class Organization < ActiveRecord::Base
   has_many :providers
   has_many :tags
 
-  def comments_for_index
-    #SQL here if it's slow, but this isn't final form (ideally, wait till comment updated), so not optimizing
-    Comment.last(20).reject{|c| c.user.admin}.take(10).reverse
-  end
-
   def colloquial_people_name
     returnee = nil
     self.people_are_called.present? ? returnee = self.people_are_called : returnee = self.name
