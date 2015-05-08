@@ -1,30 +1,33 @@
 <% provide(:title, "Sign in") %>
 <% meta_description "Sign into SupplyBetter to see what quotes you've received" %>
 
-<div class="container hax-body-styling">
-  <div class="row">
+<div class="row">
+  <div class="col-md-12">
     <div class="col-md-4">
+    </div>
+    <!-- begin form -->
+    <div id="any-form" class="col-md-4">
 
       <h1>Sign in</h1>
 
       <%= form_for(:session, url: sessions_path) do |f| %>
-        <div>
-          <%= f.label :email %>
-          <br>
-          <%= f.text_field :email, class: "input_field" %>
+        <div class="field comment-title">
+          <%= f.label :email %>          
+          <%= f.text_field :email %>
         </div>
-        <br>
-        <div>
-          <%= f.label :password %>
-          <br>
-          <%= f.password_field :password %>
-          <p><%= link_to "Forgot your password?", new_password_reset_path %></p>
+        
+        <div class="field comment-title">
+          <%= f.label :password %>          
+          <%= f.password_field :password %>          
         </div>
+        <%= link_to "Forgot your password?", new_password_reset_path %>
         <div>
-          <%= f.submit "Sign in", class: "sign-in-button save-button" %>
+          <%= f.submit "Sign in", class: "save-button", :id => "save_button"%>
         </div>
-      <% end %>        
-      <p>Do you not have an account, but want to learn how SupplyBetter can help you reduce time to market? Reach out to us using the chat box on the lower right of your screen!</p>
+      <% end %>       
+      <div>
+        <em>Don't have an account, but want to learn how SupplyBetter can help you reduce time to market? Reach out to us using the chat box on the lower right of your screen!</em>
+      </div>
     </div>
   </div>
 </div>
