@@ -30,7 +30,7 @@
                 <% if po.present? %>
                   regarding a 
                   <% po.tags.each do |tag| %>
-                    <span class="tags-providerTags"><a><%= tag.readable %></a></span>
+                    <span class="tags-providerTags"><a id="index-tags"><%= tag.readable %></a></span>
                   <% end %>                
                 order 
                 (Project Name: <span><%= "#{po.project_name}" if po.project_name %></span>)
