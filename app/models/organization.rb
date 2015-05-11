@@ -19,6 +19,7 @@ class Organization < ActiveRecord::Base
   def recent_comments
     possibles = Comment.last(50)
     in_org_comments = possibles.select{|c| (c.payload.present? and Provider.find(c.provider_id).organization_id == self.id)}
+    in_org_comments = in_org_comments.select{|c| c.user.present? and c.user.lead.present? and c.user.lead.lead_contact.present?}
     return in_org_comments.sort_by{|c| c.created_at}.reverse.take(10)
   end
 
