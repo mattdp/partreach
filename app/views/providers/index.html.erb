@@ -7,16 +7,21 @@
 
       <%= render :partial => "providers/providers_header" %>
 
-      <div>
-        <% @recent_comments.each do |comment| %>
-          <hr>
-          <p>
-            <strong><%= "#{comment.user.lead.lead_contact.name}" %></strong>
-            left a comment about
-            <%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>
-          </p>
-        <% end %>
-      </div>
+      <% if @recent_comments.present? %>
+        <h2 class="center">Recent comments</h2>
+        <div class="row ">
+          <% @recent_comments.each do |comment| %>
+            <hr>
+              <p class="small-margin-left">
+                <%= "#{comment.created_at.strftime('%m/%d')}: " %>
+                <strong><%= "#{comment.user.lead.lead_contact.name}" %></strong>
+                left a comment about
+                <%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>
+              </p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
 
     </div>
   </div>
