@@ -15,6 +15,13 @@ class Organization < ActiveRecord::Base
   has_many :providers
   has_many :tags
 
+  #/Users/matt/Desktop/partreach-docs/mdp/151005-recent_comments.txt for thoughts on how to do right
+  def recent_comments
+    possibles = Comment.last(50)
+    in_org_comments = possibles.select{|c| Provider.find(c.provider_id).organization_id == self.id}
+    return in_org_comments.sort_by{|c| c.created_at}.reverse.take(10)
+  end
+
   def colloquial_people_name
     returnee = nil
     self.people_are_called.present? ? returnee = self.people_are_called : returnee = self.name

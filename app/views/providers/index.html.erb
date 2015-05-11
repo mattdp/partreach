@@ -7,6 +7,17 @@
 
       <%= render :partial => "providers/providers_header" %>
 
+      <div>
+        <% @recent_comments.each do |comment| %>
+          <hr>
+          <p>
+            <strong><%= "#{comment.user.lead.lead_contact.name}" %></strong>
+            left a comment about
+            <%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>
+          </p>
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>
