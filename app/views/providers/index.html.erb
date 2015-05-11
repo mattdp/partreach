@@ -23,10 +23,14 @@
                 <% if comment.overall_score > 0 %>                  
                   <%= render partial: "providers/star_display", locals: {score: comment.overall_score} %>
                 <% end %>
-                <%= link_to "review", teams_profile_path(comment.provider.name_for_link, :anchor => 'comments') %> 
-                for                
-                <%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>
                 <% po = comment.purchase_order %>
+                <% if po.present? %>
+                  <%= link_to "review", teams_profile_path(comment.provider.name_for_link, :anchor => 'comments') %> 
+                <% else %>
+                  <%= link_to "comment", teams_profile_path(comment.provider.name_for_link, :anchor => 'comments') %> 
+                <% end %>
+                for                
+                <%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>                
                 <% if po.present? %>
                   regarding a 
                   <% po.tags.each do |tag| %>
