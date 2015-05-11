@@ -5,24 +5,26 @@
     <div class="main-area-contrast override">
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
 
-      <%= render :partial => "providers/providers_header" %>
+      <%= render :partial => "providers/providers_header" %>      
 
-      <% if @recent_comments.present? %>
-        <h2 class="center">Recent comments</h2>
-        <div class="row ">
-          <% @recent_comments.each do |comment| %>
+    </div>
+  </div>
+  <% if @recent_comments.present? %>
+    <h2 class="center">Recent Reviews and Comments</h2>
+    <div class="row ">          
+      <% @recent_comments.each do |comment| %>
+        <div class="row">
+          <div class="col-md-12">
             <hr>
               <p class="small-margin-left">
                 <%= "#{comment.created_at.strftime('%m/%d')}: " %>
                 <strong><%= "#{comment.user.lead.lead_contact.name}" %></strong>
-                left a comment about
+                left a <%= link_to "comment", teams_profile_path(comment.provider.name_for_link, :anchor => 'comments') %> about
                 <%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>
               </p>
-            </div>
-          <% end %>
+          </div>
         </div>
-      <% end %>
-
+      <% end %>          
     </div>
-  </div>
+  <% end %>
 </div>
