@@ -100,13 +100,9 @@ class ProvidersController < ApplicationController
     @providers_tag_search_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
     @providers_tag_search_list.each { |e| e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]" }
 
-    Event.add_event("User",current_user.id,"loaded index")
-    render layout: "provider"
-  end
-
-  def search_results
+    @results_hash = {}
     if params[:tags].present?
-
+      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @search_text)
       tags = []
       params[:tags].each do |unsafe_string|
         possible_tag = Tag.where("organization_id = ? and readable = ?",current_organization,unsafe_string)
@@ -114,7 +110,6 @@ class ProvidersController < ApplicationController
       end
 
       #adapted from organization.providers_hash_by_tag
-      @results_hash = {}
       tags.sort_by { |t| t.readable.downcase }.each do |tag|
         @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
           .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
@@ -122,25 +117,22 @@ class ProvidersController < ApplicationController
       end
 
       @search_text = tags.map{|t| t.readable}.join(" & ")
-      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @search_text)
-      render layout: "provider"
-
     elsif params[:providers].present?
+      Event.add_event("User", current_user.id, "searched providers by provider names", nil, nil, @search_text)
       providers = []
       params[:providers].each do |unsafe_string|
         possible_provider = Provider.find_by_name(unsafe_string)
         providers << possible_provider if possible_provider.present?
       end
 
-      @results_hash = {}
       @results_hash["Providers"] = providers
       
       @search_text = providers.map{|p| p.name}.join(" & ")
-      Event.add_event("User", current_user.id, "searched providers by provider names", nil, nil, @search_text)
-      render layout: "provider"      
     else
-      redirect_to teams_index_path
+      Event.add_event("User",current_user.id,"loaded Providers index page")
     end
+
+    render layout: "provider"
   end
 
   def profile
