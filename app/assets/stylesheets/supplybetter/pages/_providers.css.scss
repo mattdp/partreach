@@ -8,6 +8,10 @@
   margin-bottom: 10px;
 }
 
+.small-margin-left {
+  margin-left: 10px;
+}
+
 /*BEGIN INDEX SEARCH BAR*/
 .header-text-block {
   text-align: center;
@@ -111,6 +115,18 @@ a.search-choice-close {
     columns: 5;
 }
 /*END PROVIDER INDEX CATEGORY LIST*/
+
+/*BEGIN PROVIDER INDEX FEED*/
+
+.header-no-margin {
+  margin: 0px;
+}
+
+#index-tags {
+  margin-bottom: 0px;
+}
+
+/*END PROVIDER INDEX FEED*/
 
 /*BEING PROVIDER INDEX TABLE*/
 /*this table is not my own. I ripped it from here: http://cssmenumaker.com/blog/stylish-css-tables-tutorial*/
