@@ -45,14 +45,39 @@ class Provider < ActiveRecord::Base
 
   #code for secure pictures, while WIP
   def self.sandbox
+    #hitting the token vending service
     sts = Aws::STS::Client.new(
       region: "us-east-1",
       access_key_id: ENV['SB_CLIENTS_SYNAPSE_ACCESS_KEY'],
       secret_access_key: ENV['SB_CLIENTS_SYNAPSE_SECRET_KEY']
       )
+    #getting a temporary session token
     token = sts.get_session_token(
       duration_seconds: 15*60 #minimum 15m
       )
+    #setting up credentials for S3 with that token
+    credentials = Aws::Credentials.new(
+      token[:credentials][:access_key_id], 
+      token[:credentials][:secret_access_key],
+      token[:credentials][:session_token]
+      )
+    #s3 api hitter
+    s3 = Aws::S3::Client.new(
+      region: 'us-east-1',
+      credentials: credentials
+      )
+
+    #should succeed - YES
+    object = s3.get_object(
+      bucket: "sb-clientfiles-synapse",
+      key: "sizes.jpg"
+      )
+
+    #should fail - YES
+    no_permissions_object = s3.get_object(
+      bucket: "private-for-testing-security",
+      key: "sizes.jpg"
+    )
   end
 
   def add_external(url, filename)
