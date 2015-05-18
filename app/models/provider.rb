@@ -43,6 +43,18 @@ class Provider < ActiveRecord::Base
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
   validates :organization, presence: true
 
+  #code for secure pictures, while WIP
+  def self.sandbox
+    sts = Aws::STS::Client.new(
+      region: "us-east-1",
+      access_key_id: ENV['SB_CLIENTS_SYNAPSE_ACCESS_KEY'],
+      secret_access_key: ENV['SB_CLIENTS_SYNAPSE_SECRET_KEY']
+      )
+    token = sts.get_session_token(
+      duration_seconds: 15*60 #minimum 15m
+      )
+  end
+
   def add_external(url, filename)
     externals.create!(url: url, original_filename: filename)
   end
