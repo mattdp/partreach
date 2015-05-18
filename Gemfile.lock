@@ -40,6 +40,14 @@ GEM
     annotate (2.5.0)
       rake
     arel (5.0.1.20140414130214)
+    aws-sdk (2.0.43)
+      aws-sdk-resources (= 2.0.43)
+    aws-sdk-core (2.0.43)
+      builder (~> 3.0)
+      jmespath (~> 1.0)
+      multi_json (~> 1.0)
+    aws-sdk-resources (2.0.43)
+      aws-sdk-core (= 2.0.43)
     bcrypt (3.1.9)
     bloggy (0.2.2)
       jekyll (~> 0.12.0)
@@ -157,6 +165,8 @@ GEM
       liquid (~> 2.3)
       maruku (~> 0.5)
       pygments.rb (~> 0.3.2)
+    jmespath (1.0.2)
+      multi_json (~> 1.0)
     jquery-fileupload-rails (0.4.1)
       actionpack (>= 3.1)
       railties (>= 3.1)
@@ -337,6 +347,7 @@ DEPENDENCIES
   angular-ui-bootstrap-rails
   angularjs-rails
   annotate (= 2.5.0)
+  aws-sdk (~> 2)
   bcrypt
   bloggy (= 0.2.2)
   bootstrap-sass (= 3.0.2.1)
