@@ -45,9 +45,12 @@ class Provider < ActiveRecord::Base
 
   #code for secure pictures, while WIP
   def self.sandbox
+
+    region = "us-east-1"
+
     #hitting the token vending service
     sts = Aws::STS::Client.new(
-      region: "us-east-1",
+      region: region,
       access_key_id: ENV['SB_CLIENTS_SYNAPSE_ACCESS_KEY'],
       secret_access_key: ENV['SB_CLIENTS_SYNAPSE_SECRET_KEY']
       )
@@ -61,23 +64,18 @@ class Provider < ActiveRecord::Base
       token[:credentials][:secret_access_key],
       token[:credentials][:session_token]
       )
-    #s3 api hitter
-    s3 = Aws::S3::Client.new(
-      region: 'us-east-1',
+    #s3 api client - need this for resource
+    s3_client = Aws::S3::Client.new(
+      region: region,
       credentials: credentials
       )
-
-    #should succeed - YES
-    object = s3.get_object(
-      bucket: "sb-clientfiles-synapse",
-      key: "sizes.jpg"
+    # allows .bucket and .object, so i can get an Object for .presigned_url
+    s3_resource = Aws::S3::Resource.new(
+      region: region,
+      client: s3_client
       )
 
-    #should fail - YES
-    no_permissions_object = s3.get_object(
-      bucket: "private-for-testing-security",
-      key: "sizes.jpg"
-    )
+    s3_resource.bucket("sb-clientfiles-synapse").object("sizes.jpg").presigned_url(:get, expires_in: 15*60)
   end
 
   def add_external(url, filename)
