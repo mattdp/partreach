@@ -43,41 +43,6 @@ class Provider < ActiveRecord::Base
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
   validates :organization, presence: true
 
-  #code for secure pictures, while WIP
-  def self.sandbox
-
-    region = "us-east-1"
-
-    #hitting the token vending service
-    sts = Aws::STS::Client.new(
-      region: region,
-      access_key_id: ENV['SB_CLIENTS_SYNAPSE_ACCESS_KEY'],
-      secret_access_key: ENV['SB_CLIENTS_SYNAPSE_SECRET_KEY']
-      )
-    #getting a temporary session token
-    token = sts.get_session_token(
-      duration_seconds: 15*60 #minimum 15m
-      )
-    #setting up credentials for S3 with that token
-    credentials = Aws::Credentials.new(
-      token[:credentials][:access_key_id], 
-      token[:credentials][:secret_access_key],
-      token[:credentials][:session_token]
-      )
-    #s3 api client - need this for resource
-    s3_client = Aws::S3::Client.new(
-      region: region,
-      credentials: credentials
-      )
-    # allows .bucket and .object, so i can get an Object for .presigned_url
-    s3_resource = Aws::S3::Resource.new(
-      region: region,
-      client: s3_client
-      )
-
-    s3_resource.bucket("sb-clientfiles-synapse").object("sizes.jpg").presigned_url(:get, expires_in: 15*60)
-  end
-
   def add_external(url, filename)
     externals.create!(url: url, original_filename: filename)
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504203939) do
+ActiveRecord::Schema.define(version: 20150520154659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 20150504203939) do
     t.string   "consumer_type"
     t.string   "units"
     t.string   "original_filename"
+    t.string   "remote_file_name"
   end
 
   create_table "filters", force: true do |t|
@@ -282,6 +283,7 @@ ActiveRecord::Schema.define(version: 20150504203939) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "people_are_called"
+    t.string   "external_bucket_name"
   end
 
   create_table "owners", force: true do |t|
