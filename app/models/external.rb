@@ -20,15 +20,10 @@ class External < ActiveRecord::Base
   validates :consumer_type, presence: true
   validates :url, presence: true
 
-  #code for secure pictures, while WIP
-  def get_expiring_url
+  #all work that only needs to be done once per fetching of photos
+  def self.get_expiring_urls(externals_list)
 
-    return nil unless (
-      consumer_type == "Provider" and 
-      provider = Provider.find_by_id(consumer_id) and
-      organization = provider.organization and
-      organization.external_bucket_name.present?
-      )
+    return nil unless externals_list.present?
 
     region = "us-east-1"
 
@@ -59,9 +54,29 @@ class External < ActiveRecord::Base
       client: s3_client
       )
 
+    result = [] 
+    externals_list.each do |external|
+      url = external.get_expiring_url_helper(s3_resource)
+      result << url if url.present?
+    end
+    return result
+
+  end
+
+  #code for secure pictures, while WIP
+  def get_expiring_url_helper(s3_resource)
+
+    return nil unless (
+      consumer_type == "Provider" and 
+      provider = Provider.find_by_id(self.consumer_id) and
+      organization = provider.organization and
+      organization.external_bucket_name.present?
+      )
+
     s3_resource.bucket(organization.external_bucket_name) \
       .object(self.remote_file_name) \
       .presigned_url(:get, expires_in: 15*60)
+
   end
 
 end

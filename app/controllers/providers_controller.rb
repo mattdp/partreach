@@ -150,10 +150,7 @@ class ProvidersController < ApplicationController
       @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       
-      @expiring_image_urls = []
-      @provider.externals.each do |external|
-        @expiring_image_urls << external.get_expiring_url
-      end
+      @expiring_image_urls = External.get_expiring_urls(@provider.externals)
 
       Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
       render layout: "provider"
