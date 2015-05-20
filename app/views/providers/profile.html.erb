@@ -32,6 +32,21 @@
         </span>
       </div>      
 
+      <!-- ADDRESS SECTION -->
+      <div class="comment-profile">
+        <p class="comment-smalltext"><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p>
+        <p class="comment-smalltext"><strong>Phone: </strong><%= @provider.contact_phone %></p>
+        <p class="comment-smalltext"><strong>Email: </strong><%= @provider.contact_email %></p>
+        <p class="comment-smalltext">
+          <strong>Website: </strong>
+          <% if @provider.url_main.present? %>
+            <%= link_to "Link", @provider.url_main %>
+          <% end %>
+        </p>            
+        <p class="comment-smalltext"><strong>Full address: </strong><%= "#{@provider.location_string}" %></p>
+      </div>
+      
+
       <!-- PURCHASE ORDERS -->
       <h3>Purchase orders</h3> 
       <% if @po_names.present? %> 
@@ -61,28 +76,6 @@
       <% end %>
       </div>
     </div>        
-
-    <!-- BEGIN RIGHT COLUMN -->
-    <!-- <div class="col-md-4">
-      <div class="table-header">
-      ADDRESS SECTION 
-        <div class="profile-spacing">
-          <h3>Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
-        </div>
-        <ul>
-          <li><p><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p></li>
-          <li><p><strong>Phone: </strong><%= @provider.contact_phone %></p></li>
-          <li><p><strong>Email: </strong><%= @provider.contact_email %></p></li>
-          <li><p>
-            <strong>Website: </strong>
-            <% if @provider.url_main.present? %>
-              <%= link_to "Link", @provider.url_main %>
-            <% end %>
-          </p></li>            
-          <li><p><strong>Full address: </strong><%= "#{@provider.location_string}" %></p></li>
-        </ul>    
-      </div>
-    </div> -->
 
     <!-- BEGIN MIDDLE COLUMN -->
     <!-- PHOTO GALLERY -->
@@ -139,7 +132,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <h3 id="comments">
         Comments
         <span class="heading_navigation">[<%= link_to "add a comment", new_comment_path(@provider.id) %>]</span>
