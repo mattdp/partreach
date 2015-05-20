@@ -21,7 +21,7 @@ class External < ActiveRecord::Base
   validates :url, presence: true
 
   #all work that only needs to be done once per fetching of photos
-  def self.get_expiring_urls(externals_list)
+  def self.get_expiring_urls(externals_list,organization)
 
     return nil unless externals_list.present?
 
@@ -30,8 +30,8 @@ class External < ActiveRecord::Base
     #hitting the token vending service
     sts = Aws::STS::Client.new(
       region: region,
-      access_key_id: ENV['SB_CLIENTS_SYNAPSE_ACCESS_KEY'],
-      secret_access_key: ENV['SB_CLIENTS_SYNAPSE_SECRET_KEY']
+      access_key_id: ENV[organization.external_bucket_env_var_access],
+      secret_access_key: ENV[organization.external_bucket_env_var_secret]
       )
     #getting a temporary session token
     token = sts.get_session_token(

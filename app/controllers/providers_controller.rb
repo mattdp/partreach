@@ -150,7 +150,7 @@ class ProvidersController < ApplicationController
       @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       
-      @expiring_image_urls = External.get_expiring_urls(@provider.externals)
+      @expiring_image_urls = External.get_expiring_urls(@provider.externals,@organization)
 
       Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
       render layout: "provider"
