@@ -63,7 +63,6 @@ class External < ActiveRecord::Base
 
   end
 
-  #code for secure pictures, while WIP
   def get_expiring_url_helper(s3_resource)
 
     return nil unless (
