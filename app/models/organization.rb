@@ -2,11 +2,14 @@
 #
 # Table name: organizations
 #
-#  id                :integer          not null, primary key
-#  name              :string(255)
-#  created_at        :datetime
-#  updated_at        :datetime
-#  people_are_called :string(255)
+#  id                             :integer          not null, primary key
+#  name                           :string(255)
+#  created_at                     :datetime
+#  updated_at                     :datetime
+#  people_are_called              :string(255)
+#  external_bucket_name           :string(255)
+#  external_bucket_env_var_access :string(255)
+#  external_bucket_env_var_secret :string(255)
 #
 
 class Organization < ActiveRecord::Base

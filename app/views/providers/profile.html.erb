@@ -60,6 +60,15 @@
           <a><%= "#{tag.readable}" %></a>
       <% end %>
       </div>
+      <% if @expiring_image_urls.present? %>
+        <div>
+          <p>Area for test display of secure images</p>
+          <% @expiring_image_urls.each do |url| %>
+            <%= image_tag url %>
+          <% end %>
+        </div>
+      <% end %>
+
     </div>        
 
     <!-- BEGIN RIGHT COLUMN -->
