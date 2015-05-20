@@ -63,9 +63,9 @@
     </div>        
 
     <!-- BEGIN RIGHT COLUMN -->
-    <div class="col-md-4">
+    <!-- <div class="col-md-4">
       <div class="table-header">
-      <!-- ADDRESS SECTION -->
+      ADDRESS SECTION 
         <div class="profile-spacing">
           <h3>Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
         </div>
@@ -82,7 +82,42 @@
           <li><p><strong>Full address: </strong><%= "#{@provider.location_string}" %></p></li>
         </ul>    
       </div>
+    </div> -->
+
+    <!-- BEGIN MIDDLE COLUMN -->
+    <!-- PHOTO GALLERY -->
+    <div class="col-md-4">
+      <ul class="row photo-gallery">
+        <li><img src="/assets/IMG_4502-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4480-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4482-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4484-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4485-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4486-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4487-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4488-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4489-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4490-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4491-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4492-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4493-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4494-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4495-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4510-midsize.JPG"/></li>
+        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4516-midsize.JPG"/></li>
+      </ul>
     </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">         
+          <div class="modal-body">                
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
 
   </div>
 
