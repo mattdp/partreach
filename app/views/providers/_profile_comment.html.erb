@@ -43,7 +43,7 @@
         <%= render partial: "providers/star_display", locals: {score: comment.overall_score} %>
       <% end %>
       <span class="comment-smalltext"> 
-        <%= "Reviewed #{comment.created_at.strftime('%Y-%m-%d')}" %>
+        <%= "Reviewed #{comment.updated_at.strftime('%Y-%m-%d')}" %>
       </span>
     </div>
 
