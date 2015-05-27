@@ -30,7 +30,7 @@
           <div class="col-md-12">
             <hr class="header-no-margin">
               <p class="small-margin-left">
-                <%= "#{comment.created_at.strftime('%m/%d')}: " %>
+                <%= "#{comment.updated_at.strftime('%m/%d')}: " %>
                 <strong><%= "#{comment.user.lead.lead_contact.name}" %></strong>
                 left a 
                 <% if comment.overall_score > 0 %>                  
