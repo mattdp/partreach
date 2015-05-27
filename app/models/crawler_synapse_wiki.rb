@@ -39,14 +39,14 @@ class CrawlerSynapseWiki
       providers << p if p.import_warnings.include?("Page contains attachments")
     end
 
-    #for testing
-    provider = providers.last
+    # #for testing
+    # provider = providers.last
 
-    #providers.each do |provider|
+    providers.each do |provider|
       page = Nokogiri::HTML(open(provider.source))
       file_links = page.css('a.filename')
       #exclude pdfs and other file types
-      file_links.select{|a| a["data-type"].include?("image")}
+      file_links = file_links.select{|a| a["data-type"].include?("image")}
       if file_links.present?
         file_links.each do |file_link|
           remote_file_name = "#{provider.name}_#{file_link['data-filename']}"
@@ -63,7 +63,7 @@ class CrawlerSynapseWiki
             )
         end
       end
-    #end 
+    end 
 
     #for testing
     return file_links
