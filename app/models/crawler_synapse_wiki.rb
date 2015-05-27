@@ -22,6 +22,20 @@ class CrawlerSynapseWiki
     # TODO log out (put in rescue block)
   end
 
+  def self.download_pictures
+    mech = CrawlerSynapseWiki.login
+
+    providers = []
+    Provider.find_each do |p|
+      next unless p.import_warnings.present?
+      providers << p if p.import_warnings.include?("Page contains attachments")
+    end
+
+    providers.each do |provider|
+      next
+    end 
+  end
+
   def self.login
     #heavily drawing upon http://docs.seattlerb.org/mechanize/EXAMPLES_rdoc.html
     mech = Mechanize.new
