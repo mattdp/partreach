@@ -22,6 +22,53 @@ class CrawlerSynapseWiki
     # TODO log out (put in rescue block)
   end
 
+  #relies on a manual s3 upload to the specified bucket for the organization
+  #makes externals relying on that upload happening
+  def self.download_synapse_pictures(download=false)
+
+    synapse_bucket_prefix = "https://s3.amazonaws.com/sb-clientfiles-synapse/"
+    mech = CrawlerSynapseWiki.login
+    if download
+      dname = "synapse_pictures"
+      Dir.mkdir(dname) unless File.exist?(dname)
+    end
+
+    providers = []
+    Provider.find_each do |p|
+      next unless p.import_warnings.present?
+      providers << p if p.import_warnings.include?("Page contains attachments")
+    end
+
+    # #for testing
+    # provider = providers.last
+
+    providers.each do |provider|
+      page = Nokogiri::HTML(open(provider.source))
+      file_links = page.css('a.filename')
+      #exclude pdfs and other file types
+      file_links = file_links.select{|a| a["data-type"].include?("image")}
+      if file_links.present?
+        file_links.each do |file_link|
+          remote_file_name = "#{provider.name}_#{file_link['data-filename']}"
+          #download the file, if hasn't been uploaded already. this will be used for local
+          #but not on prod, since files will already be in place
+          if download
+            page = mech.get("https://wiki.synapse.com#{file_link['href']}")
+            page.save "#{dname}/#{remote_file_name}"
+          end
+          External.create(consumer_id: provider.id, consumer_type: "Provider",
+            original_filename: "#{file_link['data-filename']}",
+            remote_file_name: remote_file_name,
+            url: "#{synapse_bucket_prefix}#{remote_file_name}"
+            )
+        end
+      end
+    end 
+
+    #for testing
+    return file_links
+  end
+
   def self.login
     #heavily drawing upon http://docs.seattlerb.org/mechanize/EXAMPLES_rdoc.html
     mech = Mechanize.new
