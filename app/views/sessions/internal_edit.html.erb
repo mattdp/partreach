@@ -7,8 +7,8 @@
     <!-- begin form -->
     <div id="any-form" class="col-md-4">
 
-        <%= form_for @user, :url => session_path(params[:id]) do |f| %>
-          <%= render partial: "sessions/password_reset_form", locals: {user: @user} %>
+        <%= form_for @user, :url => sessions_internal_update_path(params[:id]) do |f| %>
+          <%= render partial: "sessions/password_reset_form", locals: {user: @user, f: f} %>
         <% end %>
 
     </div>

@@ -18,4 +18,8 @@ class PasswordResetsController < ApplicationController
     render "new", layout: "provider"
   end
 
+  def internal
+    
+  end
+
 end
