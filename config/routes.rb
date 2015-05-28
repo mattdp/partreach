@@ -112,6 +112,7 @@ Partreach::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy, :edit, :update]
   get '/signin', to: 'sessions#new', as: 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
+  get '/reset_password/:id', to: 'sessions#internal_edit', as: "sessions_internal_edit"
 
   get '/signup', to: 'orders#new' 
   get '/getting_started', to: 'static_pages#getting_started'

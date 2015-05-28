@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :allow_staging_access, only: [:new, :create, :edit, :update]
+  before_filter :correct_user, only: [:internal_edit, :internal_update]
 
   HOURS_ALLOWED = 48
 
@@ -49,8 +50,23 @@ class SessionsController < ApplicationController
     end
   end
 
+  def internal_edit
+    @user = User.find_by_id(params[:id])
+    render layout: "provider"
+  end
+
+  def internal_update
+    sign_in @user
+    redirect_after_signin("New password has been set. You are now logged in.")
+  end
+
 
   private
+
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to teams_index_path unless (@user == current_user or current_user.admin?)
+  end
 
   def password_reset_params
     params.require(:user).permit(:password,:password_confirmation)
