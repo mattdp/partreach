@@ -32,6 +32,21 @@
         </span>
       </div>      
 
+      <!-- ADDRESS SECTION -->
+      <div class="comment-profile">
+        <p class="comment-smalltext"><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p>
+        <p class="comment-smalltext"><strong>Phone: </strong><%= @provider.contact_phone %></p>
+        <p class="comment-smalltext"><strong>Email: </strong><%= @provider.contact_email %></p>
+        <p class="comment-smalltext">
+          <strong>Website: </strong>
+          <% if @provider.url_main.present? %>
+            <%= link_to "Link", @provider.url_main %>
+          <% end %>
+        </p>            
+        <p class="comment-smalltext"><strong>Full address: </strong><%= "#{@provider.location_string}" %></p>
+      </div>
+      
+
       <!-- PURCHASE ORDERS -->
       <h3>Purchase orders</h3> 
       <% if @po_names.present? %> 
@@ -60,38 +75,40 @@
           <a><%= "#{tag.readable}" %></a>
       <% end %>
       </div>
-      <% if @expiring_image_urls.present? %>
-        <div>
-          <p>Area for test display of secure images</p>
-          <% @expiring_image_urls.each do |url| %>
-            <%= image_tag url %>
-          <% end %>
-        </div>
-      <% end %>
-
     </div>        
 
-    <!-- BEGIN RIGHT COLUMN -->
+    <!-- BEGIN MIDDLE COLUMN -->
+    <!-- PHOTO GALLERY -->
     <div class="col-md-4">
-      <div class="table-header">
-      <!-- ADDRESS SECTION -->
-        <div class="profile-spacing">
-          <h3>Contact information <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_contactinfo_from_profile") %>]</span></h3>
+      <% if @expiring_image_urls.present? %>
+        <div>
+          <ul id="uploaded-photo-list" class="row photo-gallery">
+            <% count = 0 %>
+            <% @expiring_image_urls.each do |url| %>  
+              <% if count == 0 %>
+                <li>
+              <% else %>
+                <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">                      
+              <% end %>
+            <%= image_tag url %>
+            </li>
+            <% count += 1 %>
+           <% end %>
+          </ul>          
         </div>
-        <ul>
-          <li><p><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p></li>
-          <li><p><strong>Phone: </strong><%= @provider.contact_phone %></p></li>
-          <li><p><strong>Email: </strong><%= @provider.contact_email %></p></li>
-          <li><p>
-            <strong>Website: </strong>
-            <% if @provider.url_main.present? %>
-              <%= link_to "Link", @provider.url_main %>
-            <% end %>
-          </p></li>            
-          <li><p><strong>Full address: </strong><%= "#{@provider.location_string}" %></p></li>
-        </ul>    
-      </div>
+      <% end %>
     </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">         
+          <div class="modal-body">                
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+
 
   </div>
 
@@ -113,7 +130,7 @@
   </div>
 
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-12">
       <h3 id="comments">
         Comments
         <span class="heading_navigation">[<%= link_to "add a comment", new_comment_path(@provider.id) %>]</span>
