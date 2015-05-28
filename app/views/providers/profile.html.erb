@@ -75,45 +75,25 @@
           <a><%= "#{tag.readable}" %></a>
       <% end %>
       </div>
-
-
-
-      
-
-
-
     </div>        
 
     <!-- BEGIN MIDDLE COLUMN -->
     <!-- PHOTO GALLERY -->
     <div class="col-md-4">
-     <!--  <ul class="row photo-gallery">
-        <li><img src="/assets/IMG_4502-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4480-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4482-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4484-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4485-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4486-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4487-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4488-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4489-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4490-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4491-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4492-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4493-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4494-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4495-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4510-midsize.JPG"/></li>
-        <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4"><img src="/assets/IMG_4516-midsize.JPG"/></li>
-      </ul> -->
       <% if @expiring_image_urls.present? %>
         <div>
           <ul id="uploaded-photo-list" class="row photo-gallery">
-            <% @expiring_image_urls.each do |url| %>            
-              <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">
-              <%= image_tag url %>
-              </li>
+            <% count = 0 %>
+            <% @expiring_image_urls.each do |url| %>  
+              <% if count == 0 %>
+                <li>
+              <% else %>
+                <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">                      
               <% end %>
+            <%= image_tag url %>
+            </li>
+            <% count += 1 %>
+           <% end %>
           </ul>          
         </div>
       <% end %>
