@@ -113,6 +113,7 @@ Partreach::Application.routes.draw do
   get '/signin', to: 'sessions#new', as: 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
   get '/reset_password/:id', to: 'sessions#internal_edit', as: "sessions_internal_edit"
+  match '/reset_password', to: 'sessions#internal_update', as: "sessions_internal_update", via: :patch
 
   get '/signup', to: 'orders#new' 
   get '/getting_started', to: 'static_pages#getting_started'

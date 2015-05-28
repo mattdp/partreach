@@ -7,34 +7,8 @@
     <!-- begin form -->
     <div id="any-form" class="col-md-4">
 
-        <%= form_for @user, :url => session_path(params[:id]) do |f| %>
-          <% if @user.errors.any? %>
-            <div class="error_messages">
-              <h2>Form is invalid</h2>
-              <ul>
-                <% for message in @user.errors.full_messages %>
-                  <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-
-          <% end %>
-          <h1>Set your new password</h1>
-          
-          <div><em>Passwords should be at least 6 characters long.</em></div>
-
-          <div class="field">
-            <%= f.label :password %>
-            <%= f.password_field :password %>
-          </div>
-
-          <div class="field">
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation %>
-          </div>
-
-          <div class="actions"><%= f.submit "Set Password", class: "save-button", :id => "save_button" %></div>
-
+        <%= form_for @user, :url => sessions_internal_update_path(params[:id]) do |f| %>
+          <%= render partial: "sessions/password_reset_form", locals: {user: @user, f: f} %>
         <% end %>
 
     </div>

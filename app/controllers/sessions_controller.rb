@@ -56,6 +56,10 @@ class SessionsController < ApplicationController
   end
 
   def internal_update
+    @user = User.find_by_id(params[:id])
+
+    binding.pry
+
     sign_in @user
     redirect_after_signin("New password has been set. You are now logged in.")
   end
