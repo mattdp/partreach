@@ -58,10 +58,12 @@ class SessionsController < ApplicationController
   def internal_update
     @user = User.find_by_id(params[:id])
 
-    binding.pry
-
-    sign_in @user
-    redirect_after_signin("New password has been set. You are now logged in.")
+    if @user.update_attributes(password_reset_params)    
+      sign_in @user
+      redirect_after_signin("New password has been set. You are now logged in.")
+    else
+      render :internal_edit, layout: "provider"
+    end
   end
 
 
@@ -79,7 +81,7 @@ class SessionsController < ApplicationController
   def redirect_after_signin(notice=nil)
     if current_user.in_organization?
       initial_page_path = session[:return_to] || teams_index_path
-      redirect_to initial_page_path
+      redirect_to initial_page_path, :notice => notice
     else
       redirect_to orders_path, :notice => notice
     end
