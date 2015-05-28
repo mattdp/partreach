@@ -322,6 +322,13 @@ ul.photo-gallery li:first-child img{
 .modal-body img {
   max-width: 550px;
   max-height: 336px;
+  display: block;
+  margin: 0 auto;
+  clear: right;
+}
+
+.modal-open {
+    overflow: scroll;
 }
 /*END PHOTO GALLERY*/
 
