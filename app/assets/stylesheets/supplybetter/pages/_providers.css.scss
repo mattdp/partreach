@@ -318,6 +318,11 @@ ul.photo-gallery li:first-child img{
     float:right;
     text-align:right;
 }
+
+.modal-body img {
+  max-width: 550px;
+  max-height: 336px;
+}
 /*END PHOTO GALLERY*/
 
 /*BEGIN EDIT COMMENT*/
