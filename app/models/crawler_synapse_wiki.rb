@@ -65,8 +65,6 @@ class CrawlerSynapseWiki
       end
     end 
 
-    #for testing
-    return file_links
   end
 
   def self.login
