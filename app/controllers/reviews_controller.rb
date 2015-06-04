@@ -3,10 +3,7 @@ class ReviewsController < ApplicationController
   def new
     @review = Review.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @review }
-    end
+    render layout: "old_layout"
   end
 
   def create
