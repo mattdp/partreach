@@ -26,7 +26,7 @@ class CommentsController < ApplicationController
     @provider = Provider.find(params[:provider_id])
     @flavor = nil    
     Event.add_event("User",current_user.id,"loaded new comment page for","Provider",@provider.id)
-    render "new", layout: "provider"
+    render "new"
   end
 
   def create
@@ -61,8 +61,6 @@ class CommentsController < ApplicationController
     end
     
     Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
-    
-    render "edit", layout: "provider"
   end
 
   def update
@@ -79,14 +77,12 @@ class CommentsController < ApplicationController
     @purchase_order = @comment.purchase_order
     @contact = nil
     @contact = @comment.user.lead.lead_contact if (@comment.user.present? and @comment.user.lead.present?)
-    render layout: "provider"
   end
 
   def later
     @comment = Comment.find(params[:id])
     @user = @comment.user
     Event.add_event("User", @user.id, "said contact me later", "Comment", @comment.id)
-    render layout: "provider"
   end
 
   private

@@ -7,6 +7,7 @@ class DialoguesController < ApplicationController
     @countries = Geography.all_countries.pluck(:short_name)
     @us_states = Geography.all_us_states.pluck(:short_name)
     @order = params[:id] ? Order.find(params[:id]) : nil
+    render layout: "old_layout"
   end
 
   def create
@@ -101,6 +102,8 @@ class DialoguesController < ApplicationController
     content = @dialogue.initial_email_generator
     @subject = content[:subject]
     @body = content[:body]
+
+    render layout: "old_layout"
   end
 
   def update_email_snippet
@@ -165,6 +168,8 @@ class DialoguesController < ApplicationController
 
     @subject = "SupplyBetter RFQ ##{@dialogue.order.id}1 for #{@supplier.name}"
     @body = @dialogue.close_email_body
+
+    render layout: "old_layout"
   end
 
   def send_rfq_close_email
