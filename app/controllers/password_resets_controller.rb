@@ -3,7 +3,6 @@ class PasswordResetsController < ApplicationController
   
   def new
     @message_text = "You will receive an email with instructions on how to reset your password"
-    render layout: "provider"
   end
 
   def create
@@ -15,11 +14,7 @@ class PasswordResetsController < ApplicationController
     else
       @message_text = "Sorry, we can't locate that email address in our system."
     end
-    render "new", layout: "provider"
-  end
-
-  def internal
-    
+    render "new"
   end
 
 end
