@@ -13,6 +13,10 @@
   float: left;
   margin: 9px 0 0;
   width: 173px;
+
+  img {
+    vertical-align: inherit;
+  }
 }
 
 .header__links {
