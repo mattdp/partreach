@@ -29,13 +29,19 @@
   }
 
   a {
-    color: $white;
+    color: white;
     font-size: 14px;
+  }
+
+  a:hover, a:focus {
+    color: white;
   }
 
   .dropdown-menu a:hover {
     color: $sb-blue;
   }
+
+  
 }
 
 .dropdown {
