@@ -41,8 +41,6 @@ Partreach::Application.routes.draw do
   get '/examinations/:name', to: 'examinations#setup_examinations', as: "setup_examinations"
   match '/examinations', to: 'examinations#submit_examinations', via: :post, as: "submit_examinations"
 
-  get '/experiments/sde', to: 'experiments#sde', as: "experiments_sde"
-  get '/experiments/sla', to: 'experiments#sla', as: "experiments_sla"
   get '/experiments/ultem', to: 'experiments#ultem', as: "experiments_ultem"
   get '/experiments/sls_vs_fdm', to: 'experiments#sls_vs_fdm', as: "experiments_sls_vs_fdm"
 

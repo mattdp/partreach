@@ -4,17 +4,6 @@ class UsersController < ApplicationController
   before_filter :correct_user,   only: [:show, :edit, :update, :destroy]
   before_filter :admin_user,     only: [:destroy]
 
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
-  end
-
   # GET /users/1
   # GET /users/1.json
   def show
@@ -31,6 +20,8 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @lead_contact = @user.lead.lead_contact
+
+    render layout: "old_layout"
   end
 
   # create omitted - no direct way as of now

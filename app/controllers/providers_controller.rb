@@ -13,8 +13,6 @@ class ProvidersController < ApplicationController
     else
       Event.add_event("User","#{current_user.id}","loaded new profile page from unknown source")
     end
-
-    render layout: "provider"
   end
 
   def create
@@ -36,8 +34,6 @@ class ProvidersController < ApplicationController
     else
       Event.add_event("User","#{current_user.id}","loaded edit page from unknown source","Provider","#{@provider.id}")
     end
-
-    render layout: "provider"
   end
 
   def update
@@ -135,8 +131,6 @@ class ProvidersController < ApplicationController
     else
       Event.add_event("User",current_user.id,"loaded Providers index page")
     end
-
-    render layout: "provider"
   end
 
   def profile
@@ -153,15 +147,13 @@ class ProvidersController < ApplicationController
       @expiring_image_urls = External.get_expiring_urls(@provider.externals,@organization)
 
       Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
-      render layout: "provider"
     else
-      render template: "providers/profile_not_found", layout: "provider"
+      render template: "providers/profile_not_found"
     end
   end
 
   def suggested_edit
     Event.add_event("User",current_user.id,params[:clicked])
-    render layout: "provider"
   end
 
   def upload_photo

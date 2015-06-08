@@ -2,18 +2,18 @@
 <html lang="en" ng-app="SupplyBetter">
   <head>
     <title><%= yield(:title) %> | <%= "#{brand_name}" %></title>
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400italic,400,300,700' rel='stylesheet' type='text/css'>
-    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= stylesheet_link_tag    "supplybetter", :media => "all" %>
     <%= include_gon %>
     <%= render 'layouts/head_items' %>
   </head>
   <body>
-    <%= render 'layouts/old_header' %>
+    <%= render 'layouts/teams_header' %>
     <%= render 'layouts/flash_errors' %>
     <%= yield %>
-    <%= render 'layouts/old_footer' %>
+    <%= render 'layouts/provider_footer' %>
     <% if Rails.env.production? %>
       <script type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/3062c9396a6c78f05915b5251757faa85a8646eb808991ee313f5a9dd496d25a.js"></script> 
     <% end %>
   </body>
 </html>
+

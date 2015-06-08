@@ -20,6 +20,8 @@ class SuppliersController < ApplicationController
     @billing_contact = BillingContact.new
     @contract_contact = ContractContact.new
     @rfq_contact = RfqContact.new
+
+    render layout: "old_layout"
   end
 
   def create
@@ -46,6 +48,8 @@ class SuppliersController < ApplicationController
     @tags = @supplier.visible_tags
     @machines_quantity_hash = @supplier.machines_quantity_hash
     @point_structure = Supplier.get_in_use_point_structure
+
+    render layout: "old_layout"
   end
 
   def admin_edit
@@ -63,6 +67,8 @@ class SuppliersController < ApplicationController
       @billing_contact = @supplier.billing_contact
       @contract_contact = @supplier.contract_contact
       @rfq_contact = @supplier.rfq_contact
+
+      render layout: "old_layout"
     else
       render template: "suppliers/profile_not_found", status: :not_found
     end
@@ -141,7 +147,6 @@ class SuppliersController < ApplicationController
     @country = Geography.find_by_name_for_link('unitedstates')
     @state = Geography.find_by_name_for_link(params[:state])
 
-    
     if @state
       # Filters are currently defined for a subset of process group tags only
       @processes_array = []
@@ -196,7 +201,7 @@ class SuppliersController < ApplicationController
       @adjacencies = @filter.adjacencies
     end
 
-    render "supplier_index"
+    render "supplier_index", layout: "old_layout"
   end
 
   def profile
@@ -218,7 +223,7 @@ class SuppliersController < ApplicationController
       profile_factors = andlist(meta_for_supplier(@supplier))
       @meta += "The #{@supplier.name} profile has " + andlist(meta_for_supplier(@supplier)) + ". " if profile_factors.present?
       @meta = @meta.present? ? @meta : "#{@supplier.name} - Supplier profile"
-      render "profile"
+      render "profile", layout: "old_layout"
     else
       render "profile_not_found", status: :not_found
     end

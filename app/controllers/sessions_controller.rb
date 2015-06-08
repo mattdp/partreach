@@ -6,7 +6,6 @@ class SessionsController < ApplicationController
 
   def new
     sign_out
-    render layout: "provider"
   end
 
   def create
@@ -16,7 +15,7 @@ class SessionsController < ApplicationController
       redirect_after_signin
     else
       flash.now[:danger] = 'Invalid email/password combination'
-      render 'new', layout: "provider"
+      render 'new'
     end
   end
 
@@ -31,8 +30,6 @@ class SessionsController < ApplicationController
       redirect_to new_password_reset_path, :alert => "Invalid password reset token."
     elsif @user.password_reset_sent_at < HOURS_ALLOWED.hours.ago
       redirect_to new_password_reset_path, :alert => "Password reset has expired. For security, each reset is good for #{HOURS_ALLOWED} hours)."
-    else
-      render layout: "provider"
     end
   end
 
@@ -46,13 +43,12 @@ class SessionsController < ApplicationController
       sign_in @user
       redirect_after_signin("Password has been set. You are now logged in.")
     else
-      render :edit, layout: "provider"
+      render :edit
     end
   end
 
   def internal_edit
     @user = User.find_by_id(params[:id])
-    render layout: "provider"
   end
 
   def internal_update
@@ -62,7 +58,7 @@ class SessionsController < ApplicationController
       sign_in @user
       redirect_after_signin("New password has been set. You are now logged in.")
     else
-      render :internal_edit, layout: "provider"
+      render :internal_edit
     end
   end
 

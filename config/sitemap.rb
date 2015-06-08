@@ -96,8 +96,6 @@ SitemapGenerator::Sitemap.create do
   end
 
   #Experiments
-  add experiments_sde_path, changefreq: 'daily'
-  add experiments_sla_path, changefreq: 'daily'
   add experiments_ultem_path, changefreq: 'daily'
   add experiments_sls_vs_fdm_path, changefreq: 'daily'
 

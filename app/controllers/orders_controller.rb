@@ -12,10 +12,7 @@ class OrdersController < ApplicationController
     @point_structure = Supplier.get_in_use_point_structure
     current_user.supplier_id.nil? ? @supplier = nil : @supplier = Supplier.find(current_user.supplier_id)
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @orders }
-    end
+    render layout: "old_layout"
   end
 
   # GET /orders/1
@@ -40,10 +37,7 @@ class OrdersController < ApplicationController
       end
     end
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @order }
-    end
+    render layout: "old_layout"
   end
 
   # GET /orders/new
@@ -170,6 +164,8 @@ class OrdersController < ApplicationController
 
   def initial_email_edit
     @order = Order.find(params[:id])
+
+    render layout: "old_layout"
   end
 
   def initial_email_update
@@ -194,10 +190,7 @@ class OrdersController < ApplicationController
     @user = User.find(@order.user_id)
     @communications = Communication.get_ordered('Lead', @user.lead.id)
 
-    respond_to do |format|
-      format.html # manipulate_dialogues.html.erb
-      format.json { render 'manipulate_dialogues' }
-    end
+    render layout: "old_layout"
   end
 
 
@@ -273,10 +266,6 @@ class OrdersController < ApplicationController
     note = "Purchase attempted. Order #{@order.id}, Supplier #{@supplier.name}"
     text_notification(note)
     UserMailer.email_internal_team("Purchase attempted",note)
-    respond_to do |format|
-      format.html
-      format.json { render json: @order }
-    end
   end
 
   private
