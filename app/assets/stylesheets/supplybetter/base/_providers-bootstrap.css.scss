@@ -1,15 +1,15 @@
 /*!
- * Bootstrap v3.3.2 (http://getbootstrap.com)
+ * Bootstrap v3.3.4 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 /*!
- * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=69d76c9bb0153c3a2994)
- * Config saved to config.json and https://gist.github.com/69d76c9bb0153c3a2994
+ * Generated using the Bootstrap Customizer (http://getbootstrap.com/customize/?id=470d54770ff45a7804e1)
+ * Config saved to config.json and https://gist.github.com/470d54770ff45a7804e1
  */
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
-/*html {
+html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -207,7 +207,6 @@ html {
   font-size: 10px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-*/
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -215,7 +214,6 @@ body {
   color: #333333;
   background-color: #ffffff;
 }
-
 input,
 button,
 select,
@@ -224,7 +222,6 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
-
 a {
   color: #337ab7;
   text-decoration: none;
@@ -239,14 +236,12 @@ a:focus {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
-
 figure {
   margin: 0;
 }
 img {
   vertical-align: middle;
 }
-
 .img-responsive {
   display: block;
   max-width: 100%;
@@ -271,14 +266,12 @@ img {
 .img-circle {
   border-radius: 50%;
 }
-
 hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
   border-top: 1px solid #eeeeee;
 }
-
 .sr-only {
   position: absolute;
   width: 1px;
@@ -298,7 +291,9 @@ hr {
   overflow: visible;
   clip: auto;
 }
-
+[role="button"] {
+  cursor: pointer;
+}
 .container {
   margin-right: auto;
   margin-left: auto;
@@ -977,11 +972,9 @@ hr {
 }
 .collapse {
   display: none;
-  visibility: hidden;
 }
 .collapse.in {
   display: block;
-  visibility: visible;
 }
 tr.collapse.in {
   display: table-row;
@@ -1014,7 +1007,7 @@ tbody.collapse.in {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1040;
+  z-index: 1050;
   -webkit-overflow-scrolling: touch;
   outline: 0;
 }
@@ -1055,10 +1048,12 @@ tbody.collapse.in {
   outline: 0;
 }
 .modal-backdrop {
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
+  bottom: 0;
   left: 0;
+  z-index: 1040;
   background-color: #000000;
 }
 .modal-backdrop.fade {
@@ -1174,7 +1169,6 @@ tbody.collapse.in {
 }
 .hidden {
   display: none !important;
-  visibility: hidden !important;
 }
 .affix {
   position: fixed;
