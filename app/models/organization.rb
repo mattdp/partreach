@@ -26,6 +26,33 @@ class Organization < ActiveRecord::Base
     return in_org_comments.sort_by{|c| c.created_at}.reverse.take(10)
   end
 
+  def healthy_users(date_within_month_to_check)
+    users = self.users
+    healthy_user_count = 0
+    number_of_events_to_count_a_day = 3
+    number_of_days_for_a_healthy_user = 5
+
+    users.each do |user|
+      day_count = 0
+      events = user.events.select{|e| e.created_at.month == date_within_month_to_check.month}
+      distribution = {}
+      events.each do |event|
+        if distribution[event.day].present?
+          distribution[event.day] << event
+        else
+          distribution[event.day] = [event]
+        end
+      end
+      distribution.keys.each do |key|
+        day_count += 1 if distribution[key].count >= number_of_events_to_count_a_day
+      end
+      healthy_user_count += 1 if day_count >= number_of_days_for_a_healthy_user
+    end
+
+    return healthy_user_count
+
+  end
+
   def colloquial_people_name
     returnee = nil
     self.people_are_called.present? ? returnee = self.people_are_called : returnee = self.name
@@ -86,6 +113,18 @@ class Organization < ActiveRecord::Base
     Event.add_event("User","#{user.id}" ,"added a new tag", "Tag", new_tag.id)
 
     new_tag
+  end
+
+  def users
+    user_list = []
+    if self.teams
+      self.teams.each do |team|
+        user_list.concat(team.users) if team.users.present?
+      end
+      return user_list
+    else
+      return nil
+    end
   end
 
 end
