@@ -13,6 +13,10 @@
   float: left;
   margin: 9px 0 0;
   width: 173px;
+
+  img {
+    vertical-align: inherit;
+  }
 }
 
 .header__links {
@@ -25,8 +29,12 @@
   }
 
   a {
-    color: $white;
+    color: white;
     font-size: 14px;
+  }
+
+  a:hover, a:focus {
+    color: white;
   }
 
   .dropdown-menu a:hover {
@@ -43,11 +51,6 @@
       display: block;
     }
   }
-}
-
-.dropdown .username {
-  float:right;
-  line-height: 24px;
 }
 
 .dropdown-menu {

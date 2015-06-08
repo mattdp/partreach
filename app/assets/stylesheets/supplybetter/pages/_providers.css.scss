@@ -1,5 +1,11 @@
 /*SUPER GENERAL*/
 
+/*band-aid from pulling in vanilla bootstrap, I'll find a better place for this later*/
+body { 
+  font-size: 16px;
+  line-height: 1.37; 
+}
+
 .center {
   text-align: center;
 }
@@ -10,6 +16,25 @@
 
 .small-margin-left {
   margin-left: 10px;
+}
+
+.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+hr {
+  border-top: 1px solid #acacac;
+}
+
+a {
+  color: $sb-blue;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: $sb-blue;
+  text-decoration: none;
 }
 
 /*BEGIN INDEX SEARCH BAR*/
@@ -37,15 +62,15 @@
 }
 
 .index-search-bar {
-  padding-right: 0px;
+  padding-right: 0;
 }
 
 .index-search-button {
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .left-grid-bare {
-  padding-left: 0px;
+  padding-left: 0;
   padding-top: 5px;
 }
 
@@ -67,10 +92,10 @@ div.chosen-container-multi {
     border-radius: 2px;
     color: white;
     height: 44px;
-    margin-bottom: 0px;
-    margin-top: 0px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+    margin-bottom: 0;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
   }*/
 
 li.search-field input {
@@ -97,7 +122,7 @@ a.search-choice-close {
 }
 
 .search-help-text {
-  margin-top: 0px;
+  margin-top: 0;
   font-weight: normal;
 }
 
@@ -106,7 +131,7 @@ a.search-choice-close {
 /*BEGIN PROVIDER INDEX CATEGORY LIST*/
 .hax-body-styling ul {
   list-style:none;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 #keyword-list {
@@ -119,11 +144,11 @@ a.search-choice-close {
 /*BEGIN PROVIDER INDEX FEED*/
 
 .header-no-margin {
-  margin: 0px;
+  margin: 0;
 }
 
 #index-tags {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 /*END PROVIDER INDEX FEED*/
@@ -269,7 +294,7 @@ replacement -mdp */
 }
 
 .provider-tags ul {
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 /*this class is being used in a bunch of places. should be moved into a more general section of this sheet*/
@@ -280,8 +305,8 @@ replacement -mdp */
 
 .hax-body-styling {
   width: 100%;
-  padding-right: 0px;
-  padding-left: 0px;
+  padding-right: 0;
+  padding-left: 0;
 }
 /*END PROVIDER EDIT PAGE*/
 
@@ -289,7 +314,7 @@ replacement -mdp */
 http://fearlessflyer.com/create-a-responsive-photo-gallery-with-bootstrap-framework/*/
 
 div.photo-gallery {
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 ul.photo-gallery {         
@@ -298,7 +323,7 @@ ul.photo-gallery {
 }
 ul.photo-gallery li {     
     list-style:none;
-    padding:0 1px 0 0;         
+    padding:0 2px 2px 0;         
 }
 ul.photo-gallery li img {
     cursor: pointer;
@@ -340,8 +365,8 @@ ul.photo-gallery li:first-child img{
 
 /*BEGIN PROVIDER PROFILE*/
 .provider-profile h1{
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .profile-spacing h3{
@@ -350,8 +375,8 @@ ul.photo-gallery li:first-child img{
 }
 
 li p {
-  margin-top: 0px;
-  margin-bottom: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .tags-providerTags>a {
@@ -387,21 +412,21 @@ li p {
 }
 
 .comment p {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .comment-snippet {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   font-style: italic;
 }
 
 .comment-smalltext {
-  margin-top: 0px;
+  margin-top: 0;
   font-size: 15px;
 }
 
 .comment-profile p {
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .comment-rating-stars {
@@ -417,7 +442,7 @@ img.banner-message {
 }
 
 .comment-no-left-margin {
-  padding-left: 0px;
+  padding-left: 0;
 }
 
 .comment-last-row {
