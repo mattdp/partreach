@@ -57,6 +57,17 @@ class Provider < ActiveRecord::Base
     end
   end
 
+  def self.contact_fields
+    fields = [
+      [:contact_name, "Contact name"],
+      [:contact_role, "Contact role"],
+      [:contact_phone, "Phone"],
+      [:contact_email, "Email"],
+      [:contact_skype, "Skype"]
+    ]
+    return fields
+  end
+
   #needs to return 0-5 inclusive integer
   def average_score
     numbers_without_zeros = self.comments.map{|comment| comment.overall_score}.reject{|n| n==0}

@@ -37,6 +37,7 @@
         <p class="comment-smalltext"><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p>
         <p class="comment-smalltext"><strong>Phone: </strong><%= @provider.contact_phone %></p>
         <p class="comment-smalltext"><strong>Email: </strong><%= @provider.contact_email %></p>
+        <p class="comment-smalltext"><strong>Skype: </strong><%= @provider.contact_skype %></p>
         <p class="comment-smalltext">
           <strong>Website: </strong>
           <% if @provider.url_main.present? %>
