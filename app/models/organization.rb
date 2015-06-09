@@ -72,7 +72,7 @@ class Organization < ActiveRecord::Base
       if !comment.save
         output_string += "#{warning_prefix}WARNING: ORPHAN PO. Comment saving failure for row starting with SB ID #{row['Start SB ID']}.\n"
       else
-        output_string += "Row with SB ID #{row['Start SB ID']} successful.\n"
+        output_string += "Success. Comment #{comment.id} created from row with SB ID #{row['Start SB ID']}.\n"
       end
 
     end
