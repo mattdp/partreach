@@ -20,15 +20,19 @@ class Organization < ActiveRecord::Base
 
 
   def create_synapse_pos_and_comments_from_tsv(filename)
-    counter = 0
+    
+    output_string = ""    
+    warning_prefix = "***** "
+
     CSV.foreach(filename, { :headers => true, :col_sep => "\t", :skip_blanks => true }) do |row|
 
       provider = nil  
       user = nil
 
+
       #test if row is supposed to be processed
       if !(row["Custom Part?"] == "TRUE" and row["Vendor already exists?"] == "TRUE")
-        puts "Row starting with SB ID #{row['Start SB ID']} skipped, not custom part or not vendor in DB"
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, not custom part or not vendor in DB\n"
         next
       end
 
@@ -37,27 +41,43 @@ class Organization < ActiveRecord::Base
       if !(row["Vendor Name"].present? and
         provider = Provider.where("name = ? and organization_id = ?",row["Vendor Name"],self.id) and
         provider.present?)
-          puts "Row starting with SB ID #{row['Start SB ID']} skipped, provider not found in this organization"
+          output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, provider not found in this organization\n"
           next
       else
         provider = provider[0]
       end
 
       #test if user exists
+      binding.pry
       if !(row["SB U ID"].present? and
         user = User.where("id = ?",row["SB U ID"].to_i) and
         user.present? and
         self.teams.include?(user[0].team))
-          puts "Row starting with SB ID #{row['Start SB ID']} skipped, user not found in this organization"
+          output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, user not found in this organization\n"
           next
       else
         user = user[0]
       end
 
-      puts "checks cleared"
-      #create PO
-      #create comment
+      po = PurchaseOrder.new({ provider: provider, description: row["description"], project_name: row["Project Name"]})
+      po.price = row["Total Price"].to_f if row["Total Price"].present?
+      po.quantity = row["Quantity"].to_i if row["Quantity"].present?
+      po.issue_date = Date.parse(row["PO Issue Date"]) if row["PO Issue Date"].present?
+
+      if !po.save
+        output_string += "#{warning_prefix}PO saving failure for row starting with SB ID #{row['Start SB ID']}. Skipping.\n"
+        next
+      end
+
+      comment = Comment.new({user: user, provider: provider, comment_type: "purchase_order", purchase_order: po})
+      if !comment.save
+        output_string += "#{warning_prefix}WARNING: ORPHAN PO. Comment saving failure for row starting with SB ID #{row['Start SB ID']}.\n"
+      else
+        output_string += "Row with SB ID #{row['Start SB ID']} successful.\n"
+      end
+
     end
+    return output_string
   end
 
   #/Users/matt/Desktop/partreach-docs/mdp/151005-recent_comments.txt for thoughts on how to do right
