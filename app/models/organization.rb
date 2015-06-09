@@ -18,6 +18,48 @@ class Organization < ActiveRecord::Base
   has_many :providers
   has_many :tags
 
+
+  def create_synapse_pos_and_comments_from_tsv(filename)
+    counter = 0
+    CSV.foreach(filename, { :headers => true, :col_sep => "\t", :skip_blanks => true }) do |row|
+
+      provider = nil  
+      user = nil
+
+      #test if row is supposed to be processed
+      if !(row["Custom Part?"] == "TRUE" and row["Vendor already exists?"] == "TRUE")
+        puts "Row starting with SB ID #{row['Start SB ID']} skipped, not custom part or not vendor in DB"
+        next
+      end
+
+      #test if provider exists
+
+      if !(row["Vendor Name"].present? and
+        provider = Provider.where("name = ? and organization_id = ?",row["Vendor Name"],self.id) and
+        provider.present?)
+          puts "Row starting with SB ID #{row['Start SB ID']} skipped, provider not found in this organization"
+          next
+      else
+        provider = provider[0]
+      end
+
+      #test if user exists
+      if !(row["SB U ID"].present? and
+        user = User.where("id = ?",row["SB U ID"].to_i) and
+        user.present? and
+        self.teams.include?(user[0].team))
+          puts "Row starting with SB ID #{row['Start SB ID']} skipped, user not found in this organization"
+          next
+      else
+        user = user[0]
+      end
+
+      puts "checks cleared"
+      #create PO
+      #create comment
+    end
+  end
+
   #/Users/matt/Desktop/partreach-docs/mdp/151005-recent_comments.txt for thoughts on how to do right
   def recent_comments
     possibles = Comment.last(50)
