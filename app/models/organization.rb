@@ -48,7 +48,6 @@ class Organization < ActiveRecord::Base
       end
 
       #test if user exists
-      binding.pry
       if !(row["SB U ID"].present? and
         user = User.where("id = ?",row["SB U ID"].to_i) and
         user.present? and
