@@ -13,8 +13,6 @@
 #  issue_date   :date
 #
 
-require 'csv'
-
 class PurchaseOrder < ActiveRecord::Base
 
   belongs_to :provider
