@@ -88,61 +88,21 @@
 
     <h2>Contact information</h2>
 
-    <hr>
+    <%#= see Provider.contact_fields for data layout %>
+    <% contact_fields.each do |contact_field| %>
+      <hr>
+      <div class="row">
+        <div class="col-md-3">
+          <%= label_tag contact_field[0], contact_field[1] %>
+        </div>
 
-    <div class="row">
-      <div class="col-md-3">
-      <%= label_tag 'contact_name', 'Contact Name' %>
-      </div>
-
-      <div class="col-md-9">
-        <span class="provider-edit-input">
-          <%= text_field_tag 'contact_name', @provider.contact_name %>
-        </span>
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="row">
-      <div class="col-md-3">
-      <%= label_tag 'contact_role', 'Contact Role' %>
-      </div>
-
-      <div class="col-md-9">
-        <span class="provider-edit-input">
-          <%= text_field_tag 'contact_role', @provider.contact_role %>
-        </span>
-      </div>
-    </div>
-
-    <hr>
-
-    <div class="row">
-      <div class="col-md-3">
-      <%= label_tag 'contact_phone', 'Phone' %>
-      </div>
-
-      <div class="col-md-9">
-        <span class="provider-edit-input">
-          <%= text_field_tag 'contact_phone', @provider.contact_phone %>
+        <div class="col-md-9">
+          <span class="provider-edit-input">
+            <%= text_field_tag contact_field[0], @provider.send(contact_field[0]) %>
           </span>
+        </div>
       </div>
-    </div>
-
-    <hr>
-
-    <div class="row">
-      <div class="col-md-3">
-      <%= label_tag 'contact_email', 'Email' %>
-      </div>
-
-      <div class="col-md-9">
-        <span class="provider-edit-input">
-          <%= text_field_tag 'contact_email', @provider.contact_email %>
-        </span>
-      </div>
-    </div>
+    <% end %>
 
     <h2>Tags</h2>
 

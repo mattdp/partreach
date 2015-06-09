@@ -9,8 +9,7 @@
       <h1>Create new provider</h1>
     </div>
 
-      <%= render :partial => "providers/provider_information", locals: {form_action: "create"} %>
-
+    <%= render :partial => "providers/provider_information", locals: {form_action: "create", contact_fields: @contact_fields} %>
     
   </div>
 </div>
