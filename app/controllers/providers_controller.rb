@@ -7,6 +7,7 @@ class ProvidersController < ApplicationController
     @provider = Provider.new
     @tags = current_organization.provider_tags.sort_by { |t| t.readable.downcase }
     @checked_tags = []
+    @contact_fields = Provider.contact_fields
 
     if params[:event_name].present? 
       Event.add_event("User","#{current_user.id}","#{params[:event_name]}")
@@ -28,6 +29,7 @@ class ProvidersController < ApplicationController
     @provider = current_organization.providers.find(params[:id])
     @tags = current_organization.provider_tags.sort_by { |t| t.readable.downcase }
     @checked_tags = @provider.tags
+    @contact_fields = Provider.contact_fields
 
     if params[:event_name].present? 
       Event.add_event("User","#{current_user.id}","#{params[:event_name]}","Provider","#{@provider.id}")
@@ -166,7 +168,7 @@ class ProvidersController < ApplicationController
 
     def editable_provider_params
       params.permit(:name,:url_main, \
-        :contact_wechat,:contact_phone,:contact_email,:contact_name, \
+        :contact_wechat,:contact_phone,:contact_email,:contact_name,:contact_skype, \
         :contact_role,:location_string,:external_notes,:organization_private_notes)
     end
 
