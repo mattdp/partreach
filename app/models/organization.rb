@@ -36,7 +36,11 @@ class Organization < ActiveRecord::Base
         output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, not custom part or not vendor in DB\n"
         next
       end
-      if !(PurchaseOrder.where("id_in_purchasing_system = ?",row["Synapse PO number"]).present?)
+      if row["Synapse PO number"].to_i == 0
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, no PO number present\n"
+        next
+      end
+      if PurchaseOrder.where("id_in_purchasing_system = ?",row["Synapse PO number"].to_i).present?
         output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, PO #{row["Synapse PO number"]} already in system\n"
         next
       end
@@ -61,7 +65,7 @@ class Organization < ActiveRecord::Base
 
       #create and test PO
       po = PurchaseOrder.new({ provider: provider, description: row["Description"], 
-        project_name: row["Project Name"], id_in_purchasing_system: row["Synapse PO number"]})
+        project_name: row["Project Name"], id_in_purchasing_system: row["Synapse PO number"].to_i})
       po.price = row["Total Price"].to_f if row["Total Price"].present?
       po.quantity = row["Quantity"].to_i if row["Quantity"].present?
       po.issue_date = Date.parse(row["PO Issue Date"]) if row["PO Issue Date"].present?
