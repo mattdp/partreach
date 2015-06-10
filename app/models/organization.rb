@@ -19,16 +19,17 @@ class Organization < ActiveRecord::Base
   has_many :tags
 
 
-  def create_synapse_pos_and_comments_from_tsv(filename)
+  def create_synapse_pos_and_comments_from_tsv(url)
     
     output_string = ""    
     warning_prefix = "***** "
 
-    CSV.foreach(filename, { :headers => true, :col_sep => "\t", :skip_blanks => true }) do |row|
+    tsv_data = open(url).read #http://ruby-doc.org/stdlib-2.0.0/libdoc/stringio/rdoc/StringIO.html
+
+    CSV.parse(tsv_data, { :headers => true, :col_sep => "\t", :skip_blanks => true }) do |row|
 
       provider = nil  
       user = nil
-
 
       #test if row is supposed to be processed
       if !(row["Custom Part?"] == "TRUE" and row["Vendor already exists?"] == "TRUE")
