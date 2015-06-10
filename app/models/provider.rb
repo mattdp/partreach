@@ -25,6 +25,7 @@
 #  external_notes             :text
 #  import_warnings            :text
 #  supplybetter_private_notes :text
+#  name_in_purchasing_system  :string(255)
 #
 
 class Provider < ActiveRecord::Base
@@ -55,6 +56,14 @@ class Provider < ActiveRecord::Base
     if self.url_main.present?
       self.url_main = /^http/.match(self.url_main) ? self.url_main : "http://#{self.url_main}"
     end
+  end
+
+  def self.safe_name_check(organization_id,name)
+    return nil unless (name.present? and organization_id.present?)
+    possible = Provider.where("name = ? and organization_id = ?",name,organization_id)
+    possible = Provider.where("name_in_purchasing_system = ? and organization_id = ?",name,organization_id) unless possible.present?
+    return nil unless possible.present?
+    return possible[0]
   end
 
   def self.contact_fields
