@@ -18,6 +18,68 @@ class Organization < ActiveRecord::Base
   has_many :providers
   has_many :tags
 
+
+  def create_synapse_pos_and_comments_from_tsv(url)
+    
+    output_string = ""    
+    warning_prefix = "***** "
+
+    tsv_data = open(url).read #http://ruby-doc.org/stdlib-2.0.0/libdoc/stringio/rdoc/StringIO.html
+
+    CSV.parse(tsv_data, { :headers => true, :col_sep => "\t", :skip_blanks => true }) do |row|
+
+      provider = nil  
+      user = nil
+
+      #test if row is supposed to be processed
+      if !(row["Custom Part?"] == "TRUE" and row["Vendor already exists?"] == "TRUE")
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, not custom part or not vendor in DB\n"
+        next
+      end
+
+      #test if provider exists
+
+      if !(row["Vendor Name"].present? and
+        provider = Provider.where("name = ? and organization_id = ?",row["Vendor Name"],self.id) and
+        provider.present?)
+          output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, provider not found in this organization\n"
+          next
+      else
+        provider = provider[0]
+      end
+
+      #test if user exists
+      if !(row["SB U ID"].present? and
+        user = User.where("id = ?",row["SB U ID"].to_i) and
+        user.present? and
+        self.teams.include?(user[0].team))
+          output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, user not found in this organization\n"
+          next
+      else
+        user = user[0]
+      end
+
+      po = PurchaseOrder.new({ provider: provider, description: row["Description"], project_name: row["Project Name"]})
+      po.price = row["Total Price"].to_f if row["Total Price"].present?
+      po.quantity = row["Quantity"].to_i if row["Quantity"].present?
+      po.issue_date = Date.parse(row["PO Issue Date"]) if row["PO Issue Date"].present?
+
+      if !po.save
+        output_string += "#{warning_prefix}PO saving failure for row starting with SB ID #{row['Start SB ID']}. Skipping.\n"
+        next
+      end
+
+      comment = Comment.new({user: user, provider: provider, comment_type: "purchase_order", purchase_order: po})
+      if !comment.save
+        output_string += "#{warning_prefix}WARNING: ORPHAN PO. Comment saving failure for row starting with SB ID #{row['Start SB ID']}.\n"
+      else
+        output_string += "Success. Comment #{comment.id} created from row with SB ID #{row['Start SB ID']}.\n"
+      end
+
+    end
+    return output_string
+  end
+
   #/Users/matt/Desktop/partreach-docs/mdp/151005-recent_comments.txt for thoughts on how to do right
   def recent_comments
     possibles = Comment.last(50)
