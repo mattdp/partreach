@@ -59,7 +59,7 @@ class Organization < ActiveRecord::Base
         user = user[0]
       end
 
-      po = PurchaseOrder.new({ provider: provider, description: row["description"], project_name: row["Project Name"]})
+      po = PurchaseOrder.new({ provider: provider, description: row["Description"], project_name: row["Project Name"]})
       po.price = row["Total Price"].to_f if row["Total Price"].present?
       po.quantity = row["Quantity"].to_i if row["Quantity"].present?
       po.issue_date = Date.parse(row["PO Issue Date"]) if row["PO Issue Date"].present?
