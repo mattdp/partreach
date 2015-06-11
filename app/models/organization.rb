@@ -36,16 +36,20 @@ class Organization < ActiveRecord::Base
         output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, not custom part or not vendor in DB\n"
         next
       end
+      if row["Synapse PO number"].to_i == 0
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, no PO number present\n"
+        next
+      end
+      if PurchaseOrder.where("id_in_purchasing_system = ?",row["Synapse PO number"].to_i).present?
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, PO #{row["Synapse PO number"]} already in system\n"
+        next
+      end
 
       #test if provider exists
-
-      if !(row["Vendor Name"].present? and
-        provider = Provider.where("name = ? and organization_id = ?",row["Vendor Name"],self.id) and
-        provider.present?)
-          output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, provider not found in this organization\n"
-          next
-      else
-        provider = provider[0]
+      provider = Provider.safe_name_check(self.id,row["Vendor Name"])
+      if !provider.present?
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, provider not found in this organization\n"
+        next
       end
 
       #test if user exists
@@ -59,7 +63,9 @@ class Organization < ActiveRecord::Base
         user = user[0]
       end
 
-      po = PurchaseOrder.new({ provider: provider, description: row["Description"], project_name: row["Project Name"]})
+      #create and test PO
+      po = PurchaseOrder.new({ provider: provider, description: row["Description"], 
+        project_name: row["Project Name"], id_in_purchasing_system: row["Synapse PO number"].to_i})
       po.price = row["Total Price"].to_f if row["Total Price"].present?
       po.quantity = row["Quantity"].to_i if row["Quantity"].present?
       po.issue_date = Date.parse(row["PO Issue Date"]) if row["PO Issue Date"].present?
@@ -69,6 +75,7 @@ class Organization < ActiveRecord::Base
         next
       end
 
+      #create and test comment
       comment = Comment.new({user: user, provider: provider, comment_type: "purchase_order", purchase_order: po})
       if !comment.save
         output_string += "#{warning_prefix}WARNING: ORPHAN PO. Comment saving failure for row starting with SB ID #{row['Start SB ID']}.\n"
