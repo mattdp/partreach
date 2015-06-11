@@ -96,7 +96,17 @@ class Organization < ActiveRecord::Base
   end
 
   def analysis(start_date=Date.today-30.days,finish_date=Date.today)
-    facts = {}
+    facts = {date_range: "#{start_date.to_s} to #{finish_date.to_s}"}
+
+    facts[:filled_out_comments] = Comment.where("overall_score > 0 OR payload IS NOT NULL")
+      .where("updated_at >= ? AND updated_at <= ?",start_date,finish_date)
+      .select{|c| c.provider.organization == self}
+      .count
+
+    admin_ids = User.admins.map{|a| a.id}
+    facts[:profile_views_non_admin] = Event.where("happening = 'loaded profile'")
+      .where.not(model_id: admin_ids)
+      .count
 
     return facts
   end
