@@ -20,17 +20,17 @@
 
       <p>Hi <%= @contact.first_name.present? ? "#{@contact.first_name}" : "[NAME]" %>,</p>
 
-      <p><span>Project:</span> <%= @purchase_order.project_name.present? ? "#{@purchase_order.project_name}" : "[PROJECT NAME]" %></p>
-      <p><span>Quantity:</span> <%= @purchase_order.quantity.present? ? "#{@purchase_order.quantity}" : "[QUANTITY]" %> pieces for <%= @purchase_order.quantity.present? ? currencyize(@purchase_order.price,"dollars") : "$[PRICE]" %> total</p>
-      <p><span>Description:</span> <%= @purchase_order.description.present? ? "#{@purchase_order.description}" : "[DESCRIPTION]" %> </p>
-
-      <p><strong>How did <%= @comment.provider.name %> do?</strong></p>
+      <p>How did <%= @comment.provider.name %> do?</p>
 
       <ul>
-        <li><%= link_to "Excellent!", comments_edit_with_status_path(@comment.id,"good") %></li>
+        <li><%= link_to "Excellent!", comments_edit_with_status_path(@comment.id,"good") %> - Cost, quality, and speed were all superb</li> 
         <br>
         <li><%= link_to "I had a different experience...", comments_edit_with_status_path(@comment.id,"bad") %></li>
       </ul>
+
+      <p><span>Project:</span> <%= @purchase_order.project_name.present? ? "#{@purchase_order.project_name}" : "[PROJECT NAME]" %></p>
+      <p><span>Quantity:</span> <%= @purchase_order.quantity.present? ? "#{@purchase_order.quantity}" : "[QUANTITY]" %> pieces for <%= @purchase_order.quantity.present? ? currencyize(@purchase_order.price,"dollars") : "$[PRICE]" %> total</p>
+      <p><span>Description:</span> <%= @purchase_order.description.present? ? "#{@purchase_order.description}" : "[DESCRIPTION]" %> </p>      
 
       <p>But wait, <%= link_to "I haven't received the parts yet!", comments_later_path(@comment.id) %></p>
 
