@@ -143,7 +143,7 @@ class ProvidersController < ApplicationController
       @total_comments_for_user = Comment.joins(:user).group('users.id').count
       @purchase_order_comments_for_user = Comment.where(comment_type: 'purchase_order').joins(:user).group('users.id').count
       @tags = @provider.tags.sort_by { |t| t.readable.downcase }
-      @po_names = @comments.select{|c| c.comment_type == "purchase_order"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
+      @po_names_and_counts = @provider.po_names_and_counts
       @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       
       @expiring_image_urls = External.get_expiring_urls(@provider.externals,@organization)
