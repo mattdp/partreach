@@ -58,6 +58,17 @@ class Provider < ActiveRecord::Base
     end
   end
 
+  def po_names_and_counts
+    uids_and_counts = Comment.where("provider_id = ? and comment_type = 'purchase_order'",self.id)
+      .group(:user_id).count.sort_by{|k,v| -v}
+    answer = []
+    #james, would love to talk with you about how to input array of user ids and get all their lead contacts in one operation
+    uids_and_counts.each do |tuple|
+      answer << [User.find(tuple[0]).lead.lead_contact,tuple[1]]
+    end
+    return answer
+  end
+
   def self.safe_name_check(organization_id,name)
     return nil unless (name.present? and organization_id.present?)
     possible = Provider.where("name = ? and organization_id = ?",name,organization_id)
