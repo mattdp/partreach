@@ -20,7 +20,7 @@ class External < ActiveRecord::Base
   validates :consumer_type, presence: true
   validates :url, presence: true
 
-  def setup_s3_resource(organization)
+  def self.setup_s3_resource(organization)
     region = "us-east-1"
 
     #hitting the token vending service
