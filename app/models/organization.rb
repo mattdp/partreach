@@ -95,6 +95,12 @@ class Organization < ActiveRecord::Base
     return in_org_comments.sort_by{|c| c.updated_at}.reverse.take(10)
   end
 
+  def analysis(start_date=Date.today-30.days,finish_date=Date.today)
+    facts = {}
+
+    return facts
+  end
+
   def healthy_users(date_within_month_to_check)
     users = self.users.select{|u| u.admin == false}
     healthy_user_count = 0
