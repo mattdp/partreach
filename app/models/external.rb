@@ -49,6 +49,7 @@ class External < ActiveRecord::Base
       region: region,
       client: s3_client
       )
+    return s3_resource
   end
 
   #all work that only needs to be done once per fetching of photos
@@ -56,7 +57,7 @@ class External < ActiveRecord::Base
 
     return nil unless externals_list.present?
 
-    s3_resource = self.setup_s3_resource(organization)
+    s3_resource = External.setup_s3_resource(organization)
 
     result = [] 
     externals_list.each do |external|
