@@ -52,7 +52,7 @@
       <% if @po_names_and_counts.present? %> 
         <ul>
           <% @po_names_and_counts.each do |lead_contact,quantity| %>
-            <li><p><%= "#{lead_contact.full_name_untrusted} (#{pluralize(quantity,'orders')})" %></p></li>
+            <li><p><%= "#{lead_contact.full_name_untrusted} (#{quantity})" %></p></li>
           <% end %>
         </ul>
       <% else %>
