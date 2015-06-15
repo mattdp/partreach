@@ -20,11 +20,7 @@ class External < ActiveRecord::Base
   validates :consumer_type, presence: true
   validates :url, presence: true
 
-  #all work that only needs to be done once per fetching of photos
-  def self.get_expiring_urls(externals_list,organization)
-
-    return nil unless externals_list.present?
-
+  def self.setup_s3_resource(organization)
     region = "us-east-1"
 
     #hitting the token vending service
@@ -53,6 +49,15 @@ class External < ActiveRecord::Base
       region: region,
       client: s3_client
       )
+    return s3_resource
+  end
+
+  #all work that only needs to be done once per fetching of photos
+  def self.get_expiring_urls(externals_list,organization)
+
+    return nil unless externals_list.present?
+
+    s3_resource = External.setup_s3_resource(organization)
 
     result = [] 
     externals_list.each do |external|

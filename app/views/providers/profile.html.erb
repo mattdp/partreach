@@ -46,14 +46,13 @@
         </p>            
         <p class="comment-smalltext"><strong>Full address: </strong><%= "#{@provider.location_string}" %></p>
       </div>
-      
 
       <!-- PURCHASE ORDERS -->
       <h3>Purchase orders</h3> 
-      <% if @po_names.present? %> 
+      <% if @po_names_and_counts.present? %> 
         <ul>
-          <% @po_names.each do |name| %>
-            <li><p><%= "#{name}" %></p></li>
+          <% @po_names_and_counts.each do |lead_contact,quantity| %>
+            <li><p><%= "#{lead_contact.full_name_untrusted} (#{quantity})" %></p></li>
           <% end %>
         </ul>
       <% else %>

@@ -18,12 +18,97 @@ class Organization < ActiveRecord::Base
   has_many :providers
   has_many :tags
 
+
+  def create_synapse_pos_and_comments_from_tsv(url)
+    
+    output_string = ""    
+    warning_prefix = "***** "
+
+    tsv_data = open(url).read #http://ruby-doc.org/stdlib-2.0.0/libdoc/stringio/rdoc/StringIO.html
+
+    CSV.parse(tsv_data, { :headers => true, :col_sep => "\t", :skip_blanks => true }) do |row|
+
+      provider = nil  
+      user = nil
+
+      #test if row is supposed to be processed
+      if !(row["Custom Part?"] == "TRUE" and row["Vendor already exists?"] == "TRUE")
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, not custom part or not vendor in DB\n"
+        next
+      end
+      if row["Synapse PO number"].to_i == 0
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, no PO number present\n"
+        next
+      end
+      if PurchaseOrder.where("id_in_purchasing_system = ?",row["Synapse PO number"].to_i).present?
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, PO #{row["Synapse PO number"]} already in system\n"
+        next
+      end
+
+      #test if provider exists
+      provider = Provider.safe_name_check(self.id,row["Vendor Name"])
+      if !provider.present?
+        output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, provider not found in this organization\n"
+        next
+      end
+
+      #test if user exists
+      if !(row["SB U ID"].present? and
+        user = User.where("id = ?",row["SB U ID"].to_i) and
+        user.present? and
+        self.teams.include?(user[0].team))
+          output_string += "#{warning_prefix}Row starting with SB ID #{row['Start SB ID']} skipped, user not found in this organization\n"
+          next
+      else
+        user = user[0]
+      end
+
+      #create and test PO
+      po = PurchaseOrder.new({ provider: provider, description: row["Description"], 
+        project_name: row["Project Name"], id_in_purchasing_system: row["Synapse PO number"].to_i})
+      po.price = row["Total Price"].to_f if row["Total Price"].present?
+      po.quantity = row["Quantity"].to_i if row["Quantity"].present?
+      po.issue_date = Date.parse(row["PO Issue Date"]) if row["PO Issue Date"].present?
+
+      if !po.save
+        output_string += "#{warning_prefix}PO saving failure for row starting with SB ID #{row['Start SB ID']}. Skipping.\n"
+        next
+      end
+
+      #create and test comment
+      comment = Comment.new({user: user, provider: provider, comment_type: "purchase_order", purchase_order: po})
+      if !comment.save
+        output_string += "#{warning_prefix}WARNING: ORPHAN PO. Comment saving failure for row starting with SB ID #{row['Start SB ID']}.\n"
+      else
+        output_string += "Success. Comment #{comment.id} created from row with SB ID #{row['Start SB ID']}.\n"
+      end
+
+    end
+    return output_string
+  end
+
   #/Users/matt/Desktop/partreach-docs/mdp/151005-recent_comments.txt for thoughts on how to do right
   def recent_comments
-    possibles = Comment.last(50)
+    possibles = Comment.last(100)
     in_org_comments = possibles.select{|c| ((c.overall_score > 0 or c.payload.present?) and Provider.find(c.provider_id).organization_id == self.id)}
     in_org_comments = in_org_comments.select{|c| c.user.present? and c.user.lead.present? and c.user.lead.lead_contact.present?}
-    return in_org_comments.sort_by{|c| c.created_at}.reverse.take(10)
+    return in_org_comments.sort_by{|c| c.updated_at}.reverse.take(10)
+  end
+
+  def analysis(start_date=Date.today-30.days,finish_date=Date.today)
+    facts = {date_range: "#{start_date.to_s} to #{finish_date.to_s}"}
+
+    facts[:filled_out_comments] = Comment.where("overall_score > 0 OR payload IS NOT NULL")
+      .where("updated_at >= ? AND updated_at <= ?",start_date,finish_date)
+      .select{|c| c.provider.organization == self}
+      .count
+
+    admin_ids = User.admins.map{|a| a.id}
+    facts[:profile_views_non_admin] = Event.where("happening = 'loaded profile'")
+      .where.not(model_id: admin_ids)
+      .count
+
+    return facts
   end
 
   def healthy_users(date_within_month_to_check)
