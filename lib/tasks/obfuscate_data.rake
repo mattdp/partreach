@@ -47,6 +47,7 @@ unless Rails.env.production? # don't allow this to run in production environment
     Organization.all.each do |organization|
       begin
         organization.name = Faker::App.name
+        organization.people_are_called = "others"
         organization.save!
       rescue ActiveRecord::ActiveRecordError => e
         puts "***** ERROR attempting to update Organization #{organization.id}: #{e.message}"
@@ -85,6 +86,7 @@ unless Rails.env.production? # don't allow this to run in production environment
         provider.contact_skype =   Faker::Lorem.word
         provider.organization_private_notes = Faker::Lorem.sentences(5).join(" ")
         provider.external_notes = Faker::Lorem.sentences(2).join(" ")
+        provider.supplybetter_private_notes = nil
 
         provider.save!
       rescue ActiveRecord::ActiveRecordError => e
