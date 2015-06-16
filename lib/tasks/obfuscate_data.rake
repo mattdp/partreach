@@ -8,6 +8,7 @@ unless Rails.env.production? # don't allow this to run in production environment
     obfuscate_organization
     obfuscate_team
     obfuscate_provider
+    obfuscate_address
     obfuscate_comment
     obfuscate_purchase_order
   end
@@ -47,7 +48,7 @@ unless Rails.env.production? # don't allow this to run in production environment
     Organization.all.each do |organization|
       begin
         organization.name = Faker::App.name
-        organization.people_are_called = "others"
+        organization.people_are_called = "your colleagues"
         organization.save!
       rescue ActiveRecord::ActiveRecordError => e
         puts "***** ERROR attempting to update Organization #{organization.id}: #{e.message}"
@@ -91,6 +92,17 @@ unless Rails.env.production? # don't allow this to run in production environment
         provider.save!
       rescue ActiveRecord::ActiveRecordError => e
         puts "***** ERROR attempting to update Provider #{provider.id}: #{e.message}"
+      end
+    end
+  end
+
+  def obfuscate_address
+    Address.where(place_type: 'Provider').each do |address|
+      begin
+        address.city = Faker::Address.city
+        address.save!
+      rescue ActiveRecord::ActiveRecordError => e
+        puts "***** ERROR attempting to update Address #{address.id}: #{e.message}"
       end
     end
   end
