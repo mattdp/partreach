@@ -10,6 +10,7 @@
 #  external_bucket_name           :string(255)
 #  external_bucket_env_var_access :string(255)
 #  external_bucket_env_var_secret :string(255)
+#  default_reminder_days          :integer          default(4)
 #
 
 class Organization < ActiveRecord::Base
@@ -105,6 +106,7 @@ class Organization < ActiveRecord::Base
 
     admin_ids = User.admins.map{|a| a.id}
     facts[:profile_views_non_admin] = Event.where("happening = 'loaded profile'")
+      .where("created_at >= ? AND created_at <= ?",start_date,finish_date)
       .where.not(model_id: admin_ids)
       .count
 
