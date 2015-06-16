@@ -15,6 +15,11 @@
 
 class Event < ActiveRecord::Base
 
+  def has_been_touched_by_user?
+    happenings = ['said job was good', 'said job was bad', 'said contact me later']
+    happenings.include?(self.happening)
+  end
+
   def self.for_user(user)
     Event.where(model: 'User').where(model_id: user.id).order(:created_at)
   end

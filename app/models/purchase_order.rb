@@ -22,4 +22,13 @@ class PurchaseOrder < ActiveRecord::Base
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings
 
+  #does this purchase order want feedback? does not say if the user is emailable
+  def wants_feedback?(issue_date_padding = 7)
+    return false if self.dont_request_feedback
+    return false if (self.issue_date.present? and (self.issue_date + issue_date_padding >= Date.today))
+    comment = self.comment
+    return false unless (comment.present? and comment.untouched?)
+    return true
+  end
+
 end
