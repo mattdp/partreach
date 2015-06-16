@@ -10,6 +10,7 @@
         <th>User Email</th>
         <th>Email allowed at/after</th>
         <th>Link to first email for appropriate PO</th>
+        <th>PO ID</th>
         <th>This'll be the Xth email</th>
         <th>Sent?</th>
       </tr>
@@ -29,12 +30,19 @@
           </td>
           <td>
             <% if details[:purchase_order].present? %>
-              <%= details[:followup_number] %>
-            <% else %>
-              No PO present.
+              <%= details[:purchase_order].id %>
             <% end %>
           </td>
-          <td><%= link_to "Sent!" %></td>
+          <td>
+            <% if details[:purchase_order].present? %>
+              <%= details[:followup_number] %>
+            <% end %>
+          </td>
+          <td>
+            <% if details[:purchase_order] %>
+              <%= link_to "Sent!", purchase_orders_email_sent_path(details[:purchase_order].id, details[:followup_number]) %>
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </table>

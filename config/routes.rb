@@ -106,6 +106,7 @@ Partreach::Application.routes.draw do
   get '/teams/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
 
   resources :purchase_orders, only: [:index]
+  get '/purchase_orders/email_sent/:id/::after_this_email_count', to: 'purchase_orders#email_sent', as: 'purchase_orders_email_sent'
 
   resources :reviews, only: [:new, :create]
 
@@ -132,7 +133,6 @@ Partreach::Application.routes.draw do
   get 'suppliers/:country', to: 'suppliers#state_index', as: 'state_index'
   get 'suppliers/:country/:state', to: 'suppliers#tag_index', as: 'tag_index'
   get 'suppliers/:country/:state/:term', to: 'suppliers#lookup', as: 'lookup'
-
 
   resources :tags, only: [:show, :new, :create, :edit, :update, :index] do
     resources :tag_relationships, only: [:index, :create]
