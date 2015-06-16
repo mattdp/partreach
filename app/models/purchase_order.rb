@@ -24,10 +24,11 @@ class PurchaseOrder < ActiveRecord::Base
 
   #does this purchase order want feedback? does not say if the user is emailable
   def wants_feedback?(issue_date_padding = 7)
-    return false if self.dont_request_feedback
-    return false if (self.issue_date.present? and (self.issue_date + issue_date_padding > Date.today))
+    return false if self.dont_request_feedback #has no special flags
+    return false if (self.created_at + 31.days < Date.today) #less than a month old
+    return false if (self.issue_date.present? and (self.issue_date + issue_date_padding > Date.today)) #has had enough time to be delivered
     comment = self.comment
-    return false unless (comment.present? and comment.untouched?)
+    return false unless (comment.present? and comment.untouched?) #comment is untouched
     return true
   end
 
@@ -51,7 +52,7 @@ class PurchaseOrder < ActiveRecord::Base
         comments.each do |comment|
           next unless comment.purchase_order.present?
           po = comment.purchase_order
-          if po.wants_feedback?
+          if po.wants_feedback? and !user.dont_ask_for_feedback.include?(po.provider.name)
             purchase_order = po
             #this followup is the number of these events that exist + 1
             followup_number = Event.where(happening: "sent_reminder_email")

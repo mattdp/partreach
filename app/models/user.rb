@@ -36,8 +36,30 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   validates :supplier_id, uniqueness: true, allow_nil: true
 
+  #which providers not to ask a user about for X days
+  def dont_ask_for_feedback(days_not_to_reask = 10)
+    #find comments where user updated in last X days
+    comments = Comment.where("updated_at >= ?",Date.today-days_not_to_reask.days)
+      .where(user_id: self.id)
+    #see if untouched; if so, get provider
+    comments = comments.reject{|c| c.untouched?}
+    return comments.map{|c| c.provider.name}.uniq
+    #dedupe and return the names as array
+  end
+
   def emailable_date
-    return Date.today #stub
+    email_happenings = ["sent_reminder_email"]
+    events = Event.where(model_id: self.id)
+      .where(model: "User")
+      .where("happening IN (?)",email_happenings)
+      .order("created_at")
+
+    if events.present? and self.team.present?
+      return (events.last.created_at + self.team.organization.default_reminder_days.days)
+    else
+      return Date.today
+    end
+
   end
 
   def self.create_for_hax_v1_launch(team_name,email,first_name,last_name=nil)
