@@ -36,6 +36,10 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   validates :supplier_id, uniqueness: true, allow_nil: true
 
+  def emailable_date
+    return Date.today #stub
+  end
+
   def self.create_for_hax_v1_launch(team_name,email,first_name,last_name=nil)
     name = first_name
     name += " #{last_name}" if last_name

@@ -12,11 +12,12 @@
         <th>Followup #</th>
         <th>Email sent</th>
       </tr>
-      <% (1..5).each do |n| %>
+      <% @users.each do |user| %>
+        <% contact = user.lead.lead_contact %>
         <tr>
-          <td>user.id</td>
-          <td>user.name</td>
-          <td>user.email</td>
+          <td><%= user.id %></td>
+          <td><%= contact.full_name_untrusted %></td>
+          <td><%= contact.email %></td>
           <td>po.id</td>
           <td>3</td>
           <td><%= link_to "Sent!" %></td>
