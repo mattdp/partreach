@@ -105,6 +105,8 @@ Partreach::Application.routes.draw do
   post '/provider/upload_photo', to: 'providers#upload_photo'
   get '/teams/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
 
+  resources :purchase_orders, only: [:index]
+
   resources :reviews, only: [:new, :create]
 
   resources :sessions, only: [:new, :create, :destroy, :edit, :update]

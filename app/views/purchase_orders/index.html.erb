@@ -1,0 +1,28 @@
+<% provide(:title,"Email reminders") %>
+
+<div class="container hax-body-styling">
+  <div class="row">
+
+    <table class="table">
+      <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>User Email</th>
+        <th>PO ID</th>
+        <th>Followup #</th>
+        <th>Email sent</th>
+      </tr>
+      <% (1..5).each do |n| %>
+        <tr>
+          <td>user.id</td>
+          <td>user.name</td>
+          <td>user.email</td>
+          <td>po.id</td>
+          <td>3</td>
+          <td><%= link_to "Sent!" %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+</div>
