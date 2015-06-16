@@ -105,6 +105,7 @@ class Organization < ActiveRecord::Base
 
     admin_ids = User.admins.map{|a| a.id}
     facts[:profile_views_non_admin] = Event.where("happening = 'loaded profile'")
+      .where("created_at >= ? AND created_at <= ?",start_date,finish_date)
       .where.not(model_id: admin_ids)
       .count
 
