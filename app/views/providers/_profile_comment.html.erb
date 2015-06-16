@@ -37,6 +37,9 @@
           <%= comment.title %>
         </h3>
       <% end %>
+      <% if current_user.admin? and comment.purchase_order.present? %>
+        <span><%= link_to "RA purchase order", "https://www.supplybetter.com/admin/purchase_order/#{comment.purchase_order.id}/edit" %></span>
+      <% end %>
     </div>
 
     <div class="row">
