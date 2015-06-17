@@ -68,6 +68,9 @@ unless Rails.env.production? # don't allow this to run in production environment
   end
 
   def obfuscate_provider
+    # delete all existing external image links
+    External.where(consumer_type: 'Provider').delete_all
+
     Provider.all.each do |provider|
       begin
         provider.name =            Faker::Company.name
@@ -88,6 +91,27 @@ unless Rails.env.production? # don't allow this to run in production environment
         provider.organization_private_notes = Faker::Lorem.sentences(5).join(" ")
         provider.external_notes = Faker::Lorem.sentences(2).join(" ")
         provider.supplybetter_private_notes = nil
+
+        #add some external images
+        external = External.new(
+          url: 'https://s3.amazonaws.com/dev-clientfiles-test/IMG_4503-midsize.JPG',
+          remote_file_name: 'IMG_4503-midsize.JPG' )
+        provider.externals << external
+
+        external = External.new(
+          url: 'https://s3.amazonaws.com/dev-clientfiles-test/IMG_4443-midsize.JPG',
+          remote_file_name: 'IMG_4443-midsize.JPG' )
+        provider.externals << external
+
+        external = External.new(
+          url: 'https://s3.amazonaws.com/dev-clientfiles-test/IMG_4446-midsize.JPG',
+          remote_file_name: 'IMG_4446-midsize.JPG' )
+        provider.externals << external
+
+        external = External.new(
+          url: 'https://s3.amazonaws.com/dev-clientfiles-test/IMG_4451-midsize.JPG',
+          remote_file_name: 'IMG_4451-midsize.JPG' )
+        provider.externals << external
 
         provider.save!
       rescue ActiveRecord::ActiveRecordError => e
