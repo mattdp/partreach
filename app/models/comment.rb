@@ -29,6 +29,18 @@ class Comment < ActiveRecord::Base
   #comment_type should be "purchase_order", "factory_visit", or "comment"
   #score of 0 = didn't give a score. 1 low, 5 high
 
+  def untouched?
+    return false if (self.payload.present? or self.any_ratings_given?)
+    events = Event.where("target_model = 'Comment' AND target_model_id = ?",self.id)
+    return false if events.map{|e| e.has_been_touched_by_user?}.any?
+    return true
+  end
+
+  def any_ratings_given?
+    scores = [self.overall_score, self.cost_score, self.quality_score, self.speed_score]
+    return scores.any?{|s| s != 0}
+  end
+
   def rating_by(user)
     CommentRating.where(comment: self).where(user: user).first
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150610182429) do
+ActiveRecord::Schema.define(version: 20150616031336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -286,6 +286,7 @@ ActiveRecord::Schema.define(version: 20150610182429) do
     t.string   "external_bucket_name"
     t.string   "external_bucket_env_var_access"
     t.string   "external_bucket_env_var_secret"
+    t.integer  "default_reminder_days",          default: 4
   end
 
   create_table "owners", force: true do |t|
@@ -346,6 +347,7 @@ ActiveRecord::Schema.define(version: 20150610182429) do
     t.string   "project_name"
     t.date     "issue_date"
     t.integer  "id_in_purchasing_system"
+    t.boolean  "dont_request_feedback"
   end
 
   create_table "reviews", force: true do |t|

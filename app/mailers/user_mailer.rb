@@ -21,27 +21,6 @@ class UserMailer < ActionMailer::Base
     end
   end
 
-  def welcome_email(user)
-    @user = user
-    @brand_name = brand_name
-    subject = "Welcome to #{brand_name}!"
-    mail(to: @user.lead.lead_contact.email, subject: subject) do |format|
-      format.html { render layout: "layouts/blast_mailer", 
-                    locals: { title: subject, 
-                              supplier: nil} 
-                            }
-      format.text
-    end
-  end
-
-  #VET THIS - think it's broken
-  # def bid_completed_email(user,order)
-  #   @user = user
-  #   @order = order
-  #   @url = orders_path(order)
-  #   mail(to: @user.email, subject: "Your #{brand_name} quotes have arrived")
-  # end
-
   def password_reset(user)
     @user = user
     @brand_name = brand_name
@@ -50,20 +29,6 @@ class UserMailer < ActionMailer::Base
       format.html { render layout: "layouts/blast_mailer", 
                     locals: { title: subject, 
                               supplier: nil} 
-                            }
-      format.text
-    end
-  end
-
-  def supplier_intro_email(user,supplier)
-    @user = user
-    @brand_name = brand_name
-    @supplier = supplier
-    subject = "Your new #{brand_name} account"
-    mail(to: @user.lead.lead_contact.email, subject: subject) do |format|
-      format.html { render layout: "layouts/blast_mailer", 
-                    locals: { title: subject, 
-                              supplier: supplier} 
                             }
       format.text
     end
