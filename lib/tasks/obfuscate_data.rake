@@ -8,7 +8,9 @@ unless Rails.env.production? # don't allow this to run in production environment
     obfuscate_organization
     obfuscate_team
     obfuscate_provider
+    obfuscate_address
     obfuscate_comment
+    obfuscate_purchase_order
   end
 
   def obfuscate_team_user
@@ -37,7 +39,7 @@ unless Rails.env.production? # don't allow this to run in production environment
         contact.cc_emails =         nil
         contact.save!
       rescue ActiveRecord::ActiveRecordError => e
-        puts "***** ERROR attempting to update user #{team.id}: #{e.message}"
+        puts "***** ERROR attempting to update User #{obfuscate_team_user.id}: #{e.message}"
       end
     end
   end
@@ -46,6 +48,7 @@ unless Rails.env.production? # don't allow this to run in production environment
     Organization.all.each do |organization|
       begin
         organization.name = Faker::App.name
+        organization.people_are_called = "your colleagues"
         organization.save!
       rescue ActiveRecord::ActiveRecordError => e
         puts "***** ERROR attempting to update Organization #{organization.id}: #{e.message}"
@@ -65,6 +68,9 @@ unless Rails.env.production? # don't allow this to run in production environment
   end
 
   def obfuscate_provider
+    # delete all existing external image links
+    External.where(consumer_type: 'Provider').delete_all
+
     Provider.all.each do |provider|
       begin
         provider.name =            Faker::Company.name
@@ -79,12 +85,48 @@ unless Rails.env.production? # don't allow this to run in production environment
         provider.contact_role =    Faker::Name.title
         # provider.verified
         provider.city =            Faker::Address.city
-        provider.address =         "#{Faker::Address.street_address}, #{provider.city}"
+        provider.location_string = "#{Faker::Address.street_address}, #{provider.city}"
         # provider.id_within_source
         provider.contact_skype =   Faker::Lorem.word
+        provider.organization_private_notes = Faker::Lorem.sentences(5).join(" ")
+        provider.external_notes = Faker::Lorem.sentences(2).join(" ")
+        provider.supplybetter_private_notes = nil
+
+        #add some external images
+        external = External.new(
+          url: 'https://s3.amazonaws.com/dev-clientfiles-test/IMG_4503-midsize.JPG',
+          remote_file_name: 'IMG_4503-midsize.JPG' )
+        provider.externals << external
+
+        external = External.new(
+          url: 'https://s3.amazonaws.com/dev-clientfiles-test/IMG_4443-midsize.JPG',
+          remote_file_name: 'IMG_4443-midsize.JPG' )
+        provider.externals << external
+
+        external = External.new(
+          url: 'https://s3.amazonaws.com/dev-clientfiles-test/IMG_4446-midsize.JPG',
+          remote_file_name: 'IMG_4446-midsize.JPG' )
+        provider.externals << external
+
+        external = External.new(
+          url: 'https://s3.amazonaws.com/dev-clientfiles-test/IMG_4451-midsize.JPG',
+          remote_file_name: 'IMG_4451-midsize.JPG' )
+        provider.externals << external
+
         provider.save!
       rescue ActiveRecord::ActiveRecordError => e
         puts "***** ERROR attempting to update Provider #{provider.id}: #{e.message}"
+      end
+    end
+  end
+
+  def obfuscate_address
+    Address.where(place_type: 'Provider').each do |address|
+      begin
+        address.city = Faker::Address.city
+        address.save!
+      rescue ActiveRecord::ActiveRecordError => e
+        puts "***** ERROR attempting to update Address #{address.id}: #{e.message}"
       end
     end
   end
@@ -100,7 +142,19 @@ unless Rails.env.production? # don't allow this to run in production environment
         comment.title =         Faker::Lorem.sentence
         comment.save!
       rescue ActiveRecord::ActiveRecordError => e
-        puts "***** ERROR attempting to update Comments #{team.id}: #{e.message}"
+        puts "***** ERROR attempting to update Comment #{comment.id}: #{e.message}"
+      end
+    end
+  end
+
+  def obfuscate_purchase_order
+    PurchaseOrder.all.each do |purchase_order|
+      begin
+        purchase_order.project_name =  Faker::Lorem.words(2).join(" ")
+        purchase_order.description =   Faker::Lorem.sentences(2).join(" ")
+        purchase_order.save!
+      rescue ActiveRecord::ActiveRecordError => e
+        puts "***** ERROR attempting to update PurchaseOrder #{purchase_order.id}: #{e.message}"
       end
     end
   end
