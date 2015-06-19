@@ -20,6 +20,9 @@ class StaticPagesController < ApplicationController
       ]
   end
 
+  def enterprise
+  end
+
   def getting_started
   end
 
