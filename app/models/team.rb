@@ -28,8 +28,8 @@ class Team < ActiveRecord::Base
     lead_contact = self.create_user!(email,first_name,last_name,password)
     user = lead_contact.contactable.user
 
-    #http://stackoverflow.com/questions/5342270/rails-3-get-random-record
-    provider = Provider.offset(rand(Provider.count)).first
+    providers = self.organization.providers
+    provider = providers[rand(providers.count-1)]
 
     po_and_comment_options = { description: "483-9489729 brass brackets for housing",
         project_name: "Skyhook Phase 2",
