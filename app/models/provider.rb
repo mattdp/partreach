@@ -44,6 +44,41 @@ class Provider < ActiveRecord::Base
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
   validates :organization, presence: true
 
+  #depends on options existing
+  def create_linked_po_and_comment!(options)
+    warning_prefix = "***** "
+    returner = {}
+    returner[:output_string] = ""
+
+    returner[:po] = PurchaseOrder.new({ provider: self, 
+      description: options[:description],
+      project_name: options[:project_name],
+      id_in_purchasing_system: options[:id_in_purchasing_system],
+      price: options[:price],
+      quantity: options[:quantity],
+      issue_date: options[:issue_date],
+    })
+
+    if !returner[:po].save
+      returner[:output_string] += "#{warning_prefix}PO saving failure for row_identifer #{options[:row_identifer]}. Skipping.\n"
+      return returner
+    end
+
+    returner[:comment] = Comment.new({ provider: self,
+      user: options[:user],
+      comment_type: "purchase_order",
+      purchase_order: returner[:po]
+    })
+
+    if !returner[:comment].save
+      returner[:output_string] += "#{warning_prefix}WARNING: ORPHAN PO. Comment saving failure for row_identifer #{options[:row_identifer]}.\n"
+    else
+      returner[:output_string] += "Success. Comment #{returner[:comment].id} created from row with SB ID #{options[:row_identifer]}.\n"
+    end
+
+    return returner
+  end
+
   def add_external(url, filename)
     externals.create!(url: url, original_filename: filename)
   end

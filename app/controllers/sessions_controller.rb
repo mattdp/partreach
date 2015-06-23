@@ -12,9 +12,11 @@ class SessionsController < ApplicationController
     lead_contact = LeadContact.find_by_email(params[:session][:email].downcase)
     if (lead_contact and user = lead_contact.contactable.user and user.authenticate(params[:session][:password]))
       sign_in user
+      Event.add_event("User", "#{user.id}", "signed in")
       redirect_after_signin
     else
       flash.now[:danger] = 'Invalid email/password combination'
+      Event.add_event(nil,nil,"failed login attempt",nil,nil,"#{params[:session][:email].downcase}")
       render 'new'
     end
   end

@@ -65,26 +65,19 @@ class Organization < ActiveRecord::Base
       end
 
       #create and test PO
-      po = PurchaseOrder.new({ provider: provider, description: row["Description"], 
-        project_name: row["Project Name"], id_in_purchasing_system: row["Synapse PO number"].to_i})
-      po.price = row["Total Price"].to_f if row["Total Price"].present?
-      po.quantity = row["Quantity"].to_i if row["Quantity"].present?
-      po.issue_date = Date.parse(row["PO Issue Date"]) if row["PO Issue Date"].present?
 
-      if !po.save
-        output_string += "#{warning_prefix}PO saving failure for row starting with SB ID #{row['Start SB ID']}. Skipping.\n"
-        next
-      end
-
-      #create and test comment
-      comment = Comment.new({user: user, provider: provider, comment_type: "purchase_order", purchase_order: po})
-      if !comment.save
-        output_string += "#{warning_prefix}WARNING: ORPHAN PO. Comment saving failure for row starting with SB ID #{row['Start SB ID']}.\n"
-      else
-        output_string += "Success. Comment #{comment.id} created from row with SB ID #{row['Start SB ID']}.\n"
-      end
-
+      options = { description: row["Description"],
+        project_name: row["Project Name"],
+        id_in_purchasing_system: row["Synapse PO number"].to_i,
+        price: row["Total Price"].to_f,
+        quantity: row["Quantity"].to_i,
+        issue_date: Date.parse(row["PO Issue Date"]),
+        row_identifier: row['Start SB ID'],
+        user: user}
+      objects = provider.create_linked_po_and_comment!(options)
+      output_string += objects[:output_string]
     end
+
     return output_string
   end
 
