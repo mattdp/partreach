@@ -25,7 +25,23 @@ class Team < ActiveRecord::Base
   end
 
   def create_demo_user!(email,first_name,last_name,password="showme")
-    user = self.create_user!(email,first_name,last_name,password)
+    lead_contact = self.create_user!(email,first_name,last_name,password)
+    user = lead_contact.contactable.user
+
+    #http://stackoverflow.com/questions/5342270/rails-3-get-random-record
+    provider = Provider.offset(rand(Provider.count)).first
+
+    po_and_comment_options = { description: "483-9489729 brass brackets for housing",
+        project_name: "Skyhook Phase 2",
+        id_in_purchasing_system: 1234,
+        price: 1234.56,
+        quantity: 12,
+        issue_date: Date.today - 7.days,
+        row_identifier: user.id,
+        user: user}
+    objects = provider.create_linked_po_and_comment!(po_and_comment_options)
+      
+    return user
   end
 
   #put all demo users on this team. important to have since demo reset sometimes, throwing away users
