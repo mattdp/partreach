@@ -1,19 +1,585 @@
 <% provide(:title,"SupplyBetter for enterprise") %>
 
-<div class="container">
-  <div class="row">
+<style type="text/css">
 
-    <h1 class="center">Supplier relationships matter</h1>
-    
-    <p>Learn from past projects. Make better choices. Get to market faster.</p> 
-    <%= text_area_tag :quote_here %>
-    
-    <%= label_tag "Work email address" %>
-    <%= text_field_tag :email %>
+  /*
+ * Author: Carlos Alvarez
+ * URL: http://alvarez.is
+ *
+ * Project Name: Landing Sumo - Theme 20
+ * URL: http://LandingSumo.com
+ * Version: 1.0
+ * Exclusive Freebie for BlackTie.co
+ */
 
-    
-    <span class="button">Try a month free</span> 
+/*  ################################################################
+  1. GENERAL STRUCTURES
+################################################################# */
 
-    <span class="tiny">Real SupplyBetter review, redacted and used with permission. Only people inside your company can see your reviews.</span>
+
+
+* { 
+  margin: 0;
+  padding: 0px;    
+} 
+body { 
+  background: #fff; 
+  margin: 0; 
+  color: #5a5a5a;
+}
+
+h1, h2, h3, h4, h5, h6 {    
+  font-weight: 300;
+}
+
+
+p { 
+  padding: 0; 
+  margin-bottom: 12px;     
+  font-weight: 300;
+  font-size: 16px; 
+  line-height: 26px;
+  letter-spacing: 1px;
+  color: #666; 
+  margin-top: 10px; 
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.alignleft { float: left; }
+.alignright { float: right; }
+.aligncenter {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  clear: both;
+}
+.centered {text-align: center}
+.mt {margin-top: 50px;}
+.mb {margin-bottom: 50px;}
+.mtb {margin-top: 50px; margin-bottom: 50px;}
+.mtb2 { margin-top: 100px; margin-bottom: 100px;}
+.ptb {padding-top: 30px; padding-bottom: 10px;}
+
+.clear {
+  clear: both;
+  display: block;
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  width:100%;
+}
+::-moz-selection  {
+  color: #fff;
+  text-shadow:none;
+  background:#2B2E31;
+}
+::selection {
+  color: #fff;
+  text-shadow:none;
+  background:#2B2E31;
+}
+*,
+*:after,
+*:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+a { 
+  padding: 0;
+  margin: 0;
+  text-decoration: none; 
+  -webkit-transition: background-color .4s linear, color .4s linear;
+  -moz-transition: background-color .4s linear, color .4s linear;
+  -o-transition: background-color .4s linear, color .4s linear;
+  -ms-transition: background-color .4s linear, color .4s linear;
+  transition: background-color .4s linear, color .4s linear;
+  color: #14b8e2;
+}
+a:hover,
+a:focus {
+  text-decoration: none;
+  color:#696E74;
+}
+
+.nopadding {
+  padding: 0px !important;
+  margin: 0px;
+}
+
+
+/* FORM CONFIGURATION */
+
+input {
+  font-size: 16px;
+  min-height: 40px;
+  border-radius: 25px;
+  line-height: 20px;
+  padding: 15px 30px 16px;
+  border: 1px solid #b9b9af;
+  margin-bottom: 10px;
+  color: black;
+  background-color: #fff;
+  opacity: 0.9;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+}
+
+.subscribe-input {
+  float: left;
+  width: 65%;
+  text-align: left;
+  margin-right: 2px;
+}
+
+@media screen and (max-width: 767px) {
+  .subscribe-input {
+    width: 100%;
+  }
+}
+
+.subscribe-submit {
+  right: 0;
+}
+
+.btn-download {
+  background: #FDE3A7;
+}
+
+/*Buttons Configuration */
+.btn-conf {
+  border-radius: 50px;
+  margin-right: 15px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 18px 28px 17px 28px;
+  }
+
+.btn-sbblue {
+  background: #14b8e2;
+  color: white;
+  border-color: #14b8e2;
+}
+
+/* HEADER SECTION */
+#h {
+  /*background: url(../img/header.jpg) no-repeat center top;*/
+  background: radial-gradient(circle at 60% 30%, rgba(0,0,0,0.5), rgba(0,0,0,0.7)),url(https://s3.amazonaws.com/supplybetter_images/header.JPG) center top no-repeat;
+  padding-top: 0;
+  text-align:center;
+  background-attachment: relative;
+  background-position: center center;
+  /*min-height: 700px;*/
+  width: 100%;
+  color: white;
+  
+    -webkit-background-size: 100%;
+    -moz-background-size: 100%;
+    -o-background-size: 100%;
+    background-size: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#h .logo {
+  top: 30px;
+  left: 45px;
+  font-size: 18px;
+  font-weight: 900;
+  position:absolute; 
+}
+
+#h h1 {
+  font-weight: 500;
+  color: white;
+  font-size: 60px;
+}
+
+#h h2, #f h2 {
+  color: white;
+  padding-top: 0;
+  font-size: 30px;
+}
+
+#h h3 {
+  color: white;
+  padding-top: 0;
+  /*font-size: 30px;*/
+}
+
+#h  h4 {
+  color: white;
+  padding-top: 40px;
+}
+
+#g {
+  background-color: #f2f2f2;
+}
+
+/* FOOTER */
+#f {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background: #2f2f2f;
+  color: white;
+}
+
+#f h4 {
+  color: white;
+}
+
+#f h5 {
+  margin-top: 30px;
+  letter-spacing: 1px;
+}
+
+#f i {
+  font-size: 45px;
+  margin: 15px;
+}
+
+#f a {
+  color: #b9b9b9;
+}
+
+#f a:hover {
+  color: #03C9A9;
+}
+
+/*SUPPLYBETTER STYLING*/
+
+.opaque{
+  background: rgba(0,0,0,0.7);
+  margin-top: 40px;
+  text-align: left;
+}
+
+</style>
+
+<header class="header">
+  <div class="header-logo">
+    <h1 class="header__logo">
+      <%= link_to teams_index_path do %>
+        <%= image_tag "supplybetter-logo-white-cropped.svg", :alt => "SupplyBetter" %>
+      <% end %>
+    </h1>
   </div>
+</header>
+
+<div id="h">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 centered">
+        <h1>Supplier Relationships Matter</h1>
+        <h2>Learn from past projects. Make better choices. Get to market faster.</h2> 
+        <!-- <div class="opaque">
+          <h4><em>He pays attention to detail and is willing to try creative approaches other vendors might shy away from. I have never had him let me down, and would put my money on him above any other vendor for most cases. </em>
+          </h4>
+          <h4> - Stephen, Mechanical Engineer*
+          </h4>
+        </div> -->
+        <div class="mtb">
+          <form role="form" action="register.php" method="post" enctype="plain"> 
+            <input type="email" name="email" class="subscribe-input" placeholder="Enter your work e-mail address..." required>
+            <button class='btn btn-conf btn-sbblue' type="submit">TRY 2 MONTHS FREE</button>
+          </form>
+        </div><!--/mt-->
+        <!-- <h5><em>*REAL SUPPLIER REVIEW, REDACTED AND USED WITH PERMISSION. ONLY PEOPLE INSIDE YOUR COMPANY CAN SEE YOUR REVIEWS.</em></h5> -->
+        <h3>Check out these real supplier reviews, redacted and used with permission</h3>
+        <a class="scroll-down" href="#review_1">
+              <svg class="scroll-down-icon" viewBox="0 0 36 36" style="width:50px;">
+                <path fill="#FFFFFF" d="M18.843,26.253L33.656,11.5c0.481-0.481,0.484-1.262,0.002-1.744c-0.479-0.486-1.263-0.486-1.744-0.005
+                L17.97,23.637L4.088,9.751c-0.482-0.482-1.263-0.482-1.744,0c-0.241,0.241-0.361,0.555-0.361,0.872c0,0.313,0.12,0.632,0.361,0.872
+                l14.755,14.753C17.58,26.73,18.358,26.73,18.843,26.253z"></path>
+              </svg>
+            </a>
+      </div>
+    </div><!--/row-->
+  </div><!--/container-->
+</div><!-- /H -->
+
+<!-- **********************************************
+                REVIEW NUMBER ONE
+************************************************ -->
+
+<div id="review_1" class="container ptb">
+  <div class="row">
+    <div class="col-md-12">   
+    <div class="row centered">
+      <h2 class="mb">Give your engineers the power to praise their favorite supplier</h2>        
+    </div> 
+      <div class="row">
+      <!-- BEGIN LEFT COLUMN -->
+        <div class="col-md-2">
+          <div class="row">
+            <img class="avatar-profile">
+          </div>
+          <div class="row comment-profile">
+            <p><strong>Stephen </strong></p>
+            <p class="comment-smalltext">Team: <span class="redacted">$$$$$$$$$</span></p>
+              <p class="comment-smalltext">8 comments</p>
+              <p class="comment-smalltext">5 purchase orders</p>
+          </div>
+        </div>
+
+      <!-- BEGIN MIDDLE COLUMN -->
+        <div class="col-md-10 comment">
+          <div class="row">
+            <h3 class="comment-snippet">
+              <span class="redacted">$$$$$</span> for President!
+            </h3>
+          </div>
+
+          <div class="row">
+            <span class="comment-smalltext">Overall:</span>
+            <span class="star-rating comment-rating-stars">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>
+            </span>
+            <span class="comment-smalltext"> 
+              Reviewed 2015-06-02
+            </span>
+          </div>
+
+          <div class="row">
+            <p>Mr. <span class="redacted">$$$$$</span> <span class="redacted">$$$$$$$$$</span> is sick phat dope <span class="redacted">$$$$$$</span> <span class="redacted">$$$$$$</span>. And if you don't know, those are all good things. I think of <span class="redacted">$$$$$</span> as my closer: when others just aren't fast enough, <span class="redacted">$$$$$</span> is. I've sent him machining RFQ's on Friday at 4pm, only to receive an email Monday at 8am that my parts are ready for pickup. He is especially good for <span class="redacted">$$$$$$$-$$$$$$ ($$$ $$$ $$ $$$$)</span>, <span class="redacted">$$$$$$$$$$ $$$$$$$$$</span> parts. I would shy away from giving him <span class="redacted">$ $$$$$ $$$ $$$</span>, simply because <span class="redacted">$$ $$ $$$$ $$ $ $$$-$$$ $$$$</span> and therefore has limited capacity compared to some of our larger shops. He pays attention to detail and is willing to try creative approaches other vendors might shy away from. I have never had him let me down, and would put my money on him above any other vendor for most cases. I could go on, but I'll close here and simply say I can't recommend him highly enough.</p>
+          </div>
+
+          <div class="row comment-smalltext">
+            <div>About this order</div>                
+            <div class="row">
+              <span class="comment-smalltext">
+                Cost:
+                <span class="star-rating comment-rating-stars">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                </span>
+
+                Quality:
+                <span class="star-rating comment-rating-stars">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                </span>
+
+                Speed:
+                <span class="star-rating comment-rating-stars">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                </span>
+              </span>
+            </div>
+            <div class="row">
+              <div class="col-md-8 left-grid-bare">Project Name: <span><span class="redacted">$$$$$$$ $$$</span></span></div>
+              <div class="col-md-4 po-padding">PO Issued: <span>2015-05-14</span></div>
+            </div>
+            <div>Description: <span><span class="redacted">$$$-$$$$$$_$$$$$$$_$$$$_$$$$_$$$-$$$-$$, $$ $$$$$$$ $$$$ $$$$ $$$$$$$ $$$$$$ $$$$$$$$ $$$</span></span></div>
+            <div class="col-md-8 tags-providerTags left-grid-bare">
+                <a>CNC Machining</a>
+            </div>
+            <div class="col-md-4">
+              <div>Quantity: <span><span class="redacted">$</span></span></div>
+              <div>Price: <span><span class="redacted">$$$$.$$</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!--/row-->
+</div><!--/container-->
+
+<!-- **********************************************
+                END OF REVIEW NUMBER ONE
+************************************************ -->
+
+<!-- **********************************************
+                REVIEW NUMBER TWO
+************************************************ -->
+<div id="g">
+<div class="container ptb">
+  <div class="row">
+    <div class="col-md-12">    
+    <div class="row centered">
+      <h2 class="mb">Learn which of your suppliers you should stay away from and why</h2>        
+    </div> 
+      <div class="row">
+      <!-- BEGIN LEFT COLUMN -->
+        <div class="col-md-2">
+          <div class="row">
+            <img class="avatar-profile">
+          </div>
+          <div class="row comment-profile">
+            <p><strong>Pamela </strong></p>
+            <p class="comment-smalltext">Team: <span class="redacted">$$$$$$$$$</span></p>
+              <p class="comment-smalltext">11 comments</p>
+              <p class="comment-smalltext">8 purchase orders</p>
+          </div>
+        </div>
+
+      <!-- BEGIN MIDDLE COLUMN -->
+        <div class="col-md-10 comment">
+          <div class="row">
+            <h3 class="comment-snippet">
+              Mostly frustrated - so slow, and still having trouble
+            </h3>
+          </div>
+
+          <div class="row">
+            <span class="comment-smalltext">Overall:</span>
+            <span class="star-rating comment-rating-stars">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>             
+            </span>
+            <span class="comment-smalltext"> 
+              Reviewed 2015-06-01
+            </span>
+          </div>
+
+          <div class="row">
+            <p>I have used <span class="redacted">$$$$$$</span> <span class="redacted">$$$$$</span> in the past and have gotten really high quality parts. I'm using them on <span class="redacted">$$$$$$$</span>, and am having issues. I did pick this project up from <span class="redacted">$$$$</span>, so I don't know the whole story. What I do know, they take FOREVER. They are not a <span class="redacted">$$$$$$$$$</span> <span class="redacted">$$$$$</span>, so expect a lead of of about 3 weeks, no matter what you're doing. <span class="redacted">$$$$$</span>, my customer service contact, is also slow to respond, and doesn't always follow up. The <span class="redacted">$$$$$$</span> I got are also having issues. The <span class="redacted">$$$$$$$$</span> and main material don't seem to be compatible. Again, I don't know the background here, so I'm just now digging in.</p>
+
+            <p>UPDATE. <span class="redacted">$$$$$$</span> <span class="redacted">$$$$$</span> is replacing the parts that aren't working properly. They are turning the replacement parts around in 1 week, at no cost.</p>
+          </div>
+
+          <div class="row comment-smalltext">
+                  <div>About this order</div>                
+                    <div class="row">
+                      <span class="comment-smalltext">
+                            Cost:
+                                <span class="star-rating comment-rating-stars">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+              </span>
+
+                            Quality:
+                                <span class="star-rating comment-rating-stars">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+              </span>
+
+                            Speed:
+                                <span class="star-rating comment-rating-stars">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                  <i id="gold-star"></i>
+              </span>
+
+                      </span>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8 left-grid-bare">Project Name: <span><span class="redacted">Rainier Ph9 HW</span></span></div>
+                      <div class="col-md-4 po-padding">PO Issued: <span>2015-04-15</span></div>
+                    </div>
+                    <div>Description: <span><span class="redacted">$$$$, $$$$ $$$$$$$$$$$$ $$$$$$$$$$$ $$$$$</span></div>
+                    <div class="col-md-8 tags-providerTags left-grid-bare">
+                        <a><span class="redacted">$$$$$$$$$$$</span></a>
+                        <a><span class="redacted">$$$$</span></a>
+                        <a>Labels and Decals</a>
+                    </div>
+                    <div class="col-md-4">
+                      <div>Quantity: <span><span class="redacted">$$$</span></span></div>
+                      <div>Price: <span><span class="redacted">$$,$$$.$$</span></span></div>
+                    </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div><!--/row-->
+</div><!--/container-->
 </div>
+
+<!-- **********************************************
+                END OF REVIEW NUMBER TWO
+************************************************ -->
+
+<div id="f">
+  <div class="container">
+    <div class="row centered">
+      <h2>Sign up now and get to market faster</h2>
+        <div class="col-md-8 col-md-offset-2 centered">
+          <div class="row">
+            <div class="mtb">
+              <form role="form" action="register.php" method="post" enctype="plain"> 
+                <input type="email" name="email" class="subscribe-input" placeholder="Enter your work e-mail address..." required>
+                <button class='btn btn-conf btn-sbblue' type="submit">TRY 2 MONTHS FREE</button>
+              </form>
+            </div><!--/mt-->
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 centered">
+      <h4>feedback@supplybetter.com</h4>
+
+      </div>
+      </div>
+      <h6 class="mt">COPYRIGHT 2015 - SUPPLYBETTER, INC.</h6>
+    </div><!--/row-->
+  </div><!--/container-->
+</div><!--/F-->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/retina-1.1.0.js"></script>
