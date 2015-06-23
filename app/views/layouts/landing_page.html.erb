@@ -3,6 +3,7 @@
   <head>
     <title><%= yield(:title) %> | <%= "#{brand_name}" %></title>
     <%= stylesheet_link_tag    "supplybetter", :media => "all" %>
+    <%= stylesheet_link_tag    "landing_page", :media => "all" %>
     <%= include_gon %>
     <%= render 'layouts/head_items' %>
   </head>
@@ -12,6 +13,9 @@
     <!-- <%= render 'layouts/provider_footer' %> -->
     <% if Rails.env.production? %>
       <script type="text/javascript" src="//userlike-cdn-widgets.s3-eu-west-1.amazonaws.com/3062c9396a6c78f05915b5251757faa85a8646eb808991ee313f5a9dd496d25a.js"></script> 
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/bootstrap.min.js"></script>
+      <script src="assets/js/retina-1.1.0.js"></script>
     <% end %>
   </body>
 </html>
