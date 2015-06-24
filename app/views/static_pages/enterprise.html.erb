@@ -17,7 +17,10 @@
         <h1>Supplier Relationships Matter</h1>
         <h2>Learn from past projects. Make better choices. Get to market faster.</h2> 
         <div class="mtb">
-          <%= form_for @event do |f| %>
+          <%= form_tag :action => 'create', :controller => 'leads' do %>
+            <input type="hidden" name="next_step_field" value="/enterprise.html">
+            <input type="hidden" name="source" value="enterprise-email-collector">
+            <input type="hidden" name="redirect_message" value="Great! We'll be in touch about your demo within a business day.">
             <input type="info" name="info" class="subscribe-input" placeholder="Enter your work e-mail address..." required>
             <button class='btn btn-conf btn-sbblue' type="submit">TRY 2 MONTHS FREE</button>
           <% end %>

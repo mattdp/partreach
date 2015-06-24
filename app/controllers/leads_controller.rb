@@ -11,12 +11,12 @@ class LeadsController < ApplicationController
     # Took this out because #create_or_update_lead was being used many places different ways.  Need
     # to make it uniform if it's going to be used multiple places.
     @lead = Lead.create_or_update_lead({
-      lead: {source: "email_collector"},
+      lead: {source: params[:source]},
       lead_contact: {email: params[:email_field]}
     })
     next_step = params[:next_step_field]
 
-    flash[:notice] = "Thanks! We'll keep you posted."
+    flash[:notice] = params[:redirect_message]
     redirect_to next_step
   end
 
