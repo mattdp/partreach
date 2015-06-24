@@ -21,6 +21,7 @@ class StaticPagesController < ApplicationController
   end
 
   def enterprise
+    @event = Event.new
     render :layout => "landing_page"
   end
 

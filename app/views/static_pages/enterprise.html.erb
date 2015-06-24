@@ -17,10 +17,10 @@
         <h1>Supplier Relationships Matter</h1>
         <h2>Learn from past projects. Make better choices. Get to market faster.</h2> 
         <div class="mtb">
-          <form role="form" action="register.php" method="post" enctype="plain"> 
-            <input type="email" name="email" class="subscribe-input" placeholder="Enter your work e-mail address..." required>
+          <%= form_for @event do |f| %>
+            <input type="info" name="info" class="subscribe-input" placeholder="Enter your work e-mail address..." required>
             <button class='btn btn-conf btn-sbblue' type="submit">TRY 2 MONTHS FREE</button>
-          </form>
+          <% end %>
         </div>        
         <h3>Check out these real supplier reviews, redacted and used with permission</h3>
         <div class="scroll-down">
