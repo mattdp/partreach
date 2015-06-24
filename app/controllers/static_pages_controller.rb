@@ -20,6 +20,10 @@ class StaticPagesController < ApplicationController
       ]
   end
 
+  def enterprise
+    render :layout => "landing_page"
+  end
+
   def getting_started
   end
 
