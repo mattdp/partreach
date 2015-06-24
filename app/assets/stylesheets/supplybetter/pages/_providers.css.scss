@@ -459,3 +459,30 @@ img.banner-message {
   max-width: 90em;
   padding: 0 20px;
 }
+
+.blur { 
+  width:84px; 
+  height:84px; 
+  -webkit-filter: blur(6px); 
+  filter: blur(6px); 
+}
+
+.headshot1 {
+  /*background-image: url("/assets/avatar copy-small.gif");*/
+  background-image: url("/assets/headshot1-thumb.jpg");
+  background-repeat: no-repeat;
+  height: 84px;
+  width: 84px;
+  margin: 0;
+  padding: 0;
+}
+
+.headshot2 {
+  /*background-image: url("/assets/avatar copy-small.gif");*/
+  background-image: url("/assets/headshot2-thumb.jpg");
+  background-repeat: no-repeat;
+  height: 84px;
+  width: 84px;
+  margin: 0;
+  padding: 0;
+}
