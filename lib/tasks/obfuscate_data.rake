@@ -78,12 +78,12 @@ unless Rails.env.production? # don't allow this to run in production environment
         puts "***** ERROR attempting to update Provider #{provider.id}: #{e.message}"
         puts "***** attempting to set name=#{provider.name} name_for_link=#{provider.name_for_link}"
         begin
-          puts "retry attempt #1"
+          puts "***** retry attempt #1"
           obfuscate_provider(provider)
           puts "***** successful retry"
         rescue ActiveRecord::ActiveRecordError => e
           begin
-            puts "retry attempt #2"
+            puts "***** retry attempt #2"
             obfuscate_provider(provider)
             puts "***** successful retry"
           rescue ActiveRecord::ActiveRecordError => e
