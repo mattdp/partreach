@@ -35,7 +35,6 @@ class Lead < ActiveRecord::Base
   def self.create_or_update_lead(params)
     lc = LeadContact.find_by(email: params[:lead_contact][:email]) || LeadContact.new
     lead = lc.contactable ? lc.contactable : Lead.new
-    binding.pry
     lead.update_attributes(params[:lead])
     params[:lead_contact].merge!({contactable_id: lead.id, contactable_type: "Lead"})
     lc.update_attributes(params[:lead_contact])
