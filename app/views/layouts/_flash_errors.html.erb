@@ -1,6 +1,7 @@
     <% flash.each do |key, value| %>
       <div>
-        <p class="bg-<%= key == :notice ? "success" : "warning" %>"> 
+        <% key = key.to_s %>
+        <p class="alert-<%= key == "notice" ? "success" : "danger" %> flash-message"> 
           <%= value %>
           <a class="close" data-dismiss="alert">&#215;</a>
         </p>

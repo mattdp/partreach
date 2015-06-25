@@ -24,6 +24,8 @@
           <p> Not ready for a quote?</p>
           <%= form_tag :action => 'create', :controller => 'leads' do %>
             <input type="hidden" name="next_step_field" value="/">
+            <input type="hidden" name="source" value="footer-email-collector">
+            <input type="hidden" name="redirect_message" value="Thanks! We'll keep you posted.">
             <%= text_field_tag 'email_field', nil, :placeholder => "Enter email for updates!", class: "email-input", :id => "email-submit-field" %>
             <%= submit_tag "Sign up", data: { disable_with: 'Submitting...' }, class: "email-button", :id => "email-submit-button" %>
           <% end %>

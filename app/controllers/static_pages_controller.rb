@@ -20,6 +20,15 @@ class StaticPagesController < ApplicationController
       ]
   end
 
+  def enterprise
+    if current_user.present?
+      Event.add_event("User",current_user.id,"loaded enterprise landing page")
+    else
+      Event.add_event(nil,nil,"loaded enterprise landing page")
+    end
+    render :layout => "landing_page"
+  end
+
   def getting_started
   end
 
