@@ -1,0 +1,314 @@
+<% provide(:title,"SupplyBetter for enterprise") %>
+
+<header class="header">
+  <div class="header-logo">
+    <h1 class="header__logo">
+      <a href="/">
+        <img alt="SupplyBetter" src="/assets/supplybetter-logo-white-cropped.svg">
+      </a>
+    </h1>
+  </div>
+</header>
+
+<div id="h">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 centered">
+        <h1>Supplier Relationships Matter</h1>
+        <h2>Learn from past projects. Make better choices. Get to market faster.</h2> 
+        <div class="mtb">
+          <%= form_tag :action => 'create', :controller => 'leads' do %>
+            <input type="hidden" name="next_step_field" value="/enterprise.html">
+            <input type="hidden" name="source" value="enterprise-email-collector">
+            <input type="hidden" name="redirect_message" value="Great! We'll be in touch about your demo within a business day.">
+            <input type="email_field" name="email_field" class="subscribe-input" placeholder="Enter your work e-mail address..." required>
+            <button class='btn btn-conf btn-sbblue' type="submit">TRY 2 MONTHS FREE</button>
+          <% end %>
+        </div>        
+        <h3>Check out these real supplier reviews, redacted and used with permission</h3>
+        <div class="scroll-down">
+          <a href="#review_1">
+            <svg class="scroll-down-icon" viewBox="0 0 36 36" style="width:50px;">
+              <path fill="#FFFFFF" d="M18.843,26.253L33.656,11.5c0.481-0.481,0.484-1.262,0.002-1.744c-0.479-0.486-1.263-0.486-1.744-0.005
+              L17.97,23.637L4.088,9.751c-0.482-0.482-1.263-0.482-1.744,0c-0.241,0.241-0.361,0.555-0.361,0.872c0,0.313,0.12,0.632,0.361,0.872
+              l14.755,14.753C17.58,26.73,18.358,26.73,18.843,26.253z"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div><!--/row-->
+  </div><!--/container-->
+</div><!-- /H -->
+
+<!-- **********************************************
+                REVIEW NUMBER ONE
+************************************************ -->
+
+<div id="review_1" class="container ptb">
+  <div class="row">
+    <div class="col-md-12">   
+    <div class="row centered">
+      <h2 class="mb">Give your engineers the power to praise their favorite supplier</h2>        
+    </div> 
+      <div class="row">
+      <!-- BEGIN LEFT COLUMN -->
+        <div class="col-md-2">
+          <div class="row">
+            <img class="headshot1 blur">
+          </div>
+          <div class="row comment-profile">
+            <p><strong>Stephen </strong></p>
+            <p class="comment-smalltext">Team: <span class="redacted">$$$$$$$$$</span></p>
+              <p class="comment-smalltext">8 comments</p>
+              <p class="comment-smalltext">5 purchase orders</p>
+          </div>
+        </div>
+
+      <!-- BEGIN MIDDLE COLUMN -->
+        <div class="col-md-10 comment">
+          <div class="row">
+            <h3 class="comment-snippet">
+              <span class="redacted">$$$$$</span> for President!
+            </h3>
+          </div>
+
+          <div class="row">
+            <span class="comment-smalltext">Overall:</span>
+            <span class="star-rating comment-rating-stars">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>
+            </span>
+            <span class="comment-smalltext"> 
+              Reviewed 2015-06-02
+            </span>
+          </div>
+
+          <div class="row">
+            <p>Mr. <span class="redacted">$$$$$</span> <span class="redacted">$$$$$$$$$</span> is sick phat dope <span class="redacted">$$$$$$</span> <span class="redacted">$$$$$$</span>. And if you don't know, those are all good things. I think of <span class="redacted">$$$$$</span> as my closer: when others just aren't fast enough, <span class="redacted">$$$$$</span> is. I've sent him machining RFQ's on Friday at 4pm, only to receive an email Monday at 8am that my parts are ready for pickup. He is especially good for <span class="redacted">$$$$$$$-$$$$$$ ($$$ $$$ $$ $$$$)</span>, <span class="redacted">$$$$$$$$$$ $$$$$$$$$</span> parts. I would shy away from giving him <span class="redacted">$ $$$$$ $$$ $$$</span>, simply because <span class="redacted">$$ $$ $$$$ $$ $ $$$-$$$ $$$$</span> and therefore has limited capacity compared to some of our larger shops. He pays attention to detail and is willing to try creative approaches other vendors might shy away from. I have never had him let me down, and would put my money on him above any other vendor for most cases. I could go on, but I'll close here and simply say I can't recommend him highly enough.</p>
+          </div>
+
+          <div class="row comment-smalltext">
+            <div>About this order</div>                
+            <div class="row">
+              <span class="comment-smalltext">
+                Cost:
+                <span class="star-rating comment-rating-stars">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                </span>
+
+                Quality:
+                <span class="star-rating comment-rating-stars">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                </span>
+
+                Speed:
+                <span class="star-rating comment-rating-stars">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                </span>
+              </span>
+            </div>
+            <div class="row">
+              <div class="col-md-8 left-grid-bare">Project Name: <span><span class="redacted">$$$$$$$ $$$</span></span></div>
+              <div class="col-md-4 po-padding">PO Issued: <span>2015-05-14</span></div>
+            </div>
+            <div>Description: <span><span class="redacted">$$$-$$$$$$_$$$$$$$_$$$$_$$$$_$$$-$$$-$$, $$ $$$$$$$ $$$$ $$$$ $$$$$$$ $$$$$$ $$$$$$$$ $$$</span></span></div>
+            <div class="col-md-8 tags-providerTags left-grid-bare">
+                <a>CNC Machining</a>
+            </div>
+            <div class="col-md-4">
+              <div>Quantity: <span><span class="redacted">$</span></span></div>
+              <div>Price: <span><span class="redacted">$$$$.$$</span></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!--/row-->
+</div><!--/container-->
+
+<!-- **********************************************
+                END OF REVIEW NUMBER ONE
+************************************************ -->
+
+<!-- **********************************************
+                REVIEW NUMBER TWO
+************************************************ -->
+<div id="g">
+<div class="container ptb">
+  <div class="row">
+    <div class="col-md-12">    
+    <div class="row centered">
+      <h2 class="mb">Learn which of your suppliers you should stay away from and why</h2>        
+    </div> 
+      <div class="row">
+      <!-- BEGIN LEFT COLUMN -->
+        <div class="col-md-2">
+          <div class="row">
+            <img class="headshot2 blur">
+          </div>
+          <div class="row comment-profile">
+            <p><strong>Pamela </strong></p>
+            <p class="comment-smalltext">Team: <span class="redacted">$$$$$$$$$</span></p>
+              <p class="comment-smalltext">11 comments</p>
+              <p class="comment-smalltext">8 purchase orders</p>
+          </div>
+        </div>
+
+      <!-- BEGIN MIDDLE COLUMN -->
+        <div class="col-md-10 comment">
+          <div class="row">
+            <h3 class="comment-snippet">
+              Mostly frustrated - so slow, and still having trouble
+            </h3>
+          </div>
+
+          <div class="row">
+            <span class="comment-smalltext">Overall:</span>
+            <span class="star-rating comment-rating-stars">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <input type="radio">
+              <i id="gold-star"></i>
+              <i id="gold-star"></i>             
+            </span>
+            <span class="comment-smalltext"> 
+              Reviewed 2015-06-01
+            </span>
+          </div>
+
+          <div class="row">
+            <p>I have used <span class="redacted">$$$$$$</span> <span class="redacted">$$$$$</span> in the past and have gotten really high quality parts. I'm using them on <span class="redacted">$$$$$$$</span>, and am having issues. I did pick this project up from <span class="redacted">$$$$</span>, so I don't know the whole story. What I do know, they take FOREVER. They are not a <span class="redacted">$$$$$$$$$</span> <span class="redacted">$$$$$</span>, so expect a lead of of about 3 weeks, no matter what you're doing. <span class="redacted">$$$$$</span>, my customer service contact, is also slow to respond, and doesn't always follow up. The <span class="redacted">$$$$$$</span> I got are also having issues. The <span class="redacted">$$$$$$$$</span> and main material don't seem to be compatible. Again, I don't know the background here, so I'm just now digging in.</p>
+
+            <p>UPDATE. <span class="redacted">$$$$$$</span> <span class="redacted">$$$$$</span> is replacing the parts that aren't working properly. They are turning the replacement parts around in 1 week, at no cost.</p>
+          </div>
+
+          <div class="row comment-smalltext">
+                  <div>About this order</div>                
+                    <div class="row">
+                      <span class="comment-smalltext">
+                            Cost:
+                                <span class="star-rating comment-rating-stars">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+              </span>
+
+                            Quality:
+                                <span class="star-rating comment-rating-stars">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+              </span>
+
+                            Speed:
+                                <span class="star-rating comment-rating-stars">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                 <input type="radio">
+                  <i id="gold-star"></i>
+              </span>
+
+                      </span>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-8 left-grid-bare">Project Name: <span><span class="redacted">Rainier Ph9 HW</span></span></div>
+                      <div class="col-md-4 po-padding">PO Issued: <span>2015-04-15</span></div>
+                    </div>
+                    <div>Description: <span><span class="redacted">$$$$, $$$$ $$$$$$$$$$$$ $$$$$$$$$$$ $$$$$</span></div>
+                    <div class="col-md-8 tags-providerTags left-grid-bare">
+                        <a><span class="redacted">$$$$$$$$$$$</span></a>
+                        <a><span class="redacted">$$$$</span></a>
+                        <a>Labels and Decals</a>
+                    </div>
+                    <div class="col-md-4">
+                      <div>Quantity: <span><span class="redacted">$$$</span></span></div>
+                      <div>Price: <span><span class="redacted">$$,$$$.$$</span></span></div>
+                    </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  </div><!--/row-->
+</div><!--/container-->
+</div>
+
+<!-- **********************************************
+                END OF REVIEW NUMBER TWO
+************************************************ -->
+
+
+<!-- **********************************************
+                FOOTER
+************************************************ -->
+<div id="f">
+  <div class="container">
+    <div class="row centered">
+      <h2>Sign up now and get to market faster</h2>
+        <div class="col-md-8 col-md-offset-2 centered">
+          <div class="row">
+            <div class="mtb">
+              <form role="form" action="register.php" method="post" enctype="plain"> 
+                <input type="email" name="email" class="subscribe-input" placeholder="Enter your work e-mail address..." required>
+                <button class='btn btn-conf btn-sbblue' type="submit">TRY 2 MONTHS FREE</button>
+              </form>
+            </div><!--/mt-->
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 centered">
+      <h3>feedback@supplybetter.com</h3>
+
+      </div>
+      </div>
+      <h5 class="mt">COPYRIGHT 2015 - SUPPLYBETTER, INC.</h5>
+    </div><!--/row-->
+  </div><!--/container-->
+</div><!--/F-->
