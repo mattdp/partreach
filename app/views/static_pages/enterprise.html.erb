@@ -16,15 +16,7 @@
       <div class="col-md-10 col-md-offset-1 centered">
         <h1>Supplier Relationships Matter</h1>
         <h2>Learn from past projects. Make better choices. Get to market faster.</h2> 
-        <div class="mtb">
-          <%= form_tag :action => 'create', :controller => 'leads' do %>
-            <input type="hidden" name="next_step_field" value="/enterprise.html">
-            <input type="hidden" name="source" value="enterprise-email-collector">
-            <input type="hidden" name="redirect_message" value="Great! We'll be in touch about your demo within a business day.">
-            <input type="email_field" name="email_field" class="subscribe-input" placeholder="Enter your work e-mail address..." required>
-            <button class='btn btn-conf btn-sbblue' type="submit">TRY 2 MONTHS FREE</button>
-          <% end %>
-        </div>        
+        <%= render partial:"static_pages/email_submission" %> 
         <h3>Check out these real supplier reviews, redacted and used with permission</h3>
         <div class="scroll-down">
           <a href="#review_1">
@@ -294,12 +286,7 @@
       <h2>Sign up now and get to market faster</h2>
         <div class="col-md-8 col-md-offset-2 centered">
           <div class="row">
-            <div class="mtb">
-              <form role="form" action="register.php" method="post" enctype="plain"> 
-                <input type="email" name="email" class="subscribe-input" placeholder="Enter your work e-mail address..." required>
-                <button class='btn btn-conf btn-sbblue' type="submit">TRY 2 MONTHS FREE</button>
-              </form>
-            </div><!--/mt-->
+            <%= render partial:"static_pages/email_submission" %>
           </div>
         </div>
       <div class="row">
