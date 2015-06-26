@@ -103,7 +103,7 @@ class Event < ActiveRecord::Base
     end
 
     content += "<br>"
-    unaffiliated_events = Event.where("created_at >= ? and created_at < ? and model IS NULL")
+    unaffiliated_events = Event.where("created_at >= ? and created_at < ? and model IS NULL",begin_string,end_string)
     if unaffiliated_events.count == 0
       content += "<h1>No user-unaffiliated events today</h1>"
     else
