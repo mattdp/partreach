@@ -37,6 +37,7 @@ gem 'nested_form', github: 'ryanb/nested_form'
 gem 'mechanize'
 gem 'StreetAddress', :require => "street_address"
 gem 'aws-sdk', '~> 2'
+gem 'intercom-rails'
 
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'
