@@ -88,7 +88,7 @@ class Event < ActiveRecord::Base
       )}
     end
 
-    content += "<h1>No non-admin events today</h1>" if events.count == 0 
+    content += "<h1>No non-admin user events today</h1>" if events.count == 0 
 
     last_model_id = 0
     events.each do |event|
@@ -98,8 +98,19 @@ class Event < ActiveRecord::Base
         contact = user.lead.lead_contact
         content += "<h2>#{organization.name} - #{contact.name}</h2>"
       end
-      content += "<p>#{event.happening} (#{event.target_model} #{event.target_model_id})</p>"
+      content += "<p>#{event.created_at}: #{event.happening} (#{event.target_model} #{event.target_model_id})</p>"
       last_model_id = event.model_id
+    end
+
+    content += "<br>"
+    unaffiliated_events = Event.where("created_at >= ? and created_at < ? and model IS NULL")
+    if unaffiliated_events.count == 0
+      content += "<h1>No user-unaffiliated events today</h1>"
+    else
+      content += "<h2>User-unaffiliated events"
+      unaffiliated_events.each do |event|
+        content += "<p>#{event.created_at}: #{event.happening}</p>"
+      end
     end
 
     UserMailer.email_internal_team("Update for activity taking place on #{date.to_s}",content)
