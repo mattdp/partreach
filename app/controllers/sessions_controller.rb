@@ -29,8 +29,10 @@ class SessionsController < ApplicationController
   def edit
     @user = User.find_by_password_reset_token(params[:id])
     if @user.nil?
+      Event.add_event(nil,nil,"external password reset fail - invalid token")      
       redirect_to new_password_reset_path, :alert => "Invalid password reset token."
     elsif @user.password_reset_sent_at < HOURS_ALLOWED.hours.ago
+      Event.add_event("User",@user.id,"external password reset fail - expired")
       redirect_to new_password_reset_path, :alert => "Password reset has expired. For security, each reset is good for #{HOURS_ALLOWED} hours)."
     end
   end
@@ -39,10 +41,13 @@ class SessionsController < ApplicationController
     @user = User.find_by_password_reset_token(params[:id])
     if @user.nil?
       redirect_to new_password_reset_path, :alert => "Invalid password reset token."
+      Event.add_event(nil,nil,"external password reset fail - invalid token")
     elsif @user.password_reset_sent_at < HOURS_ALLOWED.hours.ago
+      Event.add_event("User",@user.id,"external password reset fail - expired")
       redirect_to new_password_reset_path, :alert => "Password reset has expired. For security, each reset is good for #{HOURS_ALLOWED} hours)."
     elsif @user.update_attributes(password_reset_params)
       sign_in @user
+      Event.add_event("User",@user.id,"external password reset success")
       redirect_after_signin("Password has been set. You are now logged in.")
     else
       render :edit
@@ -58,8 +63,10 @@ class SessionsController < ApplicationController
 
     if @user.update_attributes(password_reset_params)    
       sign_in @user
+      Event.add_event("User",@user.id,"internal password reset success")
       redirect_after_signin("New password has been set. You are now logged in.")
     else
+      Event.add_event("User",@user.id,"internal password reset failure") if @user.present?
       render :internal_edit
     end
   end
