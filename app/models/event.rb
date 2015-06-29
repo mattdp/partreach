@@ -94,9 +94,13 @@ class Event < ActiveRecord::Base
     events.each do |event|
       if last_model_id != event.model_id
         user = User.find(event.model_id)
-        organization = user.team.organization
+        organization = user.team.organization if user.team.present?
         contact = user.lead.lead_contact
-        content += "<h2>#{organization.name} - #{contact.name}</h2>"
+        if organization.present?
+          content += "<h2>#{organization.name} - #{contact.name}</h2>"
+        else
+          content += "<h2>#{contact.name}</h2>"
+        end
       end
       content += "<p>#{event.created_at}: #{event.happening} (#{event.target_model} #{event.target_model_id})</p>"
       last_model_id = event.model_id
