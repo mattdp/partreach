@@ -37,35 +37,25 @@
   <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
 <% end %>
 
-
-
-<!-- ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-
-<script src="http://mottie.github.com/tablesorter/js/jquery.tablesorter.js"></script>
-<script src="http://mottie.github.com/tablesorter/js/jquery.tablesorter.widgets.js"></script>
-<script src="http://mottie.github.com/tablesorter/addons/pager/jquery.tablesorter.pager.js"></script>
-
-
 <script>
-var $table = $('table'),
-    process = false;
+  var $table = $('table'),
+      process = false;
 
-$('.process').click(function(){
-  process = !process;
-  $.tablesorter.isProcessing( $table, process );
-});
+  $('.process').click(function(){
+    process = !process;
+    $.tablesorter.isProcessing( $table, process );
+  });
 
-$('.sortable').click(function(){
-  $table
-    .find('.tablesorter-header:last').toggleClass('sorter-false')
-    .trigger('update');
-});
+  $('.sortable').click(function(){
+    $table
+      .find('.tablesorter-header:last').toggleClass('sorter-false')
+      .trigger('update');
+  });
 
-$table.tablesorter({
-  theme: 'bootstrap',
-  headerTemplate: '{content} {icon}',
-  sortList: [ [0,0] ],
-  widgets : [ 'zebra', 'columns', 'uitheme' ] // add 'filter' to get the search row back
-});
+  $table.tablesorter({
+    theme: 'bootstrap',
+    headerTemplate: '{content} {icon}',
+    sortList: [ [0,0] ],
+    widgets : ['columns', 'uitheme' ] // add 'filter' to get the search row back
+  });
 </script>
