@@ -18,7 +18,7 @@
         <td><%= "#{provider.index_address}" %></td>
         <td>
           <div class="row">
-            <%= render partial: "providers/star_display", locals: {score: provider.average_score} %>
+            <%= render partial: "providers/star_display", locals: {score: provider.average_score, include_hidden_number: true} %>
           </div>
         </td>
         <td>
