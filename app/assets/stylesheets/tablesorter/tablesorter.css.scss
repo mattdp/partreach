@@ -68,8 +68,8 @@ Test out these custom less files live
    or just replace (!".@{theme}") with the contents of @theme
 */
 .tablesorter-bootstrap {
-  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #cdcdcd;
+  /*font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+  /*background-color: #cdcdcd;*/
   width: 100%;
   /* style th's outside of the thead */
   /* style header */
@@ -260,8 +260,4 @@ Test out these custom less files live
   text-align: center;
   cursor: pointer;
   background-color: #e6bf99;
-}
-
-body { 
-  margin: 10px; 
 }
