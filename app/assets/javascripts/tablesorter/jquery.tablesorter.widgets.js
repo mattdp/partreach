@@ -24,16 +24,13 @@ var ts = $.tablesorter || {};
 // *** Store data in local storage, with a cookie fallback ***
 /* IE7 needs JSON library for JSON.stringify - (http://caniuse.com/#search=json)
    if you need it, then include https://github.com/douglascrockford/JSON-js
-
    $.parseJSON is not available is jQuery versions older than 1.4.1, using older
    versions will only allow storing information for one page at a time
-
    // *** Save data (JSON format only) ***
    // val must be valid JSON... use http://jsonlint.com/ to ensure it is valid
    var val = { "mywidget" : "data1" }; // valid JSON uses double quotes
    // $.tablesorter.storage(table, key, val);
    $.tablesorter.storage(table, 'tablesorter-mywidget', val);
-
    // *** Get data: $.tablesorter.storage(table, key); ***
    v = $.tablesorter.storage(table, 'tablesorter-mywidget');
    // val may be empty, so also check for your data
@@ -2733,4 +2730,3 @@ ts.addWidget({
 })(jQuery);
 
 return $.tablesorter;
-}));

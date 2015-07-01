@@ -26,7 +26,7 @@
 //= require chosen-jquery
 //= require jquery_nested_form
 
-//= require_tree ./tablesorter
 //= require_tree ./angular
 //= require_tree ./bootstrap
+//= require_tree ./tablesorter
 //= require_directory .
