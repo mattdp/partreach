@@ -21,7 +21,7 @@
       <!-- STAR RATINGS -->
       <!-- need to add an if statement to handle the case when there are no comments (and prompt the user to add a comment) -->
       <div class="row">
-        <%= render partial: "providers/star_display", locals: {score: @provider.average_score} %>
+        <%= render partial: "providers/star_display", locals: {score: @provider.average_score, include_hidden_number: false} %>
         <span class="heading_navigation">
           <a href="#comments">
             <% total_provider_comments = @provider.comments.count %>

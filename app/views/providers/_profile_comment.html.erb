@@ -45,7 +45,7 @@
     <div class="row">
       <% if comment.overall_score > 0 %>
         <span class="comment-smalltext">Overall:</span>
-        <%= render partial: "providers/star_display", locals: {score: comment.overall_score} %>
+        <%= render partial: "providers/star_display", locals: {score: comment.overall_score, include_hidden_number: false} %>
       <% end %>
       <span class="comment-smalltext"> 
         <%= "Reviewed #{comment.updated_at.strftime('%Y-%m-%d')}" %>
@@ -67,7 +67,7 @@
               <% ["cost_score","quality_score","speed_score"].each do |score| %>
                 <% if comment.attributes[score] > 0 %>
                   <%= "#{score[0...score.length-6].capitalize}:" %>
-                  <%= render partial: "providers/star_display", locals: {score: comment.attributes[score]} %>
+                  <%= render partial: "providers/star_display", locals: {score: comment.attributes[score], include_hidden_number: false} %>
                 <% end %>
               <% end %>
             </span>
