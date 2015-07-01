@@ -57,7 +57,11 @@ $(document).ready(function() {
     $.ajax({
       url : "/provider/upload_photo",
       type: "POST",
-      data: { 'provider_id': $('#provider_id')[0].value, 'url': content.url, 'filename': content.filename },
+      data: {
+        'provider_id': $('#provider_id')[0].value,
+        'filepath': content.filepath,
+        'filename': content.filename
+      },
       success: function(data, textStatus, jqXHR)
       {
         if ( $('#uploaded-photo-list').length) {
