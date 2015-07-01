@@ -160,7 +160,9 @@ class ProvidersController < ApplicationController
 
   def upload_photo
     provider = current_organization.providers.find(params[:provider_id])
-    provider.add_external(params['url'], params['filename'])
+    bucket_name = current_organization.external_bucket_name
+    remote_file_name = params['filepath'].gsub("/#{bucket_name}/", "")
+    provider.add_external(params['filename'], remote_file_name)
     render nothing: true
   end
 
