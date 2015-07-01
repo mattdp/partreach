@@ -117,7 +117,7 @@ class Event < ActiveRecord::Base
       end
     end
 
-    UserMailer.email_internal_team("Update for activity taking place on #{date.to_s}",content)
+    UserMailer.email_internal_team("#{Rails.env} - Update for activity taking place on #{date.to_s}",content)
 
     return true
   end
