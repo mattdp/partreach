@@ -106,7 +106,7 @@ Partreach::Application.routes.draw do
   get '/teams/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
 
   resources :purchase_orders, only: [:index]
-  get '/purchase_orders/email_sent/:id/::after_this_email_count', to: 'purchase_orders#email_sent', as: 'purchase_orders_email_sent'
+  get '/purchase_orders/email_sent/:id/:after_this_email_count', to: 'purchase_orders#email_sent', as: 'purchase_orders_email_sent'
 
   resources :reviews, only: [:new, :create]
 
@@ -117,6 +117,7 @@ Partreach::Application.routes.draw do
   match '/reset_password', to: 'sessions#internal_update', as: "sessions_internal_update", via: :patch
 
   get '/signup', to: 'orders#new' 
+  get '/enterprise', to: 'static_pages#enterprise' #enterprise.html.erb L21 is hardlinked to this, change if you change the route
   get '/getting_started', to: 'static_pages#getting_started'
   get '/procurement', to: 'static_pages#procurement'
   get '/materials', to: 'static_pages#materials'

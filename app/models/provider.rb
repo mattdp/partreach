@@ -56,11 +56,11 @@ class Provider < ActiveRecord::Base
       id_in_purchasing_system: options[:id_in_purchasing_system],
       price: options[:price],
       quantity: options[:quantity],
-      issue_date: options[:issue_date],
+      issue_date: options[:issue_date]
     })
 
     if !returner[:po].save
-      returner[:output_string] += "#{warning_prefix}PO saving failure for row_identifer #{options[:row_identifer]}. Skipping.\n"
+      returner[:output_string] += "#{warning_prefix}PO saving failure for row_identifier #{options[:row_identifier]}. Skipping.\n"
       return returner
     end
 
@@ -71,9 +71,9 @@ class Provider < ActiveRecord::Base
     })
 
     if !returner[:comment].save
-      returner[:output_string] += "#{warning_prefix}WARNING: ORPHAN PO. Comment saving failure for row_identifer #{options[:row_identifer]}.\n"
+      returner[:output_string] += "#{warning_prefix}WARNING: ORPHAN PO. Comment saving failure for row_identifier #{options[:row_identifier]}.\n"
     else
-      returner[:output_string] += "Success. Comment #{returner[:comment].id} created from row with SB ID #{options[:row_identifer]}.\n"
+      returner[:output_string] += "Success. Comment #{returner[:comment].id} created from row with SB ID #{options[:row_identifier]}.\n"
     end
 
     return returner

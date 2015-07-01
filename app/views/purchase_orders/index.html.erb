@@ -3,6 +3,10 @@
 <div class="container hax-body-styling">
   <div class="row">
 
+    <p class="center"><strong>
+      <%= link_to "Every time you use this page, open this Google Doc for notes on person-based notes to keep in mind!", "https://docs.google.com/document/d/16HrXPc5EEieofyLqTOM9_Z0_sqxh4Vn5M296sg9S8ts/edit" %>
+    </strong></p>
+
     <table class="table">
       <tr>
         <th>User ID</th>
@@ -12,7 +16,7 @@
         <th>Link to first email for appropriate PO</th>
         <th>PO ID</th>
         <th>This'll be the Xth email</th>
-        <th>Sent?</th>
+        <th>Hit when you send this email</th>
       </tr>
       <% @structure.each do |user,details| %>
         <% contact = user.lead.lead_contact %>
@@ -38,7 +42,7 @@
           </td>
           <td>
             <% if details[:purchase_order] %>
-              <%= link_to "Sent!", purchase_orders_email_sent_path(details[:purchase_order].id, details[:followup_number]) %>
+              <%= link_to "Sent!", purchase_orders_email_sent_path(details[:purchase_order].id, details[:followup_number]), class: "button--blue" %>
             <% end %>
           </td>
         </tr>

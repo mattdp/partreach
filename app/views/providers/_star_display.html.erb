@@ -1,4 +1,7 @@
   <% if score > 0 %>
+    <% if include_hidden_number %>
+      <span class="hide-text"><%= score %></span>
+    <% end %>
     <span class="star-rating comment-rating-stars">
       <% 5.times do |num| %>
        <input type="radio">
