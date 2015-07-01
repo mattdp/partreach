@@ -161,8 +161,17 @@ class ProvidersController < ApplicationController
   def upload_photo
     provider = current_organization.providers.find(params[:provider_id])
     bucket_name = current_organization.external_bucket_name
+    original_filename = params['filename']
     remote_file_name = params['filepath'].gsub("/#{bucket_name}/", "")
-    provider.add_external(params['filename'], remote_file_name)
+
+    # change permissions to only allow authenticated access
+    s3_resource = External.setup_s3_resource(current_organization)
+    file=s3_resource.bucket(bucket_name).object(remote_file_name)
+    file.acl.put({ acl: "authenticated-read" })
+
+    #create externals object
+    provider.add_external(original_filename, remote_file_name)
+
     render nothing: true
   end
 
