@@ -58,10 +58,12 @@ class CommentsController < ApplicationController
       Event.add_event("User", @user.id, "said job was good", "Comment", @comment.id)
       Comment.score_symbols.each do |score|        
         @comment.send("#{score}=",5) if @comment.send(score) == 0
+        @comment.save
       end
     elsif @flavor == "bad"
       Event.add_event("User", @user.id, "said job was bad", "Comment", @comment.id)
       @comment.overall_score = 1 if @comment.overall_score == 0
+      @comment.save
     end
     
     Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
