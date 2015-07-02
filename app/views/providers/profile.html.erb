@@ -101,8 +101,8 @@
         </div>
       <% end %>  
 
-    <div>
-        <span class="heading_navigation">[add a photo:]</span>
+    <div class="attachment-uploader">Upload pictures here (or drag and drop)
+        <span class="heading_navigation"></span>
         <%= s3_uploader_form id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
           max_file_size: 10.megabytes,
           bucket: @provider.organization.external_bucket_name,
