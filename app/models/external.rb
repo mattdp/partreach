@@ -69,7 +69,6 @@ class External < ActiveRecord::Base
   end
 
   def get_expiring_url_helper(s3_resource)
-
     return nil unless (
       consumer_type == "Provider" and 
       provider = Provider.find_by_id(self.consumer_id) and
@@ -80,7 +79,6 @@ class External < ActiveRecord::Base
     s3_resource.bucket(organization.external_bucket_name) \
       .object(self.remote_file_name) \
       .presigned_url(:get, expires_in: 15*60)
-
   end
 
 end

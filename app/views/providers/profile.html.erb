@@ -78,6 +78,24 @@
     </div>        
 
     <!-- BEGIN MIDDLE COLUMN -->
+
+    <div>
+      <span class="heading_navigation">[add a photo:]</span>
+      <%= s3_uploader_form id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
+        max_file_size: 10.megabytes,
+        bucket: @provider.organization.external_bucket_name,
+        key_starts_with: "#{@provider.name_for_link}",
+        key: "#{@provider.name_for_link}-#{SecureRandom.hex}-{unique_id}" do %>
+          <%= file_field_tag :file, multiple: true %>
+        <% end %>
+      <script id="template-upload" type="text/x-tmpl">
+        <div id="file-{%=o.unique_id%}" class="upload">
+          <div class="filename">{%=o.name%}</div>
+          <div class="progress"><div class="bar" style="width: 0%"></div></div>
+        </div>
+      </script>
+    </div>
+
     <!-- PHOTO GALLERY -->
     <div class="col-md-4">
       <% if @expiring_image_urls.present? %>

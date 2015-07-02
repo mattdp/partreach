@@ -57,8 +57,12 @@ $(document).ready(function() {
     $.ajax({
       url : "/provider/upload_photo",
       type: "POST",
-      data: { 'provider_id': $('#provider_id')[0].value, 'url': content.url, 'filename': content.filename },
-      success: function(data, textStatus, jqXHR)
+      data: {
+        'provider_id': $('#provider_id')[0].value,
+        'filepath': content.filepath,
+        'filename': content.filename
+      },
+      success: function(response, textStatus, jqXHR)
       {
         if ( $('#uploaded-photo-list').length) {
           if ($('#uploaded-photo-list')[0].childElementCount == 0) {
@@ -66,7 +70,7 @@ $(document).ready(function() {
           } else {
             li = '<li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">'
           }
-          $('#uploaded-photo-list').append(li + '<img src="' + content.url + '"</li>');
+          $('#uploaded-photo-list').append(li + '<img src="' + response + '"</li>');
         }
       },
       error: function (jqXHR, textStatus, errorThrown)
