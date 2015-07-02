@@ -170,9 +170,10 @@ class ProvidersController < ApplicationController
     file.acl.put({ acl: "authenticated-read" })
 
     #create externals object
-    provider.add_external(original_filename, remote_file_name)
+    new_external = provider.add_external(original_filename, remote_file_name)
+    expiring_image_url = new_external.get_expiring_url_helper(s3_resource)
 
-    render nothing: true
+    render plain: expiring_image_url
   end
 
   private
