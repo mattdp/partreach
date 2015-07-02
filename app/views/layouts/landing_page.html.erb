@@ -10,6 +10,8 @@
   <body>
     <%= render 'layouts/flash_errors' %>
     <%= yield %>
+    <% if Rails.env != "development" %>
+      <%= render 'layouts/intercom_snippet' %>
     <% end %>
   </body>
 </html>
