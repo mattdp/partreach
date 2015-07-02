@@ -36,8 +36,12 @@ class Comment < ActiveRecord::Base
     return true
   end
 
+  def self.score_symbols
+    [:overall_score, :cost_score, :quality_score, :speed_score]
+  end
+
   def any_ratings_given?
-    scores = [self.overall_score, self.cost_score, self.quality_score, self.speed_score]
+    scores = Comment.score_symbols.map{|ss| self.send(ss)}
     return scores.any?{|s| s != 0}
   end
 
