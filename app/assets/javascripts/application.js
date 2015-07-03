@@ -28,4 +28,5 @@
 
 //= require_tree ./angular
 //= require_tree ./bootstrap
+//= require_tree ./tablesorter
 //= require_directory .
