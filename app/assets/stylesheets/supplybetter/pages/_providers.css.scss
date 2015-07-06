@@ -461,7 +461,7 @@ img.banner-message {
   padding-top: 10px;
 }
 
-/*BEING LANDING PAGE*/
+/*BEGIN LANDING PAGE*/
 .redacted {
   color: transparent;
   text-shadow: 0 0 12px rgba(0,0,0,0.5);
@@ -497,4 +497,20 @@ img.banner-message {
   width: 84px;
   margin: 0;
   padding: 0;
+}
+
+/*BEGIN PICTURE UPLOADER*/
+
+.attachment-uploader {
+  border-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.attachment-uploader:hover {
+  border-color: #a9d8b2;
+  background: rgba(87, 173, 104, 0.1);
+}
+
+.attachment-uploader input {
+  width: 100%;
 }

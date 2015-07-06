@@ -79,8 +79,9 @@ class Provider < ActiveRecord::Base
     return returner
   end
 
-  def add_external(url, filename)
-    externals.create!(url: url, original_filename: filename)
+  # creates external object and adds it to provider's collection of externals
+  def add_external(original_filename, remote_file_name)
+    externals.create!(url: '#', original_filename: original_filename, remote_file_name: remote_file_name)
   end
 
   def self.proper_name_for_link(name)
