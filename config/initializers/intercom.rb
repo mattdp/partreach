@@ -47,10 +47,12 @@ IntercomRails.config do |config|
   # You can provide either a method name which will be sent to the current
   # user object, or a Proc which will be passed the current user.
   #
-  # config.user.custom_data = {
-  #   :plan => Proc.new { |current_user| current_user.plan.name },
-  #   :favorite_color => :favorite_color
-  # }
+  config.user.custom_data = {
+    :team => Proc.new { |current_user| current_user.team.present? ? current_user.team.name : "Unknown team" },
+    :name => Proc.new { |current_user| (current_user.lead.present? and current_user.lead.lead_contact.present?) ? current_user.lead.lead_contact.full_name_untrusted : "Unknown name" },
+    :email => Proc.new { |current_user| (current_user.lead.present? and current_user.lead.lead_contact.present?) ? current_user.lead.lead_contact.email : "Unknown email" },
+    :environment => Proc.new { Rails.env }
+  }
 
   # == User -> Company association
   # A Proc that given a user returns an array of companies
@@ -64,7 +66,7 @@ IntercomRails.config do |config|
   # in your controllers. 'Companies' are generic groupings of users, so this
   # could be a company, app or group.
   #
-  # config.company.current = Proc.new { current_company }
+  config.company.current = Proc.new { |current_user| (current_user.organization.present?) ? current_user.organization.name : "Unknown organization" }
 
   # == Company Custom Data
   # A hash of additional data you wish to send about a company.
