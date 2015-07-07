@@ -7,11 +7,10 @@
           <hr class="header-no-margin">
             <p class="small-margin-left">
               <%= "#{item.updated_at.strftime('%m/%d')}: " %>
-              <strong><%= "#{item.user.lead.lead_contact.name}" %></strong>
               <% if item.class.to_s == "Comment" %>
                 <%= render partial: "providers/activity_individual_comment", locals: {comment: item} %>
               <% else %>
-                That's not a comment!
+                <p>That's not a comment!</p>
               <% end %>         
             </p>
         </div>
