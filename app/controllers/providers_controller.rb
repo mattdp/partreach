@@ -95,7 +95,7 @@ class ProvidersController < ApplicationController
     @providers_list = @org.providers_alpha_sort
     @provider_hash = @org.providers_hash_by_tag
 
-    @recent_comments = @org.recent_comments
+    @recent_activity = @org.recent_activity
 
     @providers_tag_search_list = []
     @provider_hash.each { |tag, providers| @providers_tag_search_list << [providers.size, tag.readable] }

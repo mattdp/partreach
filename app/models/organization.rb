@@ -82,11 +82,14 @@ class Organization < ActiveRecord::Base
   end
 
   #/Users/matt/Desktop/partreach-docs/mdp/151005-recent_comments.txt for thoughts on how to do right
-  def recent_comments
-    possibles = Comment.last(100)
-    in_org_comments = possibles.select{|c| ((c.overall_score > 0 or c.payload.present?) and Provider.find(c.provider_id).organization_id == self.id)}
-    in_org_comments = in_org_comments.select{|c| c.user.present? and c.user.lead.present? and c.user.lead.lead_contact.present?}
-    return in_org_comments.sort_by{|c| c.updated_at}.reverse.take(10)
+  def recent_activity
+    possibles = Comment.where("updated_at >= ?",Date.today-30).
+      where("overall_score > 0 OR payload IS NOT NULL").
+      where("user_id IS NOT NULL").
+      order("updated_at DESC")
+    in_org_comments = possibles.select{|c| Provider.find(c.provider_id).organization_id == self.id}
+    in_org_comments = in_org_comments.select{|c| c.user.lead.present? and c.user.lead.lead_contact.present?}
+    return in_org_comments.take(10)
   end
 
   def analysis(start_date=Date.today-30.days,finish_date=Date.today)
