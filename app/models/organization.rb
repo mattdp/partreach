@@ -81,14 +81,15 @@ class Organization < ActiveRecord::Base
     return output_string
   end
 
-  #/Users/matt/Desktop/partreach-docs/mdp/151005-recent_comments.txt for thoughts on how to do right
+  #could do more joins to get users, leads, lead_contacts in, but that's premature optimization at this point
   def recent_activity
-    possibles = Comment.where("updated_at >= ?",Date.today-30).
+    range = (Date.today - 30.days)..(Date.today)
+    possibles = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
       where("overall_score > 0 OR payload IS NOT NULL").
       where("user_id IS NOT NULL").
-      order("updated_at DESC")
-    in_org_comments = possibles.select{|c| Provider.find(c.provider_id).organization_id == self.id}
-    in_org_comments = in_org_comments.select{|c| c.user.lead.present? and c.user.lead.lead_contact.present?}
+      where(comments: {updated_at: range}).
+      order(updated_at: :desc)
+    in_org_comments = possibles.select{|c| c.user.lead.present? and c.user.lead.lead_contact.present?}
     return in_org_comments.take(10)
   end
 
