@@ -82,7 +82,7 @@ class Organization < ActiveRecord::Base
   end
 
   #could do more joins to get users, leads, lead_contacts in, but that's premature optimization at this point
-  def recent_activity
+  def recent_activity(result_number = 10)
 
     range = (Date.today - 30.days)..(Date.today + 1.days) #fudge factor in case time zones ever weird
 
@@ -90,19 +90,21 @@ class Organization < ActiveRecord::Base
     comments = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
       where("overall_score > 0 OR payload IS NOT NULL").
       where("user_id IS NOT NULL").
-      where(comments: {updated_at: range}).
-      order(updated_at: :desc)
+      where(comments: {updated_at: range})
     comments = comments.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
+    comments = comments.take(result_number)
 
     #new/updated providers
     provider_events = Event.joins("INNER JOIN providers ON events.target_model_id = providers.id").
       joins("INNER JOIN users ON events.model_id = users.id").
       where(events: {target_model: "Provider", model: "User", happening: "created or updated a provider"}).
       where(providers: {created_at: range, organization_id: self.id}).
-      where(users: {admin: false}).
-      order(updated_at: :desc)
+      where(users: {admin: false})
+    provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
+    provider_events = provider_events.take(result_number)
 
-    return provider_events.take(10)
+    return (comments + provider_events).sort_by(&:created_at).reverse.take(result_number)
+
   end
 
   def analysis(start_date=Date.today-30.days,finish_date=Date.today)

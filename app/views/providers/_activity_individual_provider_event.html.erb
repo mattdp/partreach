@@ -1,0 +1,15 @@
+<% user = User.find(event.model_id) %>
+<% provider = Provider.find(event.target_model_id) %>
+
+<strong><%= "#{user.lead.lead_contact.full_name_untrusted}" %></strong>
+added more profile information for       
+<%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %>                
+
+<% if provider.tags.present? %>
+  <% count = 0 %>
+  <% provider.tags.each do |tag| %>
+    <% break if count >= 10 %>
+    <span class="tags-providerTags"><a id="index-tags"><%= tag.readable %></a></span>
+    <% count += 1 %>
+  <% end %>       
+<% end %>
