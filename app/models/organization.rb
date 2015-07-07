@@ -103,7 +103,7 @@ class Organization < ActiveRecord::Base
     provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
     provider_events = provider_events.take(result_number)
 
-    return (comments + provider_events).sort_by(&:created_at).reverse.take(result_number)
+    return (comments + provider_events).sort_by(&:updated_at).reverse.take(result_number)
 
   end
 
