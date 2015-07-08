@@ -81,11 +81,10 @@
 
     <!-- PHOTO GALLERY -->
     <div class="col-md-4">
-      
 
-      <% if @expiring_image_urls.present? %>
-        <div>
-          <ul id="uploaded-photo-list" class="row photo-gallery">
+      <div>
+        <ul id="uploaded-photo-list" class="row photo-gallery">
+          <% if @expiring_image_urls.present? %>
             <% count = 0 %>
             <% @expiring_image_urls.each do |url| %>  
               <% if count == 0 %>
@@ -97,9 +96,9 @@
             </li>
             <% count += 1 %>
            <% end %>
-          </ul>          
-        </div>
-      <% end %>  
+          <% end %>
+        </ul>
+      </div>
 
     <div class="attachment-uploader">Upload pictures here (or drag and drop) - refresh to see your picture
         <span class="heading_navigation"></span>
