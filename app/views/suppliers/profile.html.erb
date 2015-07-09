@@ -1,7 +1,10 @@
-<div class="container">
-  <div class="row">
-    <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
+<% provide(:title, "#{@supplier.name} - Supplier Profile") %>
 
+<div class="container hax-body-styling">
+  <div class="row">
+    <div class="col-md-4">
+
+      <!-- DIRECTORY PATH -->
       <h4><p>
         <%= link_to "Directory", suppliers_path %>
         >
@@ -15,24 +18,38 @@
         >
         <bold><%= @supplier.name if @supplier %></bold>
       </p></h4>
+    </div>
+  </div>
 
-      <div class="supplier-profile">
-        <% provide(:title, "#{@supplier.name} - Supplier Profile") %>
-        <% meta_description @meta %>
-        <h1 id="supplier-name" class="left">
+  <div class="row">
+    <!-- BEGIN LEFT COLUMN -->
+    <div class="col-md-4">
+      
+      <!-- COMPANY NAME -->
+      <div class="provider-profile">
+        <h1>
           <%= "#{@supplier.name}" %>
           <%= " (not visible)" unless @supplier.profile_visible %>
-          <%= link_to "Link to admin_edit", admin_edit_path(@supplier.name_for_link) if current_user and current_user.admin? %>
+          <span class="heading_navigation">[<%= link_to "admin_edit", admin_edit_path(@supplier.name_for_link) if current_user and current_user.admin? %>]</span>
         </h1>
+      </div>
+    </div>
+  </div>
+
+
         <div class="fleft">
           <div>
+            <!-- ADDRESS SECTION -->
             <p>
               <%= "Location: #{@supplier.safe_country}" %>
               <%= " - #{@supplier.safe_location_name}" if @supplier.safe_location_name.length > 0 %>          
               <%= ", #{@supplier.safe_state}" if @supplier.safe_state.length > 0 %>
             </p>
+
+            <!-- CATEGORIES -->
             <%= render :partial => "/profiles/tag_display", locals: {tags: @tags, row_end: 4} %>
             <p>
+
               <% if !@supplier.url_main.nil? %>
                 <%= link_to "Webpage", @supplier.url_main %>
               <% else %> 
@@ -40,20 +57,34 @@
               <% end %>
             </p>
           </div>
+
+
+          <!-- PHOTO GALLERY -->
           <div>
             <% @supplier.externals.each do |e| %>
               <%= image_tag e.url, class: "supplier-image-box" %>
             <% end %> 
           </div>
         </div>
+
+
+
+        <!-- REQUEST QUOTE -->
         <div class="fright">
           <%= link_to "Request Quote", new_order_path, class: "btn btn-hero", id: "button-place-order", rel: "nofollow" %>
+          
+          <!-- CLAIM PROFILE -->
           <% if !@supplier.claimed %>
             <p><%= mail_to "claim-profile@supplybetter.com", "Do you work here? Claim your profile!", encode: "javascript", target: "_blank", subject: "Claiming profile for #{@supplier.name}", body: "I'd like to discuss claiming the profile for #{@supplier.name}" %></p>
           <% end %>
+
+          <!-- SUBMIT CORRECTIONS -->
           <p><%= mail_to "suggest-edits@supplybetter.com", "Submit corrections or more information", encode: "javascript", target: "_blank", subject: "Suggested profile change for #{@supplier.name}" %></p>
         </div>
-        <div class="clear supplier-variable">
+
+
+
+       <!--  <div class="clear supplier-variable">
           <ul class="nav nav-tabs">
             <li class="active"><%= link_to "Description", "#", :class => "description-toggle" %></li>
             <% @num_machines > 0 ? machines_link_text = "Machines (#{@num_machines})" : machines_link_text = "Machines" %>
@@ -99,7 +130,7 @@
             <% end %>
             <% if @photos_toggle %><div class="panel hidden photos-content"><%= render :partial => "profiles/panel_text", :locals => {:no_yet => "photos", :lead_type => "photos_requested", :s_id => @supplier.id, :u_id => @user_id} %></div><% end %>
           </div>
-        </div>
+        </div> -->
 
         <div class="back_to_suppliers">
           <%= link_to "Return to supplier index", us_3dprinting_path %>

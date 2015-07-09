@@ -223,7 +223,7 @@ class SuppliersController < ApplicationController
       profile_factors = andlist(meta_for_supplier(@supplier))
       @meta += "The #{@supplier.name} profile has " + andlist(meta_for_supplier(@supplier)) + ". " if profile_factors.present?
       @meta = @meta.present? ? @meta : "#{@supplier.name} - Supplier profile"
-      render "profile", layout: "old_layout"
+      render "profile" #, layout: "old_layout"#
     else
       render "profile_not_found", status: :not_found
     end
