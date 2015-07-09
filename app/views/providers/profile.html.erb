@@ -100,8 +100,9 @@
         </ul>
       </div>
 
-    <div class="attachment-uploader">Upload pictures here (or drag and drop) - refresh to see your picture
+    <div class="attachment-uploader">Upload pictures here (or drag and drop)
         <span class="heading_navigation"></span>
+        <%= hidden_field_tag :provider_id_for_upload, @provider.id %>
         <%= s3_uploader_form id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
           max_file_size: 10.megabytes,
           bucket: @provider.organization.external_bucket_name,
