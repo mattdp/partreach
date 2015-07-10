@@ -109,8 +109,6 @@ Partreach::Application.routes.draw do
   resources :purchase_orders, only: [:index]
   get '/purchase_orders/email_sent/:id/:after_this_email_count', to: 'purchase_orders#email_sent', as: 'purchase_orders_email_sent'
 
-  resources :reviews, only: [:new, :create]
-
   resources :sessions, only: [:new, :create, :destroy, :edit, :update]
   get '/signin', to: 'sessions#new', as: 'signin'
   match '/signout', to: 'sessions#destroy', via: :delete
