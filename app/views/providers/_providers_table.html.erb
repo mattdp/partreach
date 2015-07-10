@@ -28,7 +28,9 @@
           </td>
           <td><%= link_to "#{provider.latest_purchase_order_date}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %></td>
           <% if include_tag_column %>
-            <td>SOME FANCY SOMETHING CNC</td>
+            <td>
+              <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false} %>
+            </td>
           <% end %>
         </tr>              
       <% end %>  
@@ -58,6 +60,6 @@
     theme: 'bootstrap',
     headerTemplate: '{content} {icon}',
     sortList: [ [2,1], [0,0] ],
-    widgets : ['columns', 'uitheme', 'filter' ] // add 'filter' to get the search row back
+    widgets : ['columns', 'uitheme'] // add 'filter' to get the search row back
   });
 </script>
