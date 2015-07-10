@@ -23,6 +23,7 @@ Partreach::Application.routes.draw do
   get '/comments/:id/edit/:flavor', to: 'comments#edit', as: 'comments_edit_with_status'
   get '/comments/later/:id', to: 'comments#later', as: 'comments_later'
   get '/comments/request_for_review/:id', to: 'comments#request_for_review', as: 'comments_request_for_review'
+  get '/comments/request_for_review/:id/:message_number', to: 'comments#request_for_review', as: 'comments_request_for_review'
 
   resources :comment_ratings, only: [:create]
   

@@ -13,8 +13,14 @@
       <%= @contact.email if @contact.present? %>
 
       <h3>Subject</h3>
-
-      <p><%= @contact.first_name.present? ? "#{@contact.first_name}" : "[NAME]" %>, how was your <%= @purchase_order.issue_date.present? ? "#{@purchase_order.issue_date.strftime("%m/%d")}" : "[DATE]" %> order with <%= @provider.name %>?</p>
+      <p>
+        <% if @message_number == 2) %>
+          <%= "Re: " %>
+        <% elsif @message_number == 3) %>
+          <%= "Re: Follow Up " %>
+        <% end %>
+        <%= @contact.first_name.present? ? "#{@contact.first_name}" : "[NAME]" %>, how was your <%= @purchase_order.issue_date.present? ? "#{@purchase_order.issue_date.strftime("%m/%d")}" : "[DATE]" %> order with <%= @provider.name %>?
+      </p>
 
       <h3>Email body</h3>
 
