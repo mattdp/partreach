@@ -38,7 +38,6 @@ class LeadsController < ApplicationController
 
   def index
     @leads = Lead.sorted(true)
-    render layout: "old_layout"
   end
 
   def edit
