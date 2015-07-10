@@ -27,7 +27,7 @@
           <td><%= details[:emailable_date].strftime("%b %e, %Y") %>
           <td>
             <% if details[:purchase_order].present? %>
-              <%= link_to "Text for PO email", comments_request_for_review_path(details[:purchase_order].comment.id) %>
+              <%= link_to "Text for PO email", comments_request_for_review_path_with_message_number(details[:purchase_order].comment.id, details[:followup_number]) %>
             <% end %>
           </td>
           <td>
