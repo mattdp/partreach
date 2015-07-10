@@ -1,7 +1,10 @@
-<ul>
-  <% @providers.each do |provider| %>
-    <li>
-      <%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %>
-    </li>
-  <% end %>
-</ul>
+<div class="container hax-body-styling">
+  <div class="row">
+    <div class="main-area-contrast override">
+      <div class="col-md-4">
+        <p><%= link_to "Back to search page", teams_index_path %></p>
+      </div>
+      <%= render :partial => "providers/providers_table", locals: {providers: @providers} %>
+    </div>
+  </div>
+</div>

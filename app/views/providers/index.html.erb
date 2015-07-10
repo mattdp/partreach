@@ -15,7 +15,11 @@
             <h2>
               <span><%= header %></span>
             </h2>
-            <%= render :partial => "providers/providers_table", locals: {providers: providers} %>
+            <% if providers %> 
+              <%= render :partial => "providers/providers_table", locals: {providers: providers} %>
+            <% end %>
+            <% else %>
+              <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
           </div>
         <% end %>
       <% end %>

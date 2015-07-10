@@ -1,5 +1,4 @@
-<% if providers %> 
-  <div class="stylish">
+<div class="stylish">
   <table>
     <thead>
       <tr>
@@ -32,10 +31,7 @@
       <td><%= link_to "[Add to this list]" , new_provider_with_event_path("add_provider_from_index")%></td>
     </tr>  
   </table>
-  </div>
-<% else %>
-  <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
-<% end %>
+</div>
 
 <script>
   var $table = $('table'),
@@ -56,6 +52,6 @@
     theme: 'bootstrap',
     headerTemplate: '{content} {icon}',
     sortList: [ [2,1], [0,0] ],
-    widgets : ['columns', 'uitheme' ] // add 'filter' to get the search row back
+    widgets : ['columns', 'uitheme', 'filter' ] // add 'filter' to get the search row back
   });
 </script>
