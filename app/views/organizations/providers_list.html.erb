@@ -4,10 +4,7 @@
       <div class="col-md-4">
         <p><%= link_to "Back to search page", teams_index_path %></p>
       </div>
-      <%= render :partial => "providers/providers_table", locals: {providers: @providers, include_tag_column: true} %>
+      <%= render :partial => "providers/table", locals: {providers: @providers, include_tag_column: false, show_table: "providers_list"} %>
     </div>
   </div>
 </div>
-
-<!-- todos -->
-<!-- tag row -->

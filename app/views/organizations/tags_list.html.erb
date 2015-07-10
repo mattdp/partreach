@@ -1,7 +1,24 @@
-<ul>
-  <% @tags.each do |tag| %>
-    <li>
-      <%= link_to "#{tag.name}", "#" %>
-    </li>
-  <% end %>
-</ul>
+<div class="container hax-body-styling">
+  <div class="row">
+    <div class="main-area-contrast override">
+      <div class="col-md-4">
+        <p><%= link_to "Back to search page", teams_index_path %></p>
+      </div>
+      <!-- <ul>
+        <% @tags.each do |tag| %>
+          <li>
+            <%= link_to "#{tag.name}", "#" %>
+          </li>
+        <% end %>
+      </ul> -->
+      <%= render :partial => "providers/table", locals: {tags: @tags, include_tag_column: false, show_table: "tags_list"} %>
+    </div>
+  </div>
+</div>
+
+
+<!-- clickable tag
+# of providers
+last PO date (cut if slow)
+latest PO provider (cut if slow)
+# of POs (cut if slow) -->

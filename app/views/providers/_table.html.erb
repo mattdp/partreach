@@ -1,0 +1,7 @@
+<% if show_table == "providers_search" %>
+  <%= render :partial => "providers/providers_table", locals: {providers: providers, include_tag_column: false} %>
+<% elsif show_table == "providers_list" %>
+  <%= render :partial => "providers/providers_table" ,locals: {providers: providers, include_tag_column: true} %>
+<% elsif show_table == "tags_list" %>
+  <%= render :partial => "providers/tags_table", locals: {tags: @tags, include_tag_column: false} %>
+<% end %>
