@@ -1,0 +1,7 @@
+<ul>
+  <% @providers.each do |provider| %>
+    <li>
+      <%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %>
+    </li>
+  <% end %>
+</ul>

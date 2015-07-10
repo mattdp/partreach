@@ -84,6 +84,9 @@ Partreach::Application.routes.draw do
 
   resources :order_groups, only: [:new, :create, :edit, :update]
 
+  get 'organizations/:id/tags_list', to: 'organizations#tags_list', as: 'organizations_tags_list'
+  get 'organizations/:id/providers_list', to: 'organizations#providers_list', as: 'organizations_providers_list'
+
   resources :owners, only: [:create]
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'
   match '/owners/destroy/:supplier_id/:machine_id', to: 'owners#destroy', as: 'destroy_owner', via: :delete
