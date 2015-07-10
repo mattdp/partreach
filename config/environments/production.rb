@@ -48,6 +48,7 @@ Partreach::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # configure outbound email for Mailgun
+  # note that there's a copy of this in staging.rb, if/when we change it
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :authentication => :plain,
