@@ -60,15 +60,26 @@ Partreach::Application.configure do
   # }
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :user_name => '23757f9b722070397',
-    :password => '59decc2a1c50ba',
-    :address => 'mailtrap.io',
-    :domain => 'mailtrap.io',
-    :port => '2525',
-    :authentication => :cram_md5,
-    :enable_starttls_auto => true
-  }
+  if (ENV["STAGING_SUB_ENVIRONMENT"] == "demo")
+    config.action_mailer.smtp_settings = {
+      :authentication => :plain,
+      :address => "smtp.mailgun.org",
+      :port => 587,
+      :domain => "supplybetter.com",
+      :user_name => "postmaster@supplybetter.com",
+      :password => ENV['SB_MAILER_PASSWORD']
+    }
+  else
+    config.action_mailer.smtp_settings = {
+      :user_name => '23757f9b722070397',
+      :password => '59decc2a1c50ba',
+      :address => 'mailtrap.io',
+      :domain => 'mailtrap.io',
+      :port => '2525',
+      :authentication => :cram_md5,
+      :enable_starttls_auto => true
+    }
+  end
   
   # Disable delivery errors, bad email addresses will be ignored
   config.action_mailer.perform_deliveries = true
