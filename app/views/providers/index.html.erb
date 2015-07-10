@@ -49,12 +49,10 @@
                 for                
                 <%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>                
                 <% if po.present? %>
-                  regarding a 
-                  <% po.tags.each do |tag| %>
-                    <span class="tags-providerTags"><a id="index-tags"><%= tag.readable %></a></span>
-                  <% end %>                
-                order 
-                (Project Name: <span><%= "#{po.project_name}" if po.project_name %></span>)
+                  regarding a                   
+                  <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true} %>
+                  order 
+                  (Project Name: <span><%= "#{po.project_name}" if po.project_name %></span>)
                 <% end %>                
               </p>
           </div>

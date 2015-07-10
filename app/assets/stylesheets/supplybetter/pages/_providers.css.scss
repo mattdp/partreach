@@ -159,10 +159,6 @@ a.search-choice-close {
   margin: 0;
 }
 
-#index-tags {
-  margin-bottom: 0;
-}
-
 /*END PROVIDER INDEX FEED*/
 
 /*BEING PROVIDER INDEX TABLE*/
@@ -391,13 +387,14 @@ li p {
     background: rgba(0, 0, 0, 0.02);
     border-radius: 2px;
     border: 1px solid rgba(0, 0, 0, 0.5);
-    padding: 3px 10px;
-    /*margin-right: 8px;*/ /*spacing looks a little off compared to top/bottom spacing, but make the tag presentation much more compact*/
+    padding: 3px 10px;    
     margin-bottom: 8px;
+
+    &.no-bottom-margin {
+      margin-bottom: 0;
+    }
 }
-.tags-providerTags>a:last-child {
-    margin-right: 0;
-}
+
 .tags-providerTags>a:hover, .tags-providerTags>a:focus {
     color: #468c54;
     border-color: #a9d8b2;
