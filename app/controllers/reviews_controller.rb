@@ -2,8 +2,6 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
-
-    render layout: "old_layout"
   end
 
   def create
