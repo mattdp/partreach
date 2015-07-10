@@ -1,3 +1,5 @@
+<% provide(:title,"Tags List") %>
+
 <div class="stylish">
   <table>
     <thead>
@@ -45,6 +47,6 @@
     theme: 'bootstrap',
     headerTemplate: '{content} {icon}',
     sortList: [ [2,1], [0,0] ],
-    widgets : ['columns', 'uitheme'] // add 'filter' to get the search row back
+    widgets : ['columns', 'uitheme', 'filter'] // add 'filter' to get the search row back
   });
 </script>

@@ -24,6 +24,10 @@
                 </div>
               <% end %>
             </div>
+            <div class="row col-md-2 center index-search-button">
+              <h3 class="search-help-text"><%= link_to "All companies" , organizations_providers_list_path(@org.id)%></h3>
+              <h3 class="search-help-text"><%= link_to "All tags" , organizations_tags_list_path(@org.id)%></h3>
+            </div>
           </div>
 
           <div class="row">
