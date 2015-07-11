@@ -34,7 +34,6 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 
-  add new_review_path, changefreq: 'weekly'
   add new_order_path, changefreq: 'weekly'
   add signin_path, changefreq: 'weekly'
   add getting_started_path, changefreq: 'weekly'
