@@ -7,7 +7,6 @@
 <% if review.quality or review.adaptability or review.delivery %>
   <p>
     <strong>Ratings (1 low, 5 high) - </strong>
-    <%= link_to "What do these mean?", new_review_path %>
   </p>
   <p>
     <% if review.quality %><strong title="How well did the part(s) come out? If there was more than one part produced, how good or bad was the consistency between parts?">Quality:</strong> <%= review.quality %><% end %>
