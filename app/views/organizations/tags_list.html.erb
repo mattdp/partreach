@@ -14,7 +14,7 @@
         <p><%= link_to "All tags" , organizations_tags_list_path(@org.id)%></p>
       </div>
     </div>
-      <%= render :partial => "providers/table", locals: {tags: @tags, include_tag_column: false, show_table: "tags_list"} %>
+      <%= render :partial => "providers/tags_table", locals: {tags: @tags, include_tag_column: false} %>
     </div>
   </div>
 </div>
