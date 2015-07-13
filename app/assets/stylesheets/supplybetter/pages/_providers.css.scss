@@ -22,6 +22,10 @@ body {
   text-align: center;
 }
 
+.right {
+  text-align: right;
+}
+
 .margin-bottom {
   margin-bottom: 10px;
 }
@@ -255,7 +259,7 @@ text-align: center;
 /*end table styling*/
 
 .provider-table th:first-child, td:first-child {
-  width: 35%;
+  width: 30%;
 }
 
 .provider-table th:nth-child(2) , td:nth-child(2) {
@@ -267,15 +271,15 @@ text-align: center;
 }
 
 .provider-table th:nth-child(4) , td:nth-child(4) {
-  width: 5%;
+  width: 4%;
 }
 
 .provider-table th:nth-child(5) , td:nth-child(5) {
-  width: 10%;
+  width: 8%;
 }
 
 .provider-table th:nth-child(6) , td:nth-child(6) {
-  width: 22%;
+  width: 30%;
 }
 /*END PROVIDER INDEX TABLE*/
 
