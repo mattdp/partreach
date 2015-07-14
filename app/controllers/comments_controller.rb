@@ -81,6 +81,7 @@ class CommentsController < ApplicationController
 
   def request_for_review
     @comment = Comment.find(params[:id])
+    @message_number = params[:message_number]
     @provider = @comment.provider
     @purchase_order = @comment.purchase_order
     @contact = nil
