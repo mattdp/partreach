@@ -14,10 +14,19 @@
     <tbody>
       <% @tag_details.each do |tag_name,details| %>
         <tr>
-          <td><%= link_to "#{tag_name}", "#" %></td>
+          <td><%= link_to "#{tag_name}" %></td>
           <td><%= "#{details[:num_providers]}" %></td>
-          <td><%= "#{details[:last_po_date]}" %></td>
-          <td><%= "#{details[:last_po_provider]}" %></td>
+          <td>
+            <% if details[:last_po].present? and details[:last_po_comment_id].present? and details[:last_po_provider].present? %>
+              <% date_string = details[:last_po].issue_date.strftime("%-m/%-d/%y") %>
+              <%= link_to date_string, teams_profile_path(details[:last_po_provider].name_for_link, anchor: details[:last_po_comment_id]) %> 
+            <% end %>
+          </td>
+          <td>
+            <% if details[:last_po_provider].present? %>
+              <%= link_to "#{details[:last_po_provider].name}", teams_profile_path(details[:last_po_provider].name_for_link) %>
+            <% end %>
+          </td>
           <td><%= "#{details[:num_pos]}" %></td>
         </tr>
       <% end %>

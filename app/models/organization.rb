@@ -152,8 +152,9 @@ class Organization < ActiveRecord::Base
       inserted[:num_pos] = (pos.present? ? pos.count : 0)
       if inserted[:num_pos] > 0 
         last_po = pos.last
-        inserted[:last_po_date] = last_po.issue_date.strftime("%-m/%-d/%y")
-        inserted[:last_po_provider] = last_po.provider.name
+        inserted[:last_po] = last_po
+        inserted[:last_po_comment_id] = last_po.comment.id if last_po.comment.present?
+        inserted[:last_po_provider] = last_po.provider
       end
       answer["#{tag.name}"] = inserted
     end
