@@ -12,13 +12,13 @@
       </tr>
     </thead>
     <tbody>
-      <% tags.each do |tag| %>
+      <% @tag_details.each do |tag_name,details| %>
         <tr>
-        <td><%= link_to "#{tag.name}", "#" %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+          <td><%= link_to "#{tag_name}", "#" %></td>
+          <td><%= "#{details[:num_providers]}" %></td>
+          <td><%= "#{details[:last_po_date]}" %></td>
+          <td><%= "#{details[:last_po_provider]}" %></td>
+          <td><%= "#{details[:num_pos]}" %></td>
         </tr>
       <% end %>
     </tbody>

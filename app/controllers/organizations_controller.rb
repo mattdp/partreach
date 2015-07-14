@@ -4,6 +4,7 @@ class OrganizationsController < ApplicationController
   def tags_list
     @tags = Tag.where(organization_id: params[:id].to_i)
     @org = current_organization
+    @tag_details = @org.tag_details    
   end
 
   def providers_list
