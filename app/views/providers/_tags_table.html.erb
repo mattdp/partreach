@@ -12,9 +12,9 @@
       </tr>
     </thead>
     <tbody>
-      <% @tag_details.each do |tag_name,details| %>
+      <% @tag_details.each do |tag_readable,details| %>
         <tr>
-          <td><%= link_to "#{tag_name}" %></td>
+          <td><%= link_to "#{tag_readable}", teams_index_path(tags: [tag_readable]) %></td>
           <td><%= "#{details[:num_providers]}" %></td>
           <td>
             <% if details[:last_po].present? and details[:last_po_comment_id].present? and details[:last_po_provider].present? %>

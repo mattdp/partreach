@@ -156,7 +156,7 @@ class Organization < ActiveRecord::Base
         inserted[:last_po_comment_id] = last_po.comment.id if last_po.comment.present?
         inserted[:last_po_provider] = last_po.provider
       end
-      answer["#{tag.name}"] = inserted
+      answer["#{tag.readable}"] = inserted
     end
     return answer
   end
