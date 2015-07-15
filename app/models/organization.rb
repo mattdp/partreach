@@ -145,12 +145,13 @@ class Organization < ActiveRecord::Base
       inserted = {}
       taggings = tag.taggings
       inserted[:num_providers] = tag.taggings.where("taggable_type = 'Provider'").count
+      inserted[:num_providers] = nil if inserted[:num_providers] == 0
       pos = PurchaseOrder.joins("INNER JOIN taggings ON taggings.taggable_id = purchase_orders.id").
         where(taggings: {taggable_type: "PurchaseOrder", tag_id: tag.id}).
         where("issue_date IS NOT NULL").
         order(:issue_date)
-      inserted[:num_pos] = (pos.present? ? pos.count : 0)
-      if inserted[:num_pos] > 0 
+      inserted[:num_pos] = (pos.present? ? pos.count : nil)
+      if (inserted[:num_pos].present? and inserted[:num_pos] > 0)
         last_po = pos.last
         inserted[:last_po] = last_po
         inserted[:last_po_comment_id] = last_po.comment.id if last_po.comment.present?
