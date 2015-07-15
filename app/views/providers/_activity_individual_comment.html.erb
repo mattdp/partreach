@@ -1,0 +1,21 @@
+<strong><%= "#{comment.user.lead.lead_contact.name}" %></strong>
+left a 
+<% if comment.overall_score > 0 %>                  
+  <%= render partial: "providers/star_display", locals: {score: comment.overall_score, include_hidden_number: false} %>
+<% end %>
+<% po = comment.purchase_order %>
+<% if po.present? %>
+  <%= link_to "review", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %> 
+<% else %>
+  <%= link_to "comment", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %> 
+<% end %>
+for                
+<%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>                
+<% if po.present? %>
+  regarding a 
+  <% po.tags.each do |tag| %>
+    <span class="tags-providerTags"><a id="index-tags"><%= tag.readable %></a></span>
+  <% end %>                
+order 
+(Project Name: <span><%= "#{po.project_name}" if po.project_name %></span>)
+<% end %>       
