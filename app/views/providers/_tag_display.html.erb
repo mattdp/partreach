@@ -1,0 +1,7 @@
+<% tags.each do |tag| %>
+  <span class="tags-providerTags">
+    <a class="<%= remove_bottom_margin ? "no-bottom-margin" : "" %>"> 
+      <%= tag.readable %>
+    </a>
+  </span>
+<% end %>

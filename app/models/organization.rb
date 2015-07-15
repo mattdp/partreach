@@ -138,6 +138,30 @@ class Organization < ActiveRecord::Base
 
   end
 
+  def tag_details
+    tags = Tag.where("organization_id = ?", self.id)
+    answer = {}
+    tags.each do |tag|
+      inserted = {}
+      taggings = tag.taggings
+      inserted[:num_providers] = tag.taggings.where("taggable_type = 'Provider'").count
+      inserted[:num_providers] = nil if inserted[:num_providers] == 0
+      pos = PurchaseOrder.joins("INNER JOIN taggings ON taggings.taggable_id = purchase_orders.id").
+        where(taggings: {taggable_type: "PurchaseOrder", tag_id: tag.id}).
+        where("issue_date IS NOT NULL").
+        order(:issue_date)
+      inserted[:num_pos] = (pos.present? ? pos.count : nil)
+      if (inserted[:num_pos].present? and inserted[:num_pos] > 0)
+        last_po = pos.last
+        inserted[:last_po] = last_po
+        inserted[:last_po_comment_id] = last_po.comment.id if last_po.comment.present?
+        inserted[:last_po_provider] = last_po.provider
+      end
+      answer["#{tag.readable}"] = inserted
+    end
+    return answer
+  end
+
   def colloquial_people_name
     returnee = nil
     self.people_are_called.present? ? returnee = self.people_are_called : returnee = self.name

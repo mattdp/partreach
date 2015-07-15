@@ -15,7 +15,11 @@
             <h2>
               <span><%= header %></span>
             </h2>
-            <%= render :partial => "providers/providers_table", locals: {providers: providers} %>
+            <% if providers %> 
+              <%= render :partial => "providers/providers_table", locals: {providers: providers, include_tag_column: false} %>            
+            <% else %>
+              <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
+            <% end %>
           </div>
         <% end %>
       <% end %>
@@ -45,12 +49,10 @@
                 for                
                 <%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>                
                 <% if po.present? %>
-                  regarding a 
-                  <% po.tags.each do |tag| %>
-                    <span class="tags-providerTags"><a id="index-tags"><%= tag.readable %></a></span>
-                  <% end %>                
-                order 
-                (Project Name: <span><%= "#{po.project_name}" if po.project_name %></span>)
+                  regarding a                   
+                  <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true} %>
+                  order 
+                  (Project Name: <span><%= "#{po.project_name}" if po.project_name %></span>)
                 <% end %>                
               </p>
           </div>
