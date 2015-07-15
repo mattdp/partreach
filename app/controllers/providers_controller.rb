@@ -88,8 +88,6 @@ class ProvidersController < ApplicationController
   end
 
   def index
-    binding.pry
-
     @org = current_organization
 
     @people_called = @org.colloquial_people_name
