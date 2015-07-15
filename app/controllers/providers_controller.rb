@@ -45,6 +45,7 @@ class ProvidersController < ApplicationController
 
   def create_or_update_provider
     saved_ok = false
+    @provider.id.present? ? http_verb = "update" : http_verb = "create"
     loop do
       # TODO wrap this in a db transaction
       @provider.assign_attributes(editable_provider_params) #returns nil
@@ -65,10 +66,10 @@ class ProvidersController < ApplicationController
     end
 
     if saved_ok
-      Event.add_event("User","#{current_user.id}","created or updated a provider","Provider","#{@provider.id}")
+      Event.add_event("User","#{current_user.id}","#{http_verb}d a provider","Provider","#{@provider.id}")
       redirect_to teams_profile_path(@provider.name_for_link), note: "Saved OK!" 
     else 
-      Event.add_event("User","#{current_user.id}","attempted provider create or update - ERROR")
+      Event.add_event("User","#{current_user.id}","attempted provider #{http_verb} - ERROR")
       redirect_to teams_index_path, note: "Saving problem."
     end
   end

@@ -84,7 +84,7 @@ class Organization < ActiveRecord::Base
   #could do more joins to get users, leads, lead_contacts in, but that's premature optimization at this point
   def recent_activity(result_number = 10)
 
-    range = (Date.today - 30.days)..(Date.today + 1.days) #fudge factor in case time zones ever weird
+    range = (Date.today - 30.days)..(Date.today + 3.days) #fudge factor in case time zones ever weird
 
     #comments
     comments = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
@@ -97,7 +97,7 @@ class Organization < ActiveRecord::Base
     #new/updated providers
     provider_events = Event.joins("INNER JOIN providers ON events.target_model_id = providers.id").
       joins("INNER JOIN users ON events.model_id = users.id").
-      where(events: {target_model: "Provider", model: "User", happening: "created or updated a provider"}).
+      where(events: {target_model: "Provider", model: "User", happening: ["created a provider","updated a provider"]}).
       where(providers: {created_at: range, organization_id: self.id}).
       where(users: {admin: false})
     provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
