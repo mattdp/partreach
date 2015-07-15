@@ -70,7 +70,7 @@
           <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
         </h3>
       </div>
-      <%= render partial: "providers/tag_display", locals: {tags: @tags, remove_bottom_margin: false} %>
+      <%= render partial: "providers/tag_display", locals: {tags: @tags, remove_bottom_margin: false, max_tags_to_display: nil} %>
     </div>        
 
     <!-- BEGIN MIDDLE COLUMN -->

@@ -41,7 +41,7 @@
                   </div>
                   <div id="<%= "#{row_count}" %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <div class="panel-body">
-                      <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false} %>
+                      <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false, max_tags_to_display: nil} %>
                     </div>
                   </div>
                 </div>

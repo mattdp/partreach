@@ -5,4 +5,4 @@
 added more profile information for       
 <%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %>                
 
-<%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: true} %>
+<%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: true, max_tags_to_display: 10} %>
