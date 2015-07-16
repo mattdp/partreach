@@ -1,9 +1,3 @@
 DONE
 comment touches provider
 purchase_order touches provider
-
-IDEAL
-
-comment touches tag
-purchase order touches tag
-provider touches tag
