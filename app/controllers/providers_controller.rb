@@ -97,18 +97,16 @@ class ProvidersController < ApplicationController
       @org.providers_alpha_sort
     end
 
-    @provider_hash = Rails.cache.fetch("#{current_organization.id}-providers_hash_by_tag-#{Provider.maximum(:updated_at)}-#{Tagging.maximum(:updated_at)}") do 
-      @org.providers_hash_by_tag
+    @providers_tag_search_list = Rails.cache.fetch("#{current_organization.id}-providers_tag_search_list-#{Provider.maximum(:updated_at)}-#{Tagging.maximum(:updated_at)}") do 
+      temp_list = [] 
+      @org.providers_hash_by_tag.each { |tag, providers| temp_list << [providers.size, tag.readable] }
+      temp_list = temp_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
+      temp_list.each { |e| e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]" }
     end
 
     @recent_activity = Rails.cache.fetch("#{current_organization.id}-recent_activity-#{Provider.maximum(:updated_at)}-#{Comment.maximum(:updated_at)}-#{PurchaseOrder.maximum(:updated_at)}") do 
       @org.recent_activity
     end
-
-    @providers_tag_search_list = []
-    @provider_hash.each { |tag, providers| @providers_tag_search_list << [providers.size, tag.readable] }
-    @providers_tag_search_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
-    @providers_tag_search_list.each { |e| e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]" }
 
     @results_hash = {}
     if params[:tags].present?
