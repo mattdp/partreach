@@ -3,7 +3,10 @@ class OrganizationsController < ApplicationController
 
   def tags_list
     @org = current_organization
-    @tag_details = @org.tag_details    
+
+    @tag_details = Rails.cache.fetch("#{current_organization.id}-tag_details-#{Tag.maximum(:updated_at)}-#{Tagging.maximum(:updated_at)}-#{PurchaseOrder.maximum(:updated_at)}") do 
+      @org.tag_details
+    end
   end
 
   def providers_list
