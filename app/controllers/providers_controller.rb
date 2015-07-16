@@ -93,10 +93,17 @@ class ProvidersController < ApplicationController
 
     @people_called = @org.colloquial_people_name
 
-    @providers_list = @org.providers_alpha_sort
-    @provider_hash = @org.providers_hash_by_tag
+    @providers_list = Rails.cache.fetch("#{current_organization.id}-providers_alpha_sort-#{Provider.maximum(:updated_at)}") do 
+      @org.providers_alpha_sort
+    end
 
-    @recent_activity = @org.recent_activity
+    @provider_hash = Rails.cache.fetch("#{current_organization.id}-providers_hash_by_tag-#{Provider.maximum(:updated_at)}-#{Tagging.maximum(:updated_at)}") do 
+      @org.providers_hash_by_tag
+    end
+
+    @recent_activity = Rails.cache.fetch("#{current_organization.id}-recent_activity-#{Provider.maximum(:updated_at)}-#{Comment.maximum(:updated_at)}-#{PurchaseOrder.maximum(:updated_at)}") do 
+      @org.recent_activity
+    end
 
     @providers_tag_search_list = []
     @provider_hash.each { |tag, providers| @providers_tag_search_list << [providers.size, tag.readable] }
