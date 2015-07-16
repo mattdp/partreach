@@ -17,7 +17,7 @@
 
 class PurchaseOrder < ActiveRecord::Base
 
-  belongs_to :provider
+  belongs_to :provider, touch: true
   has_one :comment
   has_many :taggings, :as => :taggable, :dependent => :destroy
   has_many :tags, :through => :taggings

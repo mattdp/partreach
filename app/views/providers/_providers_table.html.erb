@@ -13,16 +13,14 @@
       </tr>
     </thead>
 
-    <%#= not organization specific %>
-    <% pos_updated = PurchaseOrder.maximum(:updated_at) %>
-    <% providers_updated = Provider.maximum(:updated_at) %>
-    <% cache_if(cache_result, "#{current_organization.id}-providers_table-#{pos_updated}-#{providers_updated}") do %>
+    <%#= not organization specific cache busting %>
+    <% cache_if(cache_result, "#{current_organization.id}-providers_table-#{Provider.maximum(:updated_at)}") do %>
       <tbody>
         <% row_count = 1 %>
         
         <% providers.each do |provider| %>
-          <%#= imperfect, but rerun provider when it was updated or any po has been updated. probably means we should hit this table after an upload run. not currently worried about needing exact right tags on a fast timeline. also, this currently cuts across orgs, may want to scope the pos_updated at some point. %>
-          <% cache_if(cache_result, "#{provider.id}-#{provider.updated_at}-#{pos_updated}") do %>
+          <%#= imperfect, but rerun provider when it was updated or any po has been updated. probably means we should hit this table after an upload run. not currently worried about needing exact right tags on a fast timeline. also, this currently cuts across orgs, may want to scope the Provider updated at some point. %>
+          <% cache_if(cache_result,provider) do %>
             <tr>
               <% comments = provider.comments %>
               <td><%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %></td>
