@@ -1,0 +1,13 @@
+<% count = 0 %>
+<% tags.each do |tag| %>
+  <% if max_tags_to_display.present? and count >= max_tags_to_display %>
+    <% break %>
+  <% else %> 
+    <span class="tags-providerTags">
+      <a class="<%= remove_bottom_margin ? "no-bottom-margin" : "" %>"> 
+        <%= tag.readable %>
+      </a>
+    </span>
+    <% count += 1 %>
+  <% end %>
+<% end %>

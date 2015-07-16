@@ -81,12 +81,30 @@ class Organization < ActiveRecord::Base
     return output_string
   end
 
-  #/Users/matt/Desktop/partreach-docs/mdp/151005-recent_comments.txt for thoughts on how to do right
-  def recent_comments
-    possibles = Comment.last(100)
-    in_org_comments = possibles.select{|c| ((c.overall_score > 0 or c.payload.present?) and Provider.find(c.provider_id).organization_id == self.id)}
-    in_org_comments = in_org_comments.select{|c| c.user.present? and c.user.lead.present? and c.user.lead.lead_contact.present?}
-    return in_org_comments.sort_by{|c| c.updated_at}.reverse.take(10)
+  #could do more joins to get users, leads, lead_contacts in, but that's premature optimization at this point
+  def recent_activity(result_number = 10)
+
+    range = (Date.today - 30.days)..(Date.today + 3.days) #fudge factor in case time zones ever weird
+
+    #comments
+    comments = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
+      where("overall_score > 0 OR payload IS NOT NULL").
+      where("user_id IS NOT NULL").
+      where(comments: {updated_at: range})
+    comments = comments.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
+    comments = comments.take(result_number)
+
+    #new/updated providers
+    provider_events = Event.joins("INNER JOIN providers ON events.target_model_id = providers.id").
+      joins("INNER JOIN users ON events.model_id = users.id").
+      where(events: {target_model: "Provider", model: "User", happening: ["created a provider","updated a provider"]}).
+      where(providers: {created_at: range, organization_id: self.id}).
+      where(users: {admin: false})
+    provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
+    provider_events = provider_events.take(result_number)
+
+    return (comments + provider_events).sort_by(&:updated_at).reverse.take(result_number)
+
   end
 
   def analysis(start_date=Date.today-30.days,finish_date=Date.today)
@@ -136,6 +154,30 @@ class Organization < ActiveRecord::Base
 
     return healthy_user_count
 
+  end
+
+  def tag_details
+    tags = Tag.where("organization_id = ?", self.id)
+    answer = {}
+    tags.each do |tag|
+      inserted = {}
+      taggings = tag.taggings
+      inserted[:num_providers] = tag.taggings.where("taggable_type = 'Provider'").count
+      inserted[:num_providers] = nil if inserted[:num_providers] == 0
+      pos = PurchaseOrder.joins("INNER JOIN taggings ON taggings.taggable_id = purchase_orders.id").
+        where(taggings: {taggable_type: "PurchaseOrder", tag_id: tag.id}).
+        where("issue_date IS NOT NULL").
+        order(:issue_date)
+      inserted[:num_pos] = (pos.present? ? pos.count : nil)
+      if (inserted[:num_pos].present? and inserted[:num_pos] > 0)
+        last_po = pos.last
+        inserted[:last_po] = last_po
+        inserted[:last_po_comment_id] = last_po.comment.id if last_po.comment.present?
+        inserted[:last_po_provider] = last_po.provider
+      end
+      answer["#{tag.readable}"] = inserted
+    end
+    return answer
   end
 
   def colloquial_people_name

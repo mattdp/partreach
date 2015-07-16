@@ -22,6 +22,10 @@ body {
   text-align: center;
 }
 
+.right {
+  text-align: right;
+}
+
 .margin-bottom {
   margin-bottom: 10px;
 }
@@ -159,17 +163,12 @@ a.search-choice-close {
   margin: 0;
 }
 
-#index-tags {
-  margin-bottom: 0;
-}
-
 /*END PROVIDER INDEX FEED*/
 
-/*BEING PROVIDER INDEX TABLE*/
+/*BEING GENERIC INDEX TABLE*/
 /*this table is not my own. I ripped it from here: http://cssmenumaker.com/blog/stylish-css-tables-tutorial*/
 .stylish table { 
 color: #333;
-/*font-family: Helvetica, Arial, sans-serif;*/
 width: 100%; 
 border-collapse: 
 collapse; border-spacing: 0; 
@@ -198,7 +197,7 @@ text-align: center;
 /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */ 
 .stylish tr:nth-child(odd) td { background: #FEFEFE; }  
 
-.stylish tr td:hover { background: #666; color: #FFF; } /* Hover cell effect! */
+.stylish tr td:hover { background: #666; } /* Hover cell effect! */
 /*end table styling*/
 
 .stylish th:first-child, td:first-child {
@@ -219,6 +218,34 @@ text-align: center;
 
 .stylish th:nth-child(5) , td:nth-child(5) {
   width: 15%;
+}
+/*END PROVIDER INDEX TABLE*/
+
+/*LORD STRIKE ME DEAD WHERE I STAND
+THIS IS SO NOT DRY WE'RE GOING TO NEED TO BUILD AND ARK*/
+/*BEING PROVIDERS_TABLE INDEX TABLE*/
+.provider-table th:first-child, td:first-child {
+  width: 30%;
+}
+
+.provider-table th:nth-child(2) , td:nth-child(2) {
+  width: 20%;
+}
+
+.provider-table th:nth-child(3) , td:nth-child(3) {
+  width: 8%;
+}
+
+.provider-table th:nth-child(4) , td:nth-child(4) {
+  width: 4%;
+}
+
+.provider-table th:nth-child(5) , td:nth-child(5) {
+  width: 8%;
+}
+
+.provider-table th:nth-child(6) , td:nth-child(6) {
+  width: 30%;
 }
 /*END PROVIDER INDEX TABLE*/
 
@@ -299,10 +326,6 @@ http://www.opinionatedgeek.com/dotnet/tools/Base64Decode/
 
 .provider-edit-input input, textarea {
   width: 100%;
-}
-
-.provider-tags ul {
-  padding-left: 0;
 }
 
 /*this class is being used in a bunch of places. should be moved into a more general section of this sheet*/
@@ -395,13 +418,14 @@ li p {
     background: rgba(0, 0, 0, 0.02);
     border-radius: 2px;
     border: 1px solid rgba(0, 0, 0, 0.5);
-    padding: 3px 10px;
-    /*margin-right: 8px;*/ /*spacing looks a little off compared to top/bottom spacing, but make the tag presentation much more compact*/
+    padding: 3px 10px;    
     margin-bottom: 8px;
+
+    &.no-bottom-margin {
+      margin-bottom: 0;
+    }
 }
-.tags-providerTags>a:last-child {
-    margin-right: 0;
-}
+
 .tags-providerTags>a:hover, .tags-providerTags>a:focus {
     color: #468c54;
     border-color: #a9d8b2;

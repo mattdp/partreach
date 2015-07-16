@@ -10,6 +10,9 @@ module Partreach
     #based on https://devcenter.heroku.com/articles/rails-asset-pipeline
     config.assets.initialize_on_precompile = false
 
+    #https://devcenter.heroku.com/articles/rack-cache-memcached-rails31
+    config.cache_store = :dalli_store
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

@@ -10,9 +10,7 @@ Partreach::Application.configure do
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = false
-
-  # Tell Action Mailer not to deliver emails to the real world.
+  config.action_controller.perform_caching = true
 
 #### TOGGLE IF YOU WANT MAILTRAP ACTIVE IN DEVELOPMENT
 

@@ -1,0 +1,8 @@
+<% user = User.find(event.model_id) %>
+<% provider = Provider.find(event.target_model_id) %>
+
+<strong><%= "#{user.lead.lead_contact.full_name_untrusted}" %></strong>
+<%= content_text %>     
+<%= link_to "#{provider.name}", teams_profile_path(provider.name_for_link) %>          
+
+<%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: true, max_tags_to_display: 10} %>
