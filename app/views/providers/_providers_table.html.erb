@@ -15,9 +15,7 @@
 
     <%#= not organization specific cache busting %>
     <% cache_if(cache_result, "#{current_organization.id}-providers_table-#{Provider.maximum(:updated_at)}") do %>
-      <tbody>
-        <% row_count = 1 %>
-        
+      <tbody>        
         <% providers.each do |provider| %>
           <%#= imperfect, but rerun provider when it was updated or any po has been updated. probably means we should hit this table after an upload run. not currently worried about needing exact right tags on a fast timeline. also, this currently cuts across orgs, may want to scope the Provider updated at some point. %>
           <% cache_if(cache_result,provider) do %>
@@ -40,12 +38,12 @@
                     <div class="panel panel-default">
                       <div class="panel-heading" role="tab" id="headingOne">
                         <div class="panel-title">
-                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="<%= "##{row_count}" %>" aria-expanded="true" aria-controls="<%= "#{row_count}" %>">
+                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="<%= "##{provider.id}" %>" aria-expanded="true" aria-controls="<%= "#{provider.id}" %>">
                             (click to see tags)
                           </a>
                         </div>
                       </div>
-                      <div id="<%= "#{row_count}" %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                      <div id="<%= "#{provider.id}" %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                           <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false, max_tags_to_display: nil} %>
                         </div>
@@ -55,7 +53,6 @@
                 </td>
               <% end %>
             </tr>
-            <% row_count += 1 %>
           <% end %>             
         <% end %>  
       </tbody>
