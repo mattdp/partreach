@@ -5,25 +5,23 @@ class CommentsController < ApplicationController
 
   def new_comment
     @comment_type = "comment"
-    @verbose_type = Comment.verbose_type(@comment_type)
     render_new_comment_form
   end
 
   def new_factory_visit_comment
     @comment_type = "factory_visit"
-    @verbose_type = Comment.verbose_type(@comment_type)
     render_new_comment_form
   end
 
   def new_purchase_order_comment
     @comment_type = "purchase_order"
-    @verbose_type = Comment.verbose_type(@comment_type)
     render_new_comment_form
   end
 
   def render_new_comment_form
     @comment = Comment.new
     @provider = Provider.find(params[:provider_id])
+    @verbose_type = Comment.verbose_type(@comment_type)
     @flavor = nil    
     Event.add_event("User",current_user.id,"loaded new comment page for","Provider",@provider.id)
     render "new"
