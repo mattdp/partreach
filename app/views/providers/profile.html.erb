@@ -2,9 +2,7 @@
 
 <div class="container hax-body-styling">
   <div class="row">
-     <div class="col-md-4">
-      <p><%= link_to "Back to search page", teams_index_path %></p>
-    </div>
+    <%= render partial: "organizations/navigation_header", locals: {middle_text: nil} %>
   </div>
   <div class="row">
     <!-- BEGIN LEFT COLUMN -->
