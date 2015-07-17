@@ -7,7 +7,7 @@ class OrganizationsController < ApplicationController
     @middle_text = "List of every #{@organization.name} Supplier Tag (may take a while to load all rows)"
 
     @tag_details = Rails.cache.fetch("#{current_organization.id}-tag_details-#{Tag.maximum(:updated_at)}-#{Tagging.maximum(:updated_at)}-#{PurchaseOrder.maximum(:updated_at)}") do 
-      @org.tag_details
+      @organization.tag_details
     end
 
     Event.add_event("User","#{current_user.id}","viewed tag list")
