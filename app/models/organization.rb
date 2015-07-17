@@ -90,7 +90,8 @@ class Organization < ActiveRecord::Base
     comments = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
       where("overall_score > 0 OR payload IS NOT NULL").
       where("user_id IS NOT NULL").
-      where(comments: {updated_at: range})
+      where(comments: {updated_at: range}).
+      order(updated_at: :desc)
     comments = comments.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
     comments = comments.take(result_number)
 
@@ -99,7 +100,8 @@ class Organization < ActiveRecord::Base
       joins("INNER JOIN users ON events.model_id = users.id").
       where(events: {target_model: "Provider", model: "User", happening: ["created a provider","updated a provider"]}).
       where(providers: {created_at: range, organization_id: self.id}).
-      where(users: {admin: false})
+      where(users: {admin: false}).
+      order(updated_at: :desc)
     provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
     provider_events = provider_events.take(result_number)
 
