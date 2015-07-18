@@ -26,6 +26,7 @@ class Comment < ActiveRecord::Base
   belongs_to :purchase_order
   has_many :comment_ratings
   has_many :externals, :as => :consumer, :dependent => :destroy
+  accepts_nested_attributes_for :externals
 
   #comment_type should be "purchase_order", "factory_visit", or "comment"
   #score of 0 = didn't give a score. 1 low, 5 high

@@ -24,6 +24,7 @@ Partreach::Application.routes.draw do
   get '/comments/later/:id', to: 'comments#later', as: 'comments_later'
   get '/comments/request_for_review/:id', to: 'comments#request_for_review', as: 'comments_request_for_review'
   get '/comments/request_for_review/:id/:message_number', to: 'comments#request_for_review', as: 'comments_request_for_review_with_message_number'
+  post '/comment/upload_photo', to: 'comments#upload_photo'
 
   resources :comment_ratings, only: [:create]
   

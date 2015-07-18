@@ -41,4 +41,37 @@ $(document).ready(function() {
     });
   });
 
+
+  $('.s3-comment-photo-upload').S3Uploader();
+  $('.s3-comment-photo-upload').bind('s3_upload_complete', function(e, content) {
+    $.ajax({
+      url : "/comment/upload_photo",
+      type: "POST",
+      data: {
+        'filepath': content.filepath,
+        'filename': content.filename
+      },
+      dataType: 'json',
+      success: function(response, textStatus, jqXHR)
+      {
+        $('#comment_uploads').append(
+          '<input type="hidden" name="comment_uploads[][filepath]" value="' + content.filepath + '"> \
+           <input type="hidden" name="comment_uploads[][filename]" value="' + content.filename + '">');
+
+        if ( $('#uploaded-photo-list').length) {
+          if ($('#uploaded-photo-list')[0].childElementCount == 0) {
+            li = '<li>'
+          } else {
+            li = '<li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">'
+          }
+          $('#uploaded-photo-list').append(li + '<img src="' + response.expiring_image_url + '"</li>');
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+        alert("An error occurred during upload (" + jqXHR.status + ")")
+      }
+    });
+  });
+
 });

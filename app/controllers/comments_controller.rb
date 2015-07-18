@@ -40,7 +40,23 @@ class CommentsController < ApplicationController
       @comment.comment_type = "comment"
     end
 
-    note = (@comment.save ? "Saved OK!" : "Saving problem.")
+    begin
+      @comment.save!
+      add_externals
+      @comment.save
+      note = "Saved OK!"
+    rescue ActiveRecord::ActiveRecordError
+      note = "Saving problem."
+    end
+
+    # saved_ok? = @comment.save
+    # if saved_ok?
+    #   # create externals and associate with comment
+    #   add_externals
+    #   saved_ok? = @comment.save
+    # end
+
+    # note = (saved_ok? ? "Saved OK!" : "Saving problem.")
 
     redirect_to teams_profile_path(provider.name_for_link), notice: note
   end
@@ -73,8 +89,44 @@ class CommentsController < ApplicationController
     # note: @comment initialized in correct_user before_filter
     provider = @comment.provider
     Event.add_event("User", current_user.id, "attempted comment update for", "Comment", @comment.id) 
+
+    # create externals and associate with comment
+    add_externals
+
     note = (@comment.update_attributes(comment_params) ? "Saved OK!" : "Saving problem.")
     redirect_to teams_profile_path(provider.name_for_link), notice: note
+  end
+
+  def add_externals
+    # create externals and associate with comment
+    if params["comment_uploads"]
+      params["comment_uploads"].each do |upload|
+        bucket_name = current_organization.external_bucket_name
+        @comment.externals.build(
+          url: '#',
+          original_filename: upload['filename'],
+          remote_file_name: upload['filepath'].gsub("/#{bucket_name}/", "")
+          )
+      end
+    end
+  end
+
+  def upload_photo
+    bucket_name = current_organization.external_bucket_name
+    original_filename = params['filename']
+    remote_file_name = params['filepath'].gsub("/#{bucket_name}/", "")
+
+    # change permissions to only allow authenticated access
+    s3_resource = External.setup_s3_resource(current_organization)
+    file=s3_resource.bucket(bucket_name).object(remote_file_name)
+    file.acl.put({ acl: "authenticated-read" })
+
+    # get expiring url for newly uploaded file, to allow browser to gain temporary access
+    expiring_image_url =
+      External.get_s3_expiring_url(
+        s3_resource, current_organization.external_bucket_name, remote_file_name)
+
+    render json: { expiring_image_url: expiring_image_url }
   end
 
   def request_for_review
