@@ -50,6 +50,11 @@ class Comment < ActiveRecord::Base
     CommentRating.where(comment: self).where(user: user).first
   end
 
+  # creates external object and adds it to comment's collection of externals
+  def add_external(original_filename, remote_file_name)
+    externals.create!(url: '#', original_filename: original_filename, remote_file_name: remote_file_name)
+  end
+
   def self.verbose_type(comment_type)
     case comment_type
     when "comment"

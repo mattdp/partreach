@@ -20,6 +20,7 @@ class External < ActiveRecord::Base
   validates :consumer_type, presence: true
   validates :url, presence: true
 
+  #all work that only needs to be done once per fetching of photos
   def self.setup_s3_resource(organization)
     region = "us-east-1"
 
@@ -52,9 +53,7 @@ class External < ActiveRecord::Base
     return s3_resource
   end
 
-  #all work that only needs to be done once per fetching of photos
   def self.get_expiring_urls(externals_list,organization)
-
     return nil unless externals_list.present?
 
     s3_resource = External.setup_s3_resource(organization)
@@ -76,6 +75,10 @@ class External < ActiveRecord::Base
       organization.external_bucket_name.present?
       )
 
+    get_expiring_url_helper_generic(s3_resource, organization)
+  end
+
+  def get_expiring_url_helper_generic(s3_resource, organization)
     s3_resource.bucket(organization.external_bucket_name) \
       .object(self.remote_file_name) \
       .presigned_url(:get, expires_in: 15*60)

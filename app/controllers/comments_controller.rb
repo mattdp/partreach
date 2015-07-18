@@ -77,6 +77,27 @@ class CommentsController < ApplicationController
     redirect_to teams_profile_path(provider.name_for_link), notice: note
   end
 
+  def upload_photo
+    comment = Comment.find(params[:id])
+    bucket_name = current_organization.external_bucket_name
+    original_filename = params['filename']
+    remote_file_name = params['filepath'].gsub("/#{bucket_name}/", "")
+
+    # change permissions to only allow authenticated access
+    s3_resource = External.setup_s3_resource(current_organization)
+    file=s3_resource.bucket(bucket_name).object(remote_file_name)
+    file.acl.put({ acl: "authenticated-read" })
+
+    #create externals object
+    new_external = comment.add_external(original_filename, remote_file_name)
+
+    # get expiring url
+    expiring_image_url = 
+      new_external.get_expiring_url_helper_generic(s3_resource, comment.provider.organization)
+
+    render plain: expiring_image_url
+  end
+
   def request_for_review
     @comment = Comment.find(params[:id])
     @message_number = params[:message_number]
