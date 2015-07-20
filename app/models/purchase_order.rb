@@ -23,12 +23,18 @@ class PurchaseOrder < ActiveRecord::Base
   has_many :tags, :through => :taggings
 
   #does this purchase order want feedback? does not say if the user is emailable
-  def wants_feedback?(issue_date_padding = 7)
+  def wants_feedback?(issue_date_padding = 7, wait_for_parts_to_arrive = 7)
     return false if self.dont_request_feedback #has no special flags
     return false if (self.created_at + 31.days < Date.today) #less than a month old
     return false if (self.issue_date.present? and (self.issue_date + issue_date_padding > Date.today)) #has had enough time to be delivered
     comment = self.comment
     return false unless (comment.present? and comment.untouched?) #comment is untouched
+    events = Event.where(happening: "said contact me later", target_model: "Comment", target_model_id: comment.id)
+    if events.present?
+      events.each do |event|
+        return false if (event.created_at + wait_for_parts_to_arrive.days >= Date.today)
+      end
+    end
     return true
   end
 
