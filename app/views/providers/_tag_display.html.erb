@@ -1,6 +1,6 @@
 <% count = 0 %>
 <% tags.each do |tag| %>
-  <% if max_tags_to_display.present? and count >= max_tags_to_display %>
+  <% if (max_tags_to_display.present? and count >= max_tags_to_display) %>
     <% break %>
   <% else %> 
     <span class="tags-providerTags">
