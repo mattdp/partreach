@@ -22,7 +22,7 @@
 class Comment < ActiveRecord::Base
 
   belongs_to :user
-  belongs_to :provider
+  belongs_to :provider, touch: true
   belongs_to :purchase_order
   has_many :comment_ratings
   has_many :externals, :as => :consumer, :dependent => :destroy

@@ -45,6 +45,7 @@ class ProvidersController < ApplicationController
 
   def create_or_update_provider
     saved_ok = false
+    @provider.id.present? ? http_verb = "update" : http_verb = "create"
     loop do
       # TODO wrap this in a db transaction
       @provider.assign_attributes(editable_provider_params) #returns nil
@@ -65,10 +66,10 @@ class ProvidersController < ApplicationController
     end
 
     if saved_ok
-      Event.add_event("User","#{current_user.id}","created or updated a provider","Provider","#{@provider.id}")
+      Event.add_event("User","#{current_user.id}","#{http_verb}d a provider","Provider","#{@provider.id}")
       redirect_to teams_profile_path(@provider.name_for_link), note: "Saved OK!" 
     else 
-      Event.add_event("User","#{current_user.id}","attempted provider create or update - ERROR")
+      Event.add_event("User","#{current_user.id}","attempted provider #{http_verb} - ERROR")
       redirect_to teams_index_path, note: "Saving problem."
     end
   end
@@ -92,15 +93,20 @@ class ProvidersController < ApplicationController
 
     @people_called = @org.colloquial_people_name
 
-    @providers_list = @org.providers_alpha_sort
-    @provider_hash = @org.providers_hash_by_tag
+    @providers_list = Rails.cache.fetch("#{current_organization.id}-providers_alpha_sort-#{Provider.maximum(:updated_at)}") do 
+      @org.providers_alpha_sort
+    end
 
-    @recent_comments = @org.recent_comments
+    @providers_tag_search_list = Rails.cache.fetch("#{current_organization.id}-providers_tag_search_list-#{Provider.maximum(:updated_at)}-#{Tagging.maximum(:updated_at)}") do 
+      temp_list = [] 
+      @org.providers_hash_by_tag.each { |tag, providers| temp_list << [providers.size, tag.readable] }
+      temp_list = temp_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
+      temp_list.each { |e| e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]" }
+    end
 
-    @providers_tag_search_list = []
-    @provider_hash.each { |tag, providers| @providers_tag_search_list << [providers.size, tag.readable] }
-    @providers_tag_search_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
-    @providers_tag_search_list.each { |e| e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]" }
+    @recent_activity = Rails.cache.fetch("#{current_organization.id}-recent_activity-#{Provider.maximum(:updated_at)}-#{Comment.maximum(:updated_at)}-#{PurchaseOrder.maximum(:updated_at)}") do 
+      @org.recent_activity
+    end
 
     @results_hash = {}
     if params[:tags].present?

@@ -1,0 +1,61 @@
+<% provide(:title,"Tags List") %>
+
+<div class="stylish">
+  <table>
+    <thead>
+      <tr>
+        <th>Tags</th>
+        <th># suppliers</th>
+        <th>last PO date</th>
+        <th>latest PO supplier</th>
+        <th># of POs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tag_details.each do |tag_readable,details| %>
+        <tr>
+          <td><%= link_to "#{tag_readable}", teams_index_path(tags: [tag_readable]) %></td>
+          <td><%= "#{details[:num_providers]}" %></td>
+          <td>
+            <% if details[:last_po].present? and details[:last_po_comment_id].present? and details[:last_po_provider].present? %>
+              <% date_string = details[:last_po].issue_date.strftime("%-m/%-d/%y") %>
+              <%= link_to date_string, teams_profile_path(details[:last_po_provider].name_for_link, anchor: details[:last_po_comment_id]) %> 
+            <% end %>
+          </td>
+          <td>
+            <% if details[:last_po_provider].present? %>
+              <%= link_to "#{details[:last_po_provider].name}", teams_profile_path(details[:last_po_provider].name_for_link) %>
+            <% end %>
+          </td>
+          <td><%= "#{details[:num_pos]}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tr>
+      <td><%= link_to "[Add to this list]" , new_provider_with_event_path("add_provider_from_index")%></td>
+    </tr>  
+  </table>
+</div>
+
+<script>
+  var $table = $('table'),
+      process = false;
+
+  $('.process').click(function(){
+    process = !process;
+    $.tablesorter.isProcessing( $table, process );
+  });
+
+  $('.sortable').click(function(){
+    $table
+      .find('.tablesorter-header:last').toggleClass('sorter-false')
+      .trigger('update');
+  });
+
+  $table.tablesorter({
+    theme: 'bootstrap',
+    headerTemplate: '{content} {icon}',
+    sortList: [ [2,1], [0,0] ],
+    widgets : ['columns', 'uitheme', 'filter'] // add 'filter' to get the search row back
+  });
+</script>

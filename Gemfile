@@ -38,6 +38,11 @@ gem 'mechanize'
 gem 'StreetAddress', :require => "street_address"
 gem 'aws-sdk', '~> 2'
 gem 'intercom-rails'
+#https://devcenter.heroku.com/articles/rack-cache-memcached-rails31
+gem 'rack-cache'
+gem 'dalli'
+gem 'kgio'
+#end caching
 
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'

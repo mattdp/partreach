@@ -2,9 +2,7 @@
 
 <div class="container hax-body-styling">
   <div class="row">
-     <div class="col-md-4">
-      <p><%= link_to "Back to search page", teams_index_path %></p>
-    </div>
+    <%= render partial: "organizations/navigation_header", locals: {middle_text: nil} %>
   </div>
   <div class="row">
     <!-- BEGIN LEFT COLUMN -->
@@ -70,11 +68,7 @@
           <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
         </h3>
       </div>
-      <div class="tags-providerTags">
-        <% @tags.each do |tag| %>
-          <a><%= "#{tag.readable}" %></a>
-      <% end %>
-      </div>
+      <%= render partial: "providers/tag_display", locals: {tags: @tags, remove_bottom_margin: false, max_tags_to_display: nil} %>
     </div>        
 
     <!-- BEGIN MIDDLE COLUMN -->

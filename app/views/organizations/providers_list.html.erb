@@ -1,0 +1,8 @@
+<% provide(:title,"Supplier list") %>
+
+<div class="container hax-body-styling">
+  <div class="row">
+    <%= render partial: "organizations/navigation_header", locals: {middle_text: @middle_text} %>
+    <%= render :partial => "providers/providers_table", locals: {providers: @providers, include_tag_column: true, cache_result: true} %>
+  </div>
+</div>
