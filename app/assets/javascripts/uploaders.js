@@ -25,13 +25,13 @@ $(document).ready(function() {
       },
       success: function(response, textStatus, jqXHR)
       {
-        if ( $('#uploaded-photo-list').length) {
-          if ($('#uploaded-photo-list')[0].childElementCount == 0) {
+        if ( $('#profile_photo_gallery').length) {
+          if ($('#profile_photo_gallery')[0].childElementCount == 0) {
             li = '<li>'
           } else {
             li = '<li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">'
           }
-          $('#uploaded-photo-list').append(li + '<img src="' + response + '"</li>');
+          $('#profile_photo_gallery').append(li + '<img src="' + response + '"</li>');
         }
       },
       error: function (jqXHR, textStatus, errorThrown)
@@ -58,13 +58,13 @@ $(document).ready(function() {
           '<input type="hidden" name="comment_uploads[][filepath]" value="' + content.filepath + '"> \
            <input type="hidden" name="comment_uploads[][filename]" value="' + content.filename + '">');
 
-        if ( $('#uploaded-photo-list').length) {
-          if ($('#uploaded-photo-list')[0].childElementCount == 0) {
+        if ( $('#comment_photo_gallery').length) {
+          if ($('#comment_photo_gallery')[0].childElementCount == 0) {
             li = '<li>'
           } else {
             li = '<li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">'
           }
-          $('#uploaded-photo-list').append(li + '<img src="' + response.expiring_image_url + '"</li>');
+          $('#comment_photo_gallery').append(li + '<img src="' + response.expiring_image_url + '"</li>');
         }
       },
       error: function (jqXHR, textStatus, errorThrown)

@@ -83,10 +83,10 @@
     <div class="col-md-4">
 
       <div>
-        <ul id="uploaded-photo-list" class="row photo-gallery">
-          <% if @expiring_image_urls.present? %>
+        <ul id="profile_photo_gallery" class="row photo-gallery">
+          <% if @profile_photo_urls.present? %>
             <% count = 0 %>
-            <% @expiring_image_urls.each do |url| %>  
+            <% @profile_photo_urls.each do |url| %>  
               <% if count == 0 %>
                 <li>
               <% else %>

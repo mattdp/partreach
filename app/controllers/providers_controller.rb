@@ -146,7 +146,7 @@ class ProvidersController < ApplicationController
       @po_names_and_counts = @provider.po_names_and_counts
       @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       
-      @expiring_image_urls = External.get_expiring_urls(@provider.externals,@organization)
+      @profile_photo_urls = External.get_expiring_urls(@provider.externals,@organization)
 
       Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
     else
@@ -171,7 +171,8 @@ class ProvidersController < ApplicationController
 
     #create externals object
     new_external = provider.add_external(original_filename, remote_file_name)
-    expiring_image_url = new_external.get_expiring_url_helper(s3_resource)
+    expiring_image_url = External.get_s3_expiring_url(
+      s3_resource, current_organization.external_bucket_name, remote_file_name)
 
     render plain: expiring_image_url
   end

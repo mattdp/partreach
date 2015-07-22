@@ -66,6 +66,7 @@ class CommentsController < ApplicationController
     @verbose_type = Comment.verbose_type(@comment.comment_type)
     @provider = @comment.provider
     @user = @comment.user
+    @comment_photo_urls = External.get_expiring_urls(@comment.externals, current_organization)
 
     @flavor = params[:flavor]
     if @flavor == "good"

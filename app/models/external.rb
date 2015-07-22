@@ -53,14 +53,15 @@ class External < ActiveRecord::Base
     return s3_resource
   end
 
-  def self.get_expiring_urls(externals_list,organization)
+  def self.get_expiring_urls(externals_list, organization)
     return nil unless externals_list.present?
 
     s3_resource = External.setup_s3_resource(organization)
 
     result = [] 
     externals_list.each do |external|
-      url = external.get_expiring_url_helper(s3_resource)
+      url = External.get_s3_expiring_url(
+        s3_resource, organization.external_bucket_name, external.remote_file_name)
       result << url if url.present?
     end
     return result
