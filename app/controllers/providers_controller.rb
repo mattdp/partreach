@@ -140,6 +140,7 @@ class ProvidersController < ApplicationController
     if @provider
       @organization = current_organization
       @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
+      @comment_photo_urls_hash = init_comment_photo_urls_hash(@comments)
       @total_comments_for_user = Comment.joins(:user).group('users.id').count
       @purchase_order_comments_for_user = Comment.where(comment_type: 'purchase_order').joins(:user).group('users.id').count
       @tags = @provider.tags.sort_by { |t| t.readable.downcase }
@@ -152,6 +153,15 @@ class ProvidersController < ApplicationController
     else
       render template: "providers/profile_not_found"
     end
+  end
+
+  def init_comment_photo_urls_hash(comments)
+    @comment_photo_urls_hash = {}
+    comments.each do |comment|
+      @comment_photo_urls_hash[comment.id] =
+        External.get_expiring_urls(comment.externals, current_organization)
+    end
+    @comment_photo_urls_hash
   end
 
   def suggested_edit
