@@ -1,6 +1,13 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'make sure no organizations are tied into tags that they dont use'
+task tag_cleaner: :environment do
+  Tagging.where(taggable_type: ["Provider","PurchaseOrder"])
+  #assuming for this purpose that tags only on providers and on purchase_orders
+end
+
+
 desc 'modify supplier tags based on their history in the app'
 task :supplier_tagger => :environment do
   
