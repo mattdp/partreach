@@ -519,7 +519,13 @@ img.banner-message {
   padding: 0;
 }
 
-/*BEGIN PICTURE UPLOADER*/
+/*BEGIN FILE UPLOADER*/
+
+/*Just for the file upload on the the edit comment page. .any-form is rather aggressive about changing the background color of input fields, so I have to remove those in order for the styling to match the uploader on the provider profile page*/
+.any-form #file {
+  background: none;
+  border: none;
+}
 
 .attachment-uploader {
   border-color: rgba(0, 0, 0, 0.02);
