@@ -53,6 +53,10 @@ a:focus {
   text-decoration: none;
 }
 
+.hide {
+  display: none;
+}
+
 /*BEGIN INDEX SEARCH BAR*/
 .header-text-block {
   text-align: center;
@@ -225,11 +229,11 @@ text-align: center;
 THIS IS SO NOT DRY WE'RE GOING TO NEED TO BUILD AND ARK*/
 /*BEING PROVIDERS_TABLE INDEX TABLE*/
 .provider-table th:first-child, td:first-child {
-  width: 30%;
+  width: 20%;
 }
 
 .provider-table th:nth-child(2) , td:nth-child(2) {
-  width: 20%;
+  width: 10%;
 }
 
 .provider-table th:nth-child(3) , td:nth-child(3) {
@@ -245,7 +249,7 @@ THIS IS SO NOT DRY WE'RE GOING TO NEED TO BUILD AND ARK*/
 }
 
 .provider-table th:nth-child(6) , td:nth-child(6) {
-  width: 30%;
+  width: 50%;
 }
 /*END PROVIDER INDEX TABLE*/
 
