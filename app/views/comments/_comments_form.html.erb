@@ -1,7 +1,6 @@
 <div class="container hax-body-styling">
   <div class="row">
-    <div class="col-md-8 any-form">
-
+    <div class="col-md-12">
       <% if current_user.admin and @comment.present? and @comment.id.present? %>
         <%= link_to "Admin only: email reminder for this comment", comments_request_for_review_path(@comment.id) %>
       <% end %>
@@ -14,46 +13,12 @@
         <p><strong>Glad to hear this job went well!</strong> Your colleagues might like to know what was great.</p>
       <% elsif @flavor == "bad" %>
         <p><strong>Sorry to hear this job didn't go well.</strong> Adding more detail might help your colleagues avoid similar situations.</p>        
-      <% end %>
-
-      <div>
-        <div>
-          <ul id="comment_photo_gallery" class="row photo-gallery">
-            <% if @comment_photo_urls.present? %>
-              <% count = 0 %>
-              <% @comment_photo_urls.each do |url| %>
-                <% if count == 0 %>
-                  <li>
-                <% else %>
-                  <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">
-                <% end %>
-              <%= image_tag url %>
-              </li>
-              <% count += 1 %>
-             <% end %>
-            <% end %>
-          </ul>
-        </div>
-
-        <div class="attachment-uploader">Upload pictures here (or drag and drop)
-          <br>
-          <em>Note: pictures are not saved with comment until "Submit" button is clicked</em>
-          <%= hidden_field_tag :comment_id_for_upload, @comment.id %>
-          <%= s3_uploader_form id: "s3-comment-photo-upload", class: "s3-comment-photo-upload",
-            max_file_size: 10.megabytes,
-            bucket: @provider.organization.external_bucket_name,
-            key_starts_with: "#{@provider.name_for_link}",
-            key: "#{@provider.name_for_link}-#{@comment.id}-#{SecureRandom.hex}-{unique_id}" do %>
-              <%= file_field_tag :file, multiple: true %>
-          <% end %>
-          <script id="template-upload" type="text/x-tmpl">
-            <div id="file-{%=o.unique_id%}" class="upload">
-              <div class="filename">{%=o.name%}</div>
-              <div class="progress"><div class="bar" style="width: 0%"></div></div>
-            </div>
-          </script>
-        </div>
-      </div>
+      <% end %>     
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8 any-form">           
 
       <%= form_tag(path, method: method) do %>
 
@@ -126,13 +91,53 @@
           </span>
           <% rating_text = ((@comment.speed_score != 0) ? "#{@comment.speed_score} stars" : "Rating not yet selected") %>
           <strong class="choice"><%= rating_text %></strong>
-        </div>
-   
+        </div>        
+
         <div class="col-md-4">
           <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
         </div>
 
       <% end %>
+      </div>    
+    <div class="col-md-4">
+        <div>
+          <ul id="comment_photo_gallery" class="row photo-gallery">
+            <% if @comment_photo_urls.present? %>
+              <% count = 0 %>
+              <% @comment_photo_urls.each do |url| %>
+                <% if count == 0 %>
+                  <li>
+                <% else %>
+                  <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">
+                <% end %>
+              <%= image_tag url %>
+              </li>
+              <% count += 1 %>
+             <% end %>
+            <% end %>
+          </ul>
+        </div>   
+    <!-- FILE UPLOAD  -->
+      <div class="attachment-uploader photo-upload-background">Upload pictures here (or drag and drop)
+        <br>
+        <em>Note: pictures are not saved with comment until "Submit" button is clicked</em>
+        <%= hidden_field_tag :comment_id_for_upload, @comment.id %>
+        <%= s3_uploader_form id: "s3-comment-photo-upload", class: "s3-comment-photo-upload",
+          max_file_size: 10.megabytes,
+          bucket: @provider.organization.external_bucket_name,
+          key_starts_with: "#{@provider.name_for_link}",
+          key: "#{@provider.name_for_link}-#{@comment.id}-#{SecureRandom.hex}-{unique_id}" do %>
+            <%= file_field_tag :file, multiple: true %>
+        <% end %>
+        <script id="template-upload" type="text/x-tmpl">
+          <div id="file-{%=o.unique_id%}" class="upload">
+            <div class="filename">{%=o.name%}</div>
+            <div class="progress"><div class="bar" style="width: 0%"></div></div>
+          </div>
+        </script>
+      </div>
+      <!-- END FILE UPLOAD -->
+    </div>
     </div>
   </div>
 
