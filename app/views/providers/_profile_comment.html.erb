@@ -133,14 +133,22 @@
   <div class="col-md-4">
 
     <div>
+      <ul class="row photo-gallery">
         <% photo_urls = @comment_photo_urls_hash[comment.id] %>
         <% if photo_urls.present? %>
           <% count = 0 %>
-          <% photo_urls.each do |url| %>              
-            <%= image_tag url %>
+          <% photo_urls.each do |url| %>  
+            <% if count == 0 %>
+              <li>
+            <% else %>
+              <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">
+            <% end %>
+          <%= image_tag url %>
+          </li>
           <% count += 1 %>
          <% end %>
         <% end %>
+      </ul>
     </div>
   </div>
 
