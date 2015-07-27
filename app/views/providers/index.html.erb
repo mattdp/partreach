@@ -8,13 +8,13 @@
       <%= render :partial => "providers/providers_header" %>      
 
       <% if @results_hash.present? %>
-        <h2 class="center">Results of your search for <%= "#{@search_text}" %></h2>
+        <h3 class="center margin-top no-margin-bottom">Results of your search for <%= "#{@search_text}" %></h3>
 
         <% @results_hash.each do |header, providers| %>
           <div class="col-md-12">
-            <h2>
+            <h3 class="no-margin-top margin-bottom">
               <span><%= header %></span>
-            </h2>
+            </h3>
             <% if providers %> 
               <%= render :partial => "providers/providers_table", locals: {providers: providers, include_tag_column: false, cache_result: false} %>            
             <% else %>
