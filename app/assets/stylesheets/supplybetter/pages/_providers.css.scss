@@ -531,11 +531,12 @@ img.banner-message {
   padding: 0;
 }
 
-/*BEGIN PICTURE UPLOADER*/
+/*BEGIN FILE UPLOADER*/
 
 .attachment-uploader {
   border-color: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
 }
 
 .attachment-uploader:hover {
