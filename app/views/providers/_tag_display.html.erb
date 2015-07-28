@@ -11,3 +11,22 @@
     <% count += 1 %>
   <% end %>
 <% end %>
+
+<% if (show_more_option.present? and tags.length > max_tags_to_display) %>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <div class="panel-title">
+          <a role="button" data-toggle="collapse" data-parent="#accordion" href="<%= "##{show_more_option}" %>" aria-expanded="true" aria-controls="<%= "#{show_more_option}" %>">
+            see all
+          </a>
+        </div>
+      </div>
+      <div id="<%= "#{show_more_option}" %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          <%= render partial: "providers/tag_display", locals: {tags: tags.drop(max_tags_to_display), remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
