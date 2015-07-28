@@ -30,6 +30,10 @@ body {
   margin-bottom: 10px;
 }
 
+.margin-top {
+  margin-top: 10px;
+}
+
 .small-margin-left {
   margin-left: 10px;
 }
@@ -37,6 +41,14 @@ body {
 .row {
   margin-left: 0;
   margin-right: 0;
+}
+
+.no-margin-top {
+  margin-top: 0;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0;
 }
 
 hr {
@@ -63,9 +75,7 @@ a:focus {
 }
 
 .text-block {
-  /*background: #f6f5f2;*/
   width: 100%;
-  padding-top: 10px;
 } 
 
 .bottom-search-area {
@@ -77,8 +87,9 @@ a:focus {
 }
 
 .start-quote p {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-size: 1.84em;
 }
 
 .index-search-bar {
@@ -143,6 +154,7 @@ a.search-choice-close {
 
 .search-help-text {
   margin-top: 0;
+  margin-bottom: 0;
   font-weight: normal;
 }
 
@@ -532,11 +544,12 @@ img.banner-message {
   padding: 0;
 }
 
-/*BEGIN PICTURE UPLOADER*/
+/*BEGIN FILE UPLOADER*/
 
 .attachment-uploader {
   border-color: rgba(0, 0, 0, 0.02);
   border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 20px;
 }
 
 .attachment-uploader:hover {

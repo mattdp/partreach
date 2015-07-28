@@ -77,16 +77,16 @@
     <div class="col-md-4">
 
       <div>
-        <ul id="uploaded-photo-list" class="row photo-gallery">
-          <% if @expiring_image_urls.present? %>
+        <ul id="profile_photo_gallery" class="row photo-gallery">
+          <% if @profile_photo_urls.present? %>
             <% count = 0 %>
-            <% @expiring_image_urls.each do |url| %>  
+            <% @profile_photo_urls.each do |url| %>  
               <% if count == 0 %>
                 <li>
               <% else %>
                 <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">                      
               <% end %>
-            <%= image_tag url %>
+            <%= image_tag url, class: "top-gallery" %>
             </li>
             <% count += 1 %>
            <% end %>
@@ -94,7 +94,7 @@
         </ul>
       </div>
 
-    <div class="attachment-uploader">Upload pictures here (or drag and drop)
+      <div class="attachment-uploader">Upload pictures here (or drag and drop)
         <span class="heading_navigation"></span>
         <%= hidden_field_tag :provider_id_for_upload, @provider.id %>
         <%= s3_uploader_form id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
@@ -103,7 +103,7 @@
           key_starts_with: "#{@provider.name_for_link}",
           key: "#{@provider.name_for_link}-#{SecureRandom.hex}-{unique_id}" do %>
             <%= file_field_tag :file, multiple: true %>
-          <% end %>
+        <% end %>
         <script id="template-upload" type="text/x-tmpl">
           <div id="file-{%=o.unique_id%}" class="upload">
             <div class="filename">{%=o.name%}</div>
@@ -122,8 +122,6 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-
 
   </div>
 
@@ -167,7 +165,7 @@
 <!-- PHOTO GALLERY -->
 <script>
 $(document).ready(function(){        
-    $('li img').on('click',function(){
+    $('li img.top-gallery').on('click',function(){
         var src = $(this).attr('src');
         var img = '<img src="' + src + '" class="img-responsive"/>';
         
