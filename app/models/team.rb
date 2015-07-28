@@ -31,12 +31,12 @@ class Team < ActiveRecord::Base
     providers = self.organization.providers
     provider = providers[rand(providers.count-1)]
 
-    po_and_comment_options = { description: "483-9489729 brass brackets for housing",
-        project_name: "Skyhook Phase 2",
+    po_and_comment_options = { description: "410-506015 Rev 3, Front Adapter Base - Bottom Housing, NRE tool to remain at facility, Expediting Cost",
+        project_name: "Front chassis suspension",
         id_in_purchasing_system: 1234,
-        price: 1234.56,
-        quantity: 12,
-        issue_date: Date.today - 7.days,
+        price: 32500.00,
+        quantity: 250,
+        issue_date: Date.today - 14.days,
         row_identifier: user.id,
         user: user}
     objects = provider.create_linked_po_and_comment!(po_and_comment_options)
@@ -69,6 +69,7 @@ class Team < ActiveRecord::Base
     users["jeremy@demo.com"] = {first_name: "Jeremy", last_name: "Conrad"}
     users["marjorie@demo.com"] = {first_name: "Marjorie", last_name: "Geiser"}
     users["chris@demo.com"] = {first_name: "Chris", last_name: "Flood"}
+    users["matthew.grant@demo.com"] = {first_name: "Matthew", last_name: "Grant"}
 
     return users
   end
