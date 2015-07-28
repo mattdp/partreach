@@ -2,11 +2,9 @@
 
 <div class="container hax-body-styling">
   <div class="row">
+    <%= render partial: "organizations/navigation_header", locals: {middle_text: @middle_text} %>
     <div class="col-md-11 col-md-offset-1">
-
-      <%= link_to "Return to provider index", teams_index_path %>
-
-      <h1>Create new provider</h1>
+      <h1>Create new supplier</h1>
     </div>
 
     <%= render :partial => "providers/provider_information", locals: {form_action: "create", contact_fields: @contact_fields} %>

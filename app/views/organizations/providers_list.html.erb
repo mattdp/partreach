@@ -3,7 +3,7 @@
 <div class="container hax-body-styling">
   <div class="row">
     <div class="main-area-contrast override">
-      <%= render partial: "organizations/navigation_header", locals: {middle_text: @middle_text, display_options: "providers_list"} %>
+      <%= render partial: "organizations/navigation_header", locals: {middle_text: @middle_text} %>
       <%= render :partial => "providers/providers_table", locals: {providers: @providers, include_tag_column: true, cache_result: true} %>
     </div>
   </div>

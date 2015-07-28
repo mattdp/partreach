@@ -1,6 +1,6 @@
 <%= form_tag :action => form_action, :controller => 'providers' do %>
 
-  <div class="col-md-8 col-md-offset-1">
+  <div class="col-md-8 col-md-offset-1 any-form">
 
     <hr>
 
@@ -38,9 +38,9 @@
       </div>
 
       <div class="col-md-9">
-        <span class="provider-edit-details">
-          (Information will not be shared beyond <%= "#{@organization.name}" %>)
-        </span>
+        
+          <label><%= "#{@organization.name}" %> only. (Information will not be shared beyond <%= "#{@organization.name}" %>)</label>
+        
       </div>
     </div>
 
@@ -143,7 +143,7 @@
 
     <br>
     <div class="row">
-      <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button", :class => "margin-bottom" %>
+      <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button", :class => "save-button margin-bottom" %>
     </div>
 
   </div>
