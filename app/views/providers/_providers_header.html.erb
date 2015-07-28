@@ -1,10 +1,4 @@
-      <div class="row text-block">
-        <div class="col-md-8 col-md-offset-2">          
-          <div class="start-quote">
-            <p>See who <%= @people_called %> are using to make parts</p>
-          </div>
-        </div>
-
+      <div class="row text-block">        
         <div class="row bottom-search-area">
           <div class="row">
             <div class="row col-md-2 index-search-bar center">
@@ -19,10 +13,6 @@
                   <%= submit_tag "Search »", class: 'button--blue' %>
                 </div>
               <% end %>
-            </div>
-            <div class="row col-md-2 center index-search-button">
-              <h3 class="search-help-text"><%= link_to "See all companies" , organizations_providers_list_path(@org.id)%></h3>
-              <h3 class="search-help-text"><%= link_to "See all tags" , organizations_tags_list_path(@org.id)%></h3>
             </div>
           </div>
 
@@ -45,10 +35,7 @@
                   <%= submit_tag "Search »", class: 'button--blue' %>
                 </div>
               <% end %>
-            </div>
-            <div class="row col-md-2 center index-search-button">
-              <h3 class="search-help-text">Company missing? <%= link_to "Add one here" , new_provider_with_event_path("add_provider_from_index")%></h3>
-            </div>
+            </div>            
           </div>
         </div>
 

@@ -1,14 +1,19 @@
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <p><%= link_to "Back to search page", teams_index_path %></p>
   </div>
-  <div class="col-md-6 center">
+  <div class="col-md-6 col-md-offset-1 center start-quote">
     <p><%= middle_text %></p>
   </div>
-  <div class="col-md-2 right">          
-    <p><%= link_to "All companies", organizations_providers_list_path(@organization.id)%></p>
+
+  <div class="col-md-3 right">          
+    <p>
+      <%= link_to "All companies", organizations_providers_list_path(organization.id)%>
+      |
+      <%= link_to "All tags", organizations_tags_list_path(organization.id)%>
+      |
+      <%= link_to "Add vendor", new_provider_path %>
+    </p>
   </div>
-  <div class="col-md-1">          
-    <p><%= link_to "All tags", organizations_tags_list_path(@organization.id)%></p>
-  </div>
+
 </div>
