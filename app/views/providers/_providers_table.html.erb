@@ -34,7 +34,7 @@
               <td><%= link_to "#{provider.latest_purchase_order_date(true)}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %></td>
               <% if include_tag_column %>
                 <td>                            
-                  <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false, max_tags_to_display: 4} %>
+                  <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false, max_tags_to_display: 4, show_more_option: provider.id} %>
                 </td>
               <% end %>
             </tr>

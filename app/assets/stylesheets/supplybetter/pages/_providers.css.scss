@@ -223,7 +223,7 @@ text-align: center;
 .stylish th:nth-child(5) , td:nth-child(5) {
   width: 15%;
 }
-/*END PROVIDER INDEX TABLE*/
+/*BEGIN PROVIDER INDEX TABLE*/
 
 /*LORD STRIKE ME DEAD WHERE I STAND
 THIS IS SO NOT DRY WE'RE GOING TO NEED TO BUILD AND ARK*/
@@ -251,6 +251,15 @@ THIS IS SO NOT DRY WE'RE GOING TO NEED TO BUILD AND ARK*/
 .provider-table th:nth-child(6) , td:nth-child(6) {
   width: 50%;
 }
+
+.panel-group, .panel-body, .panel, .panel-default, .panel-heading {
+  display: inline;
+}
+
+.panel-title {
+  display: inline-block;
+}
+
 /*END PROVIDER INDEX TABLE*/
 
 /* BEGIN STAR RATINGS */
