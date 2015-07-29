@@ -148,9 +148,7 @@ class ProvidersController < ApplicationController
       
       all_comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
       @comments = all_comments.reject{|c| c.untouched?}.concat(all_comments.select{|c| c.untouched?})
-      
-      binding.pry
-
+       
       @comment_photo_urls_hash = init_comment_photo_urls_hash(@comments)
       @total_comments_for_user = Comment.joins(:user).group('users.id').count
       @purchase_order_comments_for_user = Comment.where(comment_type: 'purchase_order').joins(:user).group('users.id').count
