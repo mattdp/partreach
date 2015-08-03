@@ -15,20 +15,11 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
 
-    create_tag_sets
+    #mdp: something with tag_groups not working on my machine
+    #create_tag_sets 
   end
-
-  # not sure i need this for now, since mostly interested in between-run errors
-  # config.around(:each) do |example|
-  #   DatabaseCleaner.cleaning do
-  #     example.run
-  #   end
-  # end  
-
+  
   config.filter_run_excluding :broken => true
-
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  #config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
