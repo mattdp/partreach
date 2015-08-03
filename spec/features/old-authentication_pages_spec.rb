@@ -10,12 +10,7 @@ describe "Authentication" do
     describe "with invalid information" do
       before { click_button "Sign in" }
 
-      it { should have_selector('div.alert.alert-danger', text: 'Invalid') }
-
-      #describe "after visiting another page" do
-      #  before { click_link  }
-      #  it { should_not have_selector('div.alert.alert-error') }
-      #end
+      it { should have_selector('p.alert-danger', text: 'Invalid') }
 
     end
 
