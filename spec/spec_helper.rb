@@ -15,8 +15,10 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
 
-    #mdp: something with tag_groups not working on my machine
-    #create_tag_sets 
+    #mdp: something with tag_groups wasn't working on my machine
+    #fixed with RAILS_ENV=test rake db:drop db:create db:migrate
+    #see http://stackoverflow.com/questions/19097558/pg-undefinedtable-error-relation-users-does-not-exist
+    create_tag_sets 
   end
   
   config.filter_run_excluding :broken => true
