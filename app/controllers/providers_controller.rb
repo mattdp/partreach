@@ -133,6 +133,9 @@ class ProvidersController < ApplicationController
         providers << possible_provider if possible_provider.present?
       end
 
+      # if only one provider, skip list, just display that provider's profile page
+      redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1
+
       @results_hash["Providers"] = providers
       
       @search_text = providers.map{|p| p.name}.join(" & ")
