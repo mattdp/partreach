@@ -183,7 +183,10 @@ describe "/orders requests" do
 
       get "orders/#{order.id}"
 
-      expect(Event.all.size).to eq 0
+      #there is a sign-in event that takes place
+      new_event = Event.last
+      expect(Event.all.size).to eq 1
+      expect(new_event.happening).to eq "signed in"
     end
   end
 
