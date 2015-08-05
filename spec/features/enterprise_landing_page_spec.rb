@@ -6,4 +6,13 @@ feature "Enterprise landing page" do
 
     page.should have_content "He pays attention to detail"
   end
+
+  scenario "should collect emails" do
+    visit enterprise_path
+
+    page.fill_in "session_email", with: @user.lead.lead_contact.email
+    page.click_button "Sign in"
+
+    
+  end
 end
