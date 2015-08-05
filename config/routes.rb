@@ -121,7 +121,7 @@ Partreach::Application.routes.draw do
   match '/reset_password', to: 'sessions#internal_update', as: "sessions_internal_update", via: :patch
 
   get '/signup', to: 'orders#new' 
-  get '/enterprise', to: 'static_pages#enterprise' #enterprise.html.erb L21 is hardlinked to this, change if you change the route
+  get '/enterprise', to: 'static_pages#enterprise', as: 'enterprise' #enterprise.html.erb L21 is hardlinked to this, change if you change the route
   get '/getting_started', to: 'static_pages#getting_started'
   get '/procurement', to: 'static_pages#procurement'
   get '/materials', to: 'static_pages#materials'
