@@ -10,9 +10,11 @@ feature "Enterprise landing page" do
   scenario "should collect emails" do
     visit enterprise_path
 
-    page.fill_in "session_email", with: @user.lead.lead_contact.email
-    page.click_button "Sign in"
+    expect(Lead.all.size).to eq 0
 
-    
+    page.fill_in "upper", with: "fakeemail@fake.com"
+    page.click_button "upper-submit"
+
+    expect(Lead.all.size).to eq 1
   end
 end
