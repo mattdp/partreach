@@ -24,6 +24,7 @@ Partreach::Application.routes.draw do
   get '/comments/later/:id', to: 'comments#later', as: 'comments_later'
   get '/comments/request_for_review/:id', to: 'comments#request_for_review', as: 'comments_request_for_review'
   get '/comments/request_for_review/:id/:message_number', to: 'comments#request_for_review', as: 'comments_request_for_review_with_message_number'
+  post '/comment/upload_photo', to: 'comments#upload_photo'
 
   resources :comment_ratings, only: [:create]
   
@@ -120,7 +121,7 @@ Partreach::Application.routes.draw do
   match '/reset_password', to: 'sessions#internal_update', as: "sessions_internal_update", via: :patch
 
   get '/signup', to: 'orders#new' 
-  get '/enterprise', to: 'static_pages#enterprise' #enterprise.html.erb L21 is hardlinked to this, change if you change the route
+  get '/enterprise', to: 'static_pages#enterprise', as: 'enterprise' #enterprise.html.erb L21 is hardlinked to this, change if you change the route
   get '/getting_started', to: 'static_pages#getting_started'
   get '/procurement', to: 'static_pages#procurement'
   get '/materials', to: 'static_pages#materials'

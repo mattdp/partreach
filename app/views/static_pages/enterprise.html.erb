@@ -16,7 +16,7 @@
       <div class="col-md-10 col-md-offset-1 centered">
         <h1>SupplyBetter is your company's private Yelp for manufacturing</h1>
         <h2>Learn from past projects. Make better choices. Get to market faster.</h2> 
-        <%= render partial:"static_pages/email_submission" %> 
+        <%= render partial:"static_pages/email_submission", locals: {input_id: "upper"} %> 
         <h3>Check out these real supplier reviews, redacted and used with permission</h3>
         <div class="scroll-down">
           <a href="#review_1">
@@ -286,7 +286,7 @@
       <h2>Supplier relationships matter. Sign up now.</h2>
         <div class="col-md-8 col-md-offset-2 centered">
           <div class="row">
-            <%= render partial:"static_pages/email_submission" %>
+            <%= render partial:"static_pages/email_submission", locals: {input_id: "lower"} %>
           </div>
         </div>
       <div class="row">

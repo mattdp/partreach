@@ -19,7 +19,6 @@ class Organization < ActiveRecord::Base
   has_many :providers
   has_many :tags
 
-
   def create_synapse_pos_and_comments_from_tsv(url)
     
     output_string = ""    

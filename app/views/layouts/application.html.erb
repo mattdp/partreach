@@ -11,9 +11,7 @@
     <%= render 'layouts/flash_errors' %>
     <%= yield %>
     <%= render 'layouts/provider_footer' %>
-    <% if Rails.env != "development" %>
-      <%= render 'layouts/intercom_snippet' %>
-    <% end %>
+    <%= render 'layouts/intercom_snippet' %>
   </body>
 </html>
 

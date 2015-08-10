@@ -133,6 +133,9 @@ class ProvidersController < ApplicationController
         providers << possible_provider if possible_provider.present?
       end
 
+      # if only one provider, skip list, just display that provider's profile page
+      redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1
+
       @results_hash["Providers"] = providers
       
       @search_text = providers.map{|p| p.name}.join(" & ")
@@ -145,19 +148,32 @@ class ProvidersController < ApplicationController
     @provider = current_organization.providers.find_by_name_for_link(params[:name_for_link])
     if @provider
       @organization = current_organization
-      @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
+      
+      all_comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
+      @comments = all_comments.reject{|c| c.untouched?}.concat(all_comments.select{|c| c.untouched?})
+       
+      @comment_photo_urls_hash = init_comment_photo_urls_hash(@comments)
       @total_comments_for_user = Comment.joins(:user).group('users.id').count
       @purchase_order_comments_for_user = Comment.where(comment_type: 'purchase_order').joins(:user).group('users.id').count
       @tags = @provider.tags.sort_by { |t| t.readable.downcase }
       @po_names_and_counts = @provider.po_names_and_counts
       @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       
-      @expiring_image_urls = External.get_expiring_urls(@provider.externals,@organization)
+      @profile_photo_urls = External.get_expiring_urls(@provider.externals,@organization)
 
       Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
     else
       render template: "providers/profile_not_found"
     end
+  end
+
+  def init_comment_photo_urls_hash(comments)
+    @comment_photo_urls_hash = {}
+    comments.each do |comment|
+      @comment_photo_urls_hash[comment.id] =
+        External.get_expiring_urls(comment.externals, current_organization)
+    end
+    @comment_photo_urls_hash
   end
 
   def suggested_edit
@@ -177,7 +193,8 @@ class ProvidersController < ApplicationController
 
     #create externals object
     new_external = provider.add_external(original_filename, remote_file_name)
-    expiring_image_url = new_external.get_expiring_url_helper(s3_resource)
+    expiring_image_url = External.get_s3_expiring_url(
+      s3_resource, current_organization.external_bucket_name, remote_file_name)
 
     render plain: expiring_image_url
   end

@@ -14,6 +14,20 @@ FactoryGirl.define do
     factory :examiner_user do
       examiner  true
     end
+
+    factory :team_user do
+      team
+    end
+  end
+
+  factory :team do
+    sequence(:name)   { |n| "name#{n}" }
+    organization
+  end
+
+  factory :organization do
+    sequence(:name)   { |n| "name#{n}" }
+    sequence(:people_are_called)   { |n| "people_are_called#{n}" }
   end
 
   factory :lead do |l|
