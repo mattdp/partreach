@@ -24,7 +24,7 @@
           <a href="#comments">
             <% total_provider_comments = @provider.comments.count %>
             <% if total_provider_comments %>
-              <%= "#{pluralize(total_provider_comments, 'comment')}" %>
+              <%= "#{pluralize(total_provider_comments, 'review')}" %>
             <% end %>
           </a>
         </span>
@@ -145,8 +145,8 @@
   <div class="row">
     <div class="col-md-12">
       <h3 id="comments">
-        Comments
-        <span class="heading_navigation">[<%= link_to "add a comment", new_comment_path(@provider.id) %>]</span>
+        Reviews
+        <span class="heading_navigation">[<%= link_to "add a review", new_comment_path(@provider.id) %>]</span>
       </h3>
 
       <% if @comments.present? %>
