@@ -38,12 +38,12 @@
         </div>
 
         <div class="field comment-title">
-          <%= label_tag :title, "Your comment title (optional)" %><br>
+          <%= label_tag :title, "Your review title (optional)" %><br>
           <%= text_field_tag :title, @comment.title %>
         </div>
 
         <div class="field">
-          <%= label_tag :payload, "Your comment" %><br>
+          <%= label_tag :payload, "Your review" %><br>
           <%= text_area_tag :payload, @comment.payload, rows: 5 %>
         </div>
 

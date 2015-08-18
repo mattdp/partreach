@@ -54,11 +54,11 @@ class Comment < ActiveRecord::Base
   def self.verbose_type(comment_type)
     case comment_type
     when "comment"
-      return "comment"
+      return "review"
     when "factory_visit"
       return "factory visit comment"
     when "purchase_order"
-      return "purchase order comment"
+      return "purchase order review"
     else
       return "unknown comment type"
     end

@@ -7,7 +7,7 @@ left a
 <% if po.present? %>
   <%= link_to "review", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %> 
 <% else %>
-  <%= link_to "comment", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %> 
+  <%= link_to "review", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %> 
 <% end %>
 for                
 <%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>                
