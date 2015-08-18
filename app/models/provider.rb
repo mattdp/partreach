@@ -40,8 +40,8 @@ class Provider < ActiveRecord::Base
   has_one :address, :as => :place, :dependent => :destroy
   belongs_to :organization
 
-  validates :name, presence: true, uniqueness: {case_sensitive: false}
-  validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates :name, presence: true, uniqueness: {case_sensitive: false, scope: :organization_id}
+  validates :name_for_link, presence: true, uniqueness: {case_sensitive: false, scope: :organization_id}
   validates :organization, presence: true
 
   #depends on options existing
