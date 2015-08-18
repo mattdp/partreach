@@ -34,6 +34,12 @@ FactoryGirl.define do
     lead_contact
   end
 
+  factory :provider do
+    sequence(:name)   { |n| "name#{n}" }
+    sequence(:name_for_link)   { |n| "name_for_link#{n}" }
+    organization
+  end
+
   factory :contact, class: 'Contact' do |c|
     sequence(:name)   { |n| "name#{n}" }
     sequence(:email)   { |n| "email#{n}@fake.spam.com" }
