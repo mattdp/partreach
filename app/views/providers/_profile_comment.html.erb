@@ -99,7 +99,7 @@
           <% if rating.nil? %>
             <%= form_tag comment_ratings_path do %>
               <span class="comment-smalltext"> 
-                Was this comment helpful to you?
+                Was this review helpful to you?
               </span>
               <%= hidden_field_tag :provider_id, @provider.id %>
               <%= hidden_field_tag :comment_id, comment.id %>
@@ -108,11 +108,11 @@
             <% end %>
           <% elsif rating.helpful %>
             <span class="comment-smalltext"> 
-              <em>You found this comment helpful</em>
+              <em>You found this review helpful</em>
             </span>
           <% else %>
             <span class="comment-smalltext"> 
-              <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
+              <em>You didn't find this review helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
             </span>
           <% end %>
         <% end %>
