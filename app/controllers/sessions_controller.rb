@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   HOURS_ALLOWED = 48
 
   def new
-    sign_out
+    sign_out(false)
   end
 
   def create
