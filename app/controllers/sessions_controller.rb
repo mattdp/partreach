@@ -83,6 +83,9 @@ class SessionsController < ApplicationController
     params.require(:user).permit(:password,:password_confirmation)
   end
 
+  # there's some case where the return_to will be set to a page that the 
+  # user who is trying to sign in isn't allowed to access...  and they'd 
+  # get stuck in a loop - everytime they tried to sign in, they'd get redirected back to sign in again
   def redirect_after_signin(notice=nil)
     if current_user.in_organization?
       initial_page_path = session[:return_to] || teams_index_path
