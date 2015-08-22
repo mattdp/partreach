@@ -24,6 +24,7 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :provider, touch: true
   belongs_to :purchase_order
+  belongs_to :project
   has_many :comment_ratings
   has_many :externals, :as => :consumer, :dependent => :destroy
   accepts_nested_attributes_for :externals
