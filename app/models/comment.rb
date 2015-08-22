@@ -17,6 +17,7 @@
 #  cost_score        :integer          default(0)
 #  quality_score     :integer          default(0)
 #  speed_score       :integer          default(0)
+#  project_id        :integer
 #
 
 class Comment < ActiveRecord::Base
@@ -31,6 +32,10 @@ class Comment < ActiveRecord::Base
 
   #comment_type should be "purchase_order", "factory_visit", or "comment"
   #score of 0 = didn't give a score. 1 low, 5 high
+
+  def organization
+    self.provider.organization
+  end
 
   def untouched?
     return false if (self.payload.present? or self.any_ratings_given?)
