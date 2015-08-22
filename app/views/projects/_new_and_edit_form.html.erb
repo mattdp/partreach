@@ -1,0 +1,17 @@
+<% if comment.present? %>
+  <%= link_to "Back to comment", edit_comment_path(@comment) %>
+<% else %>
+  <%= link_to "Back to search page", teams_index_path %>
+<% end %>
+
+<%= form_tag action: form_action, controller: 'projects' do %>
+  <div class="field comment-title">
+    <%= label_tag :name %>        
+    <%= text_field_tag :name, project.name %>
+  </div>
+  <div class="field comment-title">
+    <%= label_tag :description %>        
+    <%= text_area_tag :description, project.description %>
+  </div>
+  <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
+<% end %>

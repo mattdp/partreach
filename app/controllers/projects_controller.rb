@@ -8,7 +8,7 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @provider = Provider.new(editable_provider_params)
+    @project = Project.new
     create_or_update_project
   end
 

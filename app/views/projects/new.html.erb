@@ -1,0 +1,11 @@
+<% provide(:title, "Create new project") %>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="col-md-4"></div>
+    <div id="any-form" class="col-md-4">
+      <h1>Create a new project</h1>
+      <%= render partial: "projects/new_and_edit_form", locals: {form_action: "create", project: @project, comment: @comment} %>
+    </div>
+  </div>
+</div>
