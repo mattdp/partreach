@@ -18,6 +18,11 @@ class Organization < ActiveRecord::Base
   has_many :teams
   has_many :providers
   has_many :tags
+  has_many :projects
+
+  def projects_for_listing
+    [Project.none_selected].concat(self.projects.map{|p| p.name})
+  end
 
   def create_synapse_pos_and_comments_from_tsv(url)
     

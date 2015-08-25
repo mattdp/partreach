@@ -22,6 +22,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new
     @provider = Provider.find(params[:provider_id])
     @verbose_type = Comment.verbose_type(@comment_type)
+    @projects_listing = current_organization.projects_for_listing
     @flavor = nil    
     Event.add_event("User",current_user.id,"loaded new comment page for","Provider",@provider.id)
     render "new"
@@ -66,6 +67,7 @@ class CommentsController < ApplicationController
     @verbose_type = Comment.verbose_type(@comment.comment_type)
     @provider = @comment.provider
     @user = @comment.user
+    @projects_listing = current_organization.projects_for_listing    
     @comment_photo_urls = External.get_expiring_urls(@comment.externals, current_organization)
 
     @flavor = params[:flavor]

@@ -15,4 +15,9 @@ class Project < ActiveRecord::Base
   has_many :comments
   belongs_to :organization
 
+  #for dropdowns, what means no project - should be in one place
+  def self.none_selected
+    "None selected"
+  end
+
 end

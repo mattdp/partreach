@@ -38,13 +38,18 @@
         </div>
 
         <div class="field comment-title">
-          <%= label_tag :title, "Your comment title (optional)" %><br>
+          <%= label_tag :title, "Your comment title (optional)" %>
           <%= text_field_tag :title, @comment.title %>
         </div>
 
         <div class="field">
-          <%= label_tag :payload, "Your comment" %><br>
+          <%= label_tag :payload, "Your comment" %>
           <%= text_area_tag :payload, @comment.payload, rows: 5 %>
+        </div>
+
+        <div class="field">
+          <%= label_tag :project, "Relevant project" %><br>
+          <%= select_tag(:project, options_for_select(@projects_listing)) %>
         </div>
 
         <div class="overall field">
