@@ -97,7 +97,7 @@ Partreach::Application.routes.draw do
 
   resources :parts, only: [:create]
 
-  resources :projects, only: [:new, :create, :edit, :update]
+  resources :projects, only: [:edit, :update]
 
   resources :providers, only: [:new, :create, :edit]
   get '/providers/new/:event_name', to: 'providers#new', as: 'new_provider_with_event'

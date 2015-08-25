@@ -1,19 +1,10 @@
 class ProjectsController < ApplicationController
   before_action :org_access_only
 
-  def new
-    @organization = current_organization
-    @project = Project.new
-    Event.add_event("User","#{current_user.id}","loaded new project page from unknown source")
-  end
-
-  def create
-    @project = Project.new
-    create_or_update_project
-  end
-
   def edit
     @project = Project.find(params[:id])
+    @inbound_link = nil
+    @inbound_link = request.headers['HTTP_REFERER'] if (request.present? and request.headers.present?)
   end
 
   def update
@@ -27,11 +18,11 @@ class ProjectsController < ApplicationController
     @project.organization_id = current_organization.id
     if @project.save
       Event.add_event("User","#{current_user.id}","#{http_verb}d a project","Project","#{@project.id}")
-      if http_verb == "create"
-        # to do: send to a sensible place
-        redirect_to edit_project_path(@project.id), notice: "Saved OK!" 
+      success_notice = "Project updated!"
+      if params[:inbound_link].present?
+        redirect_to params[:inbound_link], notice: success_notice
       else
-        redirect_to edit_project_path, notice: "Updated OK!"
+        redirect_to teams_index_path, notice: success_notice
       end
     else
       Event.add_event("User","#{current_user.id}","attempted project #{http_verb} - ERROR")
