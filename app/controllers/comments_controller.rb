@@ -58,15 +58,6 @@ class CommentsController < ApplicationController
       note = "Saving problem."
     end
 
-    # saved_ok? = @comment.save
-    # if saved_ok?
-    #   # create externals and associate with comment
-    #   add_externals
-    #   saved_ok? = @comment.save
-    # end
-
-    # note = (saved_ok? ? "Saved OK!" : "Saving problem.")
-
     redirect_to teams_profile_path(provider.name_for_link), notice: note
   end
 
