@@ -48,7 +48,7 @@
         </div>
 
         <div class="field">
-          <%= label_tag :project, "Relevant project" %><br>
+          <%= label_tag :project, "Relevant project" %> (<%= link_to "Add a new project", new_project_path %>)<br>
           <%= select_tag(:project, options_for_select(@projects_listing,@default_project)) %>
         </div>
 
