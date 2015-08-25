@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
     @provider = Provider.find(params[:provider_id])
     @verbose_type = Comment.verbose_type(@comment_type)
     @projects_listing = current_organization.projects_for_listing
+    @default_project = nil
     @flavor = nil    
     Event.add_event("User",current_user.id,"loaded new comment page for","Provider",@provider.id)
     render "new"
@@ -39,6 +40,13 @@ class CommentsController < ApplicationController
       @comment.comment_type = "purchase_order"
     else
       @comment.comment_type = "comment"
+    end
+
+    if params[:project].present?
+      project = Project.where(name: params[:project], organization_id: current_organization.id)
+      if project.present?
+        @comment.project_id = project[0].id
+      end
     end
 
     begin
@@ -67,7 +75,8 @@ class CommentsController < ApplicationController
     @verbose_type = Comment.verbose_type(@comment.comment_type)
     @provider = @comment.provider
     @user = @comment.user
-    @projects_listing = current_organization.projects_for_listing    
+    @projects_listing = current_organization.projects_for_listing
+    @comment.project.present? ? @default_project = @comment.project.name : @default_project = nil
     @comment_photo_urls = External.get_expiring_urls(@comment.externals, current_organization)
 
     @flavor = params[:flavor]
@@ -95,6 +104,17 @@ class CommentsController < ApplicationController
 
     # create externals and associate with comment
     add_externals
+
+    if params[:project].present?
+      if params[:project] == Project.none_selected
+        @comment.project_id = nil
+      else
+        project = Project.where(name: params[:project], organization_id: current_organization.id)
+        if project.present?
+          @comment.project_id = project[0].id
+        end
+      end
+    end
 
     note = (@comment.update_attributes(comment_params) ? "Saved OK!" : "Saving problem.")
     redirect_to teams_profile_path(provider.name_for_link), notice: note

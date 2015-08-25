@@ -49,7 +49,7 @@
 
         <div class="field">
           <%= label_tag :project, "Relevant project" %><br>
-          <%= select_tag(:project, options_for_select(@projects_listing)) %>
+          <%= select_tag(:project, options_for_select(@projects_listing,@default_project)) %>
         </div>
 
         <div class="overall field">
