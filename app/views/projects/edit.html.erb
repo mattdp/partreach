@@ -4,8 +4,11 @@
   <div class="col-md-12">
     <div class="col-md-4"></div>
     <div id="any-form" class="col-md-4">
+      <%= render partial: "projects/go_back", locals: {comment: @comment} %>
       <h1>Edit project '<%= "#{@project.name}" %>'</h1>
-      <%= render partial: "projects/new_and_edit_form", locals: {form_action: "update", project: @project, comment: @comment} %>
+      <%= form_tag ({action: 'update', controller: 'projects'}) do %>
+        <%= render partial: "projects/new_and_edit_form", locals: {project: @project} %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -26,10 +26,15 @@ class ProjectsController < ApplicationController
     @project.assign_attributes(project_params) #returns nil
     if @project.save
       Event.add_event("User","#{current_user.id}","#{http_verb}d a project","Project","#{@project.id}")
-      #redirect_to teams_profile_path(@provider.name_for_link), note: "Saved OK!" 
+      if http_verb == "create"
+        # to do: send to a sensible place
+        redirect_to edit_project_path(@project.id), notice: "Saved OK!" 
+      else
+        redirect_to edit_project_path, notice: "Updated OK!"
+      end
     else
       Event.add_event("User","#{current_user.id}","attempted project #{http_verb} - ERROR")
-      #redirect_to teams_index_path, note: "Saving problem."
+      redirect_to new_project_path, notice: "Error saving project. Please contact SupplyBetter support, we'll get this figured out!" 
     end
   end
 
