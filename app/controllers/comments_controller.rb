@@ -43,10 +43,10 @@ class CommentsController < ApplicationController
     end
 
     project = Project.where(name: params[:project], organization_id: current_organization.id)
-    if project.present?
+    if params[:new_project].present?
+      @comment.project_id = Project.find_or_create(current_organization.id, params[:new_project]).id
+    elsif project.present? #checking for a non-default option
       @comment.project_id = project[0].id
-    elsif params[:new_project].present?
-      @comment.project_id = Project.create(name: params[:new_project], organization_id: current_organization.id).id
     end
 
     begin
@@ -96,17 +96,12 @@ class CommentsController < ApplicationController
     # create externals and associate with comment
     add_externals
 
-    if params[:project] == Project.none_selected
-      if params[:new_project].present?
-        @comment.project_id = Project.create(name: params[:new_project], organization_id: current_organization.id).id
-      else 
-        @comment.project_id = nil
-      end
+    if params[:new_project].present?
+      @comment.project_id = Project.find_or_create(current_organization.id, params[:new_project]).id
+    elsif params[:project] == Project.none_selected
+      @comment.project_id = nil
     else
-      project = Project.where(name: params[:project], organization_id: current_organization.id)
-      if project.present?
-        @comment.project_id = project[0].id
-      end
+      @comment.project_id = Project.find_or_create(current_organization.id, params[:project]).id
     end
 
     note = (@comment.update_attributes(comment_params) ? "Saved OK!" : "Saving problem.")
