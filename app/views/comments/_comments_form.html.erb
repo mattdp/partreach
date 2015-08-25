@@ -29,12 +29,12 @@
         </div>
 
         <div class="field comment-title">
-              <% po = @comment.purchase_order %>
-              <% if po %>                
-                <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>                
-                <%= "Quantity: #{po.quantity}" if po.quantity %>,
-                <%= "Price: #{number_to_currency(po.price)}" if po.price %>
-              <% end %>
+          <% po = @comment.purchase_order %>
+          <% if po %>                
+            <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>                
+            <%= "Quantity: #{po.quantity}" if po.quantity %>,
+            <%= "Price: #{number_to_currency(po.price)}" if po.price %>
+          <% end %>
         </div>
 
         <div class="field comment-title">
