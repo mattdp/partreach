@@ -24,6 +24,7 @@ class ProjectsController < ApplicationController
   def create_or_update_project
     @project.id.present? ? http_verb = "update" : http_verb = "create"
     @project.assign_attributes(project_params) #returns nil
+    @project.organization_id = current_organization
     if @project.save
       Event.add_event("User","#{current_user.id}","#{http_verb}d a project","Project","#{@project.id}")
       if http_verb == "create"
