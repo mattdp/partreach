@@ -20,4 +20,13 @@ class Project < ActiveRecord::Base
     "None selected"
   end
 
+  def self.create_or_find(organization_id,name)
+  	project = Project.where(organization_id: organization_id, name: name)
+  	if project.present?
+  		return project
+  	else
+  		return Project.create(organization_id: organization_id, name: name)
+  	end
+  end
+
 end
