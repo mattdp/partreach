@@ -83,7 +83,6 @@
         <% end %>
         <% if po.present? %>
           <div class="row">
-            <div class="col-md-8 left-grid-bare">Project Name: <span><%= "#{po.project_name}" if po.project_name %></span></div>
             <div class="col-md-4 po-padding">PO Issued: <span><%= "#{po.issue_date.strftime('%Y-%m-%d')}" if po.issue_date %></span></div>
           </div>
           <div>Description: <span><%= "#{po.description}" if po.description %></span></div>
