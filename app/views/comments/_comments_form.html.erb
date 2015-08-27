@@ -38,12 +38,12 @@
         </div>
 
         <div class="field comment-title">
-          <%= label_tag :title, "Your comment title (optional)" %>
+          <%= label_tag :title, "Your review title (optional)" %><br>
           <%= text_field_tag :title, @comment.title %>
         </div>
 
         <div class="field">
-          <%= label_tag :payload, "Your comment" %>
+          <%= label_tag :payload, "Your review" %><br>
           <%= text_area_tag :payload, @comment.payload, rows: 5 %>
         </div>
 
@@ -130,6 +130,8 @@
     <!-- FILE UPLOAD  -->
       <div class="attachment-uploader photo-upload-background well well-lg">
         <div class="margin-bottom">Upload pictures here (or drag and drop)</div>
+        <br>
+        <em>Note: pictures are not saved with review until "Submit" button is clicked</em>
         <%= hidden_field_tag :comment_id_for_upload, @comment.id %>
         <%= s3_uploader_form id: "s3-comment-photo-upload", class: "s3-comment-photo-upload",
           max_file_size: 10.megabytes,

@@ -11,7 +11,7 @@
       <p class="comment-smalltext"><%= "Team: #{contact.contactable.user.team.name}" if contact.contactable.user.team.present? %></p>
       <% total_comments = @total_comments_for_user[comment.user.id] %>
       <% if total_comments %>
-        <p class="comment-smalltext"><%= "#{pluralize(total_comments, 'comment')}" %></p>
+        <p class="comment-smalltext"><%= "#{pluralize(total_comments, 'review')}" %></p>
       <% end %>
       <% purchase_order_comments = @purchase_order_comments_for_user[comment.user.id] %>
       <% if purchase_order_comments %>
@@ -106,7 +106,7 @@
           <% if rating.nil? %>
             <%= form_tag comment_ratings_path do %>
               <span class="comment-smalltext"> 
-                Was this comment helpful to you?
+                Was this review helpful to you?
               </span>
               <%= hidden_field_tag :provider_id, @provider.id %>
               <%= hidden_field_tag :comment_id, comment.id %>
@@ -115,18 +115,18 @@
             <% end %>
           <% elsif rating.helpful %>
             <span class="comment-smalltext"> 
-              <em>You found this comment helpful</em>
+              <em>You found this review helpful</em>
             </span>
           <% else %>
             <span class="comment-smalltext"> 
-              <em>You didn't find this comment helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
+              <em>You didn't find this review helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
             </span>
           <% end %>
         <% end %>
       </div>
       <% if comment.user == current_user %>
         <div class="col-md-4">
-          <span class="comment-smalltext">[<%= link_to "Edit my comment", edit_comment_path(comment)%>]
+          <span class="comment-smalltext">[<%= link_to "Edit my review", edit_comment_path(comment)%>]
           </span>
         </div>
       <% end %>
