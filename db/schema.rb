@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150616031336) do
+ActiveRecord::Schema.define(version: 20150822161054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20150616031336) do
     t.integer  "cost_score",        default: 0
     t.integer  "quality_score",     default: 0
     t.integer  "speed_score",       default: 0
+    t.integer  "project_id"
   end
 
   create_table "communications", force: true do |t|
@@ -307,6 +308,14 @@ ActiveRecord::Schema.define(version: 20150616031336) do
     t.string   "bom_identifier"
     t.text     "material"
     t.text     "notes"
+  end
+
+  create_table "projects", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "organization_id"
   end
 
   create_table "providers", force: true do |t|

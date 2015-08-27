@@ -14,6 +14,8 @@ for
 <% if po.present? %>
   regarding a 
   <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: 10, show_more_option: false} %>           
-  order 
-  (Project Name: <span><%= "#{po.project_name}" if po.project_name %></span>)
+  order
+  <span>
+    <%= " (Project Name: #{comment.project.name})" if (comment.project.present? and comment.project.name.present?) %>
+  </span>
 <% end %>       

@@ -34,7 +34,7 @@
         <li><%= link_to "I had a different experience...", comments_edit_with_status_path(@comment.id,"bad") %></li>
       </ul>
 
-      <p><span>Project:</span> <%= @purchase_order.project_name.present? ? "#{@purchase_order.project_name}" : "[PROJECT NAME]" %></p>
+      <p><span>Project:</span> <%= @comment.project.present? ? "#{@comment.project.name}" : "[PROJECT NAME]" %></p>
       <p><span>Quantity:</span> <%= @purchase_order.quantity.present? ? "#{@purchase_order.quantity}" : "[QUANTITY]" %> pieces for <%= @purchase_order.quantity.present? ? currencyize(@purchase_order.price,"dollars") : "$[PRICE]" %> total</p>
       <p><span>Description:</span> <%= @purchase_order.description.present? ? "#{@purchase_order.description}" : "[DESCRIPTION]" %> </p>      
 

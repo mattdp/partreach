@@ -22,6 +22,8 @@ class CommentsController < ApplicationController
     @comment = Comment.new
     @provider = Provider.find(params[:provider_id])
     @verbose_type = Comment.verbose_type(@comment_type)
+    @projects_listing = current_organization.projects_for_listing
+    @default_project = nil
     @flavor = nil    
     Event.add_event("User",current_user.id,"loaded new comment page for","Provider",@provider.id)
     render "new"
@@ -40,6 +42,13 @@ class CommentsController < ApplicationController
       @comment.comment_type = "comment"
     end
 
+    project = Project.where(name: params[:project], organization_id: current_organization.id)
+    if params[:new_project].present?
+      @comment.project_id = Project.find_or_create(current_organization.id, params[:new_project]).id
+    elsif project.present? #checking for a non-default option
+      @comment.project_id = project[0].id
+    end
+
     begin
       @comment.save!
       add_externals
@@ -49,15 +58,6 @@ class CommentsController < ApplicationController
       note = "Saving problem."
     end
 
-    # saved_ok? = @comment.save
-    # if saved_ok?
-    #   # create externals and associate with comment
-    #   add_externals
-    #   saved_ok? = @comment.save
-    # end
-
-    # note = (saved_ok? ? "Saved OK!" : "Saving problem.")
-
     redirect_to teams_profile_path(provider.name_for_link), notice: note
   end
 
@@ -66,6 +66,8 @@ class CommentsController < ApplicationController
     @verbose_type = Comment.verbose_type(@comment.comment_type)
     @provider = @comment.provider
     @user = @comment.user
+    @projects_listing = current_organization.projects_for_listing
+    @comment.project.present? ? @default_project = @comment.project.name : @default_project = nil
     @comment_photo_urls = External.get_expiring_urls(@comment.externals, current_organization)
 
     @flavor = params[:flavor]
@@ -93,6 +95,14 @@ class CommentsController < ApplicationController
 
     # create externals and associate with comment
     add_externals
+
+    if params[:new_project].present?
+      @comment.project_id = Project.find_or_create(current_organization.id, params[:new_project]).id
+    elsif params[:project] == Project.none_selected
+      @comment.project_id = nil
+    else
+      @comment.project_id = Project.find_or_create(current_organization.id, params[:project]).id
+    end
 
     note = (@comment.update_attributes(comment_params) ? "Saved OK!" : "Saving problem.")
     redirect_to teams_profile_path(provider.name_for_link), notice: note
