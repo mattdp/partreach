@@ -6,8 +6,8 @@
 #  name            :string(255)
 #  family          :string(255)
 #  note            :text
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
+#  created_at      :datetime
+#  updated_at      :datetime
 #  exclusive       :boolean          default(FALSE)
 #  visible         :boolean          default(TRUE)
 #  readable        :string(255)
