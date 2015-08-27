@@ -52,7 +52,6 @@ class Provider < ActiveRecord::Base
 
     returner[:po] = PurchaseOrder.new({ provider: self, 
       description: options[:description],
-      project_name: options[:project_name],
       id_in_purchasing_system: options[:id_in_purchasing_system],
       price: options[:price],
       quantity: options[:quantity],
@@ -64,10 +63,13 @@ class Provider < ActiveRecord::Base
       return returner
     end
 
+    returner[:project] = Project.find_or_create(self.organization.id,options[:project_name])
+
     returner[:comment] = Comment.new({ provider: self,
       user: options[:user],
       comment_type: "purchase_order",
-      purchase_order: returner[:po]
+      purchase_order: returner[:po],
+      project_id: returner[:project].id
     })
 
     if !returner[:comment].save
