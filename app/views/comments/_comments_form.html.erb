@@ -48,10 +48,17 @@
         </div>
 
         <div class="field">
-          <%= label_tag :project, "Relevant project" %>
-          <%= select_tag(:project, options_for_select(@projects_listing,@default_project)) %>
-          or add a new project:
-          <%= text_field_tag :new_project %>
+          <div class="row">
+            <div class="col-md-4 no-padding-left">
+              <div class="comment-project-label"><%= label_tag :project, "Project" %>
+                <%= select_tag(:project, options_for_select(@projects_listing,@default_project)) %>                               
+              </div>              
+            </div>
+            <div class="col-md-8 no-padding-right">
+              <!-- or add a new project: -->
+              <%= text_field_tag :new_project, nil, :placeholder => "Project name missing? Type a new one here!" %>
+            </div>
+          </div>
         </div>
 
         <div class="overall field">
@@ -97,11 +104,9 @@
           <% rating_text = ((@comment.speed_score != 0) ? "#{@comment.speed_score} stars" : "Rating not yet selected") %>
           <strong class="choice"><%= rating_text %></strong>
         </div>        
-
-        <div class="col-md-4">
+        <div class="col-md-4 no-padding-left margin-top">
           <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
         </div>
-
       <% end %>
       </div>    
     <div class="col-md-4">
@@ -123,9 +128,8 @@
           </ul>
         </div>   
     <!-- FILE UPLOAD  -->
-      <div class="attachment-uploader photo-upload-background">Upload pictures here (or drag and drop)
-        <br>
-        <em>Note: pictures are not saved with comment until "Submit" button is clicked</em>
+      <div class="attachment-uploader photo-upload-background well well-lg">
+        <div class="margin-bottom">Upload pictures here (or drag and drop)</div>
         <%= hidden_field_tag :comment_id_for_upload, @comment.id %>
         <%= s3_uploader_form id: "s3-comment-photo-upload", class: "s3-comment-photo-upload",
           max_file_size: 10.megabytes,
@@ -140,6 +144,7 @@
             <div class="progress"><div class="bar" style="width: 0%"></div></div>
           </div>
         </script>
+        <div class="margin-top">Tip: pictures are not saved with comment until "Submit" button is clicked</div>
       </div>
       <!-- END FILE UPLOAD -->
     </div>
