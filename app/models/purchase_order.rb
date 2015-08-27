@@ -9,7 +9,6 @@
 #  created_at              :datetime
 #  updated_at              :datetime
 #  description             :text
-#  project_name            :string(255)
 #  issue_date              :date
 #  id_in_purchasing_system :integer
 #  dont_request_feedback   :boolean

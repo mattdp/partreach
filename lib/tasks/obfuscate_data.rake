@@ -161,7 +161,6 @@ unless Rails.env.production? # don't allow this to run in production environment
   def obfuscate_purchase_orders
     PurchaseOrder.all.each do |purchase_order|
       begin
-        purchase_order.project_name =  Faker::Lorem.words(2).join(" ")
         purchase_order.description =   Faker::Lorem.sentences(2).join(" ")
         purchase_order.save!
       rescue ActiveRecord::ActiveRecordError => e

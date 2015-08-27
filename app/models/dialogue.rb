@@ -6,8 +6,8 @@
 #  initial_select      :boolean
 #  opener_sent         :boolean
 #  response_received   :boolean
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
+#  created_at          :datetime
+#  updated_at          :datetime
 #  supplier_id         :integer
 #  further_negotiation :boolean
 #  won                 :boolean
