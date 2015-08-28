@@ -114,6 +114,24 @@ class Organization < ActiveRecord::Base
 
   end
 
+  #PATTERN MATCHING AT ITS FINEST. MATT PLEASE SAVE ME
+  def recent_recommendations(result_number = 10)
+
+    range = (Date.today - 30.days)..(Date.today + 3.days) #fudge factor in case time zones ever weird
+
+    #recommendations
+    recommendations = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
+      where("overall_score > 0 OR payload IS NOT NULL").
+      where("user_id IS NOT NULL").
+      where(comments: {updated_at: range}).
+      order(updated_at: :desc)
+    recommendations = recommendations.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
+    recommendations = recommendations.take(result_number)
+
+    return (recommendations).sort_by(&:updated_at).reverse.take(result_number)
+
+  end
+
   def analysis(start_date=Date.today-30.days,finish_date=Date.today)
     facts = {date_range: "#{start_date.to_s} to #{finish_date.to_s}"}
 
