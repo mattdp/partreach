@@ -16,6 +16,6 @@ for
   <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: 10, show_more_option: false} %>           
   order
   <span>
-    <%= " (Project Name: #{comment.project.name})" if (comment.project.present? and comment.project.name.present?) %>
+    (Project: <%= link_to "#{comment.project.name}", edit_project_path(comment.project.id) %>)
   </span>
 <% end %>       

@@ -1,0 +1,18 @@
+<!-- THIS HTML IS JUST A PLACEHOLDER FOR NOW. WE NEED THE "RECOMMENDS" and "RECOMMENDS AGAINST" logic. -->
+
+<strong><%= "#{comment.user.lead.lead_contact.name}" %></strong>
+recommends using
+<%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>               
+<% po = comment.purchase_order %>
+<% if po.present? %>
+  for 
+  <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: 10, show_more_option: false} %>           
+<% end %>     
+<span>
+  (Project: <%= link_to "#{comment.project.name}", edit_project_path(comment.project.id) %>)
+</span>
+<% if po.present? %>
+  (<%= link_to "Click to see review", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %>)
+<% else %>
+  (<%= link_to "Click to see review", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %>)
+<% end %>  
