@@ -15,7 +15,9 @@ for
   regarding a 
   <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: 10, show_more_option: false} %>           
   order
-  <span>
-    (Project: <%= link_to "#{comment.project.name}", edit_project_path(comment.project.id) %>)
-  </span>
+  <% if comment.project.present? %>
+    <span>
+      (Project: <%= link_to "#{comment.project.name}", edit_project_path(comment.project.id) %>)
+    </span>
+  <% end %>
 <% end %>       
