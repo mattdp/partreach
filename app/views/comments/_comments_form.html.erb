@@ -73,41 +73,22 @@
           <hr>
         <% end %>
 
-        <!-- Not DRY, but in the future we could have the recommendations queued off of star rating (e.g. a 5 star rating brings up the "Recommend this supplier for..." option but not the "Caution other against using this supplier for...") -->
-
-        <!-- RECOMMEND IN FAVOR OF -->
-        <div class="field">
-          <div class="row">
-            <div class="col-md-6 no-padding-left">
               Recommend this supplier to others 
-              <% po = @comment.purchase_order %>
-              <% if po %>                
-                for
-                <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
-              <% end %>
-            </div>  
-            <div class="col-md-6 no-padding-right">
-              <!-- MATT PLEASE SAVE ME -->
-              [CHECKBOX GOES HERE]                        
-            </div>
-          </div>
-        </div>
 
-        <!-- WARN OTHERS AGAINST -->
-        <div class="field">
-          <div class="row">
-            <div class="col-md-6 no-padding-left">
               Caution other against using this supplier
-              <% po = @comment.purchase_order %>
-              <% if po %>                
-                for
-                <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
-              <% end %>
-            </div>  
-            <div class="col-md-6 no-padding-right">
-              <!-- MATT PLEASE SAVE ME -->
-              [CHECKBOX GOES HERE]                        
-            </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <% po = @comment.purchase_order %>
+            <% if po %>                
+              for
+              <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
+            <% end %>
+          </div>
+          <div class="col-md-6 no-padding-right">
+            <%= radio_button_tag "recommendation", "positive", false, class: "radio" %>
+            <%= radio_button_tag "recommendation", "negative", false, class: "radio" %>
+            <%= radio_button_tag "recommendation", "none", true, class: "radio" %>
           </div>
         </div>
 
