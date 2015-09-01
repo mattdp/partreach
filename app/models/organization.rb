@@ -176,24 +176,32 @@ class Organization < ActiveRecord::Base
 
   end
 
-  def tag_details
+  def tag_details(model)
     tags = Tag.where("organization_id = ?", self.id)
     answer = {}
     tags.each do |tag|
       inserted = {}
-      taggings = tag.taggings
-      inserted[:num_providers] = tag.taggings.where("taggable_type = 'Provider'").count
-      inserted[:num_providers] = nil if inserted[:num_providers] == 0
-      pos = PurchaseOrder.joins("INNER JOIN taggings ON taggings.taggable_id = purchase_orders.id").
-        where(taggings: {taggable_type: "PurchaseOrder", tag_id: tag.id}).
-        where("issue_date IS NOT NULL").
-        order(:issue_date)
-      inserted[:num_pos] = (pos.present? ? pos.count : nil)
-      if (inserted[:num_pos].present? and inserted[:num_pos] > 0)
-        last_po = pos.last
-        inserted[:last_po] = last_po
-        inserted[:last_po_comment_id] = last_po.comment.id if last_po.comment.present?
-        inserted[:last_po_provider] = last_po.provider
+      provider_taggings = tag.taggings.where("taggable_type = 'Provider'")
+      inserted[:num_providers] = provider_taggings.count
+      if inserted[:num_providers] == 0
+        inserted[:num_providers] = nil
+        next
+      end
+      if model == :purchase_order
+        models = PurchaseOrder.joins("INNER JOIN taggings ON taggings.taggable_id = purchase_orders.id").
+          where(taggings: {taggable_type: "PurchaseOrder", tag_id: tag.id}).
+          where("issue_date IS NOT NULL").
+          order(:issue_date)
+        inserted[:num_models] = (models.present? ? models.count : nil)
+        if (inserted[:num_models].present? and inserted[:num_models] > 0)
+          inserted[:last_model] = model.last
+          inserted[:last_po_comment_id] = inserted[:last_model].comment.id if inserted[:last_model].comment.present?
+          inserted[:last_provider] = inserted[:last_model].provider
+        end
+      elsif model == :comment
+        provider_ids = provider_taggings.map{|tagging| tagging.taggable_id}
+        inserted[:last_model] = Comment.where(provider_id: provider_ids).order(updated_at: :desc).first
+        inserted[:last_provider] = inserted[:last_model].provider if inserted[:last_model].present?
       end
       answer["#{tag.readable}"] = inserted
     end
