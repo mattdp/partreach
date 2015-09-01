@@ -19,6 +19,11 @@ class Organization < ActiveRecord::Base
   has_many :providers
   has_many :tags
   has_many :projects
+  has_many :purchase_orders, through: :providers
+
+  def has_any_pos?
+    return self.purchase_orders.present?
+  end
 
   def projects_for_listing
     project_names = Project.where(organization_id: self.id).order(:name).map{|p| p.name}

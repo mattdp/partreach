@@ -19,7 +19,7 @@ feature "Provider-based requests" do
 
   scenario "All tags page" do
     visit organizations_tags_list_path(@team_user.team.organization.id)
-    page.should have_content "# of POs"
+    page.should have_content "# suppliers"
   end
 
 end
