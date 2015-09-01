@@ -25,6 +25,14 @@ class Organization < ActiveRecord::Base
     return self.purchase_orders.present?
   end
 
+  def last_provider_update
+    Provider.where(organization_id: self.id).maximum(:updated_at)
+  end
+
+  def last_tag_update
+    Tag.where(organization_id: self.id).maximum(:updated_at)
+  end
+
   def projects_for_listing
     project_names = Project.where(organization_id: self.id).order(:name).map{|p| p.name}
     [Project.none_selected].concat(project_names)

@@ -13,8 +13,7 @@
       </tr>
     </thead>
 
-    <%#= not organization specific cache busting %>
-    <% cache_if(cache_result, "#{current_organization.id}-providers_table-#{Provider.maximum(:updated_at)}") do %>
+    <% cache_if(cache_result, "#{current_organization.id}-providers_table-#{current_organization.last_provider_update}") do %>
       <tbody>        
         <% providers.each do |provider| %>
           <%#= imperfect, but rerun provider when it was updated or any po has been updated. probably means we should hit this table after an upload run. not currently worried about needing exact right tags on a fast timeline. also, this currently cuts across orgs, may want to scope the Provider updated at some point. %>
