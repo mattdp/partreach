@@ -135,11 +135,13 @@ class Provider < ActiveRecord::Base
   end
 
   #returns nil or a parsed date string
-  def latest_purchase_order_date(brevity = false)
-    return nil if !self.purchase_orders.present?
-    po = PurchaseOrder.where("provider_id = ?",self.id).order("created_at DESC").first
-    return po.created_at.strftime("%b %e, %Y") unless brevity
-    return po.created_at.strftime("%-m/%-d/%y")
+  def latest_model_date(model,brevity = false)
+    return nil unless model.present?
+    unsorted_models = self.send(model.to_s.pluralize)
+    return nil unless unsorted_models.present?
+    model = unsorted_models.order(created_at: :desc).first
+    return model.created_at.strftime("%b %e, %Y") unless brevity
+    return model.created_at.strftime("%-m/%-d/%y")
   end
 
   def index_address

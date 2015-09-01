@@ -22,7 +22,7 @@ class OrganizationsController < ApplicationController
     @organization = current_organization
     @providers = Provider.where(organization_id: current_organization.id)
     @middle_text = "List of all #{@organization.name} Suppliers"
-    @purchase_order_titles = @organization.has_any_pos?
+    @purchase_order_titles = false #@organization.has_any_pos?
 
     Event.add_event("User","#{current_user.id}","viewed supplier list")
   end
