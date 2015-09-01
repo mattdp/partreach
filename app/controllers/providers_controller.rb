@@ -92,6 +92,7 @@ class ProvidersController < ApplicationController
     @organization = current_organization
 
     @people_called = @organization.colloquial_people_name
+    @purchase_order_titles = @organization.has_any_pos?
 
     @providers_list = Rails.cache.fetch("#{@organization.id}-providers_alpha_sort-#{@organization.last_provider_update}") do 
       @organization.providers_alpha_sort
