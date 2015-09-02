@@ -1,6 +1,13 @@
 class PurchaseOrdersController < ApplicationController
   before_filter :admin_user
   
+  def edit
+    @po = PurchaseOrder.find(params[:id])
+  end
+
+  def update
+  end
+
   def index
     @pos = PurchaseOrder.order(created_at: :desc).limit(25)
   end
