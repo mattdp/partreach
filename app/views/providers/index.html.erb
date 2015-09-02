@@ -4,7 +4,7 @@
   <div class="row">
     <div class="main-area-contrast override">
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
-       <%= render partial: "organizations/navigation_header", locals: {middle_text: "See who #{@people_called} are using to make parts", organization: @org} %>
+       <%= render partial: "organizations/navigation_header", locals: {middle_text: "See who #{@people_called} are using to make parts", organization: @organization} %>
       <%= render :partial => "providers/providers_header" %>      
 
       <% if @results_hash.present? %>
@@ -16,7 +16,7 @@
               <span><%= header %></span>
             </h3>
             <% if providers %> 
-              <%= render :partial => "providers/providers_table", locals: {providers: providers, include_tag_column: false, cache_result: false} %>            
+              <%= render partial: "providers/providers_table", locals: {providers: providers, include_tag_column: false, cache_result: false, purchase_order_titles: @purchase_order_titles} %>
             <% else %>
               <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
             <% end %>
