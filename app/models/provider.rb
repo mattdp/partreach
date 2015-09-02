@@ -179,7 +179,7 @@ class Provider < ActiveRecord::Base
     tags.include? tag_id
   end
 
-  def update_tags(submitted_tag_ids)
+  def update_tags(submitted_tag_ids,allow_removal=true)
     saved_ok = true
     
     if(submitted_tag_ids and submitted_tag_ids.size > 0)
@@ -197,7 +197,7 @@ class Provider < ActiveRecord::Base
         end
       end
 
-      if remove_tag_ids.size > 0
+      if (remove_tag_ids.size > 0 and allow_removal)
         remove_tag_ids.each do |id|
           saved_ok = false unless self.remove_tags(id)
         end

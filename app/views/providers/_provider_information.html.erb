@@ -106,40 +106,7 @@
 
     <h2>Tags</h2>
 
-    <div class="row">
-      <div class="col-md-12 index-search-bar">
-        <%= select_tag(:tag_selection, 
-            options_from_collection_for_select(@tags, :id, :readable, selected: @checked_tags.map(&:id)),
-            multiple: true, class: 'tag-edit') %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-9">
-        <%= label_tag 'new_tag_name_1', "Create new tag(s) and add to supplier:" %>
-        <div class="row">
-          <div class="col-md-4">
-            <span class="provider-edit-input">
-              <%= text_field_tag 'new_tag_1' %>  
-            </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <span class="provider-edit-input">
-              <%= text_field_tag 'new_tag_2' %>  
-            </span>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
-            <span class="provider-edit-input">
-              <%= text_field_tag 'new_tag_3' %>  
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <%= render partial: "providers/tag_adder", locals: {tags: @tags, checked_tags: @checked_tags, label_text: "Create new tag(s) and add to supplier:"} %>
 
     <br>
     <div class="row">
