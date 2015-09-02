@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   end
 
   def render_new_comment_form
-    @comment = Comment.new
+    @comment = Comment.new(recommendation: "none")
     @provider = Provider.find(params[:provider_id])
     @verbose_type = Comment.verbose_type(@comment_type)
     @projects_listing = current_organization.projects_for_listing

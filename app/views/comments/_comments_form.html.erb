@@ -81,14 +81,19 @@
             <% end %>
           </div>
         </div>
+
+        <% radio_button_info = [
+          ["positive","Recommend this supplier to others"],
+          ["negative","Caution other against using this supplier"],
+          ["none","Don't highlight this review to others"]
+        ] %>
         <div class="col-md-6 no-padding-right">
-          <%= label_tag "Recommend this supplier to others" %>
-          <%= radio_button_tag "recommendation", "positive", false, class: "radio" %>
-          <%= label_tag "Caution other against using this supplier" %>
-          <%= radio_button_tag "recommendation", "negative", false, class: "radio" %>
-          <%= label_tag "Don't highlight this review to others" %>
-          <%= radio_button_tag "recommendation", "none", true, class: "radio" %>
+          <% radio_button_info.each do |individual_button| %>
+            <%= label_tag "recommendation-radio-button-#{individual_button[0]}", "#{individual_button[1]}" %>
+            <%= radio_button_tag "recommendation", "#{individual_button[0]}", @comment.recommendation == "#{individual_button[0]}", class: "radio", id: "recommendation-radio-button-#{individual_button[0]}" %>
+          <% end %>
         </div>
+
         <div class="col-md-4 no-padding-left margin-top">
           <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
         </div>
