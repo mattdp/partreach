@@ -34,7 +34,7 @@ class PurchaseOrdersController < ApplicationController
   end
 
   def index
-    @pos = PurchaseOrder.order(created_at: :desc).limit(25)
+    @pos = PurchaseOrder.order(created_at: :desc).limit(50)
   end
 
   def emails
