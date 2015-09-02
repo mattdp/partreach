@@ -2,7 +2,7 @@ class PurchaseOrdersController < ApplicationController
   before_filter :admin_user
   
   def index
-    @pos = PurchaseOrder.last(25)
+    @pos = PurchaseOrder.order(created_at: :desc).limit(25)
   end
 
   def emails
