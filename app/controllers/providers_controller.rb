@@ -106,12 +106,11 @@ class ProvidersController < ApplicationController
     end
 
     @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}") do 
-      @organization.recent_activity
+      @organization.recent_activity(["comments","providers"])
     end
 
-    #PATTERN MATCHING AT ITS FINEST. MATT PLEASE SAVE ME
-    @recent_recommendations = Rails.cache.fetch("#{current_organization.id}-recent_recommendations-#{Provider.maximum(:updated_at)}-#{Comment.maximum(:updated_at)}-#{PurchaseOrder.maximum(:updated_at)}") do 
-      @org.recent_recommendations
+    @recent_recommendations = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}") do 
+      @organization.recent_activity(["comments"],true)
     end
 
     @results_hash = {}

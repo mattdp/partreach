@@ -85,7 +85,7 @@
         <% radio_button_info = [
           ["positive","Recommend this supplier to others"],
           ["negative","Caution other against using this supplier"],
-          ["none","Don't highlight this review to others"]
+          [Comment.default_recommendation,"Don't highlight this review to others"]
         ] %>
         <div class="col-md-6 no-padding-right">
           <% radio_button_info.each do |individual_button| %>
