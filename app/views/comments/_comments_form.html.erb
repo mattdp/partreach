@@ -72,11 +72,6 @@
           <%= render partial: "comments/rating_block", locals: {category: "#{individual_rating[0]}", html_flavortext: "#{individual_rating[1]}"} %>
           <hr>
         <% end %>
-
-              Recommend this supplier to others 
-
-              Caution other against using this supplier
-
         <div class="row">
           <div class="col-md-6">
             <% po = @comment.purchase_order %>
@@ -85,13 +80,15 @@
               <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
             <% end %>
           </div>
-          <div class="col-md-6 no-padding-right">
-            <%= radio_button_tag "recommendation", "positive", false, class: "radio" %>
-            <%= radio_button_tag "recommendation", "negative", false, class: "radio" %>
-            <%= radio_button_tag "recommendation", "none", true, class: "radio" %>
-          </div>
         </div>
-
+        <div class="col-md-6 no-padding-right">
+          <%= label_tag "Recommend this supplier to others" %>
+          <%= radio_button_tag "recommendation", "positive", false, class: "radio" %>
+          <%= label_tag "Caution other against using this supplier" %>
+          <%= radio_button_tag "recommendation", "negative", false, class: "radio" %>
+          <%= label_tag "Don't highlight this review to others" %>
+          <%= radio_button_tag "recommendation", "none", true, class: "radio" %>
+        </div>
         <div class="col-md-4 no-padding-left margin-top">
           <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
         </div>
