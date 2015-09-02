@@ -4,7 +4,7 @@ class OrganizationsController < ApplicationController
   def tags_list
 
     @organization = current_organization
-    @purchase_order_titles = false # => @organization.has_any_pos?
+    @purchase_order_titles = @organization.has_any_pos?
     @middle_text = "List of all #{@organization.name} Tags"
 
     #tagging touches tag; po and comment touch provider
