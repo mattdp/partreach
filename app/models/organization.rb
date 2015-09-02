@@ -191,10 +191,10 @@ class Organization < ActiveRecord::Base
         models = PurchaseOrder.joins("INNER JOIN taggings ON taggings.taggable_id = purchase_orders.id").
           where(taggings: {taggable_type: "PurchaseOrder", tag_id: tag.id}).
           where("issue_date IS NOT NULL").
-          order(:issue_date)
+          order(issue_date: :desc)
         inserted[:num_models] = (models.present? ? models.count : nil)
         if (inserted[:num_models].present? and inserted[:num_models] > 0)
-          inserted[:last_model] = model.last
+          inserted[:last_model] = models.first
           inserted[:last_po_comment_id] = inserted[:last_model].comment.id if inserted[:last_model].comment.present?
           inserted[:last_provider] = inserted[:last_model].provider
         end
