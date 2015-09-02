@@ -1,8 +1,30 @@
-<% provide(:title,"Recent purchase orders") %>
+<% provide(:title,"Last 25 purchase orders") %>
 
 <div class="container hax-body-styling">
   <div class="row">
     <%= link_to "Looking for the email sending page?", purchase_orders_emails_path %>
+
+    <table class="table">
+      <tr>
+        <th>PO ID</th>
+        <th>Organization</th>
+        <th>Supplier</th>
+        <th>created_at</th>
+        <th>Edit PO in-app</th>
+        <th>Edit PO RailsAdmin</th>
+      </tr>
+
+      <% @pos.each do |po| %>
+        <tr>
+          <td><%= po.id %></td>
+          <td><%= po.provider.organization.name %></td>
+          <td><%= po.provider.name %></td>
+          <td><%= po.created_at %></td>
+          <td><%= link_to "Placeholder for edit page" %></td>
+          <td><%= link_to "RailsAdmin", "#{base_url}/admin/purchase_order/#{po.id}/edit" %></td>
+        </tr>
+      <% end %>
+    </table>
 
   </div>
 </div>
