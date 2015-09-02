@@ -158,7 +158,8 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:overall_score, :quality_score, :cost_score, :speed_score, :payload, :provider_id, :title)
+    params.permit(:overall_score, :quality_score, :cost_score, :speed_score, :payload, \
+      :provider_id, :title, :recommendation)
   end
 
   def correct_user
