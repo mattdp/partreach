@@ -109,6 +109,11 @@ class ProvidersController < ApplicationController
       @organization.recent_activity
     end
 
+    #PATTERN MATCHING AT ITS FINEST. MATT PLEASE SAVE ME
+    @recent_recommendations = Rails.cache.fetch("#{current_organization.id}-recent_recommendations-#{Provider.maximum(:updated_at)}-#{Comment.maximum(:updated_at)}-#{PurchaseOrder.maximum(:updated_at)}") do 
+      @org.recent_recommendations
+    end
+
     @results_hash = {}
     if params[:tags].present?
       Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @search_text)

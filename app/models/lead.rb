@@ -3,8 +3,8 @@
 # Table name: leads
 #
 #  id                   :integer          not null, primary key
-#  created_at           :datetime
-#  updated_at           :datetime
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #  source               :string(255)      default("manual")
 #  next_contact_date    :date
 #  next_contact_content :string(255)

@@ -18,6 +18,7 @@
 #  quality_score     :integer          default(0)
 #  speed_score       :integer          default(0)
 #  project_id        :integer
+#  recommendation    :string(255)
 #
 
 class Comment < ActiveRecord::Base

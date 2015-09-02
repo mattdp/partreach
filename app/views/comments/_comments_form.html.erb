@@ -18,7 +18,7 @@
   </div>
   </div>
   <div class="row">
-    <div class="col-md-8 any-form">           
+    <div class="col-md-8 any-form">       
 
       <%= form_tag(path, method: method) do %>
 
@@ -61,49 +61,37 @@
           </div>
         </div>
 
-        <div class="overall field">
-          <p><strong>Overall,</strong> how do you like this supplier? (optional)</p>
-          <span class="star-rating">
-          <% (1..5).each do |value| %>
-            <%= radio_button_tag("overall_score", "#{value}", checked = (value == @comment.overall_score)) %><i></i>
-          <% end %>
-          </span>
-          <% rating_text = ((@comment.overall_score != 0) ? "#{@comment.overall_score} stars" : "Rating not yet selected") %>
-          <strong class="choice"><%= rating_text %></strong>
+        <% rating_info = [
+          ["overall","<strong>Overall</strong>"],
+          ["quality","In terms of <strong>quality</strong>"],
+          ["cost","In terms of <strong>cost</strong>"],
+          ["speed","In terms of <strong>speed</strong>"]
+        ] %>
+
+        <% rating_info.each do |individual_rating| %>
+          <%= render partial: "comments/rating_block", locals: {category: "#{individual_rating[0]}", html_flavortext: "#{individual_rating[1]}"} %>
+          <hr>
+        <% end %>
+
+              Recommend this supplier to others 
+
+              Caution other against using this supplier
+
+        <div class="row">
+          <div class="col-md-6">
+            <% po = @comment.purchase_order %>
+            <% if po %>                
+              for
+              <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
+            <% end %>
+          </div>
+          <div class="col-md-6 no-padding-right">
+            <%= radio_button_tag "recommendation", "positive", false, class: "radio" %>
+            <%= radio_button_tag "recommendation", "negative", false, class: "radio" %>
+            <%= radio_button_tag "recommendation", "none", true, class: "radio" %>
+          </div>
         </div>
-        <hr>
-        <div class="quality field">
-          <p>In terms of <strong>quality</strong>, how do you like this supplier? (optional)</p>
-          <span class="star-rating">
-          <% (1..5).each do |value| %>
-            <%= radio_button_tag("quality_score", "#{value}", checked = (value == @comment.quality_score)) %><i></i>
-          <% end %>
-          </span>
-          <% rating_text = ((@comment.quality_score != 0) ? "#{@comment.quality_score} stars" : "Rating not yet selected") %>
-          <strong class="choice"><%= rating_text %></strong>
-        </div>
-        <hr>
-        <div class="cost field">
-          <p>In terms of <strong>cost</strong>, how do you like this supplier? (optional)</p>
-          <span class="star-rating">
-          <% (1..5).each do |value| %>
-            <%= radio_button_tag("cost_score", "#{value}", checked = (value == @comment.cost_score)) %><i></i>
-          <% end %>
-          </span>
-          <% rating_text = ((@comment.cost_score != 0) ? "#{@comment.cost_score} stars" : "Rating not yet selected") %>
-          <strong class="choice"><%= rating_text %></strong>
-        </div>
-        <hr>
-        <div class="speed field">
-          <p>In terms of <strong>speed</strong>, how do you like this supplier? (optional)</p>
-          <span class="star-rating">
-          <% (1..5).each do |value| %>
-            <%= radio_button_tag("speed_score", "#{value}", checked = (value == @comment.speed_score)) %><i></i>
-          <% end %>
-          </span>
-          <% rating_text = ((@comment.speed_score != 0) ? "#{@comment.speed_score} stars" : "Rating not yet selected") %>
-          <strong class="choice"><%= rating_text %></strong>
-        </div>        
+
         <div class="col-md-4 no-padding-left margin-top">
           <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
         </div>
