@@ -2,6 +2,9 @@ class PurchaseOrdersController < ApplicationController
   before_filter :admin_user
   
   def index
+  end
+
+  def emails
     @structure = PurchaseOrder.users_and_email_suggestions
   end
 

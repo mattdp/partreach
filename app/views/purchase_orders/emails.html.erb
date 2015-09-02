@@ -1,0 +1,53 @@
+<% provide(:title,"Email reminders") %>
+
+<div class="container hax-body-styling">
+  <div class="row">
+
+    <p class="center"><strong>
+      <%= link_to "Every time you use this page, open this Google Doc for notes on person-based notes to keep in mind!", "https://docs.google.com/document/d/16HrXPc5EEieofyLqTOM9_Z0_sqxh4Vn5M296sg9S8ts/edit" %>
+    </strong></p>
+
+    <table class="table">
+      <tr>
+        <th>User ID</th>
+        <th>User Name</th>
+        <th>User Email</th>
+        <th>Email allowed at/after</th>
+        <th>Link to first email for appropriate PO</th>
+        <th>PO ID</th>
+        <th>This'll be the Xth email</th>
+        <th>Hit when you send this email</th>
+      </tr>
+      <% @structure.each do |user,details| %>
+        <% contact = user.lead.lead_contact %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= contact.full_name_untrusted %></td>
+          <td><%= contact.email %></td>
+          <td><%= details[:emailable_date].strftime("%b %e, %Y") %>
+          <td>
+            <% if details[:purchase_order].present? %>
+              <%= link_to "Text for PO email", comments_request_for_review_with_message_number_path(details[:purchase_order].comment.id, details[:followup_number]) %>
+            <% end %>
+          </td>
+          <td>
+            <% if details[:purchase_order].present? %>
+              <%= details[:purchase_order].id %>
+            <% end %>
+          </td>
+          <td>
+            <% if details[:purchase_order].present? %>
+              <%= details[:followup_number] %>
+            <% end %>
+          </td>
+          <td>
+            <% if details[:purchase_order] %>
+              <%= link_to "Sent!", purchase_orders_email_sent_path(details[:purchase_order].id, details[:followup_number]), class: "button--blue" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+</div>

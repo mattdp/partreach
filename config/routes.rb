@@ -114,6 +114,7 @@ Partreach::Application.routes.draw do
   get '/teams/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
 
   resources :purchase_orders, only: [:index]
+  get '/purchase_orders/emails', to: 'purchase_orders#emails', as: 'purchase_orders_emails'
   get '/purchase_orders/email_sent/:id/:after_this_email_count', to: 'purchase_orders#email_sent', as: 'purchase_orders_email_sent'
 
   resources :sessions, only: [:new, :create, :destroy, :edit, :update]
