@@ -26,6 +26,6 @@
 
     </div>
   </div>
-  <%= render partial: "providers/recommended_feed", locals: {recommended_items: @recent_recommendations} %>
-  <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_activity} %>
+  <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_recommendations, title: "Recent Recommendations"} %>
+  <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_activity, title: "Recent Reviews and Comments"} %>
 </div>
