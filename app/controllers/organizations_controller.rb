@@ -33,4 +33,8 @@ class OrganizationsController < ApplicationController
     Event.add_event("User","#{current_user.id}","viewed supplier list")
   end
 
+  def show
+    
+  end
+
 end
