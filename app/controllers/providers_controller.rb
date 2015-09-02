@@ -109,7 +109,7 @@ class ProvidersController < ApplicationController
       @organization.recent_activity(["comments","providers"])
     end
 
-    @recent_recommendations = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}") do 
+    @recent_recommendations = Rails.cache.fetch("#{@organization.id}-recent_recommendations-#{@organization.last_provider_update}") do 
       @organization.recent_activity(["comments"],true)
     end
 

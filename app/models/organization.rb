@@ -110,7 +110,7 @@ class Organization < ActiveRecord::Base
         where(comments: {updated_at: range}).
         order(updated_at: :desc)
       comments = comments.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
-      comments = comments.reject{|c| c.recommendation == Comment.default_recommendation} if recommendation_only == true
+      comments = comments.reject{|c| (c.recommendation.nil? or c.recommendation == Comment.default_recommendation)} if recommendation_only == true
       intermediate_results += comments.take(result_number)
     end
 
