@@ -99,7 +99,7 @@ class Organization < ActiveRecord::Base
     return output_string
   end
 
-  def recent_activity(activity_types,recommendation_only=false,result_number=10)
+  def recent_activity(activity_types,recommendations=false,result_number=10)
     range = (Date.today - 30.days)..(Date.today + 3.days) #fudge factor in case time zones ever weird
     intermediate_results = []
 
@@ -110,7 +110,11 @@ class Organization < ActiveRecord::Base
         where(comments: {updated_at: range}).
         order(updated_at: :desc)
       comments = comments.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
-      comments = comments.reject{|c| (c.recommendation.nil? or c.recommendation == Comment.recommendations[:default][:short])} if recommendation_only == true
+      if recommendations
+        comments = comments.select{|c| c.has_recommendation?}
+      else
+        comments = comments.reject{|c| c.has_recommendation?}
+      end
       intermediate_results += comments.take(result_number)
     end
 

@@ -1,19 +1,29 @@
 <% po = comment.purchase_order %>
 <% project = comment.project %>
+<% recs = Comment.recommendations %>
+<% verbed = nil %>
 
-<strong><%= "#{comment.user.lead.lead_contact.name}" %></strong>
-left a 
-<% if comment.overall_score > 0 %>                  
-  <%= render partial: "providers/star_display", locals: {score: comment.overall_score, include_hidden_number: false} %>
-<% end %>
+<strong><%= "#{comment.user.lead.lead_contact.name} " %></strong>
 
-<% if po.present? %>
-  <%= link_to "review", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %> 
+
+
+<% if comment.recommendation == Comment.recommendations[:positive][:short] %>
+  <% verbed = "strongly recommended" %>
+<% elsif comment.recommendation == Comment.recommendations[:negative][:short] %>
+  <% verbed = "strongly warned against" %>
 <% else %>
-  <%= link_to "review", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %> 
+  <% verbed = "reviewed" %>
 <% end %>
-for                
-<%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link) %>                
+
+<%= "#{verbed} " %>
+<% if comment.overall_score > 0 %> 
+  <%= "( " %>
+  <%= render partial: "providers/star_display", locals: {score: comment.overall_score, include_hidden_number: false} %>
+    <%= ") " %>
+<% end %>
+        
+<%= link_to "#{comment.provider.name}", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %>
+
 <% if po.present? %>
   regarding a 
   <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: 10, show_more_option: false} %>           

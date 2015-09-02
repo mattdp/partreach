@@ -42,6 +42,10 @@ class Comment < ActiveRecord::Base
     }
   end
 
+  def has_recommendation?
+    !(self.recommendation.nil? or self.recommendation == Comment.recommendations[:default][:short])
+  end
+
   def organization
     self.provider.organization
   end
