@@ -34,8 +34,12 @@ class Comment < ActiveRecord::Base
   #comment_type should be "purchase_order", "factory_visit", or "comment"
   #score of 0 = didn't give a score. 1 low, 5 high
 
-  def self.default_recommendation
-    "none"
+  def self.recommendations
+    {
+      default: {short: "none", prompt: "Don't highlight this review to others"},
+      positive: {short: "positive", prompt: "Recommend this supplier to others"},
+      negative: {short: "negative", prompt: "Caution other against using this supplier"}
+    }
   end
 
   def organization

@@ -82,15 +82,12 @@
           </div>
         </div>
 
-        <% radio_button_info = [
-          ["positive","Recommend this supplier to others"],
-          ["negative","Caution other against using this supplier"],
-          [Comment.default_recommendation,"Don't highlight this review to others"]
-        ] %>
+        <% ordered_recommendations = [:positive, :negative, :default] %>
         <div class="col-md-6 no-padding-right">
-          <% radio_button_info.each do |individual_button| %>
-            <%= label_tag "recommendation-radio-button-#{individual_button[0]}", "#{individual_button[1]}" %>
-            <%= radio_button_tag "recommendation", "#{individual_button[0]}", @comment.recommendation == "#{individual_button[0]}", class: "radio", id: "recommendation-radio-button-#{individual_button[0]}" %>
+          <% ordered_recommendations.each do |individual_recommendation| %>
+            <% rec = Comment.recommendations[individual_recommendation] %>
+            <%= label_tag "recommendation-radio-button-#{rec[:short]}", "#{rec[:prompt]}" %>
+            <%= radio_button_tag "recommendation", "#{rec[:short]}", @comment.recommendation == "#{rec[:short]}", class: "radio", id: "recommendation-radio-button-#{rec[:short]}" %>
           <% end %>
         </div>
 

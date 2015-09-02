@@ -1,9 +1,12 @@
+<% po = comment.purchase_order %>
+<% project = comment.project %>
+
 <strong><%= "#{comment.user.lead.lead_contact.name}" %></strong>
 left a 
 <% if comment.overall_score > 0 %>                  
   <%= render partial: "providers/star_display", locals: {score: comment.overall_score, include_hidden_number: false} %>
 <% end %>
-<% po = comment.purchase_order %>
+
 <% if po.present? %>
   <%= link_to "review", teams_profile_path(comment.provider.name_for_link, :anchor => comment.id) %> 
 <% else %>
@@ -17,7 +20,7 @@ for
   order
   <% if comment.project.present? %>
     <span>
-      (Project: <%= link_to "#{comment.project.name}", edit_project_path(comment.project.id) %>)
+      (Project: <%= link_to "#{comment.project.name}", edit_project_path(project.id) %>)
     </span>
   <% end %>
 <% end %>       
