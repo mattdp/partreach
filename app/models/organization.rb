@@ -144,6 +144,7 @@ class Organization < ActiveRecord::Base
     facts[:profile_views_non_admin] = Event.where("happening = 'loaded profile'")
       .where("created_at >= ? AND created_at <= ?",start_date,finish_date)
       .where.not(model_id: admin_ids)
+      .select{|e| e.model == "User" and User.find(e.model_id).present? and User.find(e.model_id).organization_id == self.id}
       .count
 
     return facts

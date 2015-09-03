@@ -34,7 +34,7 @@ class PurchaseOrdersController < ApplicationController
   end
 
   def index
-    @pos = PurchaseOrder.order(created_at: :desc).limit(25)
+    @pos = PurchaseOrder.order(created_at: :desc).limit(50)
   end
 
   def emails
@@ -52,7 +52,7 @@ class PurchaseOrdersController < ApplicationController
       @purchase_order.save
     end
 
-    redirect_to purchase_orders_path, notice: "Email sending logging attempted."
+    redirect_to purchase_orders_emails_path, notice: "Email sending logging attempted."
   end
 
 end
