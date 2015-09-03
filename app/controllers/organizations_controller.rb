@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :org_access_only
+  before_filter :admin_user, except: [:tags_list, :providers_list]
 
   def tags_list
 
@@ -34,7 +35,7 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    
+    @organization = params[:id]
   end
 
 end
