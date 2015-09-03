@@ -84,7 +84,18 @@ module SessionsHelper
 
   def base_url
     return "http://www.supplybetter.com" if Rails.env.production?
-    return "http://quiet-waters-6381.herokuapp.com" if Rails.env.staging?
+    if Rails.env.staging?
+      case ENV['STAGING_SUB_ENVIRONMENT']
+      when 'demo'
+        return "http://demo-supplybetter.herokuapp.com"
+      when 'uat'
+        return "http://uat-supplybetter.herokuapp.com"
+      when 'staging'
+        return "http://quiet-waters-6381.herokuapp.com"
+      else
+        return "http://quiet-waters-6381.herokuapp.com"
+      end
+    end
     return "http://127.0.0.1:3000" if Rails.env.development?
     return "http://www.supplybetter.com"
   end
