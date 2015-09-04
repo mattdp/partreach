@@ -6,28 +6,43 @@
       <tr>
         <th>Tags</th>
         <th># suppliers</th>
-        <th>last PO date</th>
-        <th>latest PO supplier</th>
-        <th># of POs</th>
+        <% if @purchase_order_titles %>
+          <th>last PO date</th>
+          <th>latest PO supplier</th>
+          <th># of POs</th>
+        <% else %>
+          <th>last review date</th>
+          <th>last review supplier</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
-      <% @tag_details.each do |tag_readable,details| %>
+      <% tag_details.each do |tag_readable,details| %>
         <tr>
           <td><%= link_to "#{tag_readable}", teams_index_path(tags: [tag_readable]) %></td>
           <td><%= "#{details[:num_providers]}" %></td>
           <td>
-            <% if details[:last_po].present? and details[:last_po_comment_id].present? and details[:last_po_provider].present? %>
-              <% date_string = details[:last_po].issue_date.strftime("%-m/%-d/%y") %>
-              <%= link_to date_string, teams_profile_path(details[:last_po_provider].name_for_link, anchor: details[:last_po_comment_id]) %> 
+            <% if @purchase_order_titles %>
+              <% if details[:last_model].present? and details[:last_po_comment_id].present? and details[:last_provider].present? %>
+                <% date_string = details[:last_model].issue_date.strftime("%-m/%-d/%y") %>
+                <%= link_to date_string, teams_profile_path(details[:last_provider].name_for_link, anchor: details[:last_po_comment_id]) %> 
+              <% end %>
+            <% else %>
+              <% if details[:last_model].present? and details[:last_provider].present? %>
+                  <% date_string = details[:last_model].updated_at.strftime("%-m/%-d/%y") %>
+                  <%= link_to date_string, teams_profile_path(details[:last_provider].name_for_link, anchor: details[:last_model].id) %> 
+              <% end %>
             <% end %>
           </td>
           <td>
-            <% if details[:last_po_provider].present? %>
-              <%= link_to "#{details[:last_po_provider].name}", teams_profile_path(details[:last_po_provider].name_for_link) %>
+            <% if details[:last_provider].present? %>
+              <%= link_to "#{details[:last_provider].name}", teams_profile_path(details[:last_provider].name_for_link) %>
             <% end %>
           </td>
-          <td><%= "#{details[:num_pos]}" %></td>
+          <%#= no fifth column if not POs %>
+          <% if @purchase_order_titles %>
+            <td><%= "#{details[:num_pos]}" %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

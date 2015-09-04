@@ -89,21 +89,22 @@ class ProvidersController < ApplicationController
   end
 
   def index
-    @org = current_organization
+    @organization = current_organization
 
-    @people_called = @org.colloquial_people_name
+    @people_called = @organization.colloquial_people_name
+    @purchase_order_titles = @organization.has_any_pos?
 
-    @providers_list = Rails.cache.fetch("#{current_organization.id}-providers_alpha_sort-#{Provider.maximum(:updated_at)}") do 
+    @providers_list = Rails.cache.fetch("#{@organization.id}-providers_alpha_sort-#{@organization.last_provider_update}") do 
       temp_list = []
-      @org.providers_alpha_sort.each do |provider|
+      @organization.providers_alpha_sort.each do |provider|
         temp_list << [provider.name, "P:#{provider.id}"]
       end
       temp_list
     end
 
-    @providers_tag_search_list = Rails.cache.fetch("#{current_organization.id}-providers_tag_search_list-#{Provider.maximum(:updated_at)}-#{Tagging.maximum(:updated_at)}") do 
+    @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-providers_tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       temp_list = [] 
-      @org.providers_hash_by_tag.each { |tag, providers| temp_list << [providers.size, tag.readable] }
+      @organization.providers_hash_by_tag.each { |tag, providers| temp_list << [providers.size, tag.readable] }
       temp_list = temp_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
       temp_list.each do |e|
         e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]"
@@ -113,8 +114,8 @@ class ProvidersController < ApplicationController
 
     @search_terms_list = @providers_list + @providers_tag_search_list
 
-    @recent_activity = Rails.cache.fetch("#{current_organization.id}-recent_activity-#{Provider.maximum(:updated_at)}-#{Comment.maximum(:updated_at)}-#{PurchaseOrder.maximum(:updated_at)}") do 
-      @org.recent_activity
+    @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}") do 
+      @organization.recent_activity
     end
 
     @results_hash = {}
