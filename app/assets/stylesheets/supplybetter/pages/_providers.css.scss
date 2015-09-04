@@ -438,6 +438,29 @@ li p {
 	border-color: #a9d8b2;
 	background: rgba(87, 173, 104, 0.1);
 }
+
+.recommend{
+	font-size: 13px; /*this font size isn't consistent with the rest of the Providers profile page but certainly makes the tags present in a cleaner, more compact form*/
+	line-height: 22px;
+	display: inline-block;
+	border-radius: 2px;
+	border: 1px solid rgba(0, 0, 0, 0.5);
+	padding: 3px 10px;    
+	margin-bottom: 8px;
+
+	&.recommend_for {
+	color: #468c54;
+	border-color: #a9d8b2;
+	background: rgba(87, 173, 104, 0.1);
+	}
+
+	&.recommend_against {
+		color: #eb5b5b;
+		border-color: #db1a1a;
+		background: rgba(237, 145, 145, 0.1);
+	}
+}
+
 /*END PROVIDER PROFILE*/
 
 /*BEGIN COMMENT SECTION*/

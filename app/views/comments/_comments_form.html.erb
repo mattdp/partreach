@@ -70,25 +70,16 @@
 						<hr>
 					<% end %>
 
-					<div class="row">
-						<div class="col-md-6">
-							<% po = @comment.purchase_order %>
-							<% if po %>                
-								for
-								<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
-							<% end %>
-						</div>
-					</div>
-
+					
 					<% ordered_recommendations = [:positive, :negative, :default] %>
 					
 					<% ordered_recommendations.each do |individual_recommendation| %>
 						<div class="row radio">
-							<div class="col-md-8 col-sm-8 col-xs-8">
+							<div class="col-md-5 col-sm-5 col-xs-5">
 								<% rec = Comment.recommendations[individual_recommendation] %>
 								<%= radio_button_tag "recommendation", "#{rec[:short]}", @comment.recommendation == "#{rec[:short]}", class: "radio", id: "recommendation-radio-button-#{rec[:short]}" %>
-								<%= label_tag "recommendation-radio-button-#{rec[:short]}", "#{rec[:prompt]}" %>                  
-							</div>
+								<%= label_tag "recommendation-radio-button-#{rec[:short]}", "#{rec[:prompt]}" %>								
+							</div>							
 						</div>    
 					<% end %>                            
 				</div>

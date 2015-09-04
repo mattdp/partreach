@@ -1,11 +1,13 @@
 <% provide(:title, "Reset password") %>
 
 <div class="row">
-  <div class="col-md-12">
-    <div class="col-md-4"></div>
-    <!-- begin form -->    
-    <%= form_for @user, :url => session_path(params[:id]) do |f| %>
-      <%= render partial: "sessions/password_reset_form", locals: {user: @user, f: f} %>
-    <% end %>
-  </div>
+	<div class="col-md-12">
+		<div class="col-md-4"></div>
+		<!-- begin form -->    
+		<div class="any-form">
+			<%= form_for @user, :url => session_path(params[:id]) do |f| %>
+				<%= render partial: "sessions/password_reset_form", locals: {user: @user, f: f} %>
+			<% end %>
+		</div>
+	</div>
 </div>
