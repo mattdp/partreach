@@ -109,8 +109,8 @@
     <%= render partial: "providers/tag_adder", locals: {tags: @tags, checked_tags: @checked_tags, label_text: "Create new tag(s) and add to supplier:"} %>
 
     <br>
-    <div class="row">
-      <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button", :class => "save-button margin-bottom" %>
+    <div class="row col-md-5">
+      <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button", :class => "btn-block save-button margin-bottom" %>
     </div>
 
   </div>

@@ -166,7 +166,7 @@
     margin-top: 20px;
   }
 
-  input[type=text], textarea {
+  input[type=text], textarea, input[type=password] {
     @include appearance(none);
     background: $light-gray;
     border: 1px solid #ccc;
@@ -244,5 +244,6 @@
     color: white;
     height: 40px;
     margin-bottom: 10px;
+    margin-top: 20px;
   }
 }
