@@ -99,32 +99,37 @@ class Organization < ActiveRecord::Base
     return output_string
   end
 
-  #could do more joins to get users, leads, lead_contacts in, but that's premature optimization at this point
-  def recent_activity(result_number = 10)
-
+  def recent_activity(activity_types,recommendations=false,result_number=10)
     range = (Date.today - 30.days)..(Date.today + 3.days) #fudge factor in case time zones ever weird
+    intermediate_results = []
 
-    #comments
-    comments = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
-      where("overall_score > 0 OR payload IS NOT NULL").
-      where("user_id IS NOT NULL").
-      where(comments: {updated_at: range}).
-      order(updated_at: :desc)
-    comments = comments.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
-    comments = comments.take(result_number)
+    if "comments".in?(activity_types)
+      comments = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
+        where("overall_score > 0 OR payload IS NOT NULL").
+        where("user_id IS NOT NULL").
+        where(comments: {updated_at: range}).
+        order(updated_at: :desc)
+      comments = comments.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
+      if recommendations
+        comments = comments.select{|c| c.has_recommendation?}
+      else
+        comments = comments.reject{|c| c.has_recommendation?}
+      end
+      intermediate_results += comments.take(result_number)
+    end
 
-    #new/updated providers
-    provider_events = Event.joins("INNER JOIN providers ON events.target_model_id = providers.id").
-      joins("INNER JOIN users ON events.model_id = users.id").
-      where(events: {target_model: "Provider", model: "User", happening: ["created a provider","updated a provider"]}).
-      where(providers: {created_at: range, organization_id: self.id}).
-      where(users: {admin: false}).
-      order(updated_at: :desc)
-    provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
-    provider_events = provider_events.take(result_number)
+    if "providers".in?(activity_types)
+      provider_events = Event.joins("INNER JOIN providers ON events.target_model_id = providers.id").
+        joins("INNER JOIN users ON events.model_id = users.id").
+        where(events: {target_model: "Provider", model: "User", happening: ["created a provider","updated a provider"]}).
+        where(providers: {created_at: range, organization_id: self.id}).
+        where(users: {admin: false}).
+        order(updated_at: :desc)
+      provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
+      intermediate_results += provider_events.take(result_number)
+    end
 
-    return (comments + provider_events).sort_by(&:updated_at).reverse.take(result_number)
-
+    return intermediate_results.sort_by(&:updated_at).reverse.take(result_number)
   end
 
   def analysis(start_date=Date.today-30.days,finish_date=Date.today)

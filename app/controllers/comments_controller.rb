@@ -19,7 +19,7 @@ class CommentsController < ApplicationController
   end
 
   def render_new_comment_form
-    @comment = Comment.new
+    @comment = Comment.new(recommendation: "none")
     @provider = Provider.find(params[:provider_id])
     @verbose_type = Comment.verbose_type(@comment_type)
     @projects_listing = current_organization.projects_for_listing
@@ -158,7 +158,8 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.permit(:overall_score, :quality_score, :cost_score, :speed_score, :payload, :provider_id, :title)
+    params.permit(:overall_score, :quality_score, :cost_score, :speed_score, :payload, \
+      :provider_id, :title, :recommendation)
   end
 
   def correct_user
