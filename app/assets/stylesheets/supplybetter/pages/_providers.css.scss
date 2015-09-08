@@ -439,7 +439,7 @@ li p {
 	background: rgba(87, 173, 104, 0.1);
 }
 
-.recommend{
+.recommend {
 	font-size: 13px; /*this font size isn't consistent with the rest of the Providers profile page but certainly makes the tags present in a cleaner, more compact form*/
 	line-height: 22px;
 	display: inline-block;
@@ -448,13 +448,13 @@ li p {
 	padding: 3px 10px;    
 	margin-bottom: 8px;
 
-	&.recommend_for {
+	&.recommend-positive {
 	color: #468c54;
 	border-color: #a9d8b2;
 	background: rgba(87, 173, 104, 0.1);
 	}
 
-	&.recommend_against {
+	&.recommend-negative {
 		color: #eb5b5b;
 		border-color: #db1a1a;
 		background: rgba(237, 145, 145, 0.1);
