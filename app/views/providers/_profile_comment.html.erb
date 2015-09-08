@@ -56,7 +56,7 @@
 			</span>
       <% if comment.recommendation.present? %>
   			<span class="comment-smalltext"> 
-          <%= render partial: "providers/recommendation_styling", locals: {comment: comment} %>
+          <%= render partial: "providers/recommendation_styling", locals: {comment: comment, titleize: true} %>
         </span>
       <% end %>
 		</div>

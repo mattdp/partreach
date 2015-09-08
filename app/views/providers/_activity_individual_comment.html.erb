@@ -6,7 +6,7 @@
 <strong><%= "#{comment.user.lead.lead_contact.name} " %></strong>
 
 <% if comment.recommendation.present? %>
-  <%= render partial: "providers/recommendation_styling", locals: {comment: comment} %>
+  <%= render partial: "providers/recommendation_styling", locals: {comment: comment, titleize: false} %>
 <% else %>
   <%= "reviewed "%>
 <% end %>
