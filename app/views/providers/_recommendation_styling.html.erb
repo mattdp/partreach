@@ -1,8 +1,6 @@
-<span>
-	<% recommendation_values = Comment.recommendations[comment.recommendation.to_sym] %>
-	<% text = "#{recommendation_values[:verbed]}" %>
-	<% text = text.titleize if titleize %>
-	<div class="recommend recommend-<%= recommendation_values[:short] %>">
-		<%= "#{text} " %>
-	</div>
+<% recommendation_values = Comment.recommendations[comment.recommendation.to_sym] %>
+<% text = "#{recommendation_values[:verbed]}" %>
+<% text = text.titleize if titleize %>
+<span class="recommend recommend-<%= recommendation_values[:short] %>">
+	<%= "#{text} " %>
 </span>
