@@ -34,11 +34,12 @@ class Comment < ActiveRecord::Base
   #comment_type should be "purchase_order", "factory_visit", or "comment"
   #score of 0 = didn't give a score. 1 low, 5 high
 
+  #WARNING - short names as is used in providers.css
   def self.recommendations
     {
-      default: {short: "none", prompt: "Don't highlight this review to others"},
-      positive: {short: "positive", prompt: "Recommend this supplier to others"},
-      negative: {short: "negative", prompt: "Caution other against using this supplier"}
+      default: {short: "none", prompt: "Don't highlight this review to others", verbed: ""},
+      positive: {short: "positive", prompt: "Recommend this supplier to others", verbed: "strongly recommended"},
+      negative: {short: "negative", prompt: "Caution other against using this supplier", verbed: "strongly warned against"}
     }
   end
 

@@ -1,0 +1,4 @@
+<% recommendation_values = Comment.recommendations[comment.recommendation.to_sym] %>
+<div class "recommend <%= recommendation_values[:short] %>">
+	<% recommendation_values[:verbed] %>
+</div>

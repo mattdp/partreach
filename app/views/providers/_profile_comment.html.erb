@@ -55,21 +55,7 @@
 				<%= "Reviewed #{comment.updated_at.strftime('%Y-%m-%d')}" %>
 			</span>
 			<span class="comment-smalltext"> 
-        <% if comment.recommendation == Comment.recommendations[:positive][:short] %>
-          <div class="recommend recommend_for">
-          	<% verbed = "Strongly Recommended" %>
-          	<%= "#{verbed} " %>
-          </div>
-        <% elsif comment.recommendation == Comment.recommendations[:negative][:short] %>
-          <div class="recommend recommend_against">
-	          <% verbed = "Strongly Warned Against" %>
-	          <%= "#{verbed} " %>
-          </div>
-        <% else %>
-          <% verbed = nil %>
-        <% end %>
-
-        
+        <%= render partial: "providers/recommendation_styling", locals: {comment: comment} %>
       </span>
 		</div>
 

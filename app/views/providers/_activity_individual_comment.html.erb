@@ -5,17 +5,12 @@
 
 <strong><%= "#{comment.user.lead.lead_contact.name} " %></strong>
 
-
-
-<% if comment.recommendation == Comment.recommendations[:positive][:short] %>
-  <% verbed = "strongly recommended" %>
-<% elsif comment.recommendation == Comment.recommendations[:negative][:short] %>
-  <% verbed = "strongly warned against" %>
+<% if comment.recommendation.present? %>
+  <%= render partial: "providers/recommendation_styling", locals: {comment: comment} %>
 <% else %>
-  <% verbed = "reviewed" %>
+  <%= "reviewed "%>
 <% end %>
 
-<%= "#{verbed} " %>
 <% if comment.overall_score > 0 %> 
   <%= "( " %>
   <%= render partial: "providers/star_display", locals: {score: comment.overall_score, include_hidden_number: false} %>
