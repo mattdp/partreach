@@ -1,0 +1,13 @@
+<% model_attribute = "#{category}_score" %>
+<div class="<%= category %> field">
+  <p>
+    <%= raw(html_flavortext) %>, how do you like this supplier? (optional)
+  </p>
+  <span class="star-rating">
+    <% (1..5).each do |value| %>
+      <%= radio_button_tag("#{model_attribute}", "#{value}", checked = (value == @comment.send(model_attribute))) %><i></i>
+    <% end %>
+  </span>
+  <% rating_text = ((@comment.send("#{model_attribute}") != 0) ? "#{@comment.send(model_attribute)} stars" : "Rating not yet selected") %>
+  <strong class="choice"><%= rating_text %></strong>
+</div>
