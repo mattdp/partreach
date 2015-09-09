@@ -20,10 +20,10 @@
             <% end %>
           </div>
         <% end %>
+      <% else %>
+        <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_recommendations, title: "Recent Recommendations"} %>
+        <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_activity, title: "Recent Reviews and Comments"} %>
       <% end %>
-
     </div>
   </div>
-  <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_recommendations, title: "Recent Recommendations"} %>
-  <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_activity, title: "Recent Reviews and Comments"} %>
 </div>
