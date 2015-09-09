@@ -112,7 +112,7 @@ class ProvidersController < ApplicationController
       end
     end
 
-    @search_terms_list = @providers_list + @providers_tag_search_list
+    @search_terms_list = @providers_tag_search_list + @providers_list
 
     @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}") do 
       @organization.recent_activity(["comments","providers"])
@@ -126,22 +126,8 @@ class ProvidersController < ApplicationController
 
     if params[:search_terms].present?
 
-      tag_terms = params[:search_terms].select { |term| term[0] == 'T' }
-      if tag_terms.present?
-        readables = []
-        tag_terms.each do |term|
-          readables << term[2..term.length]
-        end
-        tags = Tag.where(organization_id: current_organization).where(readable: readables)
-        #adapted from organization.providers_hash_by_tag
-        tags.sort_by { |t| t.readable.downcase }.each do |tag|
-          @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
-            .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
-            .order("lower(name)")
-        end
-        # @search_text = tags.map{|t| t.readable}.join(" & ")
-        # Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @search_text)
-      end
+      providers = nil
+      tags = nil
 
       provider_terms = params[:search_terms].select { |term| term[0] == 'P' }
       if provider_terms.present?
@@ -150,10 +136,29 @@ class ProvidersController < ApplicationController
           ids << term[2..term.length].to_i
         end
         providers = Provider.where(id: ids)
-        # sort by name???
-        @results_hash["Providers"] = providers
-        # @search_text = providers.map{|p| p.name}.join(" & ")
-        # Event.add_event("User", current_user.id, "searched providers by provider names", nil, nil, @search_text)
+        Event.add_event("User", current_user.id, "searched one item", "Provider", providers[0].id) if providers.size == 1
+        @results_hash["#{'Supplier'.pluralize(providers.count)} you searched"] = providers
+      end
+
+      tag_terms = params[:search_terms].select { |term| term[0] == 'T' }
+      if tag_terms.present?
+        readables = []
+        tag_terms.each do |term|
+          readables << term[2..term.length]
+        end
+        tags = Tag.where(organization_id: current_organization).where(readable: readables)
+        Event.add_event("User", current_user.id, "searched one item", "Tag", tags[0].id) if tags.size == 1
+        #adapted from organization.providers_hash_by_tag
+        tags.sort_by { |t| t.readable.downcase }.each do |tag|
+          @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
+            .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
+            .order("lower(name)")
+        end
+      end
+
+      if params[:search_terms].size > 1
+        search_hash = {tags: tags.map{|t| t.id}, providers: providers.map{|p| p.id}}
+        Event.add_event("User", current_user.id, "searched multiple items", nil, nil, search_hash.to_s)
       end
 
       # if only one provider, skip list, just display that provider's profile page
