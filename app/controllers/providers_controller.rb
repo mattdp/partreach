@@ -162,7 +162,7 @@ class ProvidersController < ApplicationController
       end
 
       # if only one provider, skip list, just display that provider's profile page
-      # redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1
+      redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1 && tags.empty?
      
     else
       Event.add_event("User",current_user.id,"loaded Providers index page")
