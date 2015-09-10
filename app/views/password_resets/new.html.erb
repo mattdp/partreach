@@ -2,25 +2,23 @@
 <% meta_description "Request password reset" %>
 
 <div class="row">
-  <div class="col-md-12">
-    <div class="col-md-4">
-    </div>
-    <!-- begin form -->
-    <div id="any-form" class="col-md-4">
+	<div class="col-md-12">
+		<div class="col-md-4">
+		</div>
+		<!-- begin form -->
+		<div id="any-form" class="col-md-4 any-form">
 
-      <h1>Reset Your Password</h1>
+			<h1>Reset Your Password</h1>
 
-      <%= form_tag password_resets_path, :method => :post do %>
-        <div class="field comment-title">
-          <%= label_tag :email %>        
-          <%= text_field_tag :email, params[:email] %>
-        </div>
-        <%= submit_tag "Reset Your Password", class: "save-button", :id => "save_button" %>
-      <% end %>
-      <div>
-        <em><%= @message_text %></em>
-      </div>
-    </div>
-    <!-- end form -->
-  </div>
+			<%= form_tag password_resets_path, :method => :post do %>
+				<%= label_tag :email %>        
+				<%= text_field_tag :email, params[:email] %>
+				<%= submit_tag "Reset Your Password", class: "btn-block save-button", :id => "save_button" %>
+			<% end %>
+			<div>
+				<em><%= @message_text %></em>
+			</div>
+		</div>
+		<!-- end form -->
+	</div>
 </div>
