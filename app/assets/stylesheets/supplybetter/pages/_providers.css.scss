@@ -171,8 +171,12 @@ a.search-choice-close {
 
 .sidebar {    
     background-color: WhiteSmoke;
-    border: solid 1px DimGray;
+    border: solid 1px #acacac;
     border-bottom: none;
+
+    & ul {
+    	padding-left: 0;
+    }
 }
 
 /*http://stackoverflow.com/questions/19695784/how-can-i-make-bootstrap-columns-all-the-same-height*/
