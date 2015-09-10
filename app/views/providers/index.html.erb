@@ -21,8 +21,37 @@
           </div>
         <% end %>
       <% else %>
-        <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_recommendations, title: "Recent Recommendations"} %>
-        <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_activity, title: "Recent Reviews and Comments"} %>
+        <div class="row index-row">
+          <div class="col-md-3 col-sm-3 col-xs-12 sidebar">
+            <h3>Choose a Category</h3>
+            <ul>
+              <!-- MATT SAVE ME -->
+              <li>Injection molding</li>
+              <li>Machining</li>
+              <li>Urethane Casting</li>
+              <li>Sheet Metal</li>
+              <li>Finishing</li>
+              <li>Plating</li>
+              <li>Painting</li>
+              <li>Waterjet Cutting</li>
+              <li>Laser Cutting</li>            
+              <li>Testing</li>
+            </ul>
+          <h3>Choose a Project</h3>
+          <ul>
+            <!-- MATT SAVE ME -->
+            <li>Snow Cap Ph7</li>
+            <li>Shared Services ME Overhead</li>
+            <li>Scotts Ecolawn System Ph1</li>
+            <li>xCycleDev: Imagineering Experience Prototypes</li>
+            <li>KITT Ph8</li>
+          </ul>
+          </div>
+          <div class="col-md-9 col-sm-9 col-xs-12">
+            <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_recommendations, title: "Recent Recommendations"} %>
+            <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_activity, title: "Recent Reviews and Comments"} %>
+          </div>
+        </div>
       <% end %>
     </div>
   </div>
