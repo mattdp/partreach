@@ -6,8 +6,8 @@
 #  country       :string(255)
 #  zip           :string(255)
 #  location_name :string(255)
-#  created_at    :datetime
-#  updated_at    :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class Location < ActiveRecord::Base

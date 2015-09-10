@@ -18,6 +18,7 @@
 #  quality_score     :integer          default(0)
 #  speed_score       :integer          default(0)
 #  project_id        :integer
+#  recommendation    :string(255)
 #
 
 class Comment < ActiveRecord::Base
@@ -32,6 +33,19 @@ class Comment < ActiveRecord::Base
 
   #comment_type should be "purchase_order", "factory_visit", or "comment"
   #score of 0 = didn't give a score. 1 low, 5 high
+
+  #WARNING - short names as is used in providers.css
+  def self.recommendations
+    {
+      default: {short: "none", prompt: "Don't highlight this review to others", verbed: ""},
+      positive: {short: "positive", prompt: "Recommend this supplier to others", verbed: "strongly recommended"},
+      negative: {short: "negative", prompt: "Caution other against using this supplier", verbed: "strongly warned against"}
+    }
+  end
+
+  def has_recommendation?
+    !(self.recommendation.nil? or self.recommendation == Comment.recommendations[:default][:short])
+  end
 
   def organization
     self.provider.organization
