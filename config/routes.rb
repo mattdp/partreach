@@ -86,7 +86,7 @@ Partreach::Application.routes.draw do
 
   resources :order_groups, only: [:new, :create, :edit, :update]
 
-  resources :organizations, [:show]
+  resources :organizations, only: [:show]
   get 'organizations/:id/tags_list', to: 'organizations#tags_list', as: 'organizations_tags_list'
   get 'organizations/:id/providers_list', to: 'organizations#providers_list', as: 'organizations_providers_list'
 

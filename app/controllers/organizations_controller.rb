@@ -35,7 +35,8 @@ class OrganizationsController < ApplicationController
   end
 
   def show
-    @organization = params[:id]
+    @organization = Organization.find(params[:id])
+    @user_behaviors = @organization.user_behaviors
   end
 
 end
