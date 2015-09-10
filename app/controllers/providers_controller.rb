@@ -126,8 +126,8 @@ class ProvidersController < ApplicationController
 
     if params[:search_terms].present?
 
-      providers = nil
-      tags = nil
+      providers = []
+      tags = []
 
       provider_terms = params[:search_terms].select { |term| term[0] == 'P' }
       if provider_terms.present?
