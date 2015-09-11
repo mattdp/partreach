@@ -107,7 +107,7 @@ class ProvidersController < ApplicationController
       @organization.providers_hash_by_tag.each { |tag, providers| temp_list << [providers.size, tag.readable] }
       temp_list = temp_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
       temp_list.each do |e|
-        e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]"
+        e[0] = "#{e[1]} (#{e[0]} #{"supplier".pluralize(e[0])})"
         e[1] = "T:#{e[1]}"
       end
     end
