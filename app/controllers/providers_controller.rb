@@ -97,7 +97,7 @@ class ProvidersController < ApplicationController
     @providers_list = Rails.cache.fetch("#{@organization.id}-providers_alpha_sort-#{@organization.last_provider_update}") do 
       temp_list = []
       @organization.providers_alpha_sort.each do |provider|
-        temp_list << ["#{provider.name} - supplier", "P:#{provider.id}"]
+        temp_list << [provider.name, "P:#{provider.id}"]
       end
       temp_list
     end
@@ -107,7 +107,7 @@ class ProvidersController < ApplicationController
       @organization.providers_hash_by_tag.each { |tag, providers| temp_list << [providers.size, tag.readable] }
       temp_list = temp_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
       temp_list.each do |e|
-        e[0] = "#{e[1]} - keyword (#{e[0]} #{"provider".pluralize(e[0])})"
+        e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]"
         e[1] = "T:#{e[1]}"
       end
     end
