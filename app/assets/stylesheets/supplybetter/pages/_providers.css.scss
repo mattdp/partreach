@@ -153,6 +153,10 @@ a:focus {
   color: white;
 }
 
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+   border: none; 
+}
+
 @media (max-width: 767px) {
   /* line 15, /Users/Rob/partreach/app/assets/stylesheets/supplybetter/bootstrap/_minified.min.css.scss */
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
