@@ -183,7 +183,6 @@ a:focus {
 } 
 
 .bottom-search-area {
-	background: #f8f8f8;
 	width: 100%;
 	float: left;
 	padding-top: 30px;
@@ -250,11 +249,24 @@ a.search-choice-close {
 	margin-top: 0;
 }
 
-#keyword-list {
-	-moz-columns: 5;
-	-webkit-columns: 5;
-	columns: 5;
+.sidebar {    
+    background-color: WhiteSmoke;
+    border: solid 1px #acacac;
+    border-bottom: none;
+
+    & ul {
+    	padding-left: 0;
+    }
 }
+
+/*http://stackoverflow.com/questions/19695784/how-can-i-make-bootstrap-columns-all-the-same-height*/
+.index-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
 /*END PROVIDER INDEX CATEGORY LIST*/
 
 /*BEING GENERIC INDEX TABLE*/
