@@ -25,16 +25,9 @@
           <div class="col-md-2 col-sm-3 col-xs-12 sidebar no-padding-right">
             <h3>Choose Category</h3>
             <ul>
-              <li>Injection molding</li>
-              <li>Machining</li>
-              <li>Urethane Casting</li>
-              <li>Sheet Metal</li>
-              <li>Finishing</li>
-              <li>Plating</li>
-              <li>Painting</li>
-              <li>Waterjet Cutting</li>
-              <li>Laser Cutting</li>            
-              <li>Testing</li>
+              <% @common_search_tags.each do |tag| %>
+                <%= link_to "#{tag.readable}", root_path %>
+              <% end %>
             </ul>          
           </div>
           <div class="col-md-10 col-sm-9 col-xs-12 no-padding-left no-padding-right">

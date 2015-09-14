@@ -25,6 +25,21 @@ class Organization < ActiveRecord::Base
   #tags -> which tags are in scope for the organization
   #taggings -> which tags are used for the index page side list
 
+  def common_search_tags(providers_hash_by_tag)
+    minimum_tags_in_list = providers_hash_by_tag.size
+    tags_returning = []
+    taggings = self.taggings
+    count = taggings.count
+
+    tags_returning.concat(self.taggings.map{|tg| tg.tag}) if count > 0
+    more_taggings_needed = minimum_tags_in_list - count
+    if more_taggings_needed > 0 
+      puts 0
+    end
+
+    return tags_returning
+  end
+
   def has_any_pos?
     return self.purchase_orders.present?
   end

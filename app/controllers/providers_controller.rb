@@ -102,14 +102,24 @@ class ProvidersController < ApplicationController
       temp_list
     end
 
+    #needed in two places below
+    sorted_tags_by_providers = Rails.cache.fetch("#{@organization.id}-providers_hash_by_tag-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
+      stbp = []
+      @organization.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag.readable] }
+      stbp = stbp.sort_by! {|e| [-(e[0]), e[1].downcase]}
+    end
+
     @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-providers_tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
-      temp_list = [] 
-      @organization.providers_hash_by_tag.each { |tag, providers| temp_list << [providers.size, tag.readable] }
-      temp_list = temp_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
+      temp_list = sorted_tags_by_providers.clone
       temp_list.each do |e|
         e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]"
         e[1] = "T:#{e[1]}"
       end
+    end
+
+    @common_search_tags = Rails.cache.fetch("#{@organization.id}-common_search_tags-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
+      min_list_length = 5      
+      @organization.common_search_tags(sorted_tags_by_providers.take(min_list_length))
     end
 
     @search_terms_list = @providers_list + @providers_tag_search_list
@@ -121,6 +131,7 @@ class ProvidersController < ApplicationController
     @recent_recommendations = Rails.cache.fetch("#{@organization.id}-recent_recommendations-#{@organization.last_provider_update}") do 
       @organization.recent_activity(["comments"],true)
     end
+
 
     @results_hash = {}
 
