@@ -119,7 +119,7 @@ class ProvidersController < ApplicationController
     @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-providers_tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       sorted_tags_by_providers.each do |e|
         e[0] = "#{e[1].readable} [#{e[0]} #{"company".pluralize(e[0])}]"
-        e[1] = "T:#{e[1].readable}"
+        e[1] = "T:#{e[1]}"
       end
     end
 
