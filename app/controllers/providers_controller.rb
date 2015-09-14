@@ -133,7 +133,6 @@ class ProvidersController < ApplicationController
       @organization.recent_activity(["comments"],true)
     end
 
-
     @results_hash = {}
 
     if params[:search_terms].present?
