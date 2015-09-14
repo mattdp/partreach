@@ -20,6 +20,35 @@ class Organization < ActiveRecord::Base
   has_many :tags
   has_many :projects
   has_many :purchase_orders, through: :providers
+  has_many :taggings, :as => :taggable, :dependent => :destroy
+
+  #tags -> which tags are in scope for the organization
+  #taggings -> which tags are used for the index page side list
+
+  def common_search_tags(sorted_tags_by_providers)
+    minimum_tags_in_list = sorted_tags_by_providers.size
+    tags_returning = []
+    taggings = self.taggings
+    count = taggings.count
+
+    tags_returning.concat(self.taggings.map{|tg| tg.tag}) if count > 0
+    more_taggings_needed = minimum_tags_in_list - count
+    if more_taggings_needed > 0 
+      more_tags = sorted_tags_by_providers.take(more_taggings_needed).map{|providers_count,tag| tag}
+      tags_returning.concat(more_tags)
+    end
+
+    return tags_returning.sort_by{|t| t.readable}
+  end
+
+  #needs to actually work
+  def user_behaviors
+    users = [] 
+    self.users.each do |u|
+      users << u.behaviors
+    end
+    return users
+  end
 
   def has_any_pos?
     return self.purchase_orders.present?

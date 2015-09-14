@@ -1,5 +1,6 @@
 class OrganizationsController < ApplicationController
   before_action :org_access_only
+  before_filter :admin_user, except: [:tags_list, :providers_list]
 
   def tags_list
 
@@ -31,6 +32,11 @@ class OrganizationsController < ApplicationController
     @purchase_order_titles = @organization.has_any_pos?
 
     Event.add_event("User","#{current_user.id}","viewed supplier list")
+  end
+
+  def show
+    @organization = Organization.find(params[:id])
+    @user_behaviors = @organization.user_behaviors
   end
 
 end

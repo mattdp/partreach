@@ -93,6 +93,86 @@ a:focus {
 	font-weight: normal;
 }
 
+/*We should drop this into the headers stylesheet*/
+/*NAVBAR*/
+.navbar {
+	margin-bottom: 0;
+	border-radius: 0;
+}
+
+.navbar-default {
+	background-color: $sb-blue;
+	border: none;	
+
+	.navbar-nav > li > a {
+	color: white; 
+	}
+}
+
+.navbar-brand {	
+	padding-top: 4px;
+	padding-bottom: 4px;
+	width: 200px;
+
+	& img {
+		width: 100%;
+	}
+}
+
+.navbar .container-fluid {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: 0;
+  }
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: white;
+}
+
+.dropdown-menu li a:hover {
+	color: $sb-blue;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: white;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: white;
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+  background-color: #12a5cb;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+  background-color: #12a5cb;
+  color: white;
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+   border: none; 
+}
+
+@media (max-width: 767px) {
+  /* line 15, /Users/Rob/partreach/app/assets/stylesheets/supplybetter/bootstrap/_minified.min.css.scss */
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: white;
+
+    &:hover {
+    	color: white;
+    };
+  }
+
+  .navbar-default .navbar-nav .open .dropdown-menu > li:hover {
+  	background-color: #12a5cb;
+  }
+
+}
+
 /*BEGIN INDEX SEARCH BAR*/
 .header-text-block {
 	text-align: center;
@@ -103,7 +183,6 @@ a:focus {
 } 
 
 .bottom-search-area {
-	background: #f8f8f8;
 	width: 100%;
 	float: left;
 	padding-top: 30px;
@@ -170,11 +249,24 @@ a.search-choice-close {
 	margin-top: 0;
 }
 
-#keyword-list {
-	-moz-columns: 5;
-	-webkit-columns: 5;
-	columns: 5;
+.sidebar {    
+    background-color: WhiteSmoke;
+    border: solid 1px #acacac;
+    border-bottom: none;
+
+    & ul {
+    	padding-left: 0;
+    }
 }
+
+/*http://stackoverflow.com/questions/19695784/how-can-i-make-bootstrap-columns-all-the-same-height*/
+.index-row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
 /*END PROVIDER INDEX CATEGORY LIST*/
 
 /*BEING GENERIC INDEX TABLE*/
