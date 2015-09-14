@@ -21,6 +21,15 @@ class Organization < ActiveRecord::Base
   has_many :projects
   has_many :purchase_orders, through: :providers
 
+  #needs to actually work
+  def user_behaviors
+    users = [] 
+    self.users.each do |u|
+      users << u.behaviors
+    end
+    return users
+  end
+
   def has_any_pos?
     return self.purchase_orders.present?
   end
