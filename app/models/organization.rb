@@ -25,8 +25,8 @@ class Organization < ActiveRecord::Base
   #tags -> which tags are in scope for the organization
   #taggings -> which tags are used for the index page side list
 
-  def common_search_tags(providers_hash_by_tag)
-    minimum_tags_in_list = providers_hash_by_tag.size
+  def common_search_tags(sorted_tags_by_providers)
+    minimum_tags_in_list = sorted_tags_by_providers.size
     tags_returning = []
     taggings = self.taggings
     count = taggings.count
@@ -34,7 +34,8 @@ class Organization < ActiveRecord::Base
     tags_returning.concat(self.taggings.map{|tg| tg.tag}) if count > 0
     more_taggings_needed = minimum_tags_in_list - count
     if more_taggings_needed > 0 
-      puts 0
+      more_tags = sorted_tags_by_providers.take(more_taggings_needed).map{|providers_count,tag| tag}
+      tags_returning.concat(more_tags)
     end
 
     return tags_returning

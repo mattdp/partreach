@@ -105,21 +105,22 @@ class ProvidersController < ApplicationController
     #needed in two places below
     sorted_tags_by_providers = Rails.cache.fetch("#{@organization.id}-providers_hash_by_tag-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       stbp = []
-      @organization.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag.readable] }
-      stbp = stbp.sort_by! {|e| [-(e[0]), e[1].downcase]}
+      @organization.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
+      stbp = stbp.sort_by! {|e| [-(e[0]), e[1].readable.downcase]}
     end
 
-    @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-providers_tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
-      temp_list = sorted_tags_by_providers.clone
-      temp_list.each do |e|
-        e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]"
-        e[1] = "T:#{e[1]}"
-      end
-    end
-
+    #order sensitive - 1 of 2 - s_t_b_p manipulated by @p_t_s_l, and cloning didn't seem to stop it
     @common_search_tags = Rails.cache.fetch("#{@organization.id}-common_search_tags-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       min_list_length = 5      
       @organization.common_search_tags(sorted_tags_by_providers.take(min_list_length))
+    end
+
+    #order sensitive - 2 of 2
+    @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-providers_tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
+      sorted_tags_by_providers.each do |e|
+        e[0] = "#{e[1].readable} [#{e[0]} #{"company".pluralize(e[0])}]"
+        e[1] = "T:#{e[1].readable}"
+      end
     end
 
     @search_terms_list = @providers_list + @providers_tag_search_list
