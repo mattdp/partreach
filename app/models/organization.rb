@@ -38,7 +38,7 @@ class Organization < ActiveRecord::Base
       tags_returning.concat(more_tags)
     end
 
-    return tags_returning
+    return tags_returning.sort_by{|t| t.readable}
   end
 
   def has_any_pos?
