@@ -20,6 +20,10 @@ class Organization < ActiveRecord::Base
   has_many :tags
   has_many :projects
   has_many :purchase_orders, through: :providers
+  has_many :taggings, :as => :taggable, :dependent => :destroy
+
+  #tags -> which tags are in scope for the organization
+  #taggings -> which tags are used for the index page side list
 
   def has_any_pos?
     return self.purchase_orders.present?
