@@ -1,6 +1,27 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'set up tag relationships if they are not found'
+task tag_relationship_setup: :environment do
+  required = [
+    ["is a child of","child"],
+    ["is less commonly used than","worse_synonym"],
+    ["often is related to","calls_for"]
+  ]
+  tg = TagGroup.find(group_name: "provider type")
+  if !tg.present?
+    puts "Need a provider type group. Is there something wrong here?"
+  else
+    required.each do |long,short|
+      trt = TagRelationshipType.where(name: short)
+      if !trt.present?
+        TagRelationshipType.create(name: short, description: long, 
+          source_group_id: tg.id, related_group_id: tg.id)
+      end
+    end
+  end
+end
+
 desc 'make sure no organizations are tied into tags that they dont use'
 task tag_cleaner: :environment do
   output_string = ""

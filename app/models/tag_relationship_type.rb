@@ -8,6 +8,7 @@
 #  related_group_id :integer
 #  created_at       :datetime
 #  updated_at       :datetime
+#  description      :string(255)
 #
 
 class TagRelationshipType < ActiveRecord::Base
