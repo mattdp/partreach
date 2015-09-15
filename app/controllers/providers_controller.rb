@@ -157,12 +157,13 @@ class ProvidersController < ApplicationController
         tag_terms.each do |term|
           readables << term[2..term.length]
         end
-        tags = Tag.where(organization_id: current_organization).where(readable: readables)
+        tags = Tag.where(organization_id: @organization.id).where(readable: readables)
         Event.add_event("User", current_user.id, "searched one item", "Tag", tags[0].id) if tags.size == 1
         #adapted from organization.providers_hash_by_tag
         tags.sort_by { |t| t.readable.downcase }.each do |tag|
           @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
             .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
+            .where(organization_id: @organization.id)
             .order("lower(name)")
         end
       end
