@@ -3,6 +3,7 @@ include RakeHelper
 
 desc 'make sure no organizations are tied into tags that they dont use'
 task tag_cleaner: :environment do
+  output_string = ""
   taggings = Tagging.where(taggable_type: ["Provider","PurchaseOrder"])
   taggings.each do |tagging|
     possible_tag = Tag.where(id: tagging.id)
@@ -19,21 +20,21 @@ task tag_cleaner: :environment do
       tag = possible_tag[0]
       provider = possible_provider[0]
       if provider.organization_id != tag.organization_id
-        puts "Incorrect tagging found - provider #{provider.name} 
+        output_string += "Incorrect tagging found - provider #{provider.name} 
           in organization #{provider.organization.id} 
           had tag #{tag.name}, which belongs to organzation
-          #{tag.organization_id}"
+          #{tag.organization_id}..."
         correct_tag = provider.organization.find_or_create_tag!(tag.name,User.first)
         tagging.tag = correct_tag
         if tagging.save        
-          puts "Repaired."
+          output_string += "Repaired\n"
         else
-          puts "ERROR - repair failed."
+          output_string += "ERROR - repair failed.\n"
         end
       end
     end
-
   end
+  puts output_string
 end
 
 
