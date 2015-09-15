@@ -8,7 +8,7 @@ task tag_relationship_setup: :environment do
     ["is less commonly used than","worse_synonym"],
     ["often is related to","calls_for"]
   ]
-  tg = TagGroup.find(group_name: "provider type")
+  tg = TagGroup.where(group_name: "provider type")
   if !tg.present?
     puts "Need a provider type group. Is there something wrong here?"
   else
@@ -16,7 +16,7 @@ task tag_relationship_setup: :environment do
       trt = TagRelationshipType.where(name: short)
       if !trt.present?
         TagRelationshipType.create(name: short, description: long, 
-          source_group_id: tg.id, related_group_id: tg.id)
+          source_group_id: tg[0].id, related_group_id: tg[0].id)
       end
     end
   end

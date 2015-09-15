@@ -37,6 +37,20 @@ class Tag < ActiveRecord::Base
 
   @@tag_sets = nil
 
+  def relate(target_tag,relationship_name)
+    return false unless self.organization_id == target_tag.organization_id
+    tag_relationship_type = TagRelationshipType.where("name = ?",relationship_name)
+    return false unless tag_relationship_type.present?
+    tag_relationship_type = tag_relationship_type[0]
+    exists_already = TagRelationship.where("source_tag_id = ? AND related_tag_id = ? AND 
+      tag_relationship_type_id = ?", self.id, target_tag.id,
+      tag_relationship_type.id)
+    return exists_already[0] if exists_already.present?
+    return TagRelationship.create(source_tag_id: self.id, 
+      related_tag_id: target_tag.id, 
+      tag_relationship_type_id: tag_relationship_type.id)
+  end
+
   def self.initialize_tag_sets
     @@tag_sets = {}
     set_categories = {
@@ -157,25 +171,4 @@ class Tag < ActiveRecord::Base
     end
   end
 
-  # Recursively get all the related_tags (descendants) of a tag
-  def descendants(node = self, nodes = [])
-    # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
-    # JAMES AND I ARE GOING TO DISCUSS TAGGING RELATIONSHIPS FURTHER
-    if !node.related_tags.empty?
-      node.related_tags.each {|n| nodes << n }
-      node.related_tags.each {|n| n.descendants(n, nodes)}
-    end
-    nodes
-  end
-
-  # Recursively get all the related_tags (descendants) of a tag
-  def ancestors(node = self, nodes = [])
-    # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
-    # JAMES AND I ARE GOING TO DISCUSS TAGGING RELATIONSHIPS FURTHER
-    if !node.source_tags.empty?
-      node.source_tags.each {|n| nodes << n }
-      node.source_tags.each {|n| n.ancestors(n, nodes)}
-    end
-    nodes
-  end
 end
