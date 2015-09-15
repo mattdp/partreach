@@ -17,6 +17,8 @@
 #  cost_score        :integer          default(0)
 #  quality_score     :integer          default(0)
 #  speed_score       :integer          default(0)
+#  project_id        :integer
+#  recommendation    :string(255)
 #
 
 class Comment < ActiveRecord::Base
@@ -24,10 +26,30 @@ class Comment < ActiveRecord::Base
   belongs_to :user
   belongs_to :provider, touch: true
   belongs_to :purchase_order
+  belongs_to :project
   has_many :comment_ratings
+  has_many :externals, :as => :consumer, :dependent => :destroy
+  accepts_nested_attributes_for :externals
 
   #comment_type should be "purchase_order", "factory_visit", or "comment"
   #score of 0 = didn't give a score. 1 low, 5 high
+
+  #WARNING - short names as is used in providers.css
+  def self.recommendations
+    {
+      default: {short: "none", prompt: "Don't highlight this review to others", verbed: ""},
+      positive: {short: "positive", prompt: "Recommend this supplier to others", verbed: "strongly recommended"},
+      negative: {short: "negative", prompt: "Caution other against using this supplier", verbed: "strongly warned against"}
+    }
+  end
+
+  def has_recommendation?
+    !(self.recommendation.nil? or self.recommendation == Comment.recommendations[:default][:short])
+  end
+
+  def organization
+    self.provider.organization
+  end
 
   def untouched?
     return false if (self.payload.present? or self.any_ratings_given?)
@@ -52,11 +74,11 @@ class Comment < ActiveRecord::Base
   def self.verbose_type(comment_type)
     case comment_type
     when "comment"
-      return "comment"
+      return "review"
     when "factory_visit"
       return "factory visit comment"
     when "purchase_order"
-      return "purchase order comment"
+      return "purchase order review"
     else
       return "unknown comment type"
     end

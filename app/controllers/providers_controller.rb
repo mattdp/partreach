@@ -89,53 +89,93 @@ class ProvidersController < ApplicationController
   end
 
   def index
-    @org = current_organization
+    @organization = current_organization
 
-    @people_called = @org.colloquial_people_name
+    @people_called = @organization.colloquial_people_name
+    @purchase_order_titles = @organization.has_any_pos?
 
-    @providers_list = Rails.cache.fetch("#{current_organization.id}-providers_alpha_sort-#{Provider.maximum(:updated_at)}") do 
-      @org.providers_alpha_sort
+    @providers_list = Rails.cache.fetch("#{@organization.id}-providers_alpha_sort-#{@organization.last_provider_update}") do 
+      temp_list = []
+      @organization.providers_alpha_sort.each do |provider|
+        temp_list << [provider.name, "P:#{provider.id}"]
+      end
+      temp_list
     end
 
-    @providers_tag_search_list = Rails.cache.fetch("#{current_organization.id}-providers_tag_search_list-#{Provider.maximum(:updated_at)}-#{Tagging.maximum(:updated_at)}") do 
-      temp_list = [] 
-      @org.providers_hash_by_tag.each { |tag, providers| temp_list << [providers.size, tag.readable] }
-      temp_list = temp_list.sort_by! {|e| [-(e[0]), e[1].downcase]}
-      temp_list.each { |e| e[0] = "#{e[1]} [#{e[0]} #{"company".pluralize(e[0])}]" }
+    #needed in two places below
+    sorted_tags_by_providers = Rails.cache.fetch("#{@organization.id}-providers_hash_by_tag-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
+      stbp = []
+      @organization.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
+      stbp = stbp.sort_by! {|e| [-(e[0]), e[1].readable.downcase]}
     end
 
-    @recent_activity = Rails.cache.fetch("#{current_organization.id}-recent_activity-#{Provider.maximum(:updated_at)}-#{Comment.maximum(:updated_at)}-#{PurchaseOrder.maximum(:updated_at)}") do 
-      @org.recent_activity
+    #order sensitive - 1 of 2 - s_t_b_p manipulated by @p_t_s_l, and cloning didn't seem to stop it
+    @common_search_tags = Rails.cache.fetch("#{@organization.id}-common_search_tags-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
+      min_list_length = 5      
+      @organization.common_search_tags(sorted_tags_by_providers.take(min_list_length))
+    end
+
+    #order sensitive - 2 of 2
+    @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-providers_tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
+      sorted_tags_by_providers.each do |e|
+        e[0] = "#{e[1].readable} (#{e[0]} #{"supplier".pluralize(e[0])})"
+        e[1] = "T:#{e[1].readable}"
+      end
+    end
+
+    @search_terms_list = @providers_tag_search_list + @providers_list
+
+    @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}") do 
+      @organization.recent_activity(["comments","providers"])
+    end
+
+    @recent_recommendations = Rails.cache.fetch("#{@organization.id}-recent_recommendations-#{@organization.last_provider_update}") do 
+      @organization.recent_activity(["comments"],true)
     end
 
     @results_hash = {}
-    if params[:tags].present?
-      Event.add_event("User", current_user.id, "searched providers by tags", nil, nil, @search_text)
-      tags = []
-      params[:tags].each do |unsafe_string|
-        possible_tag = Tag.where("organization_id = ? and readable = ?",current_organization,unsafe_string)
-        tags << possible_tag[0] if possible_tag.present?
-      end
 
-      #adapted from organization.providers_hash_by_tag
-      tags.sort_by { |t| t.readable.downcase }.each do |tag|
-        @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
-          .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
-          .order("lower(name)")
-      end
+    if params[:search_terms].present?
 
-      @search_text = tags.map{|t| t.readable}.join(" & ")
-    elsif params[:providers].present?
-      Event.add_event("User", current_user.id, "searched providers by provider names", nil, nil, @search_text)
       providers = []
-      params[:providers].each do |unsafe_string|
-        possible_provider = Provider.find_by_name(unsafe_string)
-        providers << possible_provider if possible_provider.present?
+      tags = []
+
+      provider_terms = params[:search_terms].select { |term| term[0] == 'P' }
+      if provider_terms.present?
+        ids = []
+        provider_terms.each do |term|
+          ids << term[2..term.length].to_i
+        end
+        providers = Provider.where(id: ids)
+        Event.add_event("User", current_user.id, "searched one item", "Provider", providers[0].id) if providers.size == 1
+        @results_hash["#{'Supplier'.pluralize(providers.count)} you searched"] = providers
       end
 
-      @results_hash["Providers"] = providers
-      
-      @search_text = providers.map{|p| p.name}.join(" & ")
+      tag_terms = params[:search_terms].select { |term| term[0] == 'T' }
+      if tag_terms.present?
+        readables = []
+        tag_terms.each do |term|
+          readables << term[2..term.length]
+        end
+        tags = Tag.where(organization_id: @organization.id).where(readable: readables)
+        Event.add_event("User", current_user.id, "searched one item", "Tag", tags[0].id) if tags.size == 1
+        #adapted from organization.providers_hash_by_tag
+        tags.sort_by { |t| t.readable.downcase }.each do |tag|
+          @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
+            .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
+            .where(organization_id: @organization.id)
+            .order("lower(name)")
+        end
+      end
+
+      if params[:search_terms].size > 1
+        search_hash = {tags: tags.map{|t| t.id}, providers: providers.map{|p| p.id}}
+        Event.add_event("User", current_user.id, "searched multiple items", nil, nil, search_hash.to_s)
+      end
+
+      # if only one provider, skip list, just display that provider's profile page
+      redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1 && tags.empty?
+     
     else
       Event.add_event("User",current_user.id,"loaded Providers index page")
     end
@@ -145,19 +185,32 @@ class ProvidersController < ApplicationController
     @provider = current_organization.providers.find_by_name_for_link(params[:name_for_link])
     if @provider
       @organization = current_organization
-      @comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
+      
+      all_comments = Comment.where(provider_id: @provider.id).order(helpful_count: :desc, created_at: :desc)
+      @comments = all_comments.reject{|c| c.untouched?}.concat(all_comments.select{|c| c.untouched?})
+       
+      @comment_photo_urls_hash = init_comment_photo_urls_hash(@comments)
       @total_comments_for_user = Comment.joins(:user).group('users.id').count
       @purchase_order_comments_for_user = Comment.where(comment_type: 'purchase_order').joins(:user).group('users.id').count
       @tags = @provider.tags.sort_by { |t| t.readable.downcase }
       @po_names_and_counts = @provider.po_names_and_counts
       @fv_names = @comments.select{|c| c.comment_type == "factory_visit"}.map{|c| c.user.lead.lead_contact.first_name_and_team}
       
-      @expiring_image_urls = External.get_expiring_urls(@provider.externals,@organization)
+      @profile_photo_urls = External.get_expiring_urls(@provider.externals,@organization)
 
       Event.add_event("User",current_user.id,"loaded profile","Provider",@provider.id)
     else
       render template: "providers/profile_not_found"
     end
+  end
+
+  def init_comment_photo_urls_hash(comments)
+    @comment_photo_urls_hash = {}
+    comments.each do |comment|
+      @comment_photo_urls_hash[comment.id] =
+        External.get_expiring_urls(comment.externals, current_organization)
+    end
+    @comment_photo_urls_hash
   end
 
   def suggested_edit
@@ -177,7 +230,8 @@ class ProvidersController < ApplicationController
 
     #create externals object
     new_external = provider.add_external(original_filename, remote_file_name)
-    expiring_image_url = new_external.get_expiring_url_helper(s3_resource)
+    expiring_image_url = External.get_s3_expiring_url(
+      s3_resource, current_organization.external_bucket_name, remote_file_name)
 
     render plain: expiring_image_url
   end

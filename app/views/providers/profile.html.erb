@@ -2,7 +2,7 @@
 
 <div class="container hax-body-styling">
   <div class="row">
-    <%= render partial: "organizations/navigation_header", locals: {middle_text: nil} %>
+    <%= render partial: "organizations/navigation_header", locals: {show_left_text: true, middle_text: @middle_text, organization: @organization} %>
   </div>
   <div class="row">
     <!-- BEGIN LEFT COLUMN -->
@@ -24,7 +24,7 @@
           <a href="#comments">
             <% total_provider_comments = @provider.comments.count %>
             <% if total_provider_comments %>
-              <%= "#{pluralize(total_provider_comments, 'comment')}" %>
+              <%= "#{pluralize(total_provider_comments, 'review')}" %>
             <% end %>
           </a>
         </span>
@@ -68,7 +68,7 @@
           <span class="heading_navigation">[<%= link_to "Edit", edit_provider_with_event_path(@provider.id, "edit_whatcantheydo_from_profile") %>]</span>
         </h3>
       </div>
-      <%= render partial: "providers/tag_display", locals: {tags: @tags, remove_bottom_margin: false, max_tags_to_display: nil} %>
+      <%= render partial: "providers/tag_display", locals: {tags: @tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
     </div>        
 
     <!-- BEGIN MIDDLE COLUMN -->
@@ -77,16 +77,16 @@
     <div class="col-md-4">
 
       <div>
-        <ul id="uploaded-photo-list" class="row photo-gallery">
-          <% if @expiring_image_urls.present? %>
+        <ul id="profile_photo_gallery" class="row photo-gallery">
+          <% if @profile_photo_urls.present? %>
             <% count = 0 %>
-            <% @expiring_image_urls.each do |url| %>  
+            <% @profile_photo_urls.each do |url| %>  
               <% if count == 0 %>
                 <li>
               <% else %>
                 <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">                      
               <% end %>
-            <%= image_tag url %>
+            <%= image_tag url, class: "top-gallery" %>
             </li>
             <% count += 1 %>
            <% end %>
@@ -94,7 +94,7 @@
         </ul>
       </div>
 
-    <div class="attachment-uploader">Upload pictures here (or drag and drop)
+      <div class="attachment-uploader">Upload pictures here (or drag and drop)
         <span class="heading_navigation"></span>
         <%= hidden_field_tag :provider_id_for_upload, @provider.id %>
         <%= s3_uploader_form id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
@@ -103,7 +103,7 @@
           key_starts_with: "#{@provider.name_for_link}",
           key: "#{@provider.name_for_link}-#{SecureRandom.hex}-{unique_id}" do %>
             <%= file_field_tag :file, multiple: true %>
-          <% end %>
+        <% end %>
         <script id="template-upload" type="text/x-tmpl">
           <div id="file-{%=o.unique_id%}" class="upload">
             <div class="filename">{%=o.name%}</div>
@@ -122,8 +122,6 @@
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-
-
 
   </div>
 
@@ -147,8 +145,8 @@
   <div class="row">
     <div class="col-md-12">
       <h3 id="comments">
-        Comments
-        <span class="heading_navigation">[<%= link_to "add a comment", new_comment_path(@provider.id) %>]</span>
+        Reviews
+        <span class="heading_navigation">[<%= link_to "add a review", new_comment_path(@provider.id) %>]</span>
       </h3>
 
       <% if @comments.present? %>
@@ -167,7 +165,7 @@
 <!-- PHOTO GALLERY -->
 <script>
 $(document).ready(function(){        
-    $('li img').on('click',function(){
+    $('li img.top-gallery').on('click',function(){
         var src = $(this).attr('src');
         var img = '<img src="' + src + '" class="img-responsive"/>';
         

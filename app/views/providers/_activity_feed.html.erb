@@ -1,12 +1,12 @@
 <% if activity_items.present? %>
-  <h2 class="center">Recent Reviews and Comments</h2>
+  <h2 class="center"><%= title %></h2>
   <div class="row ">          
     <% activity_items.each do |item| %>
       <div class="row">
         <div class="col-md-12">
-          <hr class="header-no-margin">
+          <hr class="no-margin">
             <p class="small-margin-left">
-              <%= "#{item.updated_at.strftime('%m/%d')}: " %>
+              <%= "#{item.updated_at.strftime('%m/%d')}: " %>           
               <% if item.class.to_s == "Comment" %>
                 <%= render partial: "providers/activity_individual_comment", locals: {comment: item} %>
               <% elsif (item.class.to_s == "Event" and item.happening == "updated a provider") %>

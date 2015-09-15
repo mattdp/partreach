@@ -4,27 +4,38 @@
   <div class="row">
     <div class="main-area-contrast override">
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
-
+       <%= render partial: "organizations/navigation_header", locals: {show_left_text: false, middle_text: "See who #{@people_called} are using to make parts", organization: @organization} %>
       <%= render :partial => "providers/providers_header" %>      
 
       <% if @results_hash.present? %>
-        <h2 class="center">Results of your search for <%= "#{@search_text}" %></h2>
-
         <% @results_hash.each do |header, providers| %>
           <div class="col-md-12">
-            <h2>
+            <h3 class="no-margin-top margin-bottom">
               <span><%= header %></span>
-            </h2>
+            </h3>
             <% if providers %> 
-              <%= render :partial => "providers/providers_table", locals: {providers: providers, include_tag_column: false, cache_result: false} %>            
+              <%= render partial: "providers/providers_table", locals: {providers: providers, include_tag_column: false, cache_result: false, purchase_order_titles: @purchase_order_titles} %>
             <% else %>
               <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
             <% end %>
           </div>
         <% end %>
+      <% else %>
+        <div class="row index-row">
+          <div class="col-md-2 col-sm-3 col-xs-12 sidebar no-padding-right">
+            <h3>Choose Category</h3>
+            <ul>
+              <% @common_search_tags.each do |tag| %>
+                <li><%= link_to "#{tag.readable}", teams_index_path(search_terms: ["T:#{tag.readable}"]) %></li>
+              <% end %>
+            </ul>          
+          </div>
+          <div class="col-md-10 col-sm-9 col-xs-12 no-padding-left no-padding-right">
+            <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_recommendations, title: "Recent Recommendations"} %>
+            <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_activity, title: "Recent Reviews and Comments"} %>
+          </div>
+        </div>
       <% end %>
-
     </div>
   </div>
-  <%= render partial: "providers/activity_feed", locals: {activity_items: @recent_activity} %>
 </div>

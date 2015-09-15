@@ -18,7 +18,54 @@ class Organization < ActiveRecord::Base
   has_many :teams
   has_many :providers
   has_many :tags
+  has_many :projects
+  has_many :purchase_orders, through: :providers
+  has_many :taggings, :as => :taggable, :dependent => :destroy
 
+  #tags -> which tags are in scope for the organization
+  #taggings -> which tags are used for the index page side list
+
+  def common_search_tags(sorted_tags_by_providers)
+    minimum_tags_in_list = sorted_tags_by_providers.size
+    tags_returning = []
+    taggings = self.taggings
+    count = taggings.count
+
+    tags_returning.concat(self.taggings.map{|tg| tg.tag}) if count > 0
+    more_taggings_needed = minimum_tags_in_list - count
+    if more_taggings_needed > 0 
+      more_tags = sorted_tags_by_providers.take(more_taggings_needed).map{|providers_count,tag| tag}
+      tags_returning.concat(more_tags)
+    end
+
+    return tags_returning.sort_by{|t| t.readable}
+  end
+
+  #needs to actually work
+  def user_behaviors
+    users = [] 
+    self.users.each do |u|
+      users << u.behaviors
+    end
+    return users
+  end
+
+  def has_any_pos?
+    return self.purchase_orders.present?
+  end
+
+  def last_provider_update
+    Provider.where(organization_id: self.id).maximum(:updated_at)
+  end
+
+  def last_tag_update
+    Tag.where(organization_id: self.id).maximum(:updated_at)
+  end
+
+  def projects_for_listing
+    project_names = Project.where(organization_id: self.id).order(:name).map{|p| p.name}
+    [Project.none_selected].concat(project_names)
+  end
 
   def create_synapse_pos_and_comments_from_tsv(url)
     
@@ -81,32 +128,37 @@ class Organization < ActiveRecord::Base
     return output_string
   end
 
-  #could do more joins to get users, leads, lead_contacts in, but that's premature optimization at this point
-  def recent_activity(result_number = 10)
-
+  def recent_activity(activity_types,recommendations=false,result_number=10)
     range = (Date.today - 30.days)..(Date.today + 3.days) #fudge factor in case time zones ever weird
+    intermediate_results = []
 
-    #comments
-    comments = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
-      where("overall_score > 0 OR payload IS NOT NULL").
-      where("user_id IS NOT NULL").
-      where(comments: {updated_at: range}).
-      order(updated_at: :desc)
-    comments = comments.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
-    comments = comments.take(result_number)
+    if "comments".in?(activity_types)
+      comments = Comment.joins(:provider).where("providers.organization_id = ?",self.id).
+        where("overall_score > 0 OR payload IS NOT NULL").
+        where("user_id IS NOT NULL").
+        where(comments: {updated_at: range}).
+        order(updated_at: :desc)
+      comments = comments.select{|c| (!c.user.admin) and c.user.lead.present? and c.user.lead.lead_contact.present?}
+      if recommendations
+        comments = comments.select{|c| c.has_recommendation?}
+      else
+        comments = comments.reject{|c| c.has_recommendation?}
+      end
+      intermediate_results += comments.take(result_number)
+    end
 
-    #new/updated providers
-    provider_events = Event.joins("INNER JOIN providers ON events.target_model_id = providers.id").
-      joins("INNER JOIN users ON events.model_id = users.id").
-      where(events: {target_model: "Provider", model: "User", happening: ["created a provider","updated a provider"]}).
-      where(providers: {created_at: range, organization_id: self.id}).
-      where(users: {admin: false}).
-      order(updated_at: :desc)
-    provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
-    provider_events = provider_events.take(result_number)
+    if "providers".in?(activity_types)
+      provider_events = Event.joins("INNER JOIN providers ON events.target_model_id = providers.id").
+        joins("INNER JOIN users ON events.model_id = users.id").
+        where(events: {target_model: "Provider", model: "User", happening: ["created a provider","updated a provider"]}).
+        where(providers: {created_at: range, organization_id: self.id}).
+        where(users: {admin: false}).
+        order(updated_at: :desc)
+      provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
+      intermediate_results += provider_events.take(result_number)
+    end
 
-    return (comments + provider_events).sort_by(&:updated_at).reverse.take(result_number)
-
+    return intermediate_results.sort_by(&:updated_at).reverse.take(result_number)
   end
 
   def analysis(start_date=Date.today-30.days,finish_date=Date.today)
@@ -121,6 +173,7 @@ class Organization < ActiveRecord::Base
     facts[:profile_views_non_admin] = Event.where("happening = 'loaded profile'")
       .where("created_at >= ? AND created_at <= ?",start_date,finish_date)
       .where.not(model_id: admin_ids)
+      .select{|e| e.model == "User" and User.find(e.model_id).present? and User.find(e.model_id).organization == self}
       .count
 
     return facts
@@ -158,24 +211,32 @@ class Organization < ActiveRecord::Base
 
   end
 
-  def tag_details
+  def tag_details(model)
     tags = Tag.where("organization_id = ?", self.id)
     answer = {}
     tags.each do |tag|
       inserted = {}
-      taggings = tag.taggings
-      inserted[:num_providers] = tag.taggings.where("taggable_type = 'Provider'").count
-      inserted[:num_providers] = nil if inserted[:num_providers] == 0
-      pos = PurchaseOrder.joins("INNER JOIN taggings ON taggings.taggable_id = purchase_orders.id").
-        where(taggings: {taggable_type: "PurchaseOrder", tag_id: tag.id}).
-        where("issue_date IS NOT NULL").
-        order(:issue_date)
-      inserted[:num_pos] = (pos.present? ? pos.count : nil)
-      if (inserted[:num_pos].present? and inserted[:num_pos] > 0)
-        last_po = pos.last
-        inserted[:last_po] = last_po
-        inserted[:last_po_comment_id] = last_po.comment.id if last_po.comment.present?
-        inserted[:last_po_provider] = last_po.provider
+      provider_taggings = tag.taggings.where("taggable_type = 'Provider'")
+      inserted[:num_providers] = provider_taggings.count
+      if inserted[:num_providers] == 0
+        inserted[:num_providers] = nil
+        next
+      end
+      if model == :purchase_order
+        models = PurchaseOrder.joins("INNER JOIN taggings ON taggings.taggable_id = purchase_orders.id").
+          where(taggings: {taggable_type: "PurchaseOrder", tag_id: tag.id}).
+          where("issue_date IS NOT NULL").
+          order(issue_date: :desc)
+        inserted[:num_models] = (models.present? ? models.count : nil)
+        if (inserted[:num_models].present? and inserted[:num_models] > 0)
+          inserted[:last_model] = models.first
+          inserted[:last_po_comment_id] = inserted[:last_model].comment.id if inserted[:last_model].comment.present?
+          inserted[:last_provider] = inserted[:last_model].provider
+        end
+      elsif model == :comment
+        provider_ids = provider_taggings.map{|tagging| tagging.taggable_id}
+        inserted[:last_model] = Comment.where(provider_id: provider_ids).order(updated_at: :desc).first
+        inserted[:last_provider] = inserted[:last_model].provider if inserted[:last_model].present?
       end
       answer["#{tag.readable}"] = inserted
     end

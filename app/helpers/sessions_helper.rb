@@ -22,10 +22,10 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  def sign_out
+  def sign_out(discard_return_to = true)
     self.current_user = nil
     cookies.delete(:remember_token)
-    session[:return_to] = nil
+    session[:return_to] = nil if discard_return_to
   end
 
   def signed_in_user
@@ -84,8 +84,19 @@ module SessionsHelper
 
   def base_url
     return "http://www.supplybetter.com" if Rails.env.production?
-    return "http://quiet-waters-6381.herokuapp.com" if Rails.env.staging?
-    return "localhost:3000" if Rails.env.development?
+    if Rails.env.staging?
+      case ENV['STAGING_SUB_ENVIRONMENT']
+      when 'demo'
+        return "http://demo-supplybetter.herokuapp.com"
+      when 'uat'
+        return "http://uat-supplybetter.herokuapp.com"
+      when 'staging'
+        return "http://quiet-waters-6381.herokuapp.com"
+      else
+        return "http://quiet-waters-6381.herokuapp.com"
+      end
+    end
+    return "http://127.0.0.1:3000" if Rails.env.development?
     return "http://www.supplybetter.com"
   end
 

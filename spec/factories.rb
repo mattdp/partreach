@@ -14,10 +14,30 @@ FactoryGirl.define do
     factory :examiner_user do
       examiner  true
     end
+
+    factory :team_user do
+      team
+    end
+  end
+
+  factory :team do
+    sequence(:name)   { |n| "name#{n}" }
+    organization
+  end
+
+  factory :organization do
+    sequence(:name)   { |n| "name#{n}" }
+    sequence(:people_are_called)   { |n| "people_are_called#{n}" }
   end
 
   factory :lead do |l|
     lead_contact
+  end
+
+  factory :provider do
+    sequence(:name)   { |n| "name#{n}" }
+    sequence(:name_for_link)   { |n| "name_for_link#{n}" }
+    organization
   end
 
   factory :contact, class: 'Contact' do |c|

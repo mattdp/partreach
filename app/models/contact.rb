@@ -26,6 +26,8 @@
 class Contact < ActiveRecord::Base
   belongs_to :contactable, polymorphic: true
 
+  before_save :normalize_email
+
   #will need to expand to allow different models
   def self.create_or_update_contacts(model,parameters)
     updatables = {
@@ -84,5 +86,10 @@ class Contact < ActiveRecord::Base
     end
     return returnee
   end
+
+  protected
+    def normalize_email
+      self.email = self.email.downcase if self.email.present?
+    end
 
 end

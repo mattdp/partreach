@@ -5,16 +5,22 @@
         <th>Company Name</th>
         <th>Location</th>
         <th>Reviews</th>
-        <th>POs</th>
-        <th>Latest PO</th>
+
+        <% if purchase_order_titles %>
+          <th>POs</th>
+          <th>Latest PO</th>
+        <% else %>
+          <th>#</th>
+          <th>Latest</th>
+        <% end %>
+
         <% if include_tag_column %>
           <th>Tags</th>
         <% end %>
       </tr>
     </thead>
 
-    <%#= not organization specific cache busting %>
-    <% cache_if(cache_result, "#{current_organization.id}-providers_table-#{Provider.maximum(:updated_at)}") do %>
+    <% cache_if(cache_result, "#{current_organization.id}-providers_table-#{purchase_order_titles}-#{current_organization.last_provider_update}") do %>
       <tbody>        
         <% providers.each do |provider| %>
           <%#= imperfect, but rerun provider when it was updated or any po has been updated. probably means we should hit this table after an upload run. not currently worried about needing exact right tags on a fast timeline. also, this currently cuts across orgs, may want to scope the Provider updated at some point. %>
@@ -29,27 +35,21 @@
                 </div>
               </td>
               <td>
-                <%= link_to "#{provider.purchase_orders.count == 0 ? '' : provider.purchase_orders.count}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %>
+                <% if purchase_order_titles %>
+                  <%= link_to "#{provider.purchase_orders.count == 0 ? '' : provider.purchase_orders.count}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %>
+                <% else %>
+                  <%= link_to "#{provider.comments.count == 0 ? '' : provider.comments.count}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %>
+                <% end %>
               </td>
-              <td><%= link_to "#{provider.latest_purchase_order_date(true)}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %></td>
+              <td>
+                <% if purchase_order_titles %>
+                  <%= link_to "#{provider.latest_model_date(:purchase_order,true)}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %></td>
+                <% else %>
+                  <%= link_to "#{provider.latest_model_date(:comment,true)}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %></td>
+                <% end %>
               <% if include_tag_column %>
                 <td>                            
-                  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                      <div class="panel-heading" role="tab" id="headingOne">
-                        <div class="panel-title">
-                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="<%= "##{provider.id}" %>" aria-expanded="true" aria-controls="<%= "#{provider.id}" %>">
-                            (click to see tags)
-                          </a>
-                        </div>
-                      </div>
-                      <div id="<%= "#{provider.id}" %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                        <div class="panel-body">
-                          <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false, max_tags_to_display: nil} %>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false, max_tags_to_display: 4, show_more_option: provider.id} %>
                 </td>
               <% end %>
             </tr>
@@ -84,7 +84,7 @@
     $table.tablesorter({
       theme: 'bootstrap',
       headerTemplate: '{content} {icon}',
-      sortList: [ [2,1], [0,0] ],
+      sortList: [ [3,1], [2,1], [0,0] ],
       widgets : ['columns', 'uitheme', 'filter'] // add 'filter' to get the search row back
     });
   </script>
@@ -107,7 +107,7 @@
     $table.tablesorter({
       theme: 'bootstrap',
       headerTemplate: '{content} {icon}',
-      sortList: [ [2,1], [0,0] ],
+      sortList: [ [3,1], [2,1], [0,0] ],
       widgets : ['columns', 'uitheme'] // add 'filter' to get the search row back
     });
   </script>

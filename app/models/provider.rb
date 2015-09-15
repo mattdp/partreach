@@ -40,8 +40,8 @@ class Provider < ActiveRecord::Base
   has_one :address, :as => :place, :dependent => :destroy
   belongs_to :organization
 
-  validates :name, presence: true, uniqueness: {case_sensitive: false}
-  validates :name_for_link, presence: true, uniqueness: {case_sensitive: false}
+  validates :name, presence: true, uniqueness: {case_sensitive: false, scope: :organization_id}
+  validates :name_for_link, presence: true, uniqueness: {case_sensitive: false, scope: :organization_id}
   validates :organization, presence: true
 
   #depends on options existing
@@ -52,7 +52,6 @@ class Provider < ActiveRecord::Base
 
     returner[:po] = PurchaseOrder.new({ provider: self, 
       description: options[:description],
-      project_name: options[:project_name],
       id_in_purchasing_system: options[:id_in_purchasing_system],
       price: options[:price],
       quantity: options[:quantity],
@@ -64,10 +63,13 @@ class Provider < ActiveRecord::Base
       return returner
     end
 
+    returner[:project] = Project.find_or_create(self.organization.id,options[:project_name])
+
     returner[:comment] = Comment.new({ provider: self,
       user: options[:user],
       comment_type: "purchase_order",
-      purchase_order: returner[:po]
+      purchase_order: returner[:po],
+      project_id: returner[:project].id
     })
 
     if !returner[:comment].save
@@ -133,11 +135,13 @@ class Provider < ActiveRecord::Base
   end
 
   #returns nil or a parsed date string
-  def latest_purchase_order_date(brevity = false)
-    return nil if !self.purchase_orders.present?
-    po = PurchaseOrder.where("provider_id = ?",self.id).order("created_at DESC").first
-    return po.created_at.strftime("%b %e, %Y") unless brevity
-    return po.created_at.strftime("%-m/%-d/%y")
+  def latest_model_date(model,brevity = false)
+    return nil unless model.present?
+    unsorted_models = self.send(model.to_s.pluralize)
+    return nil unless unsorted_models.present?
+    model = unsorted_models.order(created_at: :desc).first
+    return model.created_at.strftime("%b %e, %Y") unless brevity
+    return model.created_at.strftime("%-m/%-d/%y")
   end
 
   def index_address
@@ -175,7 +179,7 @@ class Provider < ActiveRecord::Base
     tags.include? tag_id
   end
 
-  def update_tags(submitted_tag_ids)
+  def update_tags(submitted_tag_ids,allow_removal=true)
     saved_ok = true
     
     if(submitted_tag_ids and submitted_tag_ids.size > 0)
@@ -193,7 +197,7 @@ class Provider < ActiveRecord::Base
         end
       end
 
-      if remove_tag_ids.size > 0
+      if (remove_tag_ids.size > 0 and allow_removal)
         remove_tag_ids.each do |id|
           saved_ok = false unless self.remove_tags(id)
         end
