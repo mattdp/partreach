@@ -37,10 +37,14 @@ class Tag < ActiveRecord::Base
 
   @@tag_sets = nil
 
-  def self.search_list(sorted_tags_by_providers)
+  def self.search_list(sorted_tags_by_providers,id_only=false)
     sorted_tags_by_providers.each do |e|
       e[0] = "#{e[1].readable} (#{e[0]} #{"supplier".pluralize(e[0])})"
-      e[1] = "T:#{e[1].readable}"
+      if id_only
+        e[1] = e[1].id
+      else
+        e[1] = "T:#{e[1].readable}"
+      end
     end
   end
 
