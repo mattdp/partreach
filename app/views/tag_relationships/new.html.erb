@@ -1,2 +1,6 @@
-<%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>  
-<%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>  
+<%= form_tag teams_index_path, method: :get do%>
+  <p>Source tag</p>
+  <%= render :partial => "tag_relationships/simple_search_box", locals: {search_terms_list: @tag_search_list} %>
+  <p>Related tag</p>
+  <%= render :partial => "tag_relationships/simple_search_box", locals: {search_terms_list: @tag_search_list} %>
+<% end %>

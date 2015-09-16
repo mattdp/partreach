@@ -102,6 +102,7 @@ class ProvidersController < ApplicationController
       temp_list
     end
 
+    #same cache keys as tag_relationships#new 
     #needed in two places below
     sorted_tags_by_providers = Rails.cache.fetch("#{@organization.id}-providers_hash_by_tag-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       @organization.sorted_tags_by_providers
@@ -114,11 +115,11 @@ class ProvidersController < ApplicationController
     end
 
     #order sensitive - 2 of 2
-    @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
+    @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
       Tag.search_list(sorted_tags_by_providers)
     end
 
-    @search_terms_list = @providers_tag_search_list + @providers_list
+    @search_terms_list = @tag_search_list + @providers_list
 
     @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}") do 
       @organization.recent_activity(["comments","providers"])

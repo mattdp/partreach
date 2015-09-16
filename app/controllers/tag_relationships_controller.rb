@@ -1,29 +1,17 @@
 class TagRelationshipsController < ApplicationController
+  before_action :org_access_only
 
-  # tags/:tag_id/tag_relationships
-  def index
-    @tag = Tag.find(params[:tag_id])
-    @tag_relationships = TagRelationship.joins(:relationship)
-      .where('tag_relationships.source_tag_id = ? OR tag_relationships.related_tag_id = ?', @tag.id, @tag.id)
-      .joins(:relationship).pluck(:name).uniq
-    respond_to do |format|
-      format.json { render 'index' }
-    end
-  end
-
-  def create
-    @tag = Tag.find(params[:tag_id])
-    @relationship = TagRelationship.new(tag_relationship_params)
-
-    respond_to do |format|
-      if @relationship.save
-        format.json { render json: {success: true}}
-      else
-        format.json { render json: {success: false}}
+  def new
+    @organization = current_organization
+    #same cache keys as providers#index 
+    @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
+      sorted_tags_by_providers = Rails.cache.fetch("#{@organization.id}-providers_hash_by_tag-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
+        @organization.sorted_tags_by_providers
       end
-    end
+      Tag.search_list(sorted_tags_by_providers)
+    end 
   end
-
+  
   private
 
     def tag_relationship_params
