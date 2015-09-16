@@ -37,6 +37,13 @@ class Tag < ActiveRecord::Base
 
   @@tag_sets = nil
 
+  def self.search_list(sorted_tags_by_providers)
+    sorted_tags_by_providers.each do |e|
+      e[0] = "#{e[1].readable} (#{e[0]} #{"supplier".pluralize(e[0])})"
+      e[1] = "T:#{e[1].readable}"
+    end
+  end
+
   #there will be something more sophisticated in the future, so not worrying about
   #sorting by relationship type yet
   def immediate_neighbors

@@ -265,14 +265,23 @@ class Organization < ActiveRecord::Base
     hash = {}
     tags_with_providers = provider_tags.includes(:providers).references(:providers)
     tags_with_providers.sort_by {|tag| tag.readable.downcase }.each do |tag|
-      # puts "tag.readable: #{tag.readable}"
-      # tag.providers.sort_by {|provider| provider.name.downcase}.each do |provider|
-      #   puts "provider.name: #{provider.name}"
-      # end
       hash[tag] = tag.providers.sort_by {|provider| provider.name.downcase}
     end
 
     hash
+  end
+
+  def sorted_tags_by_providers
+    stbp = []
+    self.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
+    stbp = stbp.sort_by! {|e| [-(e[0]), e[1].readable.downcase]}
+  end
+
+  def tag_search_list(sorted_tags_by_providers)
+    sorted_tags_by_providers.each do |e|
+      e[0] = "#{e[1].readable} (#{e[0]} #{"supplier".pluralize(e[0])})"
+      e[1] = "T:#{e[1].readable}"
+    end
   end
 
   def find_or_create_tag!(name,user)

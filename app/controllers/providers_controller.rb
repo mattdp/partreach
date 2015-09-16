@@ -104,9 +104,7 @@ class ProvidersController < ApplicationController
 
     #needed in two places below
     sorted_tags_by_providers = Rails.cache.fetch("#{@organization.id}-providers_hash_by_tag-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
-      stbp = []
-      @organization.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
-      stbp = stbp.sort_by! {|e| [-(e[0]), e[1].readable.downcase]}
+      @organization.sorted_tags_by_providers
     end
 
     #order sensitive - 1 of 2 - s_t_b_p manipulated by @p_t_s_l, and cloning didn't seem to stop it
@@ -116,11 +114,8 @@ class ProvidersController < ApplicationController
     end
 
     #order sensitive - 2 of 2
-    @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-providers_tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
-      sorted_tags_by_providers.each do |e|
-        e[0] = "#{e[1].readable} (#{e[0]} #{"supplier".pluralize(e[0])})"
-        e[1] = "T:#{e[1].readable}"
-      end
+    @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
+      Tag.search_list(sorted_tags_by_providers)
     end
 
     @search_terms_list = @providers_tag_search_list + @providers_list
