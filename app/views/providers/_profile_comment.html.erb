@@ -42,7 +42,12 @@
 				</h3>
 			<% end %>
 			<% if current_user.admin? and comment.purchase_order.present? %>
-				<span><%= link_to "RA purchase order", "#{base_url}/admin/purchase_order/#{comment.purchase_order.id}/edit" %></span>
+				Admin controls: 
+				<span><%= link_to "RA purchase order", "#{base_url}/admin/purchase_order/#{comment.purchase_order.id}/edit" %></span> 
+				<span>
+					| <%= link_to "Add tags", edit_purchase_order_path(po.id) %>
+				</span>
+					| <%= link_to "Edit review", edit_comment_path(comment)%>
 			<% end %>
 		</div>
 
