@@ -37,6 +37,15 @@ class Tag < ActiveRecord::Base
 
   @@tag_sets = nil
 
+  #there will be something more sophisticated in the future, so not worrying about
+  #sorting by relationship type yet
+  def immediate_neighbors
+    answer = []
+    sources = TagRelationship.where(source_tag_id: self.id)
+    relateds = TagRelationship.where(related_tag_id: self.id)
+    (sources + relateds).map{|r| r.readable}
+  end
+
   def relate(target_tag,relationship_name)
     return false unless self.organization_id == target_tag.organization_id
     tag_relationship_type = TagRelationshipType.where("name = ?",relationship_name)
