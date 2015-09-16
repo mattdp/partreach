@@ -1,6 +1,34 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'setup root of tag hierarchy'
+task tag_web_setup: :environment do
+  Organization.find_each do |o|
+    abort = false
+    tag_names = ["root","processes","services","products"]
+    tag_names.each do |tag_name|
+      if o.find_existing_tag(tag_name).present?
+        puts "Organization #{o.id} has some root tags already, investigate."
+        abort = true
+      end
+    end
+    if !abort
+      root_id = nil
+      child_id = TagRelationshipType.find_by_name("child").id
+      tag_names.each do |tag_name|
+        t = o.create_tag(tag_name,User.first)
+        if tag_name == "root"
+          root_id = t.id 
+        else
+          TagRelationship.create(source_tag_id: t.id,
+            related_tag_id: root_id,
+            tag_relationship_type_id: child_id)
+        end
+      end
+    end
+  end
+end
+
 desc 'set up tag relationships if they are not found'
 task tag_relationship_setup: :environment do
   required = [
