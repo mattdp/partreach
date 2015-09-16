@@ -5,7 +5,7 @@
     <div class="main-area-contrast override">
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
        <%= render partial: "organizations/navigation_header", locals: {show_left_text: false, middle_text: "See who #{@people_called} are using to make parts", organization: @organization} %>
-      <%= render :partial => "providers/providers_header" %>      
+      <%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>      
 
       <% if @results_hash.present? %>
         <% @results_hash.each do |header, providers| %>
