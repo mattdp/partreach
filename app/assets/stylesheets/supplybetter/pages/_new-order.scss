@@ -166,7 +166,7 @@
     margin-top: 20px;
   }
 
-  input[type=text], textarea, input[type=password] {
+  input[type=text], textarea, input[type=password], input[type=number] {
     @include appearance(none);
     background: $light-gray;
     border: 1px solid #ccc;
