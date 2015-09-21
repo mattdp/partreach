@@ -29,10 +29,7 @@
 						<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>                
 						<%= "Quantity: #{po.quantity}" if po.quantity %>,
 						<%= "Price: #{number_to_currency(po.price)}" if po.price %>
-					<% end %>
-				
-					<%= label_tag :lead_time_days, "Enter lead time" %>
-					<%= number_field_tag :lead_time_days, @comment.purchase_order.lead_time_days %>
+					<% end %>								
 
 					<%= label_tag :title, "Your review title (optional)" %>
 					<%= text_field_tag :title, @comment.title %>
@@ -51,6 +48,18 @@
 							<%= text_field_tag :new_project, nil, :placeholder => "Project name missing? Type a new one here!" %>
 						</div>
 					</div>
+
+					<% if po %>
+						<div class="row">
+						<div class="col-md-4 no-padding-left">
+						<%= label_tag :lead_time_days, "Days it took to receive the parts: " %>
+						</div>
+						<div class="col-md-2">
+						<%= number_field_tag :lead_time_days, @comment.purchase_order.lead_time_days %>
+						</div>
+						
+						</div>
+					<% end %>
 
 					<% rating_info = [
 						["overall","<strong>Overall</strong>"],
