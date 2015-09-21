@@ -102,7 +102,9 @@
 						<div><%= "Lead time: #{po.lead_time_days} days" if po.lead_time_days %></div>
 					<% end %>
 				</div>
-				<div class="col-md-12 left-grid-bare"><%= "Description: #{po.description}" if po.description %></div>
+				<% if po.present? %>
+					<div class="col-md-12 left-grid-bare"><%= "Description: #{po.description}" if po.description %></div>
+				<% end %>
 				<div class="col-md-8 tags-providerTags left-grid-bare">
 					<% po.tags.each do |tag| %>              
 						<a><%= tag.readable %></a>
