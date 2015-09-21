@@ -93,6 +93,9 @@ class CommentsController < ApplicationController
     provider = @comment.provider
     Event.add_event("User", current_user.id, "attempted comment update for", "Comment", @comment.id) 
 
+    @purchase_order = @comment.purchase_order
+    saved_ok = @purchase_order.update_attributes(purchase_order_params)
+
     # create externals and associate with comment
     add_externals
 
@@ -160,6 +163,10 @@ class CommentsController < ApplicationController
   def comment_params
     params.permit(:overall_score, :quality_score, :cost_score, :speed_score, :payload, \
       :provider_id, :title, :recommendation)
+  end
+
+  def purchase_order_params
+    params.permit(:lead_time_days)
   end
 
   def correct_user

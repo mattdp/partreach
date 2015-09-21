@@ -1,5 +1,5 @@
 <hr>
-<div class="row">
+<div class="row comment-smalltext">
 <!-- BEGIN LEFT COLUMN -->
 	<div class="col-md-2">
 		<div class="row">
@@ -8,23 +8,22 @@
 		<div class="row comment-profile">
 			<% contact = comment.user.lead.lead_contact %>
 			<p><strong><%= "#{contact.first_name} " %></strong></p>
-			<p class="comment-smalltext"><%= "Team: #{contact.contactable.user.team.name}" if contact.contactable.user.team.present? %></p>
+			<p><%= "Team: #{contact.contactable.user.team.name}" if contact.contactable.user.team.present? %></p>
 			<% total_comments = @total_comments_for_user[comment.user.id] %>
 			<% if total_comments %>
-				<p class="comment-smalltext"><%= "#{pluralize(total_comments, 'review')}" %></p>
+				<p><%= "#{pluralize(total_comments, 'review')}" %></p>
 			<% end %>
 			<% purchase_order_comments = @purchase_order_comments_for_user[comment.user.id] %>
 			<% if purchase_order_comments %>
-				<p class="comment-smalltext"><%= "#{pluralize(purchase_order_comments, 'purchase order')}" %></p>
+				<p><%= "#{pluralize(purchase_order_comments, 'purchase order')}" %></p>
 			<% end %>
 		</div>
 	</div>
 
 <!-- BEGIN MIDDLE COLUMN -->
-	<div class="col-md-6 comment">
-
+	<div class="col-md-6">
 		<div class="row">
-			<span class="comment-smalltext"> 
+			<span> 
 				<% if comment.ratings_count.present? && comment.ratings_count > 0 %>
 					<%= "#{comment.helpful_count} of #{comment.ratings_count} users found this comment helpful" %>
 				<% end %>
@@ -49,65 +48,66 @@
 				</span>
 					| <%= link_to "Edit review", edit_comment_path(comment)%>
 			<% end %>
-		</div>
-
+		</div>    		
 		<div class="row">
-			<% if comment.overall_score > 0 %>
-				<span class="comment-smalltext">Overall:</span>
-				<%= render partial: "providers/star_display", locals: {score: comment.overall_score, include_hidden_number: false} %>
-			<% end %>
-			<span class="comment-smalltext"> 
-				<%= "Reviewed #{comment.updated_at.strftime('%Y-%m-%d')}" %>
-			</span>
-      <% if comment.has_recommendation? %>
-  			<span class="comment-smalltext"> 
-          <%= render partial: "providers/recommendation_styling", locals: {comment: comment, titleize: true} %>
-        </span>
-      <% end %>
+				<div class="col-md-8 left-grid-bare">
+					<% if comment.overall_score > 0 %>
+						<%= render partial: "providers/star_display", locals: {score: comment.overall_score, include_hidden_number: false} %>
+					<% end %>				
+					<span> 
+						<%= "Reviewed #{comment.updated_at.strftime('%Y-%m-%d')}" %>
+					</span>
+				</div>
+				<div class="col-md-4 left-grid-bare">
+					<% if comment.has_recommendation? %>
+					  <span> 
+					    <%= render partial: "providers/recommendation_styling", locals: {comment: comment, titleize: true} %>
+					  </span>        
+					<% end %>
+				</div>
 		</div>
 
-		<div class="row">
-			<p><%= raw(comment.payload) %></p>
-		</div>
+		<div class="row col-md-12 comment-snippet">
+			<%= raw(comment.payload) %>
+		</div>			
 
-		<div class="row comment-smalltext">			
+      <div class="row">
+        <% if project.present? %>
+          <div class="col-md-8 left-grid-bare">Project Name: <span><%= link_to "#{project.name}", edit_project_path(project.id) %></span></div>
+        <% end %>
+        <% if po.present? %>
+          <div class="col-md-4 left-grid-bare"><%= "PO Issued: #{po.issue_date.strftime('%Y-%m-%d')}" if po.issue_date %></div>
+        <% end %>
+      </div>
+
+		<div class="row">			
 			<% score_total = comment.cost_score + comment.quality_score + comment.speed_score %>
-			<% if (po.present? or score_total > 0 or project.present?) %>
-				<div>About this order</div>                
+			<% if (po.present? or score_total > 0 or project.present?) %>				
 				<% if (score_total > 0 ) %>
-					<div class="row">
-						<span class="comment-smalltext">
-							<% ["cost_score","quality_score","speed_score"].each do |score| %>
-								<% if comment.attributes[score] > 0 %>
-									<%= "#{score[0...score.length-6].capitalize}:" %>
+					<div class="col-md-8 left-grid-bare">						
+						<% ["cost_score","quality_score","speed_score"].each do |score| %>
+							<div>
+								<% if comment.attributes[score] > 0 %>									
 									<%= render partial: "providers/star_display", locals: {score: comment.attributes[score], include_hidden_number: false} %>
+									<%= "#{score[0...score.length-6].capitalize}" %>
 								<% end %>
-							<% end %>
-						</span>
+							</div>
+						<% end %>					
 					</div>
-				<% end %>
-				<% if project.present? %>
-					<div class="row">
-						<div class="col-md-8 left-grid-bare">
-							Project: <%= link_to "#{project.name}", edit_project_path(project.id) %>
-						</div>
-					</div>
-				<% end %>
-				<% if po.present? %>
-					<div class="row">
-						<div class="col-md-4 left-grid-bare po-padding">PO Issued: <span><%= "#{po.issue_date.strftime('%Y-%m-%d')}" if po.issue_date %></span></div>
-					</div>
-					<div>Description: <span><%= "#{po.description}" if po.description %></span></div>
-					<div class="col-md-8 tags-providerTags left-grid-bare">
-						<% po.tags.each do |tag| %>              
-							<a><%= tag.readable %></a>
-						<% end %>
-					</div>
-					<div class="col-md-4">
-						<div>Quantity: <span><%= "#{po.quantity}" if po.quantity %></span></div>
-						<div>Price: <span><%= "#{number_to_currency(po.price)}" if po.price %></span></div>
-					</div>
-				<% end %>
+				<% end %>		
+				<div class="col-md-4 left-grid-bare">		
+					<% if po.present? %>					
+						<div><%= "Price: #{number_to_currency(po.price)}" if po.price %></div>						
+						<div><%= "Quantity: #{po.quantity}" if po.quantity %></div>
+						<div><%= "Lead time: #{po.lead_time_days} days" if po.lead_time_days %></div>
+					<% end %>
+				</div>
+				<div class="col-md-12 left-grid-bare"><%= "Description: #{po.description}" if po.description %></div>
+				<div class="col-md-8 tags-providerTags left-grid-bare">
+					<% po.tags.each do |tag| %>              
+						<a><%= tag.readable %></a>
+					<% end %>
+				</div>
 			<% end %>
 		</div>
 		<div class="row comment-last-row">
@@ -117,7 +117,7 @@
 				<% if comment.user != current_user %>
 					<% if rating.nil? %>
 						<%= form_tag comment_ratings_path do %>
-							<span class="comment-smalltext"> 
+							<span> 
 								Was this review helpful to you?
 							</span>
 							<%= hidden_field_tag :provider_id, @provider.id %>
@@ -126,11 +126,11 @@
 							<%= submit_tag "No" %>
 						<% end %>
 					<% elsif rating.helpful %>
-						<span class="comment-smalltext"> 
+						<span> 
 							<em>You found this review helpful</em>
 						</span>
 					<% else %>
-						<span class="comment-smalltext"> 
+						<span> 
 							<em>You didn't find this review helpful. <a href="mailto:suggest-edits@supplybetter.com">Give feedback</a></em>
 						</span>
 					<% end %>
@@ -138,7 +138,7 @@
 			</div>
 			<% if comment.user == current_user %>
 				<div class="col-md-4">
-					<span class="comment-smalltext">[<%= link_to "Edit my review", edit_comment_path(comment)%>]
+					<span>[<%= link_to "Edit my review", edit_comment_path(comment)%>]
 					</span>
 				</div>
 			<% end %>

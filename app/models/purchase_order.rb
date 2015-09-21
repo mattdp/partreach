@@ -12,6 +12,7 @@
 #  issue_date              :date
 #  id_in_purchasing_system :integer
 #  dont_request_feedback   :boolean
+#  lead_time_days          :integer
 #
 
 class PurchaseOrder < ActiveRecord::Base
