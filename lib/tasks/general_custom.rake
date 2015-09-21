@@ -1,6 +1,43 @@
 require "#{Rails.root}/lib/RakeHelper.rb"
 include RakeHelper
 
+desc 'make sure no organizations are tied into tags that they dont use'
+task tag_cleaner: :environment do
+  output_string = ""
+  taggings = Tagging.where(taggable_type: ["Provider","PurchaseOrder"])
+  taggings.each do |tagging|
+    possible_tag = Tag.where(id: tagging.id)
+
+    if tagging.taggable_type == "Provider"
+      possible_provider = Provider.where(id: tagging.taggable_id)
+    elsif tagging.taggable_type == "PurchaseOrder"
+      possible_provider = Provider.where(id: PurchaseOrder.find(tagging.taggable_id).id)
+    else
+      possible_provider = nil
+    end
+
+    if (possible_tag.present? and possible_provider.present?)
+      tag = possible_tag[0]
+      provider = possible_provider[0]
+      if provider.organization_id != tag.organization_id
+        output_string += "Incorrect tagging found - provider #{provider.name} 
+          in organization #{provider.organization.id} 
+          had tag #{tag.name}, which belongs to organzation
+          #{tag.organization_id}..."
+        correct_tag = provider.organization.find_or_create_tag!(tag.name,User.first)
+        tagging.tag = correct_tag
+        if tagging.save        
+          output_string += "Repaired\n"
+        else
+          output_string += "ERROR - repair failed.\n"
+        end
+      end
+    end
+  end
+  puts output_string
+end
+
+
 desc 'modify supplier tags based on their history in the app'
 task :supplier_tagger => :environment do
   

@@ -86,6 +86,7 @@ Partreach::Application.routes.draw do
 
   resources :order_groups, only: [:new, :create, :edit, :update]
 
+  resources :organizations, only: [:show]
   get 'organizations/:id/tags_list', to: 'organizations#tags_list', as: 'organizations_tags_list'
   get 'organizations/:id/providers_list', to: 'organizations#providers_list', as: 'organizations_providers_list'
 
@@ -96,6 +97,8 @@ Partreach::Application.routes.draw do
   resources :password_resets, only: [:new, :create]
 
   resources :parts, only: [:create]
+
+  resources :projects, only: [:edit, :update]
 
   resources :providers, only: [:new, :create, :edit]
   get '/providers/new/:event_name', to: 'providers#new', as: 'new_provider_with_event'
@@ -111,8 +114,10 @@ Partreach::Application.routes.draw do
   post '/provider/upload_photo', to: 'providers#upload_photo'
   get '/teams/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
 
-  resources :purchase_orders, only: [:index]
+  resources :purchase_orders, only: [:index, :edit]
+  get '/purchase_orders/emails', to: 'purchase_orders#emails', as: 'purchase_orders_emails'
   get '/purchase_orders/email_sent/:id/:after_this_email_count', to: 'purchase_orders#email_sent', as: 'purchase_orders_email_sent'
+  match '/purchase_orders/:id', to: 'purchase_orders#update', as: 'purchase_order', via: :post
 
   resources :sessions, only: [:new, :create, :destroy, :edit, :update]
   get '/signin', to: 'sessions#new', as: 'signin'

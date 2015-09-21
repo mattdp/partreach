@@ -1,0 +1,5 @@
+<% if comment.present? %>
+  <%= link_to "Back to comment", edit_comment_path(@comment) %>
+<% else %>
+  <%= link_to "Back to search page", teams_index_path %>
+<% end %>

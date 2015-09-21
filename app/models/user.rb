@@ -36,6 +36,31 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
   validates :supplier_id, uniqueness: true, allow_nil: true
 
+  #this does not track how many reminder emails, nor does it causally link reminders to filling things out
+  def behaviors
+    returnee = {}
+    contact = self.lead.lead_contact
+    
+    returnee[:id] = self.id
+    returnee[:name] = contact.full_name_untrusted
+    returnee[:comments_filled_out] = Comment
+      .where(user_id: self.id)
+      .reject{|c| c.untouched?}
+      .count    
+    ids_of_reminded_comments = Event
+      .where(model: "User", model_id: self.id)
+      .where(happening: "sent_reminder_email")
+      .map{|e| e.target_model_id}
+      .uniq
+    returnee[:comments_reminded_about] = ids_of_reminded_comments.count
+    returnee[:comments_reminded_about_and_filled_out] = Comment
+      .where(id: ids_of_reminded_comments)
+      .reject{|c| c.untouched?}
+      .count
+
+    return returnee
+  end
+
   #which providers not to ask a user about for X days
   def dont_ask_for_feedback(days_not_to_reask = 10)
     #find comments where user updated in last X days

@@ -1,13 +1,13 @@
 <% provide(:title,"Edit provider: '#{@provider.name}'") %>
 
 <div class="container hax-body-styling">
-    <div class="row">
-      <div class="col-md-11 col-md-offset-1">
-        <!-- <%= "#{@provider.name}'" %> -->
-        <h1>Update Business Details</h1>
-      </div>
-    </div>
-    <div class="row">
-      <%= render :partial => "providers/provider_information", locals: {form_action: "update", contact_fields: @contact_fields} %>
-    </div>
+	<div class="row">
+		<%= render partial: "organizations/navigation_header", locals: {show_left_text: true, middle_text: @middle_text, organization: @organization} %>
+		<div class="col-md-11 col-md-offset-1">			
+			<h1>Update Business Details for <%= "#{@provider.name}" %></h1>
+		</div>
+	</div>
+	<div class="row">
+		<%= render :partial => "providers/provider_information", locals: {form_action: "update", contact_fields: @contact_fields} %>
+	</div>
 </div>

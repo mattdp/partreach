@@ -34,9 +34,17 @@
         <li><%= link_to "I had a different experience...", comments_edit_with_status_path(@comment.id,"bad") %></li>
       </ul>
 
-      <p><span>Project:</span> <%= @purchase_order.project_name.present? ? "#{@purchase_order.project_name}" : "[PROJECT NAME]" %></p>
-      <p><span>Quantity:</span> <%= @purchase_order.quantity.present? ? "#{@purchase_order.quantity}" : "[QUANTITY]" %> pieces for <%= @purchase_order.quantity.present? ? currencyize(@purchase_order.price,"dollars") : "$[PRICE]" %> total</p>
-      <p><span>Description:</span> <%= @purchase_order.description.present? ? "#{@purchase_order.description}" : "[DESCRIPTION]" %> </p>      
+      <p>
+        <%= @comment.project.present? ? "Project: #{@comment.project.name}" : "" %>
+      </p>
+      <p>
+        <%= @purchase_order.quantity.present? ? "Quantity: #{@purchase_order.quantity}" : "" %>
+        <%= @purchase_order.quantity.present? && @purchase_order.price.present? ? " pieces for ": "" %>
+        <%= @purchase_order.price.present? ? "#{currencyize(@purchase_order.price,'dollars')} total" : "" %> 
+      </p>
+      <p>
+        <%= @purchase_order.description.present? ? "Description: #{@purchase_order.description}" : "" %>
+      </p>      
 
       <p>But wait, <%= link_to "I haven't received the parts yet!", comments_later_path(@comment.id) %></p>
 

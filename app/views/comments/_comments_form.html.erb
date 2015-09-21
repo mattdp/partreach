@@ -1,165 +1,155 @@
 <div class="container hax-body-styling">
-  <div class="row">
-    <div class="col-md-12">
-      <% if current_user.admin and @comment.present? and @comment.id.present? %>
-        <%= link_to "Admin only: email reminder for this comment", comments_request_for_review_path(@comment.id) %>
-      <% end %>
+	<div class="row">
+		<div class="col-md-12">
+			<% if current_user.admin and @comment.present? and @comment.id.present? %>
+				<%= link_to "Admin only: email reminder for this comment", comments_request_for_review_path(@comment.id) %>
+			<% end %>
 
-      <h1><%= heading %></h1>
+			<h1><%= heading %></h1>
 
-      <p><%= link_to "Back to provider profile", teams_profile_path(@provider.name_for_link) %></p>
+			<p><%= link_to "Back to supplier profile", teams_profile_path(@provider.name_for_link) %></p>
 
-      <% if @flavor == "good" %>
-        <p><strong>Glad to hear this job went well!</strong> Your colleagues might like to know what was great.</p>
-      <% elsif @flavor == "bad" %>
-        <p><strong>Sorry to hear this job didn't go well.</strong> Adding more detail might help your colleagues avoid similar situations.</p>        
-      <% end %>     
-    </div>
-  </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8 any-form">           
+			<% if @flavor == "good" %>
+				<p><strong>Glad to hear this job went well!</strong> Your colleagues might like to know what was great.</p>
+			<% elsif @flavor == "bad" %>
+				<p><strong>Sorry to hear this job didn't go well.</strong> Adding more detail might help your colleagues avoid similar situations.</p>        
+			<% end %>     
+		</div>
+	</div>
+	<%= form_tag(path, method: method) do %> 
+		<div class="any-form">
+			<div class="row">    
+				<div class="col-md-8">             
+					<%= hidden_field_tag :provider_id, @provider.id %>
+					<%= hidden_field_tag :comment_type, @comment_type %>
+					<div id='comment_uploads'>
+					</div>
 
-      <%= form_tag(path, method: method) do %>
+					<div class="field comment-title">
+						<% po = @comment.purchase_order %>
+						<% if po %>                
+							<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>                
+							<%= "Quantity: #{po.quantity}" if po.quantity %>,
+							<%= "Price: #{number_to_currency(po.price)}" if po.price %>
+						<% end %>
+					</div>
 
-        <%= hidden_field_tag :provider_id, @provider.id %>
-        <%= hidden_field_tag :comment_type, @comment_type %>
+					<div class="field comment-title">
+						<%= label_tag :title, "Your review title (optional)" %><br>
+						<%= text_field_tag :title, @comment.title %>
+					</div>
 
-        <div id='comment_uploads'>
-        </div>
+					<div class="field">
+						<%= label_tag :payload, "Your review" %><br>
+						<%= text_area_tag :payload, @comment.payload, rows: 5 %>
+					</div>
 
-        <div class="field comment-title">
-              <% po = @comment.purchase_order %>
-              <% if po %>                
-                <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>                
-                <%= "Quantity: #{po.quantity}" if po.quantity %>,
-                <%= "Price: #{number_to_currency(po.price)}" if po.price %>
-              <% end %>
-        </div>
+					<div class="field">
+						<div class="row">
+							<div class="col-md-4 no-padding-left">
+								<div class="comment-project-label">
+									<%= label_tag :project, "Project" %>
+									<%= select_tag(:project, options_for_select(@projects_listing,@default_project)) %>                               
+								</div>              
+							</div>
+							<div class="col-md-8 no-padding-right">              
+								<%= text_field_tag :new_project, nil, :placeholder => "Project name missing? Type a new one here!" %>
+							</div>
+						</div>
+					</div>
 
-        <div class="field comment-title">
-          <%= label_tag :title, "Your comment title (optional)" %><br>
-          <%= text_field_tag :title, @comment.title %>
-        </div>
+					<% rating_info = [
+						["overall","<strong>Overall</strong>"],
+						["quality","In terms of <strong>quality</strong>"],
+						["cost","In terms of <strong>cost</strong>"],
+						["speed","In terms of <strong>speed</strong>"]
+					] %>
 
-        <div class="field">
-          <%= label_tag :payload, "Your comment" %><br>
-          <%= text_area_tag :payload, @comment.payload, rows: 5 %>
-        </div>
+					<% rating_info.each do |individual_rating| %>
+						<%= render partial: "comments/rating_block", locals: {category: "#{individual_rating[0]}", html_flavortext: "#{individual_rating[1]}"} %>
+						<hr>
+					<% end %>
 
-        <div class="overall field">
-          <p><strong>Overall,</strong> how do you like this supplier? (optional)</p>
-          <span class="star-rating">
-          <% (1..5).each do |value| %>
-            <%= radio_button_tag("overall_score", "#{value}", checked = (value == @comment.overall_score)) %><i></i>
-          <% end %>
-          </span>
-          <% rating_text = ((@comment.overall_score != 0) ? "#{@comment.overall_score} stars" : "Rating not yet selected") %>
-          <strong class="choice"><%= rating_text %></strong>
-        </div>
-        <hr>
-        <div class="quality field">
-          <p>In terms of <strong>quality</strong>, how do you like this supplier? (optional)</p>
-          <span class="star-rating">
-          <% (1..5).each do |value| %>
-            <%= radio_button_tag("quality_score", "#{value}", checked = (value == @comment.quality_score)) %><i></i>
-          <% end %>
-          </span>
-          <% rating_text = ((@comment.quality_score != 0) ? "#{@comment.quality_score} stars" : "Rating not yet selected") %>
-          <strong class="choice"><%= rating_text %></strong>
-        </div>
-        <hr>
-        <div class="cost field">
-          <p>In terms of <strong>cost</strong>, how do you like this supplier? (optional)</p>
-          <span class="star-rating">
-          <% (1..5).each do |value| %>
-            <%= radio_button_tag("cost_score", "#{value}", checked = (value == @comment.cost_score)) %><i></i>
-          <% end %>
-          </span>
-          <% rating_text = ((@comment.cost_score != 0) ? "#{@comment.cost_score} stars" : "Rating not yet selected") %>
-          <strong class="choice"><%= rating_text %></strong>
-        </div>
-        <hr>
-        <div class="speed field">
-          <p>In terms of <strong>speed</strong>, how do you like this supplier? (optional)</p>
-          <span class="star-rating">
-          <% (1..5).each do |value| %>
-            <%= radio_button_tag("speed_score", "#{value}", checked = (value == @comment.speed_score)) %><i></i>
-          <% end %>
-          </span>
-          <% rating_text = ((@comment.speed_score != 0) ? "#{@comment.speed_score} stars" : "Rating not yet selected") %>
-          <strong class="choice"><%= rating_text %></strong>
-        </div>        
+					
+					<% ordered_recommendations = [:positive, :negative, :default] %>
+					
+					<% ordered_recommendations.each do |individual_recommendation| %>
+						<div class="row radio">
+							<div class="col-md-5 col-sm-5 col-xs-5">
+								<% rec = Comment.recommendations[individual_recommendation] %>
+								<%= radio_button_tag "recommendation", "#{rec[:short]}", @comment.recommendation == "#{rec[:short]}", class: "radio", id: "recommendation-radio-button-#{rec[:short]}" %>
+								<%= label_tag "recommendation-radio-button-#{rec[:short]}", "#{rec[:prompt]}" %>								
+							</div>							
+						</div>    
+					<% end %>                            
+				</div>
 
-        <div class="col-md-4">
-          <%= submit_tag "Submit", class: "save-button", :id => "save_button" %>
-        </div>
-
-      <% end %>
-      </div>    
-    <div class="col-md-4">
-        <div>
-          <ul id="comment_photo_gallery" class="row photo-gallery">
-            <% if @comment_photo_urls.present? %>
-              <% count = 0 %>
-              <% @comment_photo_urls.each do |url| %>
-                <% if count == 0 %>
-                  <li>
-                <% else %>
-                  <li class="col-lg-3 col-md-4 col-sm-3 col-xs-4">
-                <% end %>
-              <%= image_tag url %>
-              </li>
-              <% count += 1 %>
-             <% end %>
-            <% end %>
-          </ul>
-        </div>   
-    <!-- FILE UPLOAD  -->
-      <div class="attachment-uploader photo-upload-background">Upload pictures here (or drag and drop)
-        <br>
-        <em>Note: pictures are not saved with comment until "Submit" button is clicked</em>
-        <%= hidden_field_tag :comment_id_for_upload, @comment.id %>
-        <%= s3_uploader_form id: "s3-comment-photo-upload", class: "s3-comment-photo-upload",
-          max_file_size: 10.megabytes,
-          bucket: @provider.organization.external_bucket_name,
-          key_starts_with: "#{@provider.name_for_link}",
-          key: "#{@provider.name_for_link}-#{@comment.id}-#{SecureRandom.hex}-{unique_id}" do %>
-            <%= file_field_tag :file, multiple: true %>
-        <% end %>
-        <script id="template-upload" type="text/x-tmpl">
-          <div id="file-{%=o.unique_id%}" class="upload">
-            <div class="filename">{%=o.name%}</div>
-            <div class="progress"><div class="bar" style="width: 0%"></div></div>
-          </div>
-        </script>
-      </div>
-      <!-- END FILE UPLOAD -->
-    </div>
-    </div>
-  </div>
-
+				<div class="col-md-4">
+					<div>
+						<ul id="comment_photo_gallery" class="row photo-gallery">
+							<% if @comment_photo_urls.present? %>
+								<% count = 0 %>
+								<% @comment_photo_urls.each do |url| %>
+									<% photo_class_content = "" %>
+									<% count == 0 ? photo_class_content = "" : photo_class_content = "col-lg-3 col-md-4 col-sm-3 col-xs-4" %>
+									<li class="#{photo_class_content}">
+										<%= image_tag url %>
+									</li>
+									<% count += 1 %>
+								<% end %>
+							<% end %>
+						</ul>
+					</div>   
+					<!-- FILE UPLOAD  -->
+					<div class="attachment-uploader photo-upload-background well well-lg">
+						<div class="margin-bottom">Upload pictures here (or drag and drop)</div>
+						<%= hidden_field_tag :comment_id_for_upload, @comment.id %>
+						<%= s3_uploader_form id: "s3-comment-photo-upload", class: "s3-comment-photo-upload",
+							max_file_size: 10.megabytes,
+							bucket: @provider.organization.external_bucket_name,
+							key_starts_with: "#{@provider.name_for_link}",
+							key: "#{@provider.name_for_link}-#{@comment.id}-#{SecureRandom.hex}-{unique_id}" do %>
+								<%= file_field_tag :file, multiple: true %>
+						<% end %>
+						<script id="template-upload" type="text/x-tmpl">
+							<div id="file-{%=o.unique_id%}" class="upload">
+								<div class="filename">{%=o.name%}</div>
+								<div class="progress"><div class="bar" style="width: 0%"></div></div>
+							</div>
+						</script>
+						<div class="margin-top">Tip: pictures are not saved with comment until "Submit" button is clicked</div>
+					</div>
+					<!-- END FILE UPLOAD -->
+				</div>    
+			</div>
+			<div class="row">
+				<div class="col-md-4 margin-top">
+					<%= submit_tag "Submit", class: "btn-block save-button", :id => "save_button" %>
+				</div>
+			</div>
+		</div>
+	<% end %>
 </div>
 
 <!-- JS TO ALLOW RATINGS TO WORK -->
 <script type="text/javascript"> 
-  $('.overall :radio').change(
-  function(){
-    $('.overall .choice').text( this.value + ' stars' );
-  });
+	$('.overall :radio').change(
+	function(){
+		$('.overall .choice').text( this.value + ' stars' );
+	});
 
-  $('.quality :radio').change(
-  function(){
-    $('.quality .choice').text( this.value + ' stars' );
-  });
+	$('.quality :radio').change(
+	function(){
+		$('.quality .choice').text( this.value + ' stars' );
+	});
 
-  $('.cost :radio').change(
-  function(){
-    $('.cost .choice').text( this.value + ' stars' );
-  });
+	$('.cost :radio').change(
+	function(){
+		$('.cost .choice').text( this.value + ' stars' );
+	});
 
-  $('.speed :radio').change(
-  function(){
-    $('.speed .choice').text( this.value + ' stars' );
-  });
+	$('.speed :radio').change(
+	function(){
+		$('.speed .choice').text( this.value + ' stars' );
+	});
 </script>
