@@ -5,7 +5,7 @@ desc 'setup root of tag hierarchy'
 task tag_web_setup: :environment do
   Organization.find_each do |o|
     abort = false
-    tag_names = ["root","processes","services","products"]
+    tag_names = ["root","processes","services","products","materials"]
     tag_names.each do |tag_name|
       if o.find_existing_tag(tag_name).present?
         puts "Organization #{o.id} has some root tags already, investigate."
