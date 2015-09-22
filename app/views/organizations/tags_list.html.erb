@@ -2,7 +2,7 @@
   <div class="row">
     <div class="main-area-contrast override">
       <%= render partial: "organizations/navigation_header", locals: {show_left_text: true, middle_text: @middle_text, organization: @organization} %>
-      <%= render partial: "providers/tags_table", locals: {tag_details: @tag_details, include_tag_column: false, cache_result: true} %>
+      <%= render partial: "providers/tags_table", locals: {tag_details: @tag_details, include_tag_column: false, cache_result: true, purchase_order_titles: @purchase_order_titles} %>
     </div>
   </div>
 </div>

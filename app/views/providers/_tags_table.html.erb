@@ -6,7 +6,7 @@
       <tr>
         <th>Tags</th>
         <th># suppliers</th>
-        <% if @purchase_order_titles %>
+        <% if purchase_order_titles %>
           <th>last PO date</th>
           <th>latest PO supplier</th>
           <th># of POs</th>
@@ -22,7 +22,7 @@
           <td><%= link_to "#{tag_readable}", teams_index_with_search_path("t#{details[:tag_id]}","false") %></td>
           <td><%= "#{details[:num_providers]}" %></td>
           <td>
-            <% if @purchase_order_titles %>
+            <% if purchase_order_titles %>
               <% if details[:last_model].present? and details[:last_po_comment_id].present? and details[:last_provider].present? %>
                 <% date_string = details[:last_model].issue_date.strftime("%-m/%-d/%y") %>
                 <%= link_to date_string, teams_profile_path(details[:last_provider].name_for_link, anchor: details[:last_po_comment_id]) %> 
@@ -40,7 +40,7 @@
             <% end %>
           </td>
           <%#= no fifth column if not POs %>
-          <% if @purchase_order_titles %>
+          <% if purchase_order_titles %>
             <td><%= "#{details[:num_pos]}" %></td>
           <% end %>
         </tr>
