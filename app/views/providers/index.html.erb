@@ -8,6 +8,10 @@
       <%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>      
 
       <% if @results_hash.present? %>
+        <% if @additional_tags.present? %>
+          <h3>Related tags added to search automatically:</h3>
+          <%= render partial: "providers/tag_display", locals: {tags: @additional_tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
+        <% end %>
         <% @results_hash.each do |header, providers| %>
           <div class="col-md-12">
             <h3 class="no-margin-top margin-bottom">
