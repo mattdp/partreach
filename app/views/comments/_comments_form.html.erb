@@ -22,41 +22,44 @@
 				<div class="col-md-8">             
 					<%= hidden_field_tag :provider_id, @provider.id %>
 					<%= hidden_field_tag :comment_type, @comment_type %>
-					<div id='comment_uploads'>
-					</div>
+					<div id='comment_uploads'></div>
+					
+					<% po = @comment.purchase_order %>
+					<% if po %>                
+						<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>                
+						<%= "Quantity: #{po.quantity}" if po.quantity %>,
+						<%= "Price: #{number_to_currency(po.price)}" if po.price %>
+					<% end %>								
 
-					<div class="field comment-title">
-						<% po = @comment.purchase_order %>
-						<% if po %>                
-							<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>                
-							<%= "Quantity: #{po.quantity}" if po.quantity %>,
-							<%= "Price: #{number_to_currency(po.price)}" if po.price %>
-						<% end %>
-					</div>
+					<%= label_tag :title, "Your review title (optional)" %>
+					<%= text_field_tag :title, @comment.title %>
+					
+					<%= label_tag :payload, "Your review" %>
+					<%= text_area_tag :payload, @comment.payload, rows: 5 %>
 
-					<div class="field comment-title">
-						<%= label_tag :title, "Your review title (optional)" %><br>
-						<%= text_field_tag :title, @comment.title %>
-					</div>
-
-					<div class="field">
-						<%= label_tag :payload, "Your review" %><br>
-						<%= text_area_tag :payload, @comment.payload, rows: 5 %>
-					</div>
-
-					<div class="field">
-						<div class="row">
-							<div class="col-md-4 no-padding-left">
-								<div class="comment-project-label">
-									<%= label_tag :project, "Project" %>
-									<%= select_tag(:project, options_for_select(@projects_listing,@default_project)) %>                               
-								</div>              
-							</div>
-							<div class="col-md-8 no-padding-right">              
-								<%= text_field_tag :new_project, nil, :placeholder => "Project name missing? Type a new one here!" %>
-							</div>
+					<div class="row">
+						<div class="col-md-4 no-padding-left">
+							<div class="comment-project-label">
+								<%= label_tag :project, "Project" %>
+								<%= select_tag(:project, options_for_select(@projects_listing,@default_project)) %>                               
+							</div>              
+						</div>
+						<div class="col-md-8 no-padding-right">              
+							<%= text_field_tag :new_project, nil, :placeholder => "Project name missing? Type a new one here!" %>
 						</div>
 					</div>
+
+					<% if po %>
+						<div class="row">
+						<div class="col-md-4 no-padding-left">
+						<%= label_tag :lead_time_days, "Days it took to receive the parts: " %>
+						</div>
+						<div class="col-md-2">
+						<%= number_field_tag :lead_time_days, @comment.purchase_order.lead_time_days %>
+						</div>
+						
+						</div>
+					<% end %>
 
 					<% rating_info = [
 						["overall","<strong>Overall</strong>"],
@@ -69,7 +72,6 @@
 						<%= render partial: "comments/rating_block", locals: {category: "#{individual_rating[0]}", html_flavortext: "#{individual_rating[1]}"} %>
 						<hr>
 					<% end %>
-
 					
 					<% ordered_recommendations = [:positive, :negative, :default] %>
 					
@@ -85,21 +87,19 @@
 				</div>
 
 				<div class="col-md-4">
-					<div>
-						<ul id="comment_photo_gallery" class="row photo-gallery">
-							<% if @comment_photo_urls.present? %>
-								<% count = 0 %>
-								<% @comment_photo_urls.each do |url| %>
-									<% photo_class_content = "" %>
-									<% count == 0 ? photo_class_content = "" : photo_class_content = "col-lg-3 col-md-4 col-sm-3 col-xs-4" %>
-									<li class="#{photo_class_content}">
-										<%= image_tag url %>
-									</li>
-									<% count += 1 %>
-								<% end %>
+					<ul id="comment_photo_gallery" class="row photo-gallery">
+						<% if @comment_photo_urls.present? %>
+							<% count = 0 %>
+							<% @comment_photo_urls.each do |url| %>
+								<% photo_class_content = "" %>
+								<% count == 0 ? photo_class_content = "" : photo_class_content = "col-lg-3 col-md-4 col-sm-3 col-xs-4" %>
+								<li class="#{photo_class_content}">
+									<%= image_tag url %>
+								</li>
+								<% count += 1 %>
 							<% end %>
-						</ul>
-					</div>   
+						<% end %>
+					</ul>
 					<!-- FILE UPLOAD  -->
 					<div class="attachment-uploader photo-upload-background well well-lg">
 						<div class="margin-bottom">Upload pictures here (or drag and drop)</div>
