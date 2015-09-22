@@ -153,6 +153,14 @@ class ProvidersController < ApplicationController
 
       if tags.present?        
         Event.add_event("User", current_user.id, "searched one item", "Tag", tags[0].id) if tags.size == 1
+        if params[:include_related_tags] == "true"
+          additional_tags = []
+          tags.each do |tag|
+            neighbor_ids = tag.immediate_neighboring_tag_ids
+            additional_tags.concat(Tag.where(id: neighbor_ids, organization_id: current_organization.id)) if neighbor_ids.present?
+          end
+          tags.concat(additional_tags).uniq
+        end
         #adapted from organization.providers_hash_by_tag
         tags.sort_by { |t| t.readable.downcase }.each do |tag|
           @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
