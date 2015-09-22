@@ -159,7 +159,7 @@ class ProvidersController < ApplicationController
             neighbor_ids = tag.immediate_neighboring_tag_ids
             additional_tags.concat(Tag.where(id: neighbor_ids, organization_id: current_organization.id)) if neighbor_ids.present?
           end
-          tags.concat(additional_tags).uniq
+          tags = tags.concat(additional_tags).uniq
         end
         #adapted from organization.providers_hash_by_tag
         tags.sort_by { |t| t.readable.downcase }.each do |tag|
