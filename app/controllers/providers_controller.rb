@@ -131,29 +131,19 @@ class ProvidersController < ApplicationController
 
     @results_hash = {}
 
-    if params[:search_terms].present?
+    if params[:search_string].present?
 
-      providers = []
-      tags = []
+      searched_models = @organization.decode_search_string(params[:search_string])
 
-      provider_terms = params[:search_terms].select { |term| term[0] == 'P' }
-      if provider_terms.present?
-        ids = []
-        provider_terms.each do |term|
-          ids << term[2..term.length].to_i
-        end
-        providers = Provider.where(id: ids)
+      providers = searched_models.select{|m| m.class.to_s == "Provider"}
+      tags = searched_models.select{|m| m.class.to_s == "Tag"}
+
+      if providers.present?
         Event.add_event("User", current_user.id, "searched one item", "Provider", providers[0].id) if providers.size == 1
         @results_hash["#{'Supplier'.pluralize(providers.count)} you searched"] = providers
       end
 
-      tag_terms = params[:search_terms].select { |term| term[0] == 'T' }
-      if tag_terms.present?
-        readables = []
-        tag_terms.each do |term|
-          readables << term[2..term.length]
-        end
-        searched_tags = Tag.where(organization_id: @organization.id).where(readable: readables)
+      if tags.present?        
         Event.add_event("User", current_user.id, "searched one item", "Tag", tags[0].id) if tags.size == 1
         #adapted from organization.providers_hash_by_tag
         tags.sort_by { |t| t.readable.downcase }.each do |tag|
@@ -164,14 +154,14 @@ class ProvidersController < ApplicationController
         end
       end
 
-      if params[:search_terms].size > 1
+      if searched_models.size == 1
+        Event.add_event("User", current_user.id, "searched one item", searched_models[0].class.to_s, searched_models[0].id)
+        # if only one provider, skip list, just display that provider's profile page
+        redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1
+      elsif searched_models.size > 1
         search_hash = {tags: tags.map{|t| t.id}, providers: providers.map{|p| p.id}}
         Event.add_event("User", current_user.id, "searched multiple items", nil, nil, search_hash.to_s)
       end
-
-      # if only one provider, skip list, just display that provider's profile page
-      redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1 && tags.empty?
-     
     else
       Event.add_event("User",current_user.id,"loaded Providers index page")
     end

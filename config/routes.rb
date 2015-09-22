@@ -107,6 +107,7 @@ Partreach::Application.routes.draw do
   match 'providers/:id', to: 'providers#update', as: 'provider', via: :post
   get '/teams/signin', to: redirect('/signin')
   get '/teams', to: 'providers#index', as: "teams_index"
+  get '/teams/searching/:search_string', to: 'providers#index', as: "teams_index_with_search"
   get '/teams/hax', to: 'providers#index'
   get '/teams/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
   get '/teams/hax/providers/:name_for_link', to: 'providers#profile'

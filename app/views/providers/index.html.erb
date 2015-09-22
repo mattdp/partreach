@@ -26,7 +26,7 @@
             <h3>Choose Category</h3>
             <ul>
               <% @common_search_tags.each do |tag| %>
-                <li><%= link_to "#{tag.readable}", teams_index_path(search_terms: ["T:#{tag.readable}"]) %></li>
+                <li><%= link_to "#{tag.readable}", teams_index_with_search_path("#{Organization.encode_search_string([tag])}") %></li>
               <% end %>
             </ul>          
           </div>

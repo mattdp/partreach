@@ -37,7 +37,7 @@ class Organization < ActiveRecord::Base
   end
 
   #tries to prevent errors and cross-org searching
-  def self.decode_search_string(search_string)
+  def decode_search_string(search_string)
     answer = []
     return answer if search_string.blank?
 
@@ -48,7 +48,7 @@ class Organization < ActiveRecord::Base
       next if model_name.blank?
       id = ss[1..ss.length]
       next if id == 0
-      answer << [model_name.constantize.find(id)]
+      answer << model_name.constantize.find(id)
     end
     return answer.select{|a| a.organization_id == self.id}
   end
@@ -245,6 +245,7 @@ class Organization < ActiveRecord::Base
     tags.each do |tag|
       inserted = {}
       provider_taggings = tag.taggings.where("taggable_type = 'Provider'")
+      inserted[:tag_id] = tag.id
       inserted[:num_providers] = provider_taggings.count
       if inserted[:num_providers] == 0
         inserted[:num_providers] = nil
