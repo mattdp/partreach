@@ -166,13 +166,13 @@ class ProvidersController < ApplicationController
           @additional_tags = @additional_tags.uniq.reject{|t| tags.include?(t)}
           tags = tags.concat(@additional_tags).uniq
         end
-        #adapted from organization.providers_hash_by_tag
-        tags.sort_by { |t| t.readable.downcase }.each do |tag|
-          @results_hash[originally_searched_tags.map{|t| t.readable}.join(" & ")] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
-            .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
-            .where(organization_id: @organization.id)
-            .order("lower(name)")
-        end
+        #this should be one query, but couldn't figure out how to get order and uniquness to play nice after 15m
+        redundant_provider_ids = Provider.select(:id,:organization_id).joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
+          .where(providers: {organization_id: @organization.id})
+          .where(taggings: {taggable_type: "Provider", tag_id: tags.map{|t| t.id}})
+          .order("lower(name)")
+          .pluck(:id)
+        @results_hash[originally_searched_tags.map{|t| t.readable}.join(" & ")] = Provider.where(id: redundant_provider_ids.uniq)
       end
 
       if searched_models.size == 1
