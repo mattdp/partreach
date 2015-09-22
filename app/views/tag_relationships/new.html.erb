@@ -1,0 +1,9 @@
+<%= form_tag tag_relationships_path, method: :post do%>
+  <p>Source tag</p>
+  <%= render :partial => "tag_relationships/simple_search_box", locals: {search_terms_list: @tag_search_list, return_variable: :source_tag_id} %>
+  <p>Relationship</p>
+  <%= render :partial => "tag_relationships/simple_search_box", locals: {search_terms_list: @tag_relationship_types_search_list, return_variable: :tag_relationship_type_id} %>
+  <p>Related tag</p>
+  <%= render :partial => "tag_relationships/simple_search_box", locals: {search_terms_list: @tag_search_list, return_variable: :related_tag_id} %>
+  <%= submit_tag "Submit" %>
+<% end %>

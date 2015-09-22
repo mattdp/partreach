@@ -8,10 +8,20 @@
 #  related_group_id :integer
 #  created_at       :datetime
 #  updated_at       :datetime
+#  description      :string(255)
 #
 
 class TagRelationshipType < ActiveRecord::Base
   belongs_to :source_group, :class_name => 'TagGroup'
   belongs_to :related_group, :class_name => 'TagGroup'
   has_many :tag_relationships
+
+  def self.search_list
+    answer = []
+    TagRelationshipType.all.find_each do |trt|
+      answer << [trt.description,trt.id]
+    end
+    return answer
+  end
+
 end

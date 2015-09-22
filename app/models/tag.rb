@@ -37,6 +37,44 @@ class Tag < ActiveRecord::Base
 
   @@tag_sets = nil
 
+  def self.search_list(sorted_tags_by_providers,id_only=false)
+    sorted_tags_by_providers.each do |e|
+      e[0] = "#{e[1].readable} (#{e[0]} #{"supplier".pluralize(e[0])})"
+      if id_only
+        e[1] = e[1].id
+      else
+        e[1] = "#{Organization.encode_search_string([e[1]])}"
+      end
+    end
+  end
+
+  #there will be something more sophisticated in the future, so not worrying about
+  #sorting by relationship type yet
+  def immediate_neighboring_tag_relationships(allow_tags_with_zero_results=false)
+    sources = TagRelationship.where(source_tag_id: self.id)
+    relateds = TagRelationship.where(related_tag_id: self.id)
+    combined = sources + relateds
+  end
+
+  def immediate_neighboring_tag_ids
+    relationships = self.immediate_neighboring_tag_relationships
+    relationships.map{|r| r.source_tag_id == self.id ? r.related_tag_id : r.source_tag_id}.uniq
+  end
+
+  def relate(target_tag,relationship_name)
+    return false unless self.organization_id == target_tag.organization_id
+    tag_relationship_type = TagRelationshipType.where("name = ?",relationship_name)
+    return false unless tag_relationship_type.present?
+    tag_relationship_type = tag_relationship_type[0]
+    exists_already = TagRelationship.where("source_tag_id = ? AND related_tag_id = ? AND 
+      tag_relationship_type_id = ?", self.id, target_tag.id,
+      tag_relationship_type.id)
+    return exists_already[0] if exists_already.present?
+    return TagRelationship.create(source_tag_id: self.id, 
+      related_tag_id: target_tag.id, 
+      tag_relationship_type_id: tag_relationship_type.id)
+  end
+
   def self.initialize_tag_sets
     @@tag_sets = {}
     set_categories = {
@@ -157,25 +195,4 @@ class Tag < ActiveRecord::Base
     end
   end
 
-  # Recursively get all the related_tags (descendants) of a tag
-  def descendants(node = self, nodes = [])
-    # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
-    # JAMES AND I ARE GOING TO DISCUSS TAGGING RELATIONSHIPS FURTHER
-    if !node.related_tags.empty?
-      node.related_tags.each {|n| nodes << n }
-      node.related_tags.each {|n| n.descendants(n, nodes)}
-    end
-    nodes
-  end
-
-  # Recursively get all the related_tags (descendants) of a tag
-  def ancestors(node = self, nodes = [])
-    # THIS METHOD CURRENTLY IMPLIES THAT ONLY PARENT-CHILD RELATIONSHIPS EXIST
-    # JAMES AND I ARE GOING TO DISCUSS TAGGING RELATIONSHIPS FURTHER
-    if !node.source_tags.empty?
-      node.source_tags.each {|n| nodes << n }
-      node.source_tags.each {|n| n.ancestors(n, nodes)}
-    end
-    nodes
-  end
 end

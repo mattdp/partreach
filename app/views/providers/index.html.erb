@@ -5,16 +5,20 @@
     <div class="main-area-contrast override">
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
        <%= render partial: "organizations/navigation_header", locals: {show_left_text: false, middle_text: "See who #{@people_called} are using to make parts", organization: @organization} %>
-      <%= render :partial => "providers/providers_header" %>      
+      <%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>      
 
       <% if @results_hash.present? %>
+        <% if @additional_tags.present? %>
+          <h3>Related tags added to search automatically:</h3>
+          <%= render partial: "providers/tag_display", locals: {tags: @additional_tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
+        <% end %>
         <% @results_hash.each do |header, providers| %>
           <div class="col-md-12">
             <h3 class="no-margin-top margin-bottom">
               <span><%= header %></span>
             </h3>
             <% if providers %> 
-              <%= render partial: "providers/providers_table", locals: {providers: providers, include_tag_column: false, cache_result: false, purchase_order_titles: @purchase_order_titles} %>
+              <%= render partial: "providers/providers_table", locals: {providers: providers, include_tag_column: true, cache_result: false, purchase_order_titles: @purchase_order_titles} %>
             <% else %>
               <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
             <% end %>
@@ -26,7 +30,7 @@
             <h3>Choose Category</h3>
             <ul>
               <% @common_search_tags.each do |tag| %>
-                <li><%= link_to "#{tag.readable}", teams_index_path(search_terms: ["T:#{tag.readable}"]) %></li>
+                <li><%= link_to "#{tag.readable}", teams_index_with_search_path("#{Organization.encode_search_string([tag])}","true") %></li>
               <% end %>
             </ul>          
           </div>

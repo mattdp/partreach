@@ -107,6 +107,8 @@ Partreach::Application.routes.draw do
   match 'providers/:id', to: 'providers#update', as: 'provider', via: :post
   get '/teams/signin', to: redirect('/signin')
   get '/teams', to: 'providers#index', as: "teams_index"
+  #brittle, in href and rails form. be careful if changing.
+  get '/teams/searching/:search_string/:include_related_tags', to: 'providers#index', as: "teams_index_with_search"
   get '/teams/hax', to: 'providers#index'
   get '/teams/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
   get '/teams/hax/providers/:name_for_link', to: 'providers#profile'
@@ -144,10 +146,8 @@ Partreach::Application.routes.draw do
   get 'suppliers/:country/:state', to: 'suppliers#tag_index', as: 'tag_index'
   get 'suppliers/:country/:state/:term', to: 'suppliers#lookup', as: 'lookup'
 
-  resources :tags, only: [:show, :new, :create, :edit, :update, :index] do
-    resources :tag_relationships, only: [:index, :create]
-  end
-  resources :tag_relationship_types, only: [:index]
+  resources :tags, only: [:show, :new, :create, :edit, :update, :index]
+  resources :tag_relationships, only: [:new, :create]
   get '/tags/:id/related', to: 'tags#related_tags', as: 'related_tags'
 
   resources :web_search_items, except: [:show]

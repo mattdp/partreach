@@ -15,6 +15,11 @@ class TagRelationship < ActiveRecord::Base
   belongs_to :relationship, foreign_key: "tag_relationship_type_id", class_name: 'TagRelationshipType'
   belongs_to :related_tag, class_name: 'Tag'
 
+  def readable
+    "'#{source_tag.readable}' #{relationship.description} '#{related_tag.readable}'"
+  end
+
+  #doesn't seem to be working but possibly useful; reexamine as get more sophisticated
   def self.related_tags_by_relationship(source_tag_id)
     relationships_hash = {}
 
