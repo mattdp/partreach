@@ -83,6 +83,8 @@ class CommentsController < ApplicationController
       Event.add_event("User", @user.id, "said job was bad", "Comment", @comment.id)
       @comment.overall_score = 1 unless @comment.any_ratings_given?
       @comment.save
+    elsif @flavor == "between"
+      Event.add_event("User", @user.id, "said job was in between", "Comment", @comment.id)
     end
     
     Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
@@ -92,6 +94,11 @@ class CommentsController < ApplicationController
     # note: @comment initialized in correct_user before_filter
     provider = @comment.provider
     Event.add_event("User", current_user.id, "attempted comment update for", "Comment", @comment.id) 
+
+    @purchase_order = @comment.purchase_order
+    if @purchase_order.present?
+      @purchase_order.update_attributes(purchase_order_params)
+    end
 
     # create externals and associate with comment
     add_externals
@@ -160,6 +167,10 @@ class CommentsController < ApplicationController
   def comment_params
     params.permit(:overall_score, :quality_score, :cost_score, :speed_score, :payload, \
       :provider_id, :title, :recommendation)
+  end
+
+  def purchase_order_params
+    params.permit(:lead_time_days)
   end
 
   def correct_user
