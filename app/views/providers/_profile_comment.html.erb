@@ -97,13 +97,13 @@
 					<div class="row">
 						<div class="col-md-4 left-grid-bare po-padding">PO Issued: <span><%= "#{po.issue_date.strftime('%Y-%m-%d')}" if po.issue_date %></span></div>
 					</div>
-					<div>Description: <span><%= "#{po.description}" if po.description %></span></div>
-					<div class="col-md-8 left-grid-bare">
-						<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
-					</div>
 					<div class="col-md-4">
 						<div>Quantity: <span><%= "#{po.quantity}" if po.quantity %></span></div>
 						<div>Price: <span><%= "#{number_to_currency(po.price)}" if po.price %></span></div>
+					</div>
+					<div class="col-md-12 left-grid-bare"><%= "Description: #{po.description}" if po.description %></div>
+					<div class="col-md-8 left-grid-bare">
+						<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
 					</div>
 				<% end %>
 			<% end %>
