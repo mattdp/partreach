@@ -104,10 +104,10 @@
 				</div>
 				<% if po.present? %>
 					<div class="col-md-12 left-grid-bare"><%= "Description: #{po.description}" if po.description %></div>
+					<div class="col-md-8 left-grid-bare">
+						<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+					</div>
 				<% end %>
-				<div class="col-md-8 left-grid-bare">
-					<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
-				</div>
 			<% end %>
 		</div>
 		<div class="row comment-last-row">
