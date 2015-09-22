@@ -94,7 +94,9 @@ class CommentsController < ApplicationController
     Event.add_event("User", current_user.id, "attempted comment update for", "Comment", @comment.id) 
 
     @purchase_order = @comment.purchase_order
-    saved_ok = @purchase_order.update_attributes(purchase_order_params)
+    if @purchase_order.present?
+      @purchase_order.update_attributes(purchase_order_params)
+    end
 
     # create externals and associate with comment
     add_externals
