@@ -423,6 +423,7 @@ ActiveRecord::Schema.define(version: 20150917215628) do
     t.integer  "related_group_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description"
   end
 
   add_index "tag_relationship_types", ["related_group_id"], name: "index_tag_relationship_types_on_related_group_id", using: :btree

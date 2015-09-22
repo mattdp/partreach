@@ -19,7 +19,7 @@
     <tbody>
       <% tag_details.each do |tag_readable,details| %>
         <tr>
-          <td><%= link_to "#{tag_readable}", teams_index_path(search_terms: ["T:#{tag_readable}"] ) %></td>
+          <td><%= link_to "#{tag_readable}", teams_index_with_search_path("t#{details[:tag_id]}") %></td>
           <td><%= "#{details[:num_providers]}" %></td>
           <td>
             <% if @purchase_order_titles %>

@@ -25,6 +25,34 @@ class Organization < ActiveRecord::Base
   #tags -> which tags are in scope for the organization
   #taggings -> which tags are used for the index page side list
 
+  SEARCH_STRING_SEPARATOR = "-"
+  SEARCH_STRING_MODEL_CHARACTERS = 4
+  SEARCH_STRING_MODEL_HASH = {"Provider"=>"p","Tag"=>"t"}
+
+  #highly promiscous, will encode anything it can across orgs
+  def self.encode_search_string(models)
+    return "" if models.blank?
+    strings = models.map{|m| "#{Organization::SEARCH_STRING_MODEL_HASH[m.class.to_s]}#{m.id}"}
+    strings.join(Organization::SEARCH_STRING_SEPARATOR)
+  end
+
+  #tries to prevent errors and cross-org searching
+  def decode_search_string(search_string)
+    answer = []
+    return answer if search_string.blank?
+
+    decoder = Organization::SEARCH_STRING_MODEL_HASH.invert
+    
+    search_string.split(Organization::SEARCH_STRING_SEPARATOR).each do |ss|
+      model_name = decoder[ss[0]]
+      next if model_name.blank?
+      id = ss[1..ss.length]
+      next if id == 0
+      answer << model_name.constantize.find(id)
+    end
+    return answer.select{|a| a.organization_id == self.id}
+  end
+
   def common_search_tags(sorted_tags_by_providers)
     minimum_tags_in_list = sorted_tags_by_providers.size
     tags_returning = []
@@ -217,6 +245,7 @@ class Organization < ActiveRecord::Base
     tags.each do |tag|
       inserted = {}
       provider_taggings = tag.taggings.where("taggable_type = 'Provider'")
+      inserted[:tag_id] = tag.id
       inserted[:num_providers] = provider_taggings.count
       if inserted[:num_providers] == 0
         inserted[:num_providers] = nil
@@ -265,14 +294,15 @@ class Organization < ActiveRecord::Base
     hash = {}
     tags_with_providers = provider_tags.includes(:providers).references(:providers)
     tags_with_providers.sort_by {|tag| tag.readable.downcase }.each do |tag|
-      # puts "tag.readable: #{tag.readable}"
-      # tag.providers.sort_by {|provider| provider.name.downcase}.each do |provider|
-      #   puts "provider.name: #{provider.name}"
-      # end
       hash[tag] = tag.providers.sort_by {|provider| provider.name.downcase}
     end
+    return hash
+  end
 
-    hash
+  def sorted_tags_by_providers
+    stbp = []
+    self.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
+    stbp = stbp.sort_by! {|e| [-(e[0]), e[1].readable.downcase]}
   end
 
   def find_or_create_tag!(name,user)

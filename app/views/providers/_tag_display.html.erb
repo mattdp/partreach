@@ -4,7 +4,9 @@
     <% break %>
   <% else %> 
     <span class="tags-providerTags">
-      <a class="<%= remove_bottom_margin ? "no-bottom-margin" : "" %>"> 
+      <a  href="<%= "/teams/searching/t#{tag.id}" %>" 
+          class="<%= remove_bottom_margin ? "no-bottom-margin" : "" %>"
+      > 
         <%= tag.readable %>
       </a>
     </span>
