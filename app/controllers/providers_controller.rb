@@ -97,7 +97,7 @@ class ProvidersController < ApplicationController
     @providers_list = Rails.cache.fetch("#{@organization.id}-providers_alpha_sort-#{@organization.last_provider_update}") do 
       temp_list = []
       @organization.providers_alpha_sort.each do |provider|
-        temp_list << [provider.name, "P:#{provider.id}"]
+        temp_list << [provider.name, "#{Organization.encode_search_string([provider])}"]
       end
       temp_list
     end
@@ -131,9 +131,17 @@ class ProvidersController < ApplicationController
 
     @results_hash = {}
 
-    if params[:search_string].present?
+    #separated search string for chosen boxes, where we don't control format of submission well
+    #search_string for everything else (preferred)
+    if (params[:search_string].present? or params[:separated_search_string].present?)
 
-      searched_models = @organization.decode_search_string(params[:search_string])
+      if params[:search_string].present?
+        searched_models = @organization.decode_search_string(params[:search_string])
+      elsif params[:separated_search_string].present?
+        searched_models = params[:separated_search_string].map{|ss| @organization.decode_search_string(ss)}.flatten
+      else 
+        searched_models = []      
+      end
 
       providers = searched_models.select{|m| m.class.to_s == "Provider"}
       tags = searched_models.select{|m| m.class.to_s == "Tag"}

@@ -43,7 +43,7 @@ class Tag < ActiveRecord::Base
       if id_only
         e[1] = e[1].id
       else
-        e[1] = "T:#{e[1].readable}"
+        e[1] = "#{Organization.encode_search_string([e[1]])}"
       end
     end
   end
