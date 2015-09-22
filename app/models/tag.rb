@@ -50,10 +50,15 @@ class Tag < ActiveRecord::Base
 
   #there will be something more sophisticated in the future, so not worrying about
   #sorting by relationship type yet
-  def immediate_neighbors
+  def immediate_neighboring_tag_relationships(allow_tags_with_zero_results=false)
     sources = TagRelationship.where(source_tag_id: self.id)
     relateds = TagRelationship.where(related_tag_id: self.id)
-    (sources + relateds).map{|r| r.readable}
+    combined = sources + relateds
+  end
+
+  def immediate_neighboring_tag_ids
+    relationships = self.immediate_neighboring_tag_relationships
+    relationships.map{|r| r.source_tag_id == self.id ? r.related_tag_id : r.source_tag_id}.uniq
   end
 
   def relate(target_tag,relationship_name)

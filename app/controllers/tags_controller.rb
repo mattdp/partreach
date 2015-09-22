@@ -45,7 +45,7 @@ class TagsController < ApplicationController
 
   def related_tags
     @tag = Tag.find(params[:id])
-    @relationships = @tag.immediate_neighbors
+    @relationships = @tag.immediate_neighboring_tag_relationships(true).map{|r| r.readable}
   end
 
   private
