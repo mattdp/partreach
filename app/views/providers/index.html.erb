@@ -8,9 +8,22 @@
       <%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>      
 
       <% if @results_hash.present? %>
-        <% if @additional_tags.present? %>
-          <h3>Related tags added to search automatically:</h3>
-          <%= render partial: "providers/tag_display", locals: {tags: @additional_tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
+        <% if @neighboring_tags_by_relationship.values.flatten.present? %>
+          You searched for:
+          <%= render partial: "providers/tag_display", locals: {tags: [@tag], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+          <h3>Added to search automatically</h3>
+          <% if @neighboring_tags_by_relationship[:both_synonym_directions].present? %>
+            <%= "Similar keywords:" %>
+            <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:both_synonym_directions], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+          <% end %>
+          <% if @neighboring_tags_by_relationship[:parents].present? %>
+            <%= "Subcategories of #{@tag.readable}:" %>
+            <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:parents], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+          <% end %>
+          <% if @neighboring_tags_by_relationship[:children].present? %>
+            <%= "#{@tag.readable} is a subcategory of:" %>
+            <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:children], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+          <% end %>
         <% end %>
         <% @results_hash.each do |header, providers| %>
           <div class="col-md-12">
