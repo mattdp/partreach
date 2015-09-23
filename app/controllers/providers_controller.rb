@@ -155,16 +155,12 @@ class ProvidersController < ApplicationController
       end
 
       if tags.present?        
-        Event.add_event("User", current_user.id, "searched one item", "Tag", tags[0].id) if tags.size == 1
         originally_searched_tags = tags
-        if params[:include_related_tags] == "true"
-          @additional_tags = []
-          tags.each do |tag|
-            neighbor_ids = tag.immediate_neighboring_tag_ids
-            @additional_tags.concat(Tag.where(id: neighbor_ids, organization_id: current_organization.id)) if neighbor_ids.present?
-          end
-          @additional_tags = @additional_tags.uniq.reject{|t| tags.include?(t)}
-          tags = tags.concat(@additional_tags).uniq
+        if (params[:include_related_tags] == "true" and if tags.size == 1)
+          tag = tags[0]
+          Event.add_event("User", current_user.id, "searched one item", "Tag", tag.id)
+          @neighboring_tags_by_relationship = tag.immediate_neighboring_tags_by_relationship
+          tags.concat(@neighboring_tags_by_relationship.values.flatten)
         end
         #this should be one query, but couldn't figure out how to get order and uniquness to play nice after 15m
         redundant_provider_ids = Provider.select(:id,:organization_id).joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
