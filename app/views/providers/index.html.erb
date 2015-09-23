@@ -8,7 +8,7 @@
       <%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>      
 
       <% if @results_hash.present? %>
-        <% if @neighboring_tags_by_relationship.values.flatten.present? %>
+        <% if @neighboring_tags_by_relationship.present? and @neighboring_tags_by_relationship.values.flatten.present? %>
           You searched for:
           <%= render partial: "providers/tag_display", locals: {tags: [@tag], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
           <h3>Added to search automatically</h3>
