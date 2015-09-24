@@ -659,3 +659,23 @@ li p {
 .radio input[type="radio"] {
 	margin: 10px 0; /*top/bottom, right/left*/
 }
+
+/*DEBUGGING*/
+
+.debug-red {
+	background: red;
+	border: solid 1px;
+	border-color: black;
+}
+
+.debug-blue {
+	background: lightblue;
+	border: solid 1px;
+	border-color: black;
+}
+
+.related-keywords{
+	padding-top: 4.5px;
+	padding-bottom: 4.5px;
+	margin-bottom: 5px
+}

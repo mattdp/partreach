@@ -155,7 +155,7 @@ class ProvidersController < ApplicationController
       end
 
       if tags.present?        
-        originally_searched_tags = tags
+        originally_searched_tags = tags.first(tags.length)
         if (params[:include_related_tags] == "true" and tags.size == 1)
           @tag = tags[0]
           Event.add_event("User", current_user.id, "searched one item", "Tag", @tag.id)
