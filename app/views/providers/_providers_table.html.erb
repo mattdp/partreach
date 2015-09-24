@@ -1,5 +1,5 @@
 <div class="stylish provider-table">
-  <table>
+  <table class="tablesorter-active tags-list-table">
     <thead>
       <tr>
         <th>Company Name</th>
@@ -13,10 +13,7 @@
           <th>#</th>
           <th>Latest</th>
         <% end %>
-
-        <% if include_tag_column %>
-          <th>Tags</th>
-        <% end %>
+        <th>Tags</th>
       </tr>
     </thead>
 
@@ -43,15 +40,14 @@
               </td>
               <td>
                 <% if purchase_order_titles %>
-                  <%= link_to "#{provider.latest_model_date(:purchase_order,true)}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %></td>
+                  <%= link_to "#{provider.latest_model_date(:purchase_order,true)}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %>
                 <% else %>
-                  <%= link_to "#{provider.latest_model_date(:comment,true)}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %></td>
+                  <%= link_to "#{provider.latest_model_date(:comment,true)}", teams_profile_path(provider.name_for_link, :anchor => 'comments') %>
                 <% end %>
-              <% if include_tag_column %>
-                <td>                            
-                  <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false, max_tags_to_display: 4, show_more_option: provider.id} %>
-                </td>
-              <% end %>
+              </td>
+              <td>                            
+                <%= render partial: "providers/tag_display", locals: {tags: provider.tags, remove_bottom_margin: false, max_tags_to_display: 4, show_more_option: provider.id} %>
+              </td>
             </tr>
           <% end %>             
         <% end %>  

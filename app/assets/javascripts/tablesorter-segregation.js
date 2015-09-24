@@ -22,11 +22,20 @@ $(document).ready(function() {
       .trigger('update');
   });
 
+  var sortList = [], 
+      widgets = ['columns', 'uitheme', 'filter'];
+  if ($table.is(".tags-list-table")) {
+    sortList = [ [2,1], [0,0] ];
+  }
+  else if ($table.is(".providers-list-table")) {
+    sortList = [ [3,1], [2,1], [0,0] ];
+  }
+
   $table.tablesorter({
     theme: 'bootstrap',
     headerTemplate: '{content} {icon}',
-    sortList: [ [2,1], [0,0] ],
+    sortList: sortList,
     widgets : ['columns', 'uitheme', 'filter'] 
-
   });
+
 });
