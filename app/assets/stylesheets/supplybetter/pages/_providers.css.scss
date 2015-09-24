@@ -663,19 +663,19 @@ li p {
 /*DEBUGGING*/
 
 .debug-red {
-	background: red;
-	border: solid 1px;
-	border-color: black;
+	background: red;	
 }
 
 .debug-blue {
-	background: lightblue;
-	border: solid 1px;
-	border-color: black;
+	background: lightblue;	
 }
 
 .related-keywords{
 	padding-top: 4.5px;
 	padding-bottom: 4.5px;
-	margin-bottom: 5px
+	margin-bottom: 5px;
+
+	&.similar-keywords {
+		margin-bottom: 0;
+	}
 }
