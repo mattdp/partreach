@@ -30,10 +30,10 @@
                 <%= render partial: "providers/tag_display", locals: {tags: [@tag], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
               </div>
               <% if @neighboring_tags_by_relationship[:both_synonym_directions].present? %>
-                <div class="col-md-3 related-keywords similar-keywords">
+                <div class="col-md-3 right related-keywords similar-keywords">
                   Similar keywords included:
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 no-padding-left">
                   <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:both_synonym_directions], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
                 </div>
               <% end %>
