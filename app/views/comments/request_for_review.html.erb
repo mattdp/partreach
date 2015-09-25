@@ -31,7 +31,7 @@
       <ul>
         <li><%= link_to "Excellent!", comments_edit_with_status_path(@comment.id,"good") %> - Cost, quality, and speed all get 5 stars</li> 
         <br>
-        <li><%= link_to "Something in between", edit_comment_path(@comment.id) %> - Add details on SupplyBetter</li>
+        <li><%= link_to "Something in between", comments_edit_with_status_path(@comment.id,"between") %> - Add details on SupplyBetter</li>
         <br>
         <li><%= link_to "Poorly", comments_edit_with_status_path(@comment.id,"bad") %> - Overall rating gets 1 star</li>       
       </ul>

@@ -83,6 +83,8 @@ class CommentsController < ApplicationController
       Event.add_event("User", @user.id, "said job was bad", "Comment", @comment.id)
       @comment.overall_score = 1 unless @comment.any_ratings_given?
       @comment.save
+    elsif @flavor == "between"
+      Event.add_event("User", @user.id, "said job was in between", "Comment", @comment.id)
     end
     
     Event.add_event("User", current_user.id, "loaded edit comment page for", "Comment", @comment.id)
