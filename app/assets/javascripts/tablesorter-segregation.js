@@ -28,4 +28,5 @@ $(document).ready(function() {
     widgets : ['columns', 'uitheme', 'filter'] 
   });
 
+  $('.tablesorter-active').show();
 });
