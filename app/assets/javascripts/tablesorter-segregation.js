@@ -27,6 +27,4 @@ $(document).ready(function() {
     sortList: sortList,
     widgets : ['columns', 'uitheme', 'filter'] 
   });
-
-  $('.tablesorter-active').show();
 });
