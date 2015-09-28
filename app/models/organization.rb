@@ -183,7 +183,24 @@ class Organization < ActiveRecord::Base
         where(users: {admin: false}).
         order(updated_at: :desc)
       provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
-      intermediate_results += provider_events.take(result_number)
+      #fudge factor for duplicate update events
+      intermediate_results += provider_events.take(result_number*2)
+      #no more than one event for updating the same provider; this should really be SQL
+      i = 0
+      while i < intermediate_results.length
+        if intermediate_results[i].happening == "updated a provider"
+          provider_id = intermediate_results[i].target_model_id
+          post_i = intermediate_results[i+1...intermediate_results.length]
+          post_i = [] if post_i.blank?
+          up_to_i = intermediate_results[0..i]
+          intermediate_results = intermediate_results[i] + 
+            post_i.reject{|event| 
+              event.happening == "updated a provider" and 
+              event.target_model_id == provider_id
+            }
+        end
+        i += 1
+      end
     end
 
     return intermediate_results.sort_by(&:updated_at).reverse.take(result_number)
