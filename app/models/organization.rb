@@ -183,7 +183,6 @@ class Organization < ActiveRecord::Base
         where(providers: {organization_id: self.id}).
         where(users: {admin: false}).
         order(updated_at: :desc)
-      binding.pry
       provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
       #fudge factor for duplicate update events
       intermediate_results += provider_events.take(result_number*2)
