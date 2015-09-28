@@ -176,26 +176,28 @@ class Organization < ActiveRecord::Base
     end
 
     if "providers".in?(activity_types)
+      updated_text = "updated a provider"
       provider_events = Event.joins("INNER JOIN providers ON events.target_model_id = providers.id").
         joins("INNER JOIN users ON events.model_id = users.id").
-        where(events: {target_model: "Provider", model: "User", happening: ["created a provider","updated a provider"]}).
-        where(providers: {created_at: range, organization_id: self.id}).
+        where(events: {created_at: range, target_model: "Provider", model: "User", happening: ["created a provider",updated_text]}).
+        where(providers: {organization_id: self.id}).
         where(users: {admin: false}).
         order(updated_at: :desc)
+      binding.pry
       provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
       #fudge factor for duplicate update events
       intermediate_results += provider_events.take(result_number*2)
       #no more than one event for updating the same provider; this should really be SQL
       i = 0
       while i < intermediate_results.length
-        if intermediate_results[i].happening == "updated a provider"
+        if intermediate_results[i].happening == updated_text
           provider_id = intermediate_results[i].target_model_id
           post_i = intermediate_results[i+1...intermediate_results.length]
           post_i = [] if post_i.blank?
           up_to_i = intermediate_results[0..i]
-          intermediate_results = intermediate_results[i] + 
+          intermediate_results = up_to_i + 
             post_i.reject{|event| 
-              event.happening == "updated a provider" and 
+              event.happening == updated_text and 
               event.target_model_id == provider_id
             }
         end
