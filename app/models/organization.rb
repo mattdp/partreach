@@ -183,18 +183,19 @@ class Organization < ActiveRecord::Base
         where(providers: {organization_id: self.id}).
         where(users: {admin: false}).
         order(updated_at: :desc)
-      provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
-      #fudge factor for duplicate update events
-      intermediate_results += provider_events.take(result_number*2)
+      #fudge factor for duplicate update events        
+      provider_events = provider_events.
+        select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}.
+        take(result_number*2)
       #no more than one event for updating the same provider; this should really be SQL
       i = 0
-      while i < intermediate_results.length
-        if intermediate_results[i].happening == updated_text
-          provider_id = intermediate_results[i].target_model_id
-          post_i = intermediate_results[i+1...intermediate_results.length]
+      while i < provider_events.length
+        if provider_events[i].happening == updated_text
+          provider_id = provider_events[i].target_model_id
+          post_i = provider_events[i+1...provider_events.length]
           post_i = [] if post_i.blank?
-          up_to_i = intermediate_results[0..i]
-          intermediate_results = up_to_i + 
+          up_to_i = provider_events[0..i]
+          provider_events = up_to_i + 
             post_i.reject{|event| 
               event.happening == updated_text and 
               event.target_model_id == provider_id
@@ -202,6 +203,7 @@ class Organization < ActiveRecord::Base
         end
         i += 1
       end
+      intermediate_results += provider_events.take(result_number)
     end
 
     return intermediate_results.sort_by(&:updated_at).reverse.take(result_number)
