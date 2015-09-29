@@ -56,6 +56,29 @@ class Tag < ActiveRecord::Base
     combined = sources + relateds
   end
 
+  def immediate_neighboring_tags_by_relationship
+    answer = {}
+    child = TagRelationshipType.find_by_name("child")
+    worse_synonym = TagRelationshipType.find_by_name("worse_synonym")
+
+    parents_ids = TagRelationship.where(tag_relationship_type_id: child.id, source_tag_id: self.id)
+      .pluck(:related_tag_id)
+    answer[:parents] = Tag.where(id: parents_ids)
+
+    children_ids = TagRelationship.where(tag_relationship_type_id: child.id, related_tag_id: self.id)
+      .pluck(:source_tag_id)
+    answer[:children] = Tag.where(id: children_ids)
+
+    related = TagRelationship.where(tag_relationship_type_id: worse_synonym.id, source_tag_id: self.id)
+      .pluck(:related_tag_id)
+    source = TagRelationship.where(tag_relationship_type_id: worse_synonym.id, related_tag_id: self.id)
+      .pluck(:source_tag_id)
+    both_synonym_directions_ids = related + source
+    answer[:both_synonym_directions] = Tag.where(id: both_synonym_directions_ids)
+
+    return answer
+  end
+
   def immediate_neighboring_tag_ids
     relationships = self.immediate_neighboring_tag_relationships
     relationships.map{|r| r.source_tag_id == self.id ? r.related_tag_id : r.source_tag_id}.uniq

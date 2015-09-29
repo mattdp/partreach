@@ -145,11 +145,11 @@ a:focus {
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: #12a5cb;
+  background-color: $sb-blue-select;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-  background-color: #12a5cb;
+  background-color: $sb-blue-select;
   color: white;
 }
 
@@ -168,7 +168,7 @@ a:focus {
   }
 
   .navbar-default .navbar-nav .open .dropdown-menu > li:hover {
-  	background-color: #12a5cb;
+  	background-color: $sb-blue-select;
   }
 
 }
@@ -521,12 +521,24 @@ li p {
 	&.no-bottom-margin {
 		margin-bottom: 0;
 	}
+
+	&.blue-tags {
+		color: white;
+		border-color: $sb-blue-select;
+		background: $sb-blue;
+	}
 }
 
 .tags-providerTags>a:hover, .tags-providerTags>a:focus {
 	color: #468c54;
 	border-color: #a9d8b2;
 	background: rgba(87, 173, 104, 0.1);
+
+	&.blue-tags {
+		color: white;
+		border-color: $sb-blue-select;
+		background: $sb-blue-select;
+	}
 }
 
 .recommend {
@@ -658,4 +670,24 @@ li p {
 
 .radio input[type="radio"] {
 	margin: 10px 0; /*top/bottom, right/left*/
+}
+
+/*DEBUGGING*/
+
+.debug-red {
+	background: red;	
+}
+
+.debug-blue {
+	background: lightblue;	
+}
+
+.related-keywords{
+	padding-top: 4.5px;
+	padding-bottom: 4.5px;
+	margin-bottom: 10px;
+
+	&.similar-keywords {
+		margin-bottom: 0;
+	}
 }

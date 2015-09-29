@@ -155,23 +155,20 @@ class ProvidersController < ApplicationController
       end
 
       if tags.present?        
-        Event.add_event("User", current_user.id, "searched one item", "Tag", tags[0].id) if tags.size == 1
-        if params[:include_related_tags] == "true"
-          @additional_tags = []
-          tags.each do |tag|
-            neighbor_ids = tag.immediate_neighboring_tag_ids
-            @additional_tags.concat(Tag.where(id: neighbor_ids, organization_id: current_organization.id)) if neighbor_ids.present?
-          end
-          @additional_tags = @additional_tags.uniq.reject{|t| tags.include?(t)}
-          tags = tags.concat(@additional_tags).uniq
+        originally_searched_tags = tags.first(tags.length)
+        if (params[:include_related_tags] == "true" and tags.size == 1)
+          @tag = tags[0]
+          Event.add_event("User", current_user.id, "searched one item", "Tag", @tag.id)
+          @neighboring_tags_by_relationship = @tag.immediate_neighboring_tags_by_relationship
+          tags.concat(@neighboring_tags_by_relationship.values.flatten)
         end
-        #adapted from organization.providers_hash_by_tag
-        tags.sort_by { |t| t.readable.downcase }.each do |tag|
-          @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
-            .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
-            .where(organization_id: @organization.id)
-            .order("lower(name)")
-        end
+        #this should be one query, but couldn't figure out how to get order and uniquness to play nice after 15m
+        redundant_provider_ids = Provider.select(:id,:organization_id).joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
+          .where(providers: {organization_id: @organization.id})
+          .where(taggings: {taggable_type: "Provider", tag_id: tags.map{|t| t.id}})
+          .order("lower(name)")
+          .pluck(:id)
+        @results_hash[originally_searched_tags.map{|t| t.readable}.join(" & ")] = Provider.where(id: redundant_provider_ids.uniq)
       end
 
       if searched_models.size == 1
