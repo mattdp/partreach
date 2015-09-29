@@ -4,29 +4,42 @@
 
 <h2>Totals</h2>
 <ul>
+  <li>Non-admin users: <%= @user_behaviors.count %>
+  <li>Purchase orders: <%= @user_behaviors.map{ |ub| ub[:total_pos]}.reduce(0,:+) %></li>
 	<li>Comments filled out: <%= @user_behaviors.map{ |ub| ub[:comments_filled_out]}.reduce(0,:+) %></li>
 	<li>Comments reminded about: <%= @user_behaviors.map{ |ub| ub[:comments_reminded_about]}.reduce(0,:+) %></li>
 	<li>Comments reminded about and filled out: <%= @user_behaviors.map{ |ub| ub[:comments_reminded_about_and_filled_out]}.reduce(0,:+) %></li>
+  <li>Comments with two or less stars: <%= @user_behaviors.map{ |ub| ub[:comments_with_two_or_less_stars]}.reduce(0,:+) %></li>
 </ul>
 
 <h2>Individual</h2>
 <div class="container hax-body-styling">
-  <div class="row">
-  	<table>
-  		<tr>
-  			<th>ID</th>
-  			<th>Name</th>
-  			<th>Comments filled out</th>
-  			<th>Comments reminded about</th>
-  			<th>Comments reminded about and filled out</th>
-  		</tr>
+  <div class="row stylish">
+  	<table class="tablesorter-active">
+      <thead>
+    		<tr>
+    			<th>ID</th>
+    			<th>Name</th>
+          <th>Purchase orders</th>  
+          <th>Comments with two or less stars</th>                  
+    			<th>Comments filled out</th>
+    			<th>Comments reminded about</th>
+          <th>% of POs reminded about</th>
+    			<th>Comments reminded about and filled out</th>
+          <th>% of reminded comments filled out</th>
+    		</tr>
+      </thead>
   		<% @user_behaviors.each do |ub| %>
   			<tr>
   				<td><%= ub[:id] %></td>
   				<td><%= ub[:name] %></td>
+          <td><%= ub[:total_pos] %></td>          
+          <td><%= ub[:comments_with_two_or_less_stars] %></td>          
   				<td><%= ub[:comments_filled_out] %></td>
   				<td><%= ub[:comments_reminded_about] %></td>
+          <td><%= ub[:percent_of_pos_reminded_about] %></td>
   				<td><%= ub[:comments_reminded_about_and_filled_out] %></td>
+          <td><%= ub[:percent_of_reminded_comments_filled] %></td>
   			</tr>
   		<% end %>
   	</table>

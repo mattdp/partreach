@@ -20,8 +20,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
     t.string   "street"
     t.string   "city"
     t.string   "zip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "place_id"
     t.string   "place_type"
     t.text     "notes"
@@ -33,16 +33,16 @@ ActiveRecord::Schema.define(version: 20150917215628) do
     t.integer  "supplier_id"
     t.integer  "user_id"
     t.string   "request"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.boolean  "real"
   end
 
   create_table "combos", force: true do |t|
     t.integer  "supplier_id"
     t.integer  "tag_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "combos", ["supplier_id"], name: "index_combos_on_supplier_id", using: :btree
@@ -129,8 +129,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
     t.boolean  "initial_select"
     t.boolean  "opener_sent"
     t.boolean  "response_received"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
     t.integer  "supplier_id"
     t.boolean  "further_negotiation"
     t.boolean  "won"
@@ -157,8 +157,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
   create_table "events", force: true do |t|
     t.string   "model"
     t.string   "happening"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.integer  "model_id"
     t.string   "target_model"
     t.integer  "target_model_id"
@@ -167,8 +167,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
 
   create_table "externals", force: true do |t|
     t.string   "url"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "consumer_id"
     t.string   "consumer_type"
     t.string   "units"
@@ -198,8 +198,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
   add_index "geographies", ["name_for_link"], name: "index_geographies_on_name_for_link", unique: true, using: :btree
 
   create_table "leads", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "source",               default: "manual"
     t.date     "next_contact_date"
     t.string   "next_contact_content"
@@ -214,16 +214,16 @@ ActiveRecord::Schema.define(version: 20150917215628) do
     t.string   "country"
     t.string   "zip"
     t.string   "location_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   add_index "locations", ["zip"], name: "index_locations_on_zip", unique: true, using: :btree
 
   create_table "machines", force: true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
     t.integer  "manufacturer_id"
     t.decimal  "bv_height",          precision: 6, scale: 2
     t.decimal  "bv_width",           precision: 6, scale: 2
@@ -254,8 +254,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
   end
 
   create_table "orders", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
     t.integer  "user_id"
     t.string   "name"
     t.string   "deadline"
@@ -294,8 +294,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
   create_table "owners", force: true do |t|
     t.integer  "supplier_id"
     t.integer  "machine_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "owners", ["supplier_id"], name: "index_owners_on_supplier_id", using: :btree
@@ -371,8 +371,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
     t.text     "did_well"
     t.text     "did_badly"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.boolean  "displayable"
     t.integer  "supplier_id"
   end
@@ -388,8 +388,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
   create_table "suppliers", force: true do |t|
     t.string   "name"
     t.string   "url_main"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.text     "description"
     t.string   "url_materials"
     t.string   "source",                        default: "manual"
@@ -469,8 +469,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
     t.string   "name"
     t.string   "family"
     t.text     "note"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.boolean  "exclusive",       default: false
     t.boolean  "visible",         default: true
     t.string   "readable"
@@ -492,8 +492,8 @@ ActiveRecord::Schema.define(version: 20150917215628) do
 
   create_table "users", force: true do |t|
     t.boolean  "admin",                  default: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.integer  "address_id"
     t.string   "password_digest"
     t.string   "remember_token"
