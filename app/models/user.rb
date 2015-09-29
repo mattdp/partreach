@@ -57,6 +57,27 @@ class User < ActiveRecord::Base
       .where(id: ids_of_reminded_comments)
       .reject{|c| c.untouched?}
       .count
+    returnee[:total_pos] = PurchaseOrder.joins('INNER JOIN comments ON comments.purchase_order_id = purchase_orders.id')
+      .where(comments: {user_id: self.id})
+      .count
+    returnee[:comments_with_two_or_less_stars] = Comment
+      .where(user_id: self.id)
+      .select{|c| c.overall_score.present? and c.overall_score > 0 and c.overall_score < 3}
+      .count
+
+    if returnee[:total_pos] > 0
+      wip = ((1.0 * returnee[:comments_reminded_about]) / returnee[:total_pos])
+      returnee[:percent_of_pos_reminded_about] = "#{(wip*100).round(0)}%"
+    else
+      returnee[:percent_of_pos_reminded_about] = "0%"
+    end
+
+    if returnee[:comments_reminded_about] > 0
+      wip = ((1.0 * returnee[:comments_reminded_about_and_filled_out]) / returnee[:comments_reminded_about])
+      returnee[:percent_of_reminded_comments_filled] = "#{(wip*100).round(0)}%"
+    else
+      returnee[:percent_of_reminded_comments_filled] = "0%" 
+    end
 
     return returnee
   end

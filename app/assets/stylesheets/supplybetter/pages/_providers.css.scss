@@ -145,11 +145,11 @@ a:focus {
 }
 
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
-  background-color: #12a5cb;
+  background-color: $sb-blue-select;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-  background-color: #12a5cb;
+  background-color: $sb-blue-select;
   color: white;
 }
 
@@ -168,7 +168,7 @@ a:focus {
   }
 
   .navbar-default .navbar-nav .open .dropdown-menu > li:hover {
-  	background-color: #12a5cb;
+  	background-color: $sb-blue-select;
   }
 
 }
@@ -205,7 +205,6 @@ a:focus {
 
 .left-grid-bare {
 	padding-left: 0;
-	padding-top: 5px;
 }
 
 div.chosen-container-multi {
@@ -379,7 +378,6 @@ http://www.opinionatedgeek.com/dotnet/tools/Base64Decode/
 	position: relative;
 	background: url('data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDIwIDIwIiB4bWw6c3BhY2U9InByZXNlcnZlIj48cG9seWdvbiBmaWxsPSIjODA4MDgwIiBwb2ludHM9IjEwLDAgMTMuMDksNi41ODMgMjAsNy42MzkgMTUsMTIuNzY0IDE2LjE4LDIwIDEwLDE2LjU4MyAzLjgyLDIwIDUsMTIuNzY0IDAsNy42MzkgNi45MSw2LjU4MyAiLz48L3N2Zz4=');
 	background-size: contain;
-	vertical-align: middle;
 }
 
 .star-rating i {
@@ -523,12 +521,24 @@ li p {
 	&.no-bottom-margin {
 		margin-bottom: 0;
 	}
+
+	&.blue-tags {
+		color: white;
+		border-color: $sb-blue-select;
+		background: $sb-blue;
+	}
 }
 
 .tags-providerTags>a:hover, .tags-providerTags>a:focus {
 	color: #468c54;
 	border-color: #a9d8b2;
 	background: rgba(87, 173, 104, 0.1);
+
+	&.blue-tags {
+		color: white;
+		border-color: $sb-blue-select;
+		background: $sb-blue-select;
+	}
 }
 
 .recommend {
@@ -565,21 +575,13 @@ li p {
 	padding: 0;
 }
 
-.comment p {
-	margin-top: 0;
-}
-
 .comment-snippet {
 	margin-bottom: 0;
 	font-style: italic;
 }
 
-.comment-smalltext {
+.comment-smalltext span, .comment-smalltext p, .comment-smalltext div {
 	margin-top: 0;
-	font-size: 15px;
-}
-
-div.comment-smalltext span {
 	font-weight: 100;
 }
 
@@ -668,4 +670,24 @@ div.comment-smalltext span {
 
 .radio input[type="radio"] {
 	margin: 10px 0; /*top/bottom, right/left*/
+}
+
+/*DEBUGGING*/
+
+.debug-red {
+	background: red;	
+}
+
+.debug-blue {
+	background: lightblue;	
+}
+
+.related-keywords{
+	padding-top: 4.5px;
+	padding-bottom: 4.5px;
+	margin-bottom: 10px;
+
+	&.similar-keywords {
+		margin-bottom: 0;
+	}
 }

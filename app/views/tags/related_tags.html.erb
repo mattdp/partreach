@@ -2,16 +2,12 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-10 col-sm-offset-1 main-area-contrast override">
-      <h1>Related tags</h1>
       <h3><%= @tag.readable %></h3>
-      <% @relationships_hash.each do |relationship_name, related_tags_array| %>
-        <h4><%= relationship_name %></h4>
-          <ul>
-            <% related_tags_array.each do |related_tag| %>
-              <li><%= link_to related_tag.readable, related_tags_path(related_tag) %></li>
-            <% end %>
-          </ul>
-      <% end %>
+      <ul>
+        <% @tag.immediate_neighbors.each do |phrase| %>
+          <li><%= phrase %></li>
+        <% end %>
+      </ul>
     </div>
   </div>
 </div>

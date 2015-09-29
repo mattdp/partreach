@@ -8,7 +8,6 @@
     <!-- BEGIN LEFT COLUMN -->
     <div class="col-md-4">
       
-      <!-- COMPANY NAME -->
       <div class="provider-profile">
         <h1>
           <%= @provider.name %>
@@ -31,18 +30,18 @@
       </div>      
 
       <!-- ADDRESS SECTION -->
-      <div class="comment-profile">
-        <p class="comment-smalltext"><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p>
-        <p class="comment-smalltext"><strong>Phone: </strong><%= @provider.contact_phone %></p>
-        <p class="comment-smalltext"><strong>Email: </strong><%= @provider.contact_email %></p>
-        <p class="comment-smalltext"><strong>Skype: </strong><%= @provider.contact_skype %></p>
-        <p class="comment-smalltext">
+      <div class="comment-profile comment-smalltext">
+        <p><strong>Best person to contact: </strong> <%= "#{@provider.contact_name} (role: #{@provider.contact_role})"%></p>
+        <p><strong>Phone: </strong><%= @provider.contact_phone %></p>
+        <p><strong>Email: </strong><%= @provider.contact_email %></p>
+        <p><strong>Skype: </strong><%= @provider.contact_skype %></p>
+        <p>
           <strong>Website: </strong>
           <% if @provider.url_main.present? %>
             <%= link_to "Link", @provider.url_main %>
           <% end %>
         </p>            
-        <p class="comment-smalltext"><strong>Full address: </strong><%= "#{@provider.location_string}" %></p>
+        <p><strong>Full address: </strong><%= "#{@provider.location_string}" %></p>
       </div>
 
       <!-- PURCHASE ORDERS -->
@@ -94,7 +93,7 @@
         </ul>
       </div>
 
-      <div class="attachment-uploader">Upload pictures here (or drag and drop)
+      <div class="attachment-uploader photo-upload-background well well-lg">Upload pictures here (or drag and drop)
         <span class="heading_navigation"></span>
         <%= hidden_field_tag :provider_id_for_upload, @provider.id %>
         <%= s3_uploader_form id: "s3-provider-photo-upload", class: "s3-provider-photo-upload",
@@ -119,9 +118,9 @@
         <div class="modal-content">         
           <div class="modal-body">                
           </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
+        </div>
+      </div>
+    </div>
 
   </div>
 

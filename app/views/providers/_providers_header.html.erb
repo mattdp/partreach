@@ -1,12 +1,12 @@
       <div class="row text-block">        
         <div class="row bottom-search-area">
           <div class="row">
-            <div class="row col-md-2 index-search-bar center">              
+            <div class="row col-md-2">
             </div>
-            <div class="row col-md-8 index-search-bar">
+            <div class="row col-md-8 no-padding-left index-search-bar">
               <%= form_tag teams_index_path, method: :get do%>
                 <div class="col-md-9 col-sm-9 col-xs-9 index-search-bar">
-                  <%= select_tag(:search_terms, options_for_select(@search_terms_list), multiple: true, class: 'provider-search-terms-select') %>
+                  <%= select_tag(:separated_search_string, options_for_select(search_terms_list), multiple: true, class: 'provider-search-terms-select', style: 'display:none')%>
                 </div>
                 <div class="col-md-3 col-sm-3 col-xs-3 index-search-button">
                   <%= submit_tag "Search »", class: 'button--blue' %>

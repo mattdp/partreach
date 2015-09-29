@@ -5,16 +5,59 @@
     <div class="main-area-contrast override">
       <!-- this tool was super helpful making quick tables: http://www.textfixer.com/html/csv-convert-table.php -->
        <%= render partial: "organizations/navigation_header", locals: {show_left_text: false, middle_text: "See who #{@people_called} are using to make parts", organization: @organization} %>
-      <%= render :partial => "providers/providers_header" %>      
+      <%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>      
 
       <% if @results_hash.present? %>
+        <% if @neighboring_tags_by_relationship.present? and @neighboring_tags_by_relationship.values.flatten.present? %>
+          
+          <div class="row">
+            <% if @neighboring_tags_by_relationship[:parents].present? %>
+              <div class="col-md-2 no-padding-right related-keywords">
+                <%= "Parent category included:" %>
+              </div>
+              <div class="col-md-10 ">
+                <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:parents], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="row">          
+            <div class="col-md-2 no-padding-right related-keywords">
+              You searched for:
+            </div>
+            <div class="col-md-10">
+              <div class="col-md-3 no-padding-left">
+                <%= render partial: "providers/tag_display", locals: {tags: [@tag], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+              </div>
+              <% if @neighboring_tags_by_relationship[:both_synonym_directions].present? %>
+                <div class="col-md-3 right related-keywords similar-keywords">
+                  Similar keywords included:
+                </div>
+                <div class="col-md-6 no-padding-left">
+                  <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:both_synonym_directions], remove_bottom_margin: true, max_tags_to_display: 2, show_more_option: true} %>
+                </div>
+              <% end %>
+            </div>
+          </div>          
+          
+          <div class="row">
+            <% if @neighboring_tags_by_relationship[:children].present? %>            
+              <div class="col-md-2 no-padding-right related-keywords">
+                <%= "Subcategories included:" %>
+              </div>
+              <div class="col-md-10">
+                <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:children], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
         <% @results_hash.each do |header, providers| %>
           <div class="col-md-12">
             <h3 class="no-margin-top margin-bottom">
               <span><%= header %></span>
             </h3>
             <% if providers %> 
-              <%= render partial: "providers/providers_table", locals: {providers: providers, include_tag_column: false, cache_result: false, purchase_order_titles: @purchase_order_titles} %>
+              <%= render partial: "providers/providers_table", locals: {providers: providers, cache_result: false, purchase_order_titles: @purchase_order_titles} %>
             <% else %>
               <p>We don't have any suppliers fitting this description. Help out by <%= mail_to "founders@supplybetter.com", "submitting one now" %>!</p>
             <% end %>
@@ -26,7 +69,7 @@
             <h3>Choose Category</h3>
             <ul>
               <% @common_search_tags.each do |tag| %>
-                <li><%= link_to "#{tag.readable}", teams_index_path(search_terms: ["T:#{tag.readable}"]) %></li>
+                <li><%= link_to "#{tag.readable}", teams_index_with_search_path("#{Organization.encode_search_string([tag])}","true") %></li>
               <% end %>
             </ul>          
           </div>

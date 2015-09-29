@@ -25,6 +25,34 @@ class Organization < ActiveRecord::Base
   #tags -> which tags are in scope for the organization
   #taggings -> which tags are used for the index page side list
 
+  SEARCH_STRING_SEPARATOR = "-"
+  SEARCH_STRING_MODEL_CHARACTERS = 4
+  SEARCH_STRING_MODEL_HASH = {"Provider"=>"p","Tag"=>"t"}
+
+  #highly promiscous, will encode anything it can across orgs
+  def self.encode_search_string(models)
+    return "" if models.blank?
+    strings = models.map{|m| "#{Organization::SEARCH_STRING_MODEL_HASH[m.class.to_s]}#{m.id}"}
+    strings.join(Organization::SEARCH_STRING_SEPARATOR)
+  end
+
+  #tries to prevent errors and cross-org searching
+  def decode_search_string(search_string)
+    answer = []
+    return answer if search_string.blank?
+
+    decoder = Organization::SEARCH_STRING_MODEL_HASH.invert
+    
+    search_string.split(Organization::SEARCH_STRING_SEPARATOR).each do |ss|
+      model_name = decoder[ss[0]]
+      next if model_name.blank?
+      id = ss[1..ss.length]
+      next if id == 0
+      answer << model_name.constantize.find(id)
+    end
+    return answer.select{|a| a.organization_id == self.id}
+  end
+
   def common_search_tags(sorted_tags_by_providers)
     minimum_tags_in_list = sorted_tags_by_providers.size
     tags_returning = []
@@ -42,12 +70,13 @@ class Organization < ActiveRecord::Base
   end
 
   #needs to actually work
-  def user_behaviors
-    users = [] 
-    self.users.each do |u|
-      users << u.behaviors
+  def user_behaviors(allow_admins=false)
+    behaviors = [] 
+    users = self.users.reject{|u| u.admin}
+    users.each do |u|
+      behaviors << u.behaviors
     end
-    return users
+    return behaviors
   end
 
   def has_any_pos?
@@ -148,13 +177,33 @@ class Organization < ActiveRecord::Base
     end
 
     if "providers".in?(activity_types)
+      updated_text = "updated a provider"
       provider_events = Event.joins("INNER JOIN providers ON events.target_model_id = providers.id").
         joins("INNER JOIN users ON events.model_id = users.id").
-        where(events: {target_model: "Provider", model: "User", happening: ["created a provider","updated a provider"]}).
-        where(providers: {created_at: range, organization_id: self.id}).
+        where(events: {created_at: range, target_model: "Provider", model: "User", happening: ["created a provider",updated_text]}).
+        where(providers: {organization_id: self.id}).
         where(users: {admin: false}).
         order(updated_at: :desc)
-      provider_events = provider_events.select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}
+      #fudge factor for duplicate update events        
+      provider_events = provider_events.
+        select{|e| u = User.find(e.model_id) and u.lead.present? and u.lead.lead_contact.present?}.
+        take(result_number*2)
+      #no more than one event for updating the same provider; this should really be SQL
+      i = 0
+      while i < provider_events.length
+        if provider_events[i].happening == updated_text
+          provider_id = provider_events[i].target_model_id
+          post_i = provider_events[i+1...provider_events.length]
+          post_i = [] if post_i.blank?
+          up_to_i = provider_events[0..i]
+          provider_events = up_to_i + 
+            post_i.reject{|event| 
+              event.happening == updated_text and 
+              event.target_model_id == provider_id
+            }
+        end
+        i += 1
+      end
       intermediate_results += provider_events.take(result_number)
     end
 
@@ -217,6 +266,7 @@ class Organization < ActiveRecord::Base
     tags.each do |tag|
       inserted = {}
       provider_taggings = tag.taggings.where("taggable_type = 'Provider'")
+      inserted[:tag_id] = tag.id
       inserted[:num_providers] = provider_taggings.count
       if inserted[:num_providers] == 0
         inserted[:num_providers] = nil
@@ -265,14 +315,15 @@ class Organization < ActiveRecord::Base
     hash = {}
     tags_with_providers = provider_tags.includes(:providers).references(:providers)
     tags_with_providers.sort_by {|tag| tag.readable.downcase }.each do |tag|
-      # puts "tag.readable: #{tag.readable}"
-      # tag.providers.sort_by {|provider| provider.name.downcase}.each do |provider|
-      #   puts "provider.name: #{provider.name}"
-      # end
       hash[tag] = tag.providers.sort_by {|provider| provider.name.downcase}
     end
+    return hash
+  end
 
-    hash
+  def sorted_tags_by_providers
+    stbp = []
+    self.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
+    stbp = stbp.sort_by! {|e| [-(e[0]), e[1].readable.downcase]}
   end
 
   def find_or_create_tag!(name,user)

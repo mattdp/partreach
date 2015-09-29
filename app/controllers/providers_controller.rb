@@ -97,16 +97,15 @@ class ProvidersController < ApplicationController
     @providers_list = Rails.cache.fetch("#{@organization.id}-providers_alpha_sort-#{@organization.last_provider_update}") do 
       temp_list = []
       @organization.providers_alpha_sort.each do |provider|
-        temp_list << [provider.name, "P:#{provider.id}"]
+        temp_list << [provider.name, "#{Organization.encode_search_string([provider])}"]
       end
       temp_list
     end
 
+    #same cache keys as tag_relationships#new 
     #needed in two places below
     sorted_tags_by_providers = Rails.cache.fetch("#{@organization.id}-providers_hash_by_tag-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
-      stbp = []
-      @organization.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
-      stbp = stbp.sort_by! {|e| [-(e[0]), e[1].readable.downcase]}
+      @organization.sorted_tags_by_providers
     end
 
     #order sensitive - 1 of 2 - s_t_b_p manipulated by @p_t_s_l, and cloning didn't seem to stop it
@@ -116,16 +115,13 @@ class ProvidersController < ApplicationController
     end
 
     #order sensitive - 2 of 2
-    @providers_tag_search_list = Rails.cache.fetch("#{@organization.id}-providers_tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
-      sorted_tags_by_providers.each do |e|
-        e[0] = "#{e[1].readable} (#{e[0]} #{"supplier".pluralize(e[0])})"
-        e[1] = "T:#{e[1].readable}"
-      end
+    @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
+      Tag.search_list(sorted_tags_by_providers)
     end
 
-    @search_terms_list = @providers_tag_search_list + @providers_list
+    @search_terms_list = @tag_search_list + @providers_list
 
-    @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}") do 
+    @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       @organization.recent_activity(["comments","providers"])
     end
 
@@ -135,47 +131,54 @@ class ProvidersController < ApplicationController
 
     @results_hash = {}
 
-    if params[:search_terms].present?
+    #separated search string for chosen boxes, where we don't control format of submission well
+    #search_string for everything else (preferred)
+    if (params[:search_string].present? or params[:separated_search_string].present?)
 
-      providers = []
-      tags = []
+      if params[:search_string].present?
+        searched_models = @organization.decode_search_string(params[:search_string])
+      elsif params[:separated_search_string].present?
+        searched_models = params[:separated_search_string].map{|ss| @organization.decode_search_string(ss)}.flatten
+      else 
+        searched_models = []      
+      end
 
-      provider_terms = params[:search_terms].select { |term| term[0] == 'P' }
-      if provider_terms.present?
-        ids = []
-        provider_terms.each do |term|
-          ids << term[2..term.length].to_i
-        end
-        providers = Provider.where(id: ids)
+      providers = searched_models.select{|m| m.class.to_s == "Provider"}
+      #all tags to show tables for
+      tags = searched_models.select{|m| m.class.to_s == "Tag"}
+      #additional tags to call out specifically
+      @additional_tags = []
+
+      if providers.present?
         Event.add_event("User", current_user.id, "searched one item", "Provider", providers[0].id) if providers.size == 1
         @results_hash["#{'Supplier'.pluralize(providers.count)} you searched"] = providers
       end
 
-      tag_terms = params[:search_terms].select { |term| term[0] == 'T' }
-      if tag_terms.present?
-        readables = []
-        tag_terms.each do |term|
-          readables << term[2..term.length]
+      if tags.present?        
+        originally_searched_tags = tags.first(tags.length)
+        if (params[:include_related_tags] == "true" and tags.size == 1)
+          @tag = tags[0]
+          Event.add_event("User", current_user.id, "searched one item", "Tag", @tag.id)
+          @neighboring_tags_by_relationship = @tag.immediate_neighboring_tags_by_relationship
+          tags.concat(@neighboring_tags_by_relationship.values.flatten)
         end
-        tags = Tag.where(organization_id: @organization.id).where(readable: readables)
-        Event.add_event("User", current_user.id, "searched one item", "Tag", tags[0].id) if tags.size == 1
-        #adapted from organization.providers_hash_by_tag
-        tags.sort_by { |t| t.readable.downcase }.each do |tag|
-          @results_hash[tag.readable] = Provider.joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
-            .where("taggable_type = ? and tag_id = ?","Provider",tag.id)
-            .where(organization_id: @organization.id)
-            .order("lower(name)")
-        end
+        #this should be one query, but couldn't figure out how to get order and uniquness to play nice after 15m
+        redundant_provider_ids = Provider.select(:id,:organization_id).joins('INNER JOIN taggings ON taggings.taggable_id = providers.id')
+          .where(providers: {organization_id: @organization.id})
+          .where(taggings: {taggable_type: "Provider", tag_id: tags.map{|t| t.id}})
+          .order("lower(name)")
+          .pluck(:id)
+        @results_hash[originally_searched_tags.map{|t| t.readable}.join(" & ")] = Provider.where(id: redundant_provider_ids.uniq)
       end
 
-      if params[:search_terms].size > 1
+      if searched_models.size == 1
+        Event.add_event("User", current_user.id, "searched one item", searched_models[0].class.to_s, searched_models[0].id)
+        # if only one provider, skip list, just display that provider's profile page
+        redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1
+      elsif searched_models.size > 1
         search_hash = {tags: tags.map{|t| t.id}, providers: providers.map{|p| p.id}}
         Event.add_event("User", current_user.id, "searched multiple items", nil, nil, search_hash.to_s)
       end
-
-      # if only one provider, skip list, just display that provider's profile page
-      redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1 && tags.empty?
-     
     else
       Event.add_event("User",current_user.id,"loaded Providers index page")
     end
