@@ -65,6 +65,20 @@ class User < ActiveRecord::Base
       .select{|c| c.overall_score.present? and c.overall_score > 0 and c.overall_score < 3}
       .count
 
+    if returnee[:total_pos] > 0
+      wip = ((1.0 * returnee[:comments_reminded_about]) / returnee[:total_pos])
+      returnee[:percent_of_pos_reminded_about] = "#{(wip*100).round(0)}%"
+    else
+      returnee[:percent_of_pos_reminded_about] = "0%"
+    end
+
+    if returnee[:comments_reminded_about] > 0
+      wip = ((1.0 * returnee[:comments_reminded_about_and_filled_out]) / returnee[:comments_reminded_about])
+      returnee[:percent_of_reminded_comments_filled] = "#{(wip*100).round(0)}%"
+    else
+      returnee[:percent_of_reminded_comments_filled] = "0%" 
+    end
+
     return returnee
   end
 
