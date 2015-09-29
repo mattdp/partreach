@@ -121,7 +121,7 @@ class ProvidersController < ApplicationController
 
     @search_terms_list = @tag_search_list + @providers_list
 
-    @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}") do 
+    @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       @organization.recent_activity(["comments","providers"])
     end
 
