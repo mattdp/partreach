@@ -70,12 +70,13 @@ class Organization < ActiveRecord::Base
   end
 
   #needs to actually work
-  def user_behaviors
-    users = [] 
-    self.users.each do |u|
-      users << u.behaviors
+  def user_behaviors(allow_admins=false)
+    behaviors = [] 
+    users = self.users.reject{|u| u.admin}
+    users.each do |u|
+      behaviors << u.behaviors
     end
-    return users
+    return behaviors
   end
 
   def has_any_pos?

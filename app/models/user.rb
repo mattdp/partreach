@@ -57,6 +57,13 @@ class User < ActiveRecord::Base
       .where(id: ids_of_reminded_comments)
       .reject{|c| c.untouched?}
       .count
+    returnee[:total_pos] = PurchaseOrder.joins('INNER JOIN comments ON comments.purchase_order_id = purchase_orders.id')
+      .where(comments: {user_id: self.id})
+      .count
+    returnee[:comments_with_two_or_less_stars] = Comment
+      .where(user_id: self.id)
+      .select{|c| c.overall_score.present? and c.overall_score > 0 and c.overall_score < 3}
+      .count
 
     return returnee
   end
