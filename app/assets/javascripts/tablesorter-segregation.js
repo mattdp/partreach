@@ -27,5 +27,4 @@ $(document).ready(function() {
     sortList: sortList,
     widgets : ['columns', 'uitheme', 'filter'] 
   });
-
 });
