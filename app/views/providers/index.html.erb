@@ -9,21 +9,47 @@
 
       <% if @results_hash.present? %>
         <% if @neighboring_tags_by_relationship.present? and @neighboring_tags_by_relationship.values.flatten.present? %>
-          You searched for:
-          <%= render partial: "providers/tag_display", locals: {tags: [@tag], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
-          <h3>Added to search automatically</h3>
-          <% if @neighboring_tags_by_relationship[:both_synonym_directions].present? %>
-            <%= "Similar keywords:" %>
-            <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:both_synonym_directions], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
-          <% end %>
-          <% if @neighboring_tags_by_relationship[:parents].present? %>
-            <%= "Subcategories of #{@tag.readable}:" %>
-            <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:parents], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
-          <% end %>
-          <% if @neighboring_tags_by_relationship[:children].present? %>
-            <%= "#{@tag.readable} is a subcategory of:" %>
-            <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:children], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
-          <% end %>
+          
+          <div class="row">
+            <% if @neighboring_tags_by_relationship[:parents].present? %>
+              <div class="col-md-2 no-padding-right related-keywords">
+                <%= "Parent category included:" %>
+              </div>
+              <div class="col-md-10 ">
+                <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:parents], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="row">          
+            <div class="col-md-2 no-padding-right related-keywords">
+              You searched for:
+            </div>
+            <div class="col-md-10">
+              <div class="col-md-3 no-padding-left">
+                <%= render partial: "providers/tag_display", locals: {tags: [@tag], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+              </div>
+              <% if @neighboring_tags_by_relationship[:both_synonym_directions].present? %>
+                <div class="col-md-3 right related-keywords similar-keywords">
+                  Similar keywords included:
+                </div>
+                <div class="col-md-6 no-padding-left">
+                  <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:both_synonym_directions], remove_bottom_margin: true, max_tags_to_display: 2, show_more_option: true} %>
+                </div>
+              <% end %>
+            </div>
+          </div>          
+          
+          <div class="row">
+            <% if @neighboring_tags_by_relationship[:children].present? %>            
+              <div class="col-md-2 no-padding-right related-keywords">
+                <%= "Subcategories included:" %>
+              </div>
+              <div class="col-md-10">
+                <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:children], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+              </div>
+            <% end %>
+          </div>
         <% end %>
         <% @results_hash.each do |header, providers| %>
           <div class="col-md-12">
