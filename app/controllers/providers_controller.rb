@@ -8,6 +8,7 @@ class ProvidersController < ApplicationController
   end
 
   def address_review_submit
+    redirect_to teams_index_path, notice: "PLACEHOLDER"
   end
 
   def new

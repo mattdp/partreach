@@ -2,6 +2,10 @@
 
 <h1>Addresses for formatting</h1>
 
-<% @providers.each do |provider| %>
-  <%= render partial: "providers/provider_address_modification", locals: {provider: provider} %>
+<%= form_tag :action => "address_review_submit", :controller => "providers" do %>
+  <% @providers.each do |provider| %>
+    <%= render partial: "providers/provider_address_modification", locals: {provider: provider} %>
+  <% end %>
+
+  <%= submit_tag "Update addresses", class: "save-button" %>
 <% end %>
