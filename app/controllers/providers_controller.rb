@@ -1,6 +1,14 @@
 class ProvidersController < ApplicationController
   before_action :org_access_only, except: :signin
+  before_filter :admin_user, only: [:address_review, :address_review_submit]
   skip_before_action :allow_staging_access, only: :signin
+
+  def address_review
+    @providers = Provider.needs_address_details
+  end
+
+  def address_review_submit
+  end
 
   def new
     @organization = current_organization

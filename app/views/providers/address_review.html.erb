@@ -1,0 +1,7 @@
+<% provide(:title,"Addresses for formatting") %>
+
+<h1>Addresses for formatting</h1>
+
+<% @providers.each do |provider| %>
+  <%= render partial: "providers/provider_address_modification", locals: {provider: provider} %>
+<% end %>
