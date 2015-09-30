@@ -5,6 +5,8 @@ class ProvidersController < ApplicationController
 
   def address_review
     @providers = Provider.needs_address_details
+    @states_long_names = Geography.all_us_states.map{|g| g.long_name}
+    @countries_long_names = Geography.all_countries.map{|g| g.long_name}
   end
 
   def address_review_submit
