@@ -1,3 +1,16 @@
-<%#= make sure to return everything by provider id, since may be multiple of them on a page %>
+<% prefix = "addresses_information[#{provider.id}]" %>
+<% provider.address.present? ? address = provider.address : address = Address.new %>
 
-<p><%= provider.name %></p>
+<h3><%= provider.name %></h3>
+<p><%= "Location string: #{provider.location_string}" %>
+<% [:state,:country].each do |geography_field| %>
+  <div>
+    <%= label_tag "#{prefix}[#{geography_field}]", geography_field %>
+  </div>
+<% end %>
+<% [:street,:city,:zip].each do |string_field| %>
+  <div>
+    <%= label_tag "#{prefix}[#{string_field}]", string_field %>
+    <%= text_field_tag "#{prefix}[#{string_field}]", address.send(string_field) %>
+  </div>
+<% end %>
