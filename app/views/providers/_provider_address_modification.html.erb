@@ -12,6 +12,8 @@
 <div>
   <%= label_tag "#{prefix}[state]", "State" %>
   <%= render partial: "tag_relationships/simple_search_box", locals: {search_terms_list: states, return_variable: "#{prefix}[state]"}  %>
+  <%= check_box_tag "#{prefix}[do_not_save]", true, (address.state.nil? or address.state_id == @unknown_state_id) %>
+  <span>Do not save state - Unknown state or state doesn't make sense to use here</span>
 </div>
 <% [:street,:city,:zip].each do |string_field| %>
   <div>

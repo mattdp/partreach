@@ -49,6 +49,7 @@ class Provider < ActiveRecord::Base
     has_location_info = Provider.where("location_string IS NOT NULL")
     unknown_country_id = Geography.find_by_name_for_link('country_unknown').id
     needs_work = has_location_info.select{|p| p.address.nil? or p.address.country_id.nil? or p.address.country_id == unknown_country_id}
+    needs_work = needs_work.reject{|p| p.location_string.blank?}
     return needs_work.take(quantity)
   end
 
