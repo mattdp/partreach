@@ -11,7 +11,16 @@ class ProvidersController < ApplicationController
   end
 
   def address_review_submit
-    redirect_to teams_index_path, notice: "PLACEHOLDER"
+    if params["addresses_information"].present?
+      params["addresses_information"].keys.each do |key|
+        provider = Provider.find(key.to_i)
+        data = params["addresses_information"][key]
+        data["state"] = "unknown" if data["unknown_state"] == "true"
+        Address.create_or_update_address(provider, data)
+      end
+    end
+
+    redirect_to teams_index_path, notice: "Address saving attempted."
   end
 
   def new
