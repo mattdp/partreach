@@ -1,6 +1,27 @@
 class ProvidersController < ApplicationController
   before_action :org_access_only, except: :signin
+  before_filter :admin_user, only: [:address_review, :address_review_submit]
   skip_before_action :allow_staging_access, only: :signin
+
+  def address_review
+    @providers = Provider.needs_address_details
+    @states_long_names = Geography.all_us_states.map{|g| g.long_name}
+    @unknown_state_id = Geography.locate("unknown",:short_name,"state")
+    @countries_long_names = Geography.all_countries.map{|g| g.long_name}
+  end
+
+  def address_review_submit
+    if params["addresses_information"].present?
+      params["addresses_information"].keys.each do |key|
+        provider = Provider.find(key.to_i)
+        data = params["addresses_information"][key]
+        data["state"] = "unknown" if data["unknown_state"] == "true"
+        Address.create_or_update_address(provider, data)
+      end
+    end
+
+    redirect_to teams_index_path, notice: "Address saving attempted."
+  end
 
   def new
     @organization = current_organization

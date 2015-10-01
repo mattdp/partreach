@@ -1,0 +1,11 @@
+<% provide(:title,"Addresses for formatting") %>
+
+<h1>Addresses for formatting</h1>
+
+<%= form_tag :action => "address_review_submit", :controller => "providers" do %>
+  <% @providers.each do |provider| %>
+    <%= render partial: "providers/provider_address_modification", locals: {provider: provider, states: @states_long_names, countries: @countries_long_names} %>
+  <% end %>
+
+  <%= submit_tag "Update addresses", class: "save-button" %>
+<% end %>
