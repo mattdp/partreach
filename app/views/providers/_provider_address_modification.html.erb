@@ -1,7 +1,12 @@
 <% prefix = "addresses_information[#{provider.id}]" %>
 <% provider.address.present? ? address = provider.address : address = Address.new %>
 
-<h3><%= provider.name %></h3>
+<h3>
+  <%= link_to provider.name, teams_profile_path(provider.name_for_link) %>      
+    <% if provider.url_main.present? %>
+      | <%= link_to "website", provider.url_main %>
+    <% end %>
+</h3>
 <p><%= "Location string: #{provider.location_string}" %>
 <p><%= "Organization ID: #{provider.organization_id}" %>
 
