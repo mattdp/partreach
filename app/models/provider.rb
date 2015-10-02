@@ -44,6 +44,16 @@ class Provider < ActiveRecord::Base
   validates :name_for_link, presence: true, uniqueness: {case_sensitive: false, scope: :organization_id}
   validates :organization, presence: true
 
+  #terrible inefficiency, but doesn't need to be good
+  def self.needs_address_details(quantity=10)
+    has_location_info = Provider.where("location_string IS NOT NULL")
+    unknown_country_id = Geography.find_by_name_for_link('country_unknown').id
+    needs_work = has_location_info.select{|p| p.address.nil? or p.address.country_id.nil? or p.address.country_id == unknown_country_id}
+    needs_work = needs_work.reject{|p| p.location_string.blank?}
+    needs_work = needs_work.sort_by{|p| p.organization_id}.reverse
+    return needs_work.take(quantity)
+  end
+
   #depends on options existing
   def create_linked_po_and_comment!(options)
     warning_prefix = "***** "
