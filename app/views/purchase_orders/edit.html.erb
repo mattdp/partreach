@@ -1,22 +1,28 @@
 <% provide(:title,"Edit PO #{@po.id}") %>
 
 <div class="container hax-body-styling">
-  <div class="row">
+  <div class="row col-md-12 any-form">
     <%= link_to "Back to PO index", purchase_orders_path %>
 
     <h2>Basic info for PO #<%= @po.id %></h2>
-    <p><strong>Organization</strong>:<%= @po.provider.organization.name %></p>
-    <p><strong>Provider</strong>:<%= @po.provider.name %></p>
-    <p><strong>Description</strong>:<%= @po.description %></p>
+    <p><strong>Organization: </strong><%= @po.provider.organization.name %></p>
+    <p><strong>Provider: </strong>      
+      <%= link_to @po.provider.name, teams_profile_path(@po.provider.name_for_link) %>      
+      <% if @po.provider.url_main.present? %>
+        | <%= link_to "website", @po.provider.url_main %>
+      <% end %>
+    </p>
+    <p><strong>Provider's current tags: </strong> 
+      <%= render partial: "providers/tag_display", locals: {tags: @po.provider.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
+    </p>
+    <p><strong>Purchase Order description: </strong><%= @po.description %></p>
 
     <h2>Tags</h2>
 
     <%= form_tag :action => 'update', :controller => 'purchase_orders' do %>
       <%= render partial: "providers/tag_adder", locals: {tags: @tags, checked_tags: @checked_tags, label_text: "Create new tag(s) and add to purchase order AND provider. Note that removing only removes from PO, not from provider:"} %>
-      <br>
-      <div class="row">
-        <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button", :class => "save-button margin-bottom" %>
-      </div>
+      <br>      
+        <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button", :class => "save-button margin-bottom" %>      
     <% end %>
 
   </div>
