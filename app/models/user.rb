@@ -64,6 +64,10 @@ class User < ActiveRecord::Base
       .where(user_id: self.id)
       .select{|c| c.overall_score.present? and c.overall_score > 0 and c.overall_score < 3}
       .count
+    returnee[:profile_views] = Event
+      .where(model: "User", model_id: self.id)
+      .where(happening: "loaded profile")
+      .count
 
     if returnee[:total_pos] > 0
       wip = ((1.0 * returnee[:comments_reminded_about]) / returnee[:total_pos])
