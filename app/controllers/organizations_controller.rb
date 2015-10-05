@@ -35,7 +35,7 @@ class OrganizationsController < ApplicationController
   end
 
   def searches
-    @organization = current_organization
+    @organization = Organization.find(params[:id])
     single_search_events = Event.where(model: "User", happening: "searched one item")
     @searches = []
     single_search_events.each do |event| 
