@@ -1,0 +1,21 @@
+<% provide(:title,"Searches") %>
+
+<h3 class="center">Search history for <%= "#{@organization.name}" %> - single searches only</h3>
+
+<table class="tablesorter-active">
+  <thead>
+    <tr>
+      <td>User</td>
+      <td>Time</td>
+      <td>Search term</td>
+    </tr>
+  </thead>
+  <% @searches.each do |hash| %>
+    <tr>
+      <td><%= "#{hash[:user_name]}" %></td>
+      <td><%= "#{hash[:event_created_at]}" %></td>
+      <td><%= "#{hash[:searched]}" %></td>
+    </tr>
+  <% end %>
+</table>
+  

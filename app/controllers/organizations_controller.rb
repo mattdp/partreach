@@ -34,6 +34,20 @@ class OrganizationsController < ApplicationController
     Event.add_event("User","#{current_user.id}","viewed supplier list")
   end
 
+  def searches
+    @organization = current_organization
+    search_events = Event.where(model: "User", happening: "searched one item")
+    @searches = []
+    search_events.each do |event| 
+      hash = {}
+      hash[:user_name] = User.find(event.model_id).lead.lead_contact.full_name_untrusted
+      hash[:event_created_at] = event.created_at
+      searched_model = event.target_model.constantize.find(event.target_model_id)
+      hash[:searched] = searched_model.name
+      @searches << hash
+    end
+  end
+
   def show
     @organization = Organization.find(params[:id])
     @user_behaviors = @organization.user_behaviors

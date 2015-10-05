@@ -89,6 +89,7 @@ Partreach::Application.routes.draw do
   resources :organizations, only: [:show]
   get 'organizations/:id/tags_list', to: 'organizations#tags_list', as: 'organizations_tags_list'
   get 'organizations/:id/providers_list', to: 'organizations#providers_list', as: 'organizations_providers_list'
+  get 'organizations/:id/searches', to: 'organizations#searches', as: 'organizations_searches'
 
   resources :owners, only: [:create]
   get '/owners/new/:supplier_id', to: 'owners#new', as: 'new_owner'
