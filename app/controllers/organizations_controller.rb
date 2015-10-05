@@ -36,9 +36,9 @@ class OrganizationsController < ApplicationController
 
   def searches
     @organization = current_organization
-    search_events = Event.where(model: "User", happening: "searched one item")
+    single_search_events = Event.where(model: "User", happening: "searched one item")
     @searches = []
-    search_events.each do |event| 
+    single_search_events.each do |event| 
       hash = {}
       hash[:user_name] = User.find(event.model_id).lead.lead_contact.full_name_untrusted
       hash[:event_created_at] = event.created_at
@@ -46,6 +46,7 @@ class OrganizationsController < ApplicationController
       hash[:searched] = searched_model.name
       @searches << hash
     end
+    multiple_search_events = Event.where()
   end
 
   def show
