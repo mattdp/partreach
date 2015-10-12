@@ -8,4 +8,8 @@ $(document).ready(function() {
     {
       placeholder_text_multiple: 'Click to select tags to add'
     });
+  $('.selectize').selectize({
+    create: true,
+    sortField: 'text'
+  });
 });
