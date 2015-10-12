@@ -43,7 +43,7 @@ gem 'rack-cache'
 gem 'dalli'
 gem 'kgio'
 #end caching
-gem 'selectize-rails'
+gem 'selectize-rails' #https://github.com/manuelvanrijn/selectize-rails
 
 #old assets block
 gem 'sass-rails',   '~> 4.0.0'
