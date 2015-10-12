@@ -9,6 +9,8 @@ class PurchaseOrdersController < ApplicationController
 
   def update
     @po = PurchaseOrder.find(params[:id])
+    @po.description = params["description"]
+    @po.save
     @provider = @po.provider
     saved_ok = false
 

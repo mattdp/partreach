@@ -15,11 +15,15 @@
     <p><strong>Provider's current tags: </strong> 
       <%= render partial: "providers/tag_display", locals: {tags: @po.provider.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
     </p>
-    <p><strong>Purchase Order description: </strong><%= @po.description %></p>
 
-    <h2>Tags</h2>
 
     <%= form_tag :action => 'update', :controller => 'purchase_orders' do %>
+
+      <%= label_tag :description, "Purchase Order description" %>
+      <%= text_field_tag :description, @po.description %>
+
+      <h2>Tags</h2>
+
       <%= render partial: "providers/tag_adder", locals: {tags: @tags, checked_tags: @checked_tags, label_text: "Create new tag(s) and add to purchase order AND provider. Note that removing only removes from PO, not from provider:"} %>
       <br>      
         <%= submit_tag "Save changes", data: { disable_with: 'Saving...' }, :id => "save_button", :class => "save-button margin-bottom" %>      
