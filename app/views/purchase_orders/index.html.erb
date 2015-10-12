@@ -27,7 +27,7 @@
                 <% end %>
               </td>
               <td><%= po.created_at.strftime("%b %e, %Y") %></td>
-              <td><%= link_to "Add tags", edit_purchase_order_path(po.id) %></td>
+              <td><%= link_to "Edit PO", edit_purchase_order_path(po.id) %></td>
               <td><%= link_to "RailsAdmin", "#{base_url}/admin/purchase_order/#{po.id}/edit" %></td>
             </tr>
           <% end %>
