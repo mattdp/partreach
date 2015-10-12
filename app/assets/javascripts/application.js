@@ -25,6 +25,7 @@
 //= require additional-methods
 //= require chosen-jquery
 //= require jquery_nested_form
+//= require selectize
 
 //= require_tree ./angular
 //= require_tree ./bootstrap

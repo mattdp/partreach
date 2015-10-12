@@ -301,6 +301,7 @@ GEM
       sass (~> 3.2.2)
       sprockets (~> 2.8, < 3.0)
       sprockets-rails (~> 2.0)
+    selectize-rails (0.12.1)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     sitemap_generator (4.2.0)
@@ -387,6 +388,7 @@ DEPENDENCIES
   rspec-rails (= 2.14.0)
   s3_direct_upload
   sass-rails (~> 4.0.0)
+  selectize-rails
   shoulda-matchers
   sitemap_generator (= 4.2.0)
   twilio-ruby (= 3.10.1)
