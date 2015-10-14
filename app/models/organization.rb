@@ -317,15 +317,6 @@ class Organization < ActiveRecord::Base
     Tag.where(organization_id: self.id)
   end
 
-  def providers_hash_by_tag
-    hash = {}
-    tags_with_providers = provider_tags.includes(:providers).references(:providers)
-    tags_with_providers.sort_by {|tag| tag.readable.downcase }.each do |tag|
-      hash[tag] = tag.providers.sort_by {|provider| provider.name.downcase}
-    end
-    return hash
-  end
-
   def tags_with_provider_counts
     organization = self # for easy pasting debug
 
@@ -345,12 +336,6 @@ class Organization < ActiveRecord::Base
     GROUP BY tags_and_taggings.tag_readable, tags_and_taggings.tag_id
     ORDER BY COUNT(providers.id) DESC, lower(tags_and_taggings.tag_readable)
     ")
-  end
-
-  def sorted_tags_by_providers
-    stbp = []
-    self.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
-    stbp = stbp.sort_by! {|e| [-(e[0]), e[1].readable.downcase]}
   end
 
   def find_or_create_tag!(name,user)
