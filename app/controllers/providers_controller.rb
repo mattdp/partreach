@@ -137,7 +137,7 @@ class ProvidersController < ApplicationController
 
     #order sensitive - 2 of 2
     @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
-      Tag.search_list(@organization.sorted_tags_by_providers)
+      Tag.search_list(tags_with_provider_counts)
     end
 
     @search_terms_list = @tag_search_list + @providers_list

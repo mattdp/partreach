@@ -30,9 +30,13 @@ class Organization < ActiveRecord::Base
   SEARCH_STRING_MODEL_HASH = {"Provider"=>"p","Tag"=>"t"}
 
   #highly promiscous, will encode anything it can across orgs
-  def self.encode_search_string(models)
+  def self.encode_search_string(models,options=nil)
     return "" if models.blank?
-    strings = models.map{|m| "#{Organization::SEARCH_STRING_MODEL_HASH[m.class.to_s]}#{m.id}"}
+    if options == "tag_ids" #when have a list of tag ids in string format
+      strings = models.map{|m| "#{Organization::SEARCH_STRING_MODEL_HASH["Tag"]}#{m}"}
+    else
+      strings = models.map{|m| "#{Organization::SEARCH_STRING_MODEL_HASH[m.class.to_s]}#{m.id}"}
+    end
     strings.join(Organization::SEARCH_STRING_SEPARATOR)
   end
 
@@ -331,7 +335,7 @@ class Organization < ActiveRecord::Base
     #overall: tag.id, tag.readable, count(providers with this tag)
 
     ActiveRecord::Base.connection.exec_query(" 
-    SELECT tags_and_taggings.tag_readable AS tag_readable, tags_and_taggings.tag_id AS tag_id, COUNT(providers.id) AS provider_count
+    SELECT tags_and_taggings.tag_readable AS tag_readable, tags_and_taggings.tag_id AS tag_id, COUNT(providers.id) AS providers_count
     FROM (
       SELECT tags.readable AS tag_readable, tags.id AS tag_id, taggings.taggable_id AS taggable_id
       FROM tags INNER JOIN taggings ON tags.id=taggings.tag_id
