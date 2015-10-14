@@ -320,6 +320,23 @@ class Organization < ActiveRecord::Base
     return hash
   end
 
+  #not called from anywhere right now
+  def new_providers_hash_by_tag
+    organization = self # for easy pasting debug
+
+    #this is currently giving unordered list of (tag.name, provider.name)
+    #figure out exactly what this is used for and see what formats need output
+    ActiveRecord::Base.connection.exec_query(" 
+    SELECT tags_and_taggings.tag_name AS tag_name, providers.name AS provider_name
+    FROM (
+      SELECT tags.name AS tag_name, tags.id AS tag_id, taggings.taggable_id AS taggable_id
+      FROM tags INNER JOIN taggings ON tags.id=taggings.tag_id
+      WHERE tags.organization_id=#{organization.id} 
+      AND taggings.taggable_type='Provider'
+      ) AS tags_and_taggings INNER JOIN providers ON tags_and_taggings.taggable_id=providers.id
+    ")
+  end
+
   def sorted_tags_by_providers
     stbp = []
     self.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
