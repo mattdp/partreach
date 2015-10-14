@@ -8,10 +8,10 @@ class TagRelationshipsController < ApplicationController
 
     @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list_id_only-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
       #same key as providers#index
-      sorted_tags_by_providers = Rails.cache.fetch("#{@organization.id}-providers_hash_by_tag-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
-        @organization.sorted_tags_by_providers
+      tags_with_provider_counts = Rails.cache.fetch("#{@organization.id}-tags_with_provider_counts-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
+        @organization.tags_with_provider_counts
       end
-      Tag.search_list(sorted_tags_by_providers,true)
+      Tag.search_list(tags_with_provider_counts,true)
     end 
   end
 

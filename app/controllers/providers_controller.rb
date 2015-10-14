@@ -125,19 +125,19 @@ class ProvidersController < ApplicationController
 
     #same cache keys as tag_relationships#new 
     #needed in two places below
-    sorted_tags_by_providers = Rails.cache.fetch("#{@organization.id}-providers_hash_by_tag-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
-      @organization.sorted_tags_by_providers
+    tags_with_provider_counts = Rails.cache.fetch("#{@organization.id}-tags_with_provider_counts-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
+      @organization.tags_with_provider_counts
     end
 
     #order sensitive - 1 of 2 - s_t_b_p manipulated by @p_t_s_l, and cloning didn't seem to stop it
     @common_search_tags = Rails.cache.fetch("#{@organization.id}-common_search_tags-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       min_list_length = 5      
-      @organization.common_search_tags(sorted_tags_by_providers.take(min_list_length))
+      @organization.common_search_tags(tags_with_provider_counts.take(min_list_length))
     end
 
     #order sensitive - 2 of 2
     @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
-      Tag.search_list(sorted_tags_by_providers)
+      Tag.search_list(tags_with_provider_counts)
     end
 
     @search_terms_list = @tag_search_list + @providers_list
