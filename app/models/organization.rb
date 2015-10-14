@@ -326,14 +326,21 @@ class Organization < ActiveRecord::Base
 
     #this is currently giving unordered list of (tag.name, provider.name)
     #figure out exactly what this is used for and see what formats need output
+
+    #Organization.common_search_tags needs tag.readable and a count
+    #Tag.search_list needs tag.id tag.readable and a count
+      #shows up in tag relationship controller and search controller
+    #overall: tag.id, tag.readable, count(providers with this tag)
+
     ActiveRecord::Base.connection.exec_query(" 
-    SELECT tags_and_taggings.tag_name AS tag_name, providers.name AS provider_name
+    SELECT tags_and_taggings.tag_readable AS tag_name, tags_and_taggings.tag_id AS tag_id, COUNT(providers.id) AS provider_count
     FROM (
-      SELECT tags.name AS tag_name, tags.id AS tag_id, taggings.taggable_id AS taggable_id
+      SELECT tags.readable AS tag_readable, tags.id AS tag_id, taggings.taggable_id AS taggable_id
       FROM tags INNER JOIN taggings ON tags.id=taggings.tag_id
       WHERE tags.organization_id=#{organization.id} 
       AND taggings.taggable_type='Provider'
       ) AS tags_and_taggings INNER JOIN providers ON tags_and_taggings.taggable_id=providers.id
+    GROUP BY tags_and_taggings.tag_readable, tags_and_taggings.tag_id
     ")
   end
 
