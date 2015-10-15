@@ -100,26 +100,12 @@
 							<% end %>
 						<% end %>
 					</ul>
-					<!-- FILE UPLOAD  -->
-					<div class="attachment-uploader photo-upload-background well well-lg">
-						<div class="margin-bottom">Upload pictures here (or drag and drop)</div>
-						<%= hidden_field_tag :comment_id_for_upload, @comment.id %>
-						<%= s3_uploader_form id: "s3-comment-photo-upload", class: "s3-comment-photo-upload",
-							max_file_size: 10.megabytes,
-							bucket: @provider.organization.external_bucket_name,
-							key_starts_with: "#{@provider.name_for_link}",
-							key: "#{@provider.name_for_link}-#{@comment.id}-#{SecureRandom.hex}-{unique_id}" do %>
-								<%= file_field_tag :file, multiple: true %>
-						<% end %>
-						<script id="template-upload" type="text/x-tmpl">
-							<div id="file-{%=o.unique_id%}" class="upload">
-								<div class="filename">{%=o.name%}</div>
-								<div class="progress"><div class="bar" style="width: 0%"></div></div>
-							</div>
-						</script>
-						<div class="margin-top">Tip: pictures are not saved with comment until "Submit" button is clicked</div>
-					</div>
-					<!-- END FILE UPLOAD -->
+					<%= render partial: "providers/photo_upload_form", locals: {
+        		id_for_upload: @comment.id, 
+        		class_name: "comment", 
+        		bucket: @provider.organization.external_bucket_name,
+        		key_starts_with: @provider.name_for_link, 
+        		key: "#{@provider.name_for_link}-#{@comment.id}-#{SecureRandom.hex}-{unique_id}" } %>
 				</div>    
 			</div>
 			<div class="row">
