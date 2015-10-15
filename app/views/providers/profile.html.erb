@@ -93,7 +93,12 @@
         </ul>
       </div>
 
-      <%= render partial: "providers/photo_upload_form" %>
+      <%= render partial: "providers/photo_upload_form", locals: {
+        id_for_upload: @provider.id, 
+        class_name: "provider", 
+        bucket: @provider.organization.external_bucket_name,
+        key_starts_with: @provider.name_for_link, 
+        key: "#{@provider.name_for_link}-#{SecureRandom.hex}-{unique_id}" } %>
 
     </div>
 
