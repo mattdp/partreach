@@ -19,7 +19,7 @@ $(document).ready(function() {
       url : "/provider/upload_photo",
       type: "POST",
       data: {
-        'provider_id': $('#provider_id_for_upload')[0].value,
+        'provider_id': $('#id_for_upload')[0].value,
         'filepath': content.filepath,
         'filename': content.filename
       },

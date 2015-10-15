@@ -130,8 +130,8 @@ class CommentsController < ApplicationController
   end
 
   def upload_photo
+
     bucket_name = current_organization.external_bucket_name
-    original_filename = params['filename']
     remote_file_name = params['filepath'].gsub("/#{bucket_name}/", "")
 
     # change permissions to only allow authenticated access
