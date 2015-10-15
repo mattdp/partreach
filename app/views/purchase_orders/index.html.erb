@@ -2,33 +2,37 @@
 
 <div class="container hax-body-styling">
   <div class="row">
-    <%= link_to "Looking for the email sending page?", purchase_orders_emails_path %>
+    <div class="col-md-12">
+      <%= link_to "Looking for the email sending page?", purchase_orders_emails_path %>
 
-    <table class="table">
-      <tr>
-        <th>PO ID</th>
-        <th>Organization</th>
-        <th>Supplier</th>
-        <th>created_at</th>
-        <th>Edit PO in-app</th>
-        <th>Edit PO RailsAdmin</th>
-      </tr>
-
-      <% @pos.each do |po| %>
-        <tr>
-          <td><%= po.id %></td>
-          <td><%= po.provider.organization.name %></td>
-          <td>
-            <% if po.comment.present? %>
-              <%= link_to "#{po.provider.name}", teams_profile_path(po.provider.name_for_link, anchor: po.comment.id) %>
-            <% end %>
-          </td>
-          <td><%= po.created_at.strftime("%b %e, %Y") %></td>
-          <td><%= link_to "Add tags", edit_purchase_order_path(po.id) %></td>
-          <td><%= link_to "RailsAdmin", "#{base_url}/admin/purchase_order/#{po.id}/edit" %></td>
-        </tr>
-      <% end %>
-    </table>
-
+      <table class="tablesorter-active">
+        <thead>
+          <tr>
+            <th>PO ID</th>
+            <th>Organization</th>
+            <th>Supplier</th>
+            <th>created_at</th>
+            <th>Edit PO in-app</th>
+            <th>Edit PO RailsAdmin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @pos.each do |po| %>
+            <tr>
+              <td><%= po.id %></td>
+              <td><%= po.provider.organization.name %></td>
+              <td>
+                <% if po.comment.present? %>
+                  <%= link_to "#{po.provider.name}", teams_profile_path(po.provider.name_for_link, anchor: po.comment.id) %>
+                <% end %>
+              </td>
+              <td><%= po.created_at.strftime("%b %e, %Y") %></td>
+              <td><%= link_to "Edit PO", edit_purchase_order_path(po.id) %></td>
+              <td><%= link_to "RailsAdmin", "#{base_url}/admin/purchase_order/#{po.id}/edit" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
