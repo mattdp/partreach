@@ -37,15 +37,22 @@ class Tag < ActiveRecord::Base
 
   @@tag_sets = nil
 
-  def self.search_list(sorted_tags_by_providers,id_only=false)
-    sorted_tags_by_providers.each do |e|
-      e[0] = "#{e[1].readable} (#{e[0]} #{"supplier".pluralize(e[0])})"
+  def self.search_list(tags_with_provider_counts,id_only=false)
+    n = tags_with_provider_counts.rows.size
+    search_list = Array.new(n)
+    (0...n).each do |n|
+      result_hash = tags_with_provider_counts[n]
+      tuple = Array.new(2)
+      providers_count = result_hash["providers_count"].to_i
+      tuple[0] = "#{result_hash["tag_readable"]} (#{result_hash["providers_count"]} #{"supplier".pluralize(providers_count)})"
       if id_only
-        e[1] = e[1].id
-      else
-        e[1] = "#{Organization.encode_search_string([e[1]])}"
+        tuple[1] = result_hash["tag_id"]
+      else #SHOULD NOT WORK
+        tuple[1] = "#{Organization.encode_search_string([result_hash["tag_id"]],"tag_ids")}"
       end
+      search_list[n] = tuple
     end
+    return search_list
   end
 
   #there will be something more sophisticated in the future, so not worrying about
