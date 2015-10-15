@@ -98,7 +98,8 @@
         class_name: "provider", 
         bucket: @provider.organization.external_bucket_name,
         key_starts_with: @provider.name_for_link, 
-        key: "#{@provider.name_for_link}-#{SecureRandom.hex}-{unique_id}" } %>
+        key: "#{@provider.name_for_link}-#{SecureRandom.hex}-{unique_id}",
+        tip: false } %>
 
     </div>
 
