@@ -193,7 +193,6 @@ a:focus {
 
 .selectize-control.multi .selectize-input [data-value], .selectize-control.multi .selectize-input [data-value].active {
   font-size: 13px;
-  font-weight: 100;
   line-height: 22px;
   padding: 3px 10px;
   background-color: $sb-blue;
@@ -238,39 +237,6 @@ a:focus {
 
 .left-grid-bare {
 	padding-left: 0;
-}
-
-div.chosen-container-multi {
-	width: 100% !important;
-}
-
-li.search-field input {
-	height: 3.3em !important;
-	font-size: 20px !important;
-}
-
-/*There's a special place in hell for designers who attempt this*/
-li.search-choice {
-	font-size: 13px !important; 
-	line-height: 26px !important;
-	display: inline-block !important;
-	color: rgba(0, 0, 0, 1) !important;
-	background: rgba(0, 0, 0, 0.02) !important;
-	border-radius: 2px !important;
-	border: 1px solid rgba(0, 0, 0, 0.5) !important;
-	padding: 3px 20px 3px 10px !important;
-	margin-bottom: 5px !important;
-	margin-top: 17px !important;
-}
-
-a.search-choice-close {
-	top: 12px !important;
-}
-
-.search-help-text {
-	margin-top: 0;
-	margin-bottom: 0;
-	font-weight: normal;
 }
 
 /*END INDEX SEARCH BAR*/
