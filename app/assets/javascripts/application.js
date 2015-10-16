@@ -23,7 +23,6 @@
 //= require s3_direct_upload
 //= require jquery.validate
 //= require additional-methods
-//= require chosen-jquery
 //= require jquery_nested_form
 //= require selectize
 
