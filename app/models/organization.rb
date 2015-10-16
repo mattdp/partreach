@@ -30,9 +30,13 @@ class Organization < ActiveRecord::Base
   SEARCH_STRING_MODEL_HASH = {"Provider"=>"p","Tag"=>"t"}
 
   #highly promiscous, will encode anything it can across orgs
-  def self.encode_search_string(models)
+  def self.encode_search_string(models,options=nil)
     return "" if models.blank?
-    strings = models.map{|m| "#{Organization::SEARCH_STRING_MODEL_HASH[m.class.to_s]}#{m.id}"}
+    if options == "tag_ids" #when have a list of tag ids in string format
+      strings = models.map{|m| "#{Organization::SEARCH_STRING_MODEL_HASH["Tag"]}#{m}"}
+    else
+      strings = models.map{|m| "#{Organization::SEARCH_STRING_MODEL_HASH[m.class.to_s]}#{m.id}"}
+    end
     strings.join(Organization::SEARCH_STRING_SEPARATOR)
   end
 
@@ -53,8 +57,8 @@ class Organization < ActiveRecord::Base
     return answer.select{|a| a.organization_id == self.id}
   end
 
-  def common_search_tags(sorted_tags_by_providers)
-    minimum_tags_in_list = sorted_tags_by_providers.size
+  def common_search_tags(tags_with_provider_counts)
+    minimum_tags_in_list = tags_with_provider_counts.size
     tags_returning = []
     taggings = self.taggings
     count = taggings.count
@@ -62,8 +66,10 @@ class Organization < ActiveRecord::Base
     tags_returning.concat(self.taggings.map{|tg| tg.tag}) if count > 0
     more_taggings_needed = minimum_tags_in_list - count
     if more_taggings_needed > 0 
-      more_tags = sorted_tags_by_providers.take(more_taggings_needed).map{|providers_count,tag| tag}
-      tags_returning.concat(more_tags)
+      more_tag_ids = tags_with_provider_counts
+        .take(more_taggings_needed)
+        .map{|result_hash| result_hash["tag_id"].to_i}
+      tags_returning.concat(Tag.find(more_tag_ids))
     end
 
     return tags_returning.sort_by{|t| t.readable}
@@ -311,19 +317,25 @@ class Organization < ActiveRecord::Base
     Tag.where(organization_id: self.id)
   end
 
-  def providers_hash_by_tag
-    hash = {}
-    tags_with_providers = provider_tags.includes(:providers).references(:providers)
-    tags_with_providers.sort_by {|tag| tag.readable.downcase }.each do |tag|
-      hash[tag] = tag.providers.sort_by {|provider| provider.name.downcase}
-    end
-    return hash
-  end
+  def tags_with_provider_counts
+    organization = self # for easy pasting debug
 
-  def sorted_tags_by_providers
-    stbp = []
-    self.providers_hash_by_tag.each { |tag, providers| stbp << [providers.size, tag] }
-    stbp = stbp.sort_by! {|e| [-(e[0]), e[1].readable.downcase]}
+    #Organization.common_search_tags needs tag.readable and a count
+    #Tag.search_list needs tag.id tag.readable and a count
+      #shows up in tag relationship controller and search controller
+    #overall: tag.id, tag.readable, count(providers with this tag)
+
+    ActiveRecord::Base.connection.exec_query(" 
+    SELECT tags_and_taggings.tag_readable AS tag_readable, tags_and_taggings.tag_id AS tag_id, COUNT(providers.id) AS providers_count
+    FROM (
+      SELECT tags.readable AS tag_readable, tags.id AS tag_id, taggings.taggable_id AS taggable_id
+      FROM tags INNER JOIN taggings ON tags.id=taggings.tag_id
+      WHERE tags.organization_id=#{organization.id} 
+      AND taggings.taggable_type='Provider'
+      ) AS tags_and_taggings INNER JOIN providers ON tags_and_taggings.taggable_id=providers.id
+    GROUP BY tags_and_taggings.tag_readable, tags_and_taggings.tag_id
+    ORDER BY COUNT(providers.id) DESC, lower(tags_and_taggings.tag_readable)
+    ")
   end
 
   def find_or_create_tag!(name,user)

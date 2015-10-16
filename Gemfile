@@ -58,6 +58,12 @@ group :development, :test do
   gem 'pry-rails', '0.3.2'
   gem 'pry-nav', '0.2.3'
   gem 'dotenv-rails'
+  #profiling block, dev-only for now - http://www.nateberkopec.com/2015/08/05/rack-mini-profiler-the-secret-weapon.html
+  gem 'rack-mini-profiler'
+  gem 'flamegraph'
+  #gem 'stackprof' # ruby 2.1+ only
+  #gem 'memory_profiler' # ruby 2.1+ only
+  #end profiling block
 end
 
 group :development do

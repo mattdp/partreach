@@ -16,14 +16,17 @@
 			<% end %>     
 		</div>
 	</div>
-	<%= form_tag(path, method: method) do %> 
-		<div class="any-form">
-			<div class="row">    
-				<div class="col-md-8">             
+
+	<div class="row">    
+		<div class="col-md-8">
+			<%= form_tag(path, method: method) do %>
+				<div class="any-form">
+          
 					<%= hidden_field_tag :provider_id, @provider.id %>
 					<%= hidden_field_tag :comment_type, @comment_type %>
+					<%#= used by js to populate what is added %>
 					<div id='comment_uploads'></div>
-					
+			
 					<% po = @comment.purchase_order %>
 					<% if po %>                
 						<%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>                
@@ -83,52 +86,40 @@
 								<%= label_tag "recommendation-radio-button-#{rec[:short]}", "#{rec[:prompt]}" %>								
 							</div>							
 						</div>    
-					<% end %>                            
-				</div>
+					<% end %>
 
-				<div class="col-md-4">
-					<ul id="comment_photo_gallery" class="row photo-gallery">
-						<% if @comment_photo_urls.present? %>
-							<% count = 0 %>
-							<% @comment_photo_urls.each do |url| %>
-								<% photo_class_content = "" %>
-								<% count == 0 ? photo_class_content = "" : photo_class_content = "col-lg-3 col-md-4 col-sm-3 col-xs-4" %>
-								<li class="#{photo_class_content}">
-									<%= image_tag url %>
-								</li>
-								<% count += 1 %>
-							<% end %>
-						<% end %>
-					</ul>
-					<!-- FILE UPLOAD  -->
-					<div class="attachment-uploader photo-upload-background well well-lg">
-						<div class="margin-bottom">Upload pictures here (or drag and drop)</div>
-						<%= hidden_field_tag :comment_id_for_upload, @comment.id %>
-						<%= s3_uploader_form id: "s3-comment-photo-upload", class: "s3-comment-photo-upload",
-							max_file_size: 10.megabytes,
-							bucket: @provider.organization.external_bucket_name,
-							key_starts_with: "#{@provider.name_for_link}",
-							key: "#{@provider.name_for_link}-#{@comment.id}-#{SecureRandom.hex}-{unique_id}" do %>
-								<%= file_field_tag :file, multiple: true %>
-						<% end %>
-						<script id="template-upload" type="text/x-tmpl">
-							<div id="file-{%=o.unique_id%}" class="upload">
-								<div class="filename">{%=o.name%}</div>
-								<div class="progress"><div class="bar" style="width: 0%"></div></div>
-							</div>
-						</script>
-						<div class="margin-top">Tip: pictures are not saved with comment until "Submit" button is clicked</div>
+					<div class="row">
+						<div class="col-md-4 margin-top">
+							<%= submit_tag "Submit", class: "btn-block save-button", :id => "save_button" %>
+						</div>
 					</div>
-					<!-- END FILE UPLOAD -->
-				</div>    
-			</div>
-			<div class="row">
-				<div class="col-md-4 margin-top">
-					<%= submit_tag "Submit", class: "btn-block save-button", :id => "save_button" %>
 				</div>
-			</div>
+			<% end %>                      
 		</div>
-	<% end %>
+
+		<div class="col-md-4">
+			<ul id="comment_photo_gallery" class="row photo-gallery">
+				<% if @comment_photo_urls.present? %>
+					<% count = 0 %>
+					<% @comment_photo_urls.each do |url| %>
+						<% photo_class_content = "" %>
+						<% count == 0 ? photo_class_content = "" : photo_class_content = "col-lg-3 col-md-4 col-sm-3 col-xs-4" %>
+						<li class="#{photo_class_content}">
+							<%= image_tag url %>
+						</li>
+						<% count += 1 %>
+					<% end %>
+				<% end %>
+			</ul>
+			<%= render partial: "providers/photo_upload_form", locals: {
+    		id_for_upload: @comment.id, 
+    		class_name: "comment", 
+    		bucket: @provider.organization.external_bucket_name,
+    		key_starts_with: @provider.name_for_link, 
+    		key: "#{@provider.name_for_link}-#{@comment.id}-#{SecureRandom.hex}-{unique_id}",
+    		tip: true } %>
+		</div>
+	</div>  
 </div>
 
 <!-- JS TO ALLOW RATINGS TO WORK -->

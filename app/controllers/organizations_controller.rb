@@ -39,8 +39,10 @@ class OrganizationsController < ApplicationController
     single_search_events = Event.where(model: "User", happening: "searched one item")
     @searches = []
     single_search_events.each do |event| 
+      user = User.find(event.model_id)
+      next unless user.team.organization_id == @organization.id
       hash = {}
-      hash[:user_name] = User.find(event.model_id).lead.lead_contact.full_name_untrusted
+      hash[:user_name] = user.lead.lead_contact.full_name_untrusted
       hash[:event_created_at] = event.created_at
       searched_model = event.target_model.constantize.find(event.target_model_id)
       hash[:searched] = searched_model.name
