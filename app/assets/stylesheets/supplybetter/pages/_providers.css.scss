@@ -173,6 +173,39 @@ a:focus {
 
 }
 
+/*BEGIN INDEX PAGE SELECTIZE SEARCH BAR*/
+.selectize-input,
+.selectize-input input {
+  color: #303030;
+  font-family: inherit;
+  font-size: 20px;
+	line-height: normal; 
+}
+
+.selectize-input {
+  padding: 23px 8px 22px 8px;
+}
+
+.selectize-control.multi .selectize-input.has-items {
+  padding-top: 18px;
+  padding-bottom: 17px;
+}
+
+.selectize-control.multi .selectize-input [data-value], .selectize-control.multi .selectize-input [data-value].active {
+  font-size: 13px;
+  font-weight: 100;
+  line-height: 22px;
+  padding: 3px 10px;
+  background-color: $sb-blue;
+  border-color: $sb-blue-select;
+  background-image: none;
+  text-shadow: none;
+  box-shadow: none;
+  filter: none;
+}
+
+/*END INDEX PAGE SELECTIZE SEARCH BAR*/
+
 /*BEGIN INDEX SEARCH BAR*/
 .header-text-block {
 	text-align: center;
@@ -522,6 +555,7 @@ li p {
 		margin-bottom: 0;
 	}
 
+	/*I know this is a bad design pattern and should fix it later*/
 	&.blue-tags {
 		color: white;
 		border-color: $sb-blue-select;
