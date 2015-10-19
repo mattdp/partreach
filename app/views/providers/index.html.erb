@@ -34,7 +34,7 @@
                   Similar keywords included:
                 </div>
                 <div class="col-md-6 no-padding-left">
-                  <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:both_synonym_directions], remove_bottom_margin: true, max_tags_to_display: 2, show_more_option: true} %>
+                  <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:both_synonym_directions], remove_bottom_margin: false, max_tags_to_display: 2, show_more_option: true} %>
                 </div>
               <% end %>
             </div>
@@ -46,7 +46,7 @@
                 <%= "Subcategories included:" %>
               </div>
               <div class="col-md-10">
-                <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:children], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
+                <%= render partial: "providers/tag_display", locals: {tags: @neighboring_tags_by_relationship[:children], remove_bottom_margin: false, max_tags_to_display: nil, show_more_option: false} %>
               </div>
             <% end %>
           </div>
