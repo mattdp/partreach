@@ -42,7 +42,7 @@
             </div>
           </div>
 
-          <%= mail_to "feedback@supplybetter.com", "#{email_cta}", target: "_blank", subject: "Relationship suggestions for category '#{@tag.readable}' (ID: #{@tag.id})" %> 
+          <%= mail_to "feedback@supplybetter.com", "#{email_cta}", target: "_blank", subject: "Relationship suggestions for category '#{@tag.readable}' (ID: #{@tag.id})", encode: "javascript" %> 
           
           <div class="row">
             <% if @neighboring_tags_by_relationship[:children].present? %>            
