@@ -8,8 +8,9 @@
       <%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>      
 
       <% if @results_hash.present? %>
+        <% email_cta = "Should #{@tag.readable} be related to other categories? Let us know!" %>
         <% if @neighboring_tags_by_relationship.present? and @neighboring_tags_by_relationship.values.flatten.present? %>
-          
+          <% email_cta = "Would you add to or change what's related to #{@tag.readable}? Let us know!" %>
           <div class="row">
             <% if @neighboring_tags_by_relationship[:parents].present? %>
               <div class="col-md-2 no-padding-right related-keywords">
@@ -29,6 +30,7 @@
               <div class="col-md-3 no-padding-left">
                 <%= render partial: "providers/tag_display", locals: {tags: [@tag], remove_bottom_margin: true, max_tags_to_display: nil, show_more_option: false} %>
               </div>
+
               <% if @neighboring_tags_by_relationship[:both_synonym_directions].present? %>
                 <div class="col-md-3 right related-keywords similar-keywords">
                   Similar keywords included:
@@ -38,7 +40,9 @@
                 </div>
               <% end %>
             </div>
-          </div>          
+          </div>
+
+          <%= mail_to "feedback@supplybetter.com", email_cta, target: "_blank", subject: "Relationship suggestions for #{@tag.readable} (ID: #{tag.id})" %>         
           
           <div class="row">
             <% if @neighboring_tags_by_relationship[:children].present? %>            
