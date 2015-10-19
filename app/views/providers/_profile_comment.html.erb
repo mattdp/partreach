@@ -50,7 +50,7 @@
 			<% end %>
 		</div>    		
 		<div class="row">
-				<div class="col-md-8 left-grid-bare">
+				<div class="col-md-7 left-grid-bare">
 					<% if comment.overall_score > 0 %>
 						<%= render partial: "providers/star_display", locals: {score: comment.overall_score, include_hidden_number: false} %>
 					<% end %>				
@@ -58,7 +58,7 @@
 						<%= "Reviewed #{comment.updated_at.strftime('%Y-%m-%d')}" %>
 					</span>
 				</div>
-				<div class="col-md-4 left-grid-bare">
+				<div class="col-md-5 left-grid-bare">
 					<% if comment.has_recommendation? %>
 					  <span> 
 					    <%= render partial: "providers/recommendation_styling", locals: {comment: comment, titleize: true} %>
