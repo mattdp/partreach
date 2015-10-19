@@ -21,7 +21,7 @@
 
 <% if po.present? %>
   regarding a 
-  <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: true, max_tags_to_display: 10, show_more_option: false} %>           
+  <%= render partial: "providers/tag_display", locals: {tags: po.tags, remove_bottom_margin: false, max_tags_to_display: 10, show_more_option: false} %>           
   order
   <% if comment.project.present? %>
     <span>
