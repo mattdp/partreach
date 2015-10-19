@@ -173,6 +173,38 @@ a:focus {
 
 }
 
+/*BEGIN INDEX PAGE SELECTIZE SEARCH BAR*/
+.selectize-input,
+.selectize-input input {
+  color: #303030;
+  font-family: inherit;
+  font-size: 20px;
+	line-height: normal; 
+}
+
+.selectize-input {
+  padding: 23px 8px 22px 8px;
+}
+
+.selectize-control.multi .selectize-input.has-items {
+  padding-top: 18px;
+  padding-bottom: 17px;
+}
+
+.selectize-control.multi .selectize-input [data-value], .selectize-control.multi .selectize-input [data-value].active {
+  font-size: 13px;
+  line-height: 22px;
+  padding: 3px 10px;
+  background-color: $sb-blue;
+  border-color: $sb-blue-select;
+  background-image: none;
+  text-shadow: none;
+  box-shadow: none;
+  filter: none;
+}
+
+/*END INDEX PAGE SELECTIZE SEARCH BAR*/
+
 /*BEGIN INDEX SEARCH BAR*/
 .header-text-block {
 	text-align: center;
@@ -205,39 +237,6 @@ a:focus {
 
 .left-grid-bare {
 	padding-left: 0;
-}
-
-div.chosen-container-multi {
-	width: 100% !important;
-}
-
-li.search-field input {
-	height: 3.3em !important;
-	font-size: 20px !important;
-}
-
-/*There's a special place in hell for designers who attempt this*/
-li.search-choice {
-	font-size: 13px !important; 
-	line-height: 26px !important;
-	display: inline-block !important;
-	color: rgba(0, 0, 0, 1) !important;
-	background: rgba(0, 0, 0, 0.02) !important;
-	border-radius: 2px !important;
-	border: 1px solid rgba(0, 0, 0, 0.5) !important;
-	padding: 3px 20px 3px 10px !important;
-	margin-bottom: 5px !important;
-	margin-top: 17px !important;
-}
-
-a.search-choice-close {
-	top: 12px !important;
-}
-
-.search-help-text {
-	margin-top: 0;
-	margin-bottom: 0;
-	font-weight: normal;
 }
 
 /*END INDEX SEARCH BAR*/
@@ -322,11 +321,10 @@ a.search-choice-close {
 .stylish th:nth-child(5) {
 	width: 15%;
 }
-/*BEGIN PROVIDER INDEX TABLE*/
 
 /*LORD STRIKE ME DEAD WHERE I STAND
 THIS IS SO NOT DRY WE'RE GOING TO NEED TO BUILD AND ARK*/
-/*BEING PROVIDERS_TABLE INDEX TABLE*/
+/*BEGIN PROVIDERS_TABLE INDEX TABLE*/
 .provider-table th:first-child {
 	width: 20%;
 }
@@ -522,6 +520,7 @@ li p {
 		margin-bottom: 0;
 	}
 
+	/*I know this is a bad design pattern and should fix it later*/
 	&.blue-tags {
 		color: white;
 		border-color: $sb-blue-select;
