@@ -2,7 +2,7 @@
   <div class="col-md-12 index-search-bar">
     <%= select_tag(:tag_selection, 
         options_from_collection_for_select(tags, :id, :readable, selected: checked_tags.map(&:id)),
-        multiple: true, class: 'tag-edit') %>
+        multiple: true, class: 'selectize tag-edit') %>
   </div>
 </div>
 
