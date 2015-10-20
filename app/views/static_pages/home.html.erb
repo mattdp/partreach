@@ -31,13 +31,13 @@
         <p>
           I am
           <% options_array = [ ["still learning", "rookie"], ["experienced", "experienced"] ] %>
-          <%= select_tag("questions[experience]", options_for_select(options_array, "experienced"), class: "chosen-select select-one") %>
+          <%= select_tag("questions[experience]", options_for_select(options_array, "experienced"), class: "selectize select-one") %>
           , I care most about
           <% options_array = [ ["speed", "speed"], ["quality", "quality"], ["cost", "cost"] ] %>
-          <%= select_tag("questions[priority]", options_for_select(options_array, "quality"), class: "chosen-select select-two") %>
+          <%= select_tag("questions[priority]", options_for_select(options_array, "quality"), class: "selectize select-two") %>
           , and think 3D printing
           <% options_array = [ ["should be", "printing"], ["shouldn’t be", "other"], ["might be", "unknown"] ] %>
-          <%= select_tag("questions[manufacturing]", options_for_select(options_array, "printing"), class: "chosen-select") %>
+          <%= select_tag("questions[manufacturing]", options_for_select(options_array, "printing"), class: "selectize") %>
           the&nbsp;method.
         </p>
         <%= submit_tag "Continue »", data: { disable_with: 'Processing...' },class: "button--blue" %>
