@@ -17,15 +17,30 @@ class Uploader
 
 			if their_po_id < skip_below_their_PO_ID
 				puts "Skip: Row #{row_counter} is below PO ID threshold." if debug
-			elsif organized[their_po_id].present?
+				row_counter += 1
+				next
+			end
+
+			standard_row = {
+				description: row['Description'],
+        project_name: row['Project Name'],
+        id_in_purchasing_system: row['Synapse PO number'].to_i,
+        price: row['Total Price'].to_f,
+        quantity: row['Quantity'].to_i,
+        issue_date: Date.parse(row['PO Issue Date']),
+        row_identifier: row['Start SB ID'],
+        contact_email: row['Requester Email']
+       }
+
+			if organized[their_po_id].present?
 				if po_line_ids_used.include?(line_id)
 					puts "Skip: Row #{row_counter} is a duplicate." if debug
 				else
-					organized[their_po_id] << row
+					organized[their_po_id] << standard_row
 					puts "OK: #{row_counter} added to existing PO." if debug
 				end
 			else
-				organized[their_po_id] = [row]
+				organized[their_po_id] = [standard_row]
 				puts "OK: #{row_counter} is a new PO." if debug
 			end
 
