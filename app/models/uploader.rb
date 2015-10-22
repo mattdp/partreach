@@ -3,12 +3,49 @@ class Uploader
 	#WIP goal - 
 	#input: synapse raw data, a row to start, an org_id
 	#output: {PO number => [deduped rows from the right user]}
-	def self.organize_raw_synapse_data (csv_data,row=0,organization_id=1)
+
+	def self.organize_raw_synapse_data (csv_data,skip_below_their_PO_ID=0,organization_id=1,debug=true)
 		data = open(csv_data).read
+		organized = {}
+		po_line_ids_used = []
+		last_po_id = 0
+		row_counter = 2 #there is a header row
 
 		CSV.parse(data, { :headers => true, :col_sep => ",", :skip_blanks => true }) do |row|
-			puts row[0]
+			their_po_id = row["PO ID"].to_i
+			line_id = row["PO Line ID"].to_i
+
+			if their_po_id < skip_below_their_PO_ID
+				puts "Skip: Row #{row_counter} is below PO ID threshold." if debug
+			elsif organized[their_po_id].present?
+				if po_line_ids_used.include?(line_id)
+					puts "Skip: Row #{row_counter} is a duplicate." if debug
+				else
+					organized[their_po_id] << row
+					puts "OK: #{row_counter} added to existing PO." if debug
+				end
+			else
+				organized[their_po_id] = [row]
+				puts "OK: #{row_counter} is a new PO." if debug
+			end
+
+			if last_po_id != their_po_id
+				po_line_ids_used = []
+				last_po_id = their_po_id
+			end
+			
+			po_line_ids_used << line_id
+			row_counter += 1
+
 		end
+
+		return organized
+	end
+
+	def method2
+		#valid_emails = organization.users.map{|u| u.lead.lead_contact.email}
+		
+		#next unless valid_emails.include?(buyer_email)
 	end
 
 	#this was the everything method before
