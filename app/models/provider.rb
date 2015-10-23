@@ -60,12 +60,13 @@ class Provider < ActiveRecord::Base
     returner = {}
     returner[:output_string] = ""
 
+    pac = options[:po_and_comment]
     returner[:po] = PurchaseOrder.new({ provider: self, 
-      description: options[:description],
-      id_in_purchasing_system: options[:id_in_purchasing_system],
-      price: options[:price],
-      quantity: options[:quantity],
-      issue_date: options[:issue_date]
+      description: pac[:description],
+      id_in_purchasing_system: pac[:id_in_purchasing_system],
+      price: pac[:price],
+      quantity: pac[:quantity],
+      issue_date: pac[:issue_date]
     })
 
     if !returner[:po].save
@@ -73,7 +74,7 @@ class Provider < ActiveRecord::Base
       return returner
     end
 
-    returner[:project] = Project.find_or_create(self.organization.id,options[:project_name])
+    returner[:project] = Project.find_or_create(self.organization.id,pac[:project_name])
 
     returner[:comment] = Comment.new({ provider: self,
       user: options[:user],

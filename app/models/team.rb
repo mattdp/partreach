@@ -31,12 +31,15 @@ class Team < ActiveRecord::Base
     providers = self.organization.providers
     provider = providers[rand(providers.count-1)]
 
-    po_and_comment_options = { description: "410-506015 Rev 3, Front Adapter Base - Bottom Housing, NRE tool to remain at facility, Expediting Cost",
-        project_name: "Front chassis suspension",
-        id_in_purchasing_system: 1234,
-        price: 32500.00,
-        quantity: 250,
-        issue_date: Date.today - 14.days,
+    po_and_comment_options = { 
+        po_and_comment: {
+          description: "410-506015 Rev 3, Front Adapter Base - Bottom Housing, NRE tool to remain at facility, Expediting Cost",
+          price: 32500.00,
+          quantity: 250,
+          issue_date: Date.today - 14.days,
+          id_in_purchasing_system: 1234,
+          project_name: "Front chassis suspension"
+          },
         row_identifier: user.id,
         user: user}
     objects = provider.create_linked_po_and_comment!(po_and_comment_options)

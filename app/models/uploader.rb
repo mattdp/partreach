@@ -23,15 +23,55 @@ class Uploader
         end
       end
       
-      puts "OK: PO #{key} doesn't exist in system yet."
       #find a match between the provider name and a provider on the site.
       #this probably requires user input
-
+      provider_info = info[:provider]
+      provider_name = provider_info[:name_in_purchasing_system]
+      provider = Provider.safe_name_check(organization_id,provider_name)
+      if provider.blank?
+        puts "-----\n#{info}\n----\n"
+        user_input = ""
+        while !["y","n","a"].include?(user_input)
+          puts "Provider not found. Do you want to link the above order to a provider? Otherwise we'll throw it away. (y)es/(n)o/(a)bort program"
+          user_input = STDIN.gets.chomp        
+        end
+        if user_input == "n"
+          puts "Skipping PO #{key} at user request."
+          next
+        elsif user_input == "a"
+          puts "Aborting."
+          return true
+        end
+        puts "Enter the name of the provider that matches a provider.name in this org. You may have to create a new provider if none exists."
+        while true
+          user_input = STDIN.gets.chomp
+          provider_array = Provider.where(organization_id: organization_id, name: user_input)
+          if provider_array.present?
+            provider = provider_array[0]
+            provider.name_in_purchasing_system = provider_name            
+            break
+          end
+          puts "Try again. No matches for '#{user_input}' in organization #{organization_id}."
+        end
+      end
+      
       #if matched, then either submit or put into text the PO and comment
+      options = { 
+        po_and_comment: info[:po_and_comment],
+        row_identifier: info[:first_row_identifier],
+        user: Contact.find(info[:contact_email]).lead.user
+      }
+      objects = provider.create_linked_po_and_comment!(options)
 
       #if matched, save address phone email if blank
+      [:contact_phone, :contact_email, :location_string].each do |attribute|
+        provider.send("#{attribute}=",provider_info[attribute]) if provider.send("#{attribute}").blank?
+      end
+      provider.save
+
+      puts "Provider #{provider.id} #{provider.name} matched. provider.name_in_purchasing_system set to #{provider_name}. PO and comment created."
     end
-    
+
     return true
   end
 
@@ -51,7 +91,6 @@ class Uploader
 
       #does not yet have combined price/quantity/description
       consolidated = info[0]
-
       #combine price, quantity, description
       consolidated[:po_and_comment][:price] = info.sum{|i| i[:po_and_comment][:price]}.round(2)
       consolidated[:po_and_comment][:quantity] = info.sum{|i| i[:po_and_comment][:quantity]}
@@ -95,9 +134,9 @@ class Uploader
         },
 				provider: {
           name_in_purchasing_system: row['Vendor Name'],
-          address: row['Vendor Address'],
-          phone: row['Vendor Phone'],
-          email: row['Vendor Email'],
+          location_string: row['Vendor Address'],
+          contact_phone: row['Vendor Phone'],
+          contact_email: row['Vendor Email'],
         }
        }
 
