@@ -3,25 +3,44 @@ class Uploader
   def self.temp_demo_call
     structured = Uploader.organize_raw_synapse_data("/Users/matt/Downloads/searchresults.csv",100000,true)
     cleaned = Uploader.combine_structured_data(structured,7,true)
+    Uploader.upload_cleaned(cleaned,organization_id,true)
+  end
+
+  def self.upload_cleaned(cleaned,organization_id,debug=true)
+    #eliminate existing POs
+
+    #find a match between the provider name and a provider on the site.
+    #this probably requires user input
+
+    #if matched, then either submit or put into text the PO and comment
+
+    #if matched, save address phone email if blank
   end
 
   #input: {PO number => [deduped rows from the right user]}
-  #output: [{po_and_comment: {options block}, provider: {provider block}}]
+  #output: [PO number => {po_and_comment: {options block}, provider: {provider block}}]
   def self.combine_structured_data(structured,organization_id,debug=true)
     organization = Organization.find(organization_id)
     valid_emails = organization.users.map{|u| u.lead.lead_contact.email}
+    answer = {} 
+
     structured.each do |key,info|
+
       if !valid_emails.include?(info[0][:contact_email])
         puts "Skip: PO #{key} has a non-participating user." if debug
         next
       end
 
-      data = {po_and_comment: {}, provider: {}}
+      #does not yet have combined price/quantity/description
+      consolidated = info[0]
 
       #combine price, quantity, description
-      data[:po_and_comment][:po_price] = info.sum{|i| i[:po_price]}
+      consolidated[:po_and_comment][:price] = info.sum{|i| i[:po_and_comment][:price]}.round(2)
+      consolidated[:po_and_comment][:quantity] = info.sum{|i| i[:po_and_comment][:quantity]}
+      consolidated[:po_and_comment][:description] = info.map{|i| i[:po_and_comment][:description]}.join("; ")
 
-      answer << data
+      puts "OK: PO #{key} added" if debug
+      answer[key] = consolidated
     end
     return answer
   end
@@ -46,18 +65,22 @@ class Uploader
 			end
 
 			standard_row = {
-				po_description: row['Description'],
-        po_price: row['Amount'].to_f,
-        po_quantity: row['Amount'].to_i,
-        po_issue_date: Date.strptime(row['PO Date'], "%m/%d/%Y"),  
-        po_id_in_purchasing_system: their_po_id,              
-        project_name: row['Project Name'],
+        first_row_identifier: row_counter,
         contact_email: row['Requester Email'],
-        provider_name_in_purchasing_system: row['Vendor Name'],
-        provider_address: row['Vendor Address'],
-        provider_phone: row['Vendor Phone'],
-        provider_email: row['Vendor Email'],
-        row_identifier: row_counter
+        po_and_comment: {
+          description: row['Description'],
+          price: row['Amount'].to_f,
+          quantity: row['Quantity'].to_i,
+          issue_date: Date.strptime(row['PO Date'], "%m/%d/%Y"),  
+          id_in_purchasing_system: their_po_id,              
+          project_name: row['Project Name'],
+        },
+				provider: {
+          name_in_purchasing_system: row['Vendor Name'],
+          address: row['Vendor Address'],
+          phone: row['Vendor Phone'],
+          email: row['Vendor Email'],
+        }
        }
 
 			if organized[their_po_id].present?
