@@ -1,10 +1,34 @@
 class Uploader
 
-	#WIP goal - 
+  def self.temp_demo_call
+    structured = Uploader.organize_raw_synapse_data("/Users/matt/Downloads/searchresults.csv",100000,true)
+    cleaned = Uploader.combine_structured_data(structured,7,true)
+  end
+
+  #input: {PO number => [deduped rows from the right user]}
+  #output: [{po_and_comment: {options block}, provider: {provider block}}]
+  def self.combine_structured_data(structured,organization_id,debug=true)
+    organization = Organization.find(organization_id)
+    valid_emails = organization.users.map{|u| u.lead.lead_contact.email}
+    structured.each do |key,info|
+      if !valid_emails.include?(info[0][:contact_email])
+        puts "Skip: PO #{key} has a non-participating user." if debug
+        next
+      end
+
+      data = {po_and_comment: {}, provider: {}}
+
+      #combine price, quantity, description
+      data[:po_and_comment][:po_price] = info.sum{|i| i[:po_price]}
+
+      answer << data
+    end
+    return answer
+  end
+
 	#input: synapse raw data, a row to start, an org_id
 	#output: {PO number => [deduped rows from the right user]}
-
-	def self.organize_raw_synapse_data(csv_data,skip_below_their_PO_ID=0,organization_id=1,debug=true)
+	def self.organize_raw_synapse_data(csv_data,skip_below_their_PO_ID=0,debug=false)
 		data = open(csv_data).read
 		organized = {}
 		po_line_ids_used = []
@@ -29,6 +53,10 @@ class Uploader
         po_id_in_purchasing_system: their_po_id,              
         project_name: row['Project Name'],
         contact_email: row['Requester Email'],
+        provider_name_in_purchasing_system: row['Vendor Name'],
+        provider_address: row['Vendor Address'],
+        provider_phone: row['Vendor Phone'],
+        provider_email: row['Vendor Email'],
         row_identifier: row_counter
        }
 
@@ -55,12 +83,6 @@ class Uploader
 		end
 
 		return organized
-	end
-
-	def method2
-		#valid_emails = organization.users.map{|u| u.lead.lead_contact.email}
-		
-		#next unless valid_emails.include?(buyer_email)
 	end
 
 	#this was the everything method before
