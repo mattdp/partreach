@@ -1,8 +1,9 @@
 class Uploader
+  require 'open-uri'
 
-  def self.temp_demo_call
+  def self.upload(url,their_po_id,organization_id)
     organization_id = 7
-    structured = Uploader.organize_raw_synapse_data("/Users/matt/Downloads/searchresults.csv",100000,true)
+    structured = Uploader.organize_raw_synapse_data(url,their_po_id,true)
     cleaned = Uploader.combine_structured_data(structured,organization_id,true)
     Uploader.upload_cleaned(cleaned,organization_id,true)
   end
@@ -61,7 +62,7 @@ class Uploader
         row_identifier: info[:first_row_identifier],
         user: Contact.find_by_email(info[:contact_email]).contactable.user
       }
-      objects = provider.create_linked_po_and_comment!(options)
+      provider.create_linked_po_and_comment!(options)
 
       #if matched, save address phone email if blank
       [:contact_phone, :contact_email, :location_string].each do |attribute|
@@ -72,6 +73,7 @@ class Uploader
       puts "Provider #{provider.id} #{provider.name} matched. provider.name_in_purchasing_system set to #{provider_name}. PO and comment created."
     end
 
+    puts "All POs completed."
     return true
   end
 
