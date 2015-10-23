@@ -1,20 +1,38 @@
 class Uploader
 
   def self.temp_demo_call
+    organization_id = 7
     structured = Uploader.organize_raw_synapse_data("/Users/matt/Downloads/searchresults.csv",100000,true)
-    cleaned = Uploader.combine_structured_data(structured,7,true)
+    cleaned = Uploader.combine_structured_data(structured,organization_id,true)
     Uploader.upload_cleaned(cleaned,organization_id,true)
   end
 
   def self.upload_cleaned(cleaned,organization_id,debug=true)
-    #eliminate existing POs
+    
+    cleaned.each do |key,info|
+      #eliminate existing POs. needs same ID and same org
+      existing_pos = PurchaseOrder.where(id_in_purchasing_system: info[:po_and_comment][:id_in_purchasing_system])
+      if existing_pos.present?
+        next_flag = false
+        existing_pos.each do |po|
+          next_flag = true if po.provider.organization_id == organization_id
+        end
+        if next_flag
+          puts "Skip: PO #{key} already exists in this org." if debug
+          next
+        end
+      end
+      
+      puts "OK: PO #{key} doesn't exist in system yet."
+      #find a match between the provider name and a provider on the site.
+      #this probably requires user input
 
-    #find a match between the provider name and a provider on the site.
-    #this probably requires user input
+      #if matched, then either submit or put into text the PO and comment
 
-    #if matched, then either submit or put into text the PO and comment
-
-    #if matched, save address phone email if blank
+      #if matched, save address phone email if blank
+    end
+    
+    return true
   end
 
   #input: {PO number => [deduped rows from the right user]}
