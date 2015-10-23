@@ -59,7 +59,7 @@ class Uploader
       options = { 
         po_and_comment: info[:po_and_comment],
         row_identifier: info[:first_row_identifier],
-        user: Contact.find(info[:contact_email]).lead.user
+        user: Contact.find_by_email(info[:contact_email]).contactable.user
       }
       objects = provider.create_linked_po_and_comment!(options)
 
@@ -96,7 +96,7 @@ class Uploader
       consolidated[:po_and_comment][:quantity] = info.sum{|i| i[:po_and_comment][:quantity]}
       consolidated[:po_and_comment][:description] = info.map{|i| i[:po_and_comment][:description]}.join("; ")
 
-      puts "OK: PO #{key} added" if debug
+      puts "OK: PO #{key} consolidated" if debug
       answer[key] = consolidated
     end
     return answer
