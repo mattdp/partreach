@@ -4,7 +4,7 @@ class Uploader
 	#input: synapse raw data, a row to start, an org_id
 	#output: {PO number => [deduped rows from the right user]}
 
-	def self.organize_raw_synapse_data (csv_data,skip_below_their_PO_ID=0,organization_id=1,debug=true)
+	def self.organize_raw_synapse_data(csv_data,skip_below_their_PO_ID=0,organization_id=1,debug=true)
 		data = open(csv_data).read
 		organized = {}
 		po_line_ids_used = []
@@ -22,14 +22,14 @@ class Uploader
 			end
 
 			standard_row = {
-				description: row['Description'],
+				po_description: row['Description'],
+        po_price: row['Amount'].to_f,
+        po_quantity: row['Amount'].to_i,
+        po_issue_date: Date.strptime(row['PO Date'], "%m/%d/%Y"),  
+        po_id_in_purchasing_system: their_po_id,              
         project_name: row['Project Name'],
-        id_in_purchasing_system: row['Synapse PO number'].to_i,
-        price: row['Total Price'].to_f,
-        quantity: row['Quantity'].to_i,
-        issue_date: Date.parse(row['PO Issue Date']),
-        row_identifier: row['Start SB ID'],
-        contact_email: row['Requester Email']
+        contact_email: row['Requester Email'],
+        row_identifier: row_counter
        }
 
 			if organized[their_po_id].present?
