@@ -54,6 +54,13 @@ class OrganizationsController < ApplicationController
   def show
     @organization = Organization.find(params[:id])
     @user_behaviors = @organization.user_behaviors
+    o_id = @organization.id
+    @highest_po_id = PurchaseOrder.
+      joins(:provider).
+      where(providers: {organization_id: o_id}).
+      map{|po| po.id_in_purchasing_system}.
+      select{|n| n.present?}.
+      max
   end
 
 end
