@@ -3,6 +3,7 @@ class PurchaseOrdersController < ApplicationController
   
   def edit
     @po = PurchaseOrder.find(params[:id])
+    @comment = @po.comment
     @tags = current_organization.provider_tags.sort_by { |t| t.readable.downcase }
     @checked_tags = @po.tags
   end
