@@ -5,6 +5,7 @@
     <%= link_to "Back to PO index", purchase_orders_path %>
 
     <h2>Basic info for PO #<%= @po.id %></h2>
+    <%= link_to "Destroy PO (no confirmation)", purchase_orders_destroy_path(@po.id) %>
     <p>
       <strong>Organization: </strong><%= @po.provider.organization.name %>
       <strong>Buyer: </strong><%= @comment.user.lead.lead_contact.full_name_untrusted %>

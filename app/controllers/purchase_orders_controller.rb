@@ -58,4 +58,13 @@ class PurchaseOrdersController < ApplicationController
     redirect_to purchase_orders_emails_path, notice: "Email sending logging attempted."
   end
 
+  def destroy
+    purchase_order = PurchaseOrder.find(params[:id])
+    comment = purchase_order.comment
+    comment.destroy
+    purchase_order.destroy
+
+    redirect_to purchase_orders_path, notice: "Destroy attempted."
+  end
+
 end

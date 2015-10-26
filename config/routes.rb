@@ -120,6 +120,7 @@ Partreach::Application.routes.draw do
   post '/address_review', to: "providers#address_review_submit", as: "providers_address_review_submit"
 
   resources :purchase_orders, only: [:index, :edit]
+  get '/purchase_orders/:id/destroy', to: 'purchase_orders#destroy', as: 'purchase_orders_destroy'
   get '/purchase_orders/emails', to: 'purchase_orders#emails', as: 'purchase_orders_emails'
   get '/purchase_orders/email_sent/:id/:after_this_email_count', to: 'purchase_orders#email_sent', as: 'purchase_orders_email_sent'
   match '/purchase_orders/:id', to: 'purchase_orders#update', as: 'purchase_order', via: :post
