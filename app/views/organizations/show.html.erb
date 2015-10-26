@@ -2,7 +2,7 @@
 
 <h1>User behaviors - all time</h1>
 
-<h2>Totals</h2>
+<h2>Overall</h2>
 <ul>
   <li>Non-admin users: <%= @user_behaviors.count %></li>
   <li>Profile views: <%= @user_behaviors.map{ |ub| ub[:profile_views]}.reduce(0,:+) %></li>
@@ -11,6 +11,7 @@
 	<li>Comments reminded about: <%= @user_behaviors.map{ |ub| ub[:comments_reminded_about]}.reduce(0,:+) %></li>
 	<li>Comments reminded about and filled out: <%= @user_behaviors.map{ |ub| ub[:comments_reminded_about_and_filled_out]}.reduce(0,:+) %></li>
   <li>Comments with two or less stars: <%= @user_behaviors.map{ |ub| ub[:comments_with_two_or_less_stars]}.reduce(0,:+) %></li>
+  <li>Most recent PO ID in their system: <%= @highest_po_id %></li>
 </ul>
 
 <h2>Individual</h2>
