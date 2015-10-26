@@ -3,6 +3,7 @@ class PurchaseOrdersController < ApplicationController
   
   def edit
     @po = PurchaseOrder.find(params[:id])
+    @comment = @po.comment
     @tags = current_organization.provider_tags.sort_by { |t| t.readable.downcase }
     @checked_tags = @po.tags
   end
@@ -55,6 +56,15 @@ class PurchaseOrdersController < ApplicationController
     end
 
     redirect_to purchase_orders_emails_path, notice: "Email sending logging attempted."
+  end
+
+  def destroy
+    purchase_order = PurchaseOrder.find(params[:id])
+    comment = purchase_order.comment
+    comment.destroy
+    purchase_order.destroy
+
+    redirect_to purchase_orders_path, notice: "Destroy attempted."
   end
 
 end

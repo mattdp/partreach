@@ -5,7 +5,13 @@
     <%= link_to "Back to PO index", purchase_orders_path %>
 
     <h2>Basic info for PO #<%= @po.id %></h2>
-    <p><strong>Organization: </strong><%= @po.provider.organization.name %></p>
+    <%= link_to "Destroy PO (no confirmation)", purchase_orders_destroy_path(@po.id) %>
+    <p>
+      <strong>Organization: </strong><%= @po.provider.organization.name %>
+      <strong>Buyer: </strong><%= @comment.user.lead.lead_contact.full_name_untrusted %>
+      <% their_id = @po.id_in_purchasing_system %>
+      <strong>ID # in their system:</strong><%= their_id if their_id > 0 %>
+    </p>
     <p><strong>Provider: </strong>      
       <%= link_to @po.provider.name, teams_profile_path(@po.provider.name_for_link) %>      
       <% if @po.provider.url_main.present? %>
