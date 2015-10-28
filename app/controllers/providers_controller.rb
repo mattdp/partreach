@@ -3,6 +3,10 @@ class ProvidersController < ApplicationController
   before_filter :admin_user, only: [:address_review, :address_review_submit]
   skip_before_action :allow_staging_access, only: :signin
 
+  def submit_feedback
+    binding.pry
+  end
+
   def address_review
     @providers = Provider.needs_address_details
     @states_long_names = Geography.all_us_states.map{|g| g.long_name}
@@ -111,6 +115,7 @@ class ProvidersController < ApplicationController
 
   def index
     @organization = current_organization
+    @user = current_user
 
     @people_called = @organization.colloquial_people_name
     @purchase_order_titles = @organization.has_any_pos?
@@ -168,7 +173,7 @@ class ProvidersController < ApplicationController
       @additional_tags = []
 
       if providers.present?
-        Event.add_event("User", current_user.id, "searched one item", "Provider", providers[0].id) if providers.size == 1
+        Event.add_event("User", @user.id, "searched one item", "Provider", providers[0].id) if providers.size == 1
         @results_hash["#{'Supplier'.pluralize(providers.count)} you searched"] = providers
       end
 
@@ -189,15 +194,15 @@ class ProvidersController < ApplicationController
       end
 
       if searched_models.size == 1
-        Event.add_event("User", current_user.id, "searched one item", searched_models[0].class.to_s, searched_models[0].id)
+        Event.add_event("User", @user.id, "searched one item", searched_models[0].class.to_s, searched_models[0].id)
         # if only one provider, skip list, just display that provider's profile page
         redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1
       elsif searched_models.size > 1
         search_hash = {tags: tags.map{|t| t.id}, providers: providers.map{|p| p.id}}
-        Event.add_event("User", current_user.id, "searched multiple items", nil, nil, search_hash.to_s)
+        Event.add_event("User", @user.id, "searched multiple items", nil, nil, search_hash.to_s)
       end
     else
-      Event.add_event("User",current_user.id,"loaded Providers index page")
+      Event.add_event("User",@user.id,"loaded Providers index page")
     end
   end
 

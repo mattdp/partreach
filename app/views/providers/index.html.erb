@@ -1,6 +1,6 @@
 <% provide(:title,"Provider index") %>
 
-<%= render partial: "providers/feedback_modal", locals: {title: "Feedback for category '#{@tag.readable}'"} %>
+<%= render partial: "providers/feedback_modal", locals: {title: "Feedback for category '#{@tag.readable}':", hidden_information: {user_id: @user.id, organization_id: @organization.id}} %>
 
 <div class="container hax-body-styling">
   <div class="row">

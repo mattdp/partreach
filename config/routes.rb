@@ -114,10 +114,11 @@ Partreach::Application.routes.draw do
   get '/teams/providers/:name_for_link', to: 'providers#profile', as: "teams_profile"
   get '/teams/hax/providers/:name_for_link', to: 'providers#profile'
   get '/teams/suggested_edit/:clicked', to: 'providers#suggested_edit', as: "teams_suggested_edit"
-  post '/provider/upload_photo', to: 'providers#upload_photo'
   get '/teams/providers/search/results', to: 'providers#search_results', as: 'providers_search_results'
   get '/address_review', to: "providers#address_review", as: "providers_address_review"
   post '/address_review', to: "providers#address_review_submit", as: "providers_address_review_submit"
+  post '/provider/upload_photo', to: 'providers#upload_photo'
+  post '/provider/submit_feedback', to: 'providers#submit_feedback'
 
   resources :purchase_orders, only: [:index, :edit]
   get '/purchase_orders/emails', to: 'purchase_orders#emails', as: 'purchase_orders_emails'

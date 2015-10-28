@@ -14,10 +14,13 @@
       <div class="modal-body">
         <div class="row">
           <form>
+            <% hidden_information.keys.each do |key| %>
+              <input type="hidden" name="<%= "#{key}" %>" value="<%= "#{hidden_information[key]}" %>" %>
+            <% end %>
             <div class="col-md-12">
               <div class="form-group">
-                <label for="feedback-content" class="control-label">Please let us know what you'd like to change!</label>
-                <textarea class="form-control" id="feedback-content"></textarea>
+                <label for="feedback_content" class="control-label">Please let us know what you'd like to change!</label>
+                <textarea class="form-control" id="feedback_content"></textarea>
               </div>
             </div>
           </form>
@@ -25,7 +28,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Submit feedback</button>
+        <button type="button" class="btn btn-primary" id="feedback-modal-submit">Submit feedback</button>
       </div>
     </div>
   </div>
