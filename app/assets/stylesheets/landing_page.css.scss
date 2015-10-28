@@ -20,7 +20,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 300;
 }
 
-p { 
+/*p { 
   padding: 0; 
   margin-bottom: 12px;     
   font-weight: 300;
@@ -29,7 +29,7 @@ p {
   letter-spacing: 1px;
   color: #404041; 
   margin-top: 10px; 
-}
+}*/
 
 html,
 body {
@@ -144,14 +144,19 @@ input {
   border-color: #14b8e2;
 }
 
+.btn-sbblue:hover {
+  background: #12a5cb;
+  border-color: #12a5cb;
+}
+
 .mtb button:hover{
   color:black;
 }
 
 /* HEADER SECTION */
 #h {
-  /*background: url(../img/header.jpg) no-repeat center top;*/
-  background: radial-gradient(circle at 60% 30%, rgba(0,0,0,0.5), rgba(0,0,0,0.7)),url(https://s3.amazonaws.com/supplybetter_images/header-260kb.JPG) center top no-repeat;
+  /*background: url(../img/151025-header-260kb.jpg) no-repeat center top;*/
+  background: radial-gradient(circle at 60% 30%, rgba(0,0,0,0.5), rgba(0,0,0,0.7)),url(/assets/151025-header-260kb.jpg) center top no-repeat;
   padding-top: 0;
   text-align:center;
   background-attachment: relative;
@@ -226,4 +231,41 @@ input {
 
 #f h3, h4 {
   color: white;
+}
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: normal;
+}
+.marketing .col-lg-4 p {
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+
+/* Featurettes
+------------------------- */
+
+.featurette-divider {
+  margin: 80px 0; /* Space out the Bootstrap <hr> more */
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+  margin: 10px 0;
+}
+
+.featurette-body {
+  margin-top: 35px;
+  margin-bottom: 35px;
 }
