@@ -13,10 +13,14 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-12">
-            <p>Please let us know what you'd like to change!</p>
-            <%= text_area_tag :feedback, nil, rows: 5 %>
-          </div>
+          <form>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="feedback-content" class="control-label">Please let us know what you'd like to change!</label>
+                <textarea class="form-control" id="feedback-content"></textarea>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
       <div class="modal-footer">
