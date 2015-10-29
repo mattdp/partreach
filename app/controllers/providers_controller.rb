@@ -4,7 +4,26 @@ class ProvidersController < ApplicationController
   skip_before_action :allow_staging_access, only: :signin
 
   def submit_feedback
-    binding.pry
+    flag = 0
+    while flag == 0
+      break unless (params[:organization_id].present? and params[:user_id].present? and params[:tag_id].present?)
+      o_id, u_id, t_id = params[:organization_id].to_i, params[:user_id].to_i, params[:tag_id].to_i
+      break unless (o_id > 0 and u_id > 0 and t_id > 0)
+      o, u = Organization.where(id: o_id), User.where(id: u_id)
+      break unless (o.present? and u.present?)
+      o, u = o[0], u[0]
+      break unless (u.team.present? and u.team.organization_id == o_id)
+      Event.create(model: "User", model_id: u_id, happening: "left feedback", 
+        target_model: "Tag", target_model_id: t_id, info: params[:feedback_content])
+      flag += 1
+    end
+    respond_to do |format|
+      if flag > 0
+        format.js { head :ok }
+      else
+        format.js { head :error}
+      end
+    end
   end
 
   def address_review

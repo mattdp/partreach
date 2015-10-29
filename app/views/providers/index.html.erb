@@ -1,7 +1,5 @@
 <% provide(:title,"Provider index") %>
 
-<%= render partial: "providers/feedback_modal", locals: {title: "Feedback for category '#{@tag.readable}':", hidden_information: {user_id: @user.id, organization_id: @organization.id}} %>
-
 <div class="container hax-body-styling">
   <div class="row">
     <div class="main-area-contrast override">
@@ -10,6 +8,8 @@
       <%= render :partial => "providers/providers_header", locals: {search_terms_list: @search_terms_list} %>      
 
       <% if @results_hash.present? %>
+        <%= render partial: "providers/feedback_modal", locals: {title: "Feedback for category '#{@tag.readable}':", hidden_information: {user_id: @user.id, organization_id: @organization.id, tag_id: @tag.id}} %>
+
         <% if @neighboring_tags_by_relationship.present? and @neighboring_tags_by_relationship.values.flatten.present? %>
           <div class="row">
             <div class="col-md-12">

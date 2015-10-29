@@ -13,9 +13,9 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <form>
+          <form data-remote="true">
             <% hidden_information.keys.each do |key| %>
-              <input type="hidden" name="<%= "#{key}" %>" value="<%= "#{hidden_information[key]}" %>" %>
+              <input type="hidden" name="<%= "#{key}" %>" id="hidden-<%= "#{key}"%>" value="<%= "#{hidden_information[key]}" %>" %>
             <% end %>
             <div class="col-md-12">
               <div class="form-group">
