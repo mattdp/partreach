@@ -12,6 +12,7 @@ $(document).ready(function() {
       success: function(response, textStatus, jqXHR)
       {
         $('#feedback-modal').modal('hide');
+        alert("Feedback received! We will get back to you soon.");
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
