@@ -1,132 +1,221 @@
-<% provide(:title, "Find the right supplier for 3D printing or general prototyping") %>
+<% provide(:title, "SRM for OEMs") %>
 <% content_for :body_class, "home" %>
 
-<main class="main">
-  <div class="hero">
-    <div class="hero-branding">
-      <h1 class="logo">
-        <a href="/">
-          <%= image_tag "supplybetter-logo-white.svg", :alt => "SupplyBetter" %>
-        </a>
-      </h1>
-      <h2 class="hero-headline">
-        Know your options.
-      </h2>
-      <%= link_to "Sign into your account", signin_path, class: "arrow-link" %>
-    </div>
-    <div class="hero-cta">
-      <p class="hero-subheadline">
-        <span class="subheadline-text">Find the right suppliers for the job, based on what worked for people you trust.</span>
-        <span><%= link_to "Let’s get started", signin_path, class: "button--white arrow-link" %></span>
-      </p>
-    </div>
-  </div>
-  <section class="section section--gray">
-    <h2 class="section-headline">
-      Just tell us what you’re looking for.
-    </h2>
-    <div class="start-quote inline-block">
-      <%#= get, since passing params to orders_new, without a state change in the database %>
-      <%= form_tag new_order_path, method: :get do %>
-        <p>I am </p>
-        <div class="homepage-options">
-          <% options_array = [ ["still learning", "rookie"], ["experienced", "experienced"] ] %>
-          <%= select_tag("questions[experience]", options_for_select(options_array, "experienced"), class: "selectize select-one inline-block") %>
-        
-        <p>, I care most about</p>
-        
-          <% options_array = [ ["speed", "speed"], ["quality", "quality"], ["cost", "cost"] ] %>
-          <%= select_tag("questions[priority]", options_for_select(options_array, "quality"), class: "selectize select-two inline-block") %>
-        
-        <p>, and think 3D printing</p>
-        
-          <% options_array = [ ["should be", "printing"], ["shouldn’t be", "other"], ["might be", "unknown"] ] %>
-          <%= select_tag("questions[manufacturing]", options_for_select(options_array, "printing"), class: "selectize inline-block") %>
-        </div>
-        <p>the method.</p>
-        <%= submit_tag "Continue »", data: { disable_with: 'Processing...' },class: "button--blue" %>
+<header class="header navbar-default">
+  <div class="header-logo">
+    <h1 class="header__logo">
+      <%= link_to teams_index_path, class: "navbar-brand" do %>
+        <%= image_tag "supplybetter-logo-white-cropped.svg", :alt => "SupplyBetter" %>
       <% end %>
-    </div>
-  </section>
-  <section class="section">
-    <h2 class="section-headline">
-      How does SupplyBetter work?
-    </h2>
-    <div class="triplets">
-      <div class="col">
-        <%= image_tag "home-quote-icon.svg", :alt => "Upload your project documents" %>
-        <h3>You upload your design and project&nbsp;details.</h3>
-        <%= link_to "Fill out a quote now", new_order_path, :class => "arrow-link" %>
-      </div>
-      <div class="col wide">
-        <%= image_tag "home-selection-icon.svg", :alt => "We select a supplier" %>
-        <h3>We match you with suppliers who exactly fit your&nbsp;job.</h3>
-      </div>
-      <div class="col">
-        <%= image_tag "home-best-icon.svg", :alt => "You choose the option that best fits your needs" %>
-        <h3>You pick the quote you like <span>best,&nbsp;free.</span></h3>
-        <%= link_to "See what our customers say", testimonials_path, :class => "arrow-link" %>
-      </div>
-    </div>
-  </section>
-  <section class="section section--gray section--aligned matching">
-    <div class="wrapper">
-      <h2 class="section-headline">
-        We match you with the exact right suppliers.
-      </h2>
-      <p>
-        We use every detail of your project, including build volume, material requirements,
-        geographic preferences, IP sensitivity, DFM needs, and timeline, to match you with
-        the supplier that's best for your&nbsp;project.
-      </p>
-      <p>
-        Are you a supplier looking to grow your business? <a href="/be_a_supplier" class="arrow-link">Join our Supplier Network</a>
-      </p>
-    </div>
-  </section>
-  <section class="section ta-c">
-    <blockquote class="big-quote">Across rapid prototyping jobs both large and small, SupplyBetter has delivered multiple quotes quickly every time, helped us build relationships with new prototyping shops, and increased our quality&nbsp;expectations.
-      <footer>
-        — <cite>Ryan, Mechanical Engineer, <a href="http://www.frogdesign.com/">Frog Design</a></cite>
-      </footer>
-    </blockquote>
-    <%= link_to "Read our customers’ stories", testimonials_path, class: "button--blue centered-border arrow-link" %>
-    <div class="customer-logos">
-      <%= image_tag "customer-logos@2x.png", :alt => "You choose the option that best fits your needs" %>
-    </div>
-  </section>
-</main>
-<footer class="footer">
-  <div class="twins--40-60">
-    <div class="col-40">
-      <ul class="footer-links">
-        <li><%= link_to "Home", root_path %></li>
-        <li><%= link_to "Getting started", getting_started_path %></li>
-        <li><%= link_to "Blog", "/blog" %></li>
-        <li><%= link_to "Materials", materials_path %></li>
-        <li><%= link_to "Suppliers", us_3dprinting_path %>
-      </ul>
-      <ul class="footer-links--sub">
-        <li><%= link_to "© 2015 SupplyBetter, Inc.", root_path %></li>
-        <li><%= link_to "Privacy", privacy_path %></li>
-        <li><%= link_to "Terms", terms_path %></li>
-        <li><%= link_to "Directory", suppliers_path %></li>
-      </ul>
-    </div>
-    <div class="col-60 twins p-0">
-      <div class="col p-0">
-        <h3>Not ready for a quote?</h3>
-        <p>We’ll keep you updated in the&nbsp;meantime.</p>
-      </div>
-      <div class="col">
-        <div class="email-form">
-          <%= form_tag :action => 'create', :controller => 'leads' do %>
-            <input type="hidden" name="next_step_field" value="/">
-            <%= text_field_tag 'email_field', nil, :placeholder => "sam.joss@supplybetter.com", class: "email-input", :id => "email-submit-field" %>
-            <%= submit_tag "Sign up", data: { disable_with: 'Submitting...' }, class: "email-button", :id => "email-submit-button" %>
-          <% end %>
+    </h1>
+  </div>
+  <ul class="nav navbar-nav navbar-right homepage-header">  
+    <li><%= link_to "Sign in", signin_path %></li>
+  </ul>
+</header>
+
+<div id="h">
+  <div class="container homepage">
+    <div class="row">
+      <div class="col-md-10 col-md-offset-1 centered">
+        <h1>Your suppliers deserve more than just a spreadsheet</h1>
+        <h2>Effective Supplier Relationship Management (SRM) for OEMs</h2> 
+        <%= render partial:"static_pages/email_submission", locals: {input_id: "upper"} %> 
+        <h3>Scroll down to learn more</h3>
+        <div class="scroll-down">
+          <a href="#review_1">
+            <svg class="scroll-down-icon" viewBox="0 0 36 36" style="width:50px;">
+              <path fill="#FFFFFF" d="M18.843,26.253L33.656,11.5c0.481-0.481,0.484-1.262,0.002-1.744c-0.479-0.486-1.263-0.486-1.744-0.005
+              L17.97,23.637L4.088,9.751c-0.482-0.482-1.263-0.482-1.744,0c-0.241,0.241-0.361,0.555-0.361,0.872c0,0.313,0.12,0.632,0.361,0.872
+              l14.755,14.753C17.58,26.73,18.358,26.73,18.843,26.253z"></path>
+            </svg>
+          </a>
         </div>
       </div>
+    </div><!--/row-->
+  </div><!--/container-->
+</div><!-- /H -->
+
+<!-- **********************************************
+                REVIEW NUMBER ONE
+************************************************ -->
+
+<div id="review_1" class="container homepage ptb">
+  <div class="row">
+    <!-- BEGIN LEFT COLUMN -->
+    <div class="col-md-4">
+      <h2 class="featurette-heading">Learn from others to avoid sourcing pitfalls</h2>    
+      <h3 class="featurette-body">SupplyBetter makes it easy to share your experience by using data from your purchase orders, so all your engineers have to do is leave a rating and comment when we ask them to review their orders.</h3>
+    </div>
+    <!-- BEGIN RIGHT COLUMN -->
+    <div class="col-md-8 comment-border">         
+      <div class="row comment-smalltext">
+      <!-- BEGIN LEFT COLUMN -->
+        <div class="col-md-3">
+          <div class="row">
+            <img class="headshot1 blur">
+          </div>
+          <div class="row comment-profile">
+            <p><strong>Jules</strong></p>
+            <p>Team: <span class="redacted">$$$$$$$$$</span></p>
+              <p>13 reviews</p>
+              <p>12 purchase orders</p>
+          </div>
+        </div>
+
+        <!-- BEGIN RIGHT COLUMN -->
+        <div class="col-md-9">          
+          <div class="row">
+            <h3 class="comment-snippet">
+              Tiny Sheet Metal Springs, 301SS 1/2H
+            </h3>        
+          </div>        
+          <div class="row">
+            <div class="col-md-8 left-grid-bare">
+              <span class="star-rating comment-rating-stars">
+               <input type="radio">
+               <input type="radio">
+               <input type="radio">
+               <input type="radio">
+               <input type="radio">
+                <i id="gold-star"></i>
+                <i id="gold-star"></i>
+                <i id="gold-star"></i>
+                <i id="gold-star"></i>
+              </span>
+              <span> 
+                Reviewed 2015-05-21
+              </span>
+            </div>
+            <div class="col-md-4 left-grid-bare">
+            </div>
+          </div>
+
+          <div class="row col-md-12 comment-snippet">
+            <span class="redacted">$$$$$$</span> delivered tight tolerance parts in 3-4 days. The parts were incredibly accurate despite some challenging bends, and <span class="redacted">$$$$$$</span> has consistently beat their already low estimated lead times. Quoting with them is fast, and they are okay at providing feedback on parts when prompted. They are NOT cheap, but they are my go-to shop for fast turn, intricate sheet metal and would earn 5 stars if not for high cost.
+          </div>      
+
+          <div class="row">
+              <div class="col-md-7 left-grid-bare">Project Name: <span><a href=""><span class="redacted">$$$$$$$ $$$$</span></a></span></div>
+              <div class="col-md-5 left-grid-bare">PO Issued: 2015-05-06</div>
+          </div>
+
+          <div class="row">     
+            <div class="col-md-7 left-grid-bare">           
+              <div>
+                <span class="star-rating comment-rating-stars">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                </span>
+                Cost
+              </div>
+              <div>
+                <span class="star-rating comment-rating-stars">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                </span>
+                Quality
+              </div>
+              <div>
+                <span class="star-rating comment-rating-stars">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <input type="radio">
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                  <i id="gold-star"></i>
+                </span>
+                Speed
+              </div>
+            </div>
+            <div class="col-md-5 left-grid-bare">   
+              <div>Price: <span class="redacted">$$$$$.$$</span></div>           
+              <div>Quantity: <span class="redacted">$$</span></div>              
+            </div>
+            <div class="col-md-12 left-grid-bare"><span class="redacted">$$$-$$$$$$_$$$$$$$_$$$$_$$$-$$$-$$, $$ $$$$$$$ </span></div>
+            <div class="col-md-8 left-grid-bare">
+              <span class="tags-providerTags">
+                <a href="/teams/searching/t3092/false" class=""> 
+                  Springs
+                </a>
+              </span>
+              <span class="tags-providerTags">
+                <a href="/teams/searching/t2371/false" class=""> 
+                  Sheet metal fabrication
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- END MIDDLE COLUMN -->
+      </div>
+    </div>    
+  </div><!--/row-->
+</div><!--/container-->
+
+<!-- **********************************************
+                END OF REVIEW NUMBER ONE
+************************************************ -->
+<div id="i">
+  <div class="container homepage ptb">
+    <div class="row featurette">
+      <div class="col-md-5">
+        <img class="featurette-image img-responsive center-block" src="/assets/151027-landing_page_search_bar.jpg" alt="SupplyBetter search bar">
+      </div>
+      <div class="col-md-7">
+        <h2 class="featurette-heading">Search your supplier network</h2>
+        <h3 class="featurette-body">Knowing exactly which manufacturing process you need can be tough. SupplyBetter's curated tag network allows you explore processes, materials, and products while simultaneously seeing which companies have those capabilities. Learn more about suppliers by checking out reviews.
+        </h3>
+      </div>      
     </div>
   </div>
-</footer>
+</div>
+
+<!-- **********************************************
+                FOOTER
+************************************************ -->
+<div id="f">
+  <div class="container homepage">
+    <div class="row centered">
+      <h2>Supplier relationships matter. Try it out now.</h2>
+        <div class="col-md-8 col-md-offset-2 centered">
+          <div class="row">
+            <%= render partial:"static_pages/email_submission", locals: {input_id: "lower"} %>
+          </div>
+        </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2 centered">
+          <h3>feedback@supplybetter.com</h3>
+          <ul class="footer-links">
+            <li><%= link_to "Home", teams_index_path %></li>
+            <li><%= link_to "Blog", "/blog" %></li>
+            <li><%= link_to "Privacy", privacy_path %></li>
+            <li><%= link_to "Terms", terms_path %></li>
+            <li><%= link_to "Directory", suppliers_path %></li>
+          </ul>
+          <ul class="footer-links--sub">            
+          </ul>
+        </div>
+      </div>
+      <h5 class="mt">COPYRIGHT 2015 - SUPPLYBETTER, INC.</h5>
+    </div><!--/row-->
+  </div><!--/container-->
+</div><!--/F-->
