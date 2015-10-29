@@ -11,11 +11,12 @@ $(document).ready(function() {
       },
       success: function(response, textStatus, jqXHR)
       {
-        alert("Success placeholder!")
+        $('#feedback-modal').modal('hide');
       },
       error: function (jqXHR, textStatus, errorThrown)
       {
-        alert("An error occurred during saving (" + jqXHR.status + ")")
+        $('#feedback-modal').modal('hide');
+        alert("An error occurred during saving (" + jqXHR.status + "). Please email or chat us your feedback!")
       }
     });
   });
