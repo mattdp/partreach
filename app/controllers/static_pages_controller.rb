@@ -1,32 +1,17 @@
 class StaticPagesController < ApplicationController
   def home
+    if current_user.present?
+      Event.add_event("User",current_user.id,"loaded home page")
+    else
+      Event.add_event(nil,nil,"loaded home page")
+    end
+
     if org_access_allowed?
       redirect_to teams_index_path, status: :moved_permanently
     else
       render :layout => "home"
     end
 
-    @testimonials = testimonial_array
-    @testimonial = @testimonials[rand(0..@testimonials.length-1)]
-
-    @logo_locations_top = ["https://s3.amazonaws.com/supplybetter_buyer_logos/anybots-logo.png",
-      "https://s3.amazonaws.com/supplybetter_buyer_logos/frog_design-logo.png",
-      "https://s3.amazonaws.com/supplybetter_buyer_logos/velo_labs-logo.png"
-      ]
-
-    @logo_locations_bottom = ["https://s3.amazonaws.com/supplybetter_buyer_logos/mtts-logo.png",
-      "https://s3.amazonaws.com/supplybetter_buyer_logos/cruise_automation-logo.png",
-      "https://s3.amazonaws.com/supplybetter_buyer_logos/five_and_dime_manufacturing-logo.png"
-      ]
-  end
-
-  def enterprise
-    if current_user.present?
-      Event.add_event("User",current_user.id,"loaded enterprise landing page")
-    else
-      Event.add_event(nil,nil,"loaded enterprise landing page")
-    end
-    render :layout => "landing_page"
   end
 
   def getting_started
