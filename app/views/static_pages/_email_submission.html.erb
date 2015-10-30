@@ -1,6 +1,6 @@
 <div class="mtb">
   <%= form_tag :action => 'create', :controller => 'leads' do %>
-    <input type="hidden" name="next_step_field" value="/enterprise.html">
+    <input type="hidden" name="next_step_field" value="/">
     <input type="hidden" name="source" value="enterprise-email-collector">
     <input type="hidden" name="redirect_message" value="Great! We'll be in touch about your demo within a business day.">
     <input type="text" name="email_field" class="subscribe-input" id="<%= "#{input_id}" %>" placeholder="Enter your work e-mail address..." required>
