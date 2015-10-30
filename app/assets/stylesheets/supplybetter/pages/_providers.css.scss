@@ -158,7 +158,6 @@ a:focus {
 }
 
 @media (max-width: 767px) {
-  /* line 15, /Users/Rob/partreach/app/assets/stylesheets/supplybetter/bootstrap/_minified.min.css.scss */
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: white;
 
@@ -651,30 +650,4 @@ li p {
 	&.similar-keywords {
 		margin-bottom: 0;
 	}
-}
-
-/*HOMEPAGE OPTIONS*/
-
-.homepage-options, .inline-block, .inline-block p {
-	display: inline-block;
-}
-
-.homepage-options .selectize-input,
-.homepage-options .selectize-input input {
-  color: $orange;
-  font-size: 20px;
-	line-height: normal; 
-	display: inline-block;
-	width: 175px;
-	padding: 0;
-}
-
-.homepage-survey {
-	padding-top: 0;
-	padding-bottom: 0;
-	font-size: 1.84em;
-}
-
-.start-quote .button--blue {
-	display: block;
 }

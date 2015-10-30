@@ -259,12 +259,12 @@
   -ms-transition: background-color .4s linear, color .4s linear;
   transition: background-color .4s linear, color .4s linear;
   color: #14b8e2;
-}
-& a:hover,
-& a:focus {
-  text-decoration: none;
-  color:#696E74;
-}
+  }
+  & a:hover,
+  & a:focus {
+    text-decoration: none;
+    color:#696E74;
+  }
 }
 
 html,
@@ -304,17 +304,6 @@ body {
   text-shadow:none;
   background:#2B2E31;
 }
-
-*,
-*:after,
-*:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 
 /* FORM CONFIGURATION */
 
@@ -451,22 +440,6 @@ body {
 
 #f h3, h4 {
   color: white;
-}
-
-/* MARKETING CONTENT
--------------------------------------------------- */
-
-/* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-  margin-bottom: 20px;
-  text-align: center;
-}
-.marketing h2 {
-  font-weight: normal;
-}
-.marketing .col-lg-4 p {
-  margin-right: 10px;
-  margin-left: 10px;
 }
 
 /* Featurettes
