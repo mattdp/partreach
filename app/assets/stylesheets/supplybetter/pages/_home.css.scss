@@ -366,7 +366,7 @@ body {
 
 /* HEADER SECTION */
 #h {
-  background: url(/assets/header_image-homepage-60.jpg) center top no-repeat;
+  background: url(/assets/header_image-homepage-60-tiny.jpg) center top no-repeat;
   padding-top: 0;
   text-align:center;
   background-attachment: relative;
@@ -481,16 +481,7 @@ body {
 }
 
 .headshot1 {
-  background-image: url("/assets/headshot1-thumb.jpg");
-  background-repeat: no-repeat;
-  height: 84px;
-  width: 84px;
-  margin: 0;
-  padding: 0;
-}
-
-.headshot2 {
-  background-image: url("/assets/headshot2-thumb.jpg");
+  background-image: url("/assets/headshot1-thumb-tiny.jpg");
   background-repeat: no-repeat;
   height: 84px;
   width: 84px;
