@@ -36,27 +36,18 @@
   </div><!--/container-->
 </div><!-- /H -->
 
-<!-- **********************************************
-                REVIEW NUMBER ONE
-************************************************ -->
-
 <div id="review_1" class="container homepage ptb">
   <div class="row">
-    <!-- BEGIN LEFT COLUMN -->
     <div class="col-md-4">
-      <h2 class="featurette-heading">Learn from others to avoid sourcing pitfalls</h2>    
+      <h2 class="featurette-heading">Learn from others to avoid sourcing pitfalls</h2>   
       <h3 class="featurette-body">SupplyBetter makes it easy to share your experience by using data from your purchase orders, so all your engineers have to do is leave a rating and comment when we ask them to review their orders.</h3>
-    </div>
-    <!-- BEGIN RIGHT COLUMN -->
+    </div>    
     <div class="col-md-8">         
       <img class="featurette-image img-responsive center-block" src="/assets/homepage_purchase_order-tiny.jpg" alt="SupplyBetter review">
     </div>    
   </div><!--/row-->
 </div><!--/container-->
 
-<!-- **********************************************
-                END OF REVIEW NUMBER ONE
-************************************************ -->
 <div id="i">
   <div class="container homepage ptb">
     <div class="row featurette">
@@ -65,12 +56,12 @@
       </div>
       <div class="col-md-7">
         <h2 class="featurette-heading">Search your supplier network</h2>
-        <h3 class="featurette-body">Knowing exactly which manufacturing process you need can be tough. SupplyBetter's curated tag network allows you explore processes, materials, and products while simultaneously seeing which companies have those capabilities. Learn more about suppliers by checking out reviews.
+        <h3 class="featurette-body">Knowing exactly which manufacturing process you need can be tough. SupplyBetter's curated tag network allows you to explore processes, materials, and products while simultaneously seeing which companies have those capabilities. Learn more about suppliers by checking out reviews.
         </h3>
       </div>      
-    </div>
-  </div>
-</div>
+    </div><!--/row-->
+  </div><!--/container-->
+</div><!-- /I -->
 
 <!-- **********************************************
                 FOOTER
@@ -79,11 +70,9 @@
   <div class="container homepage">
     <div class="row centered">
       <h2>Supplier relationships matter. Try it out now.</h2>
-        <div class="col-md-8 col-md-offset-2 centered">
-          
-            <%= render partial:"static_pages/email_submission", locals: {input_id: "lower"} %>
-          
-        </div>
+      <div class="col-md-8 col-md-offset-2 centered">
+        <%= render partial:"static_pages/email_submission", locals: {input_id: "lower"} %>
+      </div>
       <div class="row">
         <div class="col-md-8 col-md-offset-2 centered">
           <h3>feedback@supplybetter.com</h3>
@@ -92,9 +81,7 @@
             <li><%= link_to "Privacy", privacy_path %></li>
             <li><%= link_to "Terms", terms_path %></li>
             <li><%= link_to "Directory", suppliers_path %></li>
-          </ul>
-          <ul class="footer-links--sub">            
-          </ul>
+          </ul>         
         </div>
       </div>
       <h5 class="mt">COPYRIGHT 2015 - SUPPLYBETTER, INC.</h5>
