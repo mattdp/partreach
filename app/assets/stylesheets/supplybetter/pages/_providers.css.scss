@@ -10,6 +10,12 @@ body {
 	width: 100%;
 	padding-right: 0;
 	padding-left: 0;
+
+	& a:hover,
+		a:focus {
+			color: $sb-blue;
+			text-decoration: none;
+		}
 }
 
 .hide-text {
@@ -74,11 +80,6 @@ hr {
 }
 
 a {
-	color: $sb-blue;
-	text-decoration: none;
-}
-a:hover,
-a:focus {
 	color: $sb-blue;
 	text-decoration: none;
 }
