@@ -76,11 +76,11 @@ class Organization < ActiveRecord::Base
   end
 
   #needs to actually work
-  def user_behaviors(allow_admins=false)
+  def user_behaviors(start_date=Date.parse("2015-04-04"),end_date=Date.today,allow_admins=false)
     behaviors = [] 
-    users = self.users.reject{|u| u.admin}
+    users = self.users.reject{|u| u.admin} unless allow_admins
     users.each do |u|
-      behaviors << u.behaviors
+      behaviors << u.behaviors(start_date,end_date)
     end
     return behaviors
   end
