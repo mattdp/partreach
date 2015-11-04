@@ -1,9 +1,11 @@
 <% provide(:title,"User behaviors for #{@organization.name}") %>
 
-<h1>User behaviors - all time</h1>
+<h1>User behaviors</h1>
 
 <h2>General</h2>
 <ul>
+  <li>Start date: <%= "#{@start_date}" %></li>
+  <li>End date: <%= "#{@end_date}" %></li>
   <li>Non-admin users: <%= @user_behaviors.count %></li>
   <li>Most recent PO ID in their system: <%= @highest_po_id %></li>
 </ul>
