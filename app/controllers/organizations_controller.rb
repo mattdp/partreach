@@ -53,7 +53,11 @@ class OrganizationsController < ApplicationController
 
   def show
     @organization = Organization.find(params[:id])
-    @user_behaviors = @organization.user_behaviors
+    if (params[:start_date].present? and params[:end_date].present?)
+      @user_behaviors = @organization.user_behaviors(Date.parse(params[:start_date]), Date.parse(params[:end_date]))
+    else
+      @user_behaviors = @organization.user_behaviors
+    end
     o_id = @organization.id
     @highest_po_id = PurchaseOrder.
       joins(:provider).
