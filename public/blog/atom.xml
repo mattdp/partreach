@@ -4,12 +4,31 @@
  <title>BLOG_NAME</title>
  <link href="YOUR_URL/atom.xml" rel="self"/>
  <link href="YOUR_URL"/>
- <updated>2014-12-30T13:14:42-08:00</updated>
+ <updated>2015-11-03T17:28:48-08:00</updated>
  <id>BLOG_URL</id>
  <author>
    <name>BLOG_NAME</name>
  </author>
 
+ 
+ <entry>
+   <title>Shutting down RFQ service, starting something new</title>
+   <link href="YOUR_URL/shutting-down-rfq-service.html"/>
+   <updated>2015-10-15T00:00:00-07:00</updated>
+   <id>BLOG_URL/shutting-down-rfq-service</id>
+   <content type="html">&lt;p&gt;For the past two years we&#39;ve helped engineers make hundreds of thousands of dollars worth of prototype parts by matching jobs with the right suppliers, and it&#39;s been fulfilling work. However, we weren&#39;t able to find a way to make this service scale up to a sustainable business. We learned the hard way that companies with excellent supplier networks and/or meaningful IP were not willing to publicly review which suppliers they worked with, or share their opinion of those suppliers.&lt;/p&gt;
+
+&lt;p&gt;As a result, we are transitioning the business away from vendor matching and creating a new enterprise-focused product. This transition is very exciting, but unfortunately it means we can no longer offer our previous service. Paying customers are using the private beta now, and we will release it publicly once we&#39;re ready.&lt;/p&gt;
+
+&lt;p&gt;Customers who have used us in the past will still be able to log in and access every order previously made. We are still here to support those previous orders and are willing to discuss any questions/issues around those projects and vendors.&lt;/p&gt;
+
+&lt;p&gt;Thanks for finding some great suppliers with us &amp;amp; helping us learn! We&#39;re excited to reveal the new business soon. As always, feel free to let us know if there are any questions.&lt;/p&gt;
+
+&lt;p&gt;Excited for the future,&lt;/p&gt;
+
+&lt;p&gt;Matt &amp;amp; Rob&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Injection Molding through Alibaba | Case Study</title>
