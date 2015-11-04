@@ -43,32 +43,38 @@ class User < ActiveRecord::Base
     
     returnee[:id] = self.id
     returnee[:name] = contact.full_name_untrusted
-    returnee[:comments_filled_out] = Comment
-      .where(user_id: self.id)
-      .reject{|c| c.untouched?}
-      .count    
+
+    #comments that were updated during a given range. may also be updated outside that range, so a monthly adder would doublecount,
+    #but for two updates that should be OK. will doublecount neg reviews if comment updated across months though
+    comments_updated_in_range = Comment.joins("INNER JOIN events ON events.target_model_id = comments.id AND events.target_model = 'Comment'")
+      .where(comments: {user_id: self.id})
+      .where(events: {created_at: start_date..end_date, happening: Event.first_comment_update_happenings})
+      .uniq  #INNER JOIN has multiple lines per comment - every Event/Comment pair
+    returnee[:comments_filled_out] = comments_updated_in_range.count
+    returnee[:comments_with_two_or_less_stars] = comments_updated_in_range
+      .select{|c| c.overall_score.present? and c.overall_score > 0 and c.overall_score < 3}
+      .count
+    #comments where an email was sent in reminder this month. could have been 1 email or 3 emails, could have 1 or 30 days to respond
     ids_of_reminded_comments = Event
-      .where(model: "User", model_id: self.id)
-      .where(happening: "sent_reminder_email")
+      .where(model: "User", model_id: self.id, happening: "sent_reminder_email", created_at: start_date..end_date)
       .map{|e| e.target_model_id}
       .uniq
-    returnee[:comments_reminded_about] = ids_of_reminded_comments.count
+    #doesn't need time scope since drawing on reminded comments with a time scope
     returnee[:comments_reminded_about_and_filled_out] = Comment
       .where(id: ids_of_reminded_comments)
       .reject{|c| c.untouched?}
       .count
+    returnee[:comments_reminded_about] = ids_of_reminded_comments.count
+    returnee[:profile_views] = Event 
+      .where(model: "User", model_id: self.id, happening: "loaded profile", created_at: start_date..end_date)
+      .count
+    #POs created this month
     returnee[:total_pos] = PurchaseOrder.joins('INNER JOIN comments ON comments.purchase_order_id = purchase_orders.id')
       .where(comments: {user_id: self.id})
-      .count
-    returnee[:comments_with_two_or_less_stars] = Comment
-      .where(user_id: self.id)
-      .select{|c| c.overall_score.present? and c.overall_score > 0 and c.overall_score < 3}
-      .count
-    returnee[:profile_views] = Event #straightforward created_at
-      .where(model: "User", model_id: self.id)
-      .where(happening: "loaded profile")
+      .where(purchase_orders: {created_at: start_date..end_date})
       .count
 
+    #this isn't quite right, since it's POs CREATED this month vs. comments with FIRST REMINDER EMAIL this month
     if returnee[:total_pos] > 0
       wip = ((1.0 * returnee[:comments_reminded_about]) / returnee[:total_pos])
       returnee[:percent_of_pos_reminded_about] = "#{(wip*100).round(0)}%"
@@ -76,6 +82,7 @@ class User < ActiveRecord::Base
       returnee[:percent_of_pos_reminded_about] = "0%"
     end
 
+    #this is OK
     if returnee[:comments_reminded_about] > 0
       wip = ((1.0 * returnee[:comments_reminded_about_and_filled_out]) / returnee[:comments_reminded_about])
       returnee[:percent_of_reminded_comments_filled] = "#{(wip*100).round(0)}%"

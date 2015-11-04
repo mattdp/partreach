@@ -36,6 +36,10 @@ class Event < ActiveRecord::Base
     ]
   end
 
+  def self.first_comment_update_happenings
+    ["said job was good","said job was bad","said job was in between","loaded edit comment page for"]
+  end
+
   # happenings: an array of strings
   # start_date/end_date: strings in the form '2015-02-10'
   def self.in_date_range(happenings, start_date, end_date)
