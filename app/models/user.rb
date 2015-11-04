@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   validates :supplier_id, uniqueness: true, allow_nil: true
 
   #this does not track how many reminder emails, nor does it causally link reminders to filling things out
-  def behaviors
+  def behaviors(start_date,end_date)
     returnee = {}
     contact = self.lead.lead_contact
     
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
       .where(user_id: self.id)
       .select{|c| c.overall_score.present? and c.overall_score > 0 and c.overall_score < 3}
       .count
-    returnee[:profile_views] = Event
+    returnee[:profile_views] = Event #straightforward created_at
       .where(model: "User", model_id: self.id)
       .where(happening: "loaded profile")
       .count
