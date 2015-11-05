@@ -8,7 +8,7 @@ module ApplicationHelper
     if desc.present?
       content_for :meta_description, desc
     else
-      content_for?(:meta_description) ? content_for(:meta_description) : "SupplyBetter helps you find suppliers that are right for you. We're intially focused on 3D printing."
+      content_for?(:meta_description) ? content_for(:meta_description) : "SupplyBetter is effective Supplier Relationship Management (SRM) for hardware companies and OEMs."
     end
   end
 
