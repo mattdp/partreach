@@ -28,6 +28,41 @@ class Geography < ActiveRecord::Base
     return self.geography
   end
 
+  #input {living_geo_id_A: [replaces_id_1, replaces_id_2], living_geo_id_B: ...}
+  #goal: one pass through addresses
+  def self.absorb(geographies)
+    
+    #make it easier to work with
+    machine_friendly = {}
+    geographies.each do |winner,absorbed|
+      absorbed.each do |loser_id|
+        machine_friendly[loser_id] = winner
+      end
+    end
+
+    keys = machine_friendly.keys
+    Address.find_each do |address|
+      changed = false
+      [:country_id,:state_id].each do |attribute|
+        old_geo = address.send(attribute)
+        if keys.include?(old_geo)
+          new_geo = machine_friendly[old_geo]
+          address.send("#{attribute}=",new_geo)
+          puts "Address #{address.id} #{attribute} changed from #{old_geo} to #{new_geo}"
+          changed = true
+        end
+      end
+      address.save if changed
+    end
+
+    chopping_block = Geography.find(machine_friendly.keys)
+    chopping_block.each do |geo|
+      puts "Destroying Geography #{geo.id}: #{geo.short_name} #{geo.long_name}"      
+      geo.destroy
+    end
+
+  end
+
   def self.find_or_create_country(name)
     self.find_or_create(name, 'country')
   end
