@@ -138,7 +138,14 @@
 			</div>
 			<% if comment.user == current_user %>
 				<div class="col-md-4">
-					<span>[<%= link_to "Edit my review", edit_comment_path(comment)%>]
+					<span><%= link_to "Edit my review", edit_comment_path(comment)%>
+					</span>
+				</div>
+			<% end %>
+			<% if comment.user != current_user %>			
+				<%= render partial: "providers/feedback_modal", locals: {title: "What's wrong with this review?", hidden_information: {user_id: @current_user.id, organization_id: @organization.id, commend_id: comment.id }} %>
+				<div class="col-md-4">
+					<span><a href="#" data-toggle="modal" data-target="#feedback-modal">Problem with review?</a>
 					</span>
 				</div>
 			<% end %>
