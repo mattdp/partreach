@@ -15,16 +15,17 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <form class="navbar-form navbar-left" role="search">
+      <%= form_tag teams_index_path, method: :get do%>
         <div class="form-group">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search for keywords and suppliers">
+            <%= hidden_field_tag "search_element_location", "top" %>
+            <%= select_tag(:separated_search_string, options_for_select(@search_terms_list), multiple: true) %>
             <span class="input-group-btn">
               <button type="submit" class="btn btn-default">Search</button>
             </span>
           </div>
         </div>        
-      </form>
+      <% end %>
       <% if signed_in? %>
         <ul class="nav navbar-nav navbar-right">          
           <li class="dropdown">
