@@ -15,16 +15,18 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <%= form_tag teams_index_path, method: :get do%>
-        <div class="form-group">
-          <div class="input-group">
-            <%= hidden_field_tag "search_element_location", "top" %>
-            <%= select_tag(:separated_search_string, options_for_select(@search_terms_list), multiple: true) %>
-            <span class="input-group-btn">
-              <button type="submit" class="btn btn-default">Search</button>
-            </span>
-          </div>
-        </div>        
+      <% if @search_terms_list.present? %>
+        <%= form_tag teams_index_path, method: :get do%>
+          <div class="form-group">
+            <div class="input-group">
+              <%= hidden_field_tag "search_element_location", "top" %>
+              <%= select_tag(:separated_search_string, options_for_select(@search_terms_list), multiple: true) %>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default">Search</button>
+              </span>
+            </div>
+          </div>        
+        <% end %>
       <% end %>
       <% if signed_in? %>
         <ul class="nav navbar-nav navbar-right">          

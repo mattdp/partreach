@@ -139,29 +139,10 @@ class ProvidersController < ApplicationController
     @people_called = @organization.colloquial_people_name
     @purchase_order_titles = @organization.has_any_pos?
 
-    @providers_list = Rails.cache.fetch("#{@organization.id}-providers_alpha_sort-#{@organization.last_provider_update}") do 
-      temp_list = []
-      @organization.providers_alpha_sort.each do |provider|
-        temp_list << [provider.name, "#{Organization.encode_search_string([provider])}"]
-      end
-      temp_list
-    end
-
-    #needed in two places below
-    tags_with_provider_counts = Rails.cache.fetch("#{@organization.id}-tags_with_provider_counts-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
-      @organization.tags_with_provider_counts
-    end
-
     @common_search_tags = Rails.cache.fetch("#{@organization.id}-common_search_tags-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       min_list_length = 5      
-      @organization.common_search_tags(tags_with_provider_counts.take(min_list_length))
+      @organization.common_search_tags(@tags_with_provider_counts.take(min_list_length))
     end
-
-    @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
-      Tag.search_list(tags_with_provider_counts)
-    end
-
-    @search_terms_list = @tag_search_list + @providers_list
 
     @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       @organization.recent_activity(["comments","providers"])
