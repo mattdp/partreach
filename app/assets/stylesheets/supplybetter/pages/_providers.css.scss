@@ -38,6 +38,18 @@ body {
 	text-align: right;
 }
 
+.float-right {
+	float: right;
+}
+
+.float-left {
+	float: left;
+}
+
+.float-clear {
+	clear: both;
+}
+
 .small-margin-left {
 	margin-left: 10px;
 }
@@ -173,7 +185,7 @@ a {
 
 }
 
-/*BEGIN INDEX PAGE SELECTIZE SEARCH BAR*/
+/*BEGIN INDEX PAGE SELECTIZE SEARCH BAR ITSELF*/
 
 .teams-page-searchbar{
 
@@ -206,9 +218,21 @@ a {
 
 }
 
-/*END INDEX PAGE SELECTIZE SEARCH BAR*/
+/*END INDEX PAGE SELECTIZE SEARCH BAR ITSELF*/
 
-/*BEGIN INDEX SEARCH BAR*/
+/*BEGIN NAVBAR SEARCH BAR ITSELF*/
+
+.navbar-search {
+	.selectize-input {
+		width: 300px;
+		display: inline-block;
+	}
+
+}
+
+/*END NAVBAR SEARCH BAR ITSELF*/
+
+/*BEGIN AREA AROUND THE INDEX SEARCH BAR*/
 .header-text-block {
 	text-align: center;
 }
@@ -242,7 +266,7 @@ a {
 	padding-left: 0;
 }
 
-/*END INDEX SEARCH BAR*/
+/*END AREA AROUND THE INDEX SEARCH BAR*/
 
 /*BEGIN PROVIDER INDEX CATEGORY LIST*/
 .hax-body-styling ul {
