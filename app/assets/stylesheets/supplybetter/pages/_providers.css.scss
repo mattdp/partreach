@@ -223,11 +223,50 @@ a {
 /*BEGIN NAVBAR SEARCH BAR ITSELF*/
 
 .navbar-search {
+
+	::-webkit-input-placeholder {
+	   color: #656668;
+	}
+
+	:-moz-placeholder { /* Firefox 18- */
+	   color: #656668;  
+	}
+
+	::-moz-placeholder {  /* Firefox 19+ */
+	   color: #656668;  
+	}
+
+	:-ms-input-placeholder {  
+	   color: #656668;  
+	}
+	
 	.selectize-input {
 		width: 300px;
 		display: inline-block;
 	}
 
+	.selectize-control.multi .selectize-input [data-value], .selectize-control.multi .selectize-input [data-value].active {
+	  font-size: 13px;
+	  line-height: 22px;
+	  padding: 3px 10px;
+	  background-color: $sb-blue;
+	  border-color: $sb-blue-select;
+	  background-image: none;
+	  text-shadow: none;
+	  box-shadow: none;
+	  filter: none;
+	}
+
+}
+
+.navbar-search-box-margin {
+	margin-top: 7px;
+	margin-right: 5px;
+}
+
+.navbar-search-submit input {
+	height: 36px;
+	color: #656668;
 }
 
 /*END NAVBAR SEARCH BAR ITSELF*/
