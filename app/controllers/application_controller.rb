@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
       end
 
       @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
-        Tag.search_list(tags_with_provider_counts)
+        Tag.search_list(@tags_with_provider_counts)
       end
 
       @search_terms_list = @tag_search_list + @providers_list
