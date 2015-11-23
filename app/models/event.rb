@@ -37,7 +37,9 @@ class Event < ActiveRecord::Base
   end
 
   def self.first_comment_update_happenings
-    ["said job was good","said job was bad","said job was in between","loaded edit comment page for"]
+    ["said job was good","said job was bad",
+      "said job was in between","loaded edit comment page for",
+      "attempted comment create for"]
   end
 
   # happenings: an array of strings
