@@ -1,10 +1,16 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
-  before_action :allow_staging_access
   protect_from_forgery
+  before_action :allow_staging_access
+  before_action :uat_mini_profile
   after_filter :set_csrf_cookie_for_ng
 
-#http://stackoverflow.com/questions/128450/best-practices-for-reusing-code-between-controllers-in-ruby-on-rails/130821#130821
+  #mini profiler works by default in dev, we only want in some staging
+  def uat_mini_profile
+    if (ENV['RAILS_ENV'] == "staging" and ENV['STAGING_SUB_ENVIRONMENT'] == "uat")
+      Rack::MiniProfiler.authorize_request
+    end
+  end
 
   def set_csrf_cookie_for_ng
     cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
