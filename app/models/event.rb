@@ -30,7 +30,7 @@ class Event < ActiveRecord::Base
       "edit_whatcantheydo_from_profile", "add_po_from_profile",
       "add_visit_from_profile","edit_address_from_profile",
       "edit_contactinfo_from_profile", "searched providers by tags",
-      "added comment rating","signed in","created a provider",
+      "added rating on comment","signed in","created a provider",
       "updated a provider", "attempted provider create", 
       "attempted provider update" 
     ]
