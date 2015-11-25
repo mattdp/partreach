@@ -139,29 +139,10 @@ class ProvidersController < ApplicationController
     @people_called = @organization.colloquial_people_name
     @purchase_order_titles = @organization.has_any_pos?
 
-    @providers_list = Rails.cache.fetch("#{@organization.id}-providers_alpha_sort-#{@organization.last_provider_update}") do 
-      temp_list = []
-      @organization.providers_alpha_sort.each do |provider|
-        temp_list << [provider.name, "#{Organization.encode_search_string([provider])}"]
-      end
-      temp_list
-    end
-
-    #needed in two places below
-    tags_with_provider_counts = Rails.cache.fetch("#{@organization.id}-tags_with_provider_counts-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
-      @organization.tags_with_provider_counts
-    end
-
     @common_search_tags = Rails.cache.fetch("#{@organization.id}-common_search_tags-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       min_list_length = 5      
-      @organization.common_search_tags(tags_with_provider_counts.take(min_list_length))
+      @organization.common_search_tags(@tags_with_provider_counts.take(min_list_length))
     end
-
-    @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
-      Tag.search_list(tags_with_provider_counts)
-    end
-
-    @search_terms_list = @tag_search_list + @providers_list
 
     @recent_activity = Rails.cache.fetch("#{@organization.id}-recent_activity-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
       @organization.recent_activity(["comments","providers"])
@@ -192,7 +173,7 @@ class ProvidersController < ApplicationController
       @additional_tags = []
 
       if providers.present?
-        Event.add_event("User", @user.id, "searched one item", "Provider", providers[0].id) if providers.size == 1
+        Event.add_event("User", @user.id, "searched one item", "Provider", providers[0].id, "search_location: #{params["search_element_location"]}") if providers.size == 1
         @results_hash["#{'Supplier'.pluralize(providers.count)} you searched"] = providers
       end
 
@@ -213,7 +194,7 @@ class ProvidersController < ApplicationController
       end
 
       if searched_models.size == 1
-        Event.add_event("User", @user.id, "searched one item", searched_models[0].class.to_s, searched_models[0].id)
+        Event.add_event("User", @user.id, "searched one item", searched_models[0].class.to_s, searched_models[0].id, "search_location: #{params["search_element_location"]}")
         # if only one provider, skip list, just display that provider's profile page
         redirect_to teams_profile_path(providers[0].name_for_link) if providers.size == 1
       elsif searched_models.size > 1

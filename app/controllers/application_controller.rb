@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   include SessionsHelper
+
+  before_action :allow_staging_access
+  before_action :load_search_terms_list
   protect_from_forgery
   before_action :allow_staging_access
   before_action :uat_mini_profile
@@ -57,6 +60,32 @@ class ApplicationController < ActionController::Base
     return true if current_user.admin?
     (return true if current_user.supplier_id == supplier.id) if model.class.to_s == "Supplier"
     return false
+  end
+
+  def load_search_terms_list
+    user = current_user #somehow, the below line doesn't work without this one. baffled.
+    @organization = current_organization
+    if @organization.present?
+
+      @providers_list = Rails.cache.fetch("#{@organization.id}-providers_alpha_sort-#{@organization.last_provider_update}") do 
+        temp_list = []
+        @organization.providers_alpha_sort.each do |provider|
+          temp_list << [provider.name, "#{Organization.encode_search_string([provider])}"]
+        end
+        temp_list
+      end
+
+      #needed in providers#index as well
+      @tags_with_provider_counts = Rails.cache.fetch("#{@organization.id}-tags_with_provider_counts-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do 
+        @organization.tags_with_provider_counts
+      end
+
+      @tag_search_list = Rails.cache.fetch("#{@organization.id}-tag_search_list-#{@organization.last_provider_update}-#{@organization.last_tag_update}") do
+        Tag.search_list(@tags_with_provider_counts)
+      end
+
+      @search_terms_list = @tag_search_list + @providers_list
+    end
   end
 
   protected
