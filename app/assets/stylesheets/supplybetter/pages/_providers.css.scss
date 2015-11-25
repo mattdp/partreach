@@ -269,6 +269,12 @@ a {
 	color: #656668;
 }
 
+@media screen and (max-width: 767px) {
+  .navbar-nav {
+    clear: both;
+  }
+}
+
 /*END NAVBAR SEARCH BAR ITSELF*/
 
 /*BEGIN AREA AROUND THE INDEX SEARCH BAR*/
