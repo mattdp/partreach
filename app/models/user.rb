@@ -44,14 +44,19 @@ class User < ActiveRecord::Base
     returnee[:id] = self.id
     returnee[:name] = contact.full_name_untrusted
 
-    #comments that were updated during a given range. may also be updated outside that range, so a monthly adder would doublecount,
+    #comments that were updated or user created during a given range. may also be updated outside that range, so a monthly adder would doublecount,
     #but for two updates that should be OK. will doublecount neg reviews if comment updated across months though
     comments_updated_in_range = Comment.joins("INNER JOIN events ON events.target_model_id = comments.id AND events.target_model = 'Comment'")
       .where(comments: {user_id: self.id})
       .where(events: {created_at: start_date..end_date, happening: Event.first_comment_update_happenings})
       .uniq  #INNER JOIN has multiple lines per comment - every Event/Comment pair
-    returnee[:comments_filled_out] = comments_updated_in_range.count
-    returnee[:comments_with_two_or_less_stars] = comments_updated_in_range
+    #ludicrously imperfect, but we have (12/15) no way of binding the create event to a specific comment
+    comments_created_in_range = Comment.where(created_at: start_date..end_date, user_id: self.id)
+    touched_created_comments_in_range = comments_created_in_range.reject{|c| c.untouched?}
+    comments_manipulated_in_range = (comments_updated_in_range + touched_created_comments_in_range).uniq
+
+    returnee[:comments_filled_out] = comments_manipulated_in_range.count
+    returnee[:comments_with_two_or_less_stars] = comments_manipulated_in_range
       .select{|c| c.overall_score.present? and c.overall_score > 0 and c.overall_score < 3}
       .count
     #comments where an email was sent in reminder this month. could have been 1 email or 3 emails, could have 1 or 30 days to respond
