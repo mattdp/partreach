@@ -36,6 +36,7 @@ class Event < ActiveRecord::Base
     ]
   end
 
+  #these don't all have same target model - comment create is at provider
   def self.first_comment_update_happenings
     ["said job was good","said job was bad",
       "said job was in between","loaded edit comment page for",
