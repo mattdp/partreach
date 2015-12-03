@@ -30,6 +30,8 @@
 
 class Provider < ActiveRecord::Base
 
+  include TagManipulation
+
   before_save :prepend_http_to_url
 
   has_many :comments
