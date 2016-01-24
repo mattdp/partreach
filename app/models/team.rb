@@ -78,6 +78,8 @@ class Team < ActiveRecord::Base
     users["jim@demo.com"] = {first_name: "Jim", last_name: "Hite"}
     users["briank@demo.com"] = {first_name: "Brian", last_name: "Kash"}
     users["mattc@demo.com"] = {first_name: "Matt", last_name: "Cameron"}
+    users["vahe@demo.com"] = {first_name: "Vahe", last_name: "Gulagian"}
+    users["hardi@demo.com"] = {first_name: "Hardi", last_name: "Meybaum"}
 
     return users
   end
